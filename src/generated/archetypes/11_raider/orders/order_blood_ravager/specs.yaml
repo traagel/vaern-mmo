@@ -1,0 +1,15 @@
+specs:
+- id: blood_ravager_axe
+  name: Axe-Ravager
+  emphasis: melee_dps
+  description: two-weapon rage-fighter
+  schools_focus:
+  - blade
+  - fury
+- id: blood_ravager_thrust
+  name: Thrust-Ravager
+  emphasis: bruiser
+  description: spear-forward momentum raider
+  schools_focus:
+  - spear
+  - fury

@@ -1,0 +1,12 @@
+id: shadegrove_spire
+zone: ashen_holt
+name: Shadegrove Spire
+role: capital
+amenities:
+- innkeeper
+- class_trainers
+- bank
+- auction
+- flight_master
+- profession_trainers
+quest_givers: 6

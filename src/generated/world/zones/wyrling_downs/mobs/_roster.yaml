@@ -1,0 +1,36 @@
+id: _roster__wyrling_downs
+zone: wyrling_downs
+mob_count: 15
+mob_ids:
+- mob_wyrling_downs_beast_wolf
+- mob_wyrling_downs_beast_boar
+- mob_wyrling_downs_beast_stag
+- mob_wyrling_downs_beast_raven
+- mob_wyrling_downs_beast_fox
+- mob_wyrling_downs_beast_bear
+- mob_wyrling_downs_ambient_squirrel
+- mob_wyrling_downs_exotic_wild_thing
+- mob_wyrling_downs_warband_bandit_recruit
+- mob_wyrling_downs_warband_guild_enforcer
+- mob_wyrling_downs_warband_shadow_broker_agent
+- mob_wyrling_downs_named_shadow_broker_named
+- mob_wyrling_downs_juvenile_wolf
+- mob_wyrling_downs_juvenile_boar
+- mob_wyrling_downs_juvenile_stag
+by_creature_type:
+  beast: 10
+  aberration: 1
+  humanoid: 4
+by_armor_class:
+  hide: 10
+  ethereal: 1
+  leather: 2
+  plate: 2
+by_rarity:
+  common: 12
+  elite: 2
+  named: 1
+level_min: 1
+level_max: 5
+named_or_chain_targets:
+- mob_wyrling_downs_named_shadow_broker_named

@@ -1,0 +1,22 @@
+id: order_skull_breaker
+faction: faction_b
+archetype_id: 11
+archetype_position:
+  might: 75
+  arcana: 0
+  finesse: 25
+flagship: false
+player_facing:
+  class_name: Skull-Breaker
+  title_singular: Skull-Breaker
+  title_plural: Skull-Breakers
+schools_taught:
+  might:
+  - blunt
+  - fury
+  - shield
+institutions:
+  primary: hearth_broken_clans
+  secondary: fury_houses
+  tertiary: shadow_conclave
+chapter: chapter_skull_breaker

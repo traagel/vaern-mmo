@@ -1,0 +1,26 @@
+id: order_brightbrother
+faction: faction_a
+archetype_id: 10
+archetype_position:
+  might: 50
+  arcana: 0
+  finesse: 50
+player_facing:
+  class_name: Brightbrother
+  title_singular: Brightbrother
+  title_plural: Brightbrothers
+schools_taught:
+  might:
+  - unarmed
+  - blunt
+  - honor
+  finesse:
+  - acrobat
+  - silent
+  - tonics
+flagship: true
+institutions:
+  primary: phalanx_school
+  secondary: alchemists_compact
+  tertiary: night_quick_guild
+chapter: chapter_brightbrother

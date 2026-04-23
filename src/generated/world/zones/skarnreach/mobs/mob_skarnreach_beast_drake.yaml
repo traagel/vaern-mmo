@@ -1,0 +1,25 @@
+id: mob_skarnreach_beast_drake
+name: Ice-Drake
+zone: skarnreach
+level: 3
+creature_type: dragonkin
+armor_class: scales
+rarity: common
+role: skirmisher
+faction_alignment: neutral_aggressive
+hp_tier: standard
+damage:
+  primary_school: fire
+  attack_range: melee
+  dps_tier: standard
+behavior:
+  aggro_range: medium
+  social_radius: 5
+  flee_threshold: 0.0
+  calls_allies: false
+  patrol: short
+loot_tier: standard
+drops:
+  gold_copper_avg: 6
+  item_hint: biome-flavored trash material
+biome_context: frost-breath, rare

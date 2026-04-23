@@ -1,0 +1,5 @@
+id: chapter_clan_breaker
+institution: hearth_broken_clans
+produces_order: order_clan_breaker
+secondary_institution: alchemist_tinker_clans
+tertiary_institution: shadow_conclave

@@ -1,0 +1,64 @@
+id: chain_pactmarch_first_contract
+zone: pactmarch
+title: The First Contract
+premise: A Kharun scholar signs their first personal pact with an Old Power; the terms
+  are not what their elders told them
+total_steps: 5
+final_reward:
+  xp_bonus: 1200
+  gold_bonus_copper: 500
+  item_hint: zone-appropriate starter-tier reward
+  title_hint: '''The First Contract'' completion title'
+breadcrumb_from: capital hub of the zone's faction-home
+final_boss_hint: null
+steps:
+- step: 1
+  id: chain_pactmarch_first_contract__01_present_to_the_pactmaster
+  name: Present To The Pactmaster
+  level: 1
+  objective:
+    kind: talk
+    target_hint: Pactmaster Thell
+  xp_reward: 62
+  gold_reward_copper: 15
+  prerequisite: null
+- step: 2
+  id: chain_pactmarch_first_contract__02_read_the_standard_contract
+  name: Read The Standard Contract
+  level: 2
+  objective:
+    kind: investigate
+    target_hint: the Scholar's Camp archives
+  xp_reward: 154
+  gold_reward_copper: 30
+  prerequisite: chain_pactmarch_first_contract__01_present_to_the_pactmaster
+- step: 3
+  id: chain_pactmarch_first_contract__03_interrogate_a_bound_spirit
+  name: Interrogate A Bound Spirit
+  level: 3
+  objective:
+    kind: talk
+    target_hint: a lesser-bound thing in a warded circle
+  xp_reward: 274
+  gold_reward_copper: 45
+  prerequisite: chain_pactmarch_first_contract__02_read_the_standard_contract
+- step: 4
+  id: chain_pactmarch_first_contract__04_renegotiate_the_terms
+  name: Renegotiate The Terms
+  level: 4
+  objective:
+    kind: ritual
+    target_hint: the private contract-rite
+  xp_reward: 422
+  gold_reward_copper: 60
+  prerequisite: chain_pactmarch_first_contract__03_interrogate_a_bound_spirit
+- step: 5
+  id: chain_pactmarch_first_contract__05_bear_the_mark
+  name: Bear The Mark
+  level: 5
+  objective:
+    kind: ritual
+    target_hint: the mark-receiving at Pactstone Hold
+  xp_reward: 600
+  gold_reward_copper: 75
+  prerequisite: chain_pactmarch_first_contract__04_renegotiate_the_terms

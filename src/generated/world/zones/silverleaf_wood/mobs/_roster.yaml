@@ -1,0 +1,47 @@
+id: _roster__silverleaf_wood
+zone: silverleaf_wood
+mob_count: 24
+mob_ids:
+- mob_silverleaf_wood_beast_wolf
+- mob_silverleaf_wood_beast_boar
+- mob_silverleaf_wood_beast_stag
+- mob_silverleaf_wood_beast_raven
+- mob_silverleaf_wood_beast_fox
+- mob_silverleaf_wood_beast_bear
+- mob_silverleaf_wood_ambient_squirrel
+- mob_silverleaf_wood_exotic_wild_thing
+- mob_silverleaf_wood_warband_wildcourt_refuser
+- mob_silverleaf_wood_warband_moth_attendant
+- mob_silverleaf_wood_warband_court_champion
+- mob_silverleaf_wood_named_mothking_shade
+- mob_silverleaf_wood_named_refuser_champion
+- mob_silverleaf_wood_juvenile_wolf
+- mob_silverleaf_wood_juvenile_boar
+- mob_silverleaf_wood_juvenile_stag
+- mob_silverleaf_wood_juvenile_raven
+- mob_silverleaf_wood_juvenile_fox
+- mob_silverleaf_wood_juvenile_bear
+- mob_silverleaf_wood_alpha_wolf
+- mob_silverleaf_wood_alpha_boar
+- mob_silverleaf_wood_alpha_stag
+- mob_silverleaf_wood_alpha_raven
+- mob_silverleaf_wood_alpha_fox
+by_creature_type:
+  beast: 18
+  aberration: 1
+  humanoid: 5
+by_armor_class:
+  hide: 18
+  ethereal: 1
+  leather: 1
+  cloth: 1
+  plate: 3
+by_rarity:
+  common: 15
+  elite: 8
+  named: 1
+level_min: 16
+level_max: 22
+named_or_chain_targets:
+- mob_silverleaf_wood_named_mothking_shade
+- mob_silverleaf_wood_named_refuser_champion

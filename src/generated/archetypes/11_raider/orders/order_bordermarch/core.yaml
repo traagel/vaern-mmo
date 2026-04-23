@@ -1,0 +1,24 @@
+id: order_bordermarch
+faction: faction_a
+archetype_id: 11
+archetype_position:
+  might: 75
+  arcana: 0
+  finesse: 25
+player_facing:
+  class_name: Bordermarch Champion
+  title_singular: Bordermarch Champion
+  title_plural: Bordermarch Champions
+schools_taught:
+  might:
+  - honor
+  - shield
+  - spear
+  finesse:
+  - bow
+flagship: true
+institutions:
+  primary: phalanx_school
+  secondary: knight_order
+  tertiary: night_quick_guild
+chapter: chapter_bordermarch

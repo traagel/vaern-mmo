@@ -1,0 +1,22 @@
+id: order_void_mage
+faction: faction_b
+archetype_id: 4
+archetype_position:
+  might: 0
+  arcana: 100
+  finesse: 0
+flagship: false
+player_facing:
+  class_name: Void-Mage
+  title_singular: Void-Mage
+  title_plural: Void-Mages
+schools_taught:
+  arcana:
+  - shadow
+  - arcane
+  - frost
+institutions:
+  primary: bleeding_vaults
+  secondary: shadow_conclave
+  tertiary: fury_houses
+chapter: chapter_void_mage

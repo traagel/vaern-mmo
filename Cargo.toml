@@ -1,0 +1,50 @@
+[workspace]
+resolver = "2"
+members = [
+    "crates/vaern-core",
+    "crates/vaern-data",
+    "crates/vaern-protocol",
+    "crates/vaern-combat",
+    "crates/vaern-character",
+    "crates/vaern-stats",
+    "crates/vaern-items",
+    "crates/vaern-economy",
+    "crates/vaern-equipment",
+    "crates/vaern-inventory",
+    "crates/vaern-loot",
+    "crates/vaern-professions",
+    "crates/vaern-server",
+    "crates/vaern-client",
+    "crates/vaern-sim",
+    "crates/vaern-museum",
+    "crates/vaern-assets",
+    "crates/vaern-persistence",
+]
+
+[workspace.package]
+version = "0.1.0"
+edition = "2024"
+rust-version = "1.89"
+license = "Proprietary"
+
+[workspace.dependencies]
+vaern-core = { path = "crates/vaern-core" }
+vaern-data = { path = "crates/vaern-data" }
+vaern-protocol = { path = "crates/vaern-protocol" }
+vaern-combat = { path = "crates/vaern-combat" }
+vaern-character = { path = "crates/vaern-character" }
+vaern-stats = { path = "crates/vaern-stats" }
+vaern-items = { path = "crates/vaern-items" }
+vaern-economy = { path = "crates/vaern-economy" }
+vaern-equipment = { path = "crates/vaern-equipment" }
+vaern-inventory = { path = "crates/vaern-inventory" }
+vaern-loot = { path = "crates/vaern-loot" }
+vaern-professions = { path = "crates/vaern-professions" }
+vaern-assets = { path = "crates/vaern-assets" }
+vaern-persistence = { path = "crates/vaern-persistence" }
+
+[profile.dev]
+opt-level = 1
+
+[profile.dev.package."*"]
+opt-level = 3

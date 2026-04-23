@@ -1,0 +1,17 @@
+id: black_eel_warrens
+name: Black-Eel Warrens
+kind: dungeon
+group_size: 5
+zone: blackwater_deep
+entrance_hub: black_eel_camp
+level_range:
+  min: 48
+  max: 55
+level_band: 46-60
+tier: endgame
+boss_count: 3
+estimated_clear_minutes: 75
+loot_tier: endgame
+lockout: none (rerunnable)
+theme: Submerged warrens of the Black-Eel clan, Rend infiltrators of the Deep
+coop_notes: tight-coop-friendly; duo/trio can attempt under-level with care

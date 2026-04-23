@@ -1,0 +1,17 @@
+id: salt_watch_prison
+name: The Salt-Watch Prison
+kind: dungeon
+group_size: 5
+zone: skarncamp_wastes
+entrance_hub: salt_watch
+level_range:
+  min: 28
+  max: 34
+level_band: 11-30
+tier: leveling
+boss_count: 3
+estimated_clear_minutes: 45
+loot_tier: mid
+lockout: none (rerunnable)
+theme: "Skarn war-camp prison \u2014 freed inmates and their warden-executioners"
+coop_notes: tight-coop-friendly; duo/trio can attempt under-level with care

@@ -1,0 +1,11 @@
+id: hide
+name: Hide
+tier: light
+physical_reduction: 0.1
+magic_reduction: 0.05
+weak_against:
+- blade
+strong_against:
+- blunt
+mobility_penalty: 0.0
+notes: "natural hide or tanned-leather-equivalent \u2014 most beasts default here"

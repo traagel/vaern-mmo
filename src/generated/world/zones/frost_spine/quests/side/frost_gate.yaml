@@ -1,0 +1,30 @@
+id: side_quests__frost_gate
+hub: frost_gate
+hub_role: waypoint
+zone: frost_spine
+biome: mountain
+quest_count: 2
+quests:
+- id: side__frost_gate__the_rockfall_watch
+  name: The Rockfall Watch
+  hub: frost_gate
+  type: side
+  level: 48
+  objective:
+    kind: investigate
+    target_hint: a recent rockfall for survivors
+  xp_reward: 11827
+  gold_reward_copper: 240
+  repeatable: false
+- id: side__frost_gate__the_ore_sample
+  name: The Ore Sample
+  hub: frost_gate
+  type: side
+  level: 55
+  objective:
+    kind: collect
+    target_hint: ore samples from the upper shafts
+    count: 4
+  xp_reward: 15400
+  gold_reward_copper: 275
+  repeatable: false

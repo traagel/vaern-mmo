@@ -1,0 +1,16 @@
+name: silent
+pillar: finesse
+morality: neutral
+family: style
+tag: stealth mastery
+damage_type: piercing
+applies_to_categories:
+- stealth
+- evasion
+- trickery
+- utility
+icon_style:
+  palette: void-black, charcoal, dim cool moonlight-blue, muted gunmetal, single candle-spark
+  motif: hooded figure, cloak folds, shadow-merge silhouette, faint footprint fading, muffled glyph
+  silhouette: hooded cowl face-in-shadow with only eyes visible, cloak edge dissolving into dark
+  material: matte black cloth, soft-soled boots, dulled steel, ink-black shadow

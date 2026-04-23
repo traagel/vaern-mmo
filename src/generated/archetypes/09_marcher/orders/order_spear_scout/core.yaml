@@ -1,0 +1,24 @@
+id: order_spear_scout
+faction: faction_a
+archetype_id: 9
+archetype_position:
+  might: 25
+  arcana: 0
+  finesse: 75
+flagship: false
+player_facing:
+  class_name: Spear-Scout
+  title_singular: Spear-Scout
+  title_plural: Spear-Scouts
+schools_taught:
+  might:
+  - spear
+  finesse:
+  - thrown
+  - silent
+  - bow
+institutions:
+  primary: night_quick_guild
+  secondary: circle_of_roots
+  tertiary: knight_order
+chapter: chapter_spear_scout

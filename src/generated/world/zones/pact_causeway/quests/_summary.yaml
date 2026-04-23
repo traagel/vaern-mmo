@@ -1,0 +1,16 @@
+id: quest_summary__pact_causeway
+zone: pact_causeway
+level_range:
+  min: 15
+  max: 22
+tier: mid
+budget_target: 112
+actual:
+  main_chain_steps: 7
+  side_quests: 8
+  filler_pool: 91
+  total: 106
+coverage_ratio: 0.95
+main_chain: chain_pact_indelible_curse
+notes: Main chain is hand-crafted story; side is templated by biome+hub-role; filler
+  is a procedural pool.

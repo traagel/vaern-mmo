@@ -1,0 +1,15 @@
+specs:
+- id: necro_reaper
+  name: Reaper
+  emphasis: magic_dps
+  description: necrotic damage specialist
+  schools_focus:
+  - blood
+  - shadow
+- id: necro_binder
+  name: Bone-Binder
+  emphasis: summoner
+  description: bound-dead summoner
+  schools_focus:
+  - shadow
+  - arcane

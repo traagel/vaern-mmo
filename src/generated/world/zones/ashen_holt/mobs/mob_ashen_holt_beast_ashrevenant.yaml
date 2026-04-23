@@ -1,0 +1,25 @@
+id: mob_ashen_holt_beast_ashrevenant
+name: Ash-Revenant
+zone: ashen_holt
+level: 3
+creature_type: undead
+armor_class: bone
+rarity: common
+role: skirmisher
+faction_alignment: hostile_to_faction_b
+hp_tier: standard
+damage:
+  primary_school: shadow
+  attack_range: melee
+  dps_tier: standard
+behavior:
+  aggro_range: medium
+  social_radius: 5
+  flee_threshold: 0.0
+  calls_allies: false
+  patrol: short
+loot_tier: standard
+drops:
+  gold_copper_avg: 6
+  item_hint: biome-flavored trash material
+biome_context: burned shell walking

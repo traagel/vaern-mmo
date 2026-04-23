@@ -1,0 +1,32 @@
+id: _bestiary_schema
+description: Schema for creature_types and armor_classes. Not loaded as data.
+inheritance_rule: Each mob references exactly one creature_type and one armor_class.
+  The mob inherits hp_scaling, resistances, affinities, and behavior_defaults from
+  its creature_type, and physical/magic reduction + material match-ups from its armor_class.
+  Mobs MAY override specific fields via an 'override:' block in their own yaml; override
+  is a shallow merge.
+hp_resolution: hp = round(type.hp_scaling.base_at_level_1 * type.hp_scaling.per_level_multiplier^(mob.level
+  - 1) * rarity_multiplier[mob.rarity])
+rarity_multipliers:
+  common: 1.0
+  elite: 2.75
+  rare: 3.5
+  named: 5.0
+damage_resolution: incoming_damage = raw_damage * (1 + type.resistances.get(school,
+  0)) * (1 - armor.physical_reduction if school is physical else 1 - armor.magic_reduction)
+  * (1 + armor_weakness_bonus if school in armor.weak_against else 1) * (1 - armor_strength_bonus
+  if school in armor.strong_against else 1)
+affinity_validation: "A mob's primary_school MUST be in its creature_type.affinities.preferred\
+  \ or .allowed. Schools in .forbidden cannot be assigned \u2014 this prevents LLM-generated\
+  \ incoherence like 'light-devotion ashwolf' or 'poison golem'."
+field_order_convention:
+- id
+- name
+- category
+- description
+- hp_scaling
+- default_armor_class
+- resistances
+- affinities
+- behavior_defaults
+- tags

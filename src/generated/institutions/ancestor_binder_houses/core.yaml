@@ -1,0 +1,20 @@
+id: ancestor_binder_houses
+faction: faction_b
+name: The Ancestor-Binder Houses
+tradition: Ancestor-Rite
+curriculum:
+  major:
+    arcana:
+    - blood
+  secondary:
+    arcana:
+    - nature
+    - shadow
+    might:
+    - spear
+    finesse:
+    - silent
+pillars:
+- arcana
+- finesse
+- might

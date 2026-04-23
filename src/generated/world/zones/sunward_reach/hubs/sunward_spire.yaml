@@ -1,0 +1,12 @@
+id: sunward_spire
+zone: sunward_reach
+name: Sunward Spire
+role: capital
+amenities:
+- innkeeper
+- class_trainers
+- bank
+- auction
+- flight_master
+- profession_trainers
+quest_givers: 6

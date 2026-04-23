@@ -1,0 +1,493 @@
+# NPC display-name → EverythingLibrary mesh species + scale.
+#
+# Keyed by the exact `name:` field in `src/generated/world/zones/*/mobs/`
+# YAMLs. At server spawn time, `vaern-server::npc_mesh::lookup(name)`
+# returns `{mesh, scale}` for the replicated `NpcMesh` component.
+# Absent entries (or `mesh: null`) render as blue cuboids.
+#
+# Scale conventions:
+#   - `Juvenile <x>`   → 0.70 × base
+#   - `Alpha <x>`      → 1.15 × base
+#   - `Matriarch <x>`  → 1.15 × base
+#   - `The <x>` bosses → 1.30 × base
+#
+# Humanoid mobs (Bandit, Cultist, Guard, Paladin, …) are `null` — they
+# have no EverythingLibrary equivalent and stay as blue cuboids until
+# the Quaternius-humanoid NPC render path lands.
+#
+# Undead / ethereal (Wraith / Ghost / Shade / Revenant / Spirit / Wight)
+# use the `Skeleton` part-mesh from AnimalParts/Skeleton as a visible
+# stand-in. Elementals / golems / "things" remain null.
+
+# Archetype templates — referenced by `humanoid: <key>` in entries:
+# below. Each resolves to a full `PersistedCosmetics` and replicates
+# as `NpcAppearance` so the client spawns a Quaternius character
+# wearing this outfit. All string fields are serde tags, matching
+# `vaern-persistence::cosmetic` (outfit / head_piece / hair / beard
+# / color). `color` applies to every outfit-bearing slot.
+humanoid_archetypes:
+  peasant_male:
+    gender: male
+    body: peasant
+    legs: peasant
+    arms: peasant
+    feet: peasant
+    hair: simple_parted
+    beard: full
+    color: v1
+  peasant_female:
+    gender: female
+    body: peasant
+    legs: peasant
+    arms: peasant
+    feet: peasant
+    hair: long
+    color: v1
+  ranger_male:
+    gender: male
+    body: ranger
+    legs: ranger
+    arms: ranger
+    feet: ranger
+    hair: simple_parted
+    beard: full
+    color: v2
+  ranger_hooded_male:
+    gender: male
+    body: ranger
+    legs: ranger
+    arms: ranger
+    feet: ranger
+    head_piece: ranger_hood
+    hair: simple_parted
+    beard: full
+    color: v2
+  ranger_female:
+    gender: female
+    body: ranger
+    legs: ranger
+    arms: ranger
+    feet: ranger
+    hair: long
+    color: v2
+  wizard_male:
+    gender: male
+    body: wizard
+    legs: wizard
+    arms: wizard
+    feet: wizard
+    hair: simple_parted
+    beard: full
+    color: v2
+  wizard_hooded_male:
+    gender: male
+    body: wizard
+    legs: wizard
+    arms: wizard
+    feet: wizard
+    head_piece: ranger_hood   # Quaternius ships no wizard hood — ranger hood stands in
+    hair: simple_parted
+    beard: full
+    color: v2
+  wizard_female:
+    gender: female
+    body: wizard
+    legs: wizard
+    arms: wizard
+    feet: wizard
+    hair: long
+    color: v2
+  knight_plate_male:
+    gender: male
+    body: knight
+    legs: knight
+    arms: knight
+    feet: knight
+    head_piece: knight_armet
+    hair: buzzed
+    beard: full
+    color: v2
+  knight_cloth_male:
+    gender: male
+    body: knight_cloth
+    legs: knight
+    arms: knight
+    feet: knight
+    head_piece: knight_armet
+    hair: buzzed
+    beard: full
+    color: v3
+  noble_male:
+    gender: male
+    body: noble
+    legs: noble
+    arms: noble
+    feet: noble
+    head_piece: noble_crown
+    hair: simple_parted
+    beard: full
+    color: v1
+  noble_female:
+    gender: female
+    body: noble
+    legs: noble
+    arms: noble
+    feet: noble
+    head_piece: noble_crown
+    hair: buns
+    color: v1
+
+entries:
+  # ── Beasts — Wolf family ──────────────────────────────────────────────
+  "Grey Wolf":               { mesh: GrayWolf, scale: 1.00 }
+  "Juvenile Grey Wolf":      { mesh: GrayWolf, scale: 0.70 }
+  "Alpha Grey Wolf":         { mesh: GrayWolf, scale: 1.15 }
+  "Matriarch Grey Wolf":     { mesh: GrayWolf, scale: 1.15 }
+  "Forest Wolf":             { mesh: GrayWolf, scale: 1.00 }
+  "Juvenile Forest Wolf":    { mesh: GrayWolf, scale: 0.70 }
+  "Alpha Forest Wolf":       { mesh: GrayWolf, scale: 1.15 }
+  "Matriarch Forest Wolf":   { mesh: GrayWolf, scale: 1.15 }
+  "Ash-Wolf":                { mesh: ArcticWolf, scale: 1.00 }
+  "Juvenile Ash-Wolf":       { mesh: ArcticWolf, scale: 0.70 }
+  "Alpha Ash-Wolf":          { mesh: ArcticWolf, scale: 1.15 }
+  "Matriarch Ash-Wolf":      { mesh: ArcticWolf, scale: 1.15 }
+  "Carrion-Hound":           { mesh: Dobermann, scale: 1.00 }
+  "Juvenile Carrion-Hound":  { mesh: Dobermann, scale: 0.70 }
+  "Alpha Carrion-Hound":     { mesh: Dobermann, scale: 1.15 }
+  "Matriarch Carrion-Hound": { mesh: Dobermann, scale: 1.15 }
+  "Copper Fox":              { mesh: RedFox, scale: 1.00 }
+  "Juvenile Copper Fox":     { mesh: RedFox, scale: 0.70 }
+  "Alpha Copper Fox":        { mesh: RedFox, scale: 1.15 }
+
+  # ── Beasts — Bear family ──────────────────────────────────────────────
+  # BrownBear / BlackBear ship as a variant pair: alt576/alt574 are
+  # the rearing (hind-legs) pose; alt577/alt575 are the natural
+  # four-legged pose. Use the `_b` exports so bears walk on all fours.
+  "Brown Bear":              { mesh: BrownBear_b, scale: 1.00 }
+  "Juvenile Brown Bear":     { mesh: BrownBear_b, scale: 0.70 }
+  "Alpha Brown Bear":        { mesh: BrownBear_b, scale: 1.15 }
+  "Mossback Bear":           { mesh: BrownBear_b, scale: 1.00 }
+  "Juvenile Mossback Bear":  { mesh: BrownBear_b, scale: 0.70 }
+  "Alpha Mossback Bear":     { mesh: BrownBear_b, scale: 1.15 }
+  "Mountain Bear":           { mesh: BlackBear_b, scale: 1.00 }
+  "Juvenile Mountain Bear":  { mesh: BlackBear_b, scale: 0.70 }
+  "Alpha Mountain Bear":     { mesh: BlackBear_b, scale: 1.15 }
+  "Matriarch Mountain Bear": { mesh: BlackBear_b, scale: 1.15 }
+  "Highland Bear":           { mesh: BrownBear_b, scale: 1.00 }
+  "Juvenile Highland Bear":  { mesh: BrownBear_b, scale: 0.70 }
+  "Ice-Bear":                { mesh: PolarBear, scale: 1.00 }
+  "Juvenile Ice-Bear":       { mesh: PolarBear, scale: 0.70 }
+  "Alpha Ice-Bear":          { mesh: PolarBear, scale: 1.15 }
+  "Cave Yeti":               { mesh: Gorilla, scale: 1.10 }
+  "Juvenile Cave Yeti":      { mesh: Gorilla, scale: 0.70 }
+  "Alpha Cave Yeti":         { mesh: Gorilla, scale: 1.25 }
+  "Cragside Badger":         { mesh: Raccoon, scale: 1.10 }
+  "Juvenile Cragside Badger": { mesh: Raccoon, scale: 0.70 }
+  "Alpha Cragside Badger":   { mesh: Raccoon, scale: 1.20 }
+
+  # ── Beasts — Cats ─────────────────────────────────────────────────────
+  "Hill Cat":                { mesh: Bobcat, scale: 1.00 }
+  "Juvenile Hill Cat":       { mesh: Bobcat, scale: 0.70 }
+  "Alpha Hill Cat":          { mesh: MountainLion, scale: 1.10 }
+
+  # ── Beasts — Deer / Elk / Stag ────────────────────────────────────────
+  "Antler-Stag":             { mesh: Deer, scale: 1.00 }
+  "Juvenile Antler-Stag":    { mesh: Deer, scale: 0.70 }
+  "Alpha Antler-Stag":       { mesh: Deer, scale: 1.15 }
+  "Matriarch Antler-Stag":   { mesh: Deer, scale: 1.15 }
+  "Tall Stag":               { mesh: RockyMountainElk, scale: 1.00 }
+  "Juvenile Tall Stag":      { mesh: RockyMountainElk, scale: 0.70 }
+  "Alpha Tall Stag":         { mesh: RockyMountainElk, scale: 1.15 }
+  "Wild-Court Stag":         { mesh: Deer, scale: 1.05 }
+  "Fog-Elk":                 { mesh: RockyMountainElk, scale: 1.00 }
+  "Juvenile Fog-Elk":        { mesh: RockyMountainElk, scale: 0.70 }
+  "Alpha Fog-Elk":           { mesh: RockyMountainElk, scale: 1.15 }
+
+  # ── Beasts — Boar / Goat / Hare / Squirrel ────────────────────────────
+  "Forest Boar":             { mesh: Boar, scale: 1.00 }
+  "Juvenile Forest Boar":    { mesh: Boar, scale: 0.70 }
+  "Alpha Forest Boar":       { mesh: Boar, scale: 1.15 }
+  "Matriarch Forest Boar":   { mesh: Boar, scale: 1.15 }
+  "River Boar":              { mesh: Boar, scale: 1.00 }
+  "Juvenile River Boar":     { mesh: Boar, scale: 0.70 }
+  "Alpha River Boar":        { mesh: Boar, scale: 1.15 }
+  "Matriarch River Boar":    { mesh: Boar, scale: 1.15 }
+  "Mountain Goat":           { mesh: Goat, scale: 1.00 }
+  "Juvenile Mountain Goat":  { mesh: Goat, scale: 0.70 }
+  "Alpha Mountain Goat":     { mesh: Goat, scale: 1.15 }
+  "Hill-Hare":               { mesh: Hare, scale: 1.00 }
+  "Mountain-Pika":           { mesh: Marmot, scale: 0.90 }
+  "Red-Squirrel":            { mesh: RedSquirrel, scale: 1.00 }
+
+  # ── Beasts — Aquatic / Seal / Orca / Otter / Duck ─────────────────────
+  "Crag-Seal":               { mesh: HarbourSeal, scale: 1.00 }
+  "Juvenile Crag-Seal":      { mesh: HarbourSeal, scale: 0.70 }
+  "Alpha Crag-Seal":         { mesh: HarbourSeal, scale: 1.15 }
+  "Fjord-Seal":              { mesh: HarbourSeal, scale: 1.00 }
+  "Juvenile Fjord-Seal":     { mesh: HarbourSeal, scale: 0.70 }
+  "Alpha Fjord-Seal":        { mesh: HarbourSeal, scale: 1.15 }
+  "Matriarch Fjord-Seal":    { mesh: HarbourSeal, scale: 1.15 }
+  "Ice-Orca":                { mesh: Walrus, scale: 1.30 }
+  "Juvenile Ice-Orca":       { mesh: Walrus, scale: 0.80 }
+  "Alpha Ice-Orca":          { mesh: Walrus, scale: 1.50 }
+  "Matriarch Ice-Orca":      { mesh: Walrus, scale: 1.50 }
+  "River-Otter Rake":        { mesh: Otter, scale: 1.00 }
+  "Juvenile River-Otter Rake": { mesh: Otter, scale: 0.70 }
+  "Alpha River-Otter Rake":  { mesh: Otter, scale: 1.15 }
+  "River-Duck":              { mesh: WildDuck, scale: 1.00 }
+
+  # ── Reptiles — Drakes / Wyrms / Snakes / Frogs ────────────────────────
+  "Cinder-Drake":            { mesh: KomodoDragon, scale: 1.00 }
+  "Juvenile Cinder-Drake":   { mesh: KomodoDragon, scale: 0.70 }
+  "Alpha Cinder-Drake":      { mesh: KomodoDragon, scale: 1.20 }
+  "Matriarch Cinder-Drake":  { mesh: KomodoDragon, scale: 1.20 }
+  "Ice-Drake":               { mesh: KomodoDragon, scale: 1.00 }
+  "Juvenile Ice-Drake":      { mesh: KomodoDragon, scale: 0.70 }
+  "Alpha Ice-Drake":         { mesh: KomodoDragon, scale: 1.20 }
+  "Marsh-Drake":             { mesh: KomodoDragon, scale: 1.00 }
+  "Juvenile Marsh-Drake":    { mesh: KomodoDragon, scale: 0.70 }
+  "Alpha Marsh-Drake":       { mesh: KomodoDragon, scale: 1.20 }
+  "Rock Drake":              { mesh: RockIguana, scale: 1.00 }
+  "Juvenile Rock Drake":     { mesh: RockIguana, scale: 0.70 }
+  "Alpha Rock Drake":        { mesh: RockIguana, scale: 1.20 }
+  "Matriarch Rock Drake":    { mesh: RockIguana, scale: 1.20 }
+  "Cliff Wyrm":              { mesh: Rattlesnake, scale: 1.30 }
+  "Juvenile Cliff Wyrm":     { mesh: Rattlesnake, scale: 0.80 }
+  "Alpha Cliff Wyrm":        { mesh: Rattlesnake, scale: 1.50 }
+  "Ember-Snake":             { mesh: CoralSnake, scale: 1.00 }
+  "Juvenile Ember-Snake":    { mesh: CoralSnake, scale: 0.70 }
+  "Alpha Ember-Snake":       { mesh: CoralSnake, scale: 1.15 }
+  "Reed-Serpent":            { mesh: Rattlesnake, scale: 1.00 }
+  "Juvenile Reed-Serpent":   { mesh: Rattlesnake, scale: 0.70 }
+  "Alpha Reed-Serpent":      { mesh: Rattlesnake, scale: 1.15 }
+  "Fjord-Serpent":           { mesh: Rattlesnake, scale: 1.10 }
+  "Juvenile Fjord-Serpent":  { mesh: Rattlesnake, scale: 0.75 }
+  "Alpha Fjord-Serpent":     { mesh: Rattlesnake, scale: 1.25 }
+  "Rot-Toad":                { mesh: Toad, scale: 1.00 }
+  "Juvenile Rot-Toad":       { mesh: Toad, scale: 0.70 }
+  "Alpha Rot-Toad":          { mesh: Toad, scale: 1.15 }
+  "Marsh-Frog":              { mesh: GreenFrog, scale: 1.00 }
+  "Bog Crocodilian":         { mesh: Crocodile, scale: 1.10 }
+  "Juvenile Bog Crocodilian": { mesh: Crocodile, scale: 0.75 }
+  "Alpha Bog Crocodilian":   { mesh: Crocodile, scale: 1.30 }
+  "Matriarch Bog Crocodilian": { mesh: Crocodile, scale: 1.30 }
+
+  # ── Birds & Flying ────────────────────────────────────────────────────
+  "Carrion-Raven":           { mesh: Crow, scale: 1.00 }
+  "Juvenile Carrion-Raven":  { mesh: Crow, scale: 0.70 }
+  "Alpha Carrion-Raven":     { mesh: Crow, scale: 1.15 }
+  "Fjord-Hawk":              { mesh: Falcon, scale: 1.00 }
+  "Juvenile Fjord-Hawk":     { mesh: Falcon, scale: 0.70 }
+  "Alpha Fjord-Hawk":        { mesh: Falcon, scale: 1.15 }
+  "Stone-Hawk":              { mesh: Eagle, scale: 1.00 }
+  "Juvenile Stone-Hawk":     { mesh: Eagle, scale: 0.70 }
+  "Alpha Stone-Hawk":        { mesh: Eagle, scale: 1.15 }
+  "Spectral Hawk":           { mesh: Falcon, scale: 1.05 }
+  "Juvenile Spectral Hawk":  { mesh: Falcon, scale: 0.70 }
+  "Alpha Spectral Hawk":     { mesh: Falcon, scale: 1.20 }
+  "War-Hawk Skarn":          { mesh: Eagle, scale: 1.10 }
+  "Cliff Seabird":           { mesh: Gull, scale: 1.00 }
+  "Juvenile Cliff Seabird":  { mesh: Gull, scale: 0.70 }
+  "Alpha Cliff Seabird":     { mesh: Gull, scale: 1.15 }
+  "Fjord-Guillemot":         { mesh: Gull, scale: 0.90 }
+  "Reed Heron":              { mesh: Crane, scale: 1.00 }
+  "Juvenile Reed Heron":     { mesh: Crane, scale: 0.70 }
+  "Alpha Reed Heron":        { mesh: Crane, scale: 1.15 }
+  "Storm-Ray":               { mesh: VampireBat, scale: 1.30 }
+  "Juvenile Storm-Ray":      { mesh: VampireBat, scale: 0.80 }
+  "Alpha Storm-Ray":         { mesh: VampireBat, scale: 1.50 }
+
+  # ── Insects / Arachnids / Swarms ──────────────────────────────────────
+  "Cave Spider":             { mesh: Tarantula, scale: 1.00 }
+  "Juvenile Cave Spider":    { mesh: Tarantula, scale: 0.70 }
+  "Alpha Cave Spider":       { mesh: Tarantula, scale: 1.30 }
+  "Matriarch Cave Spider":   { mesh: Tarantula, scale: 1.30 }
+  "Tidepool Spider":         { mesh: BlackWidow, scale: 1.00 }
+  "Juvenile Tidepool Spider": { mesh: BlackWidow, scale: 0.70 }
+  "Alpha Tidepool Spider":   { mesh: BlackWidow, scale: 1.30 }
+  "Cavern Bat-Swarm":        { mesh: VampireBat, scale: 0.80 }
+  "Juvenile Cavern Bat-Swarm": { mesh: VampireBat, scale: 0.60 }
+  "Alpha Cavern Bat-Swarm":  { mesh: VampireBat, scale: 1.00 }
+  "Blood-Gnat Swarm":        { mesh: BlueFly, scale: 1.00 }
+  "Juvenile Blood-Gnat Swarm": { mesh: BlueFly, scale: 0.70 }
+  "Alpha Blood-Gnat Swarm":  { mesh: BlueFly, scale: 1.20 }
+  "Matriarch Blood-Gnat Swarm": { mesh: BlueFly, scale: 1.20 }
+  "Soot-Tick":               { mesh: BlackAnt, scale: 1.20 }
+  "Juvenile Soot-Tick":      { mesh: BlackAnt, scale: 0.75 }
+  "Alpha Soot-Tick":         { mesh: BlackAnt, scale: 1.40 }
+  "Matriarch Soot-Tick":     { mesh: BlackAnt, scale: 1.40 }
+  "Ash-Scarab":              { mesh: GoldenStagBeetle, scale: 1.10 }
+  "Giant Crab":              { mesh: EmperorScorpion, scale: 1.10 }
+  "Juvenile Giant Crab":     { mesh: EmperorScorpion, scale: 0.75 }
+  "Alpha Giant Crab":        { mesh: EmperorScorpion, scale: 1.30 }
+  "Tide-Crab":               { mesh: EmperorScorpion, scale: 1.00 }
+
+  # ── Worms / Rats / Small pests ────────────────────────────────────────
+  "Deepworm Creep":          { mesh: Earthworm, scale: 4.00 }
+  "Juvenile Deepworm Creep": { mesh: Earthworm, scale: 2.50 }
+  "Alpha Deepworm Creep":    { mesh: Earthworm, scale: 5.50 }
+  "Ruin-Rat":                { mesh: Rat, scale: 1.20 }
+
+  # ── Undead / ethereal → Skeleton stand-in ─────────────────────────────
+  "Ash-Revenant":            { mesh: Skeleton, scale: 1.00 }
+  "Juvenile Ash-Revenant":   { mesh: Skeleton, scale: 0.70 }
+  "Alpha Ash-Revenant":      { mesh: Skeleton, scale: 1.15 }
+  "Ash-Wraith":              { mesh: Skeleton, scale: 1.05 }
+  "Battlefield Wraith":      { mesh: Skeleton, scale: 1.00 }
+  "Juvenile Battlefield Wraith": { mesh: Skeleton, scale: 0.70 }
+  "Alpha Battlefield Wraith": { mesh: Skeleton, scale: 1.15 }
+  "Burrow-Wight":            { mesh: Skeleton, scale: 1.00 }
+  "Juvenile Burrow-Wight":   { mesh: Skeleton, scale: 0.70 }
+  "Alpha Burrow-Wight":      { mesh: Skeleton, scale: 1.15 }
+  "Frost-Bound Wight":       { mesh: Skeleton, scale: 1.00 }
+  "Ruin-Revenant":           { mesh: Skeleton, scale: 1.00 }
+  "Juvenile Ruin-Revenant":  { mesh: Skeleton, scale: 0.70 }
+  "Alpha Ruin-Revenant":     { mesh: Skeleton, scale: 1.15 }
+  "War-Ghost":               { mesh: Skeleton, scale: 1.00 }
+  "Juvenile War-Ghost":      { mesh: Skeleton, scale: 0.70 }
+  "Alpha War-Ghost":         { mesh: Skeleton, scale: 1.15 }
+  "Matriarch War-Ghost":     { mesh: Skeleton, scale: 1.15 }
+  "Drifter-Mage Shade":      { mesh: Skeleton, scale: 1.05 }
+  "Drowned-Warden Shade":    { mesh: Skeleton, scale: 1.05 }
+  "Wrecked Sailor Shade":    { mesh: Skeleton, scale: 1.00 }
+  "Rot-Spirit":              { mesh: Skeleton, scale: 1.00 }
+  "Storm-Bound Spirit":      { mesh: Skeleton, scale: 1.05 }
+  "Juvenile Storm-Bound Spirit": { mesh: Skeleton, scale: 0.70 }
+  "Alpha Storm-Bound Spirit": { mesh: Skeleton, scale: 1.20 }
+  "Bog-Weeper":              { mesh: Skeleton, scale: 1.00 }
+  "Juvenile Bog-Weeper":     { mesh: Skeleton, scale: 0.70 }
+  "Alpha Bog-Weeper":        { mesh: Skeleton, scale: 1.15 }
+
+  # ── Imaginary / fey stand-ins ─────────────────────────────────────────
+  "Fey Attendant":           { mesh: MidnightDeer, scale: 0.95 }
+  "Moth-Court Attendant":    { mesh: MidnightDeer, scale: 0.95 }
+  "Wild-Court Refuser":      { mesh: Unicorn, scale: 1.00 }
+
+  # ── Named bosses with plausible animal identities ────────────────────
+  "The Deepworm That Broke Through": { mesh: Earthworm, scale: 6.50 }
+  "The Wyrm-Awakener Prime":         { mesh: KomodoDragon, scale: 1.40 }
+  "Wyrm-Awakener":                   { mesh: KomodoDragon, scale: 1.20 }
+  "The War-Hawk Leader":             { mesh: Eagle, scale: 1.30 }
+  "The Rot at the Root":             { mesh: Toad, scale: 1.60 }
+  "The Moth-King's Shade":           { mesh: Skeleton, scale: 1.30 }
+  "The First Exile's Shade":         { mesh: Skeleton, scale: 1.30 }
+  "The Drowned-Warden":              { mesh: Skeleton, scale: 1.25 }
+  "The Circle-Bound Thing":          { mesh: EyeBall, scale: 1.50 }
+  "The Intruder Behind the Archive": { mesh: EyeBall, scale: 1.40 }
+  "The Stone-Eater Mother":          { mesh: BrownBear, scale: 1.40 }
+  "Deep-Stone-Eater":                { mesh: BrownBear, scale: 1.20 }
+
+  # ── Humanoids / elementals / unmapped (explicitly null) ──────────────
+  # These fall through to the blue cuboid. Listed explicitly so review
+  # of "what isn't covered" is trivial — grep for `null`.
+  "Abbey Cultist": { humanoid: wizard_hooded_male }
+  "Archive Sentinel": { humanoid: knight_plate_male }
+  "Ash-Pilgrim": { humanoid: wizard_hooded_male }
+  "Bad-Rite Shell":          { mesh: null }
+  "Bandit Crossbowman": { humanoid: peasant_male }
+  "Bandit Recruit": { humanoid: peasant_male }
+  "Baron's House-Guard": { humanoid: knight_plate_male }
+  "Baron Vessen": { humanoid: noble_male }
+  "Black-Eel Raider": { humanoid: peasant_male }
+  "Bound-Enforcer": { humanoid: ranger_male }
+  "Bound-Spirit Thing":      { mesh: null }
+  "Captain Byrn (field)": { humanoid: noble_male }
+  "Cartel Alchemist": { humanoid: wizard_male }
+  "Cartel Enforcer": { humanoid: ranger_male }
+  "Carver-Cultist": { humanoid: wizard_hooded_male }
+  "Causeway Bandit": { humanoid: peasant_male }
+  "Concord Claimant Guard": { humanoid: knight_plate_male }
+  "Concord Coastal Raider": { humanoid: peasant_male }
+  "Concord Raid-Captain Ness": { humanoid: noble_male }
+  "Concord Refuser-Paladin": { humanoid: knight_plate_male }
+  "Concord Strike-Team": { humanoid: ranger_male }
+  "Corlen the Drifter": { humanoid: ranger_male }
+  "Corrupt Caravan Guard": { humanoid: knight_plate_male }
+  "Corrupted Mine-Warden": { humanoid: knight_plate_male }
+  "Corrupt Merchant": { humanoid: noble_male }
+  "Court Champion": { humanoid: knight_plate_male }
+  "Crown-Watcher Elite": { humanoid: knight_plate_male }
+  "Cult Initiate": { humanoid: wizard_hooded_male }
+  "Deep-Drum-Thing":         { mesh: null }
+  "Deep-Expedition Loyalist": { humanoid: knight_cloth_male }
+  "Deepfolk Raider": { humanoid: peasant_male }
+  "Deepfolk Shaman": { humanoid: wizard_male }
+  "Deep-Warband Warrior": { humanoid: ranger_male }
+  "Drowned-Rite Caster": { humanoid: wizard_male }
+  "Elder Hef the Liar": { humanoid: noble_male }
+  "Exile-Loyalist Guard": { humanoid: knight_plate_male }
+  "Fog-Thing":               { mesh: null }
+  "Gate-Breaker Elite": { humanoid: ranger_male }
+  "Glib the Fence": { humanoid: noble_male }
+  "Greenwood Poacher": { humanoid: peasant_male }
+  "Grudge-Elder Caster": { humanoid: wizard_male }
+  "Guild Enforcer": { humanoid: ranger_male }
+  "Half-Made Shell":         { mesh: null }
+  "Highway Bandit": { humanoid: peasant_male }
+  "Junk-Scavenger Rival": { humanoid: peasant_male }
+  "Last-Candle Pilgrim": { humanoid: wizard_hooded_male }
+  "Marshal Herald": { humanoid: wizard_male }
+  "Mausoleum Guard": { humanoid: knight_plate_male }
+  "Old Poacher": { humanoid: peasant_male }
+  "Pact-Breaker Rogue": { humanoid: ranger_hooded_male }
+  "Pillar-Cultist": { humanoid: wizard_hooded_male }
+  "Pit-Tinker Guard": { humanoid: knight_cloth_male }
+  "Pit-Vent Elemental":      { mesh: null }
+  "Juvenile Pit-Vent Elemental": { mesh: null }
+  "Alpha Pit-Vent Elemental":    { mesh: null }
+  "Pyre-Adept": { humanoid: wizard_male }
+  "Raider Longshipman": { humanoid: peasant_male }
+  "Raider Storm-Speaker": { humanoid: wizard_male }
+  "Raid Stray": { humanoid: peasant_male }
+  "Refuser Faction Agent": { humanoid: noble_male }
+  "Refusing Kin Warrior": { humanoid: ranger_male }
+  "Rend Claimant Guard": { humanoid: knight_plate_male }
+  "Rend Refuser-Pactblade": { humanoid: knight_plate_male }
+  "Rend Strike-Team": { humanoid: ranger_male }
+  "Resurrectionist Cultist": { humanoid: wizard_hooded_male }
+  "Rite-Cultist": { humanoid: wizard_hooded_male }
+  "Rival-Clan Axehand": { humanoid: ranger_male }
+  "Rival Clanhead Draag": { humanoid: noble_male }
+  "Rival-Clan Raider": { humanoid: peasant_male }
+  "Rival Skrel Scavenger": { humanoid: wizard_male }
+  "Rival Trap-Maker": { humanoid: ranger_hooded_male }
+  "River Drifter": { humanoid: peasant_male }
+  "Rockborn Golem":          { mesh: null }
+  "Rogue Pact-Scribe": { humanoid: ranger_hooded_male }
+  "Rogue Scholar": { humanoid: ranger_hooded_male }
+  "Rot-Cultist": { humanoid: wizard_hooded_male }
+  "Ruin-Deserter": { humanoid: ranger_hooded_male }
+  "Ruin-Line Scavenger": { humanoid: peasant_male }
+  "Saint-Vigil Guard": { humanoid: knight_plate_male }
+  "Sanctum Thug": { humanoid: peasant_male }
+  "Scar-Thing":              { mesh: null }
+  "Scavenger Expedition Rival": { humanoid: peasant_male }
+  "Schismatic Initiate": { humanoid: wizard_hooded_male }
+  "Schismatic Speaker": { humanoid: wizard_male }
+  "Shadow-Broker Agent": { humanoid: noble_male }
+  "Shadow-Scribe": { humanoid: ranger_hooded_male }
+  "Shadow-Touched Intruder": { humanoid: ranger_male }
+  "Shipmaster Bodyguard": { humanoid: knight_plate_male }
+  "Spine-Cultist": { humanoid: wizard_hooded_male }
+  "Summit Guard": { humanoid: knight_plate_male }
+  "The Abbey Rite-Refuser": { humanoid: wizard_hooded_male, scale: 1.20 }
+  "The Archive Sentinel": { humanoid: knight_plate_male, scale: 1.20 }
+  "The Cartel Lieutenant": { humanoid: noble_male, scale: 1.15 }
+  "The Carver-Kin Prime Scout": { humanoid: ranger_hooded_male, scale: 1.15 }
+  "The Concord Throne-Claimant": { humanoid: noble_male, scale: 1.25 }
+  "The Pact-Scribe Indelible (field)": { humanoid: wizard_male, scale: 1.15 }
+  "The Raider-Lord of the Strand": { humanoid: noble_male, scale: 1.20 }
+  "The Refuser Champion": { humanoid: knight_plate_male, scale: 1.25 }
+  "The Rend Throne-Claimant": { humanoid: noble_male, scale: 1.25 }
+  "The Resurrectionist-Leader": { humanoid: wizard_hooded_male, scale: 1.20 }
+  "The Rite-Break at the Mausoleum": { humanoid: wizard_hooded_male, scale: 1.20 }
+  "The Schismatic Leader": { humanoid: wizard_male, scale: 1.20 }
+  "The Shadow Broker": { humanoid: noble_male, scale: 1.15 }
+  "The Trade-Guild Patron": { humanoid: noble_male, scale: 1.20 }
+  "Throne-Acolyte": { humanoid: noble_male }
+  "Throne-Refuser": { humanoid: noble_male }
+  "Trade-Guild Sorcerer": { humanoid: wizard_male }
+  "Trade-Guild Thug": { humanoid: peasant_male }
+  "Turned Double-Agent": { humanoid: peasant_male }
+  "War-Stake Keeper": { humanoid: knight_cloth_male }
+  "Warlord Kessen (field-manifestation)": { humanoid: knight_plate_male, scale: 1.30 }

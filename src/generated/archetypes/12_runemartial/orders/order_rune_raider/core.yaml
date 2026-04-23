@@ -1,0 +1,24 @@
+id: order_rune_raider
+faction: faction_b
+archetype_id: 12
+archetype_position:
+  might: 50
+  arcana: 25
+  finesse: 25
+player_facing:
+  class_name: Rune-Raider
+  title_singular: Rune-Raider
+  title_plural: Rune-Raiders
+schools_taught:
+  might:
+  - blade
+  - shield
+  arcana:
+  - arcane
+  - shadow
+flagship: true
+institutions:
+  primary: hearth_broken_clans
+  secondary: bleeding_vaults
+  tertiary: shadow_conclave
+chapter: chapter_rune_raider

@@ -1,0 +1,41 @@
+id: side_quests__dawnleaf_glade
+hub: dawnleaf_glade
+hub_role: outpost
+zone: sunward_reach
+biome: highland
+quest_count: 3
+quests:
+- id: side__dawnleaf_glade__the_fog_walker
+  name: The Fog Walker
+  hub: dawnleaf_glade
+  type: side
+  level: 1
+  objective:
+    kind: kill
+    target_hint: fog-born predator stalking the high paths
+    count: 1
+  xp_reward: 21
+  gold_reward_copper: 5
+  repeatable: false
+- id: side__dawnleaf_glade__the_lost_herd
+  name: The Lost Herd
+  hub: dawnleaf_glade
+  type: side
+  level: 3
+  objective:
+    kind: investigate
+    target_hint: goats gone missing near the cliff-line
+  xp_reward: 91
+  gold_reward_copper: 15
+  repeatable: false
+- id: side__dawnleaf_glade__the_shrine_offering
+  name: The Shrine Offering
+  hub: dawnleaf_glade
+  type: side
+  level: 5
+  objective:
+    kind: deliver
+    target_hint: an offering to a remote hill-shrine
+  xp_reward: 200
+  gold_reward_copper: 25
+  repeatable: false

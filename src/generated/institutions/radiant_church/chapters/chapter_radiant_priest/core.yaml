@@ -1,0 +1,5 @@
+id: chapter_radiant_priest
+institution: radiant_church
+produces_order: order_radiant_priest
+secondary_institution: knight_order
+tertiary_institution: night_quick_guild

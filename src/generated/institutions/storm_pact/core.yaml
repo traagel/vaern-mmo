@@ -1,0 +1,21 @@
+id: storm_pact
+faction: faction_b
+name: The Storm-Pact
+tradition: Storm-Binding
+curriculum:
+  major:
+    arcana:
+    - lightning
+    - nature
+  secondary:
+    arcana:
+    - earth
+    - frost
+    might:
+    - spear
+    finesse:
+    - bow
+pillars:
+- arcana
+- finesse
+- might

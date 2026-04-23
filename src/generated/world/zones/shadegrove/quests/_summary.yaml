@@ -1,0 +1,16 @@
+id: quest_summary__shadegrove
+zone: shadegrove
+level_range:
+  min: 10
+  max: 18
+tier: mid
+budget_target: 90
+actual:
+  main_chain_steps: 8
+  side_quests: 9
+  filler_pool: 67
+  total: 84
+coverage_ratio: 0.93
+main_chain: chain_shadegrove_coven_schism
+notes: Main chain is hand-crafted story; side is templated by biome+hub-role; filler
+  is a procedural pool.

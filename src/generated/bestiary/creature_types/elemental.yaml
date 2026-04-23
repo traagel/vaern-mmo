@@ -1,0 +1,58 @@
+id: elemental
+name: Elemental
+category: unnatural
+description: "Embodied school \u2014 pit-vents, storm-bound spirits, rot-spirits,\
+  \ frost-bound wights. Pure-element in form."
+hp_scaling:
+  base_at_level_1: 35
+  per_level_multiplier: 1.15
+  formula: round(base_at_1 * multiplier^(level-1))
+default_armor_class: none
+resistances:
+  fire: -0.3
+  frost: -0.3
+  lightning: -0.3
+  earth: -0.3
+  nature: -0.15
+  blade: 0.25
+  dagger: 0.25
+  bow: 0.1
+affinities:
+  preferred:
+  - fire
+  - frost
+  - lightning
+  - earth
+  allowed:
+  - arcane
+  forbidden:
+  - light
+  - devotion
+  - shadow
+  - blood
+  - nature
+  - honor
+  - fury
+  - blade
+  - blunt
+  - spear
+  - shield
+  - unarmed
+  - bow
+  - dagger
+  - thrown
+  - acrobat
+  - silent
+  - trickster
+  - alchemy
+  - tonics
+  - poison
+behavior_defaults:
+  intelligence: low
+  social: solitary
+  flee_threshold: 0.0
+  aggro_range: medium
+tags:
+- elemental
+- embodied-school
+- non-corporeal

@@ -1,0 +1,30 @@
+id: side_quests__salt_watch
+hub: salt_watch
+hub_role: waypoint
+zone: skarncamp_wastes
+biome: fjord
+quest_count: 2
+quests:
+- id: side__salt_watch__the_landing_sign
+  name: The Landing Sign
+  hub: salt_watch
+  type: side
+  level: 18
+  objective:
+    kind: investigate
+    target_hint: a raider-landing sign
+  xp_reward: 1843
+  gold_reward_copper: 90
+  repeatable: false
+- id: side__salt_watch__the_seal_cull
+  name: The Seal Cull
+  hub: salt_watch
+  type: side
+  level: 26
+  objective:
+    kind: kill
+    target_hint: rogue orca harassing fjord fishers
+    count: 1
+  xp_reward: 3661
+  gold_reward_copper: 130
+  repeatable: false

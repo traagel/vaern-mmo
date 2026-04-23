@@ -1,0 +1,20 @@
+id: hearth_broken_clans
+faction: faction_b
+name: The Hearth-Broken Clans
+tradition: Raider's Way
+curriculum:
+  major:
+    might:
+    - blade
+    - shield
+  secondary:
+    might:
+    - spear
+    - blunt
+    - fury
+    - unarmed
+    finesse:
+    - bow
+pillars:
+- finesse
+- might

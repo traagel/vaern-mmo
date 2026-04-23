@@ -1,0 +1,22 @@
+id: order_shadowstep
+faction: faction_b
+archetype_id: 8
+archetype_position:
+  might: 0
+  arcana: 0
+  finesse: 100
+flagship: false
+player_facing:
+  class_name: Shadowstep
+  title_singular: Shadowstep
+  title_plural: Shadowsteps
+schools_taught:
+  finesse:
+  - silent
+  - dagger
+  - trickster
+institutions:
+  primary: shadow_conclave
+  secondary: alchemist_tinker_clans
+  tertiary: fury_houses
+chapter: chapter_shadowstep

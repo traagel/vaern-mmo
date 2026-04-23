@@ -1,0 +1,19 @@
+id: blackwater_deep
+name: The Blackwater Deep
+faction_control: contested
+biome: marshland
+region: ruin_line
+tier: endgame
+level_range:
+  min: 45
+  max: 52
+starter_race: null
+hub_count: 3
+budget:
+  quest_count_target: 128
+  unique_mob_types: 24
+  mob_kills_to_complete: 1600
+  estimated_hours_to_complete:
+    solo: 36.0
+    duo: 25.6
+notes: Endgame zone in the ruin line. Targets 31-45 band session math.

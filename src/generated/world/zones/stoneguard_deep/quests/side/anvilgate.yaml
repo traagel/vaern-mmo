@@ -1,0 +1,42 @@
+id: side_quests__anvilgate
+hub: anvilgate
+hub_role: outpost
+zone: stoneguard_deep
+biome: mountain
+quest_count: 3
+quests:
+- id: side__anvilgate__the_rockfall_watch
+  name: The Rockfall Watch
+  hub: anvilgate
+  type: side
+  level: 1
+  objective:
+    kind: investigate
+    target_hint: a recent rockfall for survivors
+  xp_reward: 21
+  gold_reward_copper: 5
+  repeatable: false
+- id: side__anvilgate__the_ore_sample
+  name: The Ore Sample
+  hub: anvilgate
+  type: side
+  level: 3
+  objective:
+    kind: collect
+    target_hint: ore samples from the upper shafts
+    count: 4
+  xp_reward: 91
+  gold_reward_copper: 15
+  repeatable: false
+- id: side__anvilgate__the_stoneworm_cull
+  name: The Stoneworm Cull
+  hub: anvilgate
+  type: side
+  level: 5
+  objective:
+    kind: kill
+    target_hint: rockworms threatening a settlement
+    count: 1
+  xp_reward: 200
+  gold_reward_copper: 25
+  repeatable: false

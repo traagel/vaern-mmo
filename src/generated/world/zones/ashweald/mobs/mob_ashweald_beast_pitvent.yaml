@@ -1,0 +1,25 @@
+id: mob_ashweald_beast_pitvent
+name: Pit-Vent Elemental
+zone: ashweald
+level: 41
+creature_type: elemental
+armor_class: none
+rarity: common
+role: skirmisher
+faction_alignment: hostile_to_all
+hp_tier: standard
+damage:
+  primary_school: fire
+  attack_range: ranged_short
+  dps_tier: standard
+behavior:
+  aggro_range: medium
+  social_radius: 5
+  flee_threshold: 0.0
+  calls_allies: false
+  patrol: short
+loot_tier: standard
+drops:
+  gold_copper_avg: 82
+  item_hint: biome-flavored trash material
+biome_context: erupts from vent holes

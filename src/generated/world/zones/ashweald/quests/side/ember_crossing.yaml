@@ -1,0 +1,31 @@
+id: side_quests__ember_crossing
+hub: ember_crossing
+hub_role: waypoint
+zone: ashweald
+biome: ashland
+quest_count: 2
+quests:
+- id: side__ember_crossing__the_ashwolf_pack
+  name: The Ashwolf Pack
+  hub: ember_crossing
+  type: side
+  level: 38
+  objective:
+    kind: kill
+    target_hint: an ashwolf pack stalking caravans
+    count: 1
+  xp_reward: 7539
+  gold_reward_copper: 190
+  repeatable: false
+- id: side__ember_crossing__the_cinder_vein
+  name: The Cinder Vein
+  hub: ember_crossing
+  type: side
+  level: 45
+  objective:
+    kind: collect
+    target_hint: cinder-vein samples
+    count: 4
+  xp_reward: 10440
+  gold_reward_copper: 225
+  repeatable: false

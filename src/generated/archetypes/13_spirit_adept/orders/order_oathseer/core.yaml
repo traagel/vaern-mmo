@@ -1,0 +1,27 @@
+id: order_oathseer
+faction: faction_a
+archetype_id: 13
+archetype_position:
+  might: 25
+  arcana: 50
+  finesse: 25
+player_facing:
+  class_name: Oathseer
+  title_singular: Oathseer
+  title_plural: Oathseers
+schools_taught:
+  might:
+  - honor
+  arcana:
+  - light
+  - devotion
+  - arcane
+  - nature
+  finesse:
+  - tonics
+flagship: true
+institutions:
+  primary: radiant_church
+  secondary: circle_of_roots
+  tertiary: knight_order
+chapter: chapter_oathseer

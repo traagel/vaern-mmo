@@ -1,0 +1,16 @@
+id: quest_summary__skarnreach
+zone: skarnreach
+level_range:
+  min: 1
+  max: 5
+tier: starter
+budget_target: 50
+actual:
+  main_chain_steps: 4
+  side_quests: 7
+  filler_pool: 36
+  total: 47
+coverage_ratio: 0.94
+main_chain: chain_skarnreach_blood_price
+notes: Main chain is hand-crafted story; side is templated by biome+hub-role; filler
+  is a procedural pool.

@@ -1,0 +1,17 @@
+id: old_tunnel_depths
+name: Old-Tunnel Depths
+kind: dungeon
+group_size: 5
+zone: sundering_mines
+entrance_hub: old_tunnel_camp
+level_range:
+  min: 52
+  max: 58
+level_band: 46-60
+tier: endgame
+boss_count: 3
+estimated_clear_minutes: 75
+loot_tier: endgame
+lockout: none (rerunnable)
+theme: Pre-Hearthkin tunnels predating even the Iron Mountains themselves
+coop_notes: tight-coop-friendly; duo/trio can attempt under-level with care

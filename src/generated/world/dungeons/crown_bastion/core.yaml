@@ -1,0 +1,18 @@
+id: crown_bastion
+name: The Crown Bastion
+kind: raid
+group_size: 20
+zone: crown_of_ruin
+entrance_hub: crown_bastion
+level_range:
+  min: 60
+  max: 60
+level_band: 46-60
+tier: endgame
+boss_count: 5
+estimated_clear_minutes: 180
+loot_tier: endgame
+lockout: weekly
+theme: "The siege of the Crown \u2014 Concord and Rend both besieging the same ruin,\
+  \ from opposite sides"
+coop_notes: guild-scale content; organized group required

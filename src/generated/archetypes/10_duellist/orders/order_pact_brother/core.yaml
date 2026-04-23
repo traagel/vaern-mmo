@@ -1,0 +1,26 @@
+id: order_pact_brother
+faction: faction_b
+archetype_id: 10
+archetype_position:
+  might: 50
+  arcana: 0
+  finesse: 50
+player_facing:
+  class_name: Pact-Brother
+  title_singular: Pact-Brother
+  title_plural: Pact-Brothers
+schools_taught:
+  might:
+  - unarmed
+  - blunt
+  - fury
+  finesse:
+  - silent
+  - dagger
+  - poison
+flagship: true
+institutions:
+  primary: hearth_broken_clans
+  secondary: shadow_conclave
+  tertiary: alchemist_tinker_clans
+chapter: chapter_pact_brother

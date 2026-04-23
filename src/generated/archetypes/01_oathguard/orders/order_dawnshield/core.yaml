@@ -1,0 +1,24 @@
+id: order_dawnshield
+faction: faction_a
+archetype_id: 1
+archetype_position:
+  might: 75
+  arcana: 25
+  finesse: 0
+player_facing:
+  class_name: Dawnshield
+  title_singular: Dawnshield Knight
+  title_plural: Dawnshields
+schools_taught:
+  arcana:
+  - light
+  - arcane
+  might:
+  - honor
+  - shield
+flagship: true
+institutions:
+  primary: radiant_church
+  secondary: knight_order
+  tertiary: night_quick_guild
+chapter: chapter_dawnshield

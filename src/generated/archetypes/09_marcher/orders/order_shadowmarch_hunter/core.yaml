@@ -1,0 +1,26 @@
+id: order_shadowmarch_hunter
+faction: faction_b
+archetype_id: 9
+archetype_position:
+  might: 25
+  arcana: 0
+  finesse: 75
+player_facing:
+  class_name: Shadowmarch Hunter
+  title_singular: Shadowmarch Hunter
+  title_plural: Shadowmarch Hunters
+schools_taught:
+  might:
+  - spear
+  finesse:
+  - thrown
+  - silent
+  - poison
+  - dagger
+  - trickster
+flagship: true
+institutions:
+  primary: alchemist_tinker_clans
+  secondary: ancestor_binder_houses
+  tertiary: shadow_conclave
+chapter: chapter_shadowmarch_hunter

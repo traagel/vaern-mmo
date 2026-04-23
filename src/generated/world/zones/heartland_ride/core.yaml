@@ -1,0 +1,19 @@
+id: heartland_ride
+name: The Heartland Ride
+faction_control: faction_a
+biome: river_valley
+region: western_dales
+tier: mid
+level_range:
+  min: 5
+  max: 12
+starter_race: null
+hub_count: 3
+budget:
+  quest_count_target: 80
+  unique_mob_types: 24
+  mob_kills_to_complete: 640
+  estimated_hours_to_complete:
+    solo: 14.4
+    duo: 10.4
+notes: Mid zone in the western dales. Targets 1-10 band session math.

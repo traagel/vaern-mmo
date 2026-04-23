@@ -1,0 +1,20 @@
+id: vaern
+setting_name: Vaern
+max_level: 60
+faction_split:
+  faction_a: "Concord (Veyr) \u2014 central & western two-thirds"
+  faction_b: "Rend (Hraun) \u2014 eastern third"
+  contested: "the Ruin Line \u2014 middle strip"
+design_reference: "WoW Classic zone-level structure \u2014 3-8 levels per zone, shared\
+  \ mid-tier, contested endgame"
+target_time_to_cap:
+  played_hours_min: 150
+  played_hours_max: 240
+  days_active: 5-10 days of /played time
+  basis: Classic-style grind tuned slightly faster; strict-coop means duo/trio pace
+    is the balance target, not solo
+design_principles:
+- "every zone is coop-teachable \u2014 no solo-only content, even at level 1"
+- quest hubs cluster into 2-4 per zone; each hub offers enough xp to push ~1 level
+- mob density is tuned so a duo can level on kills alone at ~60% of quest pace
+- contested zones bleed PvP rules; endgame zones are the only true raid-scale content

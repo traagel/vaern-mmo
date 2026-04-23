@@ -1,0 +1,25 @@
+id: order_firestep_sorcerer
+faction: faction_a
+archetype_id: 5
+archetype_position:
+  might: 0
+  arcana: 75
+  finesse: 25
+flagship: false
+player_facing:
+  class_name: Firestep Sorcerer
+  title_singular: Firestep Sorcerer
+  title_plural: Firestep Sorcerers
+schools_taught:
+  arcana:
+  - fire
+  - frost
+  finesse:
+  - acrobat
+  - dagger
+  - tonics
+institutions:
+  primary: silver_quill
+  secondary: alchemists_compact
+  tertiary: night_quick_guild
+chapter: chapter_firestep_sorcerer

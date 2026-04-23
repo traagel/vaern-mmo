@@ -1,0 +1,25 @@
+id: mob_stoneguard_deep_warband_deepfolk_raider
+name: Deepfolk Raider
+zone: stoneguard_deep
+level: 3
+creature_type: humanoid
+armor_class: leather
+rarity: common
+role: skirmisher
+faction_alignment: hostile_to_faction_a
+hp_tier: standard
+damage:
+  primary_school: blade
+  attack_range: melee
+  dps_tier: standard
+behavior:
+  aggro_range: medium
+  social_radius: 8
+  flee_threshold: 0.0
+  calls_allies: true
+  patrol: short
+loot_tier: standard
+drops:
+  gold_copper_avg: 6
+  item_hint: biome-flavored trash material
+biome_context: "zone warband \u2014 skirmisher role"

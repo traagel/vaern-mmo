@@ -1,0 +1,87 @@
+pillar: finesse
+category: evasion
+variants:
+  25:
+    acrobat:
+      name: dodge
+      description: Reduced hit chance for short duration.
+      damage_type: null
+      morality: neutral
+    silent:
+      name: fade
+      description: Brief unseen dodge.
+      damage_type: null
+      morality: neutral
+    tonics:
+      name: slick_oil
+      description: Quick-apply oil on self; minor dodge buff.
+      damage_type: null
+      morality: good
+    trickster:
+      name: feint_dodge
+      description: Feint to avoid attack.
+      damage_type: null
+      morality: neutral
+  50:
+    acrobat:
+      name: tumble_dodge
+      description: Active tumble dodge.
+      damage_type: null
+      morality: neutral
+    silent:
+      name: shadow_side
+      description: Step into shadow mid-attack.
+      damage_type: null
+      morality: neutral
+    tonics:
+      name: shielding_tincture
+      description: Drunk tonic absorbs damage for duration.
+      damage_type: null
+      morality: good
+    trickster:
+      name: mirror_image
+      description: Brief decoy absorbs hit.
+      damage_type: null
+      morality: neutral
+  75:
+    acrobat:
+      name: rolling_deflect
+      description: Roll and reflect damage.
+      damage_type: null
+      morality: neutral
+    silent:
+      name: phase_shift
+      description: Brief phase out of reality.
+      damage_type: null
+      morality: neutral
+    tonics:
+      name: protective_elixir
+      description: AoE group damage-reduction buff.
+      damage_type: null
+      morality: good
+    trickster:
+      name: twin_mirror
+      description: Two decoys confuse attackers.
+      damage_type: null
+      morality: neutral
+  100:
+    acrobat:
+      name: ghost_step
+      description: Near-immunity to telegraphed attacks.
+      damage_type: null
+      morality: neutral
+    silent:
+      name: shadow_absolute
+      description: Fully intangible briefly.
+      damage_type: null
+      morality: neutral
+    tonics:
+      name: sacred_draught
+      description: 'Ritual: brief near-immunity via blessed elixir.'
+      damage_type: null
+      morality: good
+    trickster:
+      name: mirror_army
+      description: Multiple decoys overwhelm attackers.
+      damage_type: null
+      morality: neutral

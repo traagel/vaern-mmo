@@ -1,0 +1,9 @@
+id: black_eel_camp
+zone: blackwater_deep
+name: Black-Eel Camp
+role: outpost
+amenities:
+- innkeeper
+- flight_master
+- repair
+quest_givers: 3

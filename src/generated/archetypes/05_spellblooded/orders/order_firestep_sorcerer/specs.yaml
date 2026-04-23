@@ -1,0 +1,15 @@
+specs:
+- id: firestep_ember
+  name: Ember-Dancer
+  emphasis: magic_dps
+  description: fire-weave offense with dagger combo
+  schools_focus:
+  - fire
+  - dagger
+- id: firestep_flash
+  name: Flash-Step
+  emphasis: ranged_dps
+  description: ember-teleport and burst fire
+  schools_focus:
+  - fire
+  - acrobat

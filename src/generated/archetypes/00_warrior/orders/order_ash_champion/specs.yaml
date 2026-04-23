@@ -1,0 +1,11 @@
+specs:
+  - id: ash_berserker
+    name: Ash-Berserker
+    emphasis: melee_dps
+    description: single-target rage-striker, full-blood offense
+    schools_focus: [fury, blade]
+  - id: ash_ravager
+    name: Ash-Ravager
+    emphasis: bruiser
+    description: small-group rampage with wide sweeps
+    schools_focus: [fury, blunt]

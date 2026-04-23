@@ -1,0 +1,41 @@
+class_id: 9
+internal_label: Ranger
+abstract_name: Marcher
+position:
+  might: 25
+  arcana: 0
+  finesse: 75
+pillar_classification: edge
+dominant_pillar:
+- finesse
+edge: finesse-might
+primary_roles:
+- ranged-dps
+note: Might-Finesse near-Finesse; bow plus light armor
+active_tiers:
+  might:
+  - 25
+  arcana: []
+  finesse:
+  - 25
+  - 50
+  - 75
+capabilities:
+  might:
+  - Light-medium armor proficiency
+  - Basic melee weapons (club, dagger, short sword)
+  - Hit-point bonus
+  arcana: []
+  finesse:
+  - Basic stealth (hide in cover)
+  - Finesse weapons (rapier, dagger, shortbow)
+  - Light-armor mobility bonus
+  - Sneak attack (bonus damage from hidden)
+  - Dual-wielding
+  - Evasion / dodge reactions
+  - Advanced stealth (hide in dim light, partial cover)
+  - Bow mastery (longbow, extended range and accuracy)
+  - Critical-strike mastery
+faction_labels:
+  faction_a: null
+  faction_b: null

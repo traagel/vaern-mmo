@@ -1,0 +1,12 @@
+id: miller_crossing
+zone: dalewatch_marches
+name: Miller's Crossing
+role: outpost
+amenities:
+- innkeeper
+- flight_master
+- repair
+quest_givers: 4
+offset_from_zone_origin:
+  x: -220.0
+  z: 20.0

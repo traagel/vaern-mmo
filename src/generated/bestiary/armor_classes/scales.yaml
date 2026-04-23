@@ -1,0 +1,12 @@
+id: scales
+name: Scales
+tier: heavy
+physical_reduction: 0.35
+magic_reduction: 0.15
+weak_against:
+- spear
+strong_against:
+- blade
+- bow
+mobility_penalty: 0.05
+notes: "natural scales \u2014 dragonkin, scaled demons, serpent-kin"

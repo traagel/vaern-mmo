@@ -1,0 +1,16 @@
+name: fury
+pillar: might
+morality: evil
+family: style
+tag: rage / reckless
+damage_type: slashing
+applies_to_categories:
+- offense
+- threat
+- sustain
+- control
+icon_style:
+  palette: blood-red, raw-meat pink, black rage-smear, bone-white, sooty orange
+  motif: gnashing jaws, torn sinew, screaming mouths, broken manacles, barbaric runes, spattered gore
+  silhouette: ragged asymmetric weapon strike, clenched bloody fist, jagged splatter outline
+  material: rust-pitted iron, blood-caked steel, bone-trophy, bound-up scars and rags

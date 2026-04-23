@@ -1,0 +1,18 @@
+id: side_quests__pit_tinker
+hub: pit_tinker
+hub_role: ruin
+zone: scrap_flats
+biome: marshland
+quest_count: 1
+quests:
+- id: side__pit_tinker__the_rot_fever_patient
+  name: The Rot Fever Patient
+  hub: pit_tinker
+  type: side
+  level: 26
+  objective:
+    kind: deliver
+    target_hint: rot-fever tonic to an isolated hut
+  xp_reward: 3661
+  gold_reward_copper: 130
+  repeatable: false

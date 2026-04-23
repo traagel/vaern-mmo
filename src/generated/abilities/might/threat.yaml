@@ -1,0 +1,24 @@
+pillar: might
+category: threat
+icon_shape:
+  primary: roaring or shouting warrior with challenge-aura radiating outward, raised weapon or open hand beckoning
+  composition: centered shouting figure head-on with directional threat-rings pushing outward
+  motion: bellowing roar, chest-thump, taunting beckon, pressure-wave
+  tier_escalation:
+    25: pointed challenge at a single enemy
+    50: battle-shout with visible sound-ring pulse
+    75: sustained intimidation aura ringing around the figure
+    100: warlord command — everything in the frame drawn toward the commander
+tiers:
+  25:
+  - name: challenge
+    description: Single-target taunt; enemy must attack you.
+  50:
+  - name: battle_shout
+    description: AoE threat pulse; nearby enemies shift to you.
+  75:
+  - name: iron_presence
+    description: Sustained threat aura around you.
+  100:
+  - name: warlord_command
+    description: Lock enemy attention fully for several seconds.

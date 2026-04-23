@@ -1,0 +1,36 @@
+id: _roster__pactmarch
+zone: pactmarch
+mob_count: 15
+mob_ids:
+- mob_pactmarch_beast_hillcat
+- mob_pactmarch_beast_stonehawk
+- mob_pactmarch_beast_goat
+- mob_pactmarch_beast_fogelk
+- mob_pactmarch_beast_cliffcrag
+- mob_pactmarch_beast_hillbear
+- mob_pactmarch_ambient_hare
+- mob_pactmarch_exotic_fog_thing
+- mob_pactmarch_warband_bound_spirit
+- mob_pactmarch_warband_pactbreaker
+- mob_pactmarch_named_bound_thing_named
+- mob_pactmarch_juvenile_hillcat
+- mob_pactmarch_juvenile_stonehawk
+- mob_pactmarch_juvenile_goat
+- mob_pactmarch_juvenile_fogelk
+by_creature_type:
+  beast: 11
+  aberration: 1
+  humanoid: 3
+by_armor_class:
+  hide: 11
+  ethereal: 1
+  cloth: 1
+  leather: 1
+  plate: 1
+by_rarity:
+  common: 13
+  elite: 2
+level_min: 1
+level_max: 5
+named_or_chain_targets:
+- mob_pactmarch_named_bound_thing_named

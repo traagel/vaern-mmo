@@ -1,0 +1,25 @@
+specs:
+- id: reaver_oathbreaker
+  name: Oath-Breaker
+  emphasis: tank
+  description: heavy plate-tank with shadow-stitched protection
+  schools_focus:
+  - shield
+  - shadow
+  - fury
+- id: reaver_clanhammer
+  name: Clan-Hammer
+  emphasis: hybrid
+  description: two-handed Rend spellblade, oath-burning strikes
+  schools_focus:
+  - fury
+  - blood
+  - blade
+- id: reaver_pactblade
+  name: Pactblade Reaver
+  emphasis: support
+  description: curse-casting field-commander, ally-empowerment
+  schools_focus:
+  - shadow
+  - blood
+  - shield

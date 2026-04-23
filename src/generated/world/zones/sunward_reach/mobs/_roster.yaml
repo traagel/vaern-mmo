@@ -1,0 +1,37 @@
+id: _roster__sunward_reach
+zone: sunward_reach
+mob_count: 15
+mob_ids:
+- mob_sunward_reach_beast_hillcat
+- mob_sunward_reach_beast_stonehawk
+- mob_sunward_reach_beast_goat
+- mob_sunward_reach_beast_fogelk
+- mob_sunward_reach_beast_cliffcrag
+- mob_sunward_reach_beast_hillbear
+- mob_sunward_reach_ambient_hare
+- mob_sunward_reach_exotic_fog_thing
+- mob_sunward_reach_warband_shadow_intruder
+- mob_sunward_reach_warband_rogue_scholar
+- mob_sunward_reach_named_shadow_intruder_named
+- mob_sunward_reach_juvenile_hillcat
+- mob_sunward_reach_juvenile_stonehawk
+- mob_sunward_reach_juvenile_goat
+- mob_sunward_reach_juvenile_fogelk
+by_creature_type:
+  beast: 11
+  aberration: 1
+  humanoid: 3
+by_armor_class:
+  hide: 11
+  ethereal: 1
+  leather: 1
+  cloth: 1
+  plate: 1
+by_rarity:
+  common: 13
+  elite: 1
+  named: 1
+level_min: 1
+level_max: 5
+named_or_chain_targets:
+- mob_sunward_reach_named_shadow_intruder_named

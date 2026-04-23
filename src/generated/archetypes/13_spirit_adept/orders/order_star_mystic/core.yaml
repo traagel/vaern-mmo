@@ -1,0 +1,25 @@
+id: order_star_mystic
+faction: faction_a
+archetype_id: 13
+archetype_position:
+  might: 25
+  arcana: 50
+  finesse: 25
+flagship: false
+player_facing:
+  class_name: Star-Mystic
+  title_singular: Star-Mystic
+  title_plural: Star-Mystics
+schools_taught:
+  might:
+  - spear
+  arcana:
+  - lightning
+  - arcane
+  finesse:
+  - dagger
+institutions:
+  primary: silver_quill
+  secondary: circle_of_roots
+  tertiary: night_quick_guild
+chapter: chapter_star_mystic

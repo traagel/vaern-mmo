@@ -1,0 +1,15 @@
+specs:
+- id: poisoner_vial
+  name: Vial-Poisoner
+  emphasis: control
+  description: toxin-AoE battlefield debilitator
+  schools_focus:
+  - poison
+  - thrown
+- id: poisoner_kiss
+  name: Silent-Kiss
+  emphasis: melee_dps
+  description: coated-blade single-target killer
+  schools_focus:
+  - poison
+  - silent

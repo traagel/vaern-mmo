@@ -1,0 +1,31 @@
+id: side_quests__dark_glade
+hub: dark_glade
+hub_role: waypoint
+zone: shadegrove
+biome: ashland
+quest_count: 2
+quests:
+- id: side__dark_glade__the_ashwolf_pack
+  name: The Ashwolf Pack
+  hub: dark_glade
+  type: side
+  level: 10
+  objective:
+    kind: kill
+    target_hint: an ashwolf pack stalking caravans
+    count: 1
+  xp_reward: 640
+  gold_reward_copper: 50
+  repeatable: false
+- id: side__dark_glade__the_cinder_vein
+  name: The Cinder Vein
+  hub: dark_glade
+  type: side
+  level: 18
+  objective:
+    kind: collect
+    target_hint: cinder-vein samples
+    count: 4
+  xp_reward: 1843
+  gold_reward_copper: 90
+  repeatable: false

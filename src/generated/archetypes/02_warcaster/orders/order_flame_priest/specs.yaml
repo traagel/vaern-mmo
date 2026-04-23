@@ -1,0 +1,11 @@
+specs:
+  - id: flamepriest_brazier
+    name: Brazier Priest
+    emphasis: magic_dps
+    description: offensive fire-caster with mace-strike ignitions
+    schools_focus: [fire, light, blunt]
+  - id: flamepriest_warder
+    name: Warden Flame-Priest
+    emphasis: tank
+    description: shield-priest with radiant-fire protective abjurations
+    schools_focus: [shield, light, fire]

@@ -1,0 +1,17 @@
+id: lichweep_mausoleum
+name: Lich-Weep Mausoleum
+kind: dungeon
+group_size: 5
+zone: gravewatch_fields
+entrance_hub: lich_weep
+level_range:
+  min: 18
+  max: 25
+level_band: 11-30
+tier: leveling
+boss_count: 3
+estimated_clear_minutes: 45
+loot_tier: mid
+lockout: none (rerunnable)
+theme: Gravewrought necropolis where the ancestor-rite went wrong at scale
+coop_notes: tight-coop-friendly; duo/trio can attempt under-level with care

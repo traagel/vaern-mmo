@@ -1,0 +1,11 @@
+specs:
+  - id: furypriest_reaper
+    name: Fury-Reaper
+    emphasis: hybrid
+    description: blood-ritual mace striker, offensive self-wounding rage
+    schools_focus: [fury, blood, blunt]
+  - id: furypriest_binder
+    name: Fury-Binder
+    emphasis: support
+    description: blood-curse support caster with mace defense
+    schools_focus: [blood, shield]

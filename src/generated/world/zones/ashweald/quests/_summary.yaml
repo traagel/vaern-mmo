@@ -1,0 +1,16 @@
+id: quest_summary__ashweald
+zone: ashweald
+level_range:
+  min: 38
+  max: 45
+tier: contested
+budget_target: 128
+actual:
+  main_chain_steps: 8
+  side_quests: 6
+  filler_pool: 107
+  total: 121
+coverage_ratio: 0.95
+main_chain: chain_ashweald_twin_saints
+notes: Main chain is hand-crafted story; side is templated by biome+hub-role; filler
+  is a procedural pool.

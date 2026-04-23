@@ -1,0 +1,16 @@
+id: quest_summary__ruin_line_south
+zone: ruin_line_south
+level_range:
+  min: 30
+  max: 38
+tier: contested
+budget_target: 126
+actual:
+  main_chain_steps: 8
+  side_quests: 6
+  filler_pool: 106
+  total: 120
+coverage_ratio: 0.95
+main_chain: chain_ruinline_south_sunken_archive
+notes: Main chain is hand-crafted story; side is templated by biome+hub-role; filler
+  is a procedural pool.

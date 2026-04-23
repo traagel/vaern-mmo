@@ -1,0 +1,23 @@
+specs:
+- id: chorister_songsinger
+  name: Songsinger
+  emphasis: support
+  description: traditional bard buffer with arcane cantrips
+  schools_focus:
+  - arcane
+  - trickster
+- id: chorister_wayrunner
+  name: Wayrunner
+  emphasis: utility
+  description: road-scout bard with stealth and traveller's lore
+  schools_focus:
+  - bow
+  - silent
+  - acrobat
+- id: chorister_duellist
+  name: Courtly Duellist
+  emphasis: melee_dps
+  description: rapier-forward stylist, precision and flair
+  schools_focus:
+  - dagger
+  - acrobat

@@ -1,0 +1,5 @@
+id: chapter_oathcaster
+institution: night_quick_guild
+produces_order: order_oathcaster
+secondary_institution: alchemists_compact
+tertiary_institution: radiant_church

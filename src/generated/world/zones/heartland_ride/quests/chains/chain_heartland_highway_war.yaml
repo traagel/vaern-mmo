@@ -1,0 +1,97 @@
+id: chain_heartland_highway_war
+zone: heartland_ride
+title: The Highway War
+premise: "The Dalewatch highway is falling to a bandit captain whose real patron is\
+  \ a corrupt baron \u2014 a slow-burn political chain"
+total_steps: 8
+final_reward:
+  xp_bonus: 5300
+  gold_bonus_copper: 1200
+  item_hint: zone-appropriate mid-tier reward
+  title_hint: '''The Highway War'' completion title'
+breadcrumb_from: capital hub of the zone's faction-home
+final_boss_hint: Captain Byrn at the Watchtower Keep
+steps:
+- step: 1
+  id: chain_heartland_highway_war__01_report_the_raids
+  name: Report The Raids
+  level: 5
+  objective:
+    kind: talk
+    target_hint: Ride Warden Telyn
+  xp_reward: 600
+  gold_reward_copper: 75
+  prerequisite: null
+- step: 2
+  id: chain_heartland_highway_war__02_clear_the_first_camp
+  name: Clear The First Camp
+  level: 6
+  objective:
+    kind: kill
+    target_hint: bandit captain at the crossroads
+    count: 1
+  xp_reward: 806
+  gold_reward_copper: 90
+  prerequisite: chain_heartland_highway_war__01_report_the_raids
+- step: 3
+  id: chain_heartland_highway_war__03_interrogate_the_prisoner
+  name: Interrogate The Prisoner
+  level: 7
+  objective:
+    kind: talk
+    target_hint: bandit lieutenant held at the Ride
+  xp_reward: 1042
+  gold_reward_copper: 105
+  prerequisite: chain_heartland_highway_war__02_clear_the_first_camp
+- step: 4
+  id: chain_heartland_highway_war__04_follow_the_caravan_ledger
+  name: Follow The Caravan Ledger
+  level: 8
+  objective:
+    kind: investigate
+    target_hint: the cooked caravan manifests
+  xp_reward: 1306
+  gold_reward_copper: 120
+  prerequisite: chain_heartland_highway_war__03_interrogate_the_prisoner
+- step: 5
+  id: chain_heartland_highway_war__05_confront_the_baron
+  name: Confront The Baron
+  level: 9
+  objective:
+    kind: talk
+    target_hint: Baron Vessen at his manor
+  xp_reward: 1598
+  gold_reward_copper: 135
+  prerequisite: chain_heartland_highway_war__04_follow_the_caravan_ledger
+- step: 6
+  id: chain_heartland_highway_war__06_assault_the_manor
+  name: Assault The Manor
+  level: 10
+  objective:
+    kind: defeat
+    target_hint: the baron's house-guard
+    group_suggested: true
+  xp_reward: 1920
+  gold_reward_copper: 150
+  prerequisite: chain_heartland_highway_war__05_confront_the_baron
+- step: 7
+  id: chain_heartland_highway_war__07_break_the_captain
+  name: Break The Captain
+  level: 11
+  objective:
+    kind: kill
+    target_hint: Captain Byrn at the Watchtower Keep
+    count: 1
+  xp_reward: 2270
+  gold_reward_copper: 165
+  prerequisite: chain_heartland_highway_war__06_assault_the_manor
+- step: 8
+  id: chain_heartland_highway_war__08_report_the_victory
+  name: Report The Victory
+  level: 12
+  objective:
+    kind: deliver
+    target_hint: Warden Telyn's dispatch to Dalewatch
+  xp_reward: 2650
+  gold_reward_copper: 180
+  prerequisite: chain_heartland_highway_war__07_break_the_captain

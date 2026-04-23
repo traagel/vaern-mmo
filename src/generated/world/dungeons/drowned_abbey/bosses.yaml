@@ -1,0 +1,27 @@
+id: drowned_abbey_bosses
+instance: drowned_abbey
+bosses:
+- id: sunken_champion
+  name: The Sunken Champion
+  role_tag: lieutenant
+  level: 50
+  mechanic: aoe tank-swap, water rising phases
+  hp_tier: elite
+- id: choir_of_the_drowned
+  name: Choir of the Drowned
+  role_tag: lieutenant
+  level: 52
+  mechanic: 6 adds, interrupt-chain
+  hp_tier: elite
+- id: abbot_silken
+  name: Abbot Silken
+  role_tag: lieutenant
+  level: 53
+  mechanic: holy-twisted, dispel-priority
+  hp_tier: elite
+- id: weeping_saint
+  name: The Weeping Saint
+  role_tag: final
+  level: 55
+  mechanic: cross-phase holy/shadow, raid-wide position dance
+  hp_tier: heroic

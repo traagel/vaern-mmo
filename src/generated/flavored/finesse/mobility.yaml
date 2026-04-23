@@ -1,0 +1,87 @@
+pillar: finesse
+category: mobility
+variants:
+  25:
+    acrobat:
+      name: tumble
+      description: Roll past an enemy without provoking.
+      damage_type: null
+      morality: neutral
+    bow:
+      name: scout_step
+      description: Quick step for bow repositioning.
+      damage_type: null
+      morality: neutral
+    thrown:
+      name: back_flip
+      description: Quick-step while throwing.
+      damage_type: null
+      morality: neutral
+    trickster:
+      name: misdirect_step
+      description: Quick step with feint.
+      damage_type: null
+      morality: neutral
+  50:
+    acrobat:
+      name: sprint
+      description: Temporary movement speed boost.
+      damage_type: null
+      morality: neutral
+    bow:
+      name: ranger_sprint
+      description: Speed boost for archer.
+      damage_type: null
+      morality: neutral
+    thrown:
+      name: skipper
+      description: Quick move plus thrown attack.
+      damage_type: null
+      morality: neutral
+    trickster:
+      name: jester_jig
+      description: Erratic movement; harder to target.
+      damage_type: null
+      morality: neutral
+  75:
+    acrobat:
+      name: acrobat_traverse
+      description: Climb and leap mastery.
+      damage_type: null
+      morality: neutral
+    bow:
+      name: bow_stride
+      description: Climb and reposition for shot.
+      damage_type: null
+      morality: neutral
+    thrown:
+      name: hurler_leap
+      description: Leap plus thrown attack.
+      damage_type: null
+      morality: neutral
+    trickster:
+      name: mirror_jig
+      description: Move plus decoy.
+      damage_type: null
+      morality: neutral
+  100:
+    acrobat:
+      name: shadow_dart
+      description: Short-range teleport via movement.
+      damage_type: null
+      morality: neutral
+    bow:
+      name: wind_walk
+      description: Move as if carried by wind.
+      damage_type: null
+      morality: neutral
+    thrown:
+      name: storm_leap
+      description: Short-range teleport via thrown grapple.
+      damage_type: null
+      morality: neutral
+    trickster:
+      name: trick_teleport
+      description: Short teleport plus decoy.
+      damage_type: null
+      morality: neutral

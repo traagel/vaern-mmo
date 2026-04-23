@@ -1,0 +1,24 @@
+pillar: finesse
+category: utility
+icon_shape:
+  primary: tool in use — picks in a lock, hands defusing a trap, rope mid-cast, scout's compass-rune
+  composition: hands-and-tool close composition centered on the working action, supporting tools around
+  motion: careful working gesture, tumbler-click moment, rope arc, pathfinder's surveying sweep
+  tier_escalation:
+    25: lockpicks in a keyhole with a tumbler glow
+    50: hands carefully disarming a trap mechanism
+    75: rope-and-grapple mid-traverse over a gap
+    100: pathfinder — map, compass, and route-runes glowing with foresight
+tiers:
+  25:
+  - name: lockpick
+    description: Open non-magical locks.
+  50:
+  - name: disarm_trap
+    description: Safely remove traps.
+  75:
+  - name: traverse
+    description: Scale walls, cross gaps, rope mastery.
+  100:
+  - name: pathfinder
+    description: Scout safe routes; detect ambush pre-encounter.

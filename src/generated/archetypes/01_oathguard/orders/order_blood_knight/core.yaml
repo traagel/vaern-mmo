@@ -1,0 +1,25 @@
+id: order_blood_knight
+faction: faction_b
+archetype_id: 1
+archetype_position:
+  might: 75
+  arcana: 25
+  finesse: 0
+flagship: false
+player_facing:
+  class_name: Blood-Knight
+  title_singular: Blood-Knight
+  title_plural: Blood-Knights
+schools_taught:
+  might:
+  - blade
+  - shield
+  - blunt
+  arcana:
+  - blood
+  - arcane
+institutions:
+  primary: hearth_broken_clans
+  secondary: bleeding_vaults
+  tertiary: shadow_conclave
+chapter: chapter_blood_knight

@@ -1,0 +1,42 @@
+id: side_quests__old_tunnel_camp
+hub: old_tunnel_camp
+hub_role: outpost
+zone: sundering_mines
+biome: mountain
+quest_count: 3
+quests:
+- id: side__old_tunnel_camp__the_rockfall_watch
+  name: The Rockfall Watch
+  hub: old_tunnel_camp
+  type: side
+  level: 50
+  objective:
+    kind: investigate
+    target_hint: a recent rockfall for survivors
+  xp_reward: 12800
+  gold_reward_copper: 250
+  repeatable: false
+- id: side__old_tunnel_camp__the_ore_sample
+  name: The Ore Sample
+  hub: old_tunnel_camp
+  type: side
+  level: 54
+  objective:
+    kind: collect
+    target_hint: ore samples from the upper shafts
+    count: 4
+  xp_reward: 14861
+  gold_reward_copper: 270
+  repeatable: false
+- id: side__old_tunnel_camp__the_stoneworm_cull
+  name: The Stoneworm Cull
+  hub: old_tunnel_camp
+  type: side
+  level: 58
+  objective:
+    kind: kill
+    target_hint: rockworms threatening a settlement
+    count: 1
+  xp_reward: 17075
+  gold_reward_copper: 290
+  repeatable: false

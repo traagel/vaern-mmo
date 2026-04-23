@@ -1,0 +1,97 @@
+id: chain_iron_strand_storm_call
+zone: iron_strand
+title: The Storm-Call
+premise: A Rend raider-lord has bound a storm-thing to the Old Lighthouse; its light
+  calls storms that will sink both factions' fleets without discrimination
+total_steps: 8
+final_reward:
+  xp_bonus: 62640
+  gold_bonus_copper: 4500
+  item_hint: zone-appropriate contested-tier reward
+  title_hint: '''The Storm-Call'' completion title'
+breadcrumb_from: capital hub of the zone's faction-home
+final_boss_hint: the raider-lord at the lighthouse summit
+steps:
+- step: 1
+  id: chain_iron_strand_storm_call__01_receive_the_strand_brief
+  name: Receive The Strand Brief
+  level: 38
+  objective:
+    kind: talk
+    target_hint: Strand Redoubt commander
+  xp_reward: 22618
+  gold_reward_copper: 570
+  prerequisite: null
+- step: 2
+  id: chain_iron_strand_storm_call__02_scout_the_wreckshore
+  name: Scout The Wreckshore
+  level: 39
+  objective:
+    kind: investigate
+    target_hint: the wreckshore for raider sign
+  xp_reward: 23774
+  gold_reward_copper: 585
+  prerequisite: chain_iron_strand_storm_call__01_receive_the_strand_brief
+- step: 3
+  id: chain_iron_strand_storm_call__03_recover_the_storm_binding_rite
+  name: Recover The Storm Binding Rite
+  level: 40
+  objective:
+    kind: collect
+    target_hint: the storm-binding rite-book from a wrecked ship
+    count: 4
+  xp_reward: 24960
+  gold_reward_copper: 600
+  prerequisite: chain_iron_strand_storm_call__02_scout_the_wreckshore
+- step: 4
+  id: chain_iron_strand_storm_call__04_assault_the_lighthouse
+  name: Assault The Lighthouse
+  level: 41
+  objective:
+    kind: defeat
+    target_hint: the lighthouse's outer raiders
+    group_suggested: true
+  xp_reward: 26174
+  gold_reward_copper: 615
+  prerequisite: chain_iron_strand_storm_call__03_recover_the_storm_binding_rite
+- step: 5
+  id: chain_iron_strand_storm_call__05_break_the_storm_binding
+  name: Break The Storm Binding
+  level: 42
+  objective:
+    kind: ritual
+    target_hint: the storm-releasing
+  xp_reward: 27418
+  gold_reward_copper: 630
+  prerequisite: chain_iron_strand_storm_call__04_assault_the_lighthouse
+- step: 6
+  id: chain_iron_strand_storm_call__06_kill_the_raider_lord
+  name: Kill The Raider Lord
+  level: 43
+  objective:
+    kind: kill
+    target_hint: the raider-lord at the lighthouse summit
+    count: 1
+  xp_reward: 28690
+  gold_reward_copper: 645
+  prerequisite: chain_iron_strand_storm_call__05_break_the_storm_binding
+- step: 7
+  id: chain_iron_strand_storm_call__07_witness_the_storm_dispersal
+  name: Witness The Storm Dispersal
+  level: 44
+  objective:
+    kind: investigate
+    target_hint: the storm-thing's departure
+  xp_reward: 29990
+  gold_reward_copper: 660
+  prerequisite: chain_iron_strand_storm_call__06_kill_the_raider_lord
+- step: 8
+  id: chain_iron_strand_storm_call__08_report_to_both_sides
+  name: Report To Both Sides
+  level: 45
+  objective:
+    kind: deliver
+    target_hint: a joint report to Concord and Rend wardens
+  xp_reward: 31320
+  gold_reward_copper: 675
+  prerequisite: chain_iron_strand_storm_call__07_witness_the_storm_dispersal

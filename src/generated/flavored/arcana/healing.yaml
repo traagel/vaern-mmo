@@ -1,0 +1,167 @@
+pillar: arcana
+category: healing
+variants:
+  25:
+    arcane:
+      id: arcana.healing.25.arcane.mend_wounds
+      baseline_slot: arcana.healing.25
+      school: arcane
+      name: mend_wounds
+      description: Minor mending, at-will.
+      morality: neutral
+      damage_type: null
+    blood:
+      id: arcana.healing.25.blood.tap_vitae
+      baseline_slot: arcana.healing.25
+      school: blood
+      name: tap_vitae
+      description: Transfer HP between caster and ally.
+      morality: evil
+      damage_type: null
+    devotion:
+      id: arcana.healing.25.devotion.tithe
+      baseline_slot: arcana.healing.25
+      school: devotion
+      name: tithe
+      description: Transfer minor HP from caster to ally.
+      morality: good
+      damage_type: null
+    light:
+      id: arcana.healing.25.light.bless_wound
+      baseline_slot: arcana.healing.25
+      school: light
+      name: bless_wound
+      description: Minor radiant heal, at-will.
+      morality: good
+      damage_type: null
+    nature:
+      id: arcana.healing.25.nature.regrowth
+      baseline_slot: arcana.healing.25
+      school: nature
+      name: regrowth
+      description: Minor regen over time.
+      morality: neutral
+      damage_type: null
+  50:
+    arcane:
+      id: arcana.healing.50.arcane.restore
+      baseline_slot: arcana.healing.50
+      school: arcane
+      name: restore
+      description: ST moderate magical mending.
+      morality: neutral
+      damage_type: null
+    blood:
+      id: arcana.healing.50.blood.sanguine_restore
+      baseline_slot: arcana.healing.50
+      school: blood
+      name: sanguine_restore
+      description: ST heal powered by nearby wounded.
+      morality: evil
+      damage_type: null
+    devotion:
+      id: arcana.healing.50.devotion.martyrs_gift
+      baseline_slot: arcana.healing.50
+      school: devotion
+      name: martyrs_gift
+      description: ST moderate heal at caster's HP cost.
+      morality: good
+      damage_type: null
+    light:
+      id: arcana.healing.50.light.cure_wounds
+      baseline_slot: arcana.healing.50
+      school: light
+      name: cure_wounds
+      description: ST moderate radiant heal.
+      morality: good
+      damage_type: null
+    nature:
+      id: arcana.healing.50.nature.rejuvenate
+      baseline_slot: arcana.healing.50
+      school: nature
+      name: rejuvenate
+      description: ST moderate regen, stacking.
+      morality: neutral
+      damage_type: null
+  75:
+    arcane:
+      id: arcana.healing.75.arcane.mass_mend
+      baseline_slot: arcana.healing.75
+      school: arcane
+      name: mass_mend
+      description: AoE moderate mending.
+      morality: neutral
+      damage_type: null
+    blood:
+      id: arcana.healing.75.blood.blood_pact
+      baseline_slot: arcana.healing.75
+      school: blood
+      name: blood_pact
+      description: AoE heal; caster takes partial damage.
+      morality: evil
+      damage_type: null
+    devotion:
+      id: arcana.healing.75.devotion.communion
+      baseline_slot: arcana.healing.75
+      school: devotion
+      name: communion
+      description: AoE heal; caster takes partial damage.
+      morality: good
+      damage_type: null
+    light:
+      id: arcana.healing.75.light.healing_wave
+      baseline_slot: arcana.healing.75
+      school: light
+      name: healing_wave
+      description: AoE radiant heal pulse.
+      morality: good
+      damage_type: null
+    nature:
+      id: arcana.healing.75.nature.grove_pulse
+      baseline_slot: arcana.healing.75
+      school: nature
+      name: grove_pulse
+      description: AoE regen over time.
+      morality: neutral
+      damage_type: null
+  100:
+    arcane:
+      id: arcana.healing.100.arcane.full_restore
+      baseline_slot: arcana.healing.100
+      school: arcane
+      name: full_restore
+      description: 'Ritual: restore full HP, remove debuffs.'
+      morality: neutral
+      damage_type: null
+    blood:
+      id: arcana.healing.100.blood.sacrifice_ritual
+      baseline_slot: arcana.healing.100
+      school: blood
+      name: sacrifice_ritual
+      description: 'Ritual: caster dies, allies fully healed.'
+      morality: evil
+      damage_type: null
+    devotion:
+      id: arcana.healing.100.devotion.martyrdom_ritual
+      baseline_slot: arcana.healing.100
+      school: devotion
+      name: martyrdom_ritual
+      description: 'Ritual: caster near-dies, allies fully healed.'
+      morality: good
+      damage_type: null
+    light:
+      id: arcana.healing.100.light.resurrection
+      baseline_slot: arcana.healing.100
+      school: light
+      name: resurrection
+      description: 'Ritual: revive fallen ally with full HP.'
+      morality: good
+      damage_type: null
+    nature:
+      id: arcana.healing.100.nature.worldheal
+      baseline_slot: arcana.healing.100
+      school: nature
+      name: worldheal
+      description: 'Ritual: mass heal over extended duration.'
+      morality: neutral
+      damage_type: null

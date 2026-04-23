@@ -1,0 +1,328 @@
+pillar: arcana
+category: enhancement
+variants:
+  25:
+    arcane:
+      id: arcana.enhancement.25.arcane.bless_focus
+      baseline_slot: arcana.enhancement.25
+      school: arcane
+      name: bless_focus
+      description: Small +int/arcana buff on ally.
+      morality: neutral
+      damage_type: null
+    blood:
+      id: arcana.enhancement.25.blood.bloodthirst
+      baseline_slot: arcana.enhancement.25
+      school: blood
+      name: bloodthirst
+      description: Small lifesteal buff on ally.
+      morality: evil
+      damage_type: null
+    devotion:
+      id: arcana.enhancement.25.devotion.pledged_bond
+      baseline_slot: arcana.enhancement.25
+      school: devotion
+      name: pledged_bond
+      description: 'Small bond: caster takes some damage for ally.'
+      morality: good
+      damage_type: null
+    earth:
+      id: arcana.enhancement.25.earth.weighted_strike
+      baseline_slot: arcana.enhancement.25
+      school: earth
+      name: weighted_strike
+      description: Ally weapon adds bludgeoning + knockdown chance.
+      morality: neutral
+      damage_type: null
+    fire:
+      id: arcana.enhancement.25.fire.ignite_weapon
+      baseline_slot: arcana.enhancement.25
+      school: fire
+      name: ignite_weapon
+      description: Ally weapon adds fire damage, short duration.
+      morality: neutral
+      damage_type: null
+    frost:
+      id: arcana.enhancement.25.frost.chill_weapon
+      baseline_slot: arcana.enhancement.25
+      school: frost
+      name: chill_weapon
+      description: Ally weapon adds cold damage + slow chance.
+      morality: neutral
+      damage_type: null
+    light:
+      id: arcana.enhancement.25.light.bless
+      baseline_slot: arcana.enhancement.25
+      school: light
+      name: bless
+      description: Classic +small stats buff.
+      morality: good
+      damage_type: null
+    lightning:
+      id: arcana.enhancement.25.lightning.shock_weapon
+      baseline_slot: arcana.enhancement.25
+      school: lightning
+      name: shock_weapon
+      description: Ally weapon adds lightning damage.
+      morality: neutral
+      damage_type: null
+    nature:
+      id: arcana.enhancement.25.nature.thorn_weapon
+      baseline_slot: arcana.enhancement.25
+      school: nature
+      name: thorn_weapon
+      description: Ally weapon adds piercing damage.
+      morality: neutral
+      damage_type: null
+    shadow:
+      id: arcana.enhancement.25.shadow.shadow_edge
+      baseline_slot: arcana.enhancement.25
+      school: shadow
+      name: shadow_edge
+      description: Ally weapon adds necrotic damage + crit chance.
+      morality: evil
+      damage_type: null
+  50:
+    arcane:
+      id: arcana.enhancement.50.arcane.empower_weapon
+      baseline_slot: arcana.enhancement.50
+      school: arcane
+      name: empower_weapon
+      description: General force enchant on ally weapon.
+      morality: neutral
+      damage_type: null
+    blood:
+      id: arcana.enhancement.50.blood.bloodfang
+      baseline_slot: arcana.enhancement.50
+      school: blood
+      name: bloodfang
+      description: Blood enchant; bleed on hit + lifesteal.
+      morality: evil
+      damage_type: null
+    devotion:
+      id: arcana.enhancement.50.devotion.devoted_strike
+      baseline_slot: arcana.enhancement.50
+      school: devotion
+      name: devoted_strike
+      description: Ally gains damage boost; caster takes HP cost.
+      morality: good
+      damage_type: null
+    earth:
+      id: arcana.enhancement.50.earth.stoneblow
+      baseline_slot: arcana.enhancement.50
+      school: earth
+      name: stoneblow
+      description: Earth enchant; knockdown chance.
+      morality: neutral
+      damage_type: null
+    fire:
+      id: arcana.enhancement.50.fire.flame_tongue
+      baseline_slot: arcana.enhancement.50
+      school: fire
+      name: flame_tongue
+      description: Fire weapon enchant; ignite on crit.
+      morality: neutral
+      damage_type: null
+    frost:
+      id: arcana.enhancement.50.frost.frostbrand
+      baseline_slot: arcana.enhancement.50
+      school: frost
+      name: frostbrand
+      description: Frost weapon enchant; slow on hit.
+      morality: neutral
+      damage_type: null
+    light:
+      id: arcana.enhancement.50.light.radiant_edge
+      baseline_slot: arcana.enhancement.50
+      school: light
+      name: radiant_edge
+      description: Light enchant; bonus damage vs evil.
+      morality: good
+      damage_type: null
+    lightning:
+      id: arcana.enhancement.50.lightning.storm_blade
+      baseline_slot: arcana.enhancement.50
+      school: lightning
+      name: storm_blade
+      description: Lightning enchant; chain on crit.
+      morality: neutral
+      damage_type: null
+    nature:
+      id: arcana.enhancement.50.nature.living_weapon
+      baseline_slot: arcana.enhancement.50
+      school: nature
+      name: living_weapon
+      description: Nature enchant; heals wielder on crit.
+      morality: neutral
+      damage_type: null
+    shadow:
+      id: arcana.enhancement.50.shadow.shadow_fang
+      baseline_slot: arcana.enhancement.50
+      school: shadow
+      name: shadow_fang
+      description: Shadow enchant; drain on hit.
+      morality: evil
+      damage_type: null
+  75:
+    arcane:
+      id: arcana.enhancement.75.arcane.arcane_haste
+      baseline_slot: arcana.enhancement.75
+      school: arcane
+      name: arcane_haste
+      description: AoE group speed and cast-rate buff.
+      morality: neutral
+      damage_type: null
+    blood:
+      id: arcana.enhancement.75.blood.blood_rite
+      baseline_slot: arcana.enhancement.75
+      school: blood
+      name: blood_rite
+      description: AoE group lifesteal buff.
+      morality: evil
+      damage_type: null
+    devotion:
+      id: arcana.enhancement.75.devotion.mass_covenant
+      baseline_slot: arcana.enhancement.75
+      school: devotion
+      name: mass_covenant
+      description: AoE ally buff paid by caster HP.
+      morality: good
+      damage_type: null
+    earth:
+      id: arcana.enhancement.75.earth.endurance
+      baseline_slot: arcana.enhancement.75
+      school: earth
+      name: endurance
+      description: AoE group HP regen + damage reduction.
+      morality: neutral
+      damage_type: null
+    fire:
+      id: arcana.enhancement.75.fire.fervor
+      baseline_slot: arcana.enhancement.75
+      school: fire
+      name: fervor
+      description: AoE group rage and attack-speed.
+      morality: neutral
+      damage_type: null
+    frost:
+      id: arcana.enhancement.75.frost.crystallized_focus
+      baseline_slot: arcana.enhancement.75
+      school: frost
+      name: crystallized_focus
+      description: AoE group cast-speed + crit chance.
+      morality: neutral
+      damage_type: null
+    light:
+      id: arcana.enhancement.75.light.group_haste
+      baseline_slot: arcana.enhancement.75
+      school: light
+      name: group_haste
+      description: Classic AoE radiant speed buff.
+      morality: good
+      damage_type: null
+    lightning:
+      id: arcana.enhancement.75.lightning.quickening
+      baseline_slot: arcana.enhancement.75
+      school: lightning
+      name: quickening
+      description: AoE group action-rate burst.
+      morality: neutral
+      damage_type: null
+    nature:
+      id: arcana.enhancement.75.nature.wild_surge
+      baseline_slot: arcana.enhancement.75
+      school: nature
+      name: wild_surge
+      description: AoE group regen + move speed.
+      morality: neutral
+      damage_type: null
+    shadow:
+      id: arcana.enhancement.75.shadow.dread_pact
+      baseline_slot: arcana.enhancement.75
+      school: shadow
+      name: dread_pact
+      description: AoE group speed at shared HP cost.
+      morality: evil
+      damage_type: null
+  100:
+    arcane:
+      id: arcana.enhancement.100.arcane.apotheosis_arcane
+      baseline_slot: arcana.enhancement.100
+      school: arcane
+      name: apotheosis_arcane
+      description: 'Ritual: ally becomes mini-archmage briefly.'
+      morality: neutral
+      damage_type: null
+    blood:
+      id: arcana.enhancement.100.blood.blood_avatar
+      baseline_slot: arcana.enhancement.100
+      school: blood
+      name: blood_avatar
+      description: 'Ritual: ally becomes vampiric, heals on damage.'
+      morality: evil
+      damage_type: null
+    devotion:
+      id: arcana.enhancement.100.devotion.ascended_vow
+      baseline_slot: arcana.enhancement.100
+      school: devotion
+      name: ascended_vow
+      description: 'Ritual: one ally becomes champion; caster sacrifices significant
+        HP.'
+      morality: good
+      damage_type: null
+    earth:
+      id: arcana.enhancement.100.earth.mountain_form
+      baseline_slot: arcana.enhancement.100
+      school: earth
+      name: mountain_form
+      description: 'Ritual: ally near-immovable, massive HP.'
+      morality: neutral
+      damage_type: null
+    fire:
+      id: arcana.enhancement.100.fire.phoenix_form
+      baseline_slot: arcana.enhancement.100
+      school: fire
+      name: phoenix_form
+      description: 'Ritual: ally gains fire immunity + burn aura.'
+      morality: neutral
+      damage_type: null
+    frost:
+      id: arcana.enhancement.100.frost.winters_blessing
+      baseline_slot: arcana.enhancement.100
+      school: frost
+      name: winters_blessing
+      description: 'Ritual: ally cold-immune + slows nearby.'
+      morality: neutral
+      damage_type: null
+    light:
+      id: arcana.enhancement.100.light.ascended
+      baseline_slot: arcana.enhancement.100
+      school: light
+      name: ascended
+      description: 'Ritual: ally becomes near-avatar briefly.'
+      morality: good
+      damage_type: null
+    lightning:
+      id: arcana.enhancement.100.lightning.storm_form
+      baseline_slot: arcana.enhancement.100
+      school: lightning
+      name: storm_form
+      description: 'Ritual: ally becomes lightning-infused.'
+      morality: neutral
+      damage_type: null
+    nature:
+      id: arcana.enhancement.100.nature.beast_lord
+      baseline_slot: arcana.enhancement.100
+      school: nature
+      name: beast_lord
+      description: 'Ritual: ally gains shapeshift form.'
+      morality: neutral
+      damage_type: null
+    shadow:
+      id: arcana.enhancement.100.shadow.shadowlord
+      baseline_slot: arcana.enhancement.100
+      school: shadow
+      name: shadowlord
+      description: 'Ritual: ally becomes shadow-incarnate briefly.'
+      morality: evil
+      damage_type: null

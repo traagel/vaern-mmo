@@ -1,0 +1,12 @@
+id: plate
+name: Plate
+tier: heavy
+physical_reduction: 0.4
+magic_reduction: 0.12
+weak_against:
+- blunt
+strong_against:
+- blade
+- dagger
+mobility_penalty: 0.25
+notes: "forged solid plate \u2014 elite warriors, knight-guards"

@@ -1,0 +1,25 @@
+id: mob_silverleaf_wood_juvenile_stag
+name: Juvenile Antler-Stag
+zone: silverleaf_wood
+level: 16
+creature_type: beast
+armor_class: hide
+rarity: common
+role: scout
+faction_alignment: neutral_aggressive
+hp_tier: standard
+damage:
+  primary_school: blade
+  attack_range: melee
+  dps_tier: light
+behavior:
+  aggro_range: medium
+  social_radius: 0
+  flee_threshold: 0.15
+  calls_allies: false
+  patrol: long
+loot_tier: standard
+drops:
+  gold_copper_avg: 16
+  item_hint: biome-flavored trash material
+biome_context: 'young, lower HP but faster; base form: Antler-Stag'

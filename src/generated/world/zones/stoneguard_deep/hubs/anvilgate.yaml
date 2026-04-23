@@ -1,0 +1,9 @@
+id: anvilgate
+zone: stoneguard_deep
+name: Anvilgate
+role: outpost
+amenities:
+- innkeeper
+- flight_master
+- repair
+quest_givers: 3

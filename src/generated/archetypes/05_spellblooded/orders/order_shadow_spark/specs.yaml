@@ -1,0 +1,15 @@
+specs:
+- id: shadow_spark_flare
+  name: Shadow-Flare
+  emphasis: magic_dps
+  description: burst shadow-fire damage
+  schools_focus:
+  - shadow
+  - fire
+- id: shadow_spark_hex
+  name: Hex-Spark
+  emphasis: control
+  description: toxin-shadow battlefield hex
+  schools_focus:
+  - poison
+  - shadow

@@ -1,0 +1,17 @@
+name: earth
+pillar: arcana
+morality: neutral
+family: elemental
+tag: stone / solidity
+damage_type: bludgeoning
+applies_to_categories:
+- damage
+- protection
+- control
+- summoning
+- enhancement
+icon_style:
+  palette: umber, ochre, slate gray, moss green, iron-rust accents
+  motif: cracked stone slabs, jagged mountain silhouettes, packed soil, crystal geodes, tectonic seams
+  silhouette: heavy blocky mass with low center of gravity, jagged stalagmite or slab
+  material: solid granite, quartz vein, cracked obsidian, compressed earth, sandstone

@@ -1,0 +1,19 @@
+id: side_quests__burned_abbey
+hub: burned_abbey
+hub_role: ruin
+zone: ruin_line_north
+biome: ruin
+quest_count: 1
+quests:
+- id: side__burned_abbey__the_relic_hunter
+  name: The Relic Hunter
+  hub: burned_abbey
+  type: side
+  level: 34
+  objective:
+    kind: collect
+    target_hint: pre-war relics from ruin-edges
+    count: 4
+  xp_reward: 6093
+  gold_reward_copper: 170
+  repeatable: false

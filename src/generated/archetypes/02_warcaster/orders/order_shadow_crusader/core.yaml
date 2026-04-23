@@ -1,0 +1,25 @@
+id: order_shadow_crusader
+faction: faction_b
+archetype_id: 2
+archetype_position:
+  might: 50
+  arcana: 50
+  finesse: 0
+flagship: false
+player_facing:
+  class_name: Shadow-Crusader
+  title_singular: Shadow-Crusader
+  title_plural: Shadow-Crusaders
+schools_taught:
+  might:
+  - blade
+  - shield
+  - fury
+  arcana:
+  - shadow
+  - arcane
+institutions:
+  primary: hearth_broken_clans
+  secondary: bleeding_vaults
+  tertiary: shadow_conclave
+chapter: chapter_shadow_crusader

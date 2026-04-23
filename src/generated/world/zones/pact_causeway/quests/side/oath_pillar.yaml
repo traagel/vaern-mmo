@@ -1,0 +1,19 @@
+id: side_quests__oath_pillar
+hub: oath_pillar
+hub_role: ruin
+zone: pact_causeway
+biome: highland
+quest_count: 1
+quests:
+- id: side__oath_pillar__the_fog_walker
+  name: The Fog Walker
+  hub: oath_pillar
+  type: side
+  level: 18
+  objective:
+    kind: kill
+    target_hint: fog-born predator stalking the high paths
+    count: 1
+  xp_reward: 1843
+  gold_reward_copper: 90
+  repeatable: false

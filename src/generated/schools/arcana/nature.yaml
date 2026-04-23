@@ -1,0 +1,18 @@
+name: nature
+pillar: arcana
+morality: neutral
+family: primal
+tag: growth / beast
+damage_type: piercing
+applies_to_categories:
+- damage
+- healing
+- protection
+- control
+- summoning
+- enhancement
+icon_style:
+  palette: mossy green, loam brown, bloom pinks and yellows, deep forest shadow, amber sap
+  motif: coiled vines, thorned branches, unfurling leaves, flower cores, antlers, root systems
+  silhouette: asymmetric organic growth, thorn-wrapped stem, bloom surrounded by leaves
+  material: living wood, fresh leaf, bark, amber resin, dew-wet petal

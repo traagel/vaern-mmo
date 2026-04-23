@@ -1,0 +1,15 @@
+specs:
+- id: spear_scout_thrust
+  name: Thrust-Scout
+  emphasis: melee_dps
+  description: close-range spear-fighter
+  schools_focus:
+  - spear
+  - silent
+- id: spear_scout_hurl
+  name: Hurl-Scout
+  emphasis: ranged_dps
+  description: javelin-and-bow mobile harasser
+  schools_focus:
+  - thrown
+  - bow

@@ -1,0 +1,17 @@
+name: trickster
+pillar: finesse
+morality: neutral
+family: technique
+tag: deception / misdirect
+damage_type: bludgeoning
+applies_to_categories:
+- stealth
+- evasion
+- mobility
+- trickery
+- utility
+icon_style:
+  palette: harlequin red-and-black, brass, magician-purple, smoke-white, mirror silver
+  motif: fanned playing cards, sleight-of-hand gesture, cracked mirror, puff of smoke, coin-flip
+  silhouette: fanned cards or coin mid-flip with drifting smoke wisps, mischievous asymmetry
+  material: lacquered card-stock, polished brass coin, reflective mirror shard, drifting smoke

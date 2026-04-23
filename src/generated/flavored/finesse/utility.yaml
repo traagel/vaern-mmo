@@ -1,0 +1,167 @@
+pillar: finesse
+category: utility
+variants:
+  25:
+    acrobat:
+      name: climb
+      description: Scale walls.
+      damage_type: null
+      morality: neutral
+    alchemy:
+      name: caltrop_spread
+      description: Scatter caltrops; ground slows.
+      damage_type: null
+      morality: neutral
+    bow:
+      name: scout_shot
+      description: Long-range recon via arrow-mark.
+      damage_type: null
+      morality: neutral
+    poison:
+      name: brew_minor
+      description: Craft minor poison.
+      damage_type: null
+      morality: evil
+    silent:
+      name: detect
+      description: Detect traps passively.
+      damage_type: null
+      morality: neutral
+    thrown:
+      name: rope_throw
+      description: Grappling throw.
+      damage_type: null
+      morality: neutral
+    tonics:
+      name: restorative_tea
+      description: Minor self/ally heal via consumed tonic.
+      damage_type: null
+      morality: good
+    trickster:
+      name: con
+      description: 'Social skill: persuade or deceive NPC.'
+      damage_type: null
+      morality: neutral
+  50:
+    acrobat:
+      name: rope_walker
+      description: Traverse ropes and beams.
+      damage_type: null
+      morality: neutral
+    alchemy:
+      name: oil_slick
+      description: Scatter flammable oil; slows and ignitable.
+      damage_type: null
+      morality: neutral
+    bow:
+      name: eagle_eye
+      description: See long distances clearly.
+      damage_type: null
+      morality: neutral
+    poison:
+      name: brew_venom
+      description: Craft moderate poison.
+      damage_type: null
+      morality: evil
+    silent:
+      name: listener
+      description: Hear distant conversation.
+      damage_type: null
+      morality: neutral
+    thrown:
+      name: bolas_throw
+      description: Thrown restraint.
+      damage_type: null
+      morality: neutral
+    tonics:
+      name: healing_draught
+      description: Moderate heal consumable.
+      damage_type: null
+      morality: good
+    trickster:
+      name: forgery
+      description: Forge documents or signatures.
+      damage_type: null
+      morality: neutral
+  75:
+    acrobat:
+      name: traverse
+      description: Wall-climbing and gap-crossing mastery.
+      damage_type: null
+      morality: neutral
+    alchemy:
+      name: breaching_charge
+      description: Set alchemical charge; demolish wall or trap.
+      damage_type: null
+      morality: neutral
+    bow:
+      name: hawksight
+      description: See through smoke and cover.
+      damage_type: null
+      morality: neutral
+    poison:
+      name: distilled_venom
+      description: Craft advanced poison variant.
+      damage_type: null
+      morality: evil
+    silent:
+      name: shadow_detect
+      description: Detect invisible or hidden foes.
+      damage_type: null
+      morality: neutral
+    thrown:
+      name: anchor_throw
+      description: Thrown descent/ascent aid.
+      damage_type: null
+      morality: neutral
+    tonics:
+      name: mass_tonic
+      description: AoE heal via broadcast-brew.
+      damage_type: null
+      morality: good
+    trickster:
+      name: fast_talk
+      description: Escape conflict via words.
+      damage_type: null
+      morality: neutral
+  100:
+    acrobat:
+      name: wall_dance
+      description: Walk on walls and ceilings briefly.
+      damage_type: null
+      morality: neutral
+    alchemy:
+      name: master_brew
+      description: 'Ritual: craft any tier-75 consumable on-demand.'
+      damage_type: null
+      morality: neutral
+    bow:
+      name: pathfinder_sight
+      description: See ahead on scouting route.
+      damage_type: null
+      morality: neutral
+    poison:
+      name: master_brewer
+      description: Craft any known toxin.
+      damage_type: null
+      morality: evil
+    silent:
+      name: pathfinder
+      description: Detect ambush pre-encounter.
+      damage_type: null
+      morality: neutral
+    thrown:
+      name: storm_rigging
+      description: Multi-target utility throws.
+      damage_type: null
+      morality: neutral
+    tonics:
+      name: elixir_of_life
+      description: 'Ritual: fully restore ally HP via rare elixir.'
+      damage_type: null
+      morality: good
+    trickster:
+      name: master_con
+      description: Turn enemies against each other.
+      damage_type: null
+      morality: neutral

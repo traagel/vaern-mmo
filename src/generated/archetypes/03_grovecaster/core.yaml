@@ -1,0 +1,40 @@
+class_id: 3
+internal_label: Druid
+abstract_name: Grovecaster
+position:
+  might: 25
+  arcana: 75
+  finesse: 0
+pillar_classification: edge
+dominant_pillar:
+- arcana
+edge: arcana-might
+primary_roles:
+- healer
+- ranged-dps
+note: Might-Arcana near-Arcana; AoE spells with light armor
+active_tiers:
+  might:
+  - 25
+  arcana:
+  - 25
+  - 50
+  - 75
+  finesse: []
+capabilities:
+  might:
+  - Light-medium armor proficiency
+  - Basic melee weapons (club, dagger, short sword)
+  - Hit-point bonus
+  arcana:
+  - Cantrips (at-will minor spells)
+  - Minor debuffs (slow, weaken, minor curse)
+  - Minor utility (light, detect magic, mend)
+  - Single-target spells (damage or heal lean)
+  - Protective wards and shields
+  - Area-of-effect spells (damage or heal)
+  - Control and crowd-control (root, stun, sleep)
+  finesse: []
+faction_labels:
+  faction_a: null
+  faction_b: null

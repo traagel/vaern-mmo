@@ -1,0 +1,31 @@
+id: side_quests__southscar_camp
+hub: southscar_camp
+hub_role: waypoint
+zone: ruin_line_south
+biome: ruin
+quest_count: 2
+quests:
+- id: side__southscar_camp__the_relic_hunter
+  name: The Relic Hunter
+  hub: southscar_camp
+  type: side
+  level: 30
+  objective:
+    kind: collect
+    target_hint: pre-war relics from ruin-edges
+    count: 4
+  xp_reward: 4800
+  gold_reward_copper: 150
+  repeatable: false
+- id: side__southscar_camp__the_wight_cull
+  name: The Wight Cull
+  hub: southscar_camp
+  type: side
+  level: 38
+  objective:
+    kind: kill
+    target_hint: war-wights that don't know the war ended
+    count: 1
+  xp_reward: 7539
+  gold_reward_copper: 190
+  repeatable: false

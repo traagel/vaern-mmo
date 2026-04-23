@@ -1,0 +1,5 @@
+id: chapter_flame_priest
+institution: radiant_church
+produces_order: order_flame_priest
+secondary_institution: knight_order
+tertiary_institution: silver_quill

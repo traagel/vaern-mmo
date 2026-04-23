@@ -1,0 +1,64 @@
+id: chain_ashen_exile_oath
+zone: ashen_holt
+title: The Exile-Oath
+premise: "A Darkling initiate learns why their people were exiled, one layer at a\
+  \ time \u2014 and the Sunward version is only half true"
+total_steps: 5
+final_reward:
+  xp_bonus: 1200
+  gold_bonus_copper: 500
+  item_hint: zone-appropriate starter-tier reward
+  title_hint: '''The Exile-Oath'' completion title'
+breadcrumb_from: capital hub of the zone's faction-home
+final_boss_hint: null
+steps:
+- step: 1
+  id: chain_ashen_exile_oath__01_answer_the_summons
+  name: Answer The Summons
+  level: 1
+  objective:
+    kind: talk
+    target_hint: Mistress Vael
+  xp_reward: 62
+  gold_reward_copper: 15
+  prerequisite: null
+- step: 2
+  id: chain_ashen_exile_oath__02_read_the_forbidden_tome
+  name: Read The Forbidden Tome
+  level: 2
+  objective:
+    kind: investigate
+    target_hint: the sealed library chamber
+  xp_reward: 154
+  gold_reward_copper: 30
+  prerequisite: chain_ashen_exile_oath__01_answer_the_summons
+- step: 3
+  id: chain_ashen_exile_oath__03_walk_the_exile_road
+  name: Walk The Exile Road
+  level: 3
+  objective:
+    kind: investigate
+    target_hint: the old exile-road waystones
+  xp_reward: 274
+  gold_reward_copper: 45
+  prerequisite: chain_ashen_exile_oath__02_read_the_forbidden_tome
+- step: 4
+  id: chain_ashen_exile_oath__04_meet_the_first_exile
+  name: Meet The First Exile
+  level: 4
+  objective:
+    kind: talk
+    target_hint: the first exile's bound shade
+  xp_reward: 422
+  gold_reward_copper: 60
+  prerequisite: chain_ashen_exile_oath__03_walk_the_exile_road
+- step: 5
+  id: chain_ashen_exile_oath__05_swear_the_oath
+  name: Swear The Oath
+  level: 5
+  objective:
+    kind: ritual
+    target_hint: the exile-oath at the blackleaf bower
+  xp_reward: 600
+  gold_reward_copper: 75
+  prerequisite: chain_ashen_exile_oath__04_meet_the_first_exile

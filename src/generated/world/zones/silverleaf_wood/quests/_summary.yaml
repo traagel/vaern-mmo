@@ -1,0 +1,16 @@
+id: quest_summary__silverleaf_wood
+zone: silverleaf_wood
+level_range:
+  min: 15
+  max: 22
+tier: mid
+budget_target: 112
+actual:
+  main_chain_steps: 7
+  side_quests: 9
+  filler_pool: 90
+  total: 106
+coverage_ratio: 0.95
+main_chain: chain_silverleaf_moth_court
+notes: Main chain is hand-crafted story; side is templated by biome+hub-role; filler
+  is a procedural pool.

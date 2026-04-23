@@ -1,0 +1,18 @@
+id: side_quests__wyrd_tarn
+hub: wyrd_tarn
+hub_role: ruin
+zone: greenwood_deep
+biome: temperate_forest
+quest_count: 1
+quests:
+- id: side__wyrd_tarn__the_timber_scout
+  name: The Timber Scout
+  hub: wyrd_tarn
+  type: side
+  level: 26
+  objective:
+    kind: investigate
+    target_hint: a timber-camp that went silent
+  xp_reward: 3661
+  gold_reward_copper: 130
+  repeatable: false

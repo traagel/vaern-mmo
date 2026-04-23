@@ -1,0 +1,25 @@
+id: order_sun_seer
+faction: faction_a
+archetype_id: 13
+archetype_position:
+  might: 25
+  arcana: 50
+  finesse: 25
+flagship: false
+player_facing:
+  class_name: Sun-Seer
+  title_singular: Sun-Seer
+  title_plural: Sun-Seers
+schools_taught:
+  might:
+  - unarmed
+  arcana:
+  - light
+  - devotion
+  finesse:
+  - tonics
+institutions:
+  primary: radiant_church
+  secondary: alchemists_compact
+  tertiary: phalanx_school
+chapter: chapter_sun_seer

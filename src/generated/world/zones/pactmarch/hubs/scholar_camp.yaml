@@ -1,0 +1,9 @@
+id: scholar_camp
+zone: pactmarch
+name: Scholar's Camp
+role: outpost
+amenities:
+- innkeeper
+- flight_master
+- repair
+quest_givers: 3

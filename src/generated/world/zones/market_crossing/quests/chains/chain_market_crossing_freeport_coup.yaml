@@ -1,0 +1,86 @@
+id: chain_market_crossing_freeport_coup
+zone: market_crossing
+title: The Freeport Coup
+premise: Market Crossing's merchant council is under a slow coup by a Rend-backed
+  trade-guild; a visiting Concord inspector is the target
+total_steps: 7
+final_reward:
+  xp_bonus: 21964
+  gold_bonus_copper: 2600
+  item_hint: zone-appropriate mid-tier reward
+  title_hint: '''The Freeport Coup'' completion title'
+breadcrumb_from: capital hub of the zone's faction-home
+final_boss_hint: the trade-guild's hidden patron
+steps:
+- step: 1
+  id: chain_market_crossing_freeport_coup__01_present_credentials
+  name: Present Credentials
+  level: 18
+  objective:
+    kind: talk
+    target_hint: Freeport Magistrate Hulle
+  xp_reward: 5530
+  gold_reward_copper: 270
+  prerequisite: null
+- step: 2
+  id: chain_market_crossing_freeport_coup__02_investigate_the_docks
+  name: Investigate The Docks
+  level: 19
+  objective:
+    kind: investigate
+    target_hint: the suspicious caravanserai warehouse
+  xp_reward: 6110
+  gold_reward_copper: 285
+  prerequisite: chain_market_crossing_freeport_coup__01_present_credentials
+- step: 3
+  id: chain_market_crossing_freeport_coup__03_plant_a_double_agent
+  name: Plant A Double Agent
+  level: 21
+  objective:
+    kind: talk
+    target_hint: a sympathetic smuggler
+  xp_reward: 7358
+  gold_reward_copper: 315
+  prerequisite: chain_market_crossing_freeport_coup__02_investigate_the_docks
+- step: 4
+  id: chain_market_crossing_freeport_coup__04_protect_the_inspector
+  name: Protect The Inspector
+  level: 22
+  objective:
+    kind: escort
+    target_hint: the Concord inspector through market row
+  xp_reward: 8026
+  gold_reward_copper: 330
+  prerequisite: chain_market_crossing_freeport_coup__03_plant_a_double_agent
+- step: 5
+  id: chain_market_crossing_freeport_coup__05_raid_the_warehouse
+  name: Raid The Warehouse
+  level: 23
+  objective:
+    kind: defeat
+    target_hint: the trade-guild's private thugs
+    group_suggested: true
+  xp_reward: 8722
+  gold_reward_copper: 345
+  prerequisite: chain_market_crossing_freeport_coup__04_protect_the_inspector
+- step: 6
+  id: chain_market_crossing_freeport_coup__06_confront_the_coup_leader
+  name: Confront The Coup Leader
+  level: 25
+  objective:
+    kind: kill
+    target_hint: the trade-guild's hidden patron
+    count: 1
+  xp_reward: 10200
+  gold_reward_copper: 375
+  prerequisite: chain_market_crossing_freeport_coup__05_raid_the_warehouse
+- step: 7
+  id: chain_market_crossing_freeport_coup__07_restore_the_council
+  name: Restore The Council
+  level: 26
+  objective:
+    kind: deliver
+    target_hint: the inspector's sealed report
+  xp_reward: 10982
+  gold_reward_copper: 390
+  prerequisite: chain_market_crossing_freeport_coup__06_confront_the_coup_leader

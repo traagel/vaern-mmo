@@ -1,0 +1,21 @@
+id: oath_pillar_vault_bosses
+instance: oath_pillar_vault
+bosses:
+- id: oath_keeper
+  name: The Oath Keeper
+  role_tag: miniboss
+  level: 24
+  mechanic: 'vow-mechanic: players must honor a targeted promise or take damage'
+  hp_tier: elite
+- id: bound_thing
+  name: The Bound Thing
+  role_tag: miniboss
+  level: 27
+  mechanic: chain-tether breaks, boss moves
+  hp_tier: elite
+- id: pact_scribe
+  name: The Pact-Scribe Indelible
+  role_tag: final
+  level: 30
+  mechanic: writes a curse on each player; cleansed by specific adds
+  hp_tier: heroic

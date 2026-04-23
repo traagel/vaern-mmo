@@ -1,0 +1,5 @@
+id: chapter_acrobat_thief
+institution: wayhouse_accord
+produces_order: order_acrobat_thief
+secondary_institution: night_quick_guild
+tertiary_institution: knight_order

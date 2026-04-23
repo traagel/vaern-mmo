@@ -1,0 +1,25 @@
+id: mob_dalewatch_marches_exotic_brine_shade
+name: Brine-Shade
+zone: dalewatch_marches
+level: 6
+creature_type: aberration
+armor_class: ethereal
+rarity: common
+role: skirmisher
+faction_alignment: hostile_to_all
+hp_tier: standard
+damage:
+  primary_school: frost
+  attack_range: melee
+  dps_tier: standard
+behavior:
+  aggro_range: long
+  social_radius: 12
+  flee_threshold: 0.0
+  calls_allies: true
+  patrol: stationary
+loot_tier: standard
+drops:
+  gold_copper_avg: 8
+  item_hint: shade-brine vial; rare ectoplasm
+biome_context: born of the Wake; haunts the Blackwash Fens' black-water channels

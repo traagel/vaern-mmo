@@ -1,0 +1,106 @@
+id: chain_frost_spine_elder_wyrm
+zone: frost_spine
+title: The Elder Wyrm
+premise: The thing sleeping at the top of the Frost Spine is older than both factions;
+  the old Veyr knew how to sing it back to sleep, but the song is lost
+total_steps: 9
+final_reward:
+  xp_bonus: 92400
+  gold_bonus_copper: 5500
+  item_hint: zone-appropriate endgame-tier reward
+  title_hint: '''The Elder Wyrm'' completion title'
+breadcrumb_from: capital hub of the zone's faction-home
+final_boss_hint: factions who want the wyrm awake and weaponized
+steps:
+- step: 1
+  id: chain_frost_spine_elder_wyrm__01_receive_the_spine_brief
+  name: Receive The Spine Brief
+  level: 48
+  objective:
+    kind: talk
+    target_hint: the Frost Gate commander
+  xp_reward: 35482
+  gold_reward_copper: 720
+  prerequisite: null
+- step: 2
+  id: chain_frost_spine_elder_wyrm__02_recover_the_old_song_fragments
+  name: Recover The Old Song Fragments
+  level: 49
+  objective:
+    kind: collect
+    target_hint: song-stones from the Yeti-Warren and frozen watchtowers
+    count: 4
+  xp_reward: 36926
+  gold_reward_copper: 735
+  prerequisite: chain_frost_spine_elder_wyrm__01_receive_the_spine_brief
+- step: 3
+  id: chain_frost_spine_elder_wyrm__03_consult_the_shaman_of_the_frozen
+  name: Consult The Shaman Of The Frozen
+  level: 50
+  objective:
+    kind: talk
+    target_hint: the Frozen Shaman (post-dungeon)
+  xp_reward: 38400
+  gold_reward_copper: 750
+  prerequisite: chain_frost_spine_elder_wyrm__02_recover_the_old_song_fragments
+- step: 4
+  id: chain_frost_spine_elder_wyrm__04_decipher_the_full_song
+  name: Decipher The Full Song
+  level: 51
+  objective:
+    kind: ritual
+    target_hint: the song-restoration
+  xp_reward: 39902
+  gold_reward_copper: 765
+  prerequisite: chain_frost_spine_elder_wyrm__03_consult_the_shaman_of_the_frozen
+- step: 5
+  id: chain_frost_spine_elder_wyrm__05_climb_the_spine
+  name: Climb The Spine
+  level: 52
+  objective:
+    kind: escort
+    target_hint: a joint-faction song-party up the spine
+  xp_reward: 41434
+  gold_reward_copper: 780
+  prerequisite: chain_frost_spine_elder_wyrm__04_decipher_the_full_song
+- step: 6
+  id: chain_frost_spine_elder_wyrm__06_sing_the_sleeping_song
+  name: Sing The Sleeping Song
+  level: 52
+  objective:
+    kind: ritual
+    target_hint: the full song-rite at the summit
+  xp_reward: 41434
+  gold_reward_copper: 780
+  prerequisite: chain_frost_spine_elder_wyrm__05_climb_the_spine
+- step: 7
+  id: chain_frost_spine_elder_wyrm__07_defeat_the_refusers
+  name: Defeat The Refusers
+  level: 53
+  objective:
+    kind: defeat
+    target_hint: factions who want the wyrm awake and weaponized
+    group_suggested: true
+  xp_reward: 42994
+  gold_reward_copper: 795
+  prerequisite: chain_frost_spine_elder_wyrm__06_sing_the_sleeping_song
+- step: 8
+  id: chain_frost_spine_elder_wyrm__08_complete_the_sleeping
+  name: Complete The Sleeping
+  level: 54
+  objective:
+    kind: ritual
+    target_hint: the wyrm's return to sleep
+  xp_reward: 44582
+  gold_reward_copper: 810
+  prerequisite: chain_frost_spine_elder_wyrm__07_defeat_the_refusers
+- step: 9
+  id: chain_frost_spine_elder_wyrm__09_seal_the_summit
+  name: Seal The Summit
+  level: 55
+  objective:
+    kind: ritual
+    target_hint: the summit-sealing rite
+  xp_reward: 46200
+  gold_reward_copper: 825
+  prerequisite: chain_frost_spine_elder_wyrm__08_complete_the_sleeping

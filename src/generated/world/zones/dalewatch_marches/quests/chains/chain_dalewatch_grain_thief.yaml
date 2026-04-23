@@ -1,0 +1,65 @@
+id: chain_dalewatch_grain_thief
+zone: dalewatch_marches
+title: The Grain Thief
+premise: Miller Hadrin's granary is bleeding sacks. Tracks go upriver, into the tall-grass flats. Someone
+  knows the mill's schedule.
+total_steps: 4
+breadcrumb_from: miller_crossing
+final_boss_hint: bandit caches in the tall-grass flats
+final_reward:
+  xp_bonus: 800
+  gold_bonus_copper: 200
+  item_hint: Miller's chit (minor off-hand accessory)
+npcs:
+- id: miller_hadrin
+  display_name: Miller Hadrin
+  title: Millkeep of Miller's Crossing
+  hub_id: miller_crossing
+  dialogue: '"Another three sacks. They take just enough I can''t ignore it and not so much I can close
+    the mill. That''s not wolves. That''s a man who knows my counting-stick."'
+steps:
+- step: 1
+  name: Speak with Miller Hadrin
+  level: 3
+  objective:
+    kind: talk
+    npc: miller_hadrin
+    target_hint: Miller Hadrin at Miller's Crossing
+  xp_reward: 200
+  gold_reward_copper: 15
+  id: chain_dalewatch_grain_thief__01_speak_with_miller_hadrin
+  prerequisite: null
+- step: 2
+  name: Search the Granary
+  level: 3
+  objective:
+    kind: investigate
+    target_hint: the pilfered granary at Miller's Crossing
+    location: miller_crossing
+  xp_reward: 260
+  gold_reward_copper: 20
+  id: chain_dalewatch_grain_thief__02_search_the_granary
+  prerequisite: chain_dalewatch_grain_thief__01_speak_with_miller_hadrin
+- step: 3
+  name: Break the Bandit Cache
+  level: 4
+  objective:
+    kind: kill
+    target_hint: raiders watching the thief's cache
+    mob_id: mob_dalewatch_marches_warband_raid_stray
+    count: 5
+  xp_reward: 340
+  gold_reward_copper: 45
+  id: chain_dalewatch_grain_thief__03_break_the_bandit_cache
+  prerequisite: chain_dalewatch_grain_thief__02_search_the_granary
+- step: 4
+  name: Return the Tally
+  level: 4
+  objective:
+    kind: deliver
+    npc: miller_hadrin
+    target_hint: bring Hadrin his recovered counting-stick
+  xp_reward: 400
+  gold_reward_copper: 60
+  id: chain_dalewatch_grain_thief__04_return_the_tally
+  prerequisite: chain_dalewatch_grain_thief__03_break_the_bandit_cache

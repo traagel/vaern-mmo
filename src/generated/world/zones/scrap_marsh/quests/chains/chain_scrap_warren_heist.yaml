@@ -1,0 +1,67 @@
+id: chain_scrap_warren_heist
+zone: scrap_marsh
+title: The Warren Heist
+premise: "A young Skrel is offered a shot at a heist; the heist target is their own\
+  \ warren's secret stash \u2014 setup by a rival crew"
+total_steps: 5
+final_reward:
+  xp_bonus: 1200
+  gold_bonus_copper: 500
+  item_hint: zone-appropriate starter-tier reward
+  title_hint: '''The Warren Heist'' completion title'
+breadcrumb_from: capital hub of the zone's faction-home
+final_boss_hint: Glib himself at the fence's den
+steps:
+- step: 1
+  id: chain_scrap_warren_heist__01_take_the_job
+  name: Take The Job
+  level: 1
+  objective:
+    kind: talk
+    target_hint: Glib the fence
+  xp_reward: 62
+  gold_reward_copper: 15
+  prerequisite: null
+- step: 2
+  id: chain_scrap_warren_heist__02_case_the_mark
+  name: Case The Mark
+  level: 2
+  objective:
+    kind: investigate
+    target_hint: the target warren's back tunnels
+  xp_reward: 154
+  gold_reward_copper: 30
+  prerequisite: chain_scrap_warren_heist__01_take_the_job
+- step: 3
+  id: chain_scrap_warren_heist__03_pull_the_heist
+  name: Pull The Heist
+  level: 3
+  objective:
+    kind: collect
+    target_hint: the marked strongbox contents
+    count: 4
+  xp_reward: 274
+  gold_reward_copper: 45
+  prerequisite: chain_scrap_warren_heist__02_case_the_mark
+- step: 4
+  id: chain_scrap_warren_heist__04_walk_into_the_trap
+  name: Walk Into The Trap
+  level: 4
+  objective:
+    kind: defeat
+    target_hint: the rival crew waiting to rob you
+    group_suggested: true
+  xp_reward: 422
+  gold_reward_copper: 60
+  prerequisite: chain_scrap_warren_heist__03_pull_the_heist
+- step: 5
+  id: chain_scrap_warren_heist__05_flip_the_trap
+  name: Flip The Trap
+  level: 5
+  objective:
+    kind: kill
+    target_hint: Glib himself at the fence's den
+    count: 1
+  xp_reward: 600
+  gold_reward_copper: 75
+  prerequisite: chain_scrap_warren_heist__04_walk_into_the_trap

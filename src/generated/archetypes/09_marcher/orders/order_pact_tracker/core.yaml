@@ -1,0 +1,24 @@
+id: order_pact_tracker
+faction: faction_b
+archetype_id: 9
+archetype_position:
+  might: 25
+  arcana: 0
+  finesse: 75
+flagship: false
+player_facing:
+  class_name: Pact-Tracker
+  title_singular: Pact-Tracker
+  title_plural: Pact-Trackers
+schools_taught:
+  might:
+  - spear
+  finesse:
+  - bow
+  - poison
+  - silent
+institutions:
+  primary: ancestor_binder_houses
+  secondary: storm_pact
+  tertiary: alchemist_tinker_clans
+chapter: chapter_pact_tracker

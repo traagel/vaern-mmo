@@ -1,0 +1,52 @@
+id: giant
+name: Giant
+category: natural
+description: "Oversized bipedal kin \u2014 yeti, mountain-giants, ogre-analogues.\
+  \ Larger than humanoid, simpler in affinity."
+hp_scaling:
+  base_at_level_1: 70
+  per_level_multiplier: 1.15
+  formula: round(base_at_1 * multiplier^(level-1))
+default_armor_class: hide
+resistances:
+  frost: -0.25
+  blunt: -0.1
+  blade: 0.1
+affinities:
+  preferred:
+  - blunt
+  - unarmed
+  - spear
+  allowed:
+  - blade
+  - thrown
+  - shield
+  forbidden:
+  - arcane
+  - fire
+  - frost
+  - lightning
+  - nature
+  - earth
+  - light
+  - devotion
+  - shadow
+  - blood
+  - honor
+  - bow
+  - dagger
+  - acrobat
+  - silent
+  - trickster
+  - alchemy
+  - tonics
+  - poison
+behavior_defaults:
+  intelligence: low
+  social: herd
+  flee_threshold: 0.15
+  aggro_range: medium
+tags:
+- oversized
+- bipedal
+- simple

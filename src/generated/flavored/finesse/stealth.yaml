@@ -1,0 +1,67 @@
+pillar: finesse
+category: stealth
+variants:
+  25:
+    dagger:
+      name: slip_blade
+      description: Hide with blade drawn.
+      damage_type: null
+      morality: neutral
+    silent:
+      name: hide
+      description: Hide in cover or obscured spaces.
+      damage_type: null
+      morality: neutral
+    trickster:
+      name: disguise
+      description: Hide in plain sight via disguise.
+      damage_type: null
+      morality: neutral
+  50:
+    dagger:
+      name: shadow_strike
+      description: Brief invis; next hit bonus damage.
+      damage_type: null
+      morality: neutral
+    silent:
+      name: shadow_cloak
+      description: Brief full invisibility.
+      damage_type: null
+      morality: neutral
+    trickster:
+      name: false_face
+      description: Brief visual swap.
+      damage_type: null
+      morality: neutral
+  75:
+    dagger:
+      name: vanish_blade
+      description: Escape combat plus crit next hit.
+      damage_type: null
+      morality: neutral
+    silent:
+      name: vanish
+      description: Escape active combat into stealth.
+      damage_type: null
+      morality: neutral
+    trickster:
+      name: shadow_twin
+      description: Leave decoy behind.
+      damage_type: null
+      morality: neutral
+  100:
+    dagger:
+      name: assassin_walk
+      description: Move freely while fully hidden.
+      damage_type: null
+      morality: neutral
+    silent:
+      name: shadow_walk
+      description: Move freely while stealthed for duration.
+      damage_type: null
+      morality: neutral
+    trickster:
+      name: mirror_walk
+      description: Mobile stealth plus decoy generation.
+      damage_type: null
+      morality: neutral

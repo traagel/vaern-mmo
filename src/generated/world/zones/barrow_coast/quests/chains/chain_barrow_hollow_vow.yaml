@@ -1,0 +1,65 @@
+id: chain_barrow_hollow_vow
+zone: barrow_coast
+title: The Hollow Vow
+premise: A newly-woken Gravewrought shell has a vow it does not remember; it must
+  find the last witness who still remembers who they were
+total_steps: 5
+final_reward:
+  xp_bonus: 1200
+  gold_bonus_copper: 500
+  item_hint: zone-appropriate starter-tier reward
+  title_hint: '''The Hollow Vow'' completion title'
+breadcrumb_from: capital hub of the zone's faction-home
+final_boss_hint: Concord raiders sent to silence the elder
+steps:
+- step: 1
+  id: chain_barrow_hollow_vow__01_wake_to_duty
+  name: Wake To Duty
+  level: 1
+  objective:
+    kind: talk
+    target_hint: Rite-Binder Corda
+  xp_reward: 62
+  gold_reward_copper: 15
+  prerequisite: null
+- step: 2
+  id: chain_barrow_hollow_vow__02_walk_your_own_grave
+  name: Walk Your Own Grave
+  level: 2
+  objective:
+    kind: investigate
+    target_hint: the shell-wearer's own barrow
+  xp_reward: 154
+  gold_reward_copper: 30
+  prerequisite: chain_barrow_hollow_vow__01_wake_to_duty
+- step: 3
+  id: chain_barrow_hollow_vow__03_find_the_last_witness
+  name: Find The Last Witness
+  level: 3
+  objective:
+    kind: talk
+    target_hint: a dying Hraun elder in the silent harbor
+  xp_reward: 274
+  gold_reward_copper: 45
+  prerequisite: chain_barrow_hollow_vow__02_walk_your_own_grave
+- step: 4
+  id: chain_barrow_hollow_vow__04_defend_the_witness
+  name: Defend The Witness
+  level: 4
+  objective:
+    kind: defeat
+    target_hint: Concord raiders sent to silence the elder
+    group_suggested: true
+  xp_reward: 422
+  gold_reward_copper: 60
+  prerequisite: chain_barrow_hollow_vow__03_find_the_last_witness
+- step: 5
+  id: chain_barrow_hollow_vow__05_honor_the_vow
+  name: Honor The Vow
+  level: 5
+  objective:
+    kind: ritual
+    target_hint: the vow-honoring at sea
+  xp_reward: 600
+  gold_reward_copper: 75
+  prerequisite: chain_barrow_hollow_vow__04_defend_the_witness

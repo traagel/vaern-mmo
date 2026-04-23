@@ -1,0 +1,22 @@
+id: order_ash_champion
+faction: faction_b
+archetype_id: 0
+archetype_position:
+  might: 100
+  arcana: 0
+  finesse: 0
+flagship: false
+player_facing:
+  class_name: Ash-Champion
+  title_singular: Ash-Champion
+  title_plural: Ash-Champions
+schools_taught:
+  might:
+  - fury
+  - blade
+  - blunt
+institutions:
+  primary: fury_houses
+  secondary: ancestor_binder_houses
+  tertiary: shadow_conclave
+chapter: chapter_ash_champion

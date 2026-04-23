@@ -1,0 +1,18 @@
+id: burned_abbey
+name: The Burned Abbey
+kind: dungeon
+group_size: 5
+zone: ruin_line_north
+entrance_hub: burned_abbey
+level_range:
+  min: 32
+  max: 40
+level_band: 31-45
+tier: leveling
+boss_count: 4
+estimated_clear_minutes: 45
+loot_tier: high
+lockout: none (rerunnable)
+theme: Pre-war Concord abbey torched during the Coming; its priesthood never finished
+  the rite
+coop_notes: tight-coop-friendly; duo/trio can attempt under-level with care

@@ -1,0 +1,66 @@
+id: chain_stoneguard_hearth_oath
+zone: stoneguard_deep
+title: The Hearth-Oath
+premise: A newly-forged Hearthkin takes the hearth-oath; the forge-fire refuses to
+  light for the first time in a generation
+total_steps: 5
+final_reward:
+  xp_bonus: 1200
+  gold_bonus_copper: 500
+  item_hint: zone-appropriate starter-tier reward
+  title_hint: '''The Hearth-Oath'' completion title'
+breadcrumb_from: capital hub of the zone's faction-home
+final_boss_hint: deepworm that burst through during the rite
+steps:
+- step: 1
+  id: chain_stoneguard_hearth_oath__01_present_to_the_thane
+  name: Present To The Thane
+  level: 1
+  objective:
+    kind: talk
+    target_hint: Thane Borin
+  xp_reward: 62
+  gold_reward_copper: 15
+  prerequisite: null
+- step: 2
+  id: chain_stoneguard_hearth_oath__02_gather_oath_iron
+  name: Gather Oath Iron
+  level: 2
+  objective:
+    kind: collect
+    target_hint: oath-iron from the collapsed upper mine
+    count: 4
+  xp_reward: 154
+  gold_reward_copper: 30
+  prerequisite: chain_stoneguard_hearth_oath__01_present_to_the_thane
+- step: 3
+  id: chain_stoneguard_hearth_oath__03_wake_the_old_smith
+  name: Wake The Old Smith
+  level: 3
+  objective:
+    kind: talk
+    target_hint: the old smith in his retirement cell
+  xp_reward: 274
+  gold_reward_copper: 45
+  prerequisite: chain_stoneguard_hearth_oath__02_gather_oath_iron
+- step: 4
+  id: chain_stoneguard_hearth_oath__04_relight_the_hearth
+  name: Relight The Hearth
+  level: 4
+  objective:
+    kind: ritual
+    target_hint: the cold-hearth ceremony
+  xp_reward: 422
+  gold_reward_copper: 60
+  prerequisite: chain_stoneguard_hearth_oath__03_wake_the_old_smith
+- step: 5
+  id: chain_stoneguard_hearth_oath__05_defend_the_forge
+  name: Defend The Forge
+  level: 5
+  objective:
+    kind: defeat
+    target_hint: deepworm that burst through during the rite
+    group_suggested: true
+  xp_reward: 600
+  gold_reward_copper: 75
+  prerequisite: chain_stoneguard_hearth_oath__04_relight_the_hearth

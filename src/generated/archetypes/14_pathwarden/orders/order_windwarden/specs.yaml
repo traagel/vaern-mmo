@@ -1,0 +1,15 @@
+specs:
+- id: windwarden_bolt
+  name: Bolt-Warden
+  emphasis: ranged_dps
+  description: lightning-augmented bow-sniper
+  schools_focus:
+  - lightning
+  - bow
+- id: windwarden_silent
+  name: Wind-Silent
+  emphasis: utility
+  description: frontier scout with spear
+  schools_focus:
+  - silent
+  - spear

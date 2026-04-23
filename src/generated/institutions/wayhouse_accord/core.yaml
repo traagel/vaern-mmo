@@ -1,0 +1,19 @@
+id: wayhouse_accord
+faction: faction_a
+name: The Wayhouse Accord
+tradition: Wayhouse Songcraft
+curriculum:
+  major:
+    finesse:
+    - trickster
+  secondary:
+    finesse:
+    - acrobat
+    - bow
+    - silent
+    - crossbow
+    arcana:
+    - arcane
+pillars:
+- arcana
+- finesse

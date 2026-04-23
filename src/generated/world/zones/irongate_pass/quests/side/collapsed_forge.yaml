@@ -1,0 +1,18 @@
+id: side_quests__collapsed_forge
+hub: collapsed_forge
+hub_role: ruin
+zone: irongate_pass
+biome: mountain
+quest_count: 1
+quests:
+- id: side__collapsed_forge__the_rockfall_watch
+  name: The Rockfall Watch
+  hub: collapsed_forge
+  type: side
+  level: 14
+  objective:
+    kind: investigate
+    target_hint: a recent rockfall for survivors
+  xp_reward: 1165
+  gold_reward_copper: 70
+  repeatable: false

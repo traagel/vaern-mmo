@@ -1,0 +1,66 @@
+id: side_quests__miller_crossing
+hub: miller_crossing
+hub_role: outpost
+zone: dalewatch_marches
+biome: river_valley
+quest_count: 5
+quests:
+- id: side__miller_crossing__wolf_cull
+  name: The Wolf Cull
+  hub: miller_crossing
+  type: side
+  level: 3
+  objective:
+    kind: kill
+    target_hint: river-bank wolves threatening the flock
+    count: 12
+  xp_reward: 200
+  gold_reward_copper: 40
+  repeatable: false
+- id: side__miller_crossing__mill_stone_recovery
+  name: Mill Stone Recovery
+  hub: miller_crossing
+  type: side
+  level: 4
+  objective:
+    kind: kill
+    target_hint: drifter mages hiding stolen grinding stones
+    count: 4
+  xp_reward: 240
+  gold_reward_copper: 55
+  repeatable: false
+- id: side__miller_crossing__lost_flock
+  name: Lost Flock
+  hub: miller_crossing
+  type: side
+  level: 3
+  objective:
+    kind: collect
+    target_hint: bell-tokens from the scattered sheep
+    count: 5
+  xp_reward: 180
+  gold_reward_copper: 35
+  repeatable: false
+- id: side__miller_crossing__fishing_trouble
+  name: Fishing Trouble
+  hub: miller_crossing
+  type: side
+  level: 2
+  objective:
+    kind: kill
+    target_hint: river otters eating the day's catch
+    count: 8
+  xp_reward: 140
+  gold_reward_copper: 22
+  repeatable: false
+- id: side__miller_crossing__deputys_errand
+  name: The Deputy's Errand
+  hub: miller_crossing
+  type: side
+  level: 5
+  objective:
+    kind: deliver
+    target_hint: Sergeant Rook at the Ford of Ashmere
+  xp_reward: 280
+  gold_reward_copper: 60
+  repeatable: false

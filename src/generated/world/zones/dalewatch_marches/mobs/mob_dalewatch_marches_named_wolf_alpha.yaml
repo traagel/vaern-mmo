@@ -1,0 +1,26 @@
+id: mob_dalewatch_marches_named_wolf_alpha
+name: Ashmane Alpha
+zone: dalewatch_marches
+level: 5
+creature_type: beast
+armor_class: hide
+rarity: named
+role: captain
+faction_alignment: neutral_aggressive
+hp_tier: heroic
+damage:
+  primary_school: blade
+  attack_range: melee
+  dps_tier: heavy
+behavior:
+  aggro_range: long
+  social_radius: 15
+  flee_threshold: 0.0
+  calls_allies: true
+  patrol: short
+loot_tier: quest_marked
+drops:
+  gold_copper_avg: 60
+  item_hint: alpha-pelt trinket; grove-keeper side chain finisher
+biome_context: pack leader of the ridge-wolves; Thornroot Grove side chain boss
+chain_target: true

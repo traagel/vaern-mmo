@@ -1,0 +1,42 @@
+id: side_quests__moss_cairn
+hub: moss_cairn
+hub_role: outpost
+zone: greenwood_deep
+biome: temperate_forest
+quest_count: 3
+quests:
+- id: side__moss_cairn__the_timber_scout
+  name: The Timber Scout
+  hub: moss_cairn
+  type: side
+  level: 22
+  objective:
+    kind: investigate
+    target_hint: a timber-camp that went silent
+  xp_reward: 2675
+  gold_reward_copper: 110
+  repeatable: false
+- id: side__moss_cairn__the_beast_cull
+  name: The Beast Cull
+  hub: moss_cairn
+  type: side
+  level: 26
+  objective:
+    kind: kill
+    target_hint: overpopulated forest predators
+    count: 1
+  xp_reward: 3661
+  gold_reward_copper: 130
+  repeatable: false
+- id: side__moss_cairn__the_ranger_arms
+  name: The Ranger Arms
+  hub: moss_cairn
+  type: side
+  level: 30
+  objective:
+    kind: collect
+    target_hint: recovered ranger-arms from an ambush site
+    count: 4
+  xp_reward: 4800
+  gold_reward_copper: 150
+  repeatable: false

@@ -1,0 +1,9 @@
+id: last_candle
+zone: crown_of_ruin
+name: The Last Candle
+role: outpost
+amenities:
+- innkeeper
+- flight_master
+- repair
+quest_givers: 3

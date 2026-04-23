@@ -1,0 +1,19 @@
+[package]
+name = "vaern-protocol"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+
+[dependencies]
+bevy = { version = "0.18", default-features = false, features = ["serialize"] }
+lightyear = { version = "0.26", features = ["udp", "replication", "interpolation", "input_native", "prediction"] }
+serde = { version = "1.0.228", features = ["derive"] }
+vaern-combat.workspace = true
+vaern-character.workspace = true
+vaern-core.workspace = true
+vaern-stats.workspace = true
+vaern-items.workspace = true
+vaern-equipment.workspace = true
+vaern-professions.workspace = true
+vaern-persistence.workspace = true

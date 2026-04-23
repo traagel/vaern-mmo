@@ -1,0 +1,16 @@
+id: coastal_cliff
+name: Rocky Cliff Coast
+climate: cold, salt-wind, storm-battered
+hazards:
+- cliff-fall
+- storm-wreck beaches
+- sea-raid
+typical_flora:
+- sea-thrift
+- kelp
+- samphire
+typical_fauna:
+- seabird
+- seal
+- cliff-wyrm
+faction_affinity: contested

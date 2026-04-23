@@ -1,0 +1,51 @@
+id: _roster__irongate_pass
+zone: irongate_pass
+mob_count: 27
+mob_ids:
+- mob_irongate_pass_beast_rockdrake
+- mob_irongate_pass_beast_cavespider
+- mob_irongate_pass_beast_mountainbear
+- mob_irongate_pass_beast_yeti
+- mob_irongate_pass_beast_rockworm
+- mob_irongate_pass_beast_batswarm
+- mob_irongate_pass_ambient_pika
+- mob_irongate_pass_exotic_stone_golem
+- mob_irongate_pass_warband_deep_stoneeater
+- mob_irongate_pass_warband_deep_drumthing
+- mob_irongate_pass_warband_gate_breaker
+- mob_irongate_pass_named_stone_eater_named
+- mob_irongate_pass_juvenile_rockdrake
+- mob_irongate_pass_juvenile_cavespider
+- mob_irongate_pass_juvenile_mountainbear
+- mob_irongate_pass_juvenile_yeti
+- mob_irongate_pass_juvenile_rockworm
+- mob_irongate_pass_juvenile_batswarm
+- mob_irongate_pass_alpha_rockdrake
+- mob_irongate_pass_alpha_cavespider
+- mob_irongate_pass_alpha_mountainbear
+- mob_irongate_pass_alpha_yeti
+- mob_irongate_pass_alpha_rockworm
+- mob_irongate_pass_alpha_batswarm
+- mob_irongate_pass_matriarch_rockdrake
+- mob_irongate_pass_matriarch_cavespider
+- mob_irongate_pass_matriarch_mountainbear
+by_creature_type:
+  dragonkin: 4
+  beast: 12
+  aberration: 6
+  construct: 1
+  humanoid: 4
+by_armor_class:
+  scales: 4
+  hide: 12
+  ethereal: 6
+  plate: 3
+  leather: 1
+  cloth: 1
+by_rarity:
+  common: 15
+  elite: 12
+level_min: 12
+level_max: 18
+named_or_chain_targets:
+- mob_irongate_pass_named_stone_eater_named

@@ -1,0 +1,21 @@
+id: moth_hollow_deeps_bosses
+instance: moth_hollow_deeps
+bosses:
+- id: matriarch_moth
+  name: The Matriarch Moth
+  role_tag: miniboss
+  level: 48
+  mechanic: wing-dust blind mechanic
+  hp_tier: elite
+- id: silk_sorcerer
+  name: The Silk Sorcerer
+  role_tag: miniboss
+  level: 51
+  mechanic: web-wall environmental
+  hp_tier: elite
+- id: nightwing_alpha
+  name: The Nightwing Alpha
+  role_tag: final
+  level: 54
+  mechanic: fly-phase dodge mechanic
+  hp_tier: heroic

@@ -1,0 +1,26 @@
+id: order_starblood
+faction: faction_a
+archetype_id: 5
+archetype_position:
+  might: 0
+  arcana: 75
+  finesse: 25
+player_facing:
+  class_name: Starblood
+  title_singular: Starblood Sorcerer
+  title_plural: Starblood
+schools_taught:
+  arcana:
+  - lightning
+  - arcane
+  - fire
+  - light
+  finesse:
+  - acrobat
+  - dagger
+flagship: true
+institutions:
+  primary: silver_quill
+  secondary: alchemists_compact
+  tertiary: night_quick_guild
+chapter: chapter_starblood

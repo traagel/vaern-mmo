@@ -1,0 +1,31 @@
+id: side_quests__strand_redoubt
+hub: strand_redoubt
+hub_role: waypoint
+zone: iron_strand
+biome: coastal_cliff
+quest_count: 2
+quests:
+- id: side__strand_redoubt__the_wrecksalvage
+  name: The Wrecksalvage
+  hub: strand_redoubt
+  type: side
+  level: 38
+  objective:
+    kind: collect
+    target_hint: salvage from a recent wreck
+    count: 4
+  xp_reward: 7539
+  gold_reward_copper: 190
+  repeatable: false
+- id: side__strand_redoubt__the_seabird_plague
+  name: The Seabird Plague
+  hub: strand_redoubt
+  type: side
+  level: 45
+  objective:
+    kind: kill
+    target_hint: aggressive seabirds nesting near the fishery
+    count: 1
+  xp_reward: 10440
+  gold_reward_copper: 225
+  repeatable: false

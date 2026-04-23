@@ -1,0 +1,25 @@
+pillar: arcana
+category: damage
+icon_shape:
+  primary: projectile, orb, bolt, or focal blast of destructive energy in flight
+  composition: off-center impact energy with a trail or charge-up glow, directional force
+  motion: hurled outward, radiating shockwave or streaking motion-trail
+  tier_escalation:
+    25: small spark or cantrip mote at fingertip
+    50: focused single-target projectile mid-flight
+    75: wide AoE blast expanding outward with shockwave
+    100: sky-sized catastrophe — meteor, pillar, or reality tear
+  negative_add: creature, face, character, humanoid, monster, skull, eyes, figure, person
+tiers:
+  25:
+  - name: arcane_bolt
+    description: Weak single-target magical damage, at-will.
+  50:
+  - name: firebolt
+    description: Moderate single-target elemental damage.
+  75:
+  - name: fireball
+    description: AoE explosion, moderate radius.
+  100:
+  - name: meteor
+    description: Ritual-tier AoE catastrophic damage.

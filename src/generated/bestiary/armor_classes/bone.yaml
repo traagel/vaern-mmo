@@ -1,0 +1,12 @@
+id: bone
+name: Bone
+tier: medium
+physical_reduction: 0.2
+magic_reduction: 0.15
+weak_against:
+- blunt
+strong_against:
+- blade
+- dagger
+mobility_penalty: 0.05
+notes: "exposed bone plating \u2014 most undead, bound-shell constructs"

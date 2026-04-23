@@ -1,0 +1,17 @@
+id: sunken_tower
+name: The Sunken Tower
+kind: dungeon
+group_size: 5
+zone: ruin_line_south
+entrance_hub: sunken_tower
+level_range:
+  min: 32
+  max: 40
+level_band: 31-45
+tier: leveling
+boss_count: 4
+estimated_clear_minutes: 45
+loot_tier: high
+lockout: none (rerunnable)
+theme: Sunward Elen arcane spire half-submerged in a cursed marsh after the Coming
+coop_notes: tight-coop-friendly; duo/trio can attempt under-level with care

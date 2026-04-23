@@ -1,0 +1,17 @@
+id: mannin
+archetype: humans
+faction: faction_a
+favored_class: any
+cultural_traits: adaptable, institutional, dominant, pragmatic civic builders
+creature_type: humanoid
+size_class: medium
+hp_modifier: 1.0
+affinity:
+  might: 100
+  arcana: 100
+  finesse: 100
+  notes: "universal baseline \u2014 versatility IS the racial feature; can reach any\
+    \ corner"
+racial_resistances: {}
+racial_school_bonuses: []
+lore_hook: "the Veyr's human majority \u2014 the political center of Concord institutions"

@@ -1,0 +1,15 @@
+specs:
+- id: axe_champ_great
+  name: Greataxe-Champion
+  emphasis: melee_dps
+  description: two-handed axe striker
+  schools_focus:
+  - blade
+  - blunt
+- id: axe_champ_spear
+  name: Champion's Spear
+  emphasis: bruiser
+  description: axe-and-spear mounted fighter
+  schools_focus:
+  - spear
+  - blade

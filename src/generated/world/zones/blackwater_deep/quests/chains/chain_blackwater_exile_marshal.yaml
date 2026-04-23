@@ -1,0 +1,108 @@
+id: chain_blackwater_exile_marshal
+zone: blackwater_deep
+title: The Exile-Marshal
+premise: A Concord marshal exiled during the wars has built a kingdom in the Blackwater
+  Deep; he is not wrong, exactly, but he is dangerous
+total_steps: 9
+final_reward:
+  xp_bonus: 82868
+  gold_bonus_copper: 5200
+  item_hint: zone-appropriate endgame-tier reward
+  title_hint: '''The Exile-Marshal'' completion title'
+breadcrumb_from: capital hub of the zone's faction-home
+final_boss_hint: the marshal's last warband
+steps:
+- step: 1
+  id: chain_blackwater_exile_marshal__01_receive_the_deepwater_brief
+  name: Receive The Deepwater Brief
+  level: 45
+  objective:
+    kind: talk
+    target_hint: Deepwater Redoubt commander
+  xp_reward: 31320
+  gold_reward_copper: 675
+  prerequisite: null
+- step: 2
+  id: chain_blackwater_exile_marshal__02_gather_the_exile_history
+  name: Gather The Exile History
+  level: 46
+  objective:
+    kind: collect
+    target_hint: the exile-marshal's court-martial records
+    count: 4
+  xp_reward: 32678
+  gold_reward_copper: 690
+  prerequisite: chain_blackwater_exile_marshal__01_receive_the_deepwater_brief
+- step: 3
+  id: chain_blackwater_exile_marshal__03_infiltrate_the_black_eel_camp
+  name: Infiltrate The Black Eel Camp
+  level: 47
+  objective:
+    kind: investigate
+    target_hint: the Black-Eel Camp for the marshal's agents
+  xp_reward: 34066
+  gold_reward_copper: 705
+  prerequisite: chain_blackwater_exile_marshal__02_gather_the_exile_history
+- step: 4
+  id: chain_blackwater_exile_marshal__04_meet_a_marshal_loyalist
+  name: Meet A Marshal Loyalist
+  level: 48
+  objective:
+    kind: talk
+    target_hint: a guardsman still loyal to the exile
+  xp_reward: 35482
+  gold_reward_copper: 720
+  prerequisite: chain_blackwater_exile_marshal__03_infiltrate_the_black_eel_camp
+- step: 5
+  id: chain_blackwater_exile_marshal__05_breach_deepwater_keep
+  name: Breach Deepwater Keep
+  level: 48
+  objective:
+    kind: defeat
+    target_hint: the keep's outer defenses
+    group_suggested: true
+  xp_reward: 35482
+  gold_reward_copper: 720
+  prerequisite: chain_blackwater_exile_marshal__04_meet_a_marshal_loyalist
+- step: 6
+  id: chain_blackwater_exile_marshal__06_duel_the_marshal
+  name: Duel The Marshal
+  level: 49
+  objective:
+    kind: kill
+    target_hint: Warlord Kessen in his hall
+    count: 1
+  xp_reward: 36926
+  gold_reward_copper: 735
+  prerequisite: chain_blackwater_exile_marshal__05_breach_deepwater_keep
+- step: 7
+  id: chain_blackwater_exile_marshal__07_decide_his_legacy
+  name: Decide His Legacy
+  level: 50
+  objective:
+    kind: ritual
+    target_hint: the posthumous judgment of his kingdom
+  xp_reward: 38400
+  gold_reward_copper: 750
+  prerequisite: chain_blackwater_exile_marshal__06_duel_the_marshal
+- step: 8
+  id: chain_blackwater_exile_marshal__08_disperse_the_loyalists
+  name: Disperse The Loyalists
+  level: 51
+  objective:
+    kind: defeat
+    target_hint: the marshal's last warband
+    group_suggested: true
+  xp_reward: 39902
+  gold_reward_copper: 765
+  prerequisite: chain_blackwater_exile_marshal__07_decide_his_legacy
+- step: 9
+  id: chain_blackwater_exile_marshal__09_report_the_closure
+  name: Report The Closure
+  level: 52
+  objective:
+    kind: deliver
+    target_hint: the final report to both Concord command and the Redoubt
+  xp_reward: 41434
+  gold_reward_copper: 780
+  prerequisite: chain_blackwater_exile_marshal__08_disperse_the_loyalists

@@ -1,0 +1,41 @@
+class_id: 4
+internal_label: Wizard
+abstract_name: Archmage
+position:
+  might: 0
+  arcana: 100
+  finesse: 0
+pillar_classification: pure
+dominant_pillar:
+- arcana
+edge: corner-arcana
+primary_roles:
+- dps
+- control
+- healer
+note: pure-Arcana; peak magical mastery
+active_tiers:
+  might: []
+  arcana:
+  - 25
+  - 50
+  - 75
+  - 100
+  finesse: []
+capabilities:
+  might: []
+  arcana:
+  - Cantrips (at-will minor spells)
+  - Minor debuffs (slow, weaken, minor curse)
+  - Minor utility (light, detect magic, mend)
+  - Single-target spells (damage or heal lean)
+  - Protective wards and shields
+  - Area-of-effect spells (damage or heal)
+  - Control and crowd-control (root, stun, sleep)
+  - Ritual magic (long-form high-power spells)
+  - Summoning (bound servants, elementals)
+  - Archmage-tier effects
+  finesse: []
+faction_labels:
+  faction_a: null
+  faction_b: null

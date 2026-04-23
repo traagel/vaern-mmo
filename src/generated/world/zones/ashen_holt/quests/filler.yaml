@@ -1,0 +1,62 @@
+id: filler_pool__ashen_holt
+zone: ashen_holt
+tier: starter
+total_pool_size: 34
+buckets:
+- id: filler__kill_grinder
+  bucket: kill_grinder
+  dominant_objective_kind: kill
+  pool_size: 12
+  level_range:
+    min: 1
+    max: 5
+  avg_xp_reward_per_quest: 68
+  avg_gold_reward_copper: 9
+  repeatable: true
+  description: pool of 6-10 'kill N of local mob-type' quests scaling with zone mobs
+- id: filler__collect_grinder
+  bucket: collect_grinder
+  dominant_objective_kind: collect
+  pool_size: 10
+  level_range:
+    min: 1
+    max: 5
+  avg_xp_reward_per_quest: 68
+  avg_gold_reward_copper: 9
+  repeatable: true
+  description: pool of 6-10 'gather N of local resource' quests tied to biome
+- id: filler__courier_relay
+  bucket: courier_relay
+  dominant_objective_kind: deliver
+  pool_size: 5
+  level_range:
+    min: 1
+    max: 5
+  avg_xp_reward_per_quest: 68
+  avg_gold_reward_copper: 9
+  repeatable: true
+  description: pool of 4-6 inter-hub courier runs within the zone
+- id: filler__bounty_board
+  bucket: bounty_board
+  dominant_objective_kind: kill
+  pool_size: 4
+  level_range:
+    min: 1
+    max: 5
+  avg_xp_reward_per_quest: 68
+  avg_gold_reward_copper: 9
+  repeatable: false
+  description: pool of 4-6 rare-spawn bounties posted at capital hubs
+- id: filler__lore_collection
+  bucket: lore_collection
+  dominant_objective_kind: investigate
+  pool_size: 3
+  level_range:
+    min: 1
+    max: 5
+  avg_xp_reward_per_quest: 68
+  avg_gold_reward_copper: 9
+  repeatable: false
+  description: pool of 3-5 ambient-lore discovery quests (no combat)
+notes: Filler quests are templated pools. Individual quest records are generated at
+  runtime or in a later seed pass.

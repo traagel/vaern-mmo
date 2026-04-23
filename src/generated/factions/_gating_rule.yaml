@@ -1,0 +1,18 @@
+name: morality_gating_rule
+description: Defines which schools a faction's Orders may teach.
+rule: A school is teachable by a faction iff school.morality == 'neutral' OR school.morality
+  == faction.morality_alignment.
+consequences:
+- Neutral schools are universal (both factions teach them).
+- Good schools are exclusive to the good-aligned faction.
+- Evil schools are exclusive to the evil-aligned faction.
+- Every mechanical role must have at least one morally-accessible school per faction
+  (balance obligation).
+morality_counterparts:
+  arcana.light (good) <-> arcana.shadow (evil): damage, protection, control, summoning,
+    enhancement
+  arcana.devotion (good) <-> arcana.blood (evil): damage, healing, control, enhancement
+    (self-sacrifice vs vitae-drain)
+  might.honor (good) <-> might.fury (evil): offense, threat, sustain, control
+  finesse.tonics (good) <-> finesse.poison (evil): 'tonics: evasion/trickery/utility;
+    poison: precision/trickery/utility'

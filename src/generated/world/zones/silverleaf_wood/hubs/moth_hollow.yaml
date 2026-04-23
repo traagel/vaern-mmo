@@ -1,0 +1,9 @@
+id: moth_hollow
+zone: silverleaf_wood
+name: Moth-Hollow
+role: outpost
+amenities:
+- innkeeper
+- flight_master
+- repair
+quest_givers: 3

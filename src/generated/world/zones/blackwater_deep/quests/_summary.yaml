@@ -1,0 +1,16 @@
+id: quest_summary__blackwater_deep
+zone: blackwater_deep
+level_range:
+  min: 45
+  max: 52
+tier: endgame
+budget_target: 128
+actual:
+  main_chain_steps: 9
+  side_quests: 6
+  filler_pool: 106
+  total: 121
+coverage_ratio: 0.95
+main_chain: chain_blackwater_exile_marshal
+notes: Main chain is hand-crafted story; side is templated by biome+hub-role; filler
+  is a procedural pool.

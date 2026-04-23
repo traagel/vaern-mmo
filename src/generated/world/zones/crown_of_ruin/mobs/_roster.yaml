@@ -1,0 +1,43 @@
+id: _roster__crown_of_ruin
+zone: crown_of_ruin
+mob_count: 18
+mob_ids:
+- mob_crown_of_ruin_beast_houndrev
+- mob_crown_of_ruin_beast_warghost
+- mob_crown_of_ruin_beast_revenant
+- mob_crown_of_ruin_beast_spectralhawk
+- mob_crown_of_ruin_beast_wraith
+- mob_crown_of_ruin_beast_burrowwight
+- mob_crown_of_ruin_ambient_ratrev
+- mob_crown_of_ruin_exotic_scarthing
+- mob_crown_of_ruin_warband_concord_claimant_guard
+- mob_crown_of_ruin_warband_rend_claimant_guard
+- mob_crown_of_ruin_warband_throne_acolyte
+- mob_crown_of_ruin_warband_throne_refuser
+- mob_crown_of_ruin_warband_last_candle_pilgrim
+- mob_crown_of_ruin_warband_crown_watcher
+- mob_crown_of_ruin_named_concord_champion
+- mob_crown_of_ruin_named_rend_champion
+- mob_crown_of_ruin_juvenile_houndrev
+- mob_crown_of_ruin_juvenile_warghost
+by_creature_type:
+  undead: 8
+  beast: 1
+  aberration: 1
+  humanoid: 8
+by_armor_class:
+  bone: 8
+  hide: 1
+  ethereal: 1
+  plate: 5
+  cloth: 1
+  leather: 2
+by_rarity:
+  common: 12
+  elite: 4
+  named: 2
+level_min: 55
+level_max: 60
+named_or_chain_targets:
+- mob_crown_of_ruin_named_concord_champion
+- mob_crown_of_ruin_named_rend_champion

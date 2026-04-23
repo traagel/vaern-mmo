@@ -1,0 +1,24 @@
+specs:
+- id: dirge_mourner
+  name: Mourner
+  emphasis: support
+  description: funeral-bard with ally blessings and morale-breaking
+  schools_focus:
+  - shadow
+  - silent
+- id: dirge_gravepiper
+  name: Grave-Piper
+  emphasis: melee_dps
+  description: bone-lute bladesinger, dance-of-mourning striker
+  schools_focus:
+  - dagger
+  - silent
+  - trickster
+- id: dirge_whisperer
+  name: Oath-Whisperer
+  emphasis: control
+  description: voice-wielding mind-bender, fear and confusion
+  schools_focus:
+  - shadow
+  - trickster
+  - poison

@@ -1,0 +1,23 @@
+id: hearthkin
+archetype: dwarves
+faction: faction_a
+favored_class: fighter
+cultural_traits: mountain-forged, lawful, oath-clan smiths and hearth-wardens
+creature_type: humanoid
+size_class: medium
+hp_modifier: 1.1
+affinity:
+  might: 100
+  arcana: 75
+  finesse: 50
+  notes: Fighter peak; hearth-rite arcana access; no Rogue corner
+racial_resistances:
+  poison: -0.2
+  fire: -0.1
+  blunt: -0.05
+racial_school_bonuses:
+- blade
+- blunt
+- shield
+- honor
+lore_hook: mountain-clans of the Iron Mountains; oath-bound smiths

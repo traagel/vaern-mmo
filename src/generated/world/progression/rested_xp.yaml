@@ -1,0 +1,12 @@
+id: rested_xp
+description: WoW-style rested bonus accumulated when logged out at a hearth/hub.
+accrual:
+  per_hour_logged_in_hub: 0.05
+  unit: fraction of one level's XP
+  cap_multiplier: 1.5
+  cap_basis: multiples of one full level of rested pool
+consumption:
+  mob_kill_multiplier: 2.0
+  quest_completion_multiplier: 1.0
+  notes: "Rested doubles mob-kill XP only, not quest turn-ins \u2014 encourages hub-return\
+    \ rhythm"

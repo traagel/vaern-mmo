@@ -1,0 +1,25 @@
+id: order_rot_bard
+faction: faction_b
+archetype_id: 7
+archetype_position:
+  might: 0
+  arcana: 25
+  finesse: 75
+flagship: false
+player_facing:
+  class_name: Rot-Bard
+  title_singular: Rot-Bard
+  title_plural: Rot-Bards
+schools_taught:
+  arcana:
+  - blood
+  finesse:
+  - dagger
+  - poison
+  - silent
+
+institutions:
+  primary: shadow_conclave
+  secondary: alchemist_tinker_clans
+  tertiary: fury_houses
+chapter: chapter_rot_bard

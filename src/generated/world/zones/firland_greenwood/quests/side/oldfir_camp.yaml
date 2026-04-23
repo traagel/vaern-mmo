@@ -1,0 +1,42 @@
+id: side_quests__oldfir_camp
+hub: oldfir_camp
+hub_role: outpost
+zone: firland_greenwood
+biome: temperate_forest
+quest_count: 3
+quests:
+- id: side__oldfir_camp__the_timber_scout
+  name: The Timber Scout
+  hub: oldfir_camp
+  type: side
+  level: 1
+  objective:
+    kind: investigate
+    target_hint: a timber-camp that went silent
+  xp_reward: 21
+  gold_reward_copper: 5
+  repeatable: false
+- id: side__oldfir_camp__the_beast_cull
+  name: The Beast Cull
+  hub: oldfir_camp
+  type: side
+  level: 3
+  objective:
+    kind: kill
+    target_hint: overpopulated forest predators
+    count: 1
+  xp_reward: 91
+  gold_reward_copper: 15
+  repeatable: false
+- id: side__oldfir_camp__the_ranger_arms
+  name: The Ranger Arms
+  hub: oldfir_camp
+  type: side
+  level: 5
+  objective:
+    kind: collect
+    target_hint: recovered ranger-arms from an ambush site
+    count: 4
+  xp_reward: 200
+  gold_reward_copper: 25
+  repeatable: false

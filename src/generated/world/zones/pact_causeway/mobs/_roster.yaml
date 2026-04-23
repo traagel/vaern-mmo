@@ -1,0 +1,46 @@
+id: _roster__pact_causeway
+zone: pact_causeway
+mob_count: 24
+mob_ids:
+- mob_pact_causeway_beast_hillcat
+- mob_pact_causeway_beast_stonehawk
+- mob_pact_causeway_beast_goat
+- mob_pact_causeway_beast_fogelk
+- mob_pact_causeway_beast_cliffcrag
+- mob_pact_causeway_beast_hillbear
+- mob_pact_causeway_ambient_hare
+- mob_pact_causeway_exotic_fog_thing
+- mob_pact_causeway_warband_causeway_bandit
+- mob_pact_causeway_warband_rogue_scribe
+- mob_pact_causeway_warband_bound_enforcer
+- mob_pact_causeway_warband_pillar_cultist
+- mob_pact_causeway_named_pact_scribe_named
+- mob_pact_causeway_juvenile_hillcat
+- mob_pact_causeway_juvenile_stonehawk
+- mob_pact_causeway_juvenile_goat
+- mob_pact_causeway_juvenile_fogelk
+- mob_pact_causeway_juvenile_cliffcrag
+- mob_pact_causeway_juvenile_hillbear
+- mob_pact_causeway_alpha_hillcat
+- mob_pact_causeway_alpha_stonehawk
+- mob_pact_causeway_alpha_goat
+- mob_pact_causeway_alpha_fogelk
+- mob_pact_causeway_alpha_cliffcrag
+by_creature_type:
+  beast: 18
+  aberration: 1
+  humanoid: 5
+by_armor_class:
+  hide: 18
+  ethereal: 1
+  leather: 2
+  cloth: 1
+  plate: 2
+by_rarity:
+  common: 16
+  elite: 7
+  named: 1
+level_min: 16
+level_max: 22
+named_or_chain_targets:
+- mob_pact_causeway_named_pact_scribe_named

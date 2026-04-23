@@ -1,0 +1,24 @@
+id: order_shadow_spark
+faction: faction_b
+archetype_id: 5
+archetype_position:
+  might: 0
+  arcana: 75
+  finesse: 25
+flagship: false
+player_facing:
+  class_name: Shadow-Spark
+  title_singular: Shadow-Spark
+  title_plural: Shadow-Sparks
+schools_taught:
+  arcana:
+  - shadow
+  - fire
+  finesse:
+  - dagger
+  - poison
+institutions:
+  primary: shadow_conclave
+  secondary: bleeding_vaults
+  tertiary: alchemist_tinker_clans
+chapter: chapter_shadow_spark

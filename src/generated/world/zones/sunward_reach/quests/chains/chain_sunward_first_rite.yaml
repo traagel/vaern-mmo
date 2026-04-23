@@ -1,0 +1,66 @@
+id: chain_sunward_first_rite
+zone: sunward_reach
+title: The First Rite of Sun
+premise: A Sunward initiate petitions the Spire; the ritual is interrupted by something
+  that should not be able to reach a sun-bound tower
+total_steps: 5
+final_reward:
+  xp_bonus: 1200
+  gold_bonus_copper: 500
+  item_hint: zone-appropriate starter-tier reward
+  title_hint: '''The First Rite of Sun'' completion title'
+breadcrumb_from: capital hub of the zone's faction-home
+final_boss_hint: shadow-touched intruder in the archive
+steps:
+- step: 1
+  id: chain_sunward_first_rite__01_petition_the_spire
+  name: Petition The Spire
+  level: 1
+  objective:
+    kind: talk
+    target_hint: Archon Tennadiel
+  xp_reward: 62
+  gold_reward_copper: 15
+  prerequisite: null
+- step: 2
+  id: chain_sunward_first_rite__02_gather_sun_glass
+  name: Gather Sun Glass
+  level: 2
+  objective:
+    kind: collect
+    target_hint: sun-glass shards from the ritual orchard
+    count: 4
+  xp_reward: 154
+  gold_reward_copper: 30
+  prerequisite: chain_sunward_first_rite__01_petition_the_spire
+- step: 3
+  id: chain_sunward_first_rite__03_stand_the_vigil
+  name: Stand The Vigil
+  level: 3
+  objective:
+    kind: ritual
+    target_hint: the dawn-vigil on the spire's west face
+  xp_reward: 274
+  gold_reward_copper: 45
+  prerequisite: chain_sunward_first_rite__02_gather_sun_glass
+- step: 4
+  id: chain_sunward_first_rite__04_repel_the_shadow
+  name: Repel The Shadow
+  level: 4
+  objective:
+    kind: kill
+    target_hint: shadow-touched intruder in the archive
+    count: 1
+  xp_reward: 422
+  gold_reward_copper: 60
+  prerequisite: chain_sunward_first_rite__03_stand_the_vigil
+- step: 5
+  id: chain_sunward_first_rite__05_report_the_breach
+  name: Report The Breach
+  level: 5
+  objective:
+    kind: deliver
+    target_hint: the archon's sealed letter
+  xp_reward: 600
+  gold_reward_copper: 75
+  prerequisite: chain_sunward_first_rite__04_repel_the_shadow

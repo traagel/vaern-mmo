@@ -1,0 +1,23 @@
+specs:
+- id: scarblood_bloodcaster
+  name: Blood-Caster
+  emphasis: magic_dps
+  description: ritual-pact offensive mage, hemorrhage-focus
+  schools_focus:
+  - blood
+  - shadow
+- id: scarblood_ritebinder
+  name: Rite-Binder
+  emphasis: summoner
+  description: summoning and entity-binding specialist
+  schools_focus:
+  - shadow
+  - arcane
+  - earth
+- id: scarblood_gravescholar
+  name: Grave-Scholar
+  emphasis: support
+  description: curse-weaving ally-empowerer, hex-caster
+  schools_focus:
+  - blood
+  - arcane

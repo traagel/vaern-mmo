@@ -1,0 +1,25 @@
+id: mob_iron_strand_juvenile_seal
+name: Juvenile Crag-Seal
+zone: iron_strand
+level: 39
+creature_type: beast
+armor_class: hide
+rarity: common
+role: scout
+faction_alignment: neutral_aggressive
+hp_tier: standard
+damage:
+  primary_school: blade
+  attack_range: melee
+  dps_tier: light
+behavior:
+  aggro_range: medium
+  social_radius: 0
+  flee_threshold: 0.15
+  calls_allies: false
+  patrol: long
+loot_tier: standard
+drops:
+  gold_copper_avg: 39
+  item_hint: biome-flavored trash material
+biome_context: 'young, lower HP but faster; base form: Crag-Seal'

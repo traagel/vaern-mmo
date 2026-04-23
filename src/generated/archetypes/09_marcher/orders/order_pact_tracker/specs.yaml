@@ -1,0 +1,15 @@
+specs:
+- id: pact_tracker_arrow
+  name: Venom-Arrow
+  emphasis: ranged_dps
+  description: poison-bow mark-killer
+  schools_focus:
+  - poison
+  - bow
+- id: pact_tracker_ghost
+  name: Pact-Ghost
+  emphasis: stealth
+  description: silent-tracker infiltrator
+  schools_focus:
+  - silent
+  - spear

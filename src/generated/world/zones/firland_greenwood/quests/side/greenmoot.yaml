@@ -1,0 +1,53 @@
+id: side_quests__greenmoot
+hub: greenmoot
+hub_role: capital
+zone: firland_greenwood
+biome: temperate_forest
+quest_count: 4
+quests:
+- id: side__greenmoot__the_timber_scout
+  name: The Timber Scout
+  hub: greenmoot
+  type: side
+  level: 1
+  objective:
+    kind: investigate
+    target_hint: a timber-camp that went silent
+  xp_reward: 21
+  gold_reward_copper: 5
+  repeatable: false
+- id: side__greenmoot__the_beast_cull
+  name: The Beast Cull
+  hub: greenmoot
+  type: side
+  level: 2
+  objective:
+    kind: kill
+    target_hint: overpopulated forest predators
+    count: 1
+  xp_reward: 51
+  gold_reward_copper: 10
+  repeatable: false
+- id: side__greenmoot__the_ranger_arms
+  name: The Ranger Arms
+  hub: greenmoot
+  type: side
+  level: 4
+  objective:
+    kind: collect
+    target_hint: recovered ranger-arms from an ambush site
+    count: 4
+  xp_reward: 141
+  gold_reward_copper: 20
+  repeatable: false
+- id: side__greenmoot__the_oath_sapling
+  name: The Oath Sapling
+  hub: greenmoot
+  type: side
+  level: 5
+  objective:
+    kind: deliver
+    target_hint: a ritual sapling to a distant grove
+  xp_reward: 200
+  gold_reward_copper: 25
+  repeatable: false

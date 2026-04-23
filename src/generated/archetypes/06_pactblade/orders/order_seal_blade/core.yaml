@@ -1,0 +1,25 @@
+id: order_seal_blade
+faction: faction_a
+archetype_id: 6
+archetype_position:
+  might: 0
+  arcana: 50
+  finesse: 50
+flagship: false
+player_facing:
+  class_name: Seal-Blade
+  title_singular: Seal-Blade
+  title_plural: Seal-Blades
+schools_taught:
+  arcana:
+  - arcane
+  - devotion
+  finesse:
+  - dagger
+  - silent
+  - tonics
+institutions:
+  primary: radiant_church
+  secondary: alchemists_compact
+  tertiary: night_quick_guild
+chapter: chapter_seal_blade

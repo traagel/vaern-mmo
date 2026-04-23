@@ -1,0 +1,24 @@
+specs:
+- id: quick_assassin
+  name: Twilight Assassin
+  emphasis: melee_dps
+  description: sanctioned Concord killer, strike-from-shadow specialist
+  schools_focus:
+  - dagger
+  - silent
+- id: quick_scout
+  name: Twilight Scout
+  emphasis: utility
+  description: reconnaissance and infiltration specialist
+  schools_focus:
+  - silent
+  - acrobat
+  - bow
+- id: quick_trickster
+  name: Twilight Trickster
+  emphasis: control
+  description: misdirection and sabotage, distracting key targets
+  schools_focus:
+  - trickster
+  - thrown
+  - tonics

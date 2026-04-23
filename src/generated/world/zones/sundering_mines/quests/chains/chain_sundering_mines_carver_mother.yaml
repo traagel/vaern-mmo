@@ -1,0 +1,108 @@
+id: chain_sundering_mines_carver_mother
+zone: sundering_mines
+title: The Carver-Mother
+premise: The Carver-Mother is only the middle child of her brood; her own mother still
+  carves, deeper than the mines go, and she is rising
+total_steps: 9
+final_reward:
+  xp_bonus: 102452
+  gold_bonus_copper: 5800
+  item_hint: zone-appropriate endgame-tier reward
+  title_hint: '''The Carver-Mother'' completion title'
+breadcrumb_from: capital hub of the zone's faction-home
+final_boss_hint: kin trying to break the seal from below
+steps:
+- step: 1
+  id: chain_sundering_mines_carver_mother__01_receive_the_mines_brief
+  name: Receive The Mines Brief
+  level: 50
+  objective:
+    kind: talk
+    target_hint: Mineshaft Alpha warden
+  xp_reward: 38400
+  gold_reward_copper: 750
+  prerequisite: null
+- step: 2
+  id: chain_sundering_mines_carver_mother__02_gather_the_carver_research
+  name: Gather The Carver Research
+  level: 51
+  objective:
+    kind: collect
+    target_hint: carver-kin research from the Old-Tunnel Camp
+    count: 4
+  xp_reward: 39902
+  gold_reward_copper: 765
+  prerequisite: chain_sundering_mines_carver_mother__01_receive_the_mines_brief
+- step: 3
+  id: chain_sundering_mines_carver_mother__03_interrogate_a_captured_carver
+  name: Interrogate A Captured Carver
+  level: 52
+  objective:
+    kind: talk
+    target_hint: a bound carver-kin
+  xp_reward: 41434
+  gold_reward_copper: 780
+  prerequisite: chain_sundering_mines_carver_mother__02_gather_the_carver_research
+- step: 4
+  id: chain_sundering_mines_carver_mother__04_recover_the_deep_map
+  name: Recover The Deep Map
+  level: 53
+  objective:
+    kind: collect
+    target_hint: the deep-map from the Lightless Gallery approach
+    count: 4
+  xp_reward: 42994
+  gold_reward_copper: 795
+  prerequisite: chain_sundering_mines_carver_mother__03_interrogate_a_captured_carver
+- step: 5
+  id: chain_sundering_mines_carver_mother__05_lead_the_joint_expedition
+  name: Lead The Joint Expedition
+  level: 54
+  objective:
+    kind: escort
+    target_hint: a joint-faction deep-expedition
+  xp_reward: 44582
+  gold_reward_copper: 810
+  prerequisite: chain_sundering_mines_carver_mother__04_recover_the_deep_map
+- step: 6
+  id: chain_sundering_mines_carver_mother__06_confront_the_carver_prime
+  name: Confront The Carver Prime
+  level: 55
+  objective:
+    kind: kill
+    target_hint: the Carver Prime at the galleries' bottom
+    count: 1
+  xp_reward: 46200
+  gold_reward_copper: 825
+  prerequisite: chain_sundering_mines_carver_mother__05_lead_the_joint_expedition
+- step: 7
+  id: chain_sundering_mines_carver_mother__07_seal_the_deeper_shaft
+  name: Seal The Deeper Shaft
+  level: 56
+  objective:
+    kind: ritual
+    target_hint: the deep-sealing
+  xp_reward: 47846
+  gold_reward_copper: 840
+  prerequisite: chain_sundering_mines_carver_mother__06_confront_the_carver_prime
+- step: 8
+  id: chain_sundering_mines_carver_mother__08_defend_the_seal
+  name: Defend The Seal
+  level: 57
+  objective:
+    kind: defeat
+    target_hint: kin trying to break the seal from below
+    group_suggested: true
+  xp_reward: 49522
+  gold_reward_copper: 855
+  prerequisite: chain_sundering_mines_carver_mother__07_seal_the_deeper_shaft
+- step: 9
+  id: chain_sundering_mines_carver_mother__09_close_the_mines
+  name: Close The Mines
+  level: 58
+  objective:
+    kind: ritual
+    target_hint: the mines' formal closing
+  xp_reward: 51226
+  gold_reward_copper: 870
+  prerequisite: chain_sundering_mines_carver_mother__08_defend_the_seal

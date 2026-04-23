@@ -1,0 +1,87 @@
+pillar: might
+category: sustain
+variants:
+  25:
+    fury:
+      name: second_wind
+      description: Minor self-heal on enemy kill.
+      damage_type: null
+      morality: evil
+    honor:
+      name: oathbound_recover
+      description: Minor self-heal when oath met.
+      damage_type: null
+      morality: good
+    shield:
+      name: shield_recover
+      description: Minor self-heal when guarded.
+      damage_type: null
+      morality: neutral
+    unarmed:
+      name: breath_focus
+      description: Minor self-heal via discipline.
+      damage_type: null
+      morality: neutral
+  50:
+    fury:
+      name: battle_rage
+      description: Damage dealt converts to HP.
+      damage_type: null
+      morality: evil
+    honor:
+      name: oath_renewal
+      description: Moderate sustain via duty.
+      damage_type: null
+      morality: good
+    shield:
+      name: guardian_rest
+      description: Moderate sustain via guarding.
+      damage_type: null
+      morality: neutral
+    unarmed:
+      name: focused_recovery
+      description: Moderate sustain via meditation.
+      damage_type: null
+      morality: neutral
+  75:
+    fury:
+      name: blood_trance
+      description: Major sustain while raging.
+      damage_type: null
+      morality: evil
+    honor:
+      name: undying_oath
+      description: Major sustain via keeping oath.
+      damage_type: null
+      morality: good
+    shield:
+      name: endurance_wall
+      description: Major sustain via defensive stance.
+      damage_type: null
+      morality: neutral
+    unarmed:
+      name: iron_will
+      description: Major sustain plus debuff resist.
+      damage_type: null
+      morality: neutral
+  100:
+    fury:
+      name: deathless_rage
+      description: Cannot die while raging.
+      damage_type: null
+      morality: evil
+    honor:
+      name: valor_eternal
+      description: Revive when honor demands.
+      damage_type: null
+      morality: good
+    shield:
+      name: bastion_eternal
+      description: Revive once, shield-guarded.
+      damage_type: null
+      morality: neutral
+    unarmed:
+      name: undying
+      description: Revive once via spirit.
+      damage_type: null
+      morality: neutral

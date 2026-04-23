@@ -1,0 +1,19 @@
+id: greenwood_deep
+name: The Greenwood Deep
+faction_control: faction_a
+biome: temperate_forest
+region: central_highlands
+tier: mid
+level_range:
+  min: 22
+  max: 30
+starter_race: null
+hub_count: 4
+budget:
+  quest_count_target: 126
+  unique_mob_types: 27
+  mob_kills_to_complete: 1260
+  estimated_hours_to_complete:
+    solo: 31.5
+    duo: 22.5
+notes: Mid zone in the central highlands. Targets 11-30 band session math.

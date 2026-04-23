@@ -1,0 +1,16 @@
+name: blood
+pillar: arcana
+morality: evil
+family: primal
+tag: vitae / sacrifice
+damage_type: blood
+applies_to_categories:
+- damage
+- healing
+- control
+- enhancement
+icon_style:
+  palette: wet crimson, oxblood, black-red shadow, bone-white highlights
+  motif: dripping rivulets, torn veins, pulsing heart-forms, barbed sigils, splatter pattern
+  silhouette: organic throbbing shape, asymmetric bleed-pattern, visceral curves
+  material: wet arterial blood, fresh gore, red mist, stained iron, raw meat

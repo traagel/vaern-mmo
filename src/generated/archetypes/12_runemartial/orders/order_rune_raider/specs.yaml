@@ -1,0 +1,24 @@
+specs:
+- id: rune_shadowblade
+  name: Shadow-Blade Raider
+  emphasis: melee_dps
+  description: shadow-rune spellblade, glyph-striking
+  schools_focus:
+  - blade
+  - shadow
+  - arcane
+- id: rune_runebreaker
+  name: Rune-Breaker
+  emphasis: control
+  description: anti-magic specialist, shattering enemy enchantments
+  schools_focus:
+  - arcane
+  - fury
+- id: rune_boundduelist
+  name: Bound-Duelist
+  emphasis: hybrid
+  description: pact-rune duelist, trading health for power
+  schools_focus:
+  - blood
+  - blade
+  - arcane

@@ -1,0 +1,9 @@
+id: cinder_post
+zone: shadegrove
+name: Cinder Post
+role: outpost
+amenities:
+- innkeeper
+- flight_master
+- repair
+quest_givers: 3

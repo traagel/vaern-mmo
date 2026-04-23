@@ -1,0 +1,25 @@
+id: mob_iron_strand_beast_wyrm
+name: Cliff Wyrm
+zone: iron_strand
+level: 43
+creature_type: dragonkin
+armor_class: scales
+rarity: common
+role: skirmisher
+faction_alignment: neutral_aggressive
+hp_tier: standard
+damage:
+  primary_school: fire
+  attack_range: melee
+  dps_tier: heavy
+behavior:
+  aggro_range: medium
+  social_radius: 5
+  flee_threshold: 0.0
+  calls_allies: false
+  patrol: short
+loot_tier: standard
+drops:
+  gold_copper_avg: 129
+  item_hint: biome-flavored trash material
+biome_context: rare, tail-sweep aoe

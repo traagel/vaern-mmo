@@ -1,0 +1,24 @@
+id: order_chorister
+faction: faction_a
+archetype_id: 7
+archetype_position:
+  might: 0
+  arcana: 25
+  finesse: 75
+player_facing:
+  class_name: Chorister
+  title_singular: Chorister of the Open Road
+  title_plural: Choristers
+schools_taught:
+  finesse:
+  - bow
+  - dagger
+  - trickster
+  - acrobat
+  - tonics
+flagship: true
+institutions:
+  primary: wayhouse_accord
+  secondary: alchemists_compact
+  tertiary: night_quick_guild
+chapter: chapter_chorister

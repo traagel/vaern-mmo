@@ -1,0 +1,24 @@
+specs:
+- id: silver_evoker
+  name: Silver Evoker
+  emphasis: magic_dps
+  description: pure arcane-evocation ranged DPS archmage
+  schools_focus:
+  - arcane
+  - lightning
+  - light
+- id: silver_binder
+  name: Silver Binder
+  emphasis: summoner
+  description: summon-and-bind focus, elementalist with servitors
+  schools_focus:
+  - arcane
+  - light
+  - lightning
+- id: silver_scholar
+  name: Silver Scholar
+  emphasis: support
+  description: ward-and-utility caster, ritual specialist
+  schools_focus:
+  - arcane
+  - devotion

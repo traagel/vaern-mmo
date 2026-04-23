@@ -1,0 +1,19 @@
+id: market_crossing
+name: Market Crossing
+faction_control: faction_a
+biome: river_valley
+region: southern_shore
+tier: mid
+level_range:
+  min: 18
+  max: 26
+starter_race: null
+hub_count: 3
+budget:
+  quest_count_target: 126
+  unique_mob_types: 27
+  mob_kills_to_complete: 1260
+  estimated_hours_to_complete:
+    solo: 31.5
+    duo: 22.5
+notes: Mid zone in the southern shore. Targets 11-30 band session math.

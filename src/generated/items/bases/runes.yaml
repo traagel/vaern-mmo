@@ -1,0 +1,109 @@
+bases:
+- id: rune_of_slashing
+  piece_name: Rune of Wardbind
+  size: tiny
+  base_weight_kg: 0.2
+  kind:
+    type: rune
+    school: slashing
+    base_resist: 15.0
+    base_mp5_drain: -1.5
+- id: rune_of_piercing
+  piece_name: Rune of Thornguard
+  size: tiny
+  base_weight_kg: 0.2
+  kind:
+    type: rune
+    school: piercing
+    base_resist: 15.0
+    base_mp5_drain: -1.5
+- id: rune_of_bludgeoning
+  piece_name: Rune of Stoneward
+  size: tiny
+  base_weight_kg: 0.2
+  kind:
+    type: rune
+    school: bludgeoning
+    base_resist: 15.0
+    base_mp5_drain: -1.5
+- id: rune_of_fire
+  piece_name: Rune of Flameguard
+  size: tiny
+  base_weight_kg: 0.2
+  kind:
+    type: rune
+    school: fire
+    base_resist: 15.0
+    base_mp5_drain: -1.5
+- id: rune_of_cold
+  piece_name: Rune of Frostward
+  size: tiny
+  base_weight_kg: 0.2
+  kind:
+    type: rune
+    school: cold
+    base_resist: 15.0
+    base_mp5_drain: -1.5
+- id: rune_of_lightning
+  piece_name: Rune of Stormward
+  size: tiny
+  base_weight_kg: 0.2
+  kind:
+    type: rune
+    school: lightning
+    base_resist: 15.0
+    base_mp5_drain: -1.5
+- id: rune_of_force
+  piece_name: Rune of Voidward
+  size: tiny
+  base_weight_kg: 0.2
+  kind:
+    type: rune
+    school: force
+    base_resist: 15.0
+    base_mp5_drain: -1.5
+- id: rune_of_radiant
+  piece_name: Rune of Duskward
+  size: tiny
+  base_weight_kg: 0.2
+  kind:
+    type: rune
+    school: radiant
+    base_resist: 15.0
+    base_mp5_drain: -1.5
+- id: rune_of_necrotic
+  piece_name: Rune of Lifeward
+  size: tiny
+  base_weight_kg: 0.2
+  kind:
+    type: rune
+    school: necrotic
+    base_resist: 15.0
+    base_mp5_drain: -1.5
+- id: rune_of_blood
+  piece_name: Rune of Ichorward
+  size: tiny
+  base_weight_kg: 0.2
+  kind:
+    type: rune
+    school: blood
+    base_resist: 15.0
+    base_mp5_drain: -1.5
+- id: rune_of_poison
+  piece_name: Rune of Toxinward
+  size: tiny
+  base_weight_kg: 0.2
+  kind:
+    type: rune
+    school: poison
+    base_resist: 15.0
+    base_mp5_drain: -1.5
+- id: rune_of_acid
+  piece_name: Rune of Aegisward
+  size: tiny
+  base_weight_kg: 0.2
+  kind:
+    type: rune
+    school: acid
+    base_resist: 15.0
+    base_mp5_drain: -1.5

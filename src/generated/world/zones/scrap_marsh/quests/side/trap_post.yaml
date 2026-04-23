@@ -1,0 +1,41 @@
+id: side_quests__trap_post
+hub: trap_post
+hub_role: outpost
+zone: scrap_marsh
+biome: marshland
+quest_count: 3
+quests:
+- id: side__trap_post__the_rot_fever_patient
+  name: The Rot Fever Patient
+  hub: trap_post
+  type: side
+  level: 1
+  objective:
+    kind: deliver
+    target_hint: rot-fever tonic to an isolated hut
+  xp_reward: 21
+  gold_reward_copper: 5
+  repeatable: false
+- id: side__trap_post__the_drake_hunt
+  name: The Drake Hunt
+  hub: trap_post
+  type: side
+  level: 3
+  objective:
+    kind: kill
+    target_hint: marsh-drake preying on travelers
+    count: 1
+  xp_reward: 91
+  gold_reward_copper: 15
+  repeatable: false
+- id: side__trap_post__the_sinking_camp
+  name: The Sinking Camp
+  hub: trap_post
+  type: side
+  level: 5
+  objective:
+    kind: investigate
+    target_hint: a camp reportedly sinking into the mire
+  xp_reward: 200
+  gold_reward_copper: 25
+  repeatable: false

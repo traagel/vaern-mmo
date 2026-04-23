@@ -1,0 +1,15 @@
+specs:
+- id: oath_thief_shadow
+  name: Shadow-Thief
+  emphasis: stealth
+  description: rune-silent infiltration
+  schools_focus:
+  - arcane
+  - silent
+- id: oath_thief_feint
+  name: Feint-Caster
+  emphasis: control
+  description: cantrip-trickster disruption
+  schools_focus:
+  - trickster
+  - arcane

@@ -1,0 +1,22 @@
+specs:
+- id: starblood_ember
+  name: Starblood Ember
+  emphasis: magic_dps
+  description: innate-fire sorcerer burst-damage
+  schools_focus:
+  - fire
+  - arcane
+- id: starblood_pulse
+  name: Starblood Pulse
+  emphasis: control
+  description: lightning-pulse crowd control and interrupt
+  schools_focus:
+  - lightning
+  - arcane
+- id: starblood_glimmer
+  name: Starblood Glimmer
+  emphasis: support
+  description: innate-light blessings and ally amplifiers
+  schools_focus:
+  - light
+  - arcane

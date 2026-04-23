@@ -1,0 +1,17 @@
+id: old_river_watch
+name: Old River Watch
+kind: dungeon
+group_size: 5
+zone: market_crossing
+entrance_hub: old_river_watch
+level_range:
+  min: 25
+  max: 32
+level_band: 11-30
+tier: leveling
+boss_count: 3
+estimated_clear_minutes: 45
+loot_tier: mid
+lockout: none (rerunnable)
+theme: Pre-Concord river fortress, overrun by a Rend smuggling ring and its patron
+coop_notes: tight-coop-friendly; duo/trio can attempt under-level with care

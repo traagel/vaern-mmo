@@ -1,0 +1,14 @@
+id: night_quick_guild
+faction: faction_a
+name: The Night-Quick Guild
+tradition: Night-Quick Arts
+curriculum:
+  major:
+    finesse:
+    - silent
+    - dagger
+  secondary:
+    finesse:
+    - thrown
+pillars:
+- finesse

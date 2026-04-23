@@ -1,0 +1,18 @@
+id: sunken_grove_crypt
+name: The Sunken Grove Crypt
+kind: dungeon
+group_size: 5
+zone: ashen_holt
+entrance_hub: blackleaf_bower
+level_range:
+  min: 14
+  max: 20
+level_band: 11-30
+tier: leveling
+boss_count: 3
+estimated_clear_minutes: 45
+loot_tier: low
+lockout: none (rerunnable)
+theme: Darkling Elen ancestral crypt, now seeping with the shadow-rot that made them
+  dark
+coop_notes: tight-coop-friendly; duo/trio can attempt under-level with care

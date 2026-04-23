@@ -1,0 +1,43 @@
+class_id: 2
+internal_label: Cleric
+abstract_name: Warcaster
+position:
+  might: 50
+  arcana: 50
+  finesse: 0
+pillar_classification: edge
+dominant_pillar:
+- might
+- arcana
+edge: arcana-might
+primary_roles:
+- healer
+- dps-priest
+note: Might-Arcana balanced; shield plus ST spells
+active_tiers:
+  might:
+  - 25
+  - 50
+  arcana:
+  - 25
+  - 50
+  finesse: []
+capabilities:
+  might:
+  - Light-medium armor proficiency
+  - Basic melee weapons (club, dagger, short sword)
+  - Hit-point bonus
+  - Medium-to-heavy armor proficiency
+  - Shield use
+  - Martial weapons (long sword, mace, axe)
+  - Basic taunt / threat generation
+  arcana:
+  - Cantrips (at-will minor spells)
+  - Minor debuffs (slow, weaken, minor curse)
+  - Minor utility (light, detect magic, mend)
+  - Single-target spells (damage or heal lean)
+  - Protective wards and shields
+  finesse: []
+faction_labels:
+  faction_a: null
+  faction_b: null

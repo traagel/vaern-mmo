@@ -1,0 +1,8 @@
+id: salt_watch
+zone: skarncamp_wastes
+name: Salt Watch
+role: waypoint
+amenities:
+- innkeeper
+- flight_master
+quest_givers: 2

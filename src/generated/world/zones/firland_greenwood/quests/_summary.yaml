@@ -1,0 +1,16 @@
+id: quest_summary__firland_greenwood
+zone: firland_greenwood
+level_range:
+  min: 1
+  max: 5
+tier: starter
+budget_target: 50
+actual:
+  main_chain_steps: 5
+  side_quests: 7
+  filler_pool: 34
+  total: 46
+coverage_ratio: 0.92
+main_chain: chain_firland_greenmoot
+notes: Main chain is hand-crafted story; side is templated by biome+hub-role; filler
+  is a procedural pool.

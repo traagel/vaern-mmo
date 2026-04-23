@@ -1,0 +1,49 @@
+id: undead
+name: Undead
+category: unnatural
+description: Revenants, wraiths, wights, shades, bone-bound shells. Animated corpses,
+  ghost-matter, or both.
+hp_scaling:
+  base_at_level_1: 40
+  per_level_multiplier: 1.14
+  formula: round(base_at_1 * multiplier^(level-1))
+default_armor_class: bone
+resistances:
+  shadow: -0.5
+  blood: -0.3
+  frost: -0.25
+  poison: -0.8
+  nature: -0.15
+  light: 0.4
+  devotion: 0.4
+  fire: 0.2
+affinities:
+  preferred:
+  - shadow
+  - blood
+  - frost
+  allowed:
+  - arcane
+  - blade
+  - blunt
+  - dagger
+  forbidden:
+  - fire
+  - nature
+  - earth
+  - lightning
+  - light
+  - devotion
+  - honor
+  - tonics
+  - alchemy
+  - poison
+behavior_defaults:
+  intelligence: low
+  social: swarm
+  flee_threshold: 0.0
+  aggro_range: long
+tags:
+- undead
+- incorporeal-kin
+- rite-bound

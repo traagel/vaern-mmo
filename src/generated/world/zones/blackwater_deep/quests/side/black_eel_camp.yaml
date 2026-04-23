@@ -1,0 +1,41 @@
+id: side_quests__black_eel_camp
+hub: black_eel_camp
+hub_role: outpost
+zone: blackwater_deep
+biome: marshland
+quest_count: 3
+quests:
+- id: side__black_eel_camp__the_rot_fever_patient
+  name: The Rot Fever Patient
+  hub: black_eel_camp
+  type: side
+  level: 45
+  objective:
+    kind: deliver
+    target_hint: rot-fever tonic to an isolated hut
+  xp_reward: 10440
+  gold_reward_copper: 225
+  repeatable: false
+- id: side__black_eel_camp__the_drake_hunt
+  name: The Drake Hunt
+  hub: black_eel_camp
+  type: side
+  level: 48
+  objective:
+    kind: kill
+    target_hint: marsh-drake preying on travelers
+    count: 1
+  xp_reward: 11827
+  gold_reward_copper: 240
+  repeatable: false
+- id: side__black_eel_camp__the_sinking_camp
+  name: The Sinking Camp
+  hub: black_eel_camp
+  type: side
+  level: 52
+  objective:
+    kind: investigate
+    target_hint: a camp reportedly sinking into the mire
+  xp_reward: 13811
+  gold_reward_copper: 260
+  repeatable: false

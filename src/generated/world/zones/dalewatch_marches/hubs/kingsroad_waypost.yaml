@@ -1,0 +1,10 @@
+id: kingsroad_waypost
+zone: dalewatch_marches
+name: Kingsroad Waypost
+role: outpost
+amenities:
+- repair
+quest_givers: 2
+offset_from_zone_origin:
+  x: -110.0
+  z: -30.0

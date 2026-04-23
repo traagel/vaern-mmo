@@ -1,0 +1,23 @@
+id: order_blood_duelist
+faction: faction_b
+archetype_id: 6
+archetype_position:
+  might: 0
+  arcana: 50
+  finesse: 50
+flagship: false
+player_facing:
+  class_name: Blood-Duelist
+  title_singular: Blood-Duelist
+  title_plural: Blood-Duelists
+schools_taught:
+  arcana:
+  - blood
+  finesse:
+  - dagger
+  - silent
+institutions:
+  primary: shadow_conclave
+  secondary: ancestor_binder_houses
+  tertiary: fury_houses
+chapter: chapter_blood_duelist

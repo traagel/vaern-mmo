@@ -1,0 +1,9 @@
+id: mourner_camp
+zone: gravewatch_fields
+name: Mourner's Camp
+role: outpost
+amenities:
+- innkeeper
+- flight_master
+- repair
+quest_givers: 3

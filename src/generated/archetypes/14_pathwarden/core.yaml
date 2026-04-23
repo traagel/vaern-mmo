@@ -1,0 +1,42 @@
+class_id: 14
+internal_label: Warden
+abstract_name: Pathwarden
+position:
+  might: 25
+  arcana: 25
+  finesse: 50
+pillar_classification: interior
+dominant_pillar:
+- finesse
+edge: interior
+primary_roles:
+- rogue-dps
+- pet-heal
+note: triple-hybrid, Finesse-dominant; sneak plus cantrips (pet-heal viable)
+active_tiers:
+  might:
+  - 25
+  arcana:
+  - 25
+  finesse:
+  - 25
+  - 50
+capabilities:
+  might:
+  - Light-medium armor proficiency
+  - Basic melee weapons (club, dagger, short sword)
+  - Hit-point bonus
+  arcana:
+  - Cantrips (at-will minor spells)
+  - Minor debuffs (slow, weaken, minor curse)
+  - Minor utility (light, detect magic, mend)
+  finesse:
+  - Basic stealth (hide in cover)
+  - Finesse weapons (rapier, dagger, shortbow)
+  - Light-armor mobility bonus
+  - Sneak attack (bonus damage from hidden)
+  - Dual-wielding
+  - Evasion / dodge reactions
+faction_labels:
+  faction_a: null
+  faction_b: null

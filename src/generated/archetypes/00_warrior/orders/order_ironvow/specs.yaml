@@ -1,0 +1,23 @@
+specs:
+- id: ironvow_defender
+  name: Ironvow Defender
+  emphasis: tank
+  description: shield-and-plate anchor holding the Concord line
+  schools_focus:
+  - shield
+  - honor
+- id: ironvow_striker
+  name: Ironvow Striker
+  emphasis: melee_dps
+  description: two-handed swordwork, battlefield executioner
+  schools_focus:
+  - blade
+  - honor
+- id: ironvow_champion
+  name: Ironvow Champion
+  emphasis: bruiser
+  description: balanced duellist, oath-sworn single combatant
+  schools_focus:
+  - blade
+  - shield
+  - honor

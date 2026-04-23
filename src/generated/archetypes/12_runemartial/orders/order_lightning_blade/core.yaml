@@ -1,0 +1,25 @@
+id: order_lightning_blade
+faction: faction_a
+archetype_id: 12
+archetype_position:
+  might: 50
+  arcana: 25
+  finesse: 25
+flagship: false
+player_facing:
+  class_name: Lightning-Blade
+  title_singular: Lightning-Blade
+  title_plural: Lightning-Blades
+schools_taught:
+  might:
+  - blade
+  arcana:
+  - lightning
+  - arcane
+  finesse:
+  - acrobat
+institutions:
+  primary: silver_quill
+  secondary: alchemists_compact
+  tertiary: knight_order
+chapter: chapter_lightning_blade

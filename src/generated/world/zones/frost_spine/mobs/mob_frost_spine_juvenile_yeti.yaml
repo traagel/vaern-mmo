@@ -1,0 +1,25 @@
+id: mob_frost_spine_juvenile_yeti
+name: Juvenile Cave Yeti
+zone: frost_spine
+level: 49
+creature_type: aberration
+armor_class: ethereal
+rarity: common
+role: scout
+faction_alignment: neutral_aggressive
+hp_tier: standard
+damage:
+  primary_school: shadow
+  attack_range: melee
+  dps_tier: light
+behavior:
+  aggro_range: medium
+  social_radius: 0
+  flee_threshold: 0.0
+  calls_allies: false
+  patrol: long
+loot_tier: standard
+drops:
+  gold_copper_avg: 49
+  item_hint: biome-flavored trash material
+biome_context: 'young, lower HP but faster; base form: Cave Yeti'

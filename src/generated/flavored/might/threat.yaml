@@ -1,0 +1,127 @@
+pillar: might
+category: threat
+variants:
+  25:
+    blade:
+      name: baited_cut
+      description: ST taunt via provocative cut.
+      damage_type: null
+      morality: neutral
+    blunt:
+      name: thunderous_demand
+      description: ST taunt via loud threat.
+      damage_type: null
+      morality: neutral
+    fury:
+      name: roar
+      description: ST taunt via intimidating howl.
+      damage_type: null
+      morality: evil
+    honor:
+      name: code_duel
+      description: ST taunt via formal challenge.
+      damage_type: null
+      morality: good
+    shield:
+      name: shield_challenge
+      description: ST shield-taunt.
+      damage_type: null
+      morality: neutral
+    spear:
+      name: pointed_dare
+      description: ST taunt via spear aim.
+      damage_type: null
+      morality: neutral
+  50:
+    blade:
+      name: weaving_threat
+      description: AoE weave taunt; draw eyes.
+      damage_type: null
+      morality: neutral
+    blunt:
+      name: war_cry
+      description: AoE shout.
+      damage_type: null
+      morality: neutral
+    fury:
+      name: mass_roar
+      description: AoE intimidation.
+      damage_type: null
+      morality: evil
+    honor:
+      name: honor_call
+      description: AoE formal demand.
+      damage_type: null
+      morality: good
+    shield:
+      name: shieldwall_call
+      description: AoE shield-bang taunt.
+      damage_type: null
+      morality: neutral
+    spear:
+      name: spearline_dare
+      description: AoE spear-tip display.
+      damage_type: null
+      morality: neutral
+  75:
+    blade:
+      name: blade_presence
+      description: Sustained sword-threat aura.
+      damage_type: null
+      morality: neutral
+    blunt:
+      name: iron_presence
+      description: Sustained threat aura.
+      damage_type: null
+      morality: neutral
+    fury:
+      name: terror_aura
+      description: Sustained fear aura.
+      damage_type: null
+      morality: evil
+    honor:
+      name: champion_aura
+      description: Sustained honor-bound aura.
+      damage_type: null
+      morality: good
+    shield:
+      name: bastion_aura
+      description: Sustained shield-based aura.
+      damage_type: null
+      morality: neutral
+    spear:
+      name: spear_presence
+      description: Sustained reach-threat.
+      damage_type: null
+      morality: neutral
+  100:
+    blade:
+      name: sword_sovereign
+      description: Mass lock via blade mastery display.
+      damage_type: null
+      morality: neutral
+    blunt:
+      name: king_of_fools
+      description: Mass lock via overwhelming display.
+      damage_type: null
+      morality: neutral
+    fury:
+      name: berserker_king
+      description: Lock via overwhelming terror.
+      damage_type: null
+      morality: evil
+    honor:
+      name: sovereign_duel
+      description: Lock via ultimate challenge.
+      damage_type: null
+      morality: good
+    shield:
+      name: bastion_supreme
+      description: Lock attention to shield-wall.
+      damage_type: null
+      morality: neutral
+    spear:
+      name: phalanx_command
+      description: Mass lock via pike-command.
+      damage_type: null
+      morality: neutral

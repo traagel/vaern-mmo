@@ -1,0 +1,21 @@
+id: old_tunnel_depths_bosses
+instance: old_tunnel_depths
+bosses:
+- id: tunneler_primarch
+  name: Tunneler Primarch
+  role_tag: miniboss
+  level: 52
+  mechanic: earthquake interrupt
+  hp_tier: elite
+- id: hollow_drake
+  name: The Hollow Drake
+  role_tag: miniboss
+  level: 55
+  mechanic: breath + tail-swipe
+  hp_tier: elite
+- id: old_thing
+  name: The Old-Thing Beneath
+  role_tag: final
+  level: 58
+  mechanic: tentacle-phase, positional environmental
+  hp_tier: heroic

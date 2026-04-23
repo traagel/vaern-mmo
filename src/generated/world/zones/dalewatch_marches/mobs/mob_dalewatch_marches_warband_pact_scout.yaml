@@ -1,0 +1,25 @@
+id: mob_dalewatch_marches_warband_pact_scout
+name: Pact Scout
+zone: dalewatch_marches
+level: 6
+creature_type: humanoid
+armor_class: leather
+rarity: common
+role: skirmisher
+faction_alignment: hostile_to_faction_a
+hp_tier: standard
+damage:
+  primary_school: blade
+  attack_range: ranged
+  dps_tier: standard
+behavior:
+  aggro_range: long
+  social_radius: 10
+  flee_threshold: 0.25
+  calls_allies: true
+  patrol: medium
+loot_tier: standard
+drops:
+  gold_copper_avg: 12
+  item_hint: pact-worked charm; cloth strips
+biome_context: probing the Ford of Ashmere from the eastern bank

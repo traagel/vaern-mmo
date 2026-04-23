@@ -1,0 +1,24 @@
+pillar: finesse
+category: evasion
+icon_shape:
+  primary: agile figure sidestepping or fading as an attack passes through empty afterimage
+  composition: off-axis lean with incoming strike whiffing past, afterimage trail where body was
+  motion: last-instant sidestep, fading afterimage, deflecting twist
+  tier_escalation:
+    25: slight sidestep with a thin afterimage
+    50: instinctive parry-reaction catching a strike at the last second
+    75: reflecting pose sending a portion of the blow back
+    100: ghost-step silhouette with the body only half-solid
+tiers:
+  25:
+  - name: dodge
+    description: Reduce hit chance for short duration.
+  50:
+  - name: parry_reaction
+    description: Instinctive block on telegraphed strike.
+  75:
+  - name: deflect
+    description: Reflect a portion of incoming damage.
+  100:
+  - name: ghost_step
+    description: Near-immunity to telegraphed attacks for duration.

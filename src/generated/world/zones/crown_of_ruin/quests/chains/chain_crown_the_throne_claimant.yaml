@@ -1,0 +1,118 @@
+id: chain_crown_the_throne_claimant
+zone: crown_of_ruin
+title: The Throne-Claimant
+premise: "The Crown of Ruin's throne is not empty; something has sat in it since the\
+  \ Coming, and both factions now have a champion ready to claim it \u2014 neither\
+  \ of them should win"
+total_steps: 10
+final_reward:
+  xp_bonus: 109440
+  gold_bonus_copper: 6000
+  item_hint: zone-appropriate endgame-tier reward
+  title_hint: '''The Throne-Claimant'' completion title'
+breadcrumb_from: capital hub of the zone's faction-home
+final_boss_hint: the Rend champion's claim-attempt
+steps:
+- step: 1
+  id: chain_crown_the_throne_claimant__01_receive_the_crown_brief
+  name: Receive The Crown Brief
+  level: 55
+  objective:
+    kind: talk
+    target_hint: Crown Bastion high-commander
+  xp_reward: 46200
+  gold_reward_copper: 825
+  prerequisite: null
+- step: 2
+  id: chain_crown_the_throne_claimant__02_gather_the_throne_histories
+  name: Gather The Throne Histories
+  level: 56
+  objective:
+    kind: collect
+    target_hint: throne-claim historical accounts from both factions
+    count: 4
+  xp_reward: 47846
+  gold_reward_copper: 840
+  prerequisite: chain_crown_the_throne_claimant__01_receive_the_crown_brief
+- step: 3
+  id: chain_crown_the_throne_claimant__03_meet_the_last_candle_keeper
+  name: Meet The Last Candle Keeper
+  level: 56
+  objective:
+    kind: talk
+    target_hint: the hermit at the Last Candle
+  xp_reward: 47846
+  gold_reward_copper: 840
+  prerequisite: chain_crown_the_throne_claimant__02_gather_the_throne_histories
+- step: 4
+  id: chain_crown_the_throne_claimant__04_walk_the_throne_approach
+  name: Walk The Throne Approach
+  level: 57
+  objective:
+    kind: investigate
+    target_hint: the throne-approach ruins
+  xp_reward: 49522
+  gold_reward_copper: 855
+  prerequisite: chain_crown_the_throne_claimant__03_meet_the_last_candle_keeper
+- step: 5
+  id: chain_crown_the_throne_claimant__05_witness_the_first_claimant
+  name: Witness The First Claimant
+  level: 57
+  objective:
+    kind: defeat
+    target_hint: the Concord champion's claim-attempt
+    group_suggested: true
+  xp_reward: 49522
+  gold_reward_copper: 855
+  prerequisite: chain_crown_the_throne_claimant__04_walk_the_throne_approach
+- step: 6
+  id: chain_crown_the_throne_claimant__06_witness_the_second_claimant
+  name: Witness The Second Claimant
+  level: 58
+  objective:
+    kind: defeat
+    target_hint: the Rend champion's claim-attempt
+    group_suggested: true
+  xp_reward: 51226
+  gold_reward_copper: 870
+  prerequisite: chain_crown_the_throne_claimant__05_witness_the_first_claimant
+- step: 7
+  id: chain_crown_the_throne_claimant__07_confront_the_sitting_thing
+  name: Confront The Sitting Thing
+  level: 58
+  objective:
+    kind: ritual
+    target_hint: the throne-thing's own choosing-rite
+  xp_reward: 51226
+  gold_reward_copper: 870
+  prerequisite: chain_crown_the_throne_claimant__06_witness_the_second_claimant
+- step: 8
+  id: chain_crown_the_throne_claimant__08_refuse_the_throne
+  name: Refuse The Throne
+  level: 59
+  objective:
+    kind: ritual
+    target_hint: "the refusal-rite \u2014 neither champion, nor the thing"
+  xp_reward: 52958
+  gold_reward_copper: 885
+  prerequisite: chain_crown_the_throne_claimant__07_confront_the_sitting_thing
+- step: 9
+  id: chain_crown_the_throne_claimant__09_seal_the_throne_of_ash
+  name: Seal The Throne Of Ash
+  level: 59
+  objective:
+    kind: ritual
+    target_hint: the throne's permanent sealing
+  xp_reward: 52958
+  gold_reward_copper: 885
+  prerequisite: chain_crown_the_throne_claimant__08_refuse_the_throne
+- step: 10
+  id: chain_crown_the_throne_claimant__10_carry_the_news_home
+  name: Carry The News Home
+  level: 60
+  objective:
+    kind: deliver
+    target_hint: "the news to both capitals \u2014 and the refusal-rite story"
+  xp_reward: 54720
+  gold_reward_copper: 900
+  prerequisite: chain_crown_the_throne_claimant__09_seal_the_throne_of_ash

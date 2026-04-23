@@ -1,0 +1,26 @@
+id: mob_dalewatch_marches_named_drifter_master
+name: Master Drifter Halen
+zone: dalewatch_marches
+level: 6
+creature_type: humanoid
+armor_class: cloth
+rarity: named
+role: captain
+faction_alignment: hostile_to_faction_a
+hp_tier: heroic
+damage:
+  primary_school: fire
+  attack_range: ranged
+  dps_tier: heavy
+behavior:
+  aggro_range: long
+  social_radius: 15
+  flee_threshold: 0.0
+  calls_allies: true
+  patrol: stationary
+loot_tier: quest_marked
+drops:
+  gold_copper_avg: 180
+  item_hint: pact-worked focus (main-chain turn-in); scorched tome
+biome_context: mine cultist leader; main-chain step 7 target at Copperstep
+chain_target: true

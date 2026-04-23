@@ -1,0 +1,97 @@
+id: chain_ruinline_south_sunken_archive
+zone: ruin_line_south
+title: The Sunken Archive
+premise: The Sunken Tower's archive contains the original Sunward-Veyr mutual-defense
+  compact; both factions' leaders want it, for opposite reasons
+total_steps: 8
+final_reward:
+  xp_bonus: 45236
+  gold_bonus_copper: 3800
+  item_hint: zone-appropriate contested-tier reward
+  title_hint: '''The Sunken Archive'' completion title'
+breadcrumb_from: capital hub of the zone's faction-home
+final_boss_hint: the opposing faction's strike-team
+steps:
+- step: 1
+  id: chain_ruinline_south_sunken_archive__01_receive_the_archive_brief
+  name: Receive The Archive Brief
+  level: 30
+  objective:
+    kind: talk
+    target_hint: Concord scout-captain at Southscar Camp
+  xp_reward: 14400
+  gold_reward_copper: 450
+  prerequisite: null
+- step: 2
+  id: chain_ruinline_south_sunken_archive__02_cross_the_two_kings_field
+  name: Cross The Two Kings Field
+  level: 31
+  objective:
+    kind: investigate
+    target_hint: the old battlefield's unmarked graves
+  xp_reward: 15326
+  gold_reward_copper: 465
+  prerequisite: chain_ruinline_south_sunken_archive__01_receive_the_archive_brief
+- step: 3
+  id: chain_ruinline_south_sunken_archive__03_recover_the_archive_key
+  name: Recover The Archive Key
+  level: 32
+  objective:
+    kind: collect
+    target_hint: the first-tower librarian's key
+    count: 4
+  xp_reward: 16282
+  gold_reward_copper: 480
+  prerequisite: chain_ruinline_south_sunken_archive__02_cross_the_two_kings_field
+- step: 4
+  id: chain_ruinline_south_sunken_archive__04_breach_the_sunken_tower
+  name: Breach The Sunken Tower
+  level: 33
+  objective:
+    kind: defeat
+    target_hint: the sunken tower's outer defense
+    group_suggested: true
+  xp_reward: 17266
+  gold_reward_copper: 495
+  prerequisite: chain_ruinline_south_sunken_archive__03_recover_the_archive_key
+- step: 5
+  id: chain_ruinline_south_sunken_archive__05_decipher_the_compact
+  name: Decipher The Compact
+  level: 35
+  objective:
+    kind: investigate
+    target_hint: the compact's wards
+  xp_reward: 19320
+  gold_reward_copper: 525
+  prerequisite: chain_ruinline_south_sunken_archive__04_breach_the_sunken_tower
+- step: 6
+  id: chain_ruinline_south_sunken_archive__06_choose_a_side
+  name: Choose A Side
+  level: 36
+  objective:
+    kind: ritual
+    target_hint: "the choice-ritual \u2014 Concord or Rend receipt"
+  xp_reward: 20390
+  gold_reward_copper: 540
+  prerequisite: chain_ruinline_south_sunken_archive__05_decipher_the_compact
+- step: 7
+  id: chain_ruinline_south_sunken_archive__07_defend_the_choice
+  name: Defend The Choice
+  level: 37
+  objective:
+    kind: defeat
+    target_hint: the opposing faction's strike-team
+    group_suggested: true
+  xp_reward: 21490
+  gold_reward_copper: 555
+  prerequisite: chain_ruinline_south_sunken_archive__06_choose_a_side
+- step: 8
+  id: chain_ruinline_south_sunken_archive__08_deliver_the_compact
+  name: Deliver The Compact
+  level: 38
+  objective:
+    kind: deliver
+    target_hint: the compact to your chosen side
+  xp_reward: 22618
+  gold_reward_copper: 570
+  prerequisite: chain_ruinline_south_sunken_archive__07_defend_the_choice

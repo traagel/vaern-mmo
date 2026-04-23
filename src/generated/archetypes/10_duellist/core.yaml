@@ -1,0 +1,44 @@
+class_id: 10
+internal_label: Monk
+abstract_name: Duellist
+position:
+  might: 50
+  arcana: 0
+  finesse: 50
+pillar_classification: edge
+dominant_pillar:
+- might
+- finesse
+edge: finesse-might
+primary_roles:
+- evasion-tank
+- dps
+note: Might-Finesse balanced; medium armor plus evasion
+active_tiers:
+  might:
+  - 25
+  - 50
+  arcana: []
+  finesse:
+  - 25
+  - 50
+capabilities:
+  might:
+  - Light-medium armor proficiency
+  - Basic melee weapons (club, dagger, short sword)
+  - Hit-point bonus
+  - Medium-to-heavy armor proficiency
+  - Shield use
+  - Martial weapons (long sword, mace, axe)
+  - Basic taunt / threat generation
+  arcana: []
+  finesse:
+  - Basic stealth (hide in cover)
+  - Finesse weapons (rapier, dagger, shortbow)
+  - Light-armor mobility bonus
+  - Sneak attack (bonus damage from hidden)
+  - Dual-wielding
+  - Evasion / dodge reactions
+faction_labels:
+  faction_a: null
+  faction_b: null

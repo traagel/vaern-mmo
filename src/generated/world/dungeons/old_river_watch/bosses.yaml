@@ -1,0 +1,21 @@
+id: old_river_watch_bosses
+instance: old_river_watch
+bosses:
+- id: smuggler_boss
+  name: The Smuggler-Boss
+  role_tag: miniboss
+  level: 25
+  mechanic: stealth-open, uses terrain
+  hp_tier: elite
+- id: caravan_sorcerer
+  name: The Caravan Sorcerer
+  role_tag: miniboss
+  level: 28
+  mechanic: crowd-control mage; interrupts matter
+  hp_tier: elite
+- id: patron_merchant
+  name: The Patron
+  role_tag: final
+  level: 32
+  mechanic: money-phase (drops gold that enrages adds), negotiation check
+  hp_tier: heroic

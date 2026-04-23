@@ -1,0 +1,27 @@
+id: burned_abbey_bosses
+instance: burned_abbey
+bosses:
+- id: abbess_ember
+  name: Abbess Ember
+  role_tag: miniboss
+  level: 32
+  mechanic: holy/shadow alternating phase
+  hp_tier: elite
+- id: cloister_champion
+  name: The Cloister Champion
+  role_tag: miniboss
+  level: 35
+  mechanic: shield-block mechanic, break with interrupts
+  hp_tier: elite
+- id: scriptorium_wraith
+  name: The Scriptorium Wraith
+  role_tag: miniboss
+  level: 37
+  mechanic: cursed-page mechanic, debuff spread
+  hp_tier: elite
+- id: last_celebrant
+  name: The Last Celebrant
+  role_tag: final
+  level: 40
+  mechanic: attempts to finish the ritual; fail = wipe
+  hp_tier: heroic

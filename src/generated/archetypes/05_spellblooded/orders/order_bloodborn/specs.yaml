@@ -1,0 +1,15 @@
+specs:
+- id: bloodborn_lash
+  name: Blood-Lash
+  emphasis: melee_dps
+  description: self-wounding striker with fire bursts
+  schools_focus:
+  - blood
+  - dagger
+- id: bloodborn_kindle
+  name: Kindle
+  emphasis: magic_dps
+  description: ember-and-blood ranged caster
+  schools_focus:
+  - fire
+  - blood

@@ -1,0 +1,25 @@
+id: kharun
+archetype: "pact-marked humans \u2014 ancestral shadow-bargain survivors"
+faction: faction_b
+favored_class: warlock or sorcerer
+cultural_traits: descendants of Hraun who struck the pact that let their line escape
+  the consuming thing, pact-scarred scholars and pact-bound duellists
+creature_type: humanoid
+size_class: medium
+hp_modifier: 1.0
+affinity:
+  might: 75
+  arcana: 100
+  finesse: 75
+  notes: pact-caster peak; versatile martial + stealth; no Fighter or Rogue corner
+    (jack-of-all-casters)
+racial_resistances:
+  shadow: -0.15
+  blood: -0.1
+  light: 0.1
+racial_school_bonuses:
+- blood
+- shadow
+- arcane
+lore_hook: the generation-family that signed the pact to survive the crossing; every
+  kharun is born already in debt

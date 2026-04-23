@@ -1,0 +1,21 @@
+id: pit_tinker_works_bosses
+instance: pit_tinker_works
+bosses:
+- id: assembly_overseer
+  name: The Assembly Overseer
+  role_tag: miniboss
+  level: 30
+  mechanic: conveyor-belt add-spawn
+  hp_tier: elite
+- id: acid_brewer
+  name: The Acid-Brewer
+  role_tag: miniboss
+  level: 33
+  mechanic: environmental acid pools, stand-out mechanic
+  hp_tier: elite
+- id: master_tinker_glub
+  name: Master Tinker Glub
+  role_tag: final
+  level: 36
+  mechanic: three mechanical servitors, must be killed in specific order
+  hp_tier: heroic

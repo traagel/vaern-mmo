@@ -1,0 +1,23 @@
+specs:
+- id: oathcaster_pactblade
+  name: Pactblade Oathcaster
+  emphasis: melee_dps
+  description: rune-shortsword duelist with sealed celestial pact
+  schools_focus:
+  - light
+  - dagger
+- id: oathcaster_watcher
+  name: Oath-Watcher
+  emphasis: ranged_dps
+  description: ranged light-bolt pactcaster, vision-gifted
+  schools_focus:
+  - light
+  - arcane
+- id: oathcaster_binder
+  name: Oath-Binder
+  emphasis: support
+  description: pact-sworn ward-caster, ally-protector and blessings
+  schools_focus:
+  - devotion
+  - light
+  - tonics

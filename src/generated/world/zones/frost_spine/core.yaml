@@ -1,0 +1,19 @@
+id: frost_spine
+name: The Frost Spine
+faction_control: contested
+biome: mountain
+region: iron_mountains
+tier: endgame
+level_range:
+  min: 48
+  max: 55
+starter_race: null
+hub_count: 3
+budget:
+  quest_count_target: 96
+  unique_mob_types: 24
+  mob_kills_to_complete: 2400
+  estimated_hours_to_complete:
+    solo: 52.0
+    duo: 36.0
+notes: Endgame zone in the iron mountains. Targets 46-60 band session math.

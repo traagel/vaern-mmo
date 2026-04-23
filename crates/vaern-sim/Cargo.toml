@@ -1,0 +1,16 @@
+[package]
+name = "vaern-sim"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+
+[[bin]]
+name = "vaern-sim"
+path = "src/main.rs"
+
+[dependencies]
+vaern-core.workspace = true
+vaern-combat.workspace = true
+bevy = { version = "0.18", default-features = false }
+vaern-data.workspace = true

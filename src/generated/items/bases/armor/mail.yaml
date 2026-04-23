@@ -1,0 +1,98 @@
+bases:
+- id: mail_coif
+  piece_name: Coif
+  size: small
+  base_weight_kg: 1.8
+  kind:
+    type: armor
+    slot: head
+    armor_type: mail
+    layer: chain
+    coverage:
+    - head
+    base_armor_class: 4.0
+- id: mail_spaulders
+  piece_name: Spaulders
+  size: medium
+  base_weight_kg: 2.8
+  kind:
+    type: armor
+    slot: shoulders
+    armor_type: mail
+    layer: chain
+    coverage:
+    - shoulders
+    base_armor_class: 5.5
+- id: mail_hauberk
+  piece_name: Hauberk
+  size: large
+  base_weight_kg: 10.0
+  kind:
+    type: armor
+    slot: chest
+    armor_type: mail
+    layer: chain
+    coverage:
+    - chest
+    - arms
+    base_armor_class: 10.0
+- id: mail_vambraces
+  piece_name: Vambraces
+  size: small
+  base_weight_kg: 0.8
+  kind:
+    type: armor
+    slot: wrists
+    armor_type: mail
+    layer: chain
+    coverage:
+    - arms
+    base_armor_class: 3.5
+- id: mail_gauntlets
+  piece_name: Gauntlets
+  size: small
+  base_weight_kg: 1.2
+  kind:
+    type: armor
+    slot: hands
+    armor_type: mail
+    layer: chain
+    coverage:
+    - hands
+    base_armor_class: 4.5
+- id: mail_belt
+  piece_name: Mail Belt
+  size: small
+  base_weight_kg: 0.8
+  kind:
+    type: armor
+    slot: waist
+    armor_type: mail
+    layer: chain
+    coverage:
+    - waist
+    base_armor_class: 3.0
+- id: mail_chausses
+  piece_name: Chausses
+  size: medium
+  base_weight_kg: 4.0
+  kind:
+    type: armor
+    slot: legs
+    armor_type: mail
+    layer: chain
+    coverage:
+    - legs
+    base_armor_class: 8.0
+- id: mail_sabatons
+  piece_name: Sabatons
+  size: medium
+  base_weight_kg: 1.8
+  kind:
+    type: armor
+    slot: feet
+    armor_type: mail
+    layer: chain
+    coverage:
+    - feet
+    base_armor_class: 4.5

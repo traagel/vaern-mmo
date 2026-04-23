@@ -1,0 +1,327 @@
+pillar: arcana
+category: control
+variants:
+  25:
+    arcane:
+      id: arcana.control.25.arcane.slow
+      baseline_slot: arcana.control.25
+      school: arcane
+      name: slow
+      description: ST magical slow on movement and actions.
+      morality: neutral
+      damage_type: null
+    blood:
+      id: arcana.control.25.blood.bleed
+      baseline_slot: arcana.control.25
+      school: blood
+      name: bleed
+      description: DoT + slow via blood-loss.
+      morality: evil
+      damage_type: null
+    devotion:
+      id: arcana.control.25.devotion.compel_truth
+      baseline_slot: arcana.control.25
+      school: devotion
+      name: compel_truth
+      description: Target cannot lie briefly.
+      morality: good
+      damage_type: null
+    earth:
+      id: arcana.control.25.earth.entangle_stone
+      baseline_slot: arcana.control.25
+      school: earth
+      name: entangle_stone
+      description: Foot-root slow from stone tendrils.
+      morality: neutral
+      damage_type: null
+    fire:
+      id: arcana.control.25.fire.searing_mark
+      baseline_slot: arcana.control.25
+      school: fire
+      name: searing_mark
+      description: Burn-slow; target movement reduced by fear of flame.
+      morality: neutral
+      damage_type: null
+    frost:
+      id: arcana.control.25.frost.chill
+      baseline_slot: arcana.control.25
+      school: frost
+      name: chill
+      description: Direct cold slow.
+      morality: neutral
+      damage_type: null
+    light:
+      id: arcana.control.25.light.dazzle
+      baseline_slot: arcana.control.25
+      school: light
+      name: dazzle
+      description: Radiant blind-slow.
+      morality: good
+      damage_type: null
+    lightning:
+      id: arcana.control.25.lightning.paralytic_spark
+      baseline_slot: arcana.control.25
+      school: lightning
+      name: paralytic_spark
+      description: Momentary stun, interrupts cast.
+      morality: neutral
+      damage_type: null
+    nature:
+      id: arcana.control.25.nature.creeping_vines
+      baseline_slot: arcana.control.25
+      school: nature
+      name: creeping_vines
+      description: Vine-slow on target.
+      morality: neutral
+      damage_type: null
+    shadow:
+      id: arcana.control.25.shadow.dread
+      baseline_slot: arcana.control.25
+      school: shadow
+      name: dread
+      description: Fear-slow; reduces target accuracy.
+      morality: evil
+      damage_type: null
+  50:
+    arcane:
+      id: arcana.control.50.arcane.mage_hold
+      baseline_slot: arcana.control.50
+      school: arcane
+      name: mage_hold
+      description: Telekinetic hold; ST immobilize.
+      morality: neutral
+      damage_type: null
+    blood:
+      id: arcana.control.50.blood.blood_bind
+      baseline_slot: arcana.control.50
+      school: blood
+      name: blood_bind
+      description: Bleed-lock; also drains HP.
+      morality: evil
+      damage_type: null
+    devotion:
+      id: arcana.control.50.devotion.oath_bind
+      baseline_slot: arcana.control.50
+      school: devotion
+      name: oath_bind
+      description: Target bound to designated behavior.
+      morality: good
+      damage_type: null
+    earth:
+      id: arcana.control.50.earth.earthgrip
+      baseline_slot: arcana.control.50
+      school: earth
+      name: earthgrip
+      description: Stone-root.
+      morality: neutral
+      damage_type: null
+    fire:
+      id: arcana.control.50.fire.burning_anchor
+      baseline_slot: arcana.control.50
+      school: fire
+      name: burning_anchor
+      description: Fire-root with DoT.
+      morality: neutral
+      damage_type: null
+    frost:
+      id: arcana.control.50.frost.freeze
+      baseline_slot: arcana.control.50
+      school: frost
+      name: freeze
+      description: Full immobilize, brittle state (bonus damage).
+      morality: neutral
+      damage_type: null
+    light:
+      id: arcana.control.50.light.holy_pin
+      baseline_slot: arcana.control.50
+      school: light
+      name: holy_pin
+      description: Radiant bind; extra damage vs evil.
+      morality: good
+      damage_type: null
+    lightning:
+      id: arcana.control.50.lightning.shock_lock
+      baseline_slot: arcana.control.50
+      school: lightning
+      name: shock_lock
+      description: Brief paralysis.
+      morality: neutral
+      damage_type: null
+    nature:
+      id: arcana.control.50.nature.entangle
+      baseline_slot: arcana.control.50
+      school: nature
+      name: entangle
+      description: Thick vines, cannot move.
+      morality: neutral
+      damage_type: null
+    shadow:
+      id: arcana.control.50.shadow.shadow_tether
+      baseline_slot: arcana.control.50
+      school: shadow
+      name: shadow_tether
+      description: Bind target to ground via shadow.
+      morality: evil
+      damage_type: null
+  75:
+    arcane:
+      id: arcana.control.75.arcane.mass_hold
+      baseline_slot: arcana.control.75
+      school: arcane
+      name: mass_hold
+      description: AoE telekinetic hold.
+      morality: neutral
+      damage_type: null
+    blood:
+      id: arcana.control.75.blood.hemorrhage_wave
+      baseline_slot: arcana.control.75
+      school: blood
+      name: hemorrhage_wave
+      description: AoE bleed-lock.
+      morality: evil
+      damage_type: null
+    devotion:
+      id: arcana.control.75.devotion.mass_oath
+      baseline_slot: arcana.control.75
+      school: devotion
+      name: mass_oath
+      description: AoE compel righteous action.
+      morality: good
+      damage_type: null
+    earth:
+      id: arcana.control.75.earth.petrify
+      baseline_slot: arcana.control.75
+      school: earth
+      name: petrify
+      description: AoE stone-form on enemies.
+      morality: neutral
+      damage_type: null
+    fire:
+      id: arcana.control.75.fire.inferno_lock
+      baseline_slot: arcana.control.75
+      school: fire
+      name: inferno_lock
+      description: AoE fire + root.
+      morality: neutral
+      damage_type: null
+    frost:
+      id: arcana.control.75.frost.deep_freeze
+      baseline_slot: arcana.control.75
+      school: frost
+      name: deep_freeze
+      description: AoE freeze, brittle.
+      morality: neutral
+      damage_type: null
+    light:
+      id: arcana.control.75.light.dawnbreak
+      baseline_slot: arcana.control.75
+      school: light
+      name: dawnbreak
+      description: AoE radiant blind.
+      morality: good
+      damage_type: null
+    lightning:
+      id: arcana.control.75.lightning.thunder_stun
+      baseline_slot: arcana.control.75
+      school: lightning
+      name: thunder_stun
+      description: AoE stun.
+      morality: neutral
+      damage_type: null
+    nature:
+      id: arcana.control.75.nature.sleep_pollen
+      baseline_slot: arcana.control.75
+      school: nature
+      name: sleep_pollen
+      description: AoE sleep via pollen cloud.
+      morality: neutral
+      damage_type: null
+    shadow:
+      id: arcana.control.75.shadow.mass_terror
+      baseline_slot: arcana.control.75
+      school: shadow
+      name: mass_terror
+      description: AoE fear, enemies flee.
+      morality: evil
+      damage_type: null
+  100:
+    arcane:
+      id: arcana.control.100.arcane.geas
+      baseline_slot: arcana.control.100
+      school: arcane
+      name: geas
+      description: 'Ritual: compel target behavior for duration.'
+      morality: neutral
+      damage_type: null
+    blood:
+      id: arcana.control.100.blood.blood_oath
+      baseline_slot: arcana.control.100
+      school: blood
+      name: blood_oath
+      description: 'Ritual: bind target to caster''s will.'
+      morality: evil
+      damage_type: null
+    devotion:
+      id: arcana.control.100.devotion.divine_judgment
+      baseline_slot: arcana.control.100
+      school: devotion
+      name: divine_judgment
+      description: 'Ritual: judge target; force behavior shift.'
+      morality: good
+      damage_type: null
+    earth:
+      id: arcana.control.100.earth.stoneform_curse
+      baseline_slot: arcana.control.100
+      school: earth
+      name: stoneform_curse
+      description: 'Ritual: target becomes immobile statue.'
+      morality: neutral
+      damage_type: null
+    fire:
+      id: arcana.control.100.fire.immolation_curse
+      baseline_slot: arcana.control.100
+      school: fire
+      name: immolation_curse
+      description: 'Ritual: target self-damages in loop.'
+      morality: neutral
+      damage_type: null
+    frost:
+      id: arcana.control.100.frost.frozen_will
+      baseline_slot: arcana.control.100
+      school: frost
+      name: frozen_will
+      description: 'Ritual: compel inaction; target cannot act.'
+      morality: neutral
+      damage_type: null
+    light:
+      id: arcana.control.100.light.divine_compulsion
+      baseline_slot: arcana.control.100
+      school: light
+      name: divine_compulsion
+      description: 'Ritual: compel righteous action.'
+      morality: good
+      damage_type: null
+    lightning:
+      id: arcana.control.100.lightning.mind_shock
+      baseline_slot: arcana.control.100
+      school: lightning
+      name: mind_shock
+      description: 'Ritual: confused movement, random targeting.'
+      morality: neutral
+      damage_type: null
+    nature:
+      id: arcana.control.100.nature.beast_command
+      baseline_slot: arcana.control.100
+      school: nature
+      name: beast_command
+      description: 'Ritual: force target to flee as beast.'
+      morality: neutral
+      damage_type: null
+    shadow:
+      id: arcana.control.100.shadow.domination
+      baseline_slot: arcana.control.100
+      school: shadow
+      name: domination
+      description: 'Ritual: full mind-control briefly.'
+      morality: evil
+      damage_type: null

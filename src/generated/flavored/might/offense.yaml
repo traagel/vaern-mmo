@@ -1,0 +1,217 @@
+pillar: might
+category: offense
+# Shape / range tuning 2026-04-20.
+# tier 25 — focused strike: slashes = cone, thrusts = line, fists/smashes = target
+# tier 50 — cleave: wider cone for sword weapons, line for honor/line_strike
+# tier 75 — big self-AoE sweeps (unchanged)
+# tier 100 — single-target finishers
+variants:
+  25:
+    blade:
+      name: sharp_cut
+      description: Slashing strike with precision bonus.
+      damage_type: slashing
+      morality: neutral
+      shape: cone
+      range: 3.5
+      cone_half_angle_deg: 20       # 40° arc — tight slash
+    blunt:
+      name: heavy_smash
+      description: Bludgeoning strike, stun chance.
+      damage_type: bludgeoning
+      morality: neutral
+      shape: target
+      range: 3.5
+    fury:
+      name: wild_strike
+      description: Reckless attack, small extra damage.
+      damage_type: slashing
+      morality: evil
+      shape: cone
+      range: 3.5
+      cone_half_angle_deg: 30       # 60° wild swing
+    honor:
+      name: precise_cut
+      description: Elegant strike, small crit bonus.
+      damage_type: slashing
+      morality: good
+      shape: target
+      range: 3.5
+    shield:
+      name: shield_bash
+      description: Shield-smash, bludgeoning plus knockdown chance.
+      damage_type: bludgeoning
+      morality: neutral
+      shape: target
+      range: 3.0
+    spear:
+      name: sharp_thrust
+      description: Piercing thrust, small damage bonus.
+      damage_type: piercing
+      morality: neutral
+      shape: line
+      range: 5.0
+      line_width: 1.5               # narrow stab
+    unarmed:
+      name: heavy_fist
+      description: Fist strike.
+      damage_type: bludgeoning
+      morality: neutral
+      shape: target
+      range: 2.5
+  50:
+    blade:
+      name: flashing_blade
+      description: Cleave in an arc, catching adjacent foes.
+      damage_type: slashing
+      morality: neutral
+      shape: cone
+      range: 4.0
+      cone_half_angle_deg: 30       # 60° arcing cleave
+    blunt:
+      name: concussive_sweep
+      description: Heavy sweep, cleave with small stun chance.
+      damage_type: bludgeoning
+      morality: neutral
+      shape: cone
+      range: 3.5
+      cone_half_angle_deg: 22       # 44° sweep
+    fury:
+      name: rampage
+      description: Uncontrolled multi-strike around the rampaging warrior.
+      damage_type: slashing
+      morality: evil
+      shape: aoe_on_self
+      aoe_radius: 3.5
+    honor:
+      name: line_strike
+      description: Elegant line of thrusts, pierces targets in a row.
+      damage_type: slashing
+      morality: good
+      shape: line
+      range: 6.0
+      line_width: 2.0
+    shield:
+      name: bash_sweep
+      description: Multi-target shield swing.
+      damage_type: bludgeoning
+      morality: neutral
+      shape: cone
+      range: 3.0
+      cone_half_angle_deg: 30       # 60° bash
+    spear:
+      name: spear_sweep
+      description: Polearm arc, narrow but long.
+      damage_type: piercing
+      morality: neutral
+      shape: cone
+      range: 5.0
+      cone_half_angle_deg: 18       # 36° polearm arc
+    unarmed:
+      name: palm_wave
+      description: Wide fist sweep.
+      damage_type: bludgeoning
+      morality: neutral
+      shape: cone
+      range: 3.0
+      cone_half_angle_deg: 25
+  75:
+    blade:
+      name: whirlblade
+      description: Spinning slash, AoE around the wielder.
+      damage_type: slashing
+      morality: neutral
+      shape: aoe_on_self
+      aoe_radius: 5.0
+    blunt:
+      name: earthshaker
+      description: Ground-slam, AoE around the wielder.
+      damage_type: bludgeoning
+      morality: neutral
+      shape: aoe_on_self
+      aoe_radius: 5.5
+    fury:
+      name: bloodrage
+      description: Reckless AoE around the wielder; caster takes self-damage.
+      damage_type: slashing
+      morality: evil
+      shape: aoe_on_self
+      aoe_radius: 5.0
+    honor:
+      name: champion_strike
+      description: Precise thrusts, AoE around the wielder.
+      damage_type: slashing
+      morality: good
+      shape: aoe_on_self
+      aoe_radius: 5.0
+    shield:
+      name: shield_storm
+      description: Shield sweep, AoE around the wielder.
+      damage_type: bludgeoning
+      morality: neutral
+      shape: aoe_on_self
+      aoe_radius: 5.0
+    spear:
+      name: spin_thrust
+      description: Spinning polearm, wide AoE around the wielder.
+      damage_type: piercing
+      morality: neutral
+      shape: aoe_on_self
+      aoe_radius: 6.0
+    unarmed:
+      name: hurricane_fist
+      description: Fist barrage, AoE around the wielder.
+      damage_type: bludgeoning
+      morality: neutral
+      shape: aoe_on_self
+      aoe_radius: 4.5
+  100:
+    blade:
+      name: headsman
+      description: 'Finisher: execute low-HP target via slashing crit.'
+      damage_type: slashing
+      morality: neutral
+      shape: target
+      range: 3.5
+    blunt:
+      name: skullcrusher
+      description: 'Finisher: critical bludgeon.'
+      damage_type: bludgeoning
+      morality: neutral
+      shape: target
+      range: 3.5
+    fury:
+      name: berserker_fury
+      description: 'Finisher: frenzied killing.'
+      damage_type: slashing
+      morality: evil
+      shape: target
+      range: 3.5
+    honor:
+      name: final_duel
+      description: 'Finisher: honorable kill-stroke.'
+      damage_type: slashing
+      morality: good
+      shape: target
+      range: 3.5
+    shield:
+      name: shield_crush
+      description: 'Finisher: brutal shield-smash.'
+      damage_type: bludgeoning
+      morality: neutral
+      shape: target
+      range: 3.5
+    spear:
+      name: impaling_doom
+      description: 'Finisher: piercing execute.'
+      damage_type: piercing
+      morality: neutral
+      shape: target
+      range: 4.5
+    unarmed:
+      name: death_blow
+      description: 'Finisher: paralyzing fist.'
+      damage_type: bludgeoning
+      morality: neutral
+      shape: target
+      range: 2.5

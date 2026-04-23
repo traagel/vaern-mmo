@@ -1,0 +1,24 @@
+specs:
+- id: bordermarch_champion
+  name: Bordermarch Champion
+  emphasis: tank
+  description: heavy-armored frontier defender
+  schools_focus:
+  - shield
+  - honor
+  - blade
+- id: bordermarch_berserker
+  name: Bordermarch Berserker
+  emphasis: melee_dps
+  description: two-handed frontier raider, momentum-forward
+  schools_focus:
+  - blade
+  - blunt
+  - honor
+- id: bordermarch_skirmisher
+  name: March Skirmisher
+  emphasis: bruiser
+  description: spear-and-thrown mobile fighter
+  schools_focus:
+  - spear
+  - thrown

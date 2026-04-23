@@ -1,0 +1,17 @@
+id: pit_tinker_works
+name: The Pit-Tinker Works
+kind: dungeon
+group_size: 5
+zone: scrap_flats
+entrance_hub: pit_tinker
+level_range:
+  min: 30
+  max: 36
+level_band: 11-30
+tier: leveling
+boss_count: 3
+estimated_clear_minutes: 45
+loot_tier: mid
+lockout: none (rerunnable)
+theme: Full industrial Skrel alchemy-works; a death-trap of acid, steam, and shrapnel
+coop_notes: tight-coop-friendly; duo/trio can attempt under-level with care

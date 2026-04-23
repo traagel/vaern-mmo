@@ -1,0 +1,42 @@
+id: side_quests__war_stake
+hub: war_stake
+hub_role: outpost
+zone: skarncamp_wastes
+biome: fjord
+quest_count: 3
+quests:
+- id: side__war_stake__the_landing_sign
+  name: The Landing Sign
+  hub: war_stake
+  type: side
+  level: 18
+  objective:
+    kind: investigate
+    target_hint: a raider-landing sign
+  xp_reward: 1843
+  gold_reward_copper: 90
+  repeatable: false
+- id: side__war_stake__the_seal_cull
+  name: The Seal Cull
+  hub: war_stake
+  type: side
+  level: 22
+  objective:
+    kind: kill
+    target_hint: rogue orca harassing fjord fishers
+    count: 1
+  xp_reward: 2675
+  gold_reward_copper: 110
+  repeatable: false
+- id: side__war_stake__the_longship_repair
+  name: The Longship Repair
+  hub: war_stake
+  type: side
+  level: 26
+  objective:
+    kind: collect
+    target_hint: longship-repair timber
+    count: 4
+  xp_reward: 3661
+  gold_reward_copper: 130
+  repeatable: false

@@ -1,0 +1,41 @@
+class_id: 8
+internal_label: Rogue
+abstract_name: Shadower
+position:
+  might: 0
+  arcana: 0
+  finesse: 100
+pillar_classification: pure
+dominant_pillar:
+- finesse
+edge: corner-finesse
+primary_roles:
+- dps
+note: pure-Finesse; peak stealth and crit
+active_tiers:
+  might: []
+  arcana: []
+  finesse:
+  - 25
+  - 50
+  - 75
+  - 100
+capabilities:
+  might: []
+  arcana: []
+  finesse:
+  - Basic stealth (hide in cover)
+  - Finesse weapons (rapier, dagger, shortbow)
+  - Light-armor mobility bonus
+  - Sneak attack (bonus damage from hidden)
+  - Dual-wielding
+  - Evasion / dodge reactions
+  - Advanced stealth (hide in dim light, partial cover)
+  - Bow mastery (longbow, extended range and accuracy)
+  - Critical-strike mastery
+  - Assassinate (execute low-HP targets)
+  - Shadow-step (short teleport through shadow)
+  - Peak evasion (near-immunity to telegraphed attacks)
+faction_labels:
+  faction_a: null
+  faction_b: null

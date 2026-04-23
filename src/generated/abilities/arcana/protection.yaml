@@ -1,0 +1,24 @@
+pillar: arcana
+category: protection
+icon_shape:
+  primary: heraldic ward, runic shield-disc, or domed barrier of force
+  composition: symmetric dome or disc centered head-on, sigil at core, absorbed impact flare
+  motion: pulsing outward ward, deflecting ripples, shimmering barrier surface
+  tier_escalation:
+    25: thin personal bubble with faint rune
+    50: solid floating ward-disc with layered sigil
+    75: wide domed barrier over several figures
+    100: reality-warding fortress of concentric rune-domes
+tiers:
+  25:
+  - name: minor_ward
+    description: Absorb a small amount of damage on self.
+  50:
+  - name: spell_shield
+    description: Single-target absorb shield, moderate capacity.
+  75:
+  - name: aegis
+    description: AoE protective barrier around allies.
+  100:
+  - name: reality_ward
+    description: Brief near-immunity barrier on target.

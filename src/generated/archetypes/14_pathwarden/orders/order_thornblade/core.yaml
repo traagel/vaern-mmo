@@ -1,0 +1,25 @@
+id: order_thornblade
+faction: faction_a
+archetype_id: 14
+archetype_position:
+  might: 25
+  arcana: 25
+  finesse: 50
+flagship: false
+player_facing:
+  class_name: Thornblade
+  title_singular: Thornblade
+  title_plural: Thornblades
+schools_taught:
+  might:
+  - blade
+  arcana:
+  - nature
+  finesse:
+  - dagger
+  - silent
+institutions:
+  primary: night_quick_guild
+  secondary: circle_of_roots
+  tertiary: knight_order
+chapter: chapter_thornblade

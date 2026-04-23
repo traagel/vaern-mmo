@@ -1,0 +1,22 @@
+specs:
+- id: grovewarden_bloom
+  name: Bloom-Warden
+  emphasis: healer
+  description: regrowth-over-time healer with nature AoE
+  schools_focus:
+  - nature
+  - light
+- id: grovewarden_thorn
+  name: Thorn-Warden
+  emphasis: magic_dps
+  description: piercing-vine damage and area-control caster
+  schools_focus:
+  - nature
+  - earth
+- id: grovewarden_storm
+  name: Storm-Warden
+  emphasis: control
+  description: weather-summoning crowd control, entangle and wind-shear
+  schools_focus:
+  - nature
+  - arcane

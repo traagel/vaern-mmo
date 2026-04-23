@@ -1,0 +1,9 @@
+id: bandit_watchtower
+zone: heartland_ride
+name: Bandit-Watch Tower
+role: outpost
+amenities:
+- innkeeper
+- flight_master
+- repair
+quest_givers: 3

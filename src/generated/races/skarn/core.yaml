@@ -1,0 +1,25 @@
+id: skarn
+archetype: half-orc-lineage raiders
+faction: faction_b
+favored_class: barbarian or fighter
+cultural_traits: Hraun border-clan with wild-blood ancestry, raider-warriors, oath-scarred,
+  blood-remembrance
+creature_type: humanoid
+size_class: medium
+hp_modifier: 1.1
+affinity:
+  might: 100
+  arcana: 50
+  finesse: 50
+  notes: Fighter/Barbarian peak; shamanic tier arcana; mobile but not stealth master
+racial_resistances:
+  blunt: -0.1
+  poison: -0.05
+  fire: 0.05
+racial_school_bonuses:
+- fury
+- blade
+- blunt
+- spear
+lore_hook: the Hraun border-clans with wild-blood crossbreeding; the Rend's front-line
+  warrior caste

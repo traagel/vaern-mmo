@@ -1,0 +1,9 @@
+id: silent_harbor
+zone: barrow_coast
+name: Silent Harbor
+role: outpost
+amenities:
+- innkeeper
+- flight_master
+- repair
+quest_givers: 3

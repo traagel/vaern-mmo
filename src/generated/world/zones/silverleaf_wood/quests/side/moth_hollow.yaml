@@ -1,0 +1,42 @@
+id: side_quests__moth_hollow
+hub: moth_hollow
+hub_role: outpost
+zone: silverleaf_wood
+biome: temperate_forest
+quest_count: 3
+quests:
+- id: side__moth_hollow__the_timber_scout
+  name: The Timber Scout
+  hub: moth_hollow
+  type: side
+  level: 15
+  objective:
+    kind: investigate
+    target_hint: a timber-camp that went silent
+  xp_reward: 1320
+  gold_reward_copper: 75
+  repeatable: false
+- id: side__moth_hollow__the_beast_cull
+  name: The Beast Cull
+  hub: moth_hollow
+  type: side
+  level: 18
+  objective:
+    kind: kill
+    target_hint: overpopulated forest predators
+    count: 1
+  xp_reward: 1843
+  gold_reward_copper: 90
+  repeatable: false
+- id: side__moth_hollow__the_ranger_arms
+  name: The Ranger Arms
+  hub: moth_hollow
+  type: side
+  level: 22
+  objective:
+    kind: collect
+    target_hint: recovered ranger-arms from an ambush site
+    count: 4
+  xp_reward: 2675
+  gold_reward_copper: 110
+  repeatable: false

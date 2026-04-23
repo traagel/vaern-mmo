@@ -1,0 +1,5 @@
+id: chapter_temple_crusader
+institution: radiant_church
+produces_order: order_temple_crusader
+secondary_institution: knight_order
+tertiary_institution: night_quick_guild

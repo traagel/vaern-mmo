@@ -1,0 +1,98 @@
+id: chain_ashweald_twin_saints
+zone: ashweald
+title: The Twin Saints
+premise: "The Charred Shrine holds the Twin Saints \u2014 one Concord, one Rend \u2014\
+  \ who died praying together during the Coming; someone is trying to resurrect them,\
+  \ and they do not want to come back"
+total_steps: 8
+final_reward:
+  xp_bonus: 62640
+  gold_bonus_copper: 4500
+  item_hint: zone-appropriate contested-tier reward
+  title_hint: '''The Twin Saints'' completion title'
+breadcrumb_from: capital hub of the zone's faction-home
+final_boss_hint: the remaining cultists at the altar
+steps:
+- step: 1
+  id: chain_ashweald_twin_saints__01_receive_the_shrine_brief
+  name: Receive The Shrine Brief
+  level: 38
+  objective:
+    kind: talk
+    target_hint: the joint-commander at Ember Crossing
+  xp_reward: 22618
+  gold_reward_copper: 570
+  prerequisite: null
+- step: 2
+  id: chain_ashweald_twin_saints__02_gather_the_saints_accounts
+  name: Gather The Saints Accounts
+  level: 39
+  objective:
+    kind: collect
+    target_hint: survivor testimonies about the Twin Saints' last prayer
+    count: 4
+  xp_reward: 23774
+  gold_reward_copper: 585
+  prerequisite: chain_ashweald_twin_saints__01_receive_the_shrine_brief
+- step: 3
+  id: chain_ashweald_twin_saints__03_walk_the_pyre_camp
+  name: Walk The Pyre Camp
+  level: 40
+  objective:
+    kind: investigate
+    target_hint: the pyre-camp's old funeral records
+  xp_reward: 24960
+  gold_reward_copper: 600
+  prerequisite: chain_ashweald_twin_saints__02_gather_the_saints_accounts
+- step: 4
+  id: chain_ashweald_twin_saints__04_confront_the_resurrectionist
+  name: Confront The Resurrectionist
+  level: 41
+  objective:
+    kind: talk
+    target_hint: the cultist attempting the resurrection
+  xp_reward: 26174
+  gold_reward_copper: 615
+  prerequisite: chain_ashweald_twin_saints__03_walk_the_pyre_camp
+- step: 5
+  id: chain_ashweald_twin_saints__05_breach_the_charred_shrine
+  name: Breach The Charred Shrine
+  level: 42
+  objective:
+    kind: defeat
+    target_hint: the shrine's cultist outer guard
+    group_suggested: true
+  xp_reward: 27418
+  gold_reward_copper: 630
+  prerequisite: chain_ashweald_twin_saints__04_confront_the_resurrectionist
+- step: 6
+  id: chain_ashweald_twin_saints__06_honor_the_saints_will
+  name: Honor The Saints Will
+  level: 43
+  objective:
+    kind: ritual
+    target_hint: the saints' own requested rite
+  xp_reward: 28690
+  gold_reward_copper: 645
+  prerequisite: chain_ashweald_twin_saints__05_breach_the_charred_shrine
+- step: 7
+  id: chain_ashweald_twin_saints__07_destroy_the_resurrection_materials
+  name: Destroy The Resurrection Materials
+  level: 44
+  objective:
+    kind: kill
+    target_hint: the remaining cultists at the altar
+    count: 1
+  xp_reward: 29990
+  gold_reward_copper: 660
+  prerequisite: chain_ashweald_twin_saints__06_honor_the_saints_will
+- step: 8
+  id: chain_ashweald_twin_saints__08_witness_the_saints_peace
+  name: Witness The Saints Peace
+  level: 45
+  objective:
+    kind: ritual
+    target_hint: the saints' final resting-rite
+  xp_reward: 31320
+  gold_reward_copper: 675
+  prerequisite: chain_ashweald_twin_saints__07_destroy_the_resurrection_materials

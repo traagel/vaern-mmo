@@ -1,0 +1,19 @@
+id: side_quests__charred_shrine
+hub: charred_shrine
+hub_role: ruin
+zone: ashweald
+biome: ashland
+quest_count: 1
+quests:
+- id: side__charred_shrine__the_ashwolf_pack
+  name: The Ashwolf Pack
+  hub: charred_shrine
+  type: side
+  level: 41
+  objective:
+    kind: kill
+    target_hint: an ashwolf pack stalking caravans
+    count: 1
+  xp_reward: 8725
+  gold_reward_copper: 205
+  repeatable: false

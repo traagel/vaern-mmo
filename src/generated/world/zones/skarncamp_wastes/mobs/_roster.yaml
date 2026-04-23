@@ -1,0 +1,51 @@
+id: _roster__skarncamp_wastes
+zone: skarncamp_wastes
+mob_count: 27
+mob_ids:
+- mob_skarncamp_wastes_beast_seal
+- mob_skarncamp_wastes_beast_orca
+- mob_skarncamp_wastes_beast_serpent
+- mob_skarncamp_wastes_beast_seahawk
+- mob_skarncamp_wastes_beast_icebear
+- mob_skarncamp_wastes_beast_drake
+- mob_skarncamp_wastes_ambient_guillemot
+- mob_skarncamp_wastes_exotic_frostbound
+- mob_skarncamp_wastes_warband_war_hawk
+- mob_skarncamp_wastes_warband_grudge_elder
+- mob_skarncamp_wastes_warband_war_stake_keeper
+- mob_skarncamp_wastes_warband_refusing_kin
+- mob_skarncamp_wastes_named_war_hawk_leader
+- mob_skarncamp_wastes_juvenile_seal
+- mob_skarncamp_wastes_juvenile_orca
+- mob_skarncamp_wastes_juvenile_serpent
+- mob_skarncamp_wastes_juvenile_seahawk
+- mob_skarncamp_wastes_juvenile_icebear
+- mob_skarncamp_wastes_juvenile_drake
+- mob_skarncamp_wastes_alpha_seal
+- mob_skarncamp_wastes_alpha_orca
+- mob_skarncamp_wastes_alpha_serpent
+- mob_skarncamp_wastes_alpha_seahawk
+- mob_skarncamp_wastes_alpha_icebear
+- mob_skarncamp_wastes_alpha_drake
+- mob_skarncamp_wastes_matriarch_seal
+- mob_skarncamp_wastes_matriarch_orca
+by_creature_type:
+  beast: 18
+  dragonkin: 3
+  undead: 1
+  humanoid: 5
+by_armor_class:
+  hide: 18
+  scales: 3
+  bone: 1
+  leather: 2
+  cloth: 1
+  plate: 2
+by_rarity:
+  common: 16
+  elite: 10
+  named: 1
+level_min: 20
+level_max: 26
+named_or_chain_targets:
+- mob_skarncamp_wastes_named_war_hawk_leader

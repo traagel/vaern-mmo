@@ -1,0 +1,40 @@
+class_id: 13
+internal_label: Mystic
+abstract_name: Spirit-adept
+position:
+  might: 25
+  arcana: 50
+  finesse: 25
+pillar_classification: interior
+dominant_pillar:
+- arcana
+edge: interior
+primary_roles:
+- stealth-caster
+note: triple-hybrid, Arcana-dominant; ST spells plus stealth plus light martial
+active_tiers:
+  might:
+  - 25
+  arcana:
+  - 25
+  - 50
+  finesse:
+  - 25
+capabilities:
+  might:
+  - Light-medium armor proficiency
+  - Basic melee weapons (club, dagger, short sword)
+  - Hit-point bonus
+  arcana:
+  - Cantrips (at-will minor spells)
+  - Minor debuffs (slow, weaken, minor curse)
+  - Minor utility (light, detect magic, mend)
+  - Single-target spells (damage or heal lean)
+  - Protective wards and shields
+  finesse:
+  - Basic stealth (hide in cover)
+  - Finesse weapons (rapier, dagger, shortbow)
+  - Light-armor mobility bonus
+faction_labels:
+  faction_a: null
+  faction_b: null

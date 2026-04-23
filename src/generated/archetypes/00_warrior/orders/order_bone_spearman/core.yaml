@@ -1,0 +1,22 @@
+id: order_bone_spearman
+faction: faction_b
+archetype_id: 0
+archetype_position:
+  might: 100
+  arcana: 0
+  finesse: 0
+flagship: false
+player_facing:
+  class_name: Bone-Spearman
+  title_singular: Bone-Spearman
+  title_plural: Bone-Spearmen
+schools_taught:
+  might:
+  - spear
+  - unarmed
+  - fury
+institutions:
+  primary: hearth_broken_clans
+  secondary: fury_houses
+  tertiary: shadow_conclave
+chapter: chapter_bone_spearman

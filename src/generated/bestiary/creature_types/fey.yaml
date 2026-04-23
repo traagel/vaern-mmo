@@ -1,0 +1,49 @@
+id: fey
+name: Fey
+category: natural
+description: "Wild-court creatures \u2014 pre-Veyr elvish woodland kin, moth-court\
+  \ attendants, fey-stags. Older than the factions."
+hp_scaling:
+  base_at_level_1: 40
+  per_level_multiplier: 1.15
+  formula: round(base_at_1 * multiplier^(level-1))
+default_armor_class: leather
+resistances:
+  nature: -0.5
+  arcane: -0.25
+  shadow: 0.25
+  blood: 0.25
+  fire: 0.3
+affinities:
+  preferred:
+  - nature
+  - arcane
+  - dagger
+  - bow
+  allowed:
+  - frost
+  - trickster
+  - silent
+  - acrobat
+  forbidden:
+  - fire
+  - shadow
+  - blood
+  - devotion
+  - honor
+  - fury
+  - blunt
+  - shield
+  - unarmed
+  - alchemy
+  - poison
+  - tonics
+behavior_defaults:
+  intelligence: high
+  social: herd
+  flee_threshold: 0.3
+  aggro_range: long
+tags:
+- wild-court
+- pre-Veyr
+- sylvan

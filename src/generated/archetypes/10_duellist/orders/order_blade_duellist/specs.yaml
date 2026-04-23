@@ -1,0 +1,15 @@
+specs:
+- id: blade_duel_rapier
+  name: Rapier-Duellist
+  emphasis: melee_dps
+  description: precise-thrust single-target
+  schools_focus:
+  - blade
+  - dagger
+- id: blade_duel_flourish
+  name: Flourish-Duellist
+  emphasis: bruiser
+  description: feint-and-acrobat harasser
+  schools_focus:
+  - acrobat
+  - blade

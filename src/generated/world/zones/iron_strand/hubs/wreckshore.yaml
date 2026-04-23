@@ -1,0 +1,9 @@
+id: wreckshore
+zone: iron_strand
+name: Wreckshore
+role: outpost
+amenities:
+- innkeeper
+- flight_master
+- repair
+quest_givers: 3

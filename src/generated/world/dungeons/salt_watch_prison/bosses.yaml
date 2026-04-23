@@ -1,0 +1,21 @@
+id: salt_watch_prison_bosses
+instance: salt_watch_prison
+bosses:
+- id: executioner
+  name: The Executioner
+  role_tag: miniboss
+  level: 28
+  mechanic: execute-below-threshold on tank
+  hp_tier: elite
+- id: freed_champion
+  name: The Freed Champion
+  role_tag: miniboss
+  level: 31
+  mechanic: fight as NPC ally, turns at 30%
+  hp_tier: elite
+- id: warden_skorrn
+  name: Warden Skorrn
+  role_tag: final
+  level: 34
+  mechanic: chain-whip pull, prisoner-wave phases
+  hp_tier: heroic

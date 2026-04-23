@@ -1,0 +1,27 @@
+id: sunken_tower_bosses
+instance: sunken_tower
+bosses:
+- id: tower_apprentice
+  name: The Tower Apprentice
+  role_tag: miniboss
+  level: 32
+  mechanic: mirror-image spawn
+  hp_tier: elite
+- id: broken_golem
+  name: The Broken Golem
+  role_tag: miniboss
+  level: 35
+  mechanic: reconstructs mid-fight
+  hp_tier: elite
+- id: tower_librarian
+  name: The Tower Librarian
+  role_tag: miniboss
+  level: 37
+  mechanic: "summons spellbooks \u2014 interrupt the big one"
+  hp_tier: elite
+- id: sundered_archmage
+  name: The Sundered Archmage
+  role_tag: final
+  level: 40
+  mechanic: polymorph phases, silence pulses
+  hp_tier: heroic

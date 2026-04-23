@@ -1,0 +1,18 @@
+id: collapsed_forge
+name: The Collapsed Forge
+kind: dungeon
+group_size: 5
+zone: irongate_pass
+entrance_hub: collapsed_forge
+level_range:
+  min: 18
+  max: 25
+level_band: 11-30
+tier: leveling
+boss_count: 3
+estimated_clear_minutes: 45
+loot_tier: mid
+lockout: none (rerunnable)
+theme: "Hearthkin forge collapsed in a mining accident \u2014 still burning after\
+  \ centuries"
+coop_notes: tight-coop-friendly; duo/trio can attempt under-level with care

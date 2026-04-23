@@ -1,0 +1,57 @@
+id: living_construct
+name: Living Construct
+category: unnatural
+description: "Soul-bound construct \u2014 gravewrought shells, animated funeral-armor\
+  \ with a ritually-bound ancestor-spirit inside. Construct immunities without construct\
+  \ affinity-lockouts; the bound soul retains the schools its former life could use."
+hp_scaling:
+  base_at_level_1: 55
+  per_level_multiplier: 1.15
+  formula: round(base_at_1 * multiplier^(level-1))
+default_armor_class: plate
+resistances:
+  blood: -0.8
+  poison: -0.9
+  shadow: -0.2
+  blunt: 0.15
+  fire: -0.1
+  frost: 0.1
+affinities:
+  preferred:
+  - blade
+  - spear
+  - shield
+  - honor
+  allowed:
+  - arcane
+  - blood
+  - shadow
+  - earth
+  - blunt
+  - unarmed
+  - fury
+  - devotion
+  forbidden:
+  - fire
+  - frost
+  - lightning
+  - nature
+  - light
+  - bow
+  - dagger
+  - thrown
+  - acrobat
+  - silent
+  - trickster
+  - alchemy
+  - tonics
+  - poison
+behavior_defaults:
+  intelligence: high
+  social: warband
+  flee_threshold: 0.0
+  aggro_range: medium
+tags:
+- soul-bound
+- construct-kin
+- playable

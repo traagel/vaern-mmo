@@ -1,0 +1,25 @@
+id: order_flame_priest
+faction: faction_a
+archetype_id: 2
+archetype_position:
+  might: 50
+  arcana: 50
+  finesse: 0
+flagship: false
+player_facing:
+  class_name: Flame-Priest
+  title_singular: Flame-Priest
+  title_plural: Flame-Priesthood
+schools_taught:
+  might:
+  - blunt
+  - shield
+  - honor
+  arcana:
+  - fire
+  - light
+institutions:
+  primary: radiant_church
+  secondary: knight_order
+  tertiary: silver_quill
+chapter: chapter_flame_priest

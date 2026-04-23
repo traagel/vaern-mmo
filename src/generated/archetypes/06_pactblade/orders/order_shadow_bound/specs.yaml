@@ -1,0 +1,25 @@
+specs:
+- id: shadow_duellist
+  name: Shadow-Duellist
+  emphasis: melee_dps
+  description: twin pact-blade fighter, shadow-step assassin
+  schools_focus:
+  - dagger
+  - shadow
+  - silent
+- id: shadow_wraith
+  name: Pact-Wraith
+  emphasis: ranged_dps
+  description: shadow-bolt ranged caster, hex-forward
+  schools_focus:
+  - shadow
+  - blood
+  - poison
+- id: shadow_chainbinder
+  name: Chain-Binder
+  emphasis: support
+  description: curse-bonding support, linking ally pacts
+  schools_focus:
+  - shadow
+  - blood
+  - tonics

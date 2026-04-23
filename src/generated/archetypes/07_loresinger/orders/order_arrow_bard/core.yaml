@@ -1,0 +1,24 @@
+id: order_arrow_bard
+faction: faction_a
+archetype_id: 7
+archetype_position:
+  might: 0
+  arcana: 25
+  finesse: 75
+flagship: false
+player_facing:
+  class_name: Arrow-Bard
+  title_singular: Arrow-Bard
+  title_plural: Arrow-Bards
+schools_taught:
+  arcana:
+  - arcane
+  - nature
+  finesse:
+  - bow
+  - acrobat
+institutions:
+  primary: wayhouse_accord
+  secondary: circle_of_roots
+  tertiary: knight_order
+chapter: chapter_arrow_bard

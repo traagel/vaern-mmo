@@ -1,0 +1,22 @@
+id: charred_shrine_bosses
+instance: charred_shrine
+bosses:
+- id: ember_priest
+  name: The Ember-Priest
+  role_tag: miniboss
+  level: 38
+  mechanic: fire-dot stack, dispel rotation
+  hp_tier: elite
+- id: charcoal_champion
+  name: The Charcoal Champion
+  role_tag: miniboss
+  level: 42
+  mechanic: armor stacks as he burns down
+  hp_tier: elite
+- id: twin_saints
+  name: The Twin Saints Weeping
+  role_tag: final
+  level: 45
+  mechanic: one Concord, one Rend; they resurrect each other unless killed within
+    5s
+  hp_tier: heroic

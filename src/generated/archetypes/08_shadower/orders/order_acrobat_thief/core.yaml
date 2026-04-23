@@ -1,0 +1,22 @@
+id: order_acrobat_thief
+faction: faction_a
+archetype_id: 8
+archetype_position:
+  might: 0
+  arcana: 0
+  finesse: 100
+flagship: false
+player_facing:
+  class_name: Acrobat-Thief
+  title_singular: Acrobat-Thief
+  title_plural: Acrobat-Thiefs
+schools_taught:
+  finesse:
+  - acrobat
+  - thrown
+  - trickster
+institutions:
+  primary: wayhouse_accord
+  secondary: night_quick_guild
+  tertiary: knight_order
+chapter: chapter_acrobat_thief

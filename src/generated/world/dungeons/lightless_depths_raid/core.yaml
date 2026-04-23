@@ -1,0 +1,17 @@
+id: lightless_depths_raid
+name: The Lightless Depths
+kind: raid
+group_size: 10
+zone: sundering_mines
+entrance_hub: lightless_gallery
+level_range:
+  min: 55
+  max: 60
+level_band: 46-60
+tier: endgame
+boss_count: 4
+estimated_clear_minutes: 120
+loot_tier: endgame
+lockout: weekly
+theme: "Deeper than the 5-man gallery \u2014 where the Carver-Mother's kin still breed"
+coop_notes: guild-scale content; organized group required

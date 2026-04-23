@@ -1,0 +1,97 @@
+id: chain_scrap_flats_tinker_cartel
+zone: scrap_flats
+title: The Tinker Cartel
+premise: The Scrap Flats tinker guilds are being rolled up by a single crime-cartel
+  run out of the Pit-Tinker Works; the Great Warren is the next target
+total_steps: 8
+final_reward:
+  xp_bonus: 28800
+  gold_bonus_copper: 3000
+  item_hint: zone-appropriate mid-tier reward
+  title_hint: '''The Tinker Cartel'' completion title'
+breadcrumb_from: capital hub of the zone's faction-home
+final_boss_hint: Master Tinker Glub
+steps:
+- step: 1
+  id: chain_scrap_flats_tinker_cartel__01_present_to_the_warren_council
+  name: Present To The Warren Council
+  level: 22
+  objective:
+    kind: talk
+    target_hint: the Great Warren council
+  xp_reward: 8026
+  gold_reward_copper: 330
+  prerequisite: null
+- step: 2
+  id: chain_scrap_flats_tinker_cartel__02_case_the_rust_creek_shop
+  name: Case The Rust Creek Shop
+  level: 23
+  objective:
+    kind: investigate
+    target_hint: the rust creek tinker shop
+  xp_reward: 8722
+  gold_reward_copper: 345
+  prerequisite: chain_scrap_flats_tinker_cartel__01_present_to_the_warren_council
+- step: 3
+  id: chain_scrap_flats_tinker_cartel__03_extract_a_witness
+  name: Extract A Witness
+  level: 24
+  objective:
+    kind: escort
+    target_hint: a terrified tinker to the warren
+  xp_reward: 9446
+  gold_reward_copper: 360
+  prerequisite: chain_scrap_flats_tinker_cartel__02_case_the_rust_creek_shop
+- step: 4
+  id: chain_scrap_flats_tinker_cartel__04_raid_the_scavenger_mound
+  name: Raid The Scavenger Mound
+  level: 25
+  objective:
+    kind: defeat
+    target_hint: the scavenger-mound enforcers
+    group_suggested: true
+  xp_reward: 10200
+  gold_reward_copper: 375
+  prerequisite: chain_scrap_flats_tinker_cartel__03_extract_a_witness
+- step: 5
+  id: chain_scrap_flats_tinker_cartel__05_steal_the_cartel_ledger
+  name: Steal The Cartel Ledger
+  level: 27
+  objective:
+    kind: collect
+    target_hint: the cartel's master ledger
+    count: 4
+  xp_reward: 11794
+  gold_reward_copper: 405
+  prerequisite: chain_scrap_flats_tinker_cartel__04_raid_the_scavenger_mound
+- step: 6
+  id: chain_scrap_flats_tinker_cartel__06_infiltrate_the_pit_tinker_works
+  name: Infiltrate The Pit Tinker Works
+  level: 28
+  objective:
+    kind: investigate
+    target_hint: the cartel's inner compound
+  xp_reward: 12634
+  gold_reward_copper: 420
+  prerequisite: chain_scrap_flats_tinker_cartel__05_steal_the_cartel_ledger
+- step: 7
+  id: chain_scrap_flats_tinker_cartel__07_confront_master_tinker_glub
+  name: Confront Master Tinker Glub
+  level: 29
+  objective:
+    kind: kill
+    target_hint: Master Tinker Glub
+    count: 1
+  xp_reward: 13502
+  gold_reward_copper: 435
+  prerequisite: chain_scrap_flats_tinker_cartel__06_infiltrate_the_pit_tinker_works
+- step: 8
+  id: chain_scrap_flats_tinker_cartel__08_break_the_cartel
+  name: Break The Cartel
+  level: 30
+  objective:
+    kind: ritual
+    target_hint: the warren's public ledger-burning
+  xp_reward: 14400
+  gold_reward_copper: 450
+  prerequisite: chain_scrap_flats_tinker_cartel__07_confront_master_tinker_glub

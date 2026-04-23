@@ -1,0 +1,12 @@
+id: pactstone_hold
+zone: pactmarch
+name: Pactstone Hold
+role: capital
+amenities:
+- innkeeper
+- class_trainers
+- bank
+- auction
+- flight_master
+- profession_trainers
+quest_givers: 6

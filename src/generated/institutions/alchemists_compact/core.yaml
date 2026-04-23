@@ -1,0 +1,16 @@
+id: alchemists_compact
+faction: faction_a
+name: The Alchemists' Compact
+tradition: Elixir-Craft Tradition
+curriculum:
+  major:
+    finesse:
+    - alchemy
+    - tonics
+  secondary:
+    finesse:
+    - crossbow
+    - acrobat
+    - thrown
+pillars:
+- finesse

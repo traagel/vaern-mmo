@@ -1,0 +1,11 @@
+specs:
+  - id: blackguard_reaver
+    name: Blackguard Reaver
+    emphasis: hybrid
+    description: two-handed oath-breaker offense with shadow-cursed strikes
+    schools_focus: [fury, blade, shadow]
+  - id: blackguard_shadeshield
+    name: Shade-Shield Blackguard
+    emphasis: tank
+    description: shield-tank with shadow-ward absorption
+    schools_focus: [shield, shadow, fury]

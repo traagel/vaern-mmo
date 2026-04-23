@@ -1,0 +1,19 @@
+id: sunward_reach
+name: Sunward Reach
+faction_control: faction_a
+biome: highland
+region: central_highlands
+tier: starter
+level_range:
+  min: 1
+  max: 5
+starter_race: sunward_elen
+hub_count: 2
+budget:
+  quest_count_target: 50
+  unique_mob_types: 15
+  mob_kills_to_complete: 400
+  estimated_hours_to_complete:
+    solo: 9.0
+    duo: 6.5
+notes: Starter zone in the central highlands. Targets 1-10 band session math.

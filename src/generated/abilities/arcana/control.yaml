@@ -1,0 +1,24 @@
+pillar: arcana
+category: control
+icon_shape:
+  primary: binding sigil ring with chains, manacles, or ensnaring tendrils radiating inward
+  composition: symmetric containment ring centered on an implied target, clasp or lock at focal point
+  motion: constricting inward pull, tightening glow, snap-shut moment
+  tier_escalation:
+    25: single thin rune-tether or subtle slow-aura
+    50: closed binding circle or rooted anchor
+    75: wide zone of multiple interlocking rune-rings
+    100: cosmic compulsion-seal with overlapping glyph layers
+tiers:
+  25:
+  - name: slow
+    description: Single-target movement and action slow.
+  50:
+  - name: root
+    description: Single-target immobilize for short duration.
+  75:
+  - name: mass_hold
+    description: AoE stun or sleep in a zone.
+  100:
+  - name: geas
+    description: Compel enemy behavior for extended duration.

@@ -1,0 +1,24 @@
+pillar: might
+category: sustain
+icon_shape:
+  primary: bloodied warrior drawing breath with wounds knitting shut or heart-rune pulsing
+  composition: centered torso with a glowing heart-rune or patched wound, fists clenched
+  motion: deep in-breath, heartbeat pulse, regrowing flesh or vein-light
+  tier_escalation:
+    25: second-wind breath with one faint wound-mend
+    50: battle-rage posture with veins pulsing
+    75: iron-will stance shrugging off debuffs visibly crumbling
+    100: undying revive — figure rising from collapsed knee with heart-light reignited
+tiers:
+  25:
+  - name: second_wind
+    description: Minor self-heal on short cooldown.
+  50:
+  - name: battle_rage
+    description: Gain HP on damage dealt; duration buff.
+  75:
+  - name: iron_will
+    description: Resist debuffs; regenerate during combat.
+  100:
+  - name: undying
+    description: Revive once at low HP per combat encounter.

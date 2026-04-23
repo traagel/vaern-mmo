@@ -1,0 +1,24 @@
+specs:
+- id: radiant_warding
+  name: Warding Priest
+  emphasis: tank
+  description: mail-and-ward priest holding the altar-line
+  schools_focus:
+  - shield
+  - light
+  - devotion
+- id: radiant_smiting
+  name: Smiting Priest
+  emphasis: magic_dps
+  description: offensive temple-caster, radiant-strike forward
+  schools_focus:
+  - light
+  - devotion
+  - arcane
+- id: radiant_healing
+  name: Healing Priest
+  emphasis: healer
+  description: traditional restoration role, single-target and group heals
+  schools_focus:
+  - light
+  - devotion

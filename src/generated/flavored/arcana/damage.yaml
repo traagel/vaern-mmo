@@ -1,0 +1,361 @@
+pillar: arcana
+category: damage
+variants:
+  25:
+    arcane:
+      id: arcana.damage.25.arcane.magic_missile
+      baseline_slot: arcana.damage.25
+      school: arcane
+      name: magic_missile
+      description: Unerring bolt of pure force.
+      morality: neutral
+      damage_type: force
+    blood:
+      id: arcana.damage.25.blood.sanguine_tap
+      baseline_slot: arcana.damage.25
+      school: blood
+      name: sanguine_tap
+      description: Minor life-drain; small self-heal.
+      morality: evil
+      damage_type: blood
+    devotion:
+      id: arcana.damage.25.devotion.self_spark
+      baseline_slot: arcana.damage.25
+      school: devotion
+      name: self_spark
+      description: Minor radiant damage; caster loses small HP.
+      morality: good
+      damage_type: radiant
+    earth:
+      id: arcana.damage.25.earth.stone_pebble
+      baseline_slot: arcana.damage.25
+      school: earth
+      name: stone_pebble
+      description: Hurled stone chip, bruising damage.
+      morality: neutral
+      damage_type: bludgeoning
+    fire:
+      id: arcana.damage.25.fire.fire_spark
+      baseline_slot: arcana.damage.25
+      school: fire
+      name: fire_spark
+      description: Small fire cantrip, at-will.
+      morality: neutral
+      damage_type: fire
+      applies_effect:
+        id: burning
+        duration_secs: 6.0
+        kind: dot
+        dps: 3.0
+        tick_interval: 0.5
+    frost:
+      id: arcana.damage.25.frost.ray_of_frost
+      baseline_slot: arcana.damage.25
+      school: frost
+      name: ray_of_frost
+      description: Chill bolt, slows briefly.
+      morality: neutral
+      damage_type: cold
+      applies_effect:
+        id: chilled
+        duration_secs: 3.0
+        kind: slow
+        speed_mult: 0.6
+    light:
+      id: arcana.damage.25.light.sacred_spark
+      baseline_slot: arcana.damage.25
+      school: light
+      name: sacred_spark
+      description: Minor radiant cantrip.
+      morality: good
+      damage_type: radiant
+    lightning:
+      id: arcana.damage.25.lightning.shock_jolt
+      baseline_slot: arcana.damage.25
+      school: lightning
+      name: shock_jolt
+      description: Minor shock, interrupts cast.
+      morality: neutral
+      damage_type: lightning
+    nature:
+      id: arcana.damage.25.nature.thorn_dart
+      baseline_slot: arcana.damage.25
+      school: nature
+      name: thorn_dart
+      description: At-will piercing thorn.
+      morality: neutral
+      damage_type: piercing
+    shadow:
+      id: arcana.damage.25.shadow.chill_touch
+      baseline_slot: arcana.damage.25
+      school: shadow
+      name: chill_touch
+      description: Cantrip of necrotic decay.
+      morality: evil
+      damage_type: necrotic
+      applies_effect:
+        id: decay
+        duration_secs: 5.0
+        kind: dot
+        dps: 2.0
+        tick_interval: 1.0
+  50:
+    arcane:
+      id: arcana.damage.50.arcane.force_bolt
+      baseline_slot: arcana.damage.50
+      school: arcane
+      name: force_bolt
+      description: Moderate force damage, single-target.
+      morality: neutral
+      damage_type: force
+    blood:
+      id: arcana.damage.50.blood.hemorrhage
+      baseline_slot: arcana.damage.50
+      school: blood
+      name: hemorrhage
+      description: Moderate damage + bleed DoT.
+      morality: evil
+      damage_type: blood
+      applies_effect:
+        id: bleeding
+        duration_secs: 8.0
+        kind: dot
+        dps: 4.0
+        tick_interval: 1.0
+    devotion:
+      id: arcana.damage.50.devotion.sacrificial_bolt
+      baseline_slot: arcana.damage.50
+      school: devotion
+      name: sacrificial_bolt
+      description: Moderate radiant damage; caster loses moderate HP.
+      morality: good
+      damage_type: radiant
+    earth:
+      id: arcana.damage.50.earth.stone_spike
+      baseline_slot: arcana.damage.50
+      school: earth
+      name: stone_spike
+      description: Moderate bludgeoning damage.
+      morality: neutral
+      damage_type: bludgeoning
+    fire:
+      id: arcana.damage.50.fire.firebolt
+      baseline_slot: arcana.damage.50
+      school: fire
+      name: firebolt
+      description: Moderate fire damage.
+      morality: neutral
+      damage_type: fire
+      applies_effect:
+        id: burning
+        duration_secs: 8.0
+        kind: dot
+        dps: 5.0
+        tick_interval: 0.5
+    frost:
+      id: arcana.damage.50.frost.ice_lance
+      baseline_slot: arcana.damage.50
+      school: frost
+      name: ice_lance
+      description: Moderate cold damage, brief slow.
+      morality: neutral
+      damage_type: cold
+      applies_effect:
+        id: chilled
+        duration_secs: 4.0
+        kind: slow
+        speed_mult: 0.5
+    light:
+      id: arcana.damage.50.light.radiant_strike
+      baseline_slot: arcana.damage.50
+      school: light
+      name: radiant_strike
+      description: Moderate radiant damage.
+      morality: good
+      damage_type: radiant
+    lightning:
+      id: arcana.damage.50.lightning.lightning_bolt
+      baseline_slot: arcana.damage.50
+      school: lightning
+      name: lightning_bolt
+      description: Moderate shock damage, chain-capable.
+      morality: neutral
+      damage_type: lightning
+    nature:
+      id: arcana.damage.50.nature.barbvine
+      baseline_slot: arcana.damage.50
+      school: nature
+      name: barbvine
+      description: Moderate piercing damage.
+      morality: neutral
+      damage_type: piercing
+    shadow:
+      id: arcana.damage.50.shadow.shadow_bolt
+      baseline_slot: arcana.damage.50
+      school: shadow
+      name: shadow_bolt
+      description: Moderate necrotic damage.
+      morality: evil
+      damage_type: necrotic
+  75:
+    arcane:
+      id: arcana.damage.75.arcane.arcane_burst
+      baseline_slot: arcana.damage.75
+      school: arcane
+      name: arcane_burst
+      description: AoE force damage.
+      morality: neutral
+      damage_type: force
+    blood:
+      id: arcana.damage.75.blood.blood_plague
+      baseline_slot: arcana.damage.75
+      school: blood
+      name: blood_plague
+      description: AoE bleed; caster heals on target deaths.
+      morality: evil
+      damage_type: blood
+    devotion:
+      id: arcana.damage.75.devotion.searing_oath
+      baseline_slot: arcana.damage.75
+      school: devotion
+      name: searing_oath
+      description: AoE radiant damage; caster takes self-damage.
+      morality: good
+      damage_type: radiant
+    earth:
+      id: arcana.damage.75.earth.rock_slide
+      baseline_slot: arcana.damage.75
+      school: earth
+      name: rock_slide
+      description: AoE bludgeoning, knockdown.
+      morality: neutral
+      damage_type: bludgeoning
+    fire:
+      id: arcana.damage.75.fire.fireball
+      baseline_slot: arcana.damage.75
+      school: fire
+      name: fireball
+      description: AoE fire explosion, burn DoT.
+      morality: neutral
+      damage_type: fire
+    frost:
+      id: arcana.damage.75.frost.blizzard
+      baseline_slot: arcana.damage.75
+      school: frost
+      name: blizzard
+      description: AoE cold zone, slows within.
+      morality: neutral
+      damage_type: cold
+    light:
+      id: arcana.damage.75.light.searing_dawn
+      baseline_slot: arcana.damage.75
+      school: light
+      name: searing_dawn
+      description: AoE radiant damage.
+      morality: good
+      damage_type: radiant
+    lightning:
+      id: arcana.damage.75.lightning.chain_storm
+      baseline_slot: arcana.damage.75
+      school: lightning
+      name: chain_storm
+      description: Chain-lightning, jumps 3 targets.
+      morality: neutral
+      damage_type: lightning
+    nature:
+      id: arcana.damage.75.nature.thorn_storm
+      baseline_slot: arcana.damage.75
+      school: nature
+      name: thorn_storm
+      description: AoE piercing vines.
+      morality: neutral
+      damage_type: piercing
+    shadow:
+      id: arcana.damage.75.shadow.umbral_wave
+      baseline_slot: arcana.damage.75
+      school: shadow
+      name: umbral_wave
+      description: AoE necrotic pulse.
+      morality: evil
+      damage_type: necrotic
+  100:
+    arcane:
+      id: arcana.damage.100.arcane.arcane_annihilation
+      baseline_slot: arcana.damage.100
+      school: arcane
+      name: arcane_annihilation
+      description: 'Ritual: erase target area.'
+      morality: neutral
+      damage_type: force
+    blood:
+      id: arcana.damage.100.blood.crimson_tide
+      baseline_slot: arcana.damage.100
+      school: blood
+      name: crimson_tide
+      description: 'Ritual: mass hemorrhage, area DoT.'
+      morality: evil
+      damage_type: blood
+    devotion:
+      id: arcana.damage.100.devotion.martyrs_pyre
+      baseline_slot: arcana.damage.100
+      school: devotion
+      name: martyrs_pyre
+      description: 'Ritual: massive AoE radiant; caster near-death.'
+      morality: good
+      damage_type: radiant
+    earth:
+      id: arcana.damage.100.earth.earthquake
+      baseline_slot: arcana.damage.100
+      school: earth
+      name: earthquake
+      description: 'Ritual: AoE terrain collapse.'
+      morality: neutral
+      damage_type: bludgeoning
+    fire:
+      id: arcana.damage.100.fire.meteor
+      baseline_slot: arcana.damage.100
+      school: fire
+      name: meteor
+      description: 'Ritual: meteor, massive fire AoE.'
+      morality: neutral
+      damage_type: fire
+    frost:
+      id: arcana.damage.100.frost.glacier
+      baseline_slot: arcana.damage.100
+      school: frost
+      name: glacier
+      description: 'Ritual: frozen zone, long debuff.'
+      morality: neutral
+      damage_type: cold
+    light:
+      id: arcana.damage.100.light.sunlance
+      baseline_slot: arcana.damage.100
+      school: light
+      name: sunlance
+      description: 'Ritual: solar pillar, massive radiant.'
+      morality: good
+      damage_type: radiant
+    lightning:
+      id: arcana.damage.100.lightning.sky_fury
+      baseline_slot: arcana.damage.100
+      school: lightning
+      name: sky_fury
+      description: 'Ritual: chain-lightning storm.'
+      morality: neutral
+      damage_type: lightning
+    nature:
+      id: arcana.damage.100.nature.world_awakening
+      baseline_slot: arcana.damage.100
+      school: nature
+      name: world_awakening
+      description: 'Ritual: forest rises to attack.'
+      morality: neutral
+      damage_type: piercing
+    shadow:
+      id: arcana.damage.100.shadow.void_rift
+      baseline_slot: arcana.damage.100
+      school: shadow
+      name: void_rift
+      description: 'Ritual: shadow tear, persistent DoT.'
+      morality: evil
+      damage_type: necrotic

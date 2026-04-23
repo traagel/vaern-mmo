@@ -1,0 +1,25 @@
+specs:
+- id: shadowmarch_silentarcher
+  name: Silent Archer
+  emphasis: ranged_dps
+  description: blackened longbow specialist, shadow-shooting
+  schools_focus:
+  - bow
+  - silent
+  - poison
+- id: shadowmarch_thorntrapper
+  name: Thorn-Trapper
+  emphasis: control
+  description: snare-and-trap specialist, territorial hunter
+  schools_focus:
+  - bow
+  - poison
+  - trickster
+- id: shadowmarch_scout
+  name: Shadow-Scout
+  emphasis: stealth
+  description: border-reconnaissance, shadow-walking infiltrator
+  schools_focus:
+  - silent
+  - dagger
+  - acrobat

@@ -1,0 +1,24 @@
+specs:
+- id: ancestor_voicebearer
+  name: Voice-Bearer
+  emphasis: support
+  description: ancestor-channeled buffer, clan-empowerer
+  schools_focus:
+  - blood
+  - nature
+  - spear
+- id: ancestor_gravewhisperer
+  name: Grave-Whisperer
+  emphasis: healer
+  description: ancestor-linked healer drawing from the lineage-chain
+  schools_focus:
+  - blood
+  - nature
+- id: ancestor_bindingspeaker
+  name: Binding-Speaker
+  emphasis: control
+  description: compel-and-bind caster, ancestor-weight crowd control
+  schools_focus:
+  - shadow
+  - arcane
+  - spear

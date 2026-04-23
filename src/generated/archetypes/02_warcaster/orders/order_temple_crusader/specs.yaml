@@ -1,0 +1,11 @@
+specs:
+  - id: crusader_swordwarden
+    name: Sword-Warden Crusader
+    emphasis: tank
+    description: shield-line defender with radiant-ward abjurations
+    schools_focus: [shield, light, devotion]
+  - id: crusader_smiter
+    name: Smiter Crusader
+    emphasis: hybrid
+    description: blade-forward offensive crusader with radiant strike-augments
+    schools_focus: [blade, light]

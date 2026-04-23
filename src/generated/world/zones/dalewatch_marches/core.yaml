@@ -1,0 +1,20 @@
+id: dalewatch_marches
+name: The Dalewatch Marches
+faction_control: faction_a
+biome: river_valley
+region: western_dales
+tier: starter
+level_range:
+  min: 1
+  max: 10
+starter_race: mannin
+hub_count: 5
+budget:
+  quest_count_target: 50
+  unique_mob_types: 24
+  mob_kills_to_complete: 600
+  estimated_hours_to_complete:
+    solo: 14.0
+    duo: 10.0
+notes: 'Starter zone in the western dales, redesigned 2026-04 to Classic-Elwynn scope: 12 sub-zones, 4
+  hubs, 10-step main chain, two side chains, plus side quests and filler.'

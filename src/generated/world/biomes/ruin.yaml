@@ -1,0 +1,15 @@
+id: ruin
+name: The Ruin Line
+climate: "scar-land \u2014 ash, broken earth, charnel pits"
+hazards:
+- unstable-ground
+- ambient curse
+- leftover-thing
+typical_flora:
+- char-thistle
+- ghostgrass
+typical_fauna:
+- revenant
+- carrion-hound
+- war-ghost
+faction_affinity: contested

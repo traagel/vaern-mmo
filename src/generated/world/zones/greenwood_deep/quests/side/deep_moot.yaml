@@ -1,0 +1,53 @@
+id: side_quests__deep_moot
+hub: deep_moot
+hub_role: capital
+zone: greenwood_deep
+biome: temperate_forest
+quest_count: 4
+quests:
+- id: side__deep_moot__the_timber_scout
+  name: The Timber Scout
+  hub: deep_moot
+  type: side
+  level: 22
+  objective:
+    kind: investigate
+    target_hint: a timber-camp that went silent
+  xp_reward: 2675
+  gold_reward_copper: 110
+  repeatable: false
+- id: side__deep_moot__the_beast_cull
+  name: The Beast Cull
+  hub: deep_moot
+  type: side
+  level: 25
+  objective:
+    kind: kill
+    target_hint: overpopulated forest predators
+    count: 1
+  xp_reward: 3400
+  gold_reward_copper: 125
+  repeatable: false
+- id: side__deep_moot__the_ranger_arms
+  name: The Ranger Arms
+  hub: deep_moot
+  type: side
+  level: 27
+  objective:
+    kind: collect
+    target_hint: recovered ranger-arms from an ambush site
+    count: 4
+  xp_reward: 3931
+  gold_reward_copper: 135
+  repeatable: false
+- id: side__deep_moot__the_oath_sapling
+  name: The Oath Sapling
+  hub: deep_moot
+  type: side
+  level: 30
+  objective:
+    kind: deliver
+    target_hint: a ritual sapling to a distant grove
+  xp_reward: 4800
+  gold_reward_copper: 150
+  repeatable: false

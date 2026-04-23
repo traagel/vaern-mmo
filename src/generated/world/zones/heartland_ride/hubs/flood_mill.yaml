@@ -1,0 +1,9 @@
+id: flood_mill
+zone: heartland_ride
+name: Flood-Mill
+role: outpost
+amenities:
+- innkeeper
+- flight_master
+- repair
+quest_givers: 3

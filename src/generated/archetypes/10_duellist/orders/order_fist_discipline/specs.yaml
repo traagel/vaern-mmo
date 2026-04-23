@@ -1,0 +1,15 @@
+specs:
+- id: fist_disc_iron
+  name: Iron-Fist
+  emphasis: melee_dps
+  description: rapid-combo unarmed striker
+  schools_focus:
+  - unarmed
+  - blunt
+- id: fist_disc_breath
+  name: Breath-Keeper
+  emphasis: sustain
+  description: meditative self-heal with honor-stance
+  schools_focus:
+  - honor
+  - tonics

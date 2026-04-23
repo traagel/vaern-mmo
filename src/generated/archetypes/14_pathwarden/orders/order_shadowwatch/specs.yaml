@@ -1,0 +1,25 @@
+specs:
+- id: shadowwatch_duskmarshal
+  name: Dusk-Marshal
+  emphasis: melee_dps
+  description: twin-blade Rend border-marshal, active-defense fighter
+  schools_focus:
+  - blade
+  - dagger
+  - fury
+- id: shadowwatch_thornshadow
+  name: Thorn-Shadow
+  emphasis: stealth
+  description: ashen-camouflage infiltrator, poison-trap specialist
+  schools_focus:
+  - silent
+  - poison
+  - trickster
+- id: shadowwatch_warbandscout
+  name: Warband-Scout
+  emphasis: bruiser
+  description: mobile raid-scout with light-mail durability
+  schools_focus:
+  - spear
+  - bow
+  - silent

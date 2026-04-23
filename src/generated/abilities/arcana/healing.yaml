@@ -1,0 +1,24 @@
+pillar: arcana
+category: healing
+icon_shape:
+  primary: blooming heart, cupped hands cradling light, open flower, or mending droplet
+  composition: centered radial bloom or cupped-glow motif with soft outward radiance
+  motion: gentle pulsing aura, petals opening, droplet falling into glow
+  tier_escalation:
+    25: single droplet or small bloom in cupped hands
+    50: steady mended wound with woven light-stitches
+    75: wide healing bloom radiating over a group circle
+    100: resurrection — rising phoenix-wing silhouette with awakening soul-spark
+tiers:
+  25:
+  - name: mend_wounds
+    description: At-will trickle heal, small amount.
+  50:
+  - name: restore
+    description: Single-target moderate heal.
+  75:
+  - name: healing_wave
+    description: AoE moderate healing pulse.
+  100:
+  - name: resurrection
+    description: Ritual revive; full HP restore on the fallen.

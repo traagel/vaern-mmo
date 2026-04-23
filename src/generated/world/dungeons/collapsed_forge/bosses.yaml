@@ -1,0 +1,21 @@
+id: collapsed_forge_bosses
+instance: collapsed_forge
+bosses:
+- id: shift_foreman
+  name: The Shift Foreman
+  role_tag: miniboss
+  level: 18
+  mechanic: whip-cleave, rally-yell buffing adds
+  hp_tier: elite
+- id: molten_worker
+  name: The Molten Worker
+  role_tag: miniboss
+  level: 22
+  mechanic: fire-self-immolate aoe, kite mechanic
+  hp_tier: elite
+- id: forge_lord
+  name: The Forge-Lord Unstilled
+  role_tag: final
+  level: 25
+  mechanic: "three-phase: anvil, forge, quench \u2014 distinct mechanics each"
+  hp_tier: heroic

@@ -1,0 +1,11 @@
+specs:
+  - id: stormguard_pikeward
+    name: Storm-Pikeward
+    emphasis: tank
+    description: spear-and-shield line-holder with lightning-charged counter-strikes
+    schools_focus: [spear, shield, lightning]
+  - id: stormguard_thundersworn
+    name: Thundersworn
+    emphasis: hybrid
+    description: spear-offense with lightning-bolt ranged attacks
+    schools_focus: [spear, lightning, arcane]

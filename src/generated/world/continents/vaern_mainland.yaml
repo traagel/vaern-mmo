@@ -1,0 +1,55 @@
+id: vaern_mainland
+name: Vaern
+type: island-continent
+scale: approximately Britain + Ireland combined
+climate: temperate, strongly seasonal, harsh winters
+regions:
+- id: western_dales
+  faction: faction_a
+  biomes:
+  - river_valley
+  - temperate_forest
+- id: central_highlands
+  faction: faction_a
+  biomes:
+  - highland
+  - temperate_forest
+- id: iron_mountains
+  faction: faction_a
+  biomes:
+  - mountain
+- id: southern_shore
+  faction: faction_a
+  biomes:
+  - river_valley
+  - coastal_cliff
+- id: northern_cliffs
+  faction: faction_a
+  biomes:
+  - coastal_cliff
+  - highland
+- id: ruin_line
+  faction: contested
+  biomes:
+  - ruin
+  - mountain
+- id: eastern_fjords
+  faction: faction_b
+  biomes:
+  - fjord
+  - coastal_cliff
+- id: ashen_march
+  faction: faction_b
+  biomes:
+  - ashland
+  - marshland
+- id: pact_steppes
+  faction: faction_b
+  biomes:
+  - marshland
+  - highland
+- id: barrow_shore
+  faction: faction_b
+  biomes:
+  - coastal_cliff
+  - ruin

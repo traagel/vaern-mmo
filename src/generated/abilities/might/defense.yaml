@@ -1,0 +1,24 @@
+pillar: might
+category: defense
+icon_shape:
+  primary: braced weapon or raised shield deflecting an inbound strike
+  composition: symmetric shield or crossed parry centered head-on, sparks or rebound at deflection point
+  motion: rooted stance, absorbed impact, deflecting arc
+  tier_escalation:
+    25: lifted guard parrying a single blow
+    50: firm shield-wall pose with small impact absorbed
+    75: iron-clad fortress stance shrugging off heavy impact
+    100: last-stand pose with everything breaking around an unmoved figure
+tiers:
+  25:
+  - name: parry
+    description: Block one incoming attack on a short cooldown.
+  50:
+  - name: shield_wall
+    description: Reduce damage taken for several seconds.
+  75:
+  - name: iron_guard
+    description: Major damage mitigation; immune to knockback.
+  100:
+  - name: last_stand
+    description: Brief near-immunity to damage.

@@ -1,0 +1,31 @@
+id: side_quests__old_river_watch
+hub: old_river_watch
+hub_role: waypoint
+zone: market_crossing
+biome: river_valley
+quest_count: 2
+quests:
+- id: side__old_river_watch__the_miller_s_problem
+  name: The Miller S Problem
+  hub: old_river_watch
+  type: side
+  level: 18
+  objective:
+    kind: kill
+    target_hint: wolves harrying the miller's livestock
+    count: 1
+  xp_reward: 1843
+  gold_reward_copper: 90
+  repeatable: false
+- id: side__old_river_watch__the_lost_ledger
+  name: The Lost Ledger
+  hub: old_river_watch
+  type: side
+  level: 26
+  objective:
+    kind: collect
+    target_hint: flood-soaked ledger pages
+    count: 4
+  xp_reward: 3661
+  gold_reward_copper: 130
+  repeatable: false

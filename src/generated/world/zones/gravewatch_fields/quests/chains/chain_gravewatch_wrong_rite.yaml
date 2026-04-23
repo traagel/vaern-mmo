@@ -1,0 +1,96 @@
+id: chain_gravewatch_wrong_rite
+zone: gravewatch_fields
+title: The Wrong Rite
+premise: The Gravewatch Fields' ancestor-rite has slipped; the dead are waking half-made,
+  neither shell nor person, and the rite-binders cannot stop it alone
+total_steps: 8
+final_reward:
+  xp_bonus: 5300
+  gold_bonus_copper: 1200
+  item_hint: zone-appropriate mid-tier reward
+  title_hint: '''The Wrong Rite'' completion title'
+breadcrumb_from: capital hub of the zone's faction-home
+final_boss_hint: waves of half-made shells
+steps:
+- step: 1
+  id: chain_gravewatch_wrong_rite__01_present_to_the_rite_binder
+  name: Present To The Rite Binder
+  level: 5
+  objective:
+    kind: talk
+    target_hint: Rite-Binder Corda
+  xp_reward: 600
+  gold_reward_copper: 75
+  prerequisite: null
+- step: 2
+  id: chain_gravewatch_wrong_rite__02_walk_the_failed_field
+  name: Walk The Failed Field
+  level: 6
+  objective:
+    kind: investigate
+    target_hint: the failed burial rows
+  xp_reward: 806
+  gold_reward_copper: 90
+  prerequisite: chain_gravewatch_wrong_rite__01_present_to_the_rite_binder
+- step: 3
+  id: chain_gravewatch_wrong_rite__03_collect_the_rite_fragments
+  name: Collect The Rite Fragments
+  level: 7
+  objective:
+    kind: collect
+    target_hint: broken rite-stones from the field
+    count: 4
+  xp_reward: 1042
+  gold_reward_copper: 105
+  prerequisite: chain_gravewatch_wrong_rite__02_walk_the_failed_field
+- step: 4
+  id: chain_gravewatch_wrong_rite__04_interrogate_a_half_made
+  name: Interrogate A Half Made
+  level: 8
+  objective:
+    kind: talk
+    target_hint: a half-made shell at the watch-crypt
+  xp_reward: 1306
+  gold_reward_copper: 120
+  prerequisite: chain_gravewatch_wrong_rite__03_collect_the_rite_fragments
+- step: 5
+  id: chain_gravewatch_wrong_rite__05_find_the_source_of_the_break
+  name: Find The Source Of The Break
+  level: 9
+  objective:
+    kind: investigate
+    target_hint: the lich-weep mausoleum's outer chamber
+  xp_reward: 1598
+  gold_reward_copper: 135
+  prerequisite: chain_gravewatch_wrong_rite__04_interrogate_a_half_made
+- step: 6
+  id: chain_gravewatch_wrong_rite__06_perform_the_counter_rite
+  name: Perform The Counter Rite
+  level: 10
+  objective:
+    kind: ritual
+    target_hint: the counter-binding
+  xp_reward: 1920
+  gold_reward_copper: 150
+  prerequisite: chain_gravewatch_wrong_rite__05_find_the_source_of_the_break
+- step: 7
+  id: chain_gravewatch_wrong_rite__07_destroy_the_broken_vessels
+  name: Destroy The Broken Vessels
+  level: 11
+  objective:
+    kind: kill
+    target_hint: waves of half-made shells
+    count: 1
+  xp_reward: 2270
+  gold_reward_copper: 165
+  prerequisite: chain_gravewatch_wrong_rite__06_perform_the_counter_rite
+- step: 8
+  id: chain_gravewatch_wrong_rite__08_close_the_wound
+  name: Close The Wound
+  level: 12
+  objective:
+    kind: ritual
+    target_hint: the field-closing
+  xp_reward: 2650
+  gold_reward_copper: 180
+  prerequisite: chain_gravewatch_wrong_rite__07_destroy_the_broken_vessels

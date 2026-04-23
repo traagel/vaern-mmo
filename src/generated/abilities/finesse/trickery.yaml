@@ -1,0 +1,24 @@
+pillar: finesse
+category: trickery
+icon_shape:
+  primary: misdirection gesture — feint blade, distracting flash, blindfold or illusory double
+  composition: centered deceptive gesture with a sly secondary element off-axis (the real threat)
+  motion: sleight-of-hand swap, sudden flash, peeling-away illusion
+  tier_escalation:
+    25: feinting blade with a tiny decoy glow
+    50: flash-distraction puff redirecting an enemy's gaze
+    75: blind — a blindfold or light-flare across an enemy's face
+    100: full-body illusion copy peeling off the real figure
+tiers:
+  25:
+  - name: feint
+    description: Briefly confuse target; next hit bonus damage.
+  50:
+  - name: distract
+    description: Reduce enemy accuracy on a target, short duration.
+  75:
+  - name: blind
+    description: Single-target visual disable for short duration.
+  100:
+  - name: impersonate
+    description: "Brief illusion \u2014 appear as an ally to confuse foes."

@@ -1,0 +1,9 @@
+id: dawnleaf_glade
+zone: sunward_reach
+name: Dawnleaf Glade
+role: outpost
+amenities:
+- innkeeper
+- flight_master
+- repair
+quest_givers: 3

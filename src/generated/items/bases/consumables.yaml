@@ -1,0 +1,1137 @@
+bases:
+- id: minor_healing_potion
+  piece_name: Minor Healing Potion
+  size: tiny
+  base_weight_kg: 0.3
+  stackable: true
+  stack_max: 20
+  kind:
+    type: consumable
+    charges: 1
+    effect:
+      kind: heal_hp
+      amount: 40
+- id: lesser_healing_potion
+  piece_name: Lesser Healing Potion
+  size: tiny
+  base_weight_kg: 0.3
+  stackable: true
+  stack_max: 20
+  kind:
+    type: consumable
+    charges: 1
+    effect:
+      kind: heal_hp
+      amount: 80
+- id: healing_potion
+  piece_name: Healing Potion
+  size: tiny
+  base_weight_kg: 0.3
+  stackable: true
+  stack_max: 20
+  kind:
+    type: consumable
+    charges: 1
+    effect:
+      kind: heal_hp
+      amount: 160
+- id: greater_healing_potion
+  piece_name: Greater Healing Potion
+  size: tiny
+  base_weight_kg: 0.3
+  stackable: true
+  stack_max: 20
+  kind:
+    type: consumable
+    charges: 1
+    effect:
+      kind: heal_hp
+      amount: 280
+- id: major_healing_potion
+  piece_name: Major Healing Potion
+  size: tiny
+  base_weight_kg: 0.3
+  stackable: true
+  stack_max: 20
+  kind:
+    type: consumable
+    charges: 1
+    effect:
+      kind: heal_hp
+      amount: 450
+- id: minor_mana_potion
+  piece_name: Minor Mana Potion
+  size: tiny
+  base_weight_kg: 0.3
+  stackable: true
+  stack_max: 20
+  kind:
+    type: consumable
+    charges: 1
+    effect:
+      kind: heal_mana
+      amount: 40
+- id: lesser_mana_potion
+  piece_name: Lesser Mana Potion
+  size: tiny
+  base_weight_kg: 0.3
+  stackable: true
+  stack_max: 20
+  kind:
+    type: consumable
+    charges: 1
+    effect:
+      kind: heal_mana
+      amount: 80
+- id: mana_potion
+  piece_name: Mana Potion
+  size: tiny
+  base_weight_kg: 0.3
+  stackable: true
+  stack_max: 20
+  kind:
+    type: consumable
+    charges: 1
+    effect:
+      kind: heal_mana
+      amount: 160
+- id: greater_mana_potion
+  piece_name: Greater Mana Potion
+  size: tiny
+  base_weight_kg: 0.3
+  stackable: true
+  stack_max: 20
+  kind:
+    type: consumable
+    charges: 1
+    effect:
+      kind: heal_mana
+      amount: 280
+- id: major_mana_potion
+  piece_name: Major Mana Potion
+  size: tiny
+  base_weight_kg: 0.3
+  stackable: true
+  stack_max: 20
+  kind:
+    type: consumable
+    charges: 1
+    effect:
+      kind: heal_mana
+      amount: 450
+- id: minor_stamina_potion
+  piece_name: Minor Stamina Draught
+  size: tiny
+  base_weight_kg: 0.3
+  stackable: true
+  stack_max: 20
+  kind:
+    type: consumable
+    charges: 1
+    effect:
+      kind: heal_stamina
+      amount: 40
+- id: lesser_stamina_potion
+  piece_name: Lesser Stamina Draught
+  size: tiny
+  base_weight_kg: 0.3
+  stackable: true
+  stack_max: 20
+  kind:
+    type: consumable
+    charges: 1
+    effect:
+      kind: heal_stamina
+      amount: 80
+- id: stamina_potion
+  piece_name: Stamina Draught
+  size: tiny
+  base_weight_kg: 0.3
+  stackable: true
+  stack_max: 20
+  kind:
+    type: consumable
+    charges: 1
+    effect:
+      kind: heal_stamina
+      amount: 160
+- id: greater_stamina_potion
+  piece_name: Greater Stamina Draught
+  size: tiny
+  base_weight_kg: 0.3
+  stackable: true
+  stack_max: 20
+  kind:
+    type: consumable
+    charges: 1
+    effect:
+      kind: heal_stamina
+      amount: 280
+- id: major_stamina_potion
+  piece_name: Major Stamina Draught
+  size: tiny
+  base_weight_kg: 0.3
+  stackable: true
+  stack_max: 20
+  kind:
+    type: consumable
+    charges: 1
+    effect:
+      kind: heal_stamina
+      amount: 450
+- id: lesser_slashing_resist_potion
+  piece_name: Lesser Slashing Resistance Potion
+  size: tiny
+  base_weight_kg: 0.3
+  stackable: true
+  stack_max: 10
+  kind:
+    type: consumable
+    charges: 1
+    effect:
+      kind: buff
+      id: lesser_slashing_resist
+      duration_secs: 180.0
+      damage_mult_add: 0.0
+      resist_adds:
+      - 30.0
+      - 0.0
+      - 0.0
+      - 0.0
+      - 0.0
+      - 0.0
+      - 0.0
+      - 0.0
+      - 0.0
+      - 0.0
+      - 0.0
+      - 0.0
+- id: greater_slashing_resist_potion
+  piece_name: Greater Slashing Resistance Potion
+  size: tiny
+  base_weight_kg: 0.3
+  stackable: true
+  stack_max: 10
+  kind:
+    type: consumable
+    charges: 1
+    effect:
+      kind: buff
+      id: greater_slashing_resist
+      duration_secs: 180.0
+      damage_mult_add: 0.0
+      resist_adds:
+      - 60.0
+      - 0.0
+      - 0.0
+      - 0.0
+      - 0.0
+      - 0.0
+      - 0.0
+      - 0.0
+      - 0.0
+      - 0.0
+      - 0.0
+      - 0.0
+- id: lesser_piercing_resist_potion
+  piece_name: Lesser Piercing Resistance Potion
+  size: tiny
+  base_weight_kg: 0.3
+  stackable: true
+  stack_max: 10
+  kind:
+    type: consumable
+    charges: 1
+    effect:
+      kind: buff
+      id: lesser_piercing_resist
+      duration_secs: 180.0
+      damage_mult_add: 0.0
+      resist_adds:
+      - 0.0
+      - 30.0
+      - 0.0
+      - 0.0
+      - 0.0
+      - 0.0
+      - 0.0
+      - 0.0
+      - 0.0
+      - 0.0
+      - 0.0
+      - 0.0
+- id: greater_piercing_resist_potion
+  piece_name: Greater Piercing Resistance Potion
+  size: tiny
+  base_weight_kg: 0.3
+  stackable: true
+  stack_max: 10
+  kind:
+    type: consumable
+    charges: 1
+    effect:
+      kind: buff
+      id: greater_piercing_resist
+      duration_secs: 180.0
+      damage_mult_add: 0.0
+      resist_adds:
+      - 0.0
+      - 60.0
+      - 0.0
+      - 0.0
+      - 0.0
+      - 0.0
+      - 0.0
+      - 0.0
+      - 0.0
+      - 0.0
+      - 0.0
+      - 0.0
+- id: lesser_bludgeoning_resist_potion
+  piece_name: Lesser Bludgeoning Resistance Potion
+  size: tiny
+  base_weight_kg: 0.3
+  stackable: true
+  stack_max: 10
+  kind:
+    type: consumable
+    charges: 1
+    effect:
+      kind: buff
+      id: lesser_bludgeoning_resist
+      duration_secs: 180.0
+      damage_mult_add: 0.0
+      resist_adds:
+      - 0.0
+      - 0.0
+      - 30.0
+      - 0.0
+      - 0.0
+      - 0.0
+      - 0.0
+      - 0.0
+      - 0.0
+      - 0.0
+      - 0.0
+      - 0.0
+- id: greater_bludgeoning_resist_potion
+  piece_name: Greater Bludgeoning Resistance Potion
+  size: tiny
+  base_weight_kg: 0.3
+  stackable: true
+  stack_max: 10
+  kind:
+    type: consumable
+    charges: 1
+    effect:
+      kind: buff
+      id: greater_bludgeoning_resist
+      duration_secs: 180.0
+      damage_mult_add: 0.0
+      resist_adds:
+      - 0.0
+      - 0.0
+      - 60.0
+      - 0.0
+      - 0.0
+      - 0.0
+      - 0.0
+      - 0.0
+      - 0.0
+      - 0.0
+      - 0.0
+      - 0.0
+- id: lesser_fire_resist_potion
+  piece_name: Lesser Fire Resistance Potion
+  size: tiny
+  base_weight_kg: 0.3
+  stackable: true
+  stack_max: 10
+  kind:
+    type: consumable
+    charges: 1
+    effect:
+      kind: buff
+      id: lesser_fire_resist
+      duration_secs: 180.0
+      damage_mult_add: 0.0
+      resist_adds:
+      - 0.0
+      - 0.0
+      - 0.0
+      - 30.0
+      - 0.0
+      - 0.0
+      - 0.0
+      - 0.0
+      - 0.0
+      - 0.0
+      - 0.0
+      - 0.0
+- id: greater_fire_resist_potion
+  piece_name: Greater Fire Resistance Potion
+  size: tiny
+  base_weight_kg: 0.3
+  stackable: true
+  stack_max: 10
+  kind:
+    type: consumable
+    charges: 1
+    effect:
+      kind: buff
+      id: greater_fire_resist
+      duration_secs: 180.0
+      damage_mult_add: 0.0
+      resist_adds:
+      - 0.0
+      - 0.0
+      - 0.0
+      - 60.0
+      - 0.0
+      - 0.0
+      - 0.0
+      - 0.0
+      - 0.0
+      - 0.0
+      - 0.0
+      - 0.0
+- id: lesser_cold_resist_potion
+  piece_name: Lesser Cold Resistance Potion
+  size: tiny
+  base_weight_kg: 0.3
+  stackable: true
+  stack_max: 10
+  kind:
+    type: consumable
+    charges: 1
+    effect:
+      kind: buff
+      id: lesser_cold_resist
+      duration_secs: 180.0
+      damage_mult_add: 0.0
+      resist_adds:
+      - 0.0
+      - 0.0
+      - 0.0
+      - 0.0
+      - 30.0
+      - 0.0
+      - 0.0
+      - 0.0
+      - 0.0
+      - 0.0
+      - 0.0
+      - 0.0
+- id: greater_cold_resist_potion
+  piece_name: Greater Cold Resistance Potion
+  size: tiny
+  base_weight_kg: 0.3
+  stackable: true
+  stack_max: 10
+  kind:
+    type: consumable
+    charges: 1
+    effect:
+      kind: buff
+      id: greater_cold_resist
+      duration_secs: 180.0
+      damage_mult_add: 0.0
+      resist_adds:
+      - 0.0
+      - 0.0
+      - 0.0
+      - 0.0
+      - 60.0
+      - 0.0
+      - 0.0
+      - 0.0
+      - 0.0
+      - 0.0
+      - 0.0
+      - 0.0
+- id: lesser_lightning_resist_potion
+  piece_name: Lesser Lightning Resistance Potion
+  size: tiny
+  base_weight_kg: 0.3
+  stackable: true
+  stack_max: 10
+  kind:
+    type: consumable
+    charges: 1
+    effect:
+      kind: buff
+      id: lesser_lightning_resist
+      duration_secs: 180.0
+      damage_mult_add: 0.0
+      resist_adds:
+      - 0.0
+      - 0.0
+      - 0.0
+      - 0.0
+      - 0.0
+      - 30.0
+      - 0.0
+      - 0.0
+      - 0.0
+      - 0.0
+      - 0.0
+      - 0.0
+- id: greater_lightning_resist_potion
+  piece_name: Greater Lightning Resistance Potion
+  size: tiny
+  base_weight_kg: 0.3
+  stackable: true
+  stack_max: 10
+  kind:
+    type: consumable
+    charges: 1
+    effect:
+      kind: buff
+      id: greater_lightning_resist
+      duration_secs: 180.0
+      damage_mult_add: 0.0
+      resist_adds:
+      - 0.0
+      - 0.0
+      - 0.0
+      - 0.0
+      - 0.0
+      - 60.0
+      - 0.0
+      - 0.0
+      - 0.0
+      - 0.0
+      - 0.0
+      - 0.0
+- id: lesser_force_resist_potion
+  piece_name: Lesser Force Resistance Potion
+  size: tiny
+  base_weight_kg: 0.3
+  stackable: true
+  stack_max: 10
+  kind:
+    type: consumable
+    charges: 1
+    effect:
+      kind: buff
+      id: lesser_force_resist
+      duration_secs: 180.0
+      damage_mult_add: 0.0
+      resist_adds:
+      - 0.0
+      - 0.0
+      - 0.0
+      - 0.0
+      - 0.0
+      - 0.0
+      - 30.0
+      - 0.0
+      - 0.0
+      - 0.0
+      - 0.0
+      - 0.0
+- id: greater_force_resist_potion
+  piece_name: Greater Force Resistance Potion
+  size: tiny
+  base_weight_kg: 0.3
+  stackable: true
+  stack_max: 10
+  kind:
+    type: consumable
+    charges: 1
+    effect:
+      kind: buff
+      id: greater_force_resist
+      duration_secs: 180.0
+      damage_mult_add: 0.0
+      resist_adds:
+      - 0.0
+      - 0.0
+      - 0.0
+      - 0.0
+      - 0.0
+      - 0.0
+      - 60.0
+      - 0.0
+      - 0.0
+      - 0.0
+      - 0.0
+      - 0.0
+- id: lesser_radiant_resist_potion
+  piece_name: Lesser Radiant Resistance Potion
+  size: tiny
+  base_weight_kg: 0.3
+  stackable: true
+  stack_max: 10
+  kind:
+    type: consumable
+    charges: 1
+    effect:
+      kind: buff
+      id: lesser_radiant_resist
+      duration_secs: 180.0
+      damage_mult_add: 0.0
+      resist_adds:
+      - 0.0
+      - 0.0
+      - 0.0
+      - 0.0
+      - 0.0
+      - 0.0
+      - 0.0
+      - 30.0
+      - 0.0
+      - 0.0
+      - 0.0
+      - 0.0
+- id: greater_radiant_resist_potion
+  piece_name: Greater Radiant Resistance Potion
+  size: tiny
+  base_weight_kg: 0.3
+  stackable: true
+  stack_max: 10
+  kind:
+    type: consumable
+    charges: 1
+    effect:
+      kind: buff
+      id: greater_radiant_resist
+      duration_secs: 180.0
+      damage_mult_add: 0.0
+      resist_adds:
+      - 0.0
+      - 0.0
+      - 0.0
+      - 0.0
+      - 0.0
+      - 0.0
+      - 0.0
+      - 60.0
+      - 0.0
+      - 0.0
+      - 0.0
+      - 0.0
+- id: lesser_necrotic_resist_potion
+  piece_name: Lesser Necrotic Resistance Potion
+  size: tiny
+  base_weight_kg: 0.3
+  stackable: true
+  stack_max: 10
+  kind:
+    type: consumable
+    charges: 1
+    effect:
+      kind: buff
+      id: lesser_necrotic_resist
+      duration_secs: 180.0
+      damage_mult_add: 0.0
+      resist_adds:
+      - 0.0
+      - 0.0
+      - 0.0
+      - 0.0
+      - 0.0
+      - 0.0
+      - 0.0
+      - 0.0
+      - 30.0
+      - 0.0
+      - 0.0
+      - 0.0
+- id: greater_necrotic_resist_potion
+  piece_name: Greater Necrotic Resistance Potion
+  size: tiny
+  base_weight_kg: 0.3
+  stackable: true
+  stack_max: 10
+  kind:
+    type: consumable
+    charges: 1
+    effect:
+      kind: buff
+      id: greater_necrotic_resist
+      duration_secs: 180.0
+      damage_mult_add: 0.0
+      resist_adds:
+      - 0.0
+      - 0.0
+      - 0.0
+      - 0.0
+      - 0.0
+      - 0.0
+      - 0.0
+      - 0.0
+      - 60.0
+      - 0.0
+      - 0.0
+      - 0.0
+- id: lesser_blood_resist_potion
+  piece_name: Lesser Blood Resistance Potion
+  size: tiny
+  base_weight_kg: 0.3
+  stackable: true
+  stack_max: 10
+  kind:
+    type: consumable
+    charges: 1
+    effect:
+      kind: buff
+      id: lesser_blood_resist
+      duration_secs: 180.0
+      damage_mult_add: 0.0
+      resist_adds:
+      - 0.0
+      - 0.0
+      - 0.0
+      - 0.0
+      - 0.0
+      - 0.0
+      - 0.0
+      - 0.0
+      - 0.0
+      - 30.0
+      - 0.0
+      - 0.0
+- id: greater_blood_resist_potion
+  piece_name: Greater Blood Resistance Potion
+  size: tiny
+  base_weight_kg: 0.3
+  stackable: true
+  stack_max: 10
+  kind:
+    type: consumable
+    charges: 1
+    effect:
+      kind: buff
+      id: greater_blood_resist
+      duration_secs: 180.0
+      damage_mult_add: 0.0
+      resist_adds:
+      - 0.0
+      - 0.0
+      - 0.0
+      - 0.0
+      - 0.0
+      - 0.0
+      - 0.0
+      - 0.0
+      - 0.0
+      - 60.0
+      - 0.0
+      - 0.0
+- id: lesser_poison_resist_potion
+  piece_name: Lesser Poison Resistance Potion
+  size: tiny
+  base_weight_kg: 0.3
+  stackable: true
+  stack_max: 10
+  kind:
+    type: consumable
+    charges: 1
+    effect:
+      kind: buff
+      id: lesser_poison_resist
+      duration_secs: 180.0
+      damage_mult_add: 0.0
+      resist_adds:
+      - 0.0
+      - 0.0
+      - 0.0
+      - 0.0
+      - 0.0
+      - 0.0
+      - 0.0
+      - 0.0
+      - 0.0
+      - 0.0
+      - 30.0
+      - 0.0
+- id: greater_poison_resist_potion
+  piece_name: Greater Poison Resistance Potion
+  size: tiny
+  base_weight_kg: 0.3
+  stackable: true
+  stack_max: 10
+  kind:
+    type: consumable
+    charges: 1
+    effect:
+      kind: buff
+      id: greater_poison_resist
+      duration_secs: 180.0
+      damage_mult_add: 0.0
+      resist_adds:
+      - 0.0
+      - 0.0
+      - 0.0
+      - 0.0
+      - 0.0
+      - 0.0
+      - 0.0
+      - 0.0
+      - 0.0
+      - 0.0
+      - 60.0
+      - 0.0
+- id: lesser_acid_resist_potion
+  piece_name: Lesser Acid Resistance Potion
+  size: tiny
+  base_weight_kg: 0.3
+  stackable: true
+  stack_max: 10
+  kind:
+    type: consumable
+    charges: 1
+    effect:
+      kind: buff
+      id: lesser_acid_resist
+      duration_secs: 180.0
+      damage_mult_add: 0.0
+      resist_adds:
+      - 0.0
+      - 0.0
+      - 0.0
+      - 0.0
+      - 0.0
+      - 0.0
+      - 0.0
+      - 0.0
+      - 0.0
+      - 0.0
+      - 0.0
+      - 30.0
+- id: greater_acid_resist_potion
+  piece_name: Greater Acid Resistance Potion
+  size: tiny
+  base_weight_kg: 0.3
+  stackable: true
+  stack_max: 10
+  kind:
+    type: consumable
+    charges: 1
+    effect:
+      kind: buff
+      id: greater_acid_resist
+      duration_secs: 180.0
+      damage_mult_add: 0.0
+      resist_adds:
+      - 0.0
+      - 0.0
+      - 0.0
+      - 0.0
+      - 0.0
+      - 0.0
+      - 0.0
+      - 0.0
+      - 0.0
+      - 0.0
+      - 0.0
+      - 60.0
+- id: hardtack
+  piece_name: Hardtack
+  size: small
+  base_weight_kg: 0.5
+  stackable: true
+  stack_max: 20
+  kind:
+    type: consumable
+    charges: 1
+    effect:
+      kind: heal_hp
+      amount: 30
+- id: traveler_rations
+  piece_name: Traveler's Rations
+  size: small
+  base_weight_kg: 0.5
+  stackable: true
+  stack_max: 20
+  kind:
+    type: consumable
+    charges: 1
+    effect:
+      kind: heal_hp
+      amount: 30
+- id: bread_loaf
+  piece_name: Bread Loaf
+  size: small
+  base_weight_kg: 0.5
+  stackable: true
+  stack_max: 20
+  kind:
+    type: consumable
+    charges: 1
+    effect:
+      kind: heal_hp
+      amount: 30
+- id: cheese_wheel
+  piece_name: Cheese Wheel
+  size: small
+  base_weight_kg: 0.5
+  stackable: true
+  stack_max: 20
+  kind:
+    type: consumable
+    charges: 1
+    effect:
+      kind: heal_hp
+      amount: 30
+- id: salted_jerky
+  piece_name: Salted Jerky
+  size: small
+  base_weight_kg: 0.5
+  stackable: true
+  stack_max: 20
+  kind:
+    type: consumable
+    charges: 1
+    effect:
+      kind: heal_hp
+      amount: 30
+- id: hearty_stew
+  piece_name: Hearty Stew
+  size: small
+  base_weight_kg: 0.5
+  stackable: true
+  stack_max: 20
+  kind:
+    type: consumable
+    charges: 1
+    effect:
+      kind: heal_hp
+      amount: 30
+- id: honey_pie
+  piece_name: Honey Pie
+  size: small
+  base_weight_kg: 0.5
+  stackable: true
+  stack_max: 20
+  kind:
+    type: consumable
+    charges: 1
+    effect:
+      kind: heal_hp
+      amount: 30
+- id: festival_feast
+  piece_name: Festival Feast
+  size: small
+  base_weight_kg: 0.5
+  stackable: true
+  stack_max: 20
+  kind:
+    type: consumable
+    charges: 2
+    effect:
+      kind: heal_hp
+      amount: 30
+- id: elixir_of_might
+  piece_name: Elixir of Might
+  size: tiny
+  base_weight_kg: 0.4
+  stackable: true
+  stack_max: 10
+  kind:
+    type: consumable
+    charges: 1
+    effect:
+      kind: buff
+      id: elixir_of_might
+      duration_secs: 300.0
+      damage_mult_add: 0.15
+      resist_adds:
+      - 0.0
+      - 0.0
+      - 0.0
+      - 0.0
+      - 0.0
+      - 0.0
+      - 0.0
+      - 0.0
+      - 0.0
+      - 0.0
+      - 0.0
+      - 0.0
+- id: elixir_of_finesse
+  piece_name: Elixir of Finesse
+  size: tiny
+  base_weight_kg: 0.4
+  stackable: true
+  stack_max: 10
+  kind:
+    type: consumable
+    charges: 1
+    effect:
+      kind: buff
+      id: elixir_of_finesse
+      duration_secs: 300.0
+      damage_mult_add: 0.15
+      resist_adds:
+      - 0.0
+      - 0.0
+      - 0.0
+      - 0.0
+      - 0.0
+      - 0.0
+      - 0.0
+      - 0.0
+      - 0.0
+      - 0.0
+      - 0.0
+      - 0.0
+- id: elixir_of_arcana
+  piece_name: Elixir of Arcana
+  size: tiny
+  base_weight_kg: 0.4
+  stackable: true
+  stack_max: 10
+  kind:
+    type: consumable
+    charges: 1
+    effect:
+      kind: buff
+      id: elixir_of_arcana
+      duration_secs: 300.0
+      damage_mult_add: 0.15
+      resist_adds:
+      - 0.0
+      - 0.0
+      - 0.0
+      - 0.0
+      - 0.0
+      - 0.0
+      - 0.0
+      - 0.0
+      - 0.0
+      - 0.0
+      - 0.0
+      - 0.0
+- id: elixir_of_warding
+  piece_name: Warding Elixir
+  size: tiny
+  base_weight_kg: 0.4
+  stackable: true
+  stack_max: 10
+  kind:
+    type: consumable
+    charges: 1
+    effect:
+      kind: buff
+      id: elixir_of_warding
+      duration_secs: 300.0
+      damage_mult_add: 0.0
+      resist_adds:
+      - 15.0
+      - 15.0
+      - 15.0
+      - 15.0
+      - 15.0
+      - 15.0
+      - 15.0
+      - 15.0
+      - 15.0
+      - 15.0
+      - 15.0
+      - 15.0
+- id: elixir_of_swiftness
+  piece_name: Swiftness Elixir
+  size: tiny
+  base_weight_kg: 0.4
+  stackable: true
+  stack_max: 10
+  kind:
+    type: consumable
+    charges: 1
+    effect:
+      kind: none
+- id: elixir_of_fortune
+  piece_name: Lucky Elixir
+  size: tiny
+  base_weight_kg: 0.4
+  stackable: true
+  stack_max: 10
+  kind:
+    type: consumable
+    charges: 1
+    effect:
+      kind: none
+- id: elixir_of_giants
+  piece_name: Giant's Elixir
+  size: tiny
+  base_weight_kg: 0.4
+  stackable: true
+  stack_max: 10
+  kind:
+    type: consumable
+    charges: 1
+    effect:
+      kind: buff
+      id: elixir_of_giants
+      duration_secs: 120.0
+      damage_mult_add: 0.25
+      resist_adds:
+      - 0.0
+      - 0.0
+      - 0.0
+      - 0.0
+      - 0.0
+      - 0.0
+      - 0.0
+      - 0.0
+      - 0.0
+      - 0.0
+      - 0.0
+      - 0.0
+- id: elixir_of_invisibility
+  piece_name: Elixir of Fading
+  size: tiny
+  base_weight_kg: 0.4
+  stackable: true
+  stack_max: 10
+  kind:
+    type: consumable
+    charges: 1
+    effect:
+      kind: none
+- id: scroll_of_recall
+  piece_name: Scroll of Recall
+  size: small
+  base_weight_kg: 0.1
+  stackable: true
+  stack_max: 10
+  kind:
+    type: consumable
+    charges: 1
+    effect:
+      kind: none
+- id: scroll_of_identification
+  piece_name: Scroll of Identification
+  size: small
+  base_weight_kg: 0.1
+  stackable: true
+  stack_max: 10
+  kind:
+    type: consumable
+    charges: 1
+    effect:
+      kind: none
+- id: scroll_of_repair
+  piece_name: Scroll of Repair
+  size: small
+  base_weight_kg: 0.1
+  stackable: true
+  stack_max: 10
+  kind:
+    type: consumable
+    charges: 1
+    effect:
+      kind: none
+- id: scroll_of_blessing
+  piece_name: Scroll of Blessing
+  size: small
+  base_weight_kg: 0.1
+  stackable: true
+  stack_max: 10
+  kind:
+    type: consumable
+    charges: 1
+    effect:
+      kind: none

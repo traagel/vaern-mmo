@@ -1,0 +1,46 @@
+id: _roster__heartland_ride
+zone: heartland_ride
+mob_count: 24
+mob_ids:
+- mob_heartland_ride_beast_wolf
+- mob_heartland_ride_beast_boar
+- mob_heartland_ride_beast_stag
+- mob_heartland_ride_beast_heron
+- mob_heartland_ride_beast_otter
+- mob_heartland_ride_beast_bear
+- mob_heartland_ride_ambient_duck
+- mob_heartland_ride_exotic_drifter_shade
+- mob_heartland_ride_warband_highway_bandit
+- mob_heartland_ride_warband_bandit_crossbow
+- mob_heartland_ride_warband_baron_houseguard
+- mob_heartland_ride_warband_corrupt_merchant
+- mob_heartland_ride_named_baron_vessen
+- mob_heartland_ride_named_captain_byrn_field
+- mob_heartland_ride_juvenile_wolf
+- mob_heartland_ride_juvenile_boar
+- mob_heartland_ride_juvenile_stag
+- mob_heartland_ride_juvenile_heron
+- mob_heartland_ride_juvenile_otter
+- mob_heartland_ride_juvenile_bear
+- mob_heartland_ride_alpha_wolf
+- mob_heartland_ride_alpha_boar
+- mob_heartland_ride_alpha_stag
+- mob_heartland_ride_alpha_heron
+by_creature_type:
+  beast: 17
+  aberration: 1
+  humanoid: 6
+by_armor_class:
+  hide: 17
+  ethereal: 1
+  leather: 3
+  plate: 3
+by_rarity:
+  common: 16
+  elite: 7
+  named: 1
+level_min: 6
+level_max: 12
+named_or_chain_targets:
+- mob_heartland_ride_named_baron_vessen
+- mob_heartland_ride_named_captain_byrn_field

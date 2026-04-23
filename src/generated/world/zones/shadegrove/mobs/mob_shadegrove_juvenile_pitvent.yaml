@@ -1,0 +1,25 @@
+id: mob_shadegrove_juvenile_pitvent
+name: Juvenile Pit-Vent Elemental
+zone: shadegrove
+level: 12
+creature_type: elemental
+armor_class: none
+rarity: common
+role: scout
+faction_alignment: hostile_to_faction_b
+hp_tier: standard
+damage:
+  primary_school: fire
+  attack_range: ranged_short
+  dps_tier: light
+behavior:
+  aggro_range: medium
+  social_radius: 0
+  flee_threshold: 0.0
+  calls_allies: false
+  patrol: long
+loot_tier: standard
+drops:
+  gold_copper_avg: 12
+  item_hint: biome-flavored trash material
+biome_context: 'young, lower HP but faster; base form: Pit-Vent Elemental'

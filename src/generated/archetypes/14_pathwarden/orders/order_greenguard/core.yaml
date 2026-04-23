@@ -1,0 +1,27 @@
+id: order_greenguard
+faction: faction_a
+archetype_id: 14
+archetype_position:
+  might: 25
+  arcana: 25
+  finesse: 50
+player_facing:
+  class_name: Greenguard
+  title_singular: Greenguard
+  title_plural: Greenguard
+schools_taught:
+  might:
+  - spear
+  arcana:
+  - nature
+  finesse:
+  - bow
+  - dagger
+  - silent
+  - tonics
+flagship: true
+institutions:
+  primary: circle_of_roots
+  secondary: night_quick_guild
+  tertiary: knight_order
+chapter: chapter_greenguard

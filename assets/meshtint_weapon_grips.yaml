@@ -1,0 +1,112 @@
+# Hand-calibrated grip offsets for Meshtint weapon overlays parented to
+# the humanoid rig's hand bones: RigRPalm (mainhand) or RigLPalm (offhand,
+# shields).
+#
+# Units:
+#   tx/ty/tz:      metres, bone-local (palm's local axes at its bind pose)
+#   rx/ry/rz:      degrees, Euler XYZ applied before flips
+#   flip_x/y/z:    180° post-multiply on the named axis
+#
+# Lookup: by weapon category (`Sword`, `Axe`, …) and variant number (the
+# `NN` in `Sword_NN.glb`). If no `overrides[NN]` entry exists, the
+# category's `default` grip is used.
+#
+# Calibration source: dialled in via the vaern-museum "Weapon grip (live)"
+# panel on 2026-04-21. Meshtint's Polygonal Fantasy Pack ships every
+# weapon mesh authored at the world origin with no canonical orientation,
+# so the numbers here were found empirically, not extracted from FBX.
+#
+# `attach` is a hint for the loader:
+#   mainhand (default) → RigRPalm
+#   offhand            → RigLPalm
+#   back               → spine/back attach point (not yet wired)
+
+categories:
+  Sword:
+    attach: mainhand
+    default: { tx: 0.120, ty: -0.020, tz: 0.0, rx: -90.0, ry: 0.0, rz: 0.0, flip_x: false, flip_y: false, flip_z: false }
+    overrides:
+      2: { tx: 0.120, ty: -0.020, tz: 0.0, rx:   0.0, ry: 0.0, rz: 0.0, flip_x: true,  flip_y: false, flip_z: false }
+
+  Axe:
+    attach: mainhand
+    default: { tx: 0.120, ty: -0.020, tz: 0.0, rx:   0.0, ry: 0.0, rz: 0.0, flip_x: true,  flip_y: false, flip_z: true  }
+    overrides:
+      3: { tx: 0.120, ty: -0.020, tz: 0.0, rx: -90.0, ry: 0.0, rz: 0.0, flip_x: true,  flip_y: false, flip_z: true  }
+
+  Dagger:
+    attach: mainhand
+    default: { tx: 0.120, ty: -0.020, tz: 0.0, rx: -90.0, ry: 0.0, rz: 0.0, flip_x: true,  flip_y: false, flip_z: true  }
+
+  Hammer:
+    attach: mainhand
+    default: { tx: 0.120, ty: -0.020, tz: 0.0, rx:   0.0, ry: 0.0, rz: 0.0, flip_x: true,  flip_y: false, flip_z: true  }
+
+  Mace:
+    attach: mainhand
+    default: { tx: 0.120, ty: -0.020, tz: 0.0, rx: -90.0, ry: 0.0, rz: 0.0, flip_x: true,  flip_y: false, flip_z: true  }
+
+  Staff:
+    attach: mainhand
+    default: { tx: 0.120, ty: -0.020, tz: 0.0, rx:   0.0, ry: 0.0, rz: 0.0, flip_x: true,  flip_y: false, flip_z: true  }
+    overrides:
+      1: { tx: 0.120, ty: -0.020, tz: 0.0, rx: -90.0, ry: 0.0, rz: 0.0, flip_x: true,  flip_y: false, flip_z: true  }
+
+  Wand:
+    attach: mainhand
+    default: { tx: 0.120, ty: -0.020, tz: 0.0, rx: -90.0, ry: 0.0, rz: 0.0, flip_x: true,  flip_y: false, flip_z: true  }
+
+  Bow:
+    attach: mainhand
+    default: { tx: 0.120, ty: -0.020, tz: 0.0, rx: -90.0, ry: 0.0, rz: 0.0, flip_x: true,  flip_y: false, flip_z: true  }
+
+  Shield:
+    attach: offhand
+    default: { tx: 0.100, ty: -0.500, tz: 0.0, rx:  90.0, ry: 0.0, rz: 0.0, flip_x: false, flip_y: false, flip_z: false }
+
+  Pick_Axe:
+    attach: mainhand
+    default: { tx: 0.120, ty: -0.020, tz: 0.0, rx:  90.0, ry: 0.0, rz: 0.0, flip_x: true,  flip_y: false, flip_z: false }
+
+  Sickle:
+    attach: mainhand
+    default: { tx: 0.120, ty: -0.020, tz: 0.0, rx:  90.0, ry: 0.0, rz: 0.0, flip_x: true,  flip_y: false, flip_z: false }
+
+  Scythe:
+    attach: mainhand
+    default: { tx: 0.120, ty: -0.020, tz: 0.0, rx:  90.0, ry: 0.0, rz: 0.0, flip_x: true,  flip_y: false, flip_z: false }
+
+  Spade:
+    attach: mainhand
+    default: { tx: 0.120, ty: -0.020, tz: 0.0, rx:  90.0, ry: 0.0, rz: 0.0, flip_x: true,  flip_y: false, flip_z: false }
+
+  Rake:
+    attach: mainhand
+    default: { tx: 0.120, ty: -0.020, tz: 0.0, rx:  90.0, ry: 0.0, rz: 0.0, flip_x: true,  flip_y: false, flip_z: false }
+
+  Blacksmith_Hammer:
+    attach: mainhand
+    default: { tx: 0.120, ty: -0.020, tz: 0.0, rx:  90.0, ry: 0.0, rz: 0.0, flip_x: true,  flip_y: false, flip_z: false }
+
+  Bag:
+    attach: mainhand
+    default: { tx: 0.100, ty:  0.150, tz: 0.0, rx:   0.0, ry: 0.0, rz: 0.0, flip_x: false, flip_y: false, flip_z: false }
+
+  Basket:
+    attach: mainhand
+    default: { tx: 0.100, ty:  0.150, tz: 0.0, rx:   0.0, ry: 0.0, rz: 0.0, flip_x: false, flip_y: false, flip_z: false }
+
+  # --- Uncalibrated / special ---
+
+  # Quivers attach to the back, not a palm. Back attach point isn't wired
+  # into the museum yet, so picking a Quiver in the current build will
+  # fall through to BONE_MAINHAND and render incorrectly.
+  Quiver:
+    attach: back
+    default: { tx: 0.0, ty: 0.0, tz: 0.0, rx: 0.0, ry: 0.0, rz: 0.0, flip_x: false, flip_y: false, flip_z: false }
+
+  # Arrows nock on the bow; they're not hand-equipped as a mainhand item.
+  # Left as a placeholder.
+  Arrow:
+    attach: mainhand
+    default: { tx: 0.120, ty: -0.020, tz: 0.0, rx: 0.0, ry: 0.0, rz: 0.0, flip_x: false, flip_y: false, flip_z: false }

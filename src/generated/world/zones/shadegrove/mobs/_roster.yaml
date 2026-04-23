@@ -1,0 +1,53 @@
+id: _roster__shadegrove
+zone: shadegrove
+mob_count: 27
+mob_ids:
+- mob_shadegrove_beast_ashwolf
+- mob_shadegrove_beast_cinderdrake
+- mob_shadegrove_beast_soottick
+- mob_shadegrove_beast_ashrevenant
+- mob_shadegrove_beast_embersnake
+- mob_shadegrove_beast_pitvent
+- mob_shadegrove_ambient_scarab
+- mob_shadegrove_exotic_ashwraith
+- mob_shadegrove_warband_schismatic_initiate
+- mob_shadegrove_warband_schismatic_speaker
+- mob_shadegrove_warband_sanctum_thug
+- mob_shadegrove_named_schismatic_leader
+- mob_shadegrove_juvenile_ashwolf
+- mob_shadegrove_juvenile_cinderdrake
+- mob_shadegrove_juvenile_soottick
+- mob_shadegrove_juvenile_ashrevenant
+- mob_shadegrove_juvenile_embersnake
+- mob_shadegrove_juvenile_pitvent
+- mob_shadegrove_alpha_ashwolf
+- mob_shadegrove_alpha_cinderdrake
+- mob_shadegrove_alpha_soottick
+- mob_shadegrove_alpha_ashrevenant
+- mob_shadegrove_alpha_embersnake
+- mob_shadegrove_alpha_pitvent
+- mob_shadegrove_matriarch_ashwolf
+- mob_shadegrove_matriarch_cinderdrake
+- mob_shadegrove_matriarch_soottick
+by_creature_type:
+  beast: 12
+  dragonkin: 4
+  undead: 4
+  elemental: 3
+  humanoid: 4
+by_armor_class:
+  hide: 12
+  scales: 4
+  bone: 4
+  none: 3
+  leather: 1
+  cloth: 1
+  plate: 2
+by_rarity:
+  common: 15
+  elite: 11
+  named: 1
+level_min: 12
+level_max: 18
+named_or_chain_targets:
+- mob_shadegrove_named_schismatic_leader

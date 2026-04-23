@@ -1,0 +1,16 @@
+id: mountain
+name: Mountain Interior
+climate: alpine, thin air, blizzard-season
+hazards:
+- rockfall
+- exposure
+- ancient collapsed ruin
+typical_flora:
+- lichen
+- stonewort
+- pine
+typical_fauna:
+- yeti-analogue
+- rock-drake
+- mountain-bear
+faction_affinity: contested

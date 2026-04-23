@@ -1,0 +1,83 @@
+# Flagship race × class × faction pairings for priority portrait generation.
+# One per race in its favored class on its native faction. These are the
+# first 10 images to generate when validating the race + class + faction
+# prompt composer.
+#
+# class_id matches src/generated/classes/NN_label.yaml
+# faction must be a race's own faction (morality gating is enforced by the
+# school layer; class position itself is morality-neutral).
+#
+# Additional combos can be added later; this file is the seed set.
+
+flagship:
+  # --- Concord (faction_a) ---
+  - id: mannin_fighter_concord
+    race: mannin
+    class_id: 0
+    class_label: Fighter
+    faction: faction_a
+    notes: iconic Concord human knight-fighter, the baseline heraldic soldier
+
+  - id: hearthkin_fighter_concord
+    race: hearthkin
+    class_id: 0
+    class_label: Fighter
+    faction: faction_a
+    notes: dwarven hearth-guardian, forge-master-at-arms with shield and hammer
+
+  - id: sunward_elen_wizard_concord
+    race: sunward_elen
+    class_id: 4
+    class_label: Wizard
+    faction: faction_a
+    notes: high-elven sun-scribe, iconic silver-robed spell-scholar
+
+  - id: wyrling_rogue_concord
+    race: wyrling
+    class_id: 8
+    class_label: Rogue
+    faction: faction_a
+    notes: urban halfling thief-scout, many-pocketed quick-fingered
+
+  - id: firland_druid_concord
+    race: firland
+    class_id: 3
+    class_label: Druid
+    faction: faction_a
+    notes: towering forest-keeper druid with gnarled staff and leaf-crown
+
+  # --- Rend (faction_b) ---
+  - id: skarn_barbarian_rend
+    race: skarn
+    class_id: 11
+    class_label: Barbarian
+    faction: faction_b
+    notes: half-orc-lineage raider with greataxe, iron clan-beads and war-paint
+
+  - id: darkling_elen_warlock_rend
+    race: darkling_elen
+    class_id: 6
+    class_label: Warlock
+    faction: faction_b
+    notes: dark elf pact-caster, ash-grey skin and shadow-bind runes
+
+  - id: kharun_sorcerer_rend
+    race: kharun
+    class_id: 5
+    class_label: Sorcerer
+    faction: faction_b
+    notes: pact-marked human sorcerer with ember eyes and innate shadow-magic
+
+  - id: gravewrought_duskblade_rend
+    race: gravewrought
+    class_id: 12
+    class_label: Duskblade
+    faction: faction_b
+    notes: bound-ancestor construct spellblade, rune-etched iron plate
+
+  - id: skrel_rogue_rend
+    race: skrel
+    class_id: 8
+    class_label: Rogue
+    faction: faction_b
+    notes: small goblin-kin scavenger rogue, paired daggers and scrap-armor

@@ -1,0 +1,56 @@
+id: chain_wyrling_guild_dues
+zone: wyrling_downs
+title: The Guild Dues
+premise: A Wyrling apprentice finds their first guild dues are a cover for something
+  older than the guild itself
+total_steps: 4
+final_reward:
+  xp_bonus: 1200
+  gold_bonus_copper: 500
+  item_hint: zone-appropriate starter-tier reward
+  title_hint: '''The Guild Dues'' completion title'
+breadcrumb_from: capital hub of the zone's faction-home
+final_boss_hint: the hidden broker who has been skimming for decades
+steps:
+- step: 1
+  id: chain_wyrling_guild_dues__01_join_the_guild
+  name: Join The Guild
+  level: 1
+  objective:
+    kind: talk
+    target_hint: Warden-of-Dues Pip
+  xp_reward: 62
+  gold_reward_copper: 15
+  prerequisite: null
+- step: 2
+  id: chain_wyrling_guild_dues__02_collect_first_dues
+  name: Collect First Dues
+  level: 2
+  objective:
+    kind: collect
+    target_hint: unpaid dues from three reluctant shops
+    count: 4
+  xp_reward: 154
+  gold_reward_copper: 30
+  prerequisite: chain_wyrling_guild_dues__01_join_the_guild
+- step: 3
+  id: chain_wyrling_guild_dues__03_follow_the_old_ledger
+  name: Follow The Old Ledger
+  level: 4
+  objective:
+    kind: investigate
+    target_hint: the back-alley cellar the ledger points to
+  xp_reward: 422
+  gold_reward_copper: 60
+  prerequisite: chain_wyrling_guild_dues__02_collect_first_dues
+- step: 4
+  id: chain_wyrling_guild_dues__04_confront_the_shadow_broker
+  name: Confront The Shadow Broker
+  level: 5
+  objective:
+    kind: kill
+    target_hint: the hidden broker who has been skimming for decades
+    count: 1
+  xp_reward: 600
+  gold_reward_copper: 75
+  prerequisite: chain_wyrling_guild_dues__03_follow_the_old_ledger

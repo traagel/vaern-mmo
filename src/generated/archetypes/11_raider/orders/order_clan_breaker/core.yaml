@@ -1,0 +1,26 @@
+id: order_clan_breaker
+faction: faction_b
+archetype_id: 11
+archetype_position:
+  might: 75
+  arcana: 0
+  finesse: 25
+player_facing:
+  class_name: Clan-Breaker
+  title_singular: Clan-Breaker
+  title_plural: Clan-Breakers
+schools_taught:
+  might:
+  - fury
+  - blade
+  - blunt
+  - spear
+  finesse:
+  - thrown
+  - dagger
+flagship: true
+institutions:
+  primary: hearth_broken_clans
+  secondary: alchemist_tinker_clans
+  tertiary: shadow_conclave
+chapter: chapter_clan_breaker

@@ -1,0 +1,41 @@
+class_id: 6
+internal_label: Warlock
+abstract_name: Pactblade
+position:
+  might: 0
+  arcana: 50
+  finesse: 50
+pillar_classification: edge
+dominant_pillar:
+- arcana
+- finesse
+edge: arcana-finesse
+primary_roles:
+- caster-rogue
+note: Arcana-Finesse balanced; ST spells plus sneak
+active_tiers:
+  might: []
+  arcana:
+  - 25
+  - 50
+  finesse:
+  - 25
+  - 50
+capabilities:
+  might: []
+  arcana:
+  - Cantrips (at-will minor spells)
+  - Minor debuffs (slow, weaken, minor curse)
+  - Minor utility (light, detect magic, mend)
+  - Single-target spells (damage or heal lean)
+  - Protective wards and shields
+  finesse:
+  - Basic stealth (hide in cover)
+  - Finesse weapons (rapier, dagger, shortbow)
+  - Light-armor mobility bonus
+  - Sneak attack (bonus damage from hidden)
+  - Dual-wielding
+  - Evasion / dodge reactions
+faction_labels:
+  faction_a: null
+  faction_b: null

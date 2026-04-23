@@ -1,0 +1,24 @@
+id: order_arcane_duellist
+faction: faction_a
+archetype_id: 5
+archetype_position:
+  might: 0
+  arcana: 75
+  finesse: 25
+flagship: false
+player_facing:
+  class_name: Arcane Duellist
+  title_singular: Arcane Duellist
+  title_plural: Arcane Duellists
+schools_taught:
+  arcana:
+  - arcane
+  finesse:
+  - dagger
+  - silent
+  - acrobat
+institutions:
+  primary: wayhouse_accord
+  secondary: night_quick_guild
+  tertiary: knight_order
+chapter: chapter_arcane_duellist

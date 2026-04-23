@@ -1,0 +1,62 @@
+id: filler_pool__ruin_line_north
+zone: ruin_line_north
+tier: contested
+total_pool_size: 103
+buckets:
+- id: filler__kill_grinder
+  bucket: kill_grinder
+  dominant_objective_kind: kill
+  pool_size: 36
+  level_range:
+    min: 30
+    max: 38
+  avg_xp_reward_per_quest: 4570
+  avg_gold_reward_copper: 102
+  repeatable: true
+  description: pool of 6-10 'kill N of local mob-type' quests scaling with zone mobs
+- id: filler__collect_grinder
+  bucket: collect_grinder
+  dominant_objective_kind: collect
+  pool_size: 31
+  level_range:
+    min: 30
+    max: 38
+  avg_xp_reward_per_quest: 4570
+  avg_gold_reward_copper: 102
+  repeatable: true
+  description: pool of 6-10 'gather N of local resource' quests tied to biome
+- id: filler__courier_relay
+  bucket: courier_relay
+  dominant_objective_kind: deliver
+  pool_size: 16
+  level_range:
+    min: 30
+    max: 38
+  avg_xp_reward_per_quest: 4570
+  avg_gold_reward_copper: 102
+  repeatable: true
+  description: pool of 4-6 inter-hub courier runs within the zone
+- id: filler__bounty_board
+  bucket: bounty_board
+  dominant_objective_kind: kill
+  pool_size: 12
+  level_range:
+    min: 30
+    max: 38
+  avg_xp_reward_per_quest: 4570
+  avg_gold_reward_copper: 102
+  repeatable: false
+  description: pool of 4-6 rare-spawn bounties posted at capital hubs
+- id: filler__lore_collection
+  bucket: lore_collection
+  dominant_objective_kind: investigate
+  pool_size: 8
+  level_range:
+    min: 30
+    max: 38
+  avg_xp_reward_per_quest: 4570
+  avg_gold_reward_copper: 102
+  repeatable: false
+  description: pool of 3-5 ambient-lore discovery quests (no combat)
+notes: Filler quests are templated pools. Individual quest records are generated at
+  runtime or in a later seed pass.

@@ -1,0 +1,5 @@
+id: chapter_necromancer
+institution: bleeding_vaults
+produces_order: order_necromancer
+secondary_institution: fury_houses
+tertiary_institution: shadow_conclave

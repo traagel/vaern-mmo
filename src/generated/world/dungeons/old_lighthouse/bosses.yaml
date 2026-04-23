@@ -1,0 +1,21 @@
+id: old_lighthouse_bosses
+instance: old_lighthouse
+bosses:
+- id: raider_shipmaster
+  name: The Raider Shipmaster
+  role_tag: miniboss
+  level: 38
+  mechanic: cleave + raid-call add-wave
+  hp_tier: elite
+- id: lantern_keeper
+  name: The Lantern Keeper
+  role_tag: miniboss
+  level: 42
+  mechanic: "light/dark phase \u2014 positioning matters"
+  hp_tier: elite
+- id: storm_thing
+  name: The Storm-Thing Bound
+  role_tag: final
+  level: 45
+  mechanic: lightning-arc chain, wind knockback
+  hp_tier: heroic

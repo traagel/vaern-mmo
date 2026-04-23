@@ -1,0 +1,15 @@
+specs:
+- id: star_mystic_oracle
+  name: Star-Oracle
+  emphasis: support
+  description: forecast-buff diviner
+  schools_focus:
+  - arcane
+  - lightning
+- id: star_mystic_blade
+  name: Star-Blade
+  emphasis: hybrid
+  description: spear-and-arcane mystic-combatant
+  schools_focus:
+  - spear
+  - lightning

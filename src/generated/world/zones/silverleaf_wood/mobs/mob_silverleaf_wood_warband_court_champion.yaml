@@ -1,0 +1,25 @@
+id: mob_silverleaf_wood_warband_court_champion
+name: Court Champion
+zone: silverleaf_wood
+level: 20
+creature_type: humanoid
+armor_class: plate
+rarity: elite
+role: elite
+faction_alignment: hostile_to_faction_a
+hp_tier: elite
+damage:
+  primary_school: blade
+  attack_range: melee
+  dps_tier: heavy
+behavior:
+  aggro_range: long
+  social_radius: 10
+  flee_threshold: 0.0
+  calls_allies: true
+  patrol: stationary
+loot_tier: rare
+drops:
+  gold_copper_avg: 180
+  item_hint: rare biome reagent; low chance of blue-tier item
+biome_context: "zone warband \u2014 elite role"

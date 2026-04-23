@@ -1,0 +1,19 @@
+id: gravewatch_fields
+name: Gravewatch Fields
+faction_control: faction_b
+biome: coastal_cliff
+region: barrow_shore
+tier: mid
+level_range:
+  min: 5
+  max: 12
+starter_race: null
+hub_count: 3
+budget:
+  quest_count_target: 80
+  unique_mob_types: 24
+  mob_kills_to_complete: 640
+  estimated_hours_to_complete:
+    solo: 14.4
+    duo: 10.4
+notes: Mid zone in the barrow shore. Targets 1-10 band session math.

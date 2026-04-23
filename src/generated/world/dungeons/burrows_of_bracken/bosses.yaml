@@ -1,0 +1,21 @@
+id: burrows_of_bracken_bosses
+instance: burrows_of_bracken
+bosses:
+- id: bracken_matron
+  name: The Bracken Matron
+  role_tag: miniboss
+  level: 10
+  mechanic: pack-summon burrow-rat swarm
+  hp_tier: elite
+- id: mad_molecatcher
+  name: The Mad Molecatcher
+  role_tag: miniboss
+  level: 12
+  mechanic: trap-layer, stealth-ambush
+  hp_tier: elite
+- id: king_gnarlroot
+  name: King Gnarlroot
+  role_tag: final
+  level: 15
+  mechanic: charge-and-bite, burrows mid-fight to reset position
+  hp_tier: heroic

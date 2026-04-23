@@ -1,0 +1,85 @@
+id: chain_pact_indelible_curse
+zone: pact_causeway
+title: The Indelible Curse
+premise: The Oath Pillar is writing a curse onto any Kharun who passes it; something
+  new is binding itself into the old contract
+total_steps: 7
+final_reward:
+  xp_bonus: 16052
+  gold_bonus_copper: 2200
+  item_hint: zone-appropriate mid-tier reward
+  title_hint: '''The Indelible Curse'' completion title'
+breadcrumb_from: capital hub of the zone's faction-home
+final_boss_hint: the pact-scribe rewriting the contract
+steps:
+- step: 1
+  id: chain_pact_indelible_curse__01_present_to_causeway_hold
+  name: Present To Causeway Hold
+  level: 15
+  objective:
+    kind: talk
+    target_hint: Causeway Chief Nell
+  xp_reward: 3960
+  gold_reward_copper: 225
+  prerequisite: null
+- step: 2
+  id: chain_pact_indelible_curse__02_document_the_curse_pattern
+  name: Document The Curse Pattern
+  level: 16
+  objective:
+    kind: investigate
+    target_hint: the pillar's new inscriptions
+  xp_reward: 4454
+  gold_reward_copper: 240
+  prerequisite: chain_pact_indelible_curse__01_present_to_causeway_hold
+- step: 3
+  id: chain_pact_indelible_curse__03_consult_the_stone_reader
+  name: Consult The Stone Reader
+  level: 17
+  objective:
+    kind: talk
+    target_hint: the stone-reader in his camp
+  xp_reward: 4978
+  gold_reward_copper: 255
+  prerequisite: chain_pact_indelible_curse__02_document_the_curse_pattern
+- step: 4
+  id: chain_pact_indelible_curse__04_enter_the_vault
+  name: Enter The Vault
+  level: 18
+  objective:
+    kind: investigate
+    target_hint: the oath-pillar vault
+  xp_reward: 5530
+  gold_reward_copper: 270
+  prerequisite: chain_pact_indelible_curse__03_consult_the_stone_reader
+- step: 5
+  id: chain_pact_indelible_curse__05_confront_the_pact_scribe
+  name: Confront The Pact Scribe
+  level: 20
+  objective:
+    kind: kill
+    target_hint: the pact-scribe rewriting the contract
+    count: 1
+  xp_reward: 6720
+  gold_reward_copper: 300
+  prerequisite: chain_pact_indelible_curse__04_enter_the_vault
+- step: 6
+  id: chain_pact_indelible_curse__06_untangle_the_new_terms
+  name: Untangle The New Terms
+  level: 21
+  objective:
+    kind: ritual
+    target_hint: the untangling-rite
+  xp_reward: 7358
+  gold_reward_copper: 315
+  prerequisite: chain_pact_indelible_curse__05_confront_the_pact_scribe
+- step: 7
+  id: chain_pact_indelible_curse__07_reseal_the_pillar
+  name: Reseal The Pillar
+  level: 22
+  objective:
+    kind: ritual
+    target_hint: the pillar-resealing
+  xp_reward: 8026
+  gold_reward_copper: 330
+  prerequisite: chain_pact_indelible_curse__06_untangle_the_new_terms

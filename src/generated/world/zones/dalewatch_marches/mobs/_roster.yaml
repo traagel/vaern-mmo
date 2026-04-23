@@ -1,0 +1,53 @@
+id: _roster__dalewatch_marches
+zone: dalewatch_marches
+mob_count: 24
+mob_ids:
+- mob_dalewatch_marches_beast_wolf
+- mob_dalewatch_marches_beast_boar
+- mob_dalewatch_marches_beast_stag
+- mob_dalewatch_marches_beast_heron
+- mob_dalewatch_marches_beast_otter
+- mob_dalewatch_marches_beast_bear
+- mob_dalewatch_marches_ambient_duck
+- mob_dalewatch_marches_exotic_drifter_shade
+- mob_dalewatch_marches_warband_drifter_mage
+- mob_dalewatch_marches_warband_raid_stray
+- mob_dalewatch_marches_named_drifter_mage_named
+- mob_dalewatch_marches_juvenile_wolf
+- mob_dalewatch_marches_juvenile_boar
+- mob_dalewatch_marches_juvenile_stag
+- mob_dalewatch_marches_juvenile_heron
+- mob_dalewatch_marches_named_wolf_alpha
+- mob_dalewatch_marches_warband_pact_scout
+- mob_dalewatch_marches_warband_pact_skirmisher
+- mob_dalewatch_marches_named_pact_captain
+- mob_dalewatch_marches_warband_drifter_cultist
+- mob_dalewatch_marches_named_drifter_master
+- mob_dalewatch_marches_exotic_brine_shade
+- mob_dalewatch_marches_named_brine_primarch
+- mob_dalewatch_marches_named_drifter_valenn
+by_creature_type:
+  beast: 12
+  aberration: 3
+  humanoid: 9
+  plant: 0
+by_armor_class:
+  hide: 12
+  ethereal: 3
+  cloth: 4
+  leather: 3
+  plate: 2
+by_rarity:
+  common: 17
+  rare: 0
+  elite: 1
+  named: 6
+level_min: 1
+level_max: 8
+named_or_chain_targets:
+- mob_dalewatch_marches_named_wolf_alpha
+- mob_dalewatch_marches_named_pact_captain
+- mob_dalewatch_marches_named_drifter_master
+- mob_dalewatch_marches_named_brine_primarch
+- mob_dalewatch_marches_named_drifter_valenn
+- mob_dalewatch_marches_named_drifter_mage_named

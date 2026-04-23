@@ -1,0 +1,30 @@
+id: side_quests__hunter_leanto
+hub: hunter_leanto
+hub_role: waypoint
+zone: greenwood_deep
+biome: temperate_forest
+quest_count: 2
+quests:
+- id: side__hunter_leanto__the_timber_scout
+  name: The Timber Scout
+  hub: hunter_leanto
+  type: side
+  level: 22
+  objective:
+    kind: investigate
+    target_hint: a timber-camp that went silent
+  xp_reward: 2675
+  gold_reward_copper: 110
+  repeatable: false
+- id: side__hunter_leanto__the_beast_cull
+  name: The Beast Cull
+  hub: hunter_leanto
+  type: side
+  level: 30
+  objective:
+    kind: kill
+    target_hint: overpopulated forest predators
+    count: 1
+  xp_reward: 4800
+  gold_reward_copper: 150
+  repeatable: false

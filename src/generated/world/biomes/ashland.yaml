@@ -1,0 +1,14 @@
+id: ashland
+name: Ashen Wasteland
+climate: dry, volcanic-ash soil, low visibility
+hazards:
+- ash-storm
+- pit-vents
+- soot-lung
+typical_flora:
+- ashroot
+- scorched-pine
+typical_fauna:
+- ashwolf
+- cinder-drake
+faction_affinity: faction_b

@@ -1,0 +1,11 @@
+specs:
+  - id: sunflame_blade
+    name: Sun-Flame Blade
+    emphasis: hybrid
+    description: offensive fire-augmented sword-strikes with holy radiance
+    schools_focus: [blade, fire, light]
+  - id: sunflame_warden
+    name: Sun-Flame Warden
+    emphasis: tank
+    description: shield-anchored paladin with pyrotechnic ward-flashes
+    schools_focus: [shield, fire, honor]

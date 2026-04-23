@@ -1,0 +1,16 @@
+id: quest_summary__scrap_flats
+zone: scrap_flats
+level_range:
+  min: 22
+  max: 30
+tier: mid
+budget_target: 126
+actual:
+  main_chain_steps: 8
+  side_quests: 11
+  filler_pool: 100
+  total: 119
+coverage_ratio: 0.94
+main_chain: chain_scrap_flats_tinker_cartel
+notes: Main chain is hand-crafted story; side is templated by biome+hub-role; filler
+  is a procedural pool.

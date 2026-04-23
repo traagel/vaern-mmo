@@ -1,0 +1,13 @@
+id: chitin
+name: Chitin
+tier: medium
+physical_reduction: 0.25
+magic_reduction: 0.05
+weak_against:
+- blunt
+strong_against:
+- blade
+- dagger
+- bow
+mobility_penalty: 0.05
+notes: "insect/crustacean shell \u2014 crabs, scarabs, some aberrations"

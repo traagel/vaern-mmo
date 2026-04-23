@@ -1,0 +1,53 @@
+id: side_quests__ravenmeet
+hub: ravenmeet
+hub_role: capital
+zone: skarncamp_wastes
+biome: fjord
+quest_count: 4
+quests:
+- id: side__ravenmeet__the_landing_sign
+  name: The Landing Sign
+  hub: ravenmeet
+  type: side
+  level: 18
+  objective:
+    kind: investigate
+    target_hint: a raider-landing sign
+  xp_reward: 1843
+  gold_reward_copper: 90
+  repeatable: false
+- id: side__ravenmeet__the_seal_cull
+  name: The Seal Cull
+  hub: ravenmeet
+  type: side
+  level: 21
+  objective:
+    kind: kill
+    target_hint: rogue orca harassing fjord fishers
+    count: 1
+  xp_reward: 2453
+  gold_reward_copper: 105
+  repeatable: false
+- id: side__ravenmeet__the_longship_repair
+  name: The Longship Repair
+  hub: ravenmeet
+  type: side
+  level: 23
+  objective:
+    kind: collect
+    target_hint: longship-repair timber
+    count: 4
+  xp_reward: 2907
+  gold_reward_copper: 115
+  repeatable: false
+- id: side__ravenmeet__the_ice_floe_search
+  name: The Ice Floe Search
+  hub: ravenmeet
+  type: side
+  level: 26
+  objective:
+    kind: investigate
+    target_hint: a missing boat on the ice-floe
+  xp_reward: 3661
+  gold_reward_copper: 130
+  repeatable: false

@@ -1,0 +1,42 @@
+id: side_quests__pyre_camp
+hub: pyre_camp
+hub_role: outpost
+zone: ashweald
+biome: ashland
+quest_count: 3
+quests:
+- id: side__pyre_camp__the_ashwolf_pack
+  name: The Ashwolf Pack
+  hub: pyre_camp
+  type: side
+  level: 38
+  objective:
+    kind: kill
+    target_hint: an ashwolf pack stalking caravans
+    count: 1
+  xp_reward: 7539
+  gold_reward_copper: 190
+  repeatable: false
+- id: side__pyre_camp__the_cinder_vein
+  name: The Cinder Vein
+  hub: pyre_camp
+  type: side
+  level: 42
+  objective:
+    kind: collect
+    target_hint: cinder-vein samples
+    count: 4
+  xp_reward: 9139
+  gold_reward_copper: 210
+  repeatable: false
+- id: side__pyre_camp__the_storm_camp_check
+  name: The Storm Camp Check
+  hub: pyre_camp
+  type: side
+  level: 45
+  objective:
+    kind: investigate
+    target_hint: a camp caught in the last ash-storm
+  xp_reward: 10440
+  gold_reward_copper: 225
+  repeatable: false

@@ -1,0 +1,50 @@
+id: _roster__ashweald
+zone: ashweald
+mob_count: 24
+mob_ids:
+- mob_ashweald_beast_ashwolf
+- mob_ashweald_beast_cinderdrake
+- mob_ashweald_beast_soottick
+- mob_ashweald_beast_ashrevenant
+- mob_ashweald_beast_embersnake
+- mob_ashweald_beast_pitvent
+- mob_ashweald_ambient_scarab
+- mob_ashweald_exotic_ashwraith
+- mob_ashweald_warband_resurrectionist_cultist
+- mob_ashweald_warband_pyre_adept
+- mob_ashweald_warband_saint_vigil_guard
+- mob_ashweald_warband_ash_pilgrim
+- mob_ashweald_named_resurrectionist_leader
+- mob_ashweald_juvenile_ashwolf
+- mob_ashweald_juvenile_cinderdrake
+- mob_ashweald_juvenile_soottick
+- mob_ashweald_juvenile_ashrevenant
+- mob_ashweald_juvenile_embersnake
+- mob_ashweald_juvenile_pitvent
+- mob_ashweald_alpha_ashwolf
+- mob_ashweald_alpha_cinderdrake
+- mob_ashweald_alpha_soottick
+- mob_ashweald_alpha_ashrevenant
+- mob_ashweald_alpha_embersnake
+by_creature_type:
+  beast: 10
+  dragonkin: 3
+  undead: 4
+  elemental: 2
+  humanoid: 5
+by_armor_class:
+  hide: 10
+  scales: 3
+  bone: 4
+  none: 2
+  cloth: 2
+  plate: 2
+  leather: 1
+by_rarity:
+  common: 16
+  elite: 7
+  named: 1
+level_min: 39
+level_max: 45
+named_or_chain_targets:
+- mob_ashweald_named_resurrectionist_leader

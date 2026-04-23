@@ -1,0 +1,24 @@
+id: order_dark_duellist
+faction: faction_b
+archetype_id: 10
+archetype_position:
+  might: 50
+  arcana: 0
+  finesse: 50
+flagship: false
+player_facing:
+  class_name: Dark-Duellist
+  title_singular: Dark-Duellist
+  title_plural: Dark-Duellists
+schools_taught:
+  might:
+  - blade
+  finesse:
+  - dagger
+  - poison
+  - silent
+institutions:
+  primary: shadow_conclave
+  secondary: alchemist_tinker_clans
+  tertiary: fury_houses
+chapter: chapter_dark_duellist

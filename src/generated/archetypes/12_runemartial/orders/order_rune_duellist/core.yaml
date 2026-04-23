@@ -1,0 +1,26 @@
+id: order_rune_duellist
+faction: faction_a
+archetype_id: 12
+archetype_position:
+  might: 50
+  arcana: 25
+  finesse: 25
+player_facing:
+  class_name: Rune-Duellist
+  title_singular: Rune-Duellist
+  title_plural: Rune-Duellists
+schools_taught:
+  might:
+  - blade
+  - shield
+  - honor
+  arcana:
+  - arcane
+  - light
+  - lightning
+flagship: true
+institutions:
+  primary: knight_order
+  secondary: silver_quill
+  tertiary: night_quick_guild
+chapter: chapter_rune_duellist

@@ -1,0 +1,22 @@
+id: ancient_wyrm_lair_bosses
+instance: ancient_wyrm_lair
+bosses:
+- id: wyrm_broodlings_pack
+  name: "Wyrm Broodlings \u2014 Pack"
+  role_tag: lieutenant
+  level: 60
+  mechanic: pack of 12 adds, cleave-focused
+  hp_tier: elite
+- id: ice_wyrm_scout
+  name: Ice-Wyrm Scout
+  role_tag: lieutenant
+  level: 60
+  mechanic: fly-phase, ranged-positional
+  hp_tier: elite
+- id: the_elder_wyrm
+  name: The Elder Wyrm
+  role_tag: final
+  level: 60
+  mechanic: "six phases: breath, claw, fly, landing, tail, final-frenzy \u2014 iconic\
+    \ long fight"
+  hp_tier: heroic

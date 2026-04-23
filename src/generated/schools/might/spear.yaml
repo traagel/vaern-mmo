@@ -1,0 +1,16 @@
+name: spear
+pillar: might
+morality: neutral
+family: weapon
+tag: piercing / reach
+damage_type: piercing
+applies_to_categories:
+- offense
+- defense
+- threat
+- control
+icon_style:
+  palette: pale ash-wood shaft, cold steel point, leather-cord wrap, dark crimson pennant
+  motif: long pole-arm, leaf-shaped spearhead, haft ridges, thrusting motion-lines, braced stance
+  silhouette: long diagonal haft with sharp spearpoint, narrow linear composition
+  material: seasoned ash shaft, forged steel point, cord-wrapped grip, small pennant

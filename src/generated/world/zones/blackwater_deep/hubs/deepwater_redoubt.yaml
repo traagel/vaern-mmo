@@ -1,0 +1,8 @@
+id: deepwater_redoubt
+zone: blackwater_deep
+name: Deepwater Redoubt
+role: waypoint
+amenities:
+- innkeeper
+- flight_master
+quest_givers: 2

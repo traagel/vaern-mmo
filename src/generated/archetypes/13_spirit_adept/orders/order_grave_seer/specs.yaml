@@ -1,0 +1,15 @@
+specs:
+- id: grave_seer_binder
+  name: Grave-Binder
+  emphasis: control
+  description: ancestor-hex crowd-controller
+  schools_focus:
+  - blood
+  - shadow
+- id: grave_seer_whisper
+  name: Grave-Whisperer
+  emphasis: support
+  description: silent-divination ally-buffer
+  schools_focus:
+  - silent
+  - shadow

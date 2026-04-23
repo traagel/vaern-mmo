@@ -1,0 +1,21 @@
+id: old_anvil_halls_bosses
+instance: old_anvil_halls
+bosses:
+- id: anvil_warden
+  name: The Anvil Warden
+  role_tag: miniboss
+  level: 12
+  mechanic: stone-armor self-buff, knockback slam
+  hp_tier: elite
+- id: deepworm_brood
+  name: Deepworm Brood
+  role_tag: miniboss
+  level: 15
+  mechanic: trash-spawner, ground-rupture aoe
+  hp_tier: elite
+- id: old_smith
+  name: The Old Smith
+  role_tag: final
+  level: 18
+  mechanic: forge-heat aura, summons cinder-elementals
+  hp_tier: heroic

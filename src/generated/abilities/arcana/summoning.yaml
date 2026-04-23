@@ -1,0 +1,24 @@
+pillar: arcana
+category: summoning
+icon_shape:
+  primary: silhouette of a bound creature rising from a summoning circle, portal or glyph-ring
+  composition: summoning sigil at base with emerging silhouette centered, door-open glow
+  motion: rising from beneath, portal opening, manifest-forward step
+  tier_escalation:
+    25: tiny sprite or imp hovering over a minor rune
+    50: bound familiar emerging from a compact circle
+    75: greater elemental rising from wide summoning glyph
+    100: colossal entity stepping through a full-height rift
+tiers:
+  25:
+  - name: conjure_minor
+    description: Summon a small imp or sprite for utility.
+  50:
+  - name: summon_familiar
+    description: Persistent bound minor creature, combat-viable.
+  75:
+  - name: summon_elemental
+    description: Bound combat-elemental for timed duration.
+  100:
+  - name: greater_summoning
+    description: Major bound entity; multi-minute combat presence.

@@ -1,0 +1,17 @@
+id: dark_glade_sanctum
+name: Dark Glade Sanctum
+kind: dungeon
+group_size: 5
+zone: shadegrove
+entrance_hub: dark_glade
+level_range:
+  min: 22
+  max: 28
+level_band: 11-30
+tier: leveling
+boss_count: 3
+estimated_clear_minutes: 45
+loot_tier: mid
+lockout: none (rerunnable)
+theme: Hraun shadow-cult inner sanctum, deep in the ashen forest
+coop_notes: tight-coop-friendly; duo/trio can attempt under-level with care

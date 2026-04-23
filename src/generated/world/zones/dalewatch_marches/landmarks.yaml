@@ -1,0 +1,38 @@
+id: landmarks__dalewatch_marches
+zone: dalewatch_marches
+landmarks:
+- id: old_brenns_croft
+  name: Old Brenn's Croft
+  offset_from_zone_origin:
+    x: -240.0
+    z: 120.0
+- id: dalewatch_reed_brake
+  name: The Reed-Brake
+  offset_from_zone_origin:
+    x: -150.0
+    z: 200.0
+- id: thornroot_grove
+  name: Thornroot Grove
+  offset_from_zone_origin:
+    x: 100.0
+    z: 140.0
+- id: sidlow_cairn
+  name: Sidlow Cairn
+  offset_from_zone_origin:
+    x: 180.0
+    z: -180.0
+- id: copperstep_mine
+  name: Copperstep Mine
+  offset_from_zone_origin:
+    x: 150.0
+    z: -260.0
+- id: blackwash_fens
+  name: The Blackwash Fens
+  offset_from_zone_origin:
+    x: -50.0
+    z: 280.0
+- id: drifters_lair
+  name: The Drifter's Lair
+  offset_from_zone_origin:
+    x: 20.0
+    z: 320.0

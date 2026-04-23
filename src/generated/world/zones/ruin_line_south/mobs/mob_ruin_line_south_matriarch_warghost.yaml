@@ -1,0 +1,25 @@
+id: mob_ruin_line_south_matriarch_warghost
+name: Matriarch War-Ghost
+zone: ruin_line_south
+level: 38
+creature_type: undead
+armor_class: bone
+rarity: elite
+role: captain
+faction_alignment: hostile_to_all
+hp_tier: elite
+damage:
+  primary_school: shadow
+  attack_range: melee
+  dps_tier: heavy
+behavior:
+  aggro_range: long
+  social_radius: 5
+  flee_threshold: 0.0
+  calls_allies: false
+  patrol: stationary
+loot_tier: rare
+drops:
+  gold_copper_avg: 342
+  item_hint: rare biome reagent; low chance of blue-tier item
+biome_context: 'rare-spawn leader; calls adds; base form: War-Ghost'

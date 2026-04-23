@@ -1,0 +1,19 @@
+id: silverleaf_wood
+name: Silverleaf Wood
+faction_control: faction_a
+biome: temperate_forest
+region: central_highlands
+tier: mid
+level_range:
+  min: 15
+  max: 22
+starter_race: null
+hub_count: 3
+budget:
+  quest_count_target: 112
+  unique_mob_types: 24
+  mob_kills_to_complete: 1120
+  estimated_hours_to_complete:
+    solo: 28.0
+    duo: 20.0
+notes: Mid zone in the central highlands. Targets 11-30 band session math.

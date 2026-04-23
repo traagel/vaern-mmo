@@ -1,0 +1,46 @@
+# Hand-calibrated grip offsets for MEGAKIT weapon/prop overlays parented
+# to the UE Mannequin palm bones on Quaternius characters: `hand_r`
+# (mainhand) or `hand_l` (offhand).
+#
+# Units:
+#   tx/ty/tz:      metres, bone-local (hand's local axes at its bind pose)
+#   rx/ry/rz:      degrees, Euler XYZ applied before flips
+#   flip_x/y/z:    180° post-multiply on the named axis
+#
+# Lookup: by MEGAKIT prop basename — `Sword_Bronze`, `Shield_Wooden`,
+# etc. Unknown prop → (mainhand, identity) fallback with a warn log.
+#
+# `attach`:
+#   mainhand (default) → hand_r
+#   offhand            → hand_l
+#
+# These are placeholder values — calibration happens in the
+# vaern-museum "Quaternius weapon grip" panel. Dial in each prop live
+# against the character in bind/idle pose, then paste the YAML snippet
+# the panel emits back into this file.
+
+props:
+  # Calibrated via museum, 2026-04-22. Sword / Axe / Pickaxe / Table_Knife
+  # share one mainhand spec — MEGAKIT authors one-handers with the hilt
+  # near the mesh origin and the blade along +Y, so a single calibration
+  # fits every edged / hafted one-hander.
+  Sword_Bronze:
+    attach: mainhand
+    spec: { tx: -0.030, ty: 0.100, tz: 0.020, rx: 90.0, ry: -90.0, rz: 0.0, flip_x: false, flip_y: false, flip_z: false }
+
+  Axe_Bronze:
+    attach: mainhand
+    spec: { tx: -0.030, ty: 0.100, tz: 0.020, rx: 90.0, ry: -90.0, rz: 0.0, flip_x: false, flip_y: false, flip_z: false }
+
+  Pickaxe_Bronze:
+    attach: mainhand
+    spec: { tx: -0.030, ty: 0.100, tz: 0.020, rx: 90.0, ry: -90.0, rz: 0.0, flip_x: false, flip_y: false, flip_z: false }
+
+  Table_Knife:
+    attach: mainhand
+    spec: { tx: -0.030, ty: 0.100, tz: 0.020, rx: 90.0, ry: -90.0, rz: 0.0, flip_x: false, flip_y: false, flip_z: false }
+
+  # Shield rides hand_l — mirror-axis rotation from the mainhand set.
+  Shield_Wooden:
+    attach: offhand
+    spec: { tx: 0.0, ty: 0.0, tz: 0.0, rx: 0.0, ry: -90.0, rz: 0.0, flip_x: false, flip_y: false, flip_z: false }

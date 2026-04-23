@@ -1,0 +1,15 @@
+name: crossbow
+pillar: finesse
+morality: neutral
+family: ranged
+tag: mechanical / concealable
+damage_type: piercing
+applies_to_categories:
+- precision
+- trickery
+- utility
+icon_style:
+  palette: oiled darkwood stock, blackened iron mechanism, steel bolt-head, sinew-cord
+  motif: tensioned horizontal arms, trigger lever, loaded bolt, small stock
+  silhouette: compact horizontal crossbow held level, taut arms, short bolt loaded
+  material: seasoned wood, tempered steel, waxed cord, leather grip-wrap

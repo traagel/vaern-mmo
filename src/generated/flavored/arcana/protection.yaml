@@ -1,0 +1,231 @@
+pillar: arcana
+category: protection
+variants:
+  25:
+    arcane:
+      id: arcana.protection.25.arcane.arcane_guard
+      baseline_slot: arcana.protection.25
+      school: arcane
+      name: arcane_guard
+      description: Minor force bubble, absorbs small damage.
+      morality: neutral
+      damage_type: null
+    fire:
+      id: arcana.protection.25.fire.ember_ward
+      baseline_slot: arcana.protection.25
+      school: fire
+      name: ember_ward
+      description: Fire-resist ward, burns attackers briefly.
+      morality: neutral
+      damage_type: null
+    frost:
+      id: arcana.protection.25.frost.frost_armor
+      baseline_slot: arcana.protection.25
+      school: frost
+      name: frost_armor
+      description: Ice-skin, cold resist, slows melee attackers.
+      morality: neutral
+      damage_type: null
+    earth:
+      id: arcana.protection.25.earth.stone_skin
+      baseline_slot: arcana.protection.25
+      school: earth
+      name: stone_skin
+      description: Rock-skin, bludgeoning resist.
+      morality: neutral
+      damage_type: null
+    light:
+      id: arcana.protection.25.light.blessed_shield
+      baseline_slot: arcana.protection.25
+      school: light
+      name: blessed_shield
+      description: Radiant ward, minor damage absorb.
+      morality: good
+      damage_type: null
+    shadow:
+      id: arcana.protection.25.shadow.shadow_veil
+      baseline_slot: arcana.protection.25
+      school: shadow
+      name: shadow_veil
+      description: Necrotic ward, reduces incoming crits.
+      morality: evil
+      damage_type: null
+    nature:
+      id: arcana.protection.25.nature.barkskin
+      baseline_slot: arcana.protection.25
+      school: nature
+      name: barkskin
+      description: Bark-hide, piercing resist.
+      morality: neutral
+      damage_type: null
+  50:
+    arcane:
+      id: arcana.protection.50.arcane.force_shield
+      baseline_slot: arcana.protection.50
+      school: arcane
+      name: force_shield
+      description: ST absorb shield, moderate capacity.
+      morality: neutral
+      damage_type: null
+    fire:
+      id: arcana.protection.50.fire.ember_mantle
+      baseline_slot: arcana.protection.50
+      school: fire
+      name: ember_mantle
+      description: Flame shield, burns on incoming hit.
+      morality: neutral
+      damage_type: null
+    frost:
+      id: arcana.protection.50.frost.ice_barrier
+      baseline_slot: arcana.protection.50
+      school: frost
+      name: ice_barrier
+      description: Thick ice shell, moderate absorb.
+      morality: neutral
+      damage_type: null
+    earth:
+      id: arcana.protection.50.earth.stone_guardian
+      baseline_slot: arcana.protection.50
+      school: earth
+      name: stone_guardian
+      description: Rock armor, moderate mitigation.
+      morality: neutral
+      damage_type: null
+    light:
+      id: arcana.protection.50.light.sanctuary
+      baseline_slot: arcana.protection.50
+      school: light
+      name: sanctuary
+      description: Radiant absorb, low-threat while active.
+      morality: good
+      damage_type: null
+    shadow:
+      id: arcana.protection.50.shadow.umbral_cloak
+      baseline_slot: arcana.protection.50
+      school: shadow
+      name: umbral_cloak
+      description: Necrotic absorb + fear resistance.
+      morality: evil
+      damage_type: null
+    nature:
+      id: arcana.protection.50.nature.thornbark
+      baseline_slot: arcana.protection.50
+      school: nature
+      name: thornbark
+      description: Nature absorb + reflects part of damage.
+      morality: neutral
+      damage_type: null
+  75:
+    arcane:
+      id: arcana.protection.75.arcane.arcane_dome
+      baseline_slot: arcana.protection.75
+      school: arcane
+      name: arcane_dome
+      description: AoE force barrier around allies.
+      morality: neutral
+      damage_type: null
+    fire:
+      id: arcana.protection.75.fire.ring_of_ashes
+      baseline_slot: arcana.protection.75
+      school: fire
+      name: ring_of_ashes
+      description: Flame ring, inside protected, outside burns.
+      morality: neutral
+      damage_type: null
+    frost:
+      id: arcana.protection.75.frost.frozen_hall
+      baseline_slot: arcana.protection.75
+      school: frost
+      name: frozen_hall
+      description: Ice dome, slows anything passing through.
+      morality: neutral
+      damage_type: null
+    earth:
+      id: arcana.protection.75.earth.standing_stones
+      baseline_slot: arcana.protection.75
+      school: earth
+      name: standing_stones
+      description: Rock ring, AoE mitigation zone.
+      morality: neutral
+      damage_type: null
+    light:
+      id: arcana.protection.75.light.aegis_radiant
+      baseline_slot: arcana.protection.75
+      school: light
+      name: aegis_radiant
+      description: Group holy ward, absorb + heal pulse.
+      morality: good
+      damage_type: null
+    shadow:
+      id: arcana.protection.75.shadow.void_shroud
+      baseline_slot: arcana.protection.75
+      school: shadow
+      name: void_shroud
+      description: Group cloak, harder to target within.
+      morality: evil
+      damage_type: null
+    nature:
+      id: arcana.protection.75.nature.grove_haven
+      baseline_slot: arcana.protection.75
+      school: nature
+      name: grove_haven
+      description: Nature zone, mitigation + regen.
+      morality: neutral
+      damage_type: null
+  100:
+    arcane:
+      id: arcana.protection.100.arcane.timeless_ward
+      baseline_slot: arcana.protection.100
+      school: arcane
+      name: timeless_ward
+      description: 'Ritual: ally briefly phased out of time.'
+      morality: neutral
+      damage_type: null
+    fire:
+      id: arcana.protection.100.fire.phoenix_aegis
+      baseline_slot: arcana.protection.100
+      school: fire
+      name: phoenix_aegis
+      description: 'Ritual: burn aura, revive-on-death.'
+      morality: neutral
+      damage_type: null
+    frost:
+      id: arcana.protection.100.frost.glacial_lock
+      baseline_slot: arcana.protection.100
+      school: frost
+      name: glacial_lock
+      description: 'Ritual: ally frozen in protective ice.'
+      morality: neutral
+      damage_type: null
+    earth:
+      id: arcana.protection.100.earth.worldstone
+      baseline_slot: arcana.protection.100
+      school: earth
+      name: worldstone
+      description: 'Ritual: become statue, invulnerable/immobile.'
+      morality: neutral
+      damage_type: null
+    light:
+      id: arcana.protection.100.light.hallowed_refuge
+      baseline_slot: arcana.protection.100
+      school: light
+      name: hallowed_refuge
+      description: 'Ritual: burst of holy immunity.'
+      morality: good
+      damage_type: null
+    shadow:
+      id: arcana.protection.100.shadow.void_phase
+      baseline_slot: arcana.protection.100
+      school: shadow
+      name: void_phase
+      description: 'Ritual: step between worlds, untargetable.'
+      morality: evil
+      damage_type: null
+    nature:
+      id: arcana.protection.100.nature.treant_form
+      baseline_slot: arcana.protection.100
+      school: nature
+      name: treant_form
+      description: 'Ritual: transform to tree, immense HP.'
+      morality: neutral
+      damage_type: null

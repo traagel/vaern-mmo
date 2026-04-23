@@ -1,0 +1,17 @@
+name: fire
+pillar: arcana
+morality: neutral
+family: elemental
+tag: heat / destruction
+damage_type: fire
+applies_to_categories:
+- damage
+- protection
+- control
+- summoning
+- enhancement
+icon_style:
+  palette: deep orange, crimson, black char, yellow-white core
+  motif: licking flames, ember sparks, scorch marks, molten glow, curling smoke
+  silhouette: flickering flame with jagged upward tongues, asymmetric and kinetic
+  material: living fire, burning ash, heat-warped air, molten rock, charred wood

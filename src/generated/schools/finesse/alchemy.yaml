@@ -1,0 +1,15 @@
+name: alchemy
+pillar: finesse
+morality: neutral
+family: technique
+tag: crafted consumables / generic chemistry
+damage_type: acid
+applies_to_categories:
+- precision
+- trickery
+- utility
+icon_style:
+  palette: acid green, corked amber, bubbling chartreuse, copper apparatus, smoke-white vapor
+  motif: glass vials, bubbling flasks, stopper corks, alchemical sigils on labels, rising fumes
+  silhouette: corked flask or retort centered with bubbling liquid and rising vapor
+  material: bubbling fluid, swirling vapor, blown glass, copper fittings, waxed cork

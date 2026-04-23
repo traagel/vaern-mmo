@@ -1,0 +1,50 @@
+id: _roster__blackwater_deep
+zone: blackwater_deep
+mob_count: 24
+mob_ids:
+- mob_blackwater_deep_beast_croc
+- mob_blackwater_deep_beast_gnatswarm
+- mob_blackwater_deep_beast_marshdrake
+- mob_blackwater_deep_beast_rottoad
+- mob_blackwater_deep_beast_reedserpent
+- mob_blackwater_deep_beast_bogweeper
+- mob_blackwater_deep_ambient_frog
+- mob_blackwater_deep_exotic_rot_spirit
+- mob_blackwater_deep_warband_exile_loyalist
+- mob_blackwater_deep_warband_black_eel_raider
+- mob_blackwater_deep_warband_drowned_rite_caster
+- mob_blackwater_deep_warband_marshal_herald
+- mob_blackwater_deep_warband_deep_warband
+- mob_blackwater_deep_named_kessen_field
+- mob_blackwater_deep_juvenile_croc
+- mob_blackwater_deep_juvenile_gnatswarm
+- mob_blackwater_deep_juvenile_marshdrake
+- mob_blackwater_deep_juvenile_rottoad
+- mob_blackwater_deep_juvenile_reedserpent
+- mob_blackwater_deep_juvenile_bogweeper
+- mob_blackwater_deep_alpha_croc
+- mob_blackwater_deep_alpha_gnatswarm
+- mob_blackwater_deep_alpha_marshdrake
+- mob_blackwater_deep_alpha_rottoad
+by_creature_type:
+  beast: 12
+  dragonkin: 3
+  aberration: 2
+  elemental: 1
+  humanoid: 6
+by_armor_class:
+  hide: 12
+  scales: 3
+  ethereal: 2
+  none: 1
+  plate: 2
+  leather: 3
+  cloth: 1
+by_rarity:
+  common: 17
+  elite: 6
+  named: 1
+level_min: 46
+level_max: 52
+named_or_chain_targets:
+- mob_blackwater_deep_named_kessen_field

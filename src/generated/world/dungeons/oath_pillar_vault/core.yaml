@@ -1,0 +1,17 @@
+id: oath_pillar_vault
+name: The Oath Pillar Vault
+kind: dungeon
+group_size: 5
+zone: pact_causeway
+entrance_hub: oath_pillar
+level_range:
+  min: 24
+  max: 30
+level_band: 11-30
+tier: leveling
+boss_count: 3
+estimated_clear_minutes: 45
+loot_tier: mid
+lockout: none (rerunnable)
+theme: Buried Kharun reliquary beneath the great oath-pillar of the pact
+coop_notes: tight-coop-friendly; duo/trio can attempt under-level with care

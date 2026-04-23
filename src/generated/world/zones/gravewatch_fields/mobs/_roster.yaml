@@ -1,0 +1,47 @@
+id: _roster__gravewatch_fields
+zone: gravewatch_fields
+mob_count: 24
+mob_ids:
+- mob_gravewatch_fields_beast_seabird
+- mob_gravewatch_fields_beast_seal
+- mob_gravewatch_fields_beast_wyrm
+- mob_gravewatch_fields_beast_crab
+- mob_gravewatch_fields_beast_seaspider
+- mob_gravewatch_fields_beast_stormray
+- mob_gravewatch_fields_ambient_crab_small
+- mob_gravewatch_fields_exotic_stormbound
+- mob_gravewatch_fields_warband_bad_rite_shell
+- mob_gravewatch_fields_warband_rite_cultist
+- mob_gravewatch_fields_warband_mausoleum_guard
+- mob_gravewatch_fields_named_rite_break_source
+- mob_gravewatch_fields_juvenile_seabird
+- mob_gravewatch_fields_juvenile_seal
+- mob_gravewatch_fields_juvenile_wyrm
+- mob_gravewatch_fields_juvenile_crab
+- mob_gravewatch_fields_juvenile_seaspider
+- mob_gravewatch_fields_juvenile_stormray
+- mob_gravewatch_fields_alpha_seabird
+- mob_gravewatch_fields_alpha_seal
+- mob_gravewatch_fields_alpha_wyrm
+- mob_gravewatch_fields_alpha_crab
+- mob_gravewatch_fields_alpha_seaspider
+- mob_gravewatch_fields_alpha_stormray
+by_creature_type:
+  beast: 16
+  dragonkin: 3
+  elemental: 1
+  humanoid: 4
+by_armor_class:
+  hide: 16
+  scales: 3
+  none: 1
+  leather: 1
+  cloth: 1
+  plate: 2
+by_rarity:
+  common: 15
+  elite: 9
+level_min: 6
+level_max: 12
+named_or_chain_targets:
+- mob_gravewatch_fields_named_rite_break_source

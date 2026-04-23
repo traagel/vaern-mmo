@@ -1,0 +1,22 @@
+id: order_blood_ravager
+faction: faction_b
+archetype_id: 11
+archetype_position:
+  might: 75
+  arcana: 0
+  finesse: 25
+flagship: false
+player_facing:
+  class_name: Blood-Ravager
+  title_singular: Blood-Ravager
+  title_plural: Blood-Ravagers
+schools_taught:
+  might:
+  - fury
+  - blade
+  - spear
+institutions:
+  primary: hearth_broken_clans
+  secondary: fury_houses
+  tertiary: shadow_conclave
+chapter: chapter_blood_ravager

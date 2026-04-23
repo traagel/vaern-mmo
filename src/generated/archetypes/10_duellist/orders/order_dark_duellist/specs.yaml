@@ -1,0 +1,15 @@
+specs:
+- id: dark_duel_venom
+  name: Venom-Duelist
+  emphasis: melee_dps
+  description: coated-blade assassin
+  schools_focus:
+  - poison
+  - blade
+- id: dark_duel_silent
+  name: Silent-Duelist
+  emphasis: stealth
+  description: ambush-duel hybrid
+  schools_focus:
+  - silent
+  - dagger

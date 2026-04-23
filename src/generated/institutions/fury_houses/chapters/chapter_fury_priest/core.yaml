@@ -1,0 +1,5 @@
+id: chapter_fury_priest
+institution: fury_houses
+produces_order: order_fury_priest
+secondary_institution: hearth_broken_clans
+tertiary_institution: bleeding_vaults

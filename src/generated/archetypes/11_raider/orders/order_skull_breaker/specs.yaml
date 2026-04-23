@@ -1,0 +1,15 @@
+specs:
+- id: skull_break_crush
+  name: Crush-Breaker
+  emphasis: melee_dps
+  description: single-target maul-striker
+  schools_focus:
+  - blunt
+  - fury
+- id: skull_break_hold
+  name: Wall-Breaker
+  emphasis: bruiser
+  description: shield-and-mace frontline
+  schools_focus:
+  - shield
+  - blunt

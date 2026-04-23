@@ -1,0 +1,8 @@
+id: scarhold
+zone: ruin_line_north
+name: Scarhold
+role: waypoint
+amenities:
+- innkeeper
+- flight_master
+quest_givers: 2

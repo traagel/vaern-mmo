@@ -1,0 +1,19 @@
+id: sundering_mines
+name: The Sundering Mines
+faction_control: contested
+biome: mountain
+region: ruin_line
+tier: endgame
+level_range:
+  min: 50
+  max: 58
+starter_race: null
+hub_count: 3
+budget:
+  quest_count_target: 108
+  unique_mob_types: 27
+  mob_kills_to_complete: 2700
+  estimated_hours_to_complete:
+    solo: 58.5
+    duo: 40.5
+notes: Endgame zone in the ruin line. Targets 46-60 band session math.

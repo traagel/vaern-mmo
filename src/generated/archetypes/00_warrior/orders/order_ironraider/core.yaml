@@ -1,0 +1,24 @@
+id: order_ironraider
+faction: faction_b
+archetype_id: 0
+archetype_position:
+  might: 100
+  arcana: 0
+  finesse: 0
+player_facing:
+  class_name: Ironraider
+  title_singular: Ironraider Captain
+  title_plural: Ironraiders
+schools_taught:
+  might:
+  - spear
+  - shield
+  - blade
+  - fury
+  - blunt
+flagship: true
+institutions:
+  primary: hearth_broken_clans
+  secondary: fury_houses
+  tertiary: shadow_conclave
+chapter: chapter_ironraider

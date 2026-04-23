@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vaern — Data Browser</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header>
+  <h1>Vaern</h1>
+  <div class="stats" id="stats">loading…</div>
+</header>
+
+<nav id="tabs">
+  <button data-tab="spells" class="active">Spellbook</button>
+  <button data-tab="schools">Schools</button>
+  <button data-tab="classes">Archetypes</button>
+  <button data-tab="races">Races</button>
+  <button data-tab="institutions">Institutions</button>
+  <button data-tab="factions">Factions</button>
+</nav>
+
+<main>
+  <section id="spells-tab" class="tab active">
+    <div class="filters" id="spell-filters">
+      <input type="search" id="spell-search" placeholder="search name or description…">
+      <select id="spell-pillar"><option value="">all pillars</option></select>
+      <select id="spell-category"><option value="">all categories</option></select>
+      <select id="spell-school"><option value="">all schools</option></select>
+      <select id="spell-tier"><option value="">all tiers</option></select>
+      <select id="spell-morality"><option value="">all moralities</option></select>
+      <label><input type="checkbox" id="spell-hasicon"> has icon only</label>
+      <span class="filter-count" id="spell-count"></span>
+    </div>
+    <div class="grid" id="spell-grid"></div>
+  </section>
+
+  <section id="schools-tab" class="tab">
+    <div class="grid" id="school-grid"></div>
+  </section>
+
+  <section id="classes-tab" class="tab">
+    <div class="grid" id="class-grid"></div>
+  </section>
+
+  <section id="races-tab" class="tab">
+    <div class="grid" id="race-grid"></div>
+  </section>
+
+  <section id="institutions-tab" class="tab">
+    <div class="grid" id="institution-grid"></div>
+  </section>
+
+  <section id="factions-tab" class="tab">
+    <div class="grid" id="faction-grid"></div>
+  </section>
+
+  <section id="page" class="hidden">
+    <a id="page-back" href="#races">← back</a>
+    <div id="page-body"></div>
+  </section>
+</main>
+
+<div id="detail-overlay" class="hidden">
+  <div id="detail-card">
+    <button id="detail-close">×</button>
+    <div id="detail-body"></div>
+  </div>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>

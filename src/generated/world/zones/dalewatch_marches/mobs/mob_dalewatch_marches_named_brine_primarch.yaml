@@ -1,0 +1,26 @@
+id: mob_dalewatch_marches_named_brine_primarch
+name: The Brine-Shade Primarch
+zone: dalewatch_marches
+level: 8
+creature_type: aberration
+armor_class: ethereal
+rarity: named
+role: captain
+faction_alignment: hostile_to_all
+hp_tier: heroic
+damage:
+  primary_school: frost
+  attack_range: melee
+  dps_tier: heavy
+behavior:
+  aggro_range: long
+  social_radius: 20
+  flee_threshold: 0.0
+  calls_allies: true
+  patrol: stationary
+loot_tier: quest_marked
+drops:
+  gold_copper_avg: 400
+  item_hint: primarch's brine-core (main-chain finisher item)
+biome_context: the Wake's anchor in the Blackwash; paired with Grand Drifter Valenn
+chain_target: true

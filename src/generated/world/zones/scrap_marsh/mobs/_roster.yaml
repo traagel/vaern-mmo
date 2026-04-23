@@ -1,0 +1,41 @@
+id: _roster__scrap_marsh
+zone: scrap_marsh
+mob_count: 15
+mob_ids:
+- mob_scrap_marsh_beast_croc
+- mob_scrap_marsh_beast_gnatswarm
+- mob_scrap_marsh_beast_marshdrake
+- mob_scrap_marsh_beast_rottoad
+- mob_scrap_marsh_beast_reedserpent
+- mob_scrap_marsh_beast_bogweeper
+- mob_scrap_marsh_ambient_frog
+- mob_scrap_marsh_exotic_rot_spirit
+- mob_scrap_marsh_warband_rival_skrel
+- mob_scrap_marsh_warband_rival_trap_maker
+- mob_scrap_marsh_named_fence_glib
+- mob_scrap_marsh_juvenile_croc
+- mob_scrap_marsh_juvenile_gnatswarm
+- mob_scrap_marsh_juvenile_marshdrake
+- mob_scrap_marsh_juvenile_rottoad
+by_creature_type:
+  beast: 8
+  dragonkin: 2
+  aberration: 1
+  elemental: 1
+  humanoid: 3
+by_armor_class:
+  hide: 8
+  scales: 2
+  ethereal: 1
+  none: 1
+  leather: 1
+  cloth: 1
+  plate: 1
+by_rarity:
+  common: 13
+  elite: 1
+  named: 1
+level_min: 1
+level_max: 5
+named_or_chain_targets:
+- mob_scrap_marsh_named_fence_glib

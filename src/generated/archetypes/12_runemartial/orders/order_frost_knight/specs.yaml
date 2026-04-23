@@ -1,0 +1,15 @@
+specs:
+- id: frost_knight_ward
+  name: Rime-Ward
+  emphasis: tank
+  description: shield-ward with frost-counter
+  schools_focus:
+  - shield
+  - frost
+- id: frost_knight_edge
+  name: Frost-Edge
+  emphasis: melee_dps
+  description: cold-sword offensive spellblade
+  schools_focus:
+  - blade
+  - frost

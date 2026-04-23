@@ -1,0 +1,51 @@
+id: _roster__ruin_line_north
+zone: ruin_line_north
+mob_count: 27
+mob_ids:
+- mob_ruin_line_north_beast_houndrev
+- mob_ruin_line_north_beast_warghost
+- mob_ruin_line_north_beast_revenant
+- mob_ruin_line_north_beast_spectralhawk
+- mob_ruin_line_north_beast_wraith
+- mob_ruin_line_north_beast_burrowwight
+- mob_ruin_line_north_ambient_ratrev
+- mob_ruin_line_north_exotic_scarthing
+- mob_ruin_line_north_warband_refuser_paladin
+- mob_ruin_line_north_warband_refuser_pactblade
+- mob_ruin_line_north_warband_ruin_scavenger
+- mob_ruin_line_north_warband_abbey_cultist
+- mob_ruin_line_north_named_abbey_rite_refuser
+- mob_ruin_line_north_juvenile_houndrev
+- mob_ruin_line_north_juvenile_warghost
+- mob_ruin_line_north_juvenile_revenant
+- mob_ruin_line_north_juvenile_spectralhawk
+- mob_ruin_line_north_juvenile_wraith
+- mob_ruin_line_north_juvenile_burrowwight
+- mob_ruin_line_north_alpha_houndrev
+- mob_ruin_line_north_alpha_warghost
+- mob_ruin_line_north_alpha_revenant
+- mob_ruin_line_north_alpha_spectralhawk
+- mob_ruin_line_north_alpha_wraith
+- mob_ruin_line_north_alpha_burrowwight
+- mob_ruin_line_north_matriarch_houndrev
+- mob_ruin_line_north_matriarch_warghost
+by_creature_type:
+  undead: 20
+  beast: 1
+  aberration: 1
+  humanoid: 5
+by_armor_class:
+  bone: 20
+  hide: 1
+  ethereal: 1
+  plate: 3
+  leather: 1
+  cloth: 1
+by_rarity:
+  common: 15
+  elite: 11
+  named: 1
+level_min: 32
+level_max: 38
+named_or_chain_targets:
+- mob_ruin_line_north_named_abbey_rite_refuser

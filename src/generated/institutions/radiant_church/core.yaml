@@ -1,0 +1,18 @@
+id: radiant_church
+faction: faction_a
+name: The Radiant Church
+tradition: Tradition of Dawn
+curriculum:
+  major:
+    arcana:
+    - light
+    - devotion
+  secondary:
+    arcana:
+    - arcane
+    might:
+    - blunt
+    - honor
+pillars:
+- arcana
+- might

@@ -1,0 +1,43 @@
+id: side_quests__kingsroad_waypost
+hub: kingsroad_waypost
+hub_role: outpost
+zone: dalewatch_marches
+biome: river_valley
+quest_count: 3
+quests:
+- id: side__kingsroad_waypost__lost_mail
+  name: Lost Mail
+  hub: kingsroad_waypost
+  type: side
+  level: 2
+  objective:
+    kind: collect
+    target_hint: scattered courier letter-cases along the Kingsroad
+    count: 5
+  xp_reward: 140
+  gold_reward_copper: 22
+  repeatable: false
+- id: side__kingsroad_waypost__bandit_ambush
+  name: Bandit Ambush
+  hub: kingsroad_waypost
+  type: side
+  level: 3
+  objective:
+    kind: kill
+    target_hint: raid strays ambushing courier riders
+    count: 6
+  xp_reward: 180
+  gold_reward_copper: 35
+  repeatable: false
+- id: side__kingsroad_waypost__ridgeline_patrol
+  name: Ridgeline Patrol
+  hub: kingsroad_waypost
+  type: side
+  level: 5
+  objective:
+    kind: investigate
+    target_hint: the opened barrow-mounds at Sidlow Cairn
+    location: sidlow_cairn
+  xp_reward: 300
+  gold_reward_copper: 60
+  repeatable: false

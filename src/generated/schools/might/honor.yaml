@@ -1,0 +1,17 @@
+name: honor
+pillar: might
+morality: good
+family: style
+tag: duel / chivalry
+damage_type: slashing
+applies_to_categories:
+- offense
+- defense
+- threat
+- sustain
+- control
+icon_style:
+  palette: polished silver-white, royal blue, heraldic gold, cream linen, sky-behind-knight
+  motif: heraldic crests, oath-sashes, clean duelling stance, laurel, crossed pennants, sworn-blade motif
+  silhouette: symmetric heraldic shape, upright sword over shield, elegant duellist pose
+  material: mirror-polished steel, embroidered tabard, burnished gold inlay, white leather

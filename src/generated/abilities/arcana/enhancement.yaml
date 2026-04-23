@@ -1,0 +1,24 @@
+pillar: arcana
+category: enhancement
+icon_shape:
+  primary: upward-pointing empowerment sigil, wreathed weapon, or ascending aura ring
+  composition: centered ascending arrow or upraised weapon haloed by a glowing crest
+  motion: rising glow, weapon-etching streams, buff-ripples moving upward
+  tier_escalation:
+    25: faint blessing-rune over one figure
+    50: single weapon wreathed in elemental charge
+    75: wide ring of allies lifted by a shared buff aura
+    100: apotheosis — ascended figure with pillar of light and crown of runes
+tiers:
+  25:
+  - name: bless
+    description: Small ally stat buff, short duration.
+  50:
+  - name: empower_weapon
+    description: Temporary elemental damage rider on an ally weapon.
+  75:
+  - name: group_haste
+    description: AoE ally speed and action-rate buff.
+  100:
+  - name: apotheosis
+    description: Massive multi-stat empowerment on single ally.

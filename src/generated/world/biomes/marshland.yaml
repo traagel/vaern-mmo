@@ -1,0 +1,16 @@
+id: marshland
+name: Marshland
+climate: humid, fog-bound, disease-prone
+hazards:
+- sinking-mire
+- miasma
+- rot-fever
+typical_flora:
+- sedge
+- bog-myrtle
+- lichen
+typical_fauna:
+- crocodilian
+- blood-gnat
+- marsh-drake
+faction_affinity: faction_b

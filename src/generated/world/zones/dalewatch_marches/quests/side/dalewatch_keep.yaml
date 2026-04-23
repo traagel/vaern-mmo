@@ -1,0 +1,66 @@
+id: side_quests__dalewatch_keep
+hub: dalewatch_keep
+hub_role: capital
+zone: dalewatch_marches
+biome: river_valley
+quest_count: 5
+quests:
+- id: side__dalewatch_keep__reynes_armory
+  name: Reyne's Armory
+  hub: dalewatch_keep
+  type: side
+  level: 2
+  objective:
+    kind: kill
+    target_hint: grey wolves culled for the armory's hide stock
+    count: 8
+  xp_reward: 140
+  gold_reward_copper: 25
+  repeatable: false
+- id: side__dalewatch_keep__quartermasters_cache
+  name: The Quartermaster's Cache
+  hub: dalewatch_keep
+  type: side
+  level: 2
+  objective:
+    kind: collect
+    target_hint: boar tusks for the quartermaster's stamp-stock
+    count: 10
+  xp_reward: 140
+  gold_reward_copper: 25
+  repeatable: false
+- id: side__dalewatch_keep__stray_recruits
+  name: Stray Recruits
+  hub: dalewatch_keep
+  type: side
+  level: 3
+  objective:
+    kind: talk
+    target_hint: three recruits gone missing on the Kingsroad
+    count: 3
+  xp_reward: 180
+  gold_reward_copper: 35
+  repeatable: false
+- id: side__dalewatch_keep__letter_to_ashmere
+  name: Letter to Ashmere
+  hub: dalewatch_keep
+  type: side
+  level: 4
+  objective:
+    kind: deliver
+    target_hint: Sergeant Rook at the Ford of Ashmere
+  xp_reward: 220
+  gold_reward_copper: 50
+  repeatable: false
+- id: side__dalewatch_keep__the_silent_bell
+  name: The Silent Bell
+  hub: dalewatch_keep
+  type: side
+  level: 3
+  objective:
+    kind: investigate
+    target_hint: why the chapel bell at Harrier's Rest stopped ringing
+    location: harriers_rest
+  xp_reward: 180
+  gold_reward_copper: 30
+  repeatable: false

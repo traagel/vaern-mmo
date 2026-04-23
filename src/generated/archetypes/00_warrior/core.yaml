@@ -1,0 +1,44 @@
+class_id: 0
+internal_label: Fighter
+abstract_name: Warrior
+position:
+  might: 100
+  arcana: 0
+  finesse: 0
+pillar_classification: pure
+dominant_pillar:
+- might
+edge: corner-might
+primary_roles:
+- tank
+- dps
+note: pure-Might; no magic, no stealth
+active_tiers:
+  might:
+  - 25
+  - 50
+  - 75
+  - 100
+  arcana: []
+  finesse: []
+capabilities:
+  might:
+  - Light-medium armor proficiency
+  - Basic melee weapons (club, dagger, short sword)
+  - Hit-point bonus
+  - Medium-to-heavy armor proficiency
+  - Shield use
+  - Martial weapons (long sword, mace, axe)
+  - Basic taunt / threat generation
+  - Heavy armor mastery
+  - Two-handed weapons (greatsword, maul, halberd)
+  - Tank-tier damage mitigation
+  - Strong threat generation and hold
+  - Peak martial mastery
+  - Weapon specialization bonus
+  - Enhanced threat and target lock
+  arcana: []
+  finesse: []
+faction_labels:
+  faction_a: null
+  faction_b: null

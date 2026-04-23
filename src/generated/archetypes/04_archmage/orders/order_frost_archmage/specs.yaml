@@ -1,0 +1,15 @@
+specs:
+- id: frost_mage_glacier
+  name: Glacier-Mage
+  emphasis: magic_dps
+  description: frozen-damage heavy caster
+  schools_focus:
+  - frost
+  - arcane
+- id: frost_mage_warder
+  name: Ice-Warder
+  emphasis: control
+  description: freeze and slow crowd control
+  schools_focus:
+  - frost
+  - light

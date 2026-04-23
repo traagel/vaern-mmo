@@ -1,0 +1,15 @@
+id: river_valley
+name: River Valley & Farmland
+climate: warm, fertile, long summer
+hazards:
+- flood-season
+- bandit roads
+typical_flora:
+- wheat
+- willow
+- reed
+typical_fauna:
+- boar
+- river-otter
+- heron
+faction_affinity: faction_a

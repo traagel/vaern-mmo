@@ -1,0 +1,58 @@
+id: construct
+name: Construct
+category: unnatural
+description: "Built things \u2014 stone golems, forge-sentinels, animated armor, bound-shell\
+  \ Gravewrought kin."
+hp_scaling:
+  base_at_level_1: 60
+  per_level_multiplier: 1.16
+  formula: round(base_at_1 * multiplier^(level-1))
+default_armor_class: plate
+resistances:
+  blade: -0.25
+  blunt: 0.25
+  shadow: -0.4
+  blood: -1.0
+  poison: -1.0
+  nature: -0.15
+  fire: -0.2
+  frost: 0.1
+  lightning: 0.15
+affinities:
+  preferred:
+  - blunt
+  - blade
+  - spear
+  allowed:
+  - unarmed
+  - earth
+  forbidden:
+  - arcane
+  - fire
+  - frost
+  - lightning
+  - nature
+  - light
+  - devotion
+  - shadow
+  - blood
+  - honor
+  - fury
+  - bow
+  - dagger
+  - thrown
+  - acrobat
+  - silent
+  - trickster
+  - alchemy
+  - tonics
+  - poison
+behavior_defaults:
+  intelligence: low
+  social: solitary
+  flee_threshold: 0.0
+  aggro_range: short
+tags:
+- built
+- non-biological
+- fabricated

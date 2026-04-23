@@ -1,0 +1,23 @@
+id: order_frost_knight
+faction: faction_a
+archetype_id: 12
+archetype_position:
+  might: 50
+  arcana: 25
+  finesse: 25
+flagship: false
+player_facing:
+  class_name: Frost-Knight
+  title_singular: Frost-Knight
+  title_plural: Frost-Knights
+schools_taught:
+  might:
+  - blade
+  - shield
+  arcana:
+  - frost
+institutions:
+  primary: knight_order
+  secondary: silver_quill
+  tertiary: night_quick_guild
+chapter: chapter_frost_knight

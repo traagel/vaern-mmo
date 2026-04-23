@@ -1,0 +1,514 @@
+# Two-Faction Hardcore MMO Proposal
+# Design document: world, faction, race, class, multiclass, death, and mystery systems
+# Target: 3.5-inspired mechanics, classic-style friction, AI-assisted development
+#
+# ------------------------------------------------------------------------------
+# DEPRECATION NOTICE (2026-04-18):
+# Parts of this document are superseded by the class position system — see
+# README.md at project root and src/generated/ for the current architecture.
+#
+# Deprecated sections (kept for historical reference only; DO NOT treat as canonical):
+#   - classes
+#   - multiclass_system
+#   - build_totals
+#   - recommendations.mvp_scope (class-related points)
+#
+# Still canonical (world/lore/factions/mystery design):
+#   - project, world, factions, neutral_factions, mystery_and_revelation
+#   - races, hardcore_system, design_principles (friction sources, accessibility)
+#
+# The current class architecture: 3 pillars (might/arcana/finesse) quantized
+# at 25% steps into 15 positions. 27+ schools across 3 pillars. Strict morality
+# gating. See README.md.
+# ------------------------------------------------------------------------------
+
+project:
+  name: "Vaern (working title)"
+  design_base: "D&D 3.5 mechanics"
+  scope: "Mid-tier budget, niche audience (100K-500K target)"
+  development_model: "AI-assisted pipeline, small team"
+  genre: "Hardcore two-faction MMORPG"
+
+world:
+
+  setting_name: "Vaern"
+  geography:
+    type: "Island-continent"
+    scale: "Approximately the size of Britain and Ireland combined"
+    regions:
+      - "Mountainous interior with ancient ruins"
+      - "Forested central highlands"
+      - "River valleys and farmland (south)"
+      - "Marshlands (west)"
+      - "Rocky cliffs (north)"
+      - "Fjords and coastal harbors (east)"
+    climate: "Temperate, strongly seasonal, harsh winters"
+
+  pre_contact_state:
+    timeframe: "~30 years before game start"
+    indigenous_population: "The Veyr"
+    veyr_culture:
+      structure: "Kingdom-based, loose confederation"
+      kingdom_count: 15
+      technology: "Late-medieval (agriculture, metallurgy, literacy)"
+      religion: "Polytheistic — Radiant Pantheon"
+      internal_state: "Frequent minor wars, shared cultural heritage, not unified"
+
+  the_coming:
+    timeframe: "~30 years before game start"
+    arrivals: "The Hraun"
+    hraun_culture:
+      structure: "Clan-based, raiding-then-settling"
+      origin: "Unknown across the eastern sea (hidden from players)"
+      religion: "Ancestor-worship, shamanic pacts"
+      magic_tradition: "Incompatible with Veyr arcane/divine tradition"
+    conflict_progression:
+      phase_1: "Coastal raids"
+      phase_2: "Inland expansion"
+      phase_3: "Territorial claims and permanent settlement"
+    current_state:
+      hraun_holdings: "Eastern third of Vaern"
+      veyr_holdings: "Central and western two-thirds"
+      contested_zone: "Middle strip — the Ruin Line"
+
+factions:
+
+  concord:
+    in_world_identity: "The Veyr"
+    role: "Defenders (indigenous)"
+    alignment_tendency: "Lawful, flawed-good"
+    moral_framing:
+      intent: "Genuinely attempts good"
+      execution: "Institutionally flawed"
+      virtues: ["order", "preservation", "civilization", "lawful justice"]
+      vices: ["rigidity", "zealotry", "inquisitorial excess", "aristocratic corruption", "inter-kingdom rivalry"]
+    cosmology: "Radiant Pantheon (sun, law, hearth, judgment, healing)"
+    cultural_archetype: "Fractured confederation of feudal kingdoms"
+    magic_source: "Institutional, trained, literate"
+    combat_identity: "Sustain through fights, strong healing, heavy armor"
+    player_experience: "Defend home against genuinely dangerous invaders, confront internal corruption"
+
+  rend:
+    in_world_identity: "The Hraun"
+    role: "Offenders (arrivals)"
+    alignment_tendency: "Chaotic, dark-triad-coded culture"
+    moral_framing:
+      intent: "Survival and conquest for own people"
+      execution: "Culturally ruthless, individually human"
+      virtues_cultural: ["clan loyalty", "bravery", "honor within the frame"]
+      vices_cultural: ["raiding economy", "slavery of captives", "ritual cruelty", "strength-worship", "contempt for outsiders"]
+    cosmology: "Ancestor-spirits, Old Powers (bound entities of unknown origin)"
+    cultural_archetype: "Warband confederation with refugee undertones"
+    magic_source: "Innate, ancestral, oral tradition"
+    combat_identity: "Attrition through debuffs, curses, regenerative drain"
+    player_experience: "Villain fantasy with sympathetic reason, navigate clan politics, discover you did not escape what drove you here"
+
+  moral_asymmetry:
+    principle: "Not equivalent factions"
+    concord: "Flawed-but-righteous defender"
+    rend: "Darker aggressor with room for individual complexity"
+    intent: "Concord is objectively the more sympathetic side; Rend offers the classic villain fantasy without cartoonish evil"
+
+neutral_factions:
+
+  sable_college:
+    purpose: "Lore-access mechanic, not playable faction"
+    description: "Small scholarly order predating the Hraun arrival"
+    function:
+      - "Maintains libraries and archives"
+      - "Investigates pre-Veyr ruins"
+      - "Documents both cultures"
+    protection: "Mutual treaty — hostility carries faction-wide consequences"
+    player_interaction:
+      - "Reputation earned through quests"
+      - "Reputation unlocks cross-faction lore fragments"
+      - "Translation services for captured documents"
+      - "Access to neutral zones containing ancient ruins"
+
+mystery_and_revelation:
+
+  design_principle: "Half the lore is hidden by design, revealed in layers over months to years of play"
+
+  layer_1_immediate:
+    available_to_both:
+      - "Basic geography of Vaern"
+      - "Existence and surface culture of opposing faction"
+      - "Recent war history (~30 years)"
+    hidden_from_rend_players:
+      - "Veyr Radiant Pantheon theological details"
+      - "Interior Veyr geography beyond the front"
+      - "Veyr political structure and internal divisions"
+    hidden_from_concord_players:
+      - "Hraun origin across the sea"
+      - "Why the Hraun came"
+      - "Hraun ancestor-binding ritual specifics"
+      - "Hraun clan politics and hierarchy"
+
+  layer_2_mid_level:
+    revealed_to_both:
+      - "Hraun ancestor-spirits are literally real, not metaphorical"
+      - "Veyr Radiant Pantheon has documented history ~1200 years"
+      - "Earlier records reference a lost civilization — the Elders"
+      - "Ruins on Vaern predate Veyr civilization; neither faction built them"
+      - "Both factions encounter artifacts neither recognizes"
+
+  layer_3_endgame:
+    revelations:
+      - "The Hraun fled their homeland because something consumed it"
+      - "Not war, not plague — a force that erases"
+      - "The Elders who preceded Veyr civilization encountered the same force"
+      - "The Elder collapse was not internal; something pursued them"
+      - "Vaern has been contested ground in a larger pattern"
+      - "Both factions are on the next battlefield; neither knows it"
+
+  layer_4_deep_lore:
+    status: "Reserved for years post-launch"
+    content:
+      - "The nature of the pursuing force"
+      - "Its pattern and origin"
+      - "Long-term framing shift without collapsing faction conflict"
+    principle: "Never fully explained; some mystery permanent by design"
+
+  cross_faction_lore_access:
+    low_level: "Impossible"
+    mid_level: "Limited via captured documents, defector NPCs, Sable College reputation"
+    high_level: "Partial via ruins investigation, scholar quests, translated artifacts"
+
+  what_this_setting_does_not_have:
+    - "Overarching cosmic villain at launch"
+    - "Prophesied chosen one"
+    - "Ancient dark lord returning"
+    - "Explicit good vs evil pantheon war"
+    - "Player framed as hero of destiny"
+
+  what_this_setting_has_instead:
+    - "Two cultures with irreconcilable territorial claims"
+    - "Mystery buried beneath both"
+    - "Slowly-revealing truth that reframes conflict without erasing it"
+    - "Player agency in discovery pacing"
+
+  differentiation:
+    acknowledged_parallel: "Viking-Saxon historical conflict"
+    divergences_from_parallel:
+      - "Hraun aggression partly existential (refugee crisis)"
+      - "Veyr kingdoms internally divided, not uniformly civilized"
+      - "Magic is real and asymmetric between factions"
+      - "Deeper Elder-lore layer absent from historical parallel"
+    differentiation_from_existing_ips:
+      warcraft: "No Burning Legion or cosmic backer for invaders"
+      warhammer: "No Chaos, no Slaanesh"
+      dragon_age: "No Blight, no Maker"
+      elder_scrolls: "No Aedra/Daedra binary"
+      lord_of_the_rings: "No Sauron-equivalent"
+
+races:
+
+  concord_veyr:
+    - name: "Mannin"
+      archetype: "Humans"
+      traits: "Adaptable, institutional, dominant"
+      favored_class: "Any"
+    - name: "Hearthkin"
+      archetype: "Dwarves"
+      traits: "Mountain-forged, lawful, smiths"
+      favored_class: "Fighter"
+    - name: "Sunward Elen"
+      archetype: "High elves"
+      traits: "Ancient, arcane-literate, rigid"
+      favored_class: "Wizard"
+    - name: "Wyrling"
+      archetype: "Halfling/gnome hybrid"
+      traits: "Small, clever, urban"
+      favored_class: "Rogue or Bard"
+
+  rend_hraun:
+    - name: "Grulk"
+      archetype: "Orcs"
+      traits: "Clan-based, martial, shamanic"
+      favored_class: "Barbarian"
+    - name: "Darkling Elen"
+      archetype: "Fallen elves"
+      traits: "Exiled kin of Sunward, shadow-touched, crossed with Hraun"
+      favored_class: "Warlock"
+    - name: "Tharn"
+      archetype: "Horned plainsfolk"
+      traits: "Ancestor-worshipping, nomadic, allied with Hraun"
+      favored_class: "Shaman"
+    - name: "Hollowborn"
+      archetype: "Sapient undead"
+      traits: "Hraun ancestor-binding gone wrong, cursed survivors"
+      favored_class: "Deathsinger"
+
+classes:
+
+  universal:
+    - name: "Fighter"
+      role: "Tank"
+      damage_type: "Physical"
+      range: "Melee"
+      specs: ["Weapon Master", "Guardian", "Skirmisher"]
+    - name: "Barbarian"
+      role: "DPS/Tank"
+      damage_type: "Physical"
+      range: "Melee"
+      specs: ["Berserker", "Totem Warrior", "Pathfinder"]
+    - name: "Rogue"
+      role: "DPS/Utility"
+      damage_type: "Physical"
+      range: "Melee/Ranged"
+      specs: ["Assassin", "Scout", "Trickster"]
+    - name: "Ranger"
+      role: "DPS"
+      damage_type: "Physical"
+      range: "Ranged"
+      specs: ["Archer", "Beastmaster", "Hunter"]
+
+  concord_exclusive:
+    - name: "Paladin"
+      role: "Tank"
+      damage_type: "Radiant"
+      range: "Melee"
+      specs: ["Oathbearer", "Lightbringer", "Judgment"]
+      rend_counterpart: "Deathknight"
+    - name: "Cleric"
+      role: "Heal"
+      damage_type: "Radiant"
+      range: "Ranged"
+      specs: ["Life", "Sun", "War"]
+      rend_counterpart: "Shaman"
+    - name: "Wizard"
+      role: "DPS"
+      damage_type: "Arcane"
+      range: "Ranged"
+      specs: ["Evoker", "Conjurer", "Diviner"]
+      rend_counterpart: "Sorcerer"
+    - name: "Bard"
+      role: "Support"
+      damage_type: "Mixed"
+      range: "Ranged"
+      specs: ["Inspire", "Loremaster", "Duelist"]
+      rend_counterpart: "Deathsinger"
+    - name: "Templar"
+      role: "DPS/Tank"
+      damage_type: "Radiant"
+      range: "Melee"
+      specs: ["Fist of Dawn", "Warding", "Judicator"]
+      rend_counterpart: "Warlock"
+    - name: "Druid"
+      role: "Heal/DPS"
+      damage_type: "Nature"
+      range: "Mixed"
+      specs: ["Grove", "Sun", "Beast"]
+      rend_counterpart: "Witch"
+
+  rend_exclusive:
+    - name: "Deathknight"
+      role: "Tank"
+      damage_type: "Unholy"
+      range: "Melee"
+      specs: ["Blood", "Frost", "Unholy"]
+      concord_counterpart: "Paladin"
+    - name: "Shaman"
+      role: "Heal"
+      damage_type: "Elemental"
+      range: "Ranged"
+      specs: ["Ancestor", "Storm", "Totem"]
+      concord_counterpart: "Cleric"
+    - name: "Sorcerer"
+      role: "DPS"
+      damage_type: "Innate arcane"
+      range: "Ranged"
+      specs: ["Bloodline", "Wild", "Chaos"]
+      concord_counterpart: "Wizard"
+    - name: "Deathsinger"
+      role: "Support"
+      damage_type: "Shadow"
+      range: "Ranged"
+      specs: ["Dirge", "Bonespeaker", "Mourner"]
+      concord_counterpart: "Bard"
+    - name: "Warlock"
+      role: "DPS/Tank"
+      damage_type: "Shadow/Pact"
+      range: "Melee"
+      specs: ["Pactblade", "Hexbound", "Soulbinder"]
+      concord_counterpart: "Templar"
+    - name: "Witch"
+      role: "Heal/DPS"
+      damage_type: "Curse"
+      range: "Mixed"
+      specs: ["Hex", "Rot", "Wild"]
+      concord_counterpart: "Druid"
+
+multiclass_system:
+
+  tiers:
+    primary:
+      levels: "1-30"
+      description: "Full progression, main identity"
+    secondary:
+      unlock_level: 10
+      level_cap: "primary_level - 5"
+      description: "Optional, broadens role coverage"
+    tertiary:
+      unlock_level: 20
+      level_cap: "primary_level - 10"
+      status: "Cut from MVP scope; reserved for expansion"
+
+  rules:
+    faction_lock: "Multiclass only within own faction's class list"
+    xp_penalty:
+      secondary: 1.5
+      tertiary: 2.0
+      same_role_penalty: 2.0
+    alignment_constraints:
+      paladin: "Lawful Good required"
+      witch: "Non-Lawful-Good required"
+      deathknight: "Evil or Neutral required"
+
+  restrictions:
+    hard_blocks:
+      - "Paladin + Warlock (cross-faction)"
+      - "Cleric + Deathknight (cross-faction)"
+      - "Druid + Witch (cross-faction)"
+    soft_discouraged:
+      - "Same-role stacks (penalized XP)"
+      - "Heavy armor + arcane caster (spell failure)"
+
+  recommended_hybrids_concord:
+    - ["Paladin", "Cleric", "Crusader: Tank + Heal"]
+    - ["Paladin", "Wizard", "Spellsword: Tank + DPS"]
+    - ["Cleric", "Wizard", "Theurge: Heal + DPS"]
+    - ["Cleric", "Bard", "Chaplain: Heal + Support"]
+    - ["Wizard", "Rogue", "Arcane Trickster: DPS + Utility"]
+    - ["Templar", "Paladin", "Inquisitor: Tank + DPS"]
+    - ["Bard", "Rogue", "Skald: Support + Utility"]
+    - ["Fighter", "Wizard", "Battlemage: Tank + DPS"]
+    - ["Druid", "Ranger", "Warden: Heal + Ranged DPS"]
+    - ["Ranger", "Rogue", "Scout: Ranged DPS + Utility"]
+
+  recommended_hybrids_rend:
+    - ["Deathknight", "Shaman", "Bloodcaller: Tank + Heal"]
+    - ["Deathknight", "Warlock", "Ruinblade: Tank + DPS"]
+    - ["Shaman", "Sorcerer", "Stormcaller: Heal + DPS"]
+    - ["Shaman", "Deathsinger", "Bonespeaker: Heal + Support"]
+    - ["Sorcerer", "Rogue", "Shadowcaster: DPS + Utility"]
+    - ["Warlock", "Deathknight", "Hexbound: DPS + Tank"]
+    - ["Deathsinger", "Rogue", "Graveshade: Support + Utility"]
+    - ["Fighter", "Warlock", "Cursed Blade: Tank + DPS"]
+    - ["Witch", "Ranger", "Hagborn: Heal + Ranged DPS"]
+    - ["Ranger", "Rogue", "Stalker: Ranged DPS + Utility"]
+
+build_totals:
+
+  single_class:
+    per_faction: 30
+    both_factions: 60
+
+  dual_class:
+    per_faction: 405
+    both_factions: 810
+
+  triple_class:
+    per_faction: 3240
+    both_factions: 6480
+
+  grand_total: 7350
+
+  viability_estimates:
+    mechanically_viable: 800
+    competitive_endgame: 160
+    top_meta: 30
+
+  recommended_mvp_scope:
+    cut_tertiary: true
+    rationale: "Reduces complexity 87%, retains 90% of meaningful diversity"
+    revised_total_builds: 870
+
+hardcore_system:
+
+  default_state: "Hardcore (permadeath)"
+
+  rescue_mechanism:
+    name: "Rite of Return"
+    corpse_persistence_hours: 72
+    requirements:
+      caster_class: "Same-faction ritual class (Cleric/Paladin for Concord, Shaman/Witch for Rend)"
+      caster_level: ">= deceased character level"
+      reagents: "Scales with deceased level, rare materials"
+      ritual_time_minutes: 30
+      location: "Consecrated site (Concord shrine or Rend ancestral ground)"
+      interruption_resets: true
+    penalties_on_return:
+      constitution_loss: 1
+      xp_loss_percent: 10
+      equipment_left_on_corpse: true
+      debuff: "Wraith-Touched (24h reduced healing, combat penalty)"
+
+  permadeath_triggers:
+    - "Corpse not recovered within 72h"
+    - "Ritual interrupted or incomplete"
+    - "No qualified caster available"
+    - "Corpse destroyed by hostile action"
+
+  cross_faction_interaction:
+    looting: "Enemy faction can loot items from corpse"
+    desecration: "Enemy faction can consume ritual materials, forcing permadeath"
+    rescue: "Cross-faction rescue impossible"
+
+design_principles:
+
+  friction_sources:
+    world: "No fast travel, long-distance requires mounts or rituals"
+    mechanical: "Hardcore death, corpse recovery required"
+    social: "Forced grouping for elite content, cross-level cooperation needed"
+    factional: "Two-faction PvP, contested zones, corpse desecration"
+    economic: "Scarce reagents, meaningful trade, no instant gratification"
+    informational: "Asymmetric lore access, mystery-driven exploration"
+
+  symmetry_model:
+    role_slots: "Symmetric (every Concord role has Rend counterpart)"
+    execution: "Asymmetric (radiant vs shadow, trained vs innate, sustain vs attrition)"
+    moral_weight: "Asymmetric (Concord flawed-good, Rend dark-culture)"
+    information: "Asymmetric (each faction knows its own lore, not the other's)"
+    balance_target: "Aggregate mechanical parity through opposing strengths"
+
+  accessibility:
+    solo_viability: "Difficult but possible for non-elite content"
+    group_incentive: "Elite content, dungeons, raids require 3-8 players"
+    casual_support: "Suggested-path templates at multiclass unlock levels"
+    lore_pacing: "Players discover at own pace; no forced exposition dumps"
+
+recommendations:
+
+  mvp_scope:
+    - "Cut tertiary multiclass tier"
+    - "Launch with dual-class system only"
+    - "6 classes per faction + 4 universal = 10 each"
+    - "3 specs per class"
+    - "Hardcore + rescue mechanic functional at launch"
+    - "Layers 1 and 2 of mystery revealed during normal progression"
+    - "Layer 3 reserved for endgame content and first expansion"
+    - "Layer 4 permanently partial; some mystery never fully resolved"
+
+  post_launch_expansion:
+    - "Tertiary multiclass as expansion feature"
+    - "Additional specs per class"
+    - "Layer 3 endgame revelation content"
+    - "New races per faction"
+    - "Expanded Ruin Line contested zones"
+    - "Sable College faction reputation expansion"
+    - "Eventually: Layer 4 deep-lore reveal (years post-launch)"
+
+  risks:
+    balance_workload: "160 competitive builds require sustained balance team"
+    choice_paralysis: "Mitigate with suggested templates and in-game guidance"
+    faction_population_skew: "Monitor and adjust incentives; Rend dark flavor may over-attract initially"
+    hardcore_retention: "Rescue mechanic softens loss but some players will reject permadeath"
+    lore_impatience: "Some players will want faster answers; design must reward patience without punishing curiosity"
+
+  success_criteria:
+    minimum_viable_population: 100000
+    target_population: 500000
+    subscription_model: "Monthly subscription preferred over F2P"
+    development_timeline_years: "5-7 with AI-assisted pipeline"
+    estimated_budget_usd_millions: "5-20 (AI-assisted) vs 100+ (traditional)"

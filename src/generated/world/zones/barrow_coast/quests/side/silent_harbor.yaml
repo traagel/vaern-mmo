@@ -1,0 +1,42 @@
+id: side_quests__silent_harbor
+hub: silent_harbor
+hub_role: outpost
+zone: barrow_coast
+biome: coastal_cliff
+quest_count: 3
+quests:
+- id: side__silent_harbor__the_wrecksalvage
+  name: The Wrecksalvage
+  hub: silent_harbor
+  type: side
+  level: 1
+  objective:
+    kind: collect
+    target_hint: salvage from a recent wreck
+    count: 4
+  xp_reward: 21
+  gold_reward_copper: 5
+  repeatable: false
+- id: side__silent_harbor__the_seabird_plague
+  name: The Seabird Plague
+  hub: silent_harbor
+  type: side
+  level: 3
+  objective:
+    kind: kill
+    target_hint: aggressive seabirds nesting near the fishery
+    count: 1
+  xp_reward: 91
+  gold_reward_copper: 15
+  repeatable: false
+- id: side__silent_harbor__the_cliff_watch
+  name: The Cliff Watch
+  hub: silent_harbor
+  type: side
+  level: 5
+  objective:
+    kind: investigate
+    target_hint: a cliff-watcher who stopped reporting
+  xp_reward: 200
+  gold_reward_copper: 25
+  repeatable: false

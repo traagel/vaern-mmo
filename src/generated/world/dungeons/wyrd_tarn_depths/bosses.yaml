@@ -1,0 +1,21 @@
+id: wyrd_tarn_depths_bosses
+instance: wyrd_tarn_depths
+bosses:
+- id: drowned_huntress
+  name: The Drowned Huntress
+  role_tag: miniboss
+  level: 26
+  mechanic: bow mechanic, arrow-line avoidance
+  hp_tier: elite
+- id: tarn_serpent
+  name: The Tarn-Serpent
+  role_tag: miniboss
+  level: 29
+  mechanic: water-vortex mechanic, collision
+  hp_tier: elite
+- id: wyrd_warden
+  name: The Wyrd Warden
+  role_tag: final
+  level: 32
+  mechanic: alternates between nature and frost phases; wrong resist = death
+  hp_tier: heroic

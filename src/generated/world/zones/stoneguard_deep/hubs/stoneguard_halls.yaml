@@ -1,0 +1,12 @@
+id: stoneguard_halls
+zone: stoneguard_deep
+name: Stoneguard Halls
+role: capital
+amenities:
+- innkeeper
+- class_trainers
+- bank
+- auction
+- flight_master
+- profession_trainers
+quest_givers: 6

@@ -1,0 +1,20 @@
+global:
+  composition_tags: single spell icon, one object, centered isolated subject, pure black background, void backdrop, rim-lit subject
+  art_direction_tags: painterly fantasy MMO spell icon, hand-rendered, semi-realistic, stylized concept art, World of Warcraft icon style
+  lighting_tags: dramatic rim light from upper-left, strong specular highlights, inner glow, deep cast shadows, atmospheric volumetric light
+  detail_tags: crisp readable silhouette at 64px thumbnail, clean hard edges, polished finish, high detail focal subject
+  color_logic_tags: saturated signature color dominant, complementary accent, neutral dark backdrop
+  negative_tags: text, watermark, letters, numbers, frame, border, ui chrome, hud, multiple subjects, sheet, grid, collage, chart, concept sheet, variations, thumbnails, tiled, duplicate, split panels, realistic photograph, photography, signature, logo, cluttered
+
+tier_words:
+  25: cantrip-tier, minor nascent spell
+  50: practiced journeyman spell, single-target staple
+  75: greater surging wide-area spell, dominant
+  100: ritual-tier catastrophic epic spell, world-altering
+
+sdxl_defaults:
+  steps: 30
+  cfg_scale: 8.5
+  sampler_name: dpmpp_2m
+  width: 1024
+  height: 1024

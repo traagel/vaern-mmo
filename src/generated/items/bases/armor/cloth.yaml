@@ -1,0 +1,125 @@
+bases:
+- id: cloth_shirt
+  piece_name: Shirt
+  size: small
+  base_weight_kg: 0.2
+  kind:
+    type: armor
+    slot: shirt
+    armor_type: cloth
+    layer: under
+    coverage:
+    - chest
+    - arms
+    base_armor_class: 0.3
+- id: cloth_cowl
+  piece_name: Cowl
+  size: small
+  base_weight_kg: 0.36
+  kind:
+    type: armor
+    slot: head
+    armor_type: cloth
+    layer: padding
+    coverage:
+    - head
+    base_armor_class: 0.8
+- id: cloth_mantle
+  piece_name: Mantle
+  size: small
+  base_weight_kg: 0.56
+  kind:
+    type: armor
+    slot: shoulders
+    armor_type: cloth
+    layer: padding
+    coverage:
+    - shoulders
+    base_armor_class: 1.1
+- id: cloth_robe
+  piece_name: Robe
+  size: medium
+  base_weight_kg: 2.0
+  kind:
+    type: armor
+    slot: chest
+    armor_type: cloth
+    layer: padding
+    coverage:
+    - chest
+    - arms
+    - legs
+    base_armor_class: 2.0
+- id: cloth_cuffs
+  piece_name: Cuffs
+  size: small
+  base_weight_kg: 0.16
+  kind:
+    type: armor
+    slot: wrists
+    armor_type: cloth
+    layer: padding
+    coverage:
+    - arms
+    base_armor_class: 0.7
+- id: cloth_gloves
+  piece_name: Gloves
+  size: small
+  base_weight_kg: 0.24
+  kind:
+    type: armor
+    slot: hands
+    armor_type: cloth
+    layer: padding
+    coverage:
+    - hands
+    base_armor_class: 0.9
+- id: cloth_sash
+  piece_name: Sash
+  size: small
+  base_weight_kg: 0.16
+  kind:
+    type: armor
+    slot: waist
+    armor_type: cloth
+    layer: padding
+    coverage:
+    - waist
+    base_armor_class: 0.6
+- id: cloth_trousers
+  piece_name: Trousers
+  size: medium
+  base_weight_kg: 0.8
+  kind:
+    type: armor
+    slot: legs
+    armor_type: cloth
+    layer: padding
+    coverage:
+    - legs
+    base_armor_class: 1.6
+- id: cloth_slippers
+  piece_name: Slippers
+  size: small
+  base_weight_kg: 0.36
+  kind:
+    type: armor
+    slot: feet
+    armor_type: cloth
+    layer: padding
+    coverage:
+    - feet
+    base_armor_class: 0.9
+- id: cloth_cloak
+  piece_name: Cloak
+  size: medium
+  base_weight_kg: 0.4
+  kind:
+    type: armor
+    slot: back
+    armor_type: cloth
+    layer: over
+    coverage:
+    - shoulders
+    - chest
+    base_armor_class: 0.6

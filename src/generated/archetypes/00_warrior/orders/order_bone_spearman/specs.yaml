@@ -1,0 +1,11 @@
+specs:
+  - id: bonespear_reaver
+    name: Bone-Reaver
+    emphasis: melee_dps
+    description: thrust-focused spear striker, grave-weighted precision
+    schools_focus: [spear, fury]
+  - id: bonespear_wall
+    name: Bone-Wall
+    emphasis: tank
+    description: braced spear-line hold, trophy-burdened endurance
+    schools_focus: [spear, blunt]

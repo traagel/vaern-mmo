@@ -1,0 +1,621 @@
+bases:
+- id: sword
+  piece_name: Sword
+  size: medium
+  base_weight_kg: 1.8
+  kind:
+    type: weapon
+    grip: one_handed
+    school: blade
+    base_min_dmg: 4.0
+    base_max_dmg: 8.0
+- id: short_sword
+  piece_name: Short Sword
+  size: small
+  base_weight_kg: 1.5
+  kind:
+    type: weapon
+    grip: light
+    school: blade
+    base_min_dmg: 3.0
+    base_max_dmg: 6.0
+- id: rapier
+  piece_name: Rapier
+  size: medium
+  base_weight_kg: 1.0
+  kind:
+    type: weapon
+    grip: one_handed
+    school: blade
+    base_min_dmg: 3.0
+    base_max_dmg: 7.0
+- id: scimitar
+  piece_name: Scimitar
+  size: medium
+  base_weight_kg: 1.8
+  kind:
+    type: weapon
+    grip: one_handed
+    school: blade
+    base_min_dmg: 4.0
+    base_max_dmg: 7.0
+- id: falchion
+  piece_name: Falchion
+  size: medium
+  base_weight_kg: 2.2
+  kind:
+    type: weapon
+    grip: one_handed
+    school: blade
+    base_min_dmg: 5.0
+    base_max_dmg: 9.0
+- id: bastard_sword
+  piece_name: Bastard Sword
+  size: medium
+  base_weight_kg: 3.0
+  kind:
+    type: weapon
+    grip: one_handed
+    school: blade
+    base_min_dmg: 5.0
+    base_max_dmg: 10.0
+- id: longsword
+  piece_name: Longsword
+  size: large
+  base_weight_kg: 3.5
+  kind:
+    type: weapon
+    grip: two_handed
+    school: blade
+    base_min_dmg: 7.0
+    base_max_dmg: 12.0
+- id: greatsword
+  piece_name: Greatsword
+  size: large
+  base_weight_kg: 4.5
+  kind:
+    type: weapon
+    grip: two_handed
+    school: blade
+    base_min_dmg: 9.0
+    base_max_dmg: 15.0
+- id: kukri
+  piece_name: Kukri
+  size: small
+  base_weight_kg: 0.6
+  kind:
+    type: weapon
+    grip: light
+    school: blade
+    base_min_dmg: 2.0
+    base_max_dmg: 5.0
+- id: handaxe
+  piece_name: Handaxe
+  size: small
+  base_weight_kg: 1.5
+  kind:
+    type: weapon
+    grip: light
+    school: blade
+    base_min_dmg: 3.0
+    base_max_dmg: 6.0
+- id: battleaxe
+  piece_name: Battleaxe
+  size: medium
+  base_weight_kg: 2.8
+  kind:
+    type: weapon
+    grip: one_handed
+    school: blade
+    base_min_dmg: 4.0
+    base_max_dmg: 8.0
+- id: waraxe
+  piece_name: Waraxe
+  size: medium
+  base_weight_kg: 3.5
+  kind:
+    type: weapon
+    grip: one_handed
+    school: blade
+    base_min_dmg: 5.0
+    base_max_dmg: 9.0
+- id: greataxe
+  piece_name: Greataxe
+  size: large
+  base_weight_kg: 5.0
+  kind:
+    type: weapon
+    grip: two_handed
+    school: blade
+    base_min_dmg: 9.0
+    base_max_dmg: 16.0
+- id: scythe
+  piece_name: Scythe
+  size: large
+  base_weight_kg: 4.5
+  kind:
+    type: weapon
+    grip: two_handed
+    school: blade
+    base_min_dmg: 5.0
+    base_max_dmg: 12.0
+- id: club
+  piece_name: Club
+  size: small
+  base_weight_kg: 1.2
+  kind:
+    type: weapon
+    grip: light
+    school: blunt
+    base_min_dmg: 2.0
+    base_max_dmg: 5.0
+- id: sap
+  piece_name: Sap
+  size: small
+  base_weight_kg: 0.5
+  kind:
+    type: weapon
+    grip: light
+    school: blunt
+    base_min_dmg: 2.0
+    base_max_dmg: 4.0
+- id: light_hammer
+  piece_name: Light Hammer
+  size: small
+  base_weight_kg: 1.0
+  kind:
+    type: weapon
+    grip: light
+    school: blunt
+    base_min_dmg: 2.0
+    base_max_dmg: 5.0
+- id: light_mace
+  piece_name: Light Mace
+  size: small
+  base_weight_kg: 1.8
+  kind:
+    type: weapon
+    grip: light
+    school: blunt
+    base_min_dmg: 3.0
+    base_max_dmg: 6.0
+- id: mace
+  piece_name: Mace
+  size: medium
+  base_weight_kg: 2.5
+  kind:
+    type: weapon
+    grip: one_handed
+    school: blunt
+    base_min_dmg: 5.0
+    base_max_dmg: 9.0
+- id: morningstar
+  piece_name: Morningstar
+  size: medium
+  base_weight_kg: 2.8
+  kind:
+    type: weapon
+    grip: one_handed
+    school: blunt
+    base_min_dmg: 4.0
+    base_max_dmg: 8.0
+- id: flail
+  piece_name: Flail
+  size: medium
+  base_weight_kg: 2.8
+  kind:
+    type: weapon
+    grip: one_handed
+    school: blunt
+    base_min_dmg: 4.0
+    base_max_dmg: 10.0
+- id: warhammer
+  piece_name: Warhammer
+  size: large
+  base_weight_kg: 5.0
+  kind:
+    type: weapon
+    grip: two_handed
+    school: blunt
+    base_min_dmg: 8.0
+    base_max_dmg: 14.0
+- id: greatclub
+  piece_name: Greatclub
+  size: large
+  base_weight_kg: 3.5
+  kind:
+    type: weapon
+    grip: two_handed
+    school: blunt
+    base_min_dmg: 5.0
+    base_max_dmg: 11.0
+- id: heavy_flail
+  piece_name: Heavy Flail
+  size: large
+  base_weight_kg: 4.5
+  kind:
+    type: weapon
+    grip: two_handed
+    school: blunt
+    base_min_dmg: 5.0
+    base_max_dmg: 12.0
+- id: maul
+  piece_name: Maul
+  size: large
+  base_weight_kg: 6.0
+  kind:
+    type: weapon
+    grip: two_handed
+    school: blunt
+    base_min_dmg: 10.0
+    base_max_dmg: 16.0
+- id: quarterstaff
+  piece_name: Quarterstaff
+  size: large
+  base_weight_kg: 2.5
+  kind:
+    type: weapon
+    grip: two_handed
+    school: blunt
+    base_min_dmg: 4.0
+    base_max_dmg: 8.0
+- id: shortspear
+  piece_name: Shortspear
+  size: medium
+  base_weight_kg: 2.0
+  kind:
+    type: weapon
+    grip: one_handed
+    school: spear
+    base_min_dmg: 4.0
+    base_max_dmg: 7.0
+- id: trident
+  piece_name: Trident
+  size: medium
+  base_weight_kg: 2.5
+  kind:
+    type: weapon
+    grip: one_handed
+    school: spear
+    base_min_dmg: 4.0
+    base_max_dmg: 9.0
+- id: longspear
+  piece_name: Longspear
+  size: large
+  base_weight_kg: 3.0
+  kind:
+    type: weapon
+    grip: two_handed
+    school: spear
+    base_min_dmg: 5.0
+    base_max_dmg: 10.0
+- id: pike
+  piece_name: Pike
+  size: large
+  base_weight_kg: 4.0
+  kind:
+    type: weapon
+    grip: two_handed
+    school: spear
+    base_min_dmg: 6.0
+    base_max_dmg: 11.0
+- id: glaive
+  piece_name: Glaive
+  size: large
+  base_weight_kg: 4.5
+  kind:
+    type: weapon
+    grip: two_handed
+    school: spear
+    base_min_dmg: 6.0
+    base_max_dmg: 12.0
+- id: guisarme
+  piece_name: Guisarme
+  size: large
+  base_weight_kg: 5.0
+  kind:
+    type: weapon
+    grip: two_handed
+    school: spear
+    base_min_dmg: 5.0
+    base_max_dmg: 11.0
+- id: ranseur
+  piece_name: Ranseur
+  size: large
+  base_weight_kg: 5.0
+  kind:
+    type: weapon
+    grip: two_handed
+    school: spear
+    base_min_dmg: 5.0
+    base_max_dmg: 11.0
+- id: halberd
+  piece_name: Halberd
+  size: large
+  base_weight_kg: 5.5
+  kind:
+    type: weapon
+    grip: two_handed
+    school: spear
+    base_min_dmg: 8.0
+    base_max_dmg: 13.0
+- id: dagger
+  piece_name: Dagger
+  size: small
+  base_weight_kg: 0.6
+  kind:
+    type: weapon
+    grip: light
+    school: dagger
+    base_min_dmg: 2.0
+    base_max_dmg: 4.0
+- id: shortbow
+  piece_name: Shortbow
+  size: medium
+  base_weight_kg: 1.5
+  kind:
+    type: weapon
+    grip: two_handed
+    school: bow
+    base_min_dmg: 4.0
+    base_max_dmg: 8.0
+- id: composite_shortbow
+  piece_name: Composite Shortbow
+  size: medium
+  base_weight_kg: 1.5
+  kind:
+    type: weapon
+    grip: two_handed
+    school: bow
+    base_min_dmg: 5.0
+    base_max_dmg: 10.0
+- id: longbow
+  piece_name: Longbow
+  size: large
+  base_weight_kg: 2.0
+  kind:
+    type: weapon
+    grip: two_handed
+    school: bow
+    base_min_dmg: 6.0
+    base_max_dmg: 10.0
+- id: composite_longbow
+  piece_name: Composite Longbow
+  size: large
+  base_weight_kg: 2.5
+  kind:
+    type: weapon
+    grip: two_handed
+    school: bow
+    base_min_dmg: 7.0
+    base_max_dmg: 12.0
+- id: hand_crossbow
+  piece_name: Hand Crossbow
+  size: small
+  base_weight_kg: 1.0
+  kind:
+    type: weapon
+    grip: light
+    school: crossbow
+    base_min_dmg: 2.0
+    base_max_dmg: 5.0
+- id: light_crossbow
+  piece_name: Light Crossbow
+  size: medium
+  base_weight_kg: 3.5
+  kind:
+    type: weapon
+    grip: two_handed
+    school: crossbow
+    base_min_dmg: 5.0
+    base_max_dmg: 10.0
+- id: heavy_crossbow
+  piece_name: Heavy Crossbow
+  size: large
+  base_weight_kg: 5.0
+  kind:
+    type: weapon
+    grip: two_handed
+    school: crossbow
+    base_min_dmg: 8.0
+    base_max_dmg: 14.0
+- id: repeating_crossbow
+  piece_name: Repeating Crossbow
+  size: large
+  base_weight_kg: 5.5
+  kind:
+    type: weapon
+    grip: two_handed
+    school: crossbow
+    base_min_dmg: 4.0
+    base_max_dmg: 9.0
+- id: dart
+  piece_name: Dart
+  size: tiny
+  base_weight_kg: 0.2
+  kind:
+    type: weapon
+    grip: light
+    school: thrown
+    base_min_dmg: 2.0
+    base_max_dmg: 4.0
+- id: throwing_dagger
+  piece_name: Throwing Dagger
+  size: small
+  base_weight_kg: 0.3
+  kind:
+    type: weapon
+    grip: light
+    school: thrown
+    base_min_dmg: 2.0
+    base_max_dmg: 5.0
+- id: shuriken
+  piece_name: Shuriken
+  size: tiny
+  base_weight_kg: 0.05
+  kind:
+    type: weapon
+    grip: light
+    school: thrown
+    base_min_dmg: 1.0
+    base_max_dmg: 3.0
+- id: javelin
+  piece_name: Javelin
+  size: medium
+  base_weight_kg: 1.0
+  kind:
+    type: weapon
+    grip: one_handed
+    school: thrown
+    base_min_dmg: 3.0
+    base_max_dmg: 6.0
+- id: throwing_axe
+  piece_name: Throwing Axe
+  size: small
+  base_weight_kg: 0.8
+  kind:
+    type: weapon
+    grip: one_handed
+    school: thrown
+    base_min_dmg: 3.0
+    base_max_dmg: 7.0
+- id: bolas
+  piece_name: Bolas
+  size: small
+  base_weight_kg: 0.5
+  kind:
+    type: weapon
+    grip: one_handed
+    school: thrown
+    base_min_dmg: 2.0
+    base_max_dmg: 4.0
+- id: net
+  piece_name: Net
+  size: medium
+  base_weight_kg: 1.5
+  kind:
+    type: weapon
+    grip: one_handed
+    school: thrown
+    base_min_dmg: 1.0
+    base_max_dmg: 3.0
+- id: gauntlet
+  piece_name: Gauntlet
+  size: small
+  base_weight_kg: 0.8
+  kind:
+    type: weapon
+    grip: light
+    school: unarmed
+    base_min_dmg: 1.0
+    base_max_dmg: 3.0
+- id: spiked_gauntlet
+  piece_name: Spiked Gauntlet
+  size: small
+  base_weight_kg: 1.0
+  kind:
+    type: weapon
+    grip: light
+    school: unarmed
+    base_min_dmg: 2.0
+    base_max_dmg: 4.0
+- id: cestus
+  piece_name: Cestus
+  size: small
+  base_weight_kg: 0.6
+  kind:
+    type: weapon
+    grip: light
+    school: unarmed
+    base_min_dmg: 2.0
+    base_max_dmg: 4.0
+- id: knuckledusters
+  piece_name: Knuckledusters
+  size: tiny
+  base_weight_kg: 0.4
+  kind:
+    type: weapon
+    grip: light
+    school: unarmed
+    base_min_dmg: 2.0
+    base_max_dmg: 4.0
+- id: kama
+  piece_name: Kama
+  size: small
+  base_weight_kg: 1.0
+  kind:
+    type: weapon
+    grip: light
+    school: unarmed
+    base_min_dmg: 3.0
+    base_max_dmg: 6.0
+- id: nunchaku
+  piece_name: Nunchaku
+  size: small
+  base_weight_kg: 0.8
+  kind:
+    type: weapon
+    grip: light
+    school: unarmed
+    base_min_dmg: 3.0
+    base_max_dmg: 6.0
+- id: sai
+  piece_name: Sai
+  size: small
+  base_weight_kg: 0.6
+  kind:
+    type: weapon
+    grip: light
+    school: unarmed
+    base_min_dmg: 2.0
+    base_max_dmg: 5.0
+- id: siangham
+  piece_name: Siangham
+  size: small
+  base_weight_kg: 0.5
+  kind:
+    type: weapon
+    grip: light
+    school: unarmed
+    base_min_dmg: 3.0
+    base_max_dmg: 6.0
+- id: wand
+  piece_name: Wand
+  size: small
+  base_weight_kg: 0.4
+  kind:
+    type: weapon
+    grip: light
+    school: arcane
+    base_min_dmg: 2.0
+    base_max_dmg: 5.0
+- id: scepter
+  piece_name: Scepter
+  size: medium
+  base_weight_kg: 1.5
+  kind:
+    type: weapon
+    grip: one_handed
+    school: arcane
+    base_min_dmg: 3.0
+    base_max_dmg: 7.0
+- id: orb
+  piece_name: Orb
+  size: small
+  base_weight_kg: 0.8
+  kind:
+    type: weapon
+    grip: light
+    school: arcane
+    base_min_dmg: 2.0
+    base_max_dmg: 6.0
+- id: runestaff
+  piece_name: Runestaff
+  size: large
+  base_weight_kg: 2.5
+  kind:
+    type: weapon
+    grip: two_handed
+    school: arcane
+    base_min_dmg: 3.0
+    base_max_dmg: 7.0

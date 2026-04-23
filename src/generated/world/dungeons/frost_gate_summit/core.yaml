@@ -1,0 +1,17 @@
+id: frost_gate_summit
+name: The Frost Gate Summit
+kind: dungeon
+group_size: 5
+zone: frost_spine
+entrance_hub: frost_gate
+level_range:
+  min: 50
+  max: 56
+level_band: 46-60
+tier: endgame
+boss_count: 3
+estimated_clear_minutes: 75
+loot_tier: endgame
+lockout: none (rerunnable)
+theme: A pre-Coming watchgate atop the Spine, now a storm-ice lair
+coop_notes: tight-coop-friendly; duo/trio can attempt under-level with care

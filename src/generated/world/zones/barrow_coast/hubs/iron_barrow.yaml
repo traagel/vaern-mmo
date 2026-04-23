@@ -1,0 +1,12 @@
+id: iron_barrow
+zone: barrow_coast
+name: Iron-Barrow
+role: capital
+amenities:
+- innkeeper
+- class_trainers
+- bank
+- auction
+- flight_master
+- profession_trainers
+quest_givers: 6

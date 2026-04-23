@@ -1,0 +1,15 @@
+specs:
+- id: bladesinger_verse
+  name: Verse-Blade
+  emphasis: melee_dps
+  description: cantrip-augmented rapier dance
+  schools_focus:
+  - arcane
+  - dagger
+- id: bladesinger_grace
+  name: Grace-Dancer
+  emphasis: bruiser
+  description: acrobat-rapier-arcane balanced combatant
+  schools_focus:
+  - acrobat
+  - arcane

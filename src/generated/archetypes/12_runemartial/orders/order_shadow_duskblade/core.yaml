@@ -1,0 +1,24 @@
+id: order_shadow_duskblade
+faction: faction_b
+archetype_id: 12
+archetype_position:
+  might: 50
+  arcana: 25
+  finesse: 25
+flagship: false
+player_facing:
+  class_name: Shadow-Duskblade
+  title_singular: Shadow-Duskblade
+  title_plural: Shadow-Duskblades
+schools_taught:
+  might:
+  - blade
+  - fury
+  arcana:
+  - shadow
+  - arcane
+institutions:
+  primary: fury_houses
+  secondary: bleeding_vaults
+  tertiary: shadow_conclave
+chapter: chapter_shadow_duskblade

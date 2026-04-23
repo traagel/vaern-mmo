@@ -1,0 +1,15 @@
+specs:
+- id: wraith_mystic_fade
+  name: Wraith-Adept
+  emphasis: magic_dps
+  description: shadow-rune offensive caster
+  schools_focus:
+  - shadow
+  - arcane
+- id: wraith_mystic_blade
+  name: Wraith-Blade
+  emphasis: stealth
+  description: silent-dagger spectral striker
+  schools_focus:
+  - dagger
+  - silent

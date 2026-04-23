@@ -1,0 +1,25 @@
+id: order_grave_seer
+faction: faction_b
+archetype_id: 13
+archetype_position:
+  might: 25
+  arcana: 50
+  finesse: 25
+flagship: false
+player_facing:
+  class_name: Grave-Seer
+  title_singular: Grave-Seer
+  title_plural: Grave-Seers
+schools_taught:
+  might:
+  - spear
+  arcana:
+  - blood
+  - shadow
+  finesse:
+  - silent
+institutions:
+  primary: ancestor_binder_houses
+  secondary: shadow_conclave
+  tertiary: fury_houses
+chapter: chapter_grave_seer

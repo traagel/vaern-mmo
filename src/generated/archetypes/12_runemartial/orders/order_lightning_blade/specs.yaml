@@ -1,0 +1,15 @@
+specs:
+- id: lightning_blade_strike
+  name: Bolt-Blade
+  emphasis: melee_dps
+  description: offensive lightning-augmented strikes
+  schools_focus:
+  - blade
+  - lightning
+- id: lightning_blade_dance
+  name: Arc-Dancer
+  emphasis: bruiser
+  description: acrobat-and-arcane duelist
+  schools_focus:
+  - acrobat
+  - arcane

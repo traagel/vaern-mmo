@@ -1,0 +1,16 @@
+id: quest_summary__heartland_ride
+zone: heartland_ride
+level_range:
+  min: 5
+  max: 12
+tier: mid
+budget_target: 80
+actual:
+  main_chain_steps: 8
+  side_quests: 10
+  filler_pool: 58
+  total: 76
+coverage_ratio: 0.95
+main_chain: chain_heartland_highway_war
+notes: Main chain is hand-crafted story; side is templated by biome+hub-role; filler
+  is a procedural pool.

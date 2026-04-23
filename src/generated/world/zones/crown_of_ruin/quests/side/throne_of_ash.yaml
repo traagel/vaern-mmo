@@ -1,0 +1,19 @@
+id: side_quests__throne_of_ash
+hub: throne_of_ash
+hub_role: ruin
+zone: crown_of_ruin
+biome: ruin
+quest_count: 1
+quests:
+- id: side__throne_of_ash__the_relic_hunter
+  name: The Relic Hunter
+  hub: throne_of_ash
+  type: side
+  level: 57
+  objective:
+    kind: collect
+    target_hint: pre-war relics from ruin-edges
+    count: 4
+  xp_reward: 16507
+  gold_reward_copper: 285
+  repeatable: false

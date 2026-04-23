@@ -1,0 +1,17 @@
+id: old_lighthouse
+name: The Old Lighthouse
+kind: dungeon
+group_size: 5
+zone: iron_strand
+entrance_hub: old_lighthouse
+level_range:
+  min: 38
+  max: 45
+level_band: 31-45
+tier: endgame
+boss_count: 3
+estimated_clear_minutes: 75
+loot_tier: high
+lockout: none (rerunnable)
+theme: Cliffside beacon-tower overrun by a Rend raider crew and their bound storm-thing
+coop_notes: tight-coop-friendly; duo/trio can attempt under-level with care

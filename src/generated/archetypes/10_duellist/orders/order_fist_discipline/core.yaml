@@ -1,0 +1,24 @@
+id: order_fist_discipline
+faction: faction_a
+archetype_id: 10
+archetype_position:
+  might: 50
+  arcana: 0
+  finesse: 50
+flagship: false
+player_facing:
+  class_name: Fist-Discipline Monk
+  title_singular: Fist-Discipline Monk
+  title_plural: Fist-Discipline Monks
+schools_taught:
+  might:
+  - unarmed
+  - blunt
+  - honor
+  finesse:
+  - tonics
+institutions:
+  primary: phalanx_school
+  secondary: alchemists_compact
+  tertiary: knight_order
+chapter: chapter_fist_discipline

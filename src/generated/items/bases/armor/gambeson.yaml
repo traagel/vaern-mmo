@@ -1,0 +1,98 @@
+bases:
+- id: gambeson_arming_cap
+  piece_name: Arming Cap
+  size: small
+  base_weight_kg: 0.72
+  kind:
+    type: armor
+    slot: head
+    armor_type: gambeson
+    layer: padding
+    coverage:
+    - head
+    base_armor_class: 2.0
+- id: gambeson_arming_pauldrons
+  piece_name: Arming Pauldrons
+  size: medium
+  base_weight_kg: 1.12
+  kind:
+    type: armor
+    slot: shoulders
+    armor_type: gambeson
+    layer: padding
+    coverage:
+    - shoulders
+    base_armor_class: 2.75
+- id: gambeson_gambeson
+  piece_name: Gambeson
+  size: medium
+  base_weight_kg: 4.0
+  kind:
+    type: armor
+    slot: chest
+    armor_type: gambeson
+    layer: padding
+    coverage:
+    - chest
+    - arms
+    base_armor_class: 5.0
+- id: gambeson_bracers
+  piece_name: Arming Bracers
+  size: small
+  base_weight_kg: 0.32
+  kind:
+    type: armor
+    slot: wrists
+    armor_type: gambeson
+    layer: padding
+    coverage:
+    - arms
+    base_armor_class: 1.75
+- id: gambeson_mitts
+  piece_name: Mitts
+  size: small
+  base_weight_kg: 0.48
+  kind:
+    type: armor
+    slot: hands
+    armor_type: gambeson
+    layer: padding
+    coverage:
+    - hands
+    base_armor_class: 2.25
+- id: gambeson_belt
+  piece_name: Arming Belt
+  size: small
+  base_weight_kg: 0.32
+  kind:
+    type: armor
+    slot: waist
+    armor_type: gambeson
+    layer: padding
+    coverage:
+    - waist
+    base_armor_class: 1.5
+- id: gambeson_breeches
+  piece_name: Breeches
+  size: medium
+  base_weight_kg: 1.6
+  kind:
+    type: armor
+    slot: legs
+    armor_type: gambeson
+    layer: padding
+    coverage:
+    - legs
+    base_armor_class: 4.0
+- id: gambeson_shoes
+  piece_name: Padded Shoes
+  size: small
+  base_weight_kg: 0.72
+  kind:
+    type: armor
+    slot: feet
+    armor_type: gambeson
+    layer: padding
+    coverage:
+    - feet
+    base_armor_class: 2.25

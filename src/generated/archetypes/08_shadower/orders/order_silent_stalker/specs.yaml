@@ -1,0 +1,15 @@
+specs:
+- id: silent_stalker_archer
+  name: Shade-Archer
+  emphasis: ranged_dps
+  description: silent-bow single-target
+  schools_focus:
+  - silent
+  - bow
+- id: silent_stalker_herbalist
+  name: Forest-Herbalist
+  emphasis: utility
+  description: scout-and-herb blend
+  schools_focus:
+  - tonics
+  - silent

@@ -1,0 +1,21 @@
+id: lichweep_mausoleum_bosses
+instance: lichweep_mausoleum
+bosses:
+- id: bone_catechist
+  name: The Bone Catechist
+  role_tag: miniboss
+  level: 18
+  mechanic: add-spawn waves from coffins
+  hp_tier: elite
+- id: weeping_shade
+  name: The Weeping Shade
+  role_tag: miniboss
+  level: 22
+  mechanic: tear-pools aoe, stationary
+  hp_tier: elite
+- id: mausoleum_keeper
+  name: The Mausoleum Keeper
+  role_tag: final
+  level: 25
+  mechanic: "body-swap with adds \u2014 players must track which vessel"
+  hp_tier: heroic

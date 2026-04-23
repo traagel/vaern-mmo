@@ -1,0 +1,25 @@
+specs:
+- id: rune_bladecaster
+  name: Rune-Bladecaster
+  emphasis: melee_dps
+  description: spellblade with arcane-augmented strikes
+  schools_focus:
+  - blade
+  - arcane
+  - lightning
+- id: rune_warden
+  name: Rune-Warden
+  emphasis: tank
+  description: ward-glyph shield-duelist
+  schools_focus:
+  - shield
+  - arcane
+  - light
+- id: rune_sigilduelist
+  name: Sigil-Duelist
+  emphasis: control
+  description: glyph-trap battlefield controller
+  schools_focus:
+  - arcane
+  - blade
+  - acrobat

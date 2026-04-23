@@ -1,0 +1,21 @@
+id: yeti_warren_bosses
+instance: yeti_warren
+bosses:
+- id: alpha_yeti
+  name: The Alpha Yeti
+  role_tag: miniboss
+  level: 48
+  mechanic: grip-throw across the room
+  hp_tier: elite
+- id: mammoth_brute
+  name: The Mammoth-Brute
+  role_tag: miniboss
+  level: 51
+  mechanic: charge-collision on pillars
+  hp_tier: elite
+- id: frozen_shaman
+  name: The Frozen Shaman
+  role_tag: final
+  level: 54
+  mechanic: ancestor-spirit summons, cold-immune phase
+  hp_tier: heroic

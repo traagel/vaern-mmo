@@ -1,0 +1,26 @@
+id: mob_dalewatch_marches_named_pact_captain
+name: Pact Captain Vask
+zone: dalewatch_marches
+level: 7
+creature_type: humanoid
+armor_class: plate
+rarity: named
+role: captain
+faction_alignment: hostile_to_faction_a
+hp_tier: heroic
+damage:
+  primary_school: blade
+  attack_range: melee
+  dps_tier: heavy
+behavior:
+  aggro_range: long
+  social_radius: 20
+  flee_threshold: 0.0
+  calls_allies: true
+  patrol: stationary
+loot_tier: quest_marked
+drops:
+  gold_copper_avg: 200
+  item_hint: pact captain's sigil + blade; Ashmere side-quest finisher
+biome_context: commands the eastern-bank pickets; named rare spawn at the Ford
+chain_target: true

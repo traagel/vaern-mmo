@@ -1,0 +1,18 @@
+name: light
+pillar: arcana
+morality: good
+family: divine
+tag: radiant / purify
+damage_type: radiant
+applies_to_categories:
+- damage
+- healing
+- protection
+- control
+- summoning
+- enhancement
+icon_style:
+  palette: warm gold, solar yellow, white-hot core, soft cream, blue-sky background
+  motif: sunbursts, halos, lens-flares, prismatic rays, sealed sigils of dawn
+  silhouette: radial burst, symmetric halo, spear-of-light with clean geometric center
+  material: living sunlight, golden aether, polished brass, luminous feather-down

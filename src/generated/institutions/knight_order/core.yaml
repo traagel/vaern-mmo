@@ -1,0 +1,14 @@
+id: knight_order
+faction: faction_a
+name: The Knight-Order of the Dawn
+tradition: Order of the Dawn-Sword
+curriculum:
+  major:
+    might:
+    - blade
+    - shield
+  secondary:
+    might:
+    - honor
+pillars:
+- might

@@ -1,0 +1,15 @@
+specs:
+- id: blood_runed_edge
+  name: Bleed-Edge
+  emphasis: melee_dps
+  description: self-wound rune-augmented sword
+  schools_focus:
+  - blade
+  - blood
+- id: blood_runed_ward
+  name: Bleed-Ward
+  emphasis: tank
+  description: shield-tank with blood-ritual reactive
+  schools_focus:
+  - shield
+  - arcane

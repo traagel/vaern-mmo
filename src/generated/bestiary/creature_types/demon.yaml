@@ -1,0 +1,53 @@
+id: demon
+name: Demon
+category: unnatural
+description: Extraplanar bound-things, Old-Power petitioners, pact-called entities.
+  Almost exclusively Rend-affiliated or hostile-to-all.
+hp_scaling:
+  base_at_level_1: 50
+  per_level_multiplier: 1.16
+  formula: round(base_at_1 * multiplier^(level-1))
+default_armor_class: scales
+resistances:
+  fire: -0.4
+  shadow: -0.5
+  blood: -0.4
+  poison: -0.5
+  light: 0.5
+  devotion: 0.5
+  nature: 0.1
+affinities:
+  preferred:
+  - fire
+  - shadow
+  - blood
+  allowed:
+  - arcane
+  - lightning
+  - dagger
+  - unarmed
+  forbidden:
+  - nature
+  - earth
+  - frost
+  - light
+  - devotion
+  - honor
+  - tonics
+  - alchemy
+  - silent
+  - bow
+  - thrown
+  - spear
+  - shield
+  - blade
+  - blunt
+behavior_defaults:
+  intelligence: high
+  social: solitary
+  flee_threshold: 0.0
+  aggro_range: long
+tags:
+- extraplanar
+- bound
+- pact-kin

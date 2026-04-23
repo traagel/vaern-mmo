@@ -1,0 +1,25 @@
+id: order_sun_flame_knight
+faction: faction_a
+archetype_id: 1
+archetype_position:
+  might: 75
+  arcana: 25
+  finesse: 0
+flagship: false
+player_facing:
+  class_name: Sun-Flame Knight
+  title_singular: Sun-Flame Knight
+  title_plural: Sun-Flame Knights
+schools_taught:
+  might:
+  - blade
+  - honor
+  - shield
+  arcana:
+  - fire
+  - light
+institutions:
+  primary: knight_order
+  secondary: silver_quill
+  tertiary: night_quick_guild
+chapter: chapter_sun_flame_knight

@@ -1,0 +1,106 @@
+id: chain_ruinline_north_the_rite_unfinished
+zone: ruin_line_north
+title: The Rite Unfinished
+premise: The Burned Abbey's rite was never completed; if a Concord champion and a
+  Rend champion can be brought to finish it together, the Ruin Line's scar stops bleeding
+total_steps: 9
+final_reward:
+  xp_bonus: 45236
+  gold_bonus_copper: 3800
+  item_hint: zone-appropriate contested-tier reward
+  title_hint: '''The Rite Unfinished'' completion title'
+breadcrumb_from: capital hub of the zone's faction-home
+final_boss_hint: both factions' hawks who oppose the peace
+steps:
+- step: 1
+  id: chain_ruinline_north_the_rite_unfinished__01_meet_the_scarhold_commander
+  name: Meet The Scarhold Commander
+  level: 30
+  objective:
+    kind: talk
+    target_hint: Commander Verrn at Scarhold
+  xp_reward: 14400
+  gold_reward_copper: 450
+  prerequisite: null
+- step: 2
+  id: chain_ruinline_north_the_rite_unfinished__02_recover_the_abbey_plan
+  name: Recover The Abbey Plan
+  level: 31
+  objective:
+    kind: collect
+    target_hint: the original rite-plan from the No-Man's Ridge
+    count: 4
+  xp_reward: 15326
+  gold_reward_copper: 465
+  prerequisite: chain_ruinline_north_the_rite_unfinished__01_meet_the_scarhold_commander
+- step: 3
+  id: chain_ruinline_north_the_rite_unfinished__03_recruit_the_concord_champion
+  name: Recruit The Concord Champion
+  level: 32
+  objective:
+    kind: talk
+    target_hint: a Concord paladin at Scarhold
+  xp_reward: 16282
+  gold_reward_copper: 480
+  prerequisite: chain_ruinline_north_the_rite_unfinished__02_recover_the_abbey_plan
+- step: 4
+  id: chain_ruinline_north_the_rite_unfinished__04_recruit_the_rend_champion
+  name: Recruit The Rend Champion
+  level: 33
+  objective:
+    kind: talk
+    target_hint: a Rend pact-blade at the Scarhold neutral camp
+  xp_reward: 17266
+  gold_reward_copper: 495
+  prerequisite: chain_ruinline_north_the_rite_unfinished__03_recruit_the_concord_champion
+- step: 5
+  id: chain_ruinline_north_the_rite_unfinished__05_escort_both_to_the_abbey
+  name: Escort Both To The Abbey
+  level: 34
+  objective:
+    kind: escort
+    target_hint: both champions through the Burned Abbey
+  xp_reward: 18278
+  gold_reward_copper: 510
+  prerequisite: chain_ruinline_north_the_rite_unfinished__04_recruit_the_rend_champion
+- step: 6
+  id: chain_ruinline_north_the_rite_unfinished__06_stand_the_joint_rite
+  name: Stand The Joint Rite
+  level: 35
+  objective:
+    kind: ritual
+    target_hint: the joint rite at the abbey altar
+  xp_reward: 19320
+  gold_reward_copper: 525
+  prerequisite: chain_ruinline_north_the_rite_unfinished__05_escort_both_to_the_abbey
+- step: 7
+  id: chain_ruinline_north_the_rite_unfinished__07_defend_against_the_refusers
+  name: Defend Against The Refusers
+  level: 36
+  objective:
+    kind: defeat
+    target_hint: both factions' hawks who oppose the peace
+    group_suggested: true
+  xp_reward: 20390
+  gold_reward_copper: 540
+  prerequisite: chain_ruinline_north_the_rite_unfinished__06_stand_the_joint_rite
+- step: 8
+  id: chain_ruinline_north_the_rite_unfinished__08_witness_the_closing
+  name: Witness The Closing
+  level: 37
+  objective:
+    kind: ritual
+    target_hint: the rite's closing after centuries
+  xp_reward: 21490
+  gold_reward_copper: 555
+  prerequisite: chain_ruinline_north_the_rite_unfinished__07_defend_against_the_refusers
+- step: 9
+  id: chain_ruinline_north_the_rite_unfinished__09_carry_the_news
+  name: Carry The News
+  level: 38
+  objective:
+    kind: deliver
+    target_hint: the news to both capitals
+  xp_reward: 22618
+  gold_reward_copper: 570
+  prerequisite: chain_ruinline_north_the_rite_unfinished__08_witness_the_closing

@@ -1,0 +1,38 @@
+id: _roster__barrow_coast
+zone: barrow_coast
+mob_count: 15
+mob_ids:
+- mob_barrow_coast_beast_seabird
+- mob_barrow_coast_beast_seal
+- mob_barrow_coast_beast_wyrm
+- mob_barrow_coast_beast_crab
+- mob_barrow_coast_beast_seaspider
+- mob_barrow_coast_beast_stormray
+- mob_barrow_coast_ambient_crab_small
+- mob_barrow_coast_exotic_stormbound
+- mob_barrow_coast_warband_half_made
+- mob_barrow_coast_warband_concord_raider
+- mob_barrow_coast_named_concord_raid_captain
+- mob_barrow_coast_juvenile_seabird
+- mob_barrow_coast_juvenile_seal
+- mob_barrow_coast_juvenile_wyrm
+- mob_barrow_coast_juvenile_crab
+by_creature_type:
+  beast: 9
+  dragonkin: 2
+  elemental: 1
+  humanoid: 3
+by_armor_class:
+  hide: 9
+  scales: 2
+  none: 1
+  leather: 2
+  plate: 1
+by_rarity:
+  common: 13
+  elite: 1
+  named: 1
+level_min: 1
+level_max: 5
+named_or_chain_targets:
+- mob_barrow_coast_named_concord_raid_captain

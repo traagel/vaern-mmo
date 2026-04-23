@@ -1,0 +1,27 @@
+id: session_targets
+description: Per-level-band targets. Drives zone design (mobs, quests, hub density).
+bands:
+- levels: 1-10
+  hours_expected: 15
+  quests_per_level: 10
+  mob_kills_per_level: 80
+  notes: Starter zones. High-density quests, short travel, hub-to-hub breadcrumbs.
+- levels: 11-30
+  hours_expected: 60
+  quests_per_level: 14
+  mob_kills_per_level: 140
+  notes: Faction mid-tier. Players ride between 2-3 zones; elite mobs introduce group
+    play.
+- levels: 31-45
+  hours_expected: 60
+  quests_per_level: 16
+  mob_kills_per_level: 200
+  notes: Contested zones + late faction zones. First dungeons at lvl 30.
+- levels: 46-60
+  hours_expected: 80
+  quests_per_level: 12
+  mob_kills_per_level: 300
+  notes: Endgame ramp. Quest count drops; mob density rises; dungeons carry the bulk.
+totals:
+  quests_approx: 800
+  mob_kills_approx: 11100

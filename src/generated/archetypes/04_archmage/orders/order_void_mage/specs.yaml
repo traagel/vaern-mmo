@@ -1,0 +1,15 @@
+specs:
+- id: void_mage_hollow
+  name: Hollow-Mage
+  emphasis: magic_dps
+  description: shadow-annihilation offense
+  schools_focus:
+  - shadow
+  - arcane
+- id: void_mage_ice
+  name: Void-Ice Mage
+  emphasis: control
+  description: frost-void terrain control
+  schools_focus:
+  - frost
+  - shadow

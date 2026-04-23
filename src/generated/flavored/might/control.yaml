@@ -1,0 +1,147 @@
+pillar: might
+category: control
+variants:
+  25:
+    blade:
+      name: disarm
+      description: Disarm target briefly.
+      damage_type: slashing
+      morality: neutral
+    blunt:
+      name: stunning_blow
+      description: Brief stun via impact.
+      damage_type: bludgeoning
+      morality: neutral
+    fury:
+      name: fear_roar
+      description: Brief terror via roar.
+      damage_type: slashing
+      morality: evil
+    honor:
+      name: duel_challenge
+      description: Target compelled to duel.
+      damage_type: slashing
+      morality: good
+    shield:
+      name: shove
+      description: Push enemy back.
+      damage_type: bludgeoning
+      morality: neutral
+    spear:
+      name: pin
+      description: Pin target, brief root.
+      damage_type: piercing
+      morality: neutral
+    unarmed:
+      name: joint_lock
+      description: Brief grapple hold.
+      damage_type: bludgeoning
+      morality: neutral
+  50:
+    blade:
+      name: hamstring
+      description: Bleeding-slow cut.
+      damage_type: slashing
+      morality: neutral
+    blunt:
+      name: bull_rush
+      description: Charge plus knockdown.
+      damage_type: bludgeoning
+      morality: neutral
+    fury:
+      name: rampage_terror
+      description: AoE fear.
+      damage_type: slashing
+      morality: evil
+    honor:
+      name: formal_duel
+      description: Duel-lock target from combat.
+      damage_type: slashing
+      morality: good
+    shield:
+      name: shield_slam
+      description: Knockdown via shield.
+      damage_type: bludgeoning
+      morality: neutral
+    spear:
+      name: impale_pin
+      description: Pin target to ground.
+      damage_type: piercing
+      morality: neutral
+    unarmed:
+      name: grapple
+      description: Full grapple-hold.
+      damage_type: bludgeoning
+      morality: neutral
+  75:
+    blade:
+      name: bleedstorm
+      description: AoE bleed-lock.
+      damage_type: slashing
+      morality: neutral
+    blunt:
+      name: ground_pound
+      description: AoE knockdown.
+      damage_type: bludgeoning
+      morality: neutral
+    fury:
+      name: bloodrage_terror
+      description: AoE fear plus bleed.
+      damage_type: slashing
+      morality: evil
+    honor:
+      name: champion_challenge
+      description: AoE duel-lock.
+      damage_type: slashing
+      morality: good
+    shield:
+      name: shieldwall_press
+      description: AoE push plus knockdown.
+      damage_type: bludgeoning
+      morality: neutral
+    spear:
+      name: phalanx_pin
+      description: AoE pin-zone.
+      damage_type: piercing
+      morality: neutral
+    unarmed:
+      name: whirling_hold
+      description: AoE grapple sweep.
+      damage_type: bludgeoning
+      morality: neutral
+  100:
+    blade:
+      name: crippling_cut
+      description: 'Ritual: permanent-duration cripple.'
+      damage_type: slashing
+      morality: neutral
+    blunt:
+      name: grapple_lock
+      description: 'Ritual: total-disable lock.'
+      damage_type: bludgeoning
+      morality: neutral
+    fury:
+      name: primal_terror
+      description: 'Ritual: mass flee plus bleed.'
+      damage_type: slashing
+      morality: evil
+    honor:
+      name: oath_of_binding
+      description: 'Ritual: force honorable combat terms.'
+      damage_type: slashing
+      morality: good
+    shield:
+      name: shield_prison
+      description: 'Ritual: enclose target in shield-prison.'
+      damage_type: bludgeoning
+      morality: neutral
+    spear:
+      name: skewer_eternal
+      description: 'Ritual: impale, long-duration.'
+      damage_type: piercing
+      morality: neutral
+    unarmed:
+      name: nerve_strike
+      description: 'Ritual: paralyze target long-duration.'
+      damage_type: bludgeoning
+      morality: neutral

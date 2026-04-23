@@ -1,0 +1,18 @@
+name: arcane
+pillar: arcana
+morality: neutral
+family: pure
+tag: force / intellect
+damage_type: force
+applies_to_categories:
+- damage
+- healing
+- protection
+- control
+- summoning
+- enhancement
+icon_style:
+  palette: deep violet, indigo, cold white core, silver runic accents
+  motif: geometric runes, rotating glyph rings, crystalline shards, orbiting force-lines
+  silhouette: concentric rings around a central orb, sharp-angled rune-disk, sigil-inscribed circle
+  material: pure kinetic force made visible, faceted mana-crystal, radiant sigil-work

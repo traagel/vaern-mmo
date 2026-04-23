@@ -1,0 +1,16 @@
+name: devotion
+pillar: arcana
+morality: good
+family: divine
+tag: self-sacrifice / vow
+damage_type: radiant
+applies_to_categories:
+- damage
+- healing
+- control
+- enhancement
+icon_style:
+  palette: burnished gold, hot white, red bleed, bronze, deep incense-smoke
+  motif: halos pierced by thorns, bleeding stigmata, oath-scrolls, folded hands, thorn-crowns
+  silhouette: radial halo pierced by asymmetric thorn or blade, teardrop of blood at center
+  material: gilt metal, stained vellum, shed saintly blood, radiant vow-fire

@@ -1,0 +1,49 @@
+id: filler_pool__dalewatch_marches
+zone: dalewatch_marches
+tier: starter
+total_pool_size: 12
+buckets:
+- id: filler__kill_grinder
+  bucket: kill_grinder
+  dominant_objective_kind: kill
+  pool_size: 5
+  level_range:
+    min: 1
+    max: 8
+  avg_xp_reward_per_quest: 180
+  avg_gold_reward_copper: 30
+  repeatable: true
+  description: pool of 'kill N of local mob-type' quests scaling with zone mobs
+- id: filler__collect_grinder
+  bucket: collect_grinder
+  dominant_objective_kind: collect
+  pool_size: 3
+  level_range:
+    min: 1
+    max: 8
+  avg_xp_reward_per_quest: 180
+  avg_gold_reward_copper: 30
+  repeatable: true
+  description: pool of 'gather N of local resource' quests tied to biome
+- id: filler__courier_relay
+  bucket: courier_relay
+  dominant_objective_kind: deliver
+  pool_size: 2
+  level_range:
+    min: 1
+    max: 8
+  avg_xp_reward_per_quest: 180
+  avg_gold_reward_copper: 30
+  repeatable: true
+  description: pool of inter-hub courier runs within the zone
+- id: filler__bounty_board
+  bucket: bounty_board
+  dominant_objective_kind: kill
+  pool_size: 2
+  level_range:
+    min: 1
+    max: 8
+  avg_xp_reward_per_quest: 180
+  avg_gold_reward_copper: 30
+  repeatable: false
+  description: rare-spawn bounties posted at capital hubs

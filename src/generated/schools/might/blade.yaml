@@ -1,0 +1,16 @@
+name: blade
+pillar: might
+morality: neutral
+family: weapon
+tag: slashing / precision
+damage_type: slashing
+applies_to_categories:
+- offense
+- defense
+- threat
+- control
+icon_style:
+  palette: polished steel, deep crimson blood-accent, gunmetal, leather-brown hilt
+  motif: keen slashing arc, motion-lines, nicked edge, spray of sparks, crossguard silhouette
+  silhouette: long diagonal slash or up-thrust blade, asymmetric weapon-forward composition
+  material: honed folded steel, whetted blade, battle-scarred metal, worn leather grip

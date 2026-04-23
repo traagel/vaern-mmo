@@ -1,0 +1,15 @@
+specs:
+- id: fury_fist_rage
+  name: Rage-Fist
+  emphasis: melee_dps
+  description: rage-forward unarmed striker
+  schools_focus:
+  - unarmed
+  - fury
+- id: fury_fist_blade
+  name: Fang-Fist
+  emphasis: bruiser
+  description: knuckle-and-venom combat
+  schools_focus:
+  - poison
+  - dagger

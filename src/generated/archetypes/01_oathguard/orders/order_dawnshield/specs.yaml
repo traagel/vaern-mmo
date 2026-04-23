@@ -1,0 +1,24 @@
+specs:
+- id: dawnshield_shieldsworn
+  name: Shieldsworn Paladin
+  emphasis: tank
+  description: heavy-ward plate-tank with radiant damage absorption
+  schools_focus:
+  - shield
+  - light
+- id: dawnshield_bladesworn
+  name: Bladesworn Paladin
+  emphasis: hybrid
+  description: two-handed oath-offense, smiting-forward paladin
+  schools_focus:
+  - honor
+  - light
+  - arcane
+- id: dawnshield_vowbinder
+  name: Vowbinder Paladin
+  emphasis: support
+  description: group-warding protector, blessing and shielding allies
+  schools_focus:
+  - light
+  - arcane
+  - shield

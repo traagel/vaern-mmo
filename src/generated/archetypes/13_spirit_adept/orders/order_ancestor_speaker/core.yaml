@@ -1,0 +1,27 @@
+id: order_ancestor_speaker
+faction: faction_b
+archetype_id: 13
+archetype_position:
+  might: 25
+  arcana: 50
+  finesse: 25
+player_facing:
+  class_name: Ancestor-Speaker
+  title_singular: Ancestor-Speaker
+  title_plural: Ancestor-Speakers
+schools_taught:
+  might:
+  - spear
+  arcana:
+  - blood
+  - shadow
+  - nature
+  - arcane
+  finesse:
+  - silent
+flagship: true
+institutions:
+  primary: ancestor_binder_houses
+  secondary: bleeding_vaults
+  tertiary: shadow_conclave
+chapter: chapter_ancestor_speaker

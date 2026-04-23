@@ -1,0 +1,42 @@
+id: side_quests__cinder_post
+hub: cinder_post
+hub_role: outpost
+zone: shadegrove
+biome: ashland
+quest_count: 3
+quests:
+- id: side__cinder_post__the_ashwolf_pack
+  name: The Ashwolf Pack
+  hub: cinder_post
+  type: side
+  level: 10
+  objective:
+    kind: kill
+    target_hint: an ashwolf pack stalking caravans
+    count: 1
+  xp_reward: 640
+  gold_reward_copper: 50
+  repeatable: false
+- id: side__cinder_post__the_cinder_vein
+  name: The Cinder Vein
+  hub: cinder_post
+  type: side
+  level: 14
+  objective:
+    kind: collect
+    target_hint: cinder-vein samples
+    count: 4
+  xp_reward: 1165
+  gold_reward_copper: 70
+  repeatable: false
+- id: side__cinder_post__the_storm_camp_check
+  name: The Storm Camp Check
+  hub: cinder_post
+  type: side
+  level: 18
+  objective:
+    kind: investigate
+    target_hint: a camp caught in the last ash-storm
+  xp_reward: 1843
+  gold_reward_copper: 90
+  repeatable: false

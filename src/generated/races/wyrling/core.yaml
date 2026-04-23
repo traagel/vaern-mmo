@@ -1,0 +1,22 @@
+id: wyrling
+archetype: halflings
+faction: faction_a
+favored_class: rogue or bard
+cultural_traits: small, clever, urban-mercantile, quick-tongued, guild-inclined
+creature_type: humanoid
+size_class: small
+hp_modifier: 0.9
+affinity:
+  might: 50
+  arcana: 50
+  finesse: 100
+  notes: finesse peak (Rogue/Bard); minor spellcraft; small-but-capable martial
+racial_resistances:
+  fire: -0.1
+  poison: -0.05
+racial_school_bonuses:
+- dagger
+- silent
+- trickster
+- acrobat
+lore_hook: "guild-organized townsfolk of the Wyrling Downs \u2014 small but networked"

@@ -1,0 +1,21 @@
+id: watchtower_keep_bosses
+instance: watchtower_keep
+bosses:
+- id: lieutenant_marl
+  name: Lieutenant Marl
+  role_tag: miniboss
+  level: 12
+  mechanic: crossbow volley, line-aoe
+  hp_tier: elite
+- id: cellar_torturer
+  name: The Cellar Torturer
+  role_tag: miniboss
+  level: 16
+  mechanic: fear-aura, captive-hostage mechanic
+  hp_tier: elite
+- id: captain_byrn
+  name: Captain Byrn
+  role_tag: final
+  level: 20
+  mechanic: dual-wield enrage, calls reinforcements at 40%
+  hp_tier: heroic

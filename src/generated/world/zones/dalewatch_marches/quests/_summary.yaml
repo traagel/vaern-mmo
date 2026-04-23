@@ -1,0 +1,20 @@
+id: quest_summary__dalewatch_marches
+zone: dalewatch_marches
+level_range:
+  min: 1
+  max: 8
+tier: starter
+budget_target: 50
+actual:
+  main_chain_steps: 10
+  side_chain_steps: 8
+  side_quests: 20
+  filler_pool: 12
+  total: 50
+coverage_ratio: 1.0
+main_chain: chain_dalewatch_first_ride
+side_chains:
+- chain_dalewatch_grain_thief
+- chain_dalewatch_grove_keeper
+notes: Classic-Elwynn-scale redesign — 12 sub-zones across the county, 4 hubs, hand-written main + 2 side
+  chains, 20 side quests, and a trimmed filler pool.

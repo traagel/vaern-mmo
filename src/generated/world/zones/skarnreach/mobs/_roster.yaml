@@ -1,0 +1,39 @@
+id: _roster__skarnreach
+zone: skarnreach
+mob_count: 15
+mob_ids:
+- mob_skarnreach_beast_seal
+- mob_skarnreach_beast_orca
+- mob_skarnreach_beast_serpent
+- mob_skarnreach_beast_seahawk
+- mob_skarnreach_beast_icebear
+- mob_skarnreach_beast_drake
+- mob_skarnreach_ambient_guillemot
+- mob_skarnreach_exotic_frostbound
+- mob_skarnreach_warband_rival_clan_raider
+- mob_skarnreach_warband_rival_clan_axehand
+- mob_skarnreach_named_rival_clanhead
+- mob_skarnreach_named_skarn_liar_elder
+- mob_skarnreach_juvenile_seal
+- mob_skarnreach_juvenile_orca
+- mob_skarnreach_juvenile_serpent
+by_creature_type:
+  beast: 9
+  dragonkin: 1
+  undead: 1
+  humanoid: 4
+by_armor_class:
+  hide: 9
+  scales: 1
+  bone: 1
+  leather: 1
+  plate: 3
+by_rarity:
+  common: 11
+  elite: 2
+  named: 2
+level_min: 1
+level_max: 5
+named_or_chain_targets:
+- mob_skarnreach_named_rival_clanhead
+- mob_skarnreach_named_skarn_liar_elder

@@ -1,0 +1,49 @@
+id: _roster__greenwood_deep
+zone: greenwood_deep
+mob_count: 27
+mob_ids:
+- mob_greenwood_deep_beast_wolf
+- mob_greenwood_deep_beast_boar
+- mob_greenwood_deep_beast_stag
+- mob_greenwood_deep_beast_raven
+- mob_greenwood_deep_beast_fox
+- mob_greenwood_deep_beast_bear
+- mob_greenwood_deep_ambient_squirrel
+- mob_greenwood_deep_exotic_wild_thing
+- mob_greenwood_deep_warband_drowned_warden
+- mob_greenwood_deep_warband_fey_attendant
+- mob_greenwood_deep_warband_old_poacher
+- mob_greenwood_deep_named_drowned_warden_named
+- mob_greenwood_deep_juvenile_wolf
+- mob_greenwood_deep_juvenile_boar
+- mob_greenwood_deep_juvenile_stag
+- mob_greenwood_deep_juvenile_raven
+- mob_greenwood_deep_juvenile_fox
+- mob_greenwood_deep_juvenile_bear
+- mob_greenwood_deep_alpha_wolf
+- mob_greenwood_deep_alpha_boar
+- mob_greenwood_deep_alpha_stag
+- mob_greenwood_deep_alpha_raven
+- mob_greenwood_deep_alpha_fox
+- mob_greenwood_deep_alpha_bear
+- mob_greenwood_deep_matriarch_wolf
+- mob_greenwood_deep_matriarch_boar
+- mob_greenwood_deep_matriarch_stag
+by_creature_type:
+  beast: 22
+  aberration: 1
+  humanoid: 4
+by_armor_class:
+  hide: 22
+  ethereal: 1
+  plate: 2
+  cloth: 1
+  leather: 1
+by_rarity:
+  common: 15
+  elite: 11
+  named: 1
+level_min: 24
+level_max: 30
+named_or_chain_targets:
+- mob_greenwood_deep_named_drowned_warden_named

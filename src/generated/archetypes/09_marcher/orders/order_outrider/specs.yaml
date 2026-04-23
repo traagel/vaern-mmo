@@ -1,0 +1,15 @@
+specs:
+- id: outrider_trailblazer
+  name: Trailblazer
+  emphasis: ranged_dps
+  description: long-range hunter and pathfinder
+  schools_focus:
+  - bow
+  - spear
+- id: outrider_herbwalker
+  name: Herbwalker
+  emphasis: utility
+  description: survival-and-herb frontier scout
+  schools_focus:
+  - tonics
+  - dagger

@@ -1,0 +1,49 @@
+id: _roster__frost_spine
+zone: frost_spine
+mob_count: 24
+mob_ids:
+- mob_frost_spine_beast_rockdrake
+- mob_frost_spine_beast_cavespider
+- mob_frost_spine_beast_mountainbear
+- mob_frost_spine_beast_yeti
+- mob_frost_spine_beast_rockworm
+- mob_frost_spine_beast_batswarm
+- mob_frost_spine_ambient_pika
+- mob_frost_spine_exotic_stone_golem
+- mob_frost_spine_warband_spine_cultist
+- mob_frost_spine_warband_wyrm_awakener
+- mob_frost_spine_warband_summit_guard
+- mob_frost_spine_warband_refuser_faction_agent
+- mob_frost_spine_named_wyrm_awakener_leader
+- mob_frost_spine_juvenile_rockdrake
+- mob_frost_spine_juvenile_cavespider
+- mob_frost_spine_juvenile_mountainbear
+- mob_frost_spine_juvenile_yeti
+- mob_frost_spine_juvenile_rockworm
+- mob_frost_spine_juvenile_batswarm
+- mob_frost_spine_alpha_rockdrake
+- mob_frost_spine_alpha_cavespider
+- mob_frost_spine_alpha_mountainbear
+- mob_frost_spine_alpha_yeti
+- mob_frost_spine_alpha_rockworm
+by_creature_type:
+  dragonkin: 3
+  beast: 9
+  aberration: 6
+  construct: 1
+  humanoid: 5
+by_armor_class:
+  scales: 3
+  hide: 9
+  ethereal: 6
+  plate: 3
+  cloth: 2
+  leather: 1
+by_rarity:
+  common: 16
+  elite: 7
+  named: 1
+level_min: 49
+level_max: 55
+named_or_chain_targets:
+- mob_frost_spine_named_wyrm_awakener_leader

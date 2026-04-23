@@ -1,0 +1,22 @@
+id: order_pikemaster
+faction: faction_a
+archetype_id: 0
+archetype_position:
+  might: 100
+  arcana: 0
+  finesse: 0
+flagship: false
+player_facing:
+  class_name: Pikemaster
+  title_singular: Pikemaster
+  title_plural: Pikemasters
+schools_taught:
+  might:
+  - spear
+  - shield
+  - honor
+institutions:
+  primary: phalanx_school
+  secondary: knight_order
+  tertiary: night_quick_guild
+chapter: chapter_pikemaster

@@ -1,0 +1,15 @@
+name: dagger
+pillar: finesse
+morality: neutral
+family: blade
+tag: close stealth / quick
+damage_type: piercing
+applies_to_categories:
+- stealth
+- precision
+- trickery
+icon_style:
+  palette: midnight blue-black, bright silver edge, blood-pink tip, worn leather wrap
+  motif: short slim blade, reverse grip, finger-curl hilt, quick slash arc, dropped droplet of blood
+  silhouette: short dagger angled for a quick strike, tight compact blade-forward shape
+  material: oil-blackened steel, tightly-wrapped leather grip, polished cutting edge

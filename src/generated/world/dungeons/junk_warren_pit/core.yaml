@@ -1,0 +1,17 @@
+id: junk_warren_pit
+name: The Junk-Warren Pit
+kind: dungeon
+group_size: 5
+zone: scrap_marsh
+entrance_hub: junk_warren
+level_range:
+  min: 14
+  max: 20
+level_band: 11-30
+tier: leveling
+boss_count: 3
+estimated_clear_minutes: 45
+loot_tier: low
+lockout: none (rerunnable)
+theme: Skrel scrap-lord's inner warren, all rusted traps and stolen alchemy
+coop_notes: tight-coop-friendly; duo/trio can attempt under-level with care

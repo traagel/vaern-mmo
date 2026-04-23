@@ -1,0 +1,16 @@
+id: silver_quill
+faction: faction_a
+name: The Guild of the Silver Quill
+tradition: Silver Scribe Tradition
+curriculum:
+  major:
+    arcana:
+    - arcane
+  secondary:
+    arcana:
+    - lightning
+    - frost
+    - fire
+    - light
+pillars:
+- arcana

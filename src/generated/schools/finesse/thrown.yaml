@@ -1,0 +1,15 @@
+name: thrown
+pillar: finesse
+morality: neutral
+family: ranged
+tag: thrown weapon / mid-range
+damage_type: piercing
+applies_to_categories:
+- precision
+- mobility
+- utility
+icon_style:
+  palette: cold steel, dust-gray motion trail, leather wrap-brown, spark-white flash
+  motif: spinning shuriken or chakram, throwing knives in flight, spiral motion-trail, thrown arc
+  silhouette: multiple small blades fanned in flight along a motion arc, radial or linear spread
+  material: darkened steel, cord-wrapped grips, spinning motion-blur, leather bandolier

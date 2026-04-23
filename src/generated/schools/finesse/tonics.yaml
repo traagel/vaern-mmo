@@ -1,0 +1,15 @@
+name: tonics
+pillar: finesse
+morality: good
+family: technique
+tag: restorative consumables / sanctioned alchemy
+damage_type: null
+applies_to_categories:
+- evasion
+- trickery
+- utility
+icon_style:
+  palette: warm amber, honey gold, soft cream, rose-pink tint, healing-green glint, polished glass
+  motif: small round-bellied phial, wax seal, soft inner glow, paper label with sun-rune, gentle sparkles
+  silhouette: rounded stoppered potion bottle centered, soft halo of gentle light around it
+  material: hand-blown glass, waxed cork, amber liquid with shimmering motes, linen label

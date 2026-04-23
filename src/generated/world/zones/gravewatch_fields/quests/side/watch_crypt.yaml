@@ -1,0 +1,53 @@
+id: side_quests__watch_crypt
+hub: watch_crypt
+hub_role: capital
+zone: gravewatch_fields
+biome: coastal_cliff
+quest_count: 4
+quests:
+- id: side__watch_crypt__the_wrecksalvage
+  name: The Wrecksalvage
+  hub: watch_crypt
+  type: side
+  level: 5
+  objective:
+    kind: collect
+    target_hint: salvage from a recent wreck
+    count: 4
+  xp_reward: 200
+  gold_reward_copper: 25
+  repeatable: false
+- id: side__watch_crypt__the_seabird_plague
+  name: The Seabird Plague
+  hub: watch_crypt
+  type: side
+  level: 7
+  objective:
+    kind: kill
+    target_hint: aggressive seabirds nesting near the fishery
+    count: 1
+  xp_reward: 347
+  gold_reward_copper: 35
+  repeatable: false
+- id: side__watch_crypt__the_cliff_watch
+  name: The Cliff Watch
+  hub: watch_crypt
+  type: side
+  level: 10
+  objective:
+    kind: investigate
+    target_hint: a cliff-watcher who stopped reporting
+  xp_reward: 640
+  gold_reward_copper: 50
+  repeatable: false
+- id: side__watch_crypt__the_lighthouse_supplies
+  name: The Lighthouse Supplies
+  hub: watch_crypt
+  type: side
+  level: 12
+  objective:
+    kind: deliver
+    target_hint: supplies to a remote lighthouse
+  xp_reward: 883
+  gold_reward_copper: 60
+  repeatable: false

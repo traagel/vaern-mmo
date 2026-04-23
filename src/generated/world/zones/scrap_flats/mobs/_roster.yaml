@@ -1,0 +1,53 @@
+id: _roster__scrap_flats
+zone: scrap_flats
+mob_count: 27
+mob_ids:
+- mob_scrap_flats_beast_croc
+- mob_scrap_flats_beast_gnatswarm
+- mob_scrap_flats_beast_marshdrake
+- mob_scrap_flats_beast_rottoad
+- mob_scrap_flats_beast_reedserpent
+- mob_scrap_flats_beast_bogweeper
+- mob_scrap_flats_ambient_frog
+- mob_scrap_flats_exotic_rot_spirit
+- mob_scrap_flats_warband_cartel_enforcer
+- mob_scrap_flats_warband_cartel_alchemist
+- mob_scrap_flats_warband_pit_tinker_guard
+- mob_scrap_flats_warband_junk_scavenger
+- mob_scrap_flats_named_cartel_lieutenant
+- mob_scrap_flats_juvenile_croc
+- mob_scrap_flats_juvenile_gnatswarm
+- mob_scrap_flats_juvenile_marshdrake
+- mob_scrap_flats_juvenile_rottoad
+- mob_scrap_flats_juvenile_reedserpent
+- mob_scrap_flats_juvenile_bogweeper
+- mob_scrap_flats_alpha_croc
+- mob_scrap_flats_alpha_gnatswarm
+- mob_scrap_flats_alpha_marshdrake
+- mob_scrap_flats_alpha_rottoad
+- mob_scrap_flats_alpha_reedserpent
+- mob_scrap_flats_alpha_bogweeper
+- mob_scrap_flats_matriarch_croc
+- mob_scrap_flats_matriarch_gnatswarm
+by_creature_type:
+  beast: 15
+  dragonkin: 3
+  aberration: 3
+  elemental: 1
+  humanoid: 5
+by_armor_class:
+  hide: 15
+  scales: 3
+  ethereal: 3
+  none: 1
+  leather: 2
+  cloth: 1
+  plate: 2
+by_rarity:
+  common: 16
+  elite: 10
+  named: 1
+level_min: 24
+level_max: 30
+named_or_chain_targets:
+- mob_scrap_flats_named_cartel_lieutenant

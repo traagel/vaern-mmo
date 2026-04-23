@@ -1,0 +1,71 @@
+id: chain_dalewatch_grove_keeper
+zone: dalewatch_marches
+title: The Grove Keeper
+premise: Keeper Anselm of Thornroot Grove is ill and the grove knows it. Ridge-wolves have moved inside
+  the stones. Someone has to escort the herb up and the keeper home.
+total_steps: 4
+breadcrumb_from: harriers_rest
+final_boss_hint: Ashmane Alpha inside the Thornroot stones
+final_reward:
+  xp_bonus: 1000
+  gold_bonus_copper: 250
+  item_hint: Grove-blessed token (minor healing trinket)
+npcs:
+- id: sister_avel
+  display_name: Sister Avel
+  title: Herbalist of Harrier's Rest
+  hub_id: harriers_rest
+  dialogue: '"Anselm asked for sunweed. I haven''t heard him ask for anything in ten years. The grove
+    is unquiet — if you''ve got a strong back, you''d better go."'
+- id: keeper_anselm
+  display_name: Keeper Anselm
+  title: Warden of Thornroot Grove
+  hub_id: harriers_rest
+  dialogue: '"The stones are lonely, and the wolves have heard it. I can walk, but not run. Clear the
+    grove and I''ll give you something the grove remembers."'
+steps:
+- step: 1
+  name: Speak with Sister Avel
+  level: 4
+  objective:
+    kind: talk
+    npc: sister_avel
+    target_hint: Sister Avel at Harrier's Rest
+  xp_reward: 260
+  gold_reward_copper: 18
+  id: chain_dalewatch_grove_keeper__01_speak_with_sister_avel
+  prerequisite: null
+- step: 2
+  name: Gather Pilgrim's Herb
+  level: 4
+  objective:
+    kind: collect
+    target_hint: six stems of roadside sunweed
+    count: 6
+  xp_reward: 320
+  gold_reward_copper: 25
+  id: chain_dalewatch_grove_keeper__02_gather_pilgrims_herb
+  prerequisite: chain_dalewatch_grove_keeper__01_speak_with_sister_avel
+- step: 3
+  name: Escort Keeper Anselm to the Grove
+  level: 5
+  objective:
+    kind: talk
+    npc: keeper_anselm
+    target_hint: walk Keeper Anselm to Thornroot Grove
+  xp_reward: 400
+  gold_reward_copper: 45
+  id: chain_dalewatch_grove_keeper__03_escort_keeper_anselm_to_the_grove
+  prerequisite: chain_dalewatch_grove_keeper__02_gather_pilgrims_herb
+- step: 4
+  name: The Alpha in the Stones
+  level: 5
+  objective:
+    kind: kill
+    target_hint: Ashmane Alpha, the ridge-wolf leader
+    mob_id: mob_dalewatch_marches_named_wolf_alpha
+    count: 1
+  xp_reward: 520
+  gold_reward_copper: 80
+  id: chain_dalewatch_grove_keeper__04_the_alpha_in_the_stones
+  prerequisite: chain_dalewatch_grove_keeper__03_escort_keeper_anselm_to_the_grove

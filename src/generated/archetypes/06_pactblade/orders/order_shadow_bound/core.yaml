@@ -1,0 +1,25 @@
+id: order_shadow_bound
+faction: faction_b
+archetype_id: 6
+archetype_position:
+  might: 0
+  arcana: 50
+  finesse: 50
+player_facing:
+  class_name: Shadow-Bound
+  title_singular: Shadow-Bound Duellist
+  title_plural: Shadow-Bound
+schools_taught:
+  arcana:
+  - shadow
+  - blood
+  finesse:
+  - silent
+  - dagger
+  - poison
+flagship: true
+institutions:
+  primary: shadow_conclave
+  secondary: alchemist_tinker_clans
+  tertiary: fury_houses
+chapter: chapter_shadow_bound

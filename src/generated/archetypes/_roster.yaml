@@ -1,0 +1,165 @@
+count: 15
+pillars:
+- might
+- arcana
+- finesse
+classes:
+- class_id: 0
+  internal_label: Fighter
+  position:
+    might: 100
+    arcana: 0
+    finesse: 0
+  pillar_classification: pure
+  edge: corner-might
+  primary_roles:
+  - tank
+  - dps
+- class_id: 1
+  internal_label: Paladin
+  position:
+    might: 75
+    arcana: 25
+    finesse: 0
+  pillar_classification: edge
+  edge: arcana-might
+  primary_roles:
+  - tank
+- class_id: 2
+  internal_label: Cleric
+  position:
+    might: 50
+    arcana: 50
+    finesse: 0
+  pillar_classification: edge
+  edge: arcana-might
+  primary_roles:
+  - healer
+  - dps-priest
+- class_id: 3
+  internal_label: Druid
+  position:
+    might: 25
+    arcana: 75
+    finesse: 0
+  pillar_classification: edge
+  edge: arcana-might
+  primary_roles:
+  - healer
+  - ranged-dps
+- class_id: 4
+  internal_label: Wizard
+  position:
+    might: 0
+    arcana: 100
+    finesse: 0
+  pillar_classification: pure
+  edge: corner-arcana
+  primary_roles:
+  - dps
+  - control
+  - healer
+- class_id: 5
+  internal_label: Sorcerer
+  position:
+    might: 0
+    arcana: 75
+    finesse: 25
+  pillar_classification: edge
+  edge: arcana-finesse
+  primary_roles:
+  - ranged-dps
+- class_id: 6
+  internal_label: Warlock
+  position:
+    might: 0
+    arcana: 50
+    finesse: 50
+  pillar_classification: edge
+  edge: arcana-finesse
+  primary_roles:
+  - caster-rogue
+- class_id: 7
+  internal_label: Bard
+  position:
+    might: 0
+    arcana: 25
+    finesse: 75
+  pillar_classification: edge
+  edge: arcana-finesse
+  primary_roles:
+  - ranged-dps
+  - support
+- class_id: 8
+  internal_label: Rogue
+  position:
+    might: 0
+    arcana: 0
+    finesse: 100
+  pillar_classification: pure
+  edge: corner-finesse
+  primary_roles:
+  - dps
+- class_id: 9
+  internal_label: Ranger
+  position:
+    might: 25
+    arcana: 0
+    finesse: 75
+  pillar_classification: edge
+  edge: finesse-might
+  primary_roles:
+  - ranged-dps
+- class_id: 10
+  internal_label: Monk
+  position:
+    might: 50
+    arcana: 0
+    finesse: 50
+  pillar_classification: edge
+  edge: finesse-might
+  primary_roles:
+  - evasion-tank
+  - dps
+- class_id: 11
+  internal_label: Barbarian
+  position:
+    might: 75
+    arcana: 0
+    finesse: 25
+  pillar_classification: edge
+  edge: finesse-might
+  primary_roles:
+  - tank
+  - dps
+- class_id: 12
+  internal_label: Duskblade
+  position:
+    might: 50
+    arcana: 25
+    finesse: 25
+  pillar_classification: interior
+  edge: interior
+  primary_roles:
+  - martial-dps
+- class_id: 13
+  internal_label: Mystic
+  position:
+    might: 25
+    arcana: 50
+    finesse: 25
+  pillar_classification: interior
+  edge: interior
+  primary_roles:
+  - stealth-caster
+- class_id: 14
+  internal_label: Warden
+  position:
+    might: 25
+    arcana: 25
+    finesse: 50
+  pillar_classification: interior
+  edge: interior
+  primary_roles:
+  - rogue-dps
+  - pet-heal

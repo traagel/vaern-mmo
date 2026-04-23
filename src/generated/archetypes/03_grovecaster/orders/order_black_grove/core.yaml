@@ -1,0 +1,24 @@
+id: order_black_grove
+faction: faction_b
+archetype_id: 3
+archetype_position:
+  might: 25
+  arcana: 75
+  finesse: 0
+flagship: false
+player_facing:
+  class_name: Black-Grove Druid
+  title_singular: Black-Grove Druid
+  title_plural: Black-Grove Druids
+schools_taught:
+  arcana:
+  - shadow
+  - earth
+  - nature
+  might:
+  - spear
+institutions:
+  primary: storm_pact
+  secondary: shadow_conclave
+  tertiary: fury_houses
+chapter: chapter_black_grove

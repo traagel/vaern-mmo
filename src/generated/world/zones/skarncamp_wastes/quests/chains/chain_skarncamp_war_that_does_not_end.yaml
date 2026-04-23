@@ -1,0 +1,96 @@
+id: chain_skarncamp_war_that_does_not_end
+zone: skarncamp_wastes
+title: The War That Does Not End
+premise: The Skarncamp Wastes' war-stake has never been pulled down; it is the physical
+  anchor of an old grudge the Skarn elders refuse to release
+total_steps: 8
+final_reward:
+  xp_bonus: 21964
+  gold_bonus_copper: 2600
+  item_hint: zone-appropriate mid-tier reward
+  title_hint: '''The War That Does Not End'' completion title'
+breadcrumb_from: capital hub of the zone's faction-home
+final_boss_hint: war-hawks who refuse the release
+steps:
+- step: 1
+  id: chain_skarncamp_war_that_does_not_end__01_report_to_ravenmeet
+  name: Report To Ravenmeet
+  level: 18
+  objective:
+    kind: talk
+    target_hint: Chief Skorrn at Ravenmeet
+  xp_reward: 5530
+  gold_reward_copper: 270
+  prerequisite: null
+- step: 2
+  id: chain_skarncamp_war_that_does_not_end__02_hear_the_war_tally
+  name: Hear The War Tally
+  level: 19
+  objective:
+    kind: investigate
+    target_hint: the tally-bones at the war-stake
+  xp_reward: 6110
+  gold_reward_copper: 285
+  prerequisite: chain_skarncamp_war_that_does_not_end__01_report_to_ravenmeet
+- step: 3
+  id: chain_skarncamp_war_that_does_not_end__03_ride_the_old_battle_line
+  name: Ride The Old Battle Line
+  level: 20
+  objective:
+    kind: investigate
+    target_hint: the old battle-line markers
+  xp_reward: 6720
+  gold_reward_copper: 300
+  prerequisite: chain_skarncamp_war_that_does_not_end__02_hear_the_war_tally
+- step: 4
+  id: chain_skarncamp_war_that_does_not_end__04_find_the_first_casualty
+  name: Find The First Casualty
+  level: 21
+  objective:
+    kind: collect
+    target_hint: the first casualty's relic
+    count: 4
+  xp_reward: 7358
+  gold_reward_copper: 315
+  prerequisite: chain_skarncamp_war_that_does_not_end__03_ride_the_old_battle_line
+- step: 5
+  id: chain_skarncamp_war_that_does_not_end__05_speak_to_the_last_widow
+  name: Speak To The Last Widow
+  level: 23
+  objective:
+    kind: talk
+    target_hint: the last surviving widow of the first war
+  xp_reward: 8722
+  gold_reward_copper: 345
+  prerequisite: chain_skarncamp_war_that_does_not_end__04_find_the_first_casualty
+- step: 6
+  id: chain_skarncamp_war_that_does_not_end__06_negotiate_the_release
+  name: Negotiate The Release
+  level: 24
+  objective:
+    kind: ritual
+    target_hint: the release-negotiation
+  xp_reward: 9446
+  gold_reward_copper: 360
+  prerequisite: chain_skarncamp_war_that_does_not_end__05_speak_to_the_last_widow
+- step: 7
+  id: chain_skarncamp_war_that_does_not_end__07_pull_down_the_stake
+  name: Pull Down The Stake
+  level: 25
+  objective:
+    kind: ritual
+    target_hint: the stake-pulling ceremony
+  xp_reward: 10200
+  gold_reward_copper: 375
+  prerequisite: chain_skarncamp_war_that_does_not_end__06_negotiate_the_release
+- step: 8
+  id: chain_skarncamp_war_that_does_not_end__08_defeat_the_refusers
+  name: Defeat The Refusers
+  level: 26
+  objective:
+    kind: kill
+    target_hint: war-hawks who refuse the release
+    count: 1
+  xp_reward: 10982
+  gold_reward_copper: 390
+  prerequisite: chain_skarncamp_war_that_does_not_end__07_pull_down_the_stake

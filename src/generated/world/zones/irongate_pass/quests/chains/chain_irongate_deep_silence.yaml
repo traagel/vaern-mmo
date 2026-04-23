@@ -1,0 +1,86 @@
+id: chain_irongate_deep_silence
+zone: irongate_pass
+title: The Deep Silence
+premise: The Hearthkin deep-roads have gone quiet; the collapse was no accident, and
+  what's digging up is not from this side
+total_steps: 7
+final_reward:
+  xp_bonus: 11060
+  gold_bonus_copper: 1800
+  item_hint: zone-appropriate mid-tier reward
+  title_hint: '''The Deep Silence'' completion title'
+breadcrumb_from: capital hub of the zone's faction-home
+final_boss_hint: the thing that broke the seal
+steps:
+- step: 1
+  id: chain_irongate_deep_silence__01_speak_with_the_gate_warden
+  name: Speak With The Gate Warden
+  level: 10
+  objective:
+    kind: talk
+    target_hint: Gate-Warden Drum
+  xp_reward: 1920
+  gold_reward_copper: 150
+  prerequisite: null
+- step: 2
+  id: chain_irongate_deep_silence__02_scout_the_silent_mine
+  name: Scout The Silent Mine
+  level: 11
+  objective:
+    kind: investigate
+    target_hint: the upper collapsed shafts
+  xp_reward: 2270
+  gold_reward_copper: 165
+  prerequisite: chain_irongate_deep_silence__01_speak_with_the_gate_warden
+- step: 3
+  id: chain_irongate_deep_silence__03_recover_the_lost_survey
+  name: Recover The Lost Survey
+  level: 13
+  objective:
+    kind: collect
+    target_hint: the survey-map from a dead scout
+    count: 4
+  xp_reward: 3058
+  gold_reward_copper: 195
+  prerequisite: chain_irongate_deep_silence__02_scout_the_silent_mine
+- step: 4
+  id: chain_irongate_deep_silence__04_read_the_deep_song
+  name: Read The Deep Song
+  level: 14
+  objective:
+    kind: ritual
+    target_hint: the stone-reading at the old hearth
+  xp_reward: 3494
+  gold_reward_copper: 210
+  prerequisite: chain_irongate_deep_silence__03_recover_the_lost_survey
+- step: 5
+  id: chain_irongate_deep_silence__05_seal_the_upper_breach
+  name: Seal The Upper Breach
+  level: 15
+  objective:
+    kind: ritual
+    target_hint: the upper-breach seal-song
+  xp_reward: 3960
+  gold_reward_copper: 225
+  prerequisite: chain_irongate_deep_silence__04_read_the_deep_song
+- step: 6
+  id: chain_irongate_deep_silence__06_hunt_the_stone_eater
+  name: Hunt The Stone Eater
+  level: 17
+  objective:
+    kind: kill
+    target_hint: the thing that broke the seal
+    count: 1
+  xp_reward: 4978
+  gold_reward_copper: 255
+  prerequisite: chain_irongate_deep_silence__05_seal_the_upper_breach
+- step: 7
+  id: chain_irongate_deep_silence__07_report_to_the_old_smith
+  name: Report To The Old Smith
+  level: 18
+  objective:
+    kind: deliver
+    target_hint: the recovered fragments
+  xp_reward: 5530
+  gold_reward_copper: 270
+  prerequisite: chain_irongate_deep_silence__06_hunt_the_stone_eater

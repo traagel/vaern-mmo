@@ -1,0 +1,19 @@
+id: shadegrove
+name: Shadegrove
+faction_control: faction_b
+biome: ashland
+region: ashen_march
+tier: mid
+level_range:
+  min: 10
+  max: 18
+starter_race: null
+hub_count: 3
+budget:
+  quest_count_target: 90
+  unique_mob_types: 27
+  mob_kills_to_complete: 720
+  estimated_hours_to_complete:
+    solo: 16.2
+    duo: 11.7
+notes: Mid zone in the ashen march. Targets 1-10 band session math.

@@ -1,0 +1,21 @@
+id: black_eel_warrens_bosses
+instance: black_eel_warrens
+bosses:
+- id: eel_harrier
+  name: The Eel-Harrier
+  role_tag: miniboss
+  level: 48
+  mechanic: hit-and-run, positional
+  hp_tier: elite
+- id: waterless_priest
+  name: The Waterless Priest
+  role_tag: miniboss
+  level: 52
+  mechanic: drain-aura, heal-reverse
+  hp_tier: elite
+- id: clanhead_sleth
+  name: Clanhead Sleth
+  role_tag: final
+  level: 55
+  mechanic: dual-weapon eel-binding, tether mechanic
+  hp_tier: heroic

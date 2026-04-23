@@ -1,0 +1,20 @@
+id: circle_of_roots
+faction: faction_a
+name: The Circle of Roots
+tradition: Greenkeeper Tradition
+curriculum:
+  major:
+    arcana:
+    - nature
+  secondary:
+    arcana:
+    - earth
+    might:
+    - spear
+    finesse:
+    - tonics
+    - bow
+pillars:
+- arcana
+- finesse
+- might

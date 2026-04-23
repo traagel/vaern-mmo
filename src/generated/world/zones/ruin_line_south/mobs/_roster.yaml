@@ -1,0 +1,50 @@
+id: _roster__ruin_line_south
+zone: ruin_line_south
+mob_count: 27
+mob_ids:
+- mob_ruin_line_south_beast_houndrev
+- mob_ruin_line_south_beast_warghost
+- mob_ruin_line_south_beast_revenant
+- mob_ruin_line_south_beast_spectralhawk
+- mob_ruin_line_south_beast_wraith
+- mob_ruin_line_south_beast_burrowwight
+- mob_ruin_line_south_ambient_ratrev
+- mob_ruin_line_south_exotic_scarthing
+- mob_ruin_line_south_warband_concord_strike_team
+- mob_ruin_line_south_warband_rend_strike_team
+- mob_ruin_line_south_warband_archive_sentinel
+- mob_ruin_line_south_warband_ruin_deserter
+- mob_ruin_line_south_named_archive_sentinel_named
+- mob_ruin_line_south_juvenile_houndrev
+- mob_ruin_line_south_juvenile_warghost
+- mob_ruin_line_south_juvenile_revenant
+- mob_ruin_line_south_juvenile_spectralhawk
+- mob_ruin_line_south_juvenile_wraith
+- mob_ruin_line_south_juvenile_burrowwight
+- mob_ruin_line_south_alpha_houndrev
+- mob_ruin_line_south_alpha_warghost
+- mob_ruin_line_south_alpha_revenant
+- mob_ruin_line_south_alpha_spectralhawk
+- mob_ruin_line_south_alpha_wraith
+- mob_ruin_line_south_alpha_burrowwight
+- mob_ruin_line_south_matriarch_houndrev
+- mob_ruin_line_south_matriarch_warghost
+by_creature_type:
+  undead: 20
+  beast: 1
+  aberration: 1
+  humanoid: 5
+by_armor_class:
+  bone: 20
+  hide: 1
+  ethereal: 1
+  plate: 4
+  leather: 1
+by_rarity:
+  common: 14
+  elite: 12
+  named: 1
+level_min: 32
+level_max: 38
+named_or_chain_targets:
+- mob_ruin_line_south_named_archive_sentinel_named

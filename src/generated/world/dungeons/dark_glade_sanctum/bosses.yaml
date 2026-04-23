@@ -1,0 +1,21 @@
+id: dark_glade_sanctum_bosses
+instance: dark_glade_sanctum
+bosses:
+- id: shadow_initiate
+  name: Shadow Initiate
+  role_tag: miniboss
+  level: 22
+  mechanic: "teaches the others \u2014 kill last or they heal"
+  hp_tier: elite
+- id: pact_speaker
+  name: The Pact-Speaker
+  role_tag: miniboss
+  level: 25
+  mechanic: life-tap summon, ramping damage
+  hp_tier: elite
+- id: sanctum_witch
+  name: The Sanctum Witch
+  role_tag: final
+  level: 28
+  mechanic: curse-stacking tank mechanic, rotating elemental orbs
+  hp_tier: heroic

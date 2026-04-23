@@ -1,0 +1,22 @@
+specs:
+- id: ember_immolator
+  name: Immolator
+  emphasis: magic_dps
+  description: fire-pure burst mage, ignition specialist
+  schools_focus:
+  - fire
+  - arcane
+- id: ember_shadowspark
+  name: Shadow-Spark
+  emphasis: control
+  description: flash-blind and ember-hex battlefield controller
+  schools_focus:
+  - fire
+  - shadow
+- id: ember_emberseer
+  name: Ember-Seer
+  emphasis: support
+  description: innate-pact empowerer, shared-flame buffs
+  schools_focus:
+  - fire
+  - blood

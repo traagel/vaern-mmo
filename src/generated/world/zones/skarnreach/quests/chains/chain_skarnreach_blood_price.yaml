@@ -1,0 +1,57 @@
+id: chain_skarnreach_blood_price
+zone: skarnreach
+title: The Blood-Price
+premise: A young Skarn warrior is assigned a blood-debt against a rival clan; the
+  rival clan is not actually the debtor
+total_steps: 4
+final_reward:
+  xp_bonus: 1200
+  gold_bonus_copper: 500
+  item_hint: zone-appropriate starter-tier reward
+  title_hint: '''The Blood-Price'' completion title'
+breadcrumb_from: capital hub of the zone's faction-home
+final_boss_hint: the Skarn elder who sent you under false colors
+steps:
+- step: 1
+  id: chain_skarnreach_blood_price__01_claim_your_axe
+  name: Claim Your Axe
+  level: 1
+  objective:
+    kind: collect
+    target_hint: an unclaimed war-axe from the longhall
+    count: 4
+  xp_reward: 62
+  gold_reward_copper: 15
+  prerequisite: null
+- step: 2
+  id: chain_skarnreach_blood_price__02_ride_to_bloodwater
+  name: Ride To Bloodwater
+  level: 2
+  objective:
+    kind: talk
+    target_hint: Bloodwater Landing's chief
+  xp_reward: 154
+  gold_reward_copper: 30
+  prerequisite: chain_skarnreach_blood_price__01_claim_your_axe
+- step: 3
+  id: chain_skarnreach_blood_price__03_find_the_rival_clanhead
+  name: Find The Rival Clanhead
+  level: 4
+  objective:
+    kind: kill
+    target_hint: the rival clanhead on the fjord shore
+    count: 1
+  xp_reward: 422
+  gold_reward_copper: 60
+  prerequisite: chain_skarnreach_blood_price__02_ride_to_bloodwater
+- step: 4
+  id: chain_skarnreach_blood_price__04_return_and_confront_the_liar
+  name: Return And Confront The Liar
+  level: 5
+  objective:
+    kind: kill
+    target_hint: the Skarn elder who sent you under false colors
+    count: 1
+  xp_reward: 600
+  gold_reward_copper: 75
+  prerequisite: chain_skarnreach_blood_price__03_find_the_rival_clanhead

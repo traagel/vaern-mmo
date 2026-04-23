@@ -1,0 +1,16 @@
+id: quest_summary__crown_of_ruin
+zone: crown_of_ruin
+level_range:
+  min: 55
+  max: 60
+tier: endgame
+budget_target: 72
+actual:
+  main_chain_steps: 10
+  side_quests: 6
+  filler_pool: 52
+  total: 68
+coverage_ratio: 0.94
+main_chain: chain_crown_the_throne_claimant
+notes: Main chain is hand-crafted story; side is templated by biome+hub-role; filler
+  is a procedural pool.

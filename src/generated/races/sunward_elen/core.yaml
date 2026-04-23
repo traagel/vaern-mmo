@@ -1,0 +1,25 @@
+id: sunward_elen
+archetype: high elves
+faction: faction_a
+favored_class: wizard
+cultural_traits: ancient, arcane-literate, rigid, scholarly-hierarchical, sun-bound
+creature_type: humanoid
+size_class: medium
+hp_modifier: 0.95
+affinity:
+  might: 50
+  arcana: 100
+  finesse: 75
+  notes: arcane peak; archery-stealth strong; medium-armor swordplay but no Fighter
+    corner
+racial_resistances:
+  shadow: 0.1
+  arcane: -0.1
+  frost: -0.05
+racial_school_bonuses:
+- arcane
+- light
+- frost
+- bow
+lore_hook: pre-Veyr arcane scholars of the highland spires; sun-bound kin of the Darkling
+  Elen

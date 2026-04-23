@@ -1,0 +1,19 @@
+id: ruin_line_north
+name: "The Ruin Line \u2014 Northern Scar"
+faction_control: contested
+biome: ruin
+region: ruin_line
+tier: contested
+level_range:
+  min: 30
+  max: 38
+starter_race: null
+hub_count: 3
+budget:
+  quest_count_target: 126
+  unique_mob_types: 27
+  mob_kills_to_complete: 1260
+  estimated_hours_to_complete:
+    solo: 31.5
+    duo: 22.5
+notes: Contested zone in the ruin line. Targets 11-30 band session math.

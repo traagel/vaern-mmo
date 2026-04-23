@@ -1,0 +1,18 @@
+id: temperate_forest
+name: Temperate Forest
+climate: mild, seasonal, deep leaf-canopy
+hazards:
+- ambush-from-cover
+- winter snow-travel penalty
+typical_flora:
+- oak
+- hazel
+- fern
+- moss
+typical_fauna:
+- wolf
+- boar
+- stag
+- corvid
+- bear
+faction_affinity: faction_a

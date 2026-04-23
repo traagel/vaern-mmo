@@ -1,0 +1,65 @@
+id: chain_firland_greenmoot
+zone: firland_greenwood
+title: The Greenmoot Call
+premise: A new Firland wanderer is called to the Greenmoot; the wood is speaking to
+  one elder tree, and not in a good voice
+total_steps: 5
+final_reward:
+  xp_bonus: 1200
+  gold_bonus_copper: 500
+  item_hint: zone-appropriate starter-tier reward
+  title_hint: '''The Greenmoot Call'' completion title'
+breadcrumb_from: capital hub of the zone's faction-home
+final_boss_hint: rot-beast nested at the tree's root
+steps:
+- step: 1
+  id: chain_firland_greenmoot__01_hear_the_call
+  name: Hear The Call
+  level: 1
+  objective:
+    kind: talk
+    target_hint: Elder-Mother Holle
+  xp_reward: 62
+  gold_reward_copper: 15
+  prerequisite: null
+- step: 2
+  id: chain_firland_greenmoot__02_walk_the_old_path
+  name: Walk The Old Path
+  level: 2
+  objective:
+    kind: investigate
+    target_hint: the mile-tree circle
+  xp_reward: 154
+  gold_reward_copper: 30
+  prerequisite: chain_firland_greenmoot__01_hear_the_call
+- step: 3
+  id: chain_firland_greenmoot__03_listen_to_the_sick_tree
+  name: Listen To The Sick Tree
+  level: 3
+  objective:
+    kind: ritual
+    target_hint: the sick oak at the path's end
+  xp_reward: 274
+  gold_reward_copper: 45
+  prerequisite: chain_firland_greenmoot__02_walk_the_old_path
+- step: 4
+  id: chain_firland_greenmoot__04_burn_the_rot
+  name: Burn The Rot
+  level: 4
+  objective:
+    kind: kill
+    target_hint: rot-beast nested at the tree's root
+    count: 1
+  xp_reward: 422
+  gold_reward_copper: 60
+  prerequisite: chain_firland_greenmoot__03_listen_to_the_sick_tree
+- step: 5
+  id: chain_firland_greenmoot__05_sing_the_moot_closed
+  name: Sing The Moot Closed
+  level: 5
+  objective:
+    kind: ritual
+    target_hint: the formal moot-closing song
+  xp_reward: 600
+  gold_reward_copper: 75
+  prerequisite: chain_firland_greenmoot__04_burn_the_rot

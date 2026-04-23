@@ -1,0 +1,21 @@
+id: first_barrow_bosses
+instance: first_barrow
+bosses:
+- id: hollow_keeper
+  name: The Hollow Keeper
+  role_tag: miniboss
+  level: 12
+  mechanic: aoe funeral-chant silence
+  hp_tier: elite
+- id: twin_shells
+  name: The Twin Shells
+  role_tag: miniboss
+  level: 15
+  mechanic: paired bosses, heal each other if both alive
+  hp_tier: elite
+- id: first_mother
+  name: The First Mother
+  role_tag: final
+  level: 18
+  mechanic: summons grave-iron adds, phase-shift at 30%
+  hp_tier: heroic

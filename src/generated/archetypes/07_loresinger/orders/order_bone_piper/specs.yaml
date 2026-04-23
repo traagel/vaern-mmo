@@ -1,0 +1,15 @@
+specs:
+- id: bone_piper_dirge
+  name: Dirge-Piper
+  emphasis: support
+  description: funeral-bard ally curse-lifter
+  schools_focus:
+  - shadow
+  - trickster
+- id: bone_piper_hunt
+  name: Hunt-Piper
+  emphasis: ranged_dps
+  description: bone-bow shadow archer
+  schools_focus:
+  - shadow
+  - bow

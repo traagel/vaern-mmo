@@ -1,0 +1,27 @@
+id: order_shadowwatch
+faction: faction_b
+archetype_id: 14
+archetype_position:
+  might: 25
+  arcana: 25
+  finesse: 50
+player_facing:
+  class_name: Shadowwatch
+  title_singular: Shadowwatch
+  title_plural: Shadowwatch
+schools_taught:
+  might:
+  - blade
+  arcana:
+  - shadow
+  finesse:
+  - dagger
+  - silent
+  - poison
+  - trickster
+flagship: true
+institutions:
+  primary: shadow_conclave
+  secondary: alchemist_tinker_clans
+  tertiary: fury_houses
+chapter: chapter_shadowwatch

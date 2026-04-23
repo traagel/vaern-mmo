@@ -1,0 +1,15 @@
+specs:
+- id: pact_reaper_sickle
+  name: Sickle-Reaper
+  emphasis: melee_dps
+  description: shadow-blade melee striker
+  schools_focus:
+  - shadow
+  - dagger
+- id: pact_reaper_fang
+  name: Fang-Reaper
+  emphasis: control
+  description: poison-and-silent battlefield attrition
+  schools_focus:
+  - poison
+  - silent

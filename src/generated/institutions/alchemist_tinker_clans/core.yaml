@@ -1,0 +1,17 @@
+id: alchemist_tinker_clans
+faction: faction_b
+name: The Alchemist-Tinker Clans
+tradition: Scrap-Craft
+curriculum:
+  major:
+    finesse:
+    - alchemy
+    - poison
+  secondary:
+    finesse:
+    - thrown
+    - acrobat
+    - crossbow
+    - trickster
+pillars:
+- finesse

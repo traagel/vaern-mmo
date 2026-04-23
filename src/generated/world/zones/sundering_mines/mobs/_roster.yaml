@@ -1,0 +1,52 @@
+id: _roster__sundering_mines
+zone: sundering_mines
+mob_count: 27
+mob_ids:
+- mob_sundering_mines_beast_rockdrake
+- mob_sundering_mines_beast_cavespider
+- mob_sundering_mines_beast_mountainbear
+- mob_sundering_mines_beast_yeti
+- mob_sundering_mines_beast_rockworm
+- mob_sundering_mines_beast_batswarm
+- mob_sundering_mines_ambient_pika
+- mob_sundering_mines_exotic_stone_golem
+- mob_sundering_mines_warband_deep_expedition_loyalist
+- mob_sundering_mines_warband_carver_cultist
+- mob_sundering_mines_warband_mine_warden_corrupted
+- mob_sundering_mines_warband_scavenger_expedition
+- mob_sundering_mines_named_carver_kin_prime
+- mob_sundering_mines_juvenile_rockdrake
+- mob_sundering_mines_juvenile_cavespider
+- mob_sundering_mines_juvenile_mountainbear
+- mob_sundering_mines_juvenile_yeti
+- mob_sundering_mines_juvenile_rockworm
+- mob_sundering_mines_juvenile_batswarm
+- mob_sundering_mines_alpha_rockdrake
+- mob_sundering_mines_alpha_cavespider
+- mob_sundering_mines_alpha_mountainbear
+- mob_sundering_mines_alpha_yeti
+- mob_sundering_mines_alpha_rockworm
+- mob_sundering_mines_alpha_batswarm
+- mob_sundering_mines_matriarch_rockdrake
+- mob_sundering_mines_matriarch_cavespider
+by_creature_type:
+  dragonkin: 4
+  beast: 11
+  aberration: 6
+  construct: 1
+  humanoid: 5
+by_armor_class:
+  scales: 4
+  hide: 11
+  ethereal: 6
+  plate: 4
+  cloth: 1
+  leather: 1
+by_rarity:
+  common: 15
+  elite: 11
+  named: 1
+level_min: 52
+level_max: 58
+named_or_chain_targets:
+- mob_sundering_mines_named_carver_kin_prime

@@ -1,0 +1,25 @@
+id: mob_skarncamp_wastes_exotic_frostbound
+name: Frost-Bound Wight
+zone: skarncamp_wastes
+level: 24
+creature_type: undead
+armor_class: bone
+rarity: elite
+role: elite
+faction_alignment: hostile_to_faction_b
+hp_tier: elite
+damage:
+  primary_school: shadow
+  attack_range: melee
+  dps_tier: standard
+behavior:
+  aggro_range: long
+  social_radius: 5
+  flee_threshold: 0.0
+  calls_allies: false
+  patrol: stationary
+loot_tier: rare
+drops:
+  gold_copper_avg: 144
+  item_hint: rare biome reagent; low chance of blue-tier item
+biome_context: frozen raider-ghost

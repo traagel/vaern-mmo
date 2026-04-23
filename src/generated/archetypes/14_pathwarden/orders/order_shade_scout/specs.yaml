@@ -1,0 +1,15 @@
+specs:
+- id: shade_scout_arrow
+  name: Shadow-Arrow
+  emphasis: ranged_dps
+  description: silent-bow shadow-shooter
+  schools_focus:
+  - bow
+  - shadow
+- id: shade_scout_ghost
+  name: Shadow-Trick
+  emphasis: stealth
+  description: misdirection-forward infiltrator
+  schools_focus:
+  - silent
+  - trickster

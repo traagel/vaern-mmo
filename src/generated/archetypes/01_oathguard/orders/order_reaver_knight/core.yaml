@@ -1,0 +1,24 @@
+id: order_reaver_knight
+faction: faction_b
+archetype_id: 1
+archetype_position:
+  might: 75
+  arcana: 25
+  finesse: 0
+player_facing:
+  class_name: Reaver-Knight
+  title_singular: Reaver-Knight
+  title_plural: Reaver-Knights
+schools_taught:
+  arcana:
+  - shadow
+  - blood
+  might:
+  - fury
+  - shield
+flagship: true
+institutions:
+  primary: fury_houses
+  secondary: hearth_broken_clans
+  tertiary: shadow_conclave
+chapter: chapter_reaver_knight

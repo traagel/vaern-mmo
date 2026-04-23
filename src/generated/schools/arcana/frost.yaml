@@ -1,0 +1,17 @@
+name: frost
+pillar: arcana
+morality: neutral
+family: elemental
+tag: cold / control
+damage_type: cold
+applies_to_categories:
+- damage
+- protection
+- control
+- summoning
+- enhancement
+icon_style:
+  palette: pale cyan, ice blue, silver-white, deep indigo shadow
+  motif: angular ice shards, frost crystals, hoarfrost runes, snowflake geometry, fogged breath
+  silhouette: sharp crystalline spires, six-fold symmetry, jagged icicle daggers
+  material: clear ice, fogged frost, rime-coated steel, frozen mist

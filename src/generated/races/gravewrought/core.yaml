@@ -1,0 +1,25 @@
+id: gravewrought
+archetype: "ancestor-bound construct \u2014 iron-and-bone shells housing ritually-bound\
+  \ souls"
+faction: faction_b
+favored_class: fighter or paladin-mirror (duskblade)
+cultural_traits: walking funeral-armor, ritually-bound ancestor-soul in each shell,
+  vow-holders and oath-keepers of fallen clans, formal and deliberate
+creature_type: living_construct
+size_class: large
+hp_modifier: 1.15
+affinity:
+  might: 100
+  arcana: 75
+  finesse: 25
+  notes: heavy martial peak + ritual-tier arcana (binding-rite magic); slow construct,
+    minimal finesse
+racial_resistances:
+  cold: -0.05
+racial_school_bonuses:
+- blade
+- shield
+- honor
+- spear
+lore_hook: "when a Hraun warrior of standing falls, the ancestor-rite can bind their\
+  \ soul into a funeral-shell \u2014 gravewrought are that rite's deliberate product"

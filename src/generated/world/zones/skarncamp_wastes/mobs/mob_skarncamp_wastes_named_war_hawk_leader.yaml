@@ -1,0 +1,26 @@
+id: mob_skarncamp_wastes_named_war_hawk_leader
+name: The War-Hawk Leader
+zone: skarncamp_wastes
+level: 26
+creature_type: humanoid
+armor_class: plate
+rarity: named
+role: captain
+faction_alignment: hostile_to_faction_b
+hp_tier: heroic
+damage:
+  primary_school: blade
+  attack_range: melee
+  dps_tier: heavy
+behavior:
+  aggro_range: long
+  social_radius: 12
+  flee_threshold: 0.0
+  calls_allies: true
+  patrol: stationary
+loot_tier: quest_marked
+drops:
+  gold_copper_avg: 624
+  item_hint: named-drop set (weapon/trinket); quest turn-in item
+biome_context: main-chain refuser leader
+chain_target: true

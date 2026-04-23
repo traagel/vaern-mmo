@@ -1,0 +1,37 @@
+bases:
+- id: buckler
+  piece_name: Buckler
+  size: small
+  base_weight_kg: 2.0
+  kind:
+    type: shield
+    base_armor_class: 3.5
+    base_block_chance_pct: 10.0
+    base_block_value: 15.0
+- id: round_shield
+  piece_name: Round Shield
+  size: medium
+  base_weight_kg: 3.5
+  kind:
+    type: shield
+    base_armor_class: 5.5
+    base_block_chance_pct: 15.0
+    base_block_value: 20.0
+- id: kite_shield
+  piece_name: Kite Shield
+  size: medium
+  base_weight_kg: 5.0
+  kind:
+    type: shield
+    base_armor_class: 7.5
+    base_block_chance_pct: 12.0
+    base_block_value: 30.0
+- id: tower_shield
+  piece_name: Tower Shield
+  size: large
+  base_weight_kg: 8.0
+  kind:
+    type: shield
+    base_armor_class: 11.0
+    base_block_chance_pct: 10.0
+    base_block_value: 45.0

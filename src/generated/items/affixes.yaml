@@ -1,0 +1,894 @@
+affixes:
+- id: of_warding
+  display: of Warding
+  position: suffix
+  applies_to:
+  - weapon
+  - armor
+  - shield
+  min_tier: 1
+  max_tier: 10
+  stat_delta:
+    armor: 0
+    weapon_min_dmg: 0.0
+    weapon_max_dmg: 0.0
+    crit_rating_pct: 0.0
+    haste_rating_pct: 0.0
+    fortune_pct: 0.0
+    mp5: 0.0
+    block_chance_pct: 0.0
+    block_value: 0
+    resists:
+    - 0.0
+    - 0.0
+    - 0.0
+    - 1.0
+    - 1.0
+    - 1.0
+    - 1.0
+    - 1.0
+    - 1.0
+    - 1.0
+    - 1.0
+    - 1.0
+  weight: 40
+  soulbinds: false
+- id: of_the_bear
+  display: of the Bear
+  position: suffix
+  applies_to:
+  - armor
+  - shield
+  min_tier: 1
+  max_tier: 10
+  stat_delta:
+    armor: 4
+    weapon_min_dmg: 0.0
+    weapon_max_dmg: 0.0
+    crit_rating_pct: 0.0
+    haste_rating_pct: 0.0
+    fortune_pct: 0.0
+    mp5: 0.0
+    block_chance_pct: 0.0
+    block_value: 0
+    resists:
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+  weight: 35
+  soulbinds: false
+- id: of_the_fox
+  display: of the Fox
+  position: suffix
+  applies_to:
+  - armor
+  min_tier: 1
+  max_tier: 10
+  stat_delta:
+    armor: 0
+    weapon_min_dmg: 0.0
+    weapon_max_dmg: 0.0
+    crit_rating_pct: 1.5
+    haste_rating_pct: 0.0
+    fortune_pct: 0.0
+    mp5: 0.0
+    block_chance_pct: 0.0
+    block_value: 0
+    resists:
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+  weight: 30
+  soulbinds: false
+- id: of_the_eagle
+  display: of the Eagle
+  position: suffix
+  applies_to:
+  - weapon
+  - armor
+  min_tier: 2
+  max_tier: 10
+  stat_delta:
+    armor: 0
+    weapon_min_dmg: 0.0
+    weapon_max_dmg: 0.0
+    crit_rating_pct: 2.5
+    haste_rating_pct: 0.0
+    fortune_pct: 0.0
+    mp5: 0.0
+    block_chance_pct: 0.0
+    block_value: 0
+    resists:
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+  weight: 25
+  soulbinds: false
+- id: of_the_owl
+  display: of the Owl
+  position: suffix
+  applies_to:
+  - armor
+  min_tier: 2
+  max_tier: 10
+  stat_delta:
+    armor: 0
+    weapon_min_dmg: 0.0
+    weapon_max_dmg: 0.0
+    crit_rating_pct: 0.0
+    haste_rating_pct: 0.0
+    fortune_pct: 0.0
+    mp5: 1.5
+    block_chance_pct: 0.0
+    block_value: 0
+    resists:
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+  weight: 25
+  soulbinds: false
+- id: of_the_wolf
+  display: of the Wolf
+  position: suffix
+  applies_to:
+  - weapon
+  - armor
+  min_tier: 2
+  max_tier: 10
+  stat_delta:
+    armor: 0
+    weapon_min_dmg: 0.0
+    weapon_max_dmg: 0.0
+    crit_rating_pct: 0.0
+    haste_rating_pct: 1.0
+    fortune_pct: 0.0
+    mp5: 0.0
+    block_chance_pct: 0.0
+    block_value: 0
+    resists:
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+  weight: 25
+  soulbinds: false
+- id: of_vitality
+  display: of Vitality
+  position: suffix
+  applies_to:
+  - armor
+  - shield
+  min_tier: 1
+  max_tier: 10
+  stat_delta:
+    armor: 2
+    weapon_min_dmg: 0.0
+    weapon_max_dmg: 0.0
+    crit_rating_pct: 0.0
+    haste_rating_pct: 0.0
+    fortune_pct: 0.0
+    mp5: 0.0
+    block_chance_pct: 0.0
+    block_value: 0
+    resists:
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+  weight: 35
+  soulbinds: false
+- id: of_striking
+  display: of Striking
+  position: suffix
+  applies_to:
+  - weapon
+  min_tier: 1
+  max_tier: 10
+  stat_delta:
+    armor: 0
+    weapon_min_dmg: 1.0
+    weapon_max_dmg: 2.0
+    crit_rating_pct: 0.0
+    haste_rating_pct: 0.0
+    fortune_pct: 0.0
+    mp5: 0.0
+    block_chance_pct: 0.0
+    block_value: 0
+    resists:
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+  weight: 40
+  soulbinds: false
+- id: of_swift_fangs
+  display: of Swift Fangs
+  position: suffix
+  applies_to:
+  - weapon
+  min_tier: 2
+  max_tier: 10
+  stat_delta:
+    armor: 0
+    weapon_min_dmg: 0.0
+    weapon_max_dmg: 0.0
+    crit_rating_pct: 1.0
+    haste_rating_pct: 2.0
+    fortune_pct: 0.0
+    mp5: 0.0
+    block_chance_pct: 0.0
+    block_value: 0
+    resists:
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+  weight: 15
+  soulbinds: false
+- id: of_fortune
+  display: of Fortune
+  position: suffix
+  applies_to:
+  - weapon
+  - armor
+  - shield
+  min_tier: 1
+  max_tier: 10
+  stat_delta:
+    armor: 0
+    weapon_min_dmg: 0.0
+    weapon_max_dmg: 0.0
+    crit_rating_pct: 0.0
+    haste_rating_pct: 0.0
+    fortune_pct: 2.0
+    mp5: 0.0
+    block_chance_pct: 0.0
+    block_value: 0
+    resists:
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+  weight: 20
+  soulbinds: false
+- id: of_blood
+  display: of Blood
+  position: suffix
+  applies_to:
+  - weapon
+  min_tier: 3
+  max_tier: 10
+  stat_delta:
+    armor: 0
+    weapon_min_dmg: 0.5
+    weapon_max_dmg: 1.5
+    crit_rating_pct: 0.0
+    haste_rating_pct: 0.0
+    fortune_pct: 0.0
+    mp5: 0.0
+    block_chance_pct: 0.0
+    block_value: 0
+    resists:
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+  weight: 10
+  soulbinds: false
+- id: of_flamebane
+  display: of Flamebane
+  position: suffix
+  applies_to:
+  - armor
+  - shield
+  min_tier: 2
+  max_tier: 10
+  stat_delta:
+    armor: 0
+    weapon_min_dmg: 0.0
+    weapon_max_dmg: 0.0
+    crit_rating_pct: 0.0
+    haste_rating_pct: 0.0
+    fortune_pct: 0.0
+    mp5: 0.0
+    block_chance_pct: 0.0
+    block_value: 0
+    resists:
+    - 0.0
+    - 0.0
+    - 0.0
+    - 8.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+  weight: 15
+  soulbinds: false
+- id: of_frostbane
+  display: of Frostbane
+  position: suffix
+  applies_to:
+  - armor
+  - shield
+  min_tier: 2
+  max_tier: 10
+  stat_delta:
+    armor: 0
+    weapon_min_dmg: 0.0
+    weapon_max_dmg: 0.0
+    crit_rating_pct: 0.0
+    haste_rating_pct: 0.0
+    fortune_pct: 0.0
+    mp5: 0.0
+    block_chance_pct: 0.0
+    block_value: 0
+    resists:
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 8.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+  weight: 15
+  soulbinds: false
+- id: of_stormbane
+  display: of Stormbane
+  position: suffix
+  applies_to:
+  - armor
+  - shield
+  min_tier: 2
+  max_tier: 10
+  stat_delta:
+    armor: 0
+    weapon_min_dmg: 0.0
+    weapon_max_dmg: 0.0
+    crit_rating_pct: 0.0
+    haste_rating_pct: 0.0
+    fortune_pct: 0.0
+    mp5: 0.0
+    block_chance_pct: 0.0
+    block_value: 0
+    resists:
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 8.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+  weight: 15
+  soulbinds: false
+- id: of_shadowbane
+  display: of Shadowbane
+  position: suffix
+  applies_to:
+  - armor
+  - shield
+  min_tier: 3
+  max_tier: 10
+  stat_delta:
+    armor: 0
+    weapon_min_dmg: 0.0
+    weapon_max_dmg: 0.0
+    crit_rating_pct: 0.0
+    haste_rating_pct: 0.0
+    fortune_pct: 0.0
+    mp5: 0.0
+    block_chance_pct: 0.0
+    block_value: 0
+    resists:
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 8.0
+    - 4.0
+    - 0.0
+    - 0.0
+  weight: 10
+  soulbinds: false
+- id: of_lightbane
+  display: of Lightbane
+  position: suffix
+  applies_to:
+  - armor
+  - shield
+  min_tier: 3
+  max_tier: 10
+  stat_delta:
+    armor: 0
+    weapon_min_dmg: 0.0
+    weapon_max_dmg: 0.0
+    crit_rating_pct: 0.0
+    haste_rating_pct: 0.0
+    fortune_pct: 0.0
+    mp5: 0.0
+    block_chance_pct: 0.0
+    block_value: 0
+    resists:
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 8.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+  weight: 10
+  soulbinds: false
+- id: of_venom_resist
+  display: of Venom-Resist
+  position: suffix
+  applies_to:
+  - armor
+  - shield
+  min_tier: 2
+  max_tier: 10
+  stat_delta:
+    armor: 0
+    weapon_min_dmg: 0.0
+    weapon_max_dmg: 0.0
+    crit_rating_pct: 0.0
+    haste_rating_pct: 0.0
+    fortune_pct: 0.0
+    mp5: 0.0
+    block_chance_pct: 0.0
+    block_value: 0
+    resists:
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 6.0
+    - 4.0
+  weight: 15
+  soulbinds: false
+- id: enchanted
+  display: Enchanted
+  position: prefix
+  applies_to:
+  - weapon
+  - armor
+  - shield
+  - rune
+  min_tier: 2
+  max_tier: 10
+  stat_delta:
+    armor: 0
+    weapon_min_dmg: 0.0
+    weapon_max_dmg: 0.0
+    crit_rating_pct: 1.0
+    haste_rating_pct: 1.0
+    fortune_pct: 0.0
+    mp5: 0.0
+    block_chance_pct: 0.0
+    block_value: 0
+    resists:
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+  weight: 20
+  soulbinds: false
+- id: runecarved
+  display: Runecarved
+  position: prefix
+  applies_to:
+  - weapon
+  - shield
+  min_tier: 3
+  max_tier: 10
+  stat_delta:
+    armor: 0
+    weapon_min_dmg: 0.0
+    weapon_max_dmg: 0.0
+    crit_rating_pct: 0.0
+    haste_rating_pct: 0.0
+    fortune_pct: 0.0
+    mp5: 0.0
+    block_chance_pct: 0.0
+    block_value: 0
+    resists:
+    - 0.0
+    - 0.0
+    - 0.0
+    - 2.0
+    - 2.0
+    - 2.0
+    - 2.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+  weight: 12
+  soulbinds: false
+- id: blessed
+  display: Blessed
+  position: prefix
+  applies_to:
+  - weapon
+  - armor
+  - shield
+  min_tier: 2
+  max_tier: 10
+  stat_delta:
+    armor: 0
+    weapon_min_dmg: 0.0
+    weapon_max_dmg: 0.0
+    crit_rating_pct: 0.0
+    haste_rating_pct: 0.0
+    fortune_pct: 0.0
+    mp5: 0.0
+    block_chance_pct: 0.0
+    block_value: 0
+    resists:
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 3.0
+    - 3.0
+    - 0.0
+    - 0.0
+    - 0.0
+  weight: 15
+  soulbinds: false
+- id: cursed
+  display: Cursed
+  position: prefix
+  applies_to:
+  - weapon
+  - armor
+  min_tier: 3
+  max_tier: 10
+  stat_delta:
+    armor: 0
+    weapon_min_dmg: 1.0
+    weapon_max_dmg: 2.0
+    crit_rating_pct: 0.0
+    haste_rating_pct: 0.0
+    fortune_pct: 0.0
+    mp5: 0.0
+    block_chance_pct: 0.0
+    block_value: 0
+    resists:
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - -3.0
+    - 5.0
+    - 0.0
+    - 0.0
+    - 0.0
+  weight: 8
+  soulbinds: false
+- id: sturdy
+  display: Sturdy
+  position: prefix
+  applies_to:
+  - armor
+  - shield
+  min_tier: 1
+  max_tier: 10
+  stat_delta:
+    armor: 3
+    weapon_min_dmg: 0.0
+    weapon_max_dmg: 0.0
+    crit_rating_pct: 0.0
+    haste_rating_pct: 0.0
+    fortune_pct: 0.0
+    mp5: 0.0
+    block_chance_pct: 0.0
+    block_value: 0
+    resists:
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+  weight: 25
+  soulbinds: false
+- id: of_the_frostwarden
+  display: of the Frostwarden
+  position: suffix
+  applies_to:
+  - weapon
+  - armor
+  - shield
+  min_tier: 4
+  max_tier: 10
+  stat_delta:
+    armor: 0
+    weapon_min_dmg: 2.0
+    weapon_max_dmg: 4.0
+    crit_rating_pct: 0.0
+    haste_rating_pct: 0.0
+    fortune_pct: 0.0
+    mp5: 0.0
+    block_chance_pct: 0.0
+    block_value: 0
+    resists:
+    - 0.0
+    - 0.0
+    - 0.0
+    - -3.0
+    - 20.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+  weight: 0
+  soulbinds: true
+- id: of_the_flamecaller
+  display: of the Flamecaller
+  position: suffix
+  applies_to:
+  - weapon
+  - armor
+  - shield
+  min_tier: 4
+  max_tier: 10
+  stat_delta:
+    armor: 0
+    weapon_min_dmg: 2.0
+    weapon_max_dmg: 4.0
+    crit_rating_pct: 0.0
+    haste_rating_pct: 0.0
+    fortune_pct: 0.0
+    mp5: 0.0
+    block_chance_pct: 0.0
+    block_value: 0
+    resists:
+    - 0.0
+    - 0.0
+    - 0.0
+    - 20.0
+    - -3.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+  weight: 0
+  soulbinds: true
+- id: of_worldserpent
+  display: of the Worldserpent
+  position: suffix
+  applies_to:
+  - weapon
+  - armor
+  min_tier: 5
+  max_tier: 10
+  stat_delta:
+    armor: 10
+    weapon_min_dmg: 0.0
+    weapon_max_dmg: 0.0
+    crit_rating_pct: 0.0
+    haste_rating_pct: 2.0
+    fortune_pct: 0.0
+    mp5: 0.0
+    block_chance_pct: 0.0
+    block_value: 0
+    resists:
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 15.0
+    - 15.0
+  weight: 0
+  soulbinds: true
+- id: of_the_first_ember
+  display: of the First Ember
+  position: suffix
+  applies_to:
+  - weapon
+  - rune
+  min_tier: 5
+  max_tier: 10
+  stat_delta:
+    armor: 0
+    weapon_min_dmg: 3.0
+    weapon_max_dmg: 6.0
+    crit_rating_pct: 3.0
+    haste_rating_pct: 0.0
+    fortune_pct: 0.0
+    mp5: 0.0
+    block_chance_pct: 0.0
+    block_value: 0
+    resists:
+    - 0.0
+    - 0.0
+    - 0.0
+    - 10.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+  weight: 0
+  soulbinds: true
+- id: of_dawnkeeper
+  display: of the Dawnkeeper
+  position: suffix
+  applies_to:
+  - armor
+  - shield
+  min_tier: 5
+  max_tier: 10
+  stat_delta:
+    armor: 15
+    weapon_min_dmg: 0.0
+    weapon_max_dmg: 0.0
+    crit_rating_pct: 0.0
+    haste_rating_pct: 0.0
+    fortune_pct: 0.0
+    mp5: 0.0
+    block_chance_pct: 0.0
+    block_value: 10
+    resists:
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 15.0
+    - -5.0
+    - 0.0
+    - 0.0
+    - 0.0
+  weight: 0
+  soulbinds: true

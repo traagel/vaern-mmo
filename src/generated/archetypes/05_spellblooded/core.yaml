@@ -1,0 +1,39 @@
+class_id: 5
+internal_label: Sorcerer
+abstract_name: Spellblooded
+position:
+  might: 0
+  arcana: 75
+  finesse: 25
+pillar_classification: edge
+dominant_pillar:
+- arcana
+edge: arcana-finesse
+primary_roles:
+- ranged-dps
+note: Arcana-Finesse near-Arcana; AoE plus minor stealth
+active_tiers:
+  might: []
+  arcana:
+  - 25
+  - 50
+  - 75
+  finesse:
+  - 25
+capabilities:
+  might: []
+  arcana:
+  - Cantrips (at-will minor spells)
+  - Minor debuffs (slow, weaken, minor curse)
+  - Minor utility (light, detect magic, mend)
+  - Single-target spells (damage or heal lean)
+  - Protective wards and shields
+  - Area-of-effect spells (damage or heal)
+  - Control and crowd-control (root, stun, sleep)
+  finesse:
+  - Basic stealth (hide in cover)
+  - Finesse weapons (rapier, dagger, shortbow)
+  - Light-armor mobility bonus
+faction_labels:
+  faction_a: null
+  faction_b: null

@@ -1,0 +1,42 @@
+id: side_quests__snowline_camp
+hub: snowline_camp
+hub_role: outpost
+zone: irongate_pass
+biome: mountain
+quest_count: 3
+quests:
+- id: side__snowline_camp__the_rockfall_watch
+  name: The Rockfall Watch
+  hub: snowline_camp
+  type: side
+  level: 10
+  objective:
+    kind: investigate
+    target_hint: a recent rockfall for survivors
+  xp_reward: 640
+  gold_reward_copper: 50
+  repeatable: false
+- id: side__snowline_camp__the_ore_sample
+  name: The Ore Sample
+  hub: snowline_camp
+  type: side
+  level: 14
+  objective:
+    kind: collect
+    target_hint: ore samples from the upper shafts
+    count: 4
+  xp_reward: 1165
+  gold_reward_copper: 70
+  repeatable: false
+- id: side__snowline_camp__the_stoneworm_cull
+  name: The Stoneworm Cull
+  hub: snowline_camp
+  type: side
+  level: 18
+  objective:
+    kind: kill
+    target_hint: rockworms threatening a settlement
+    count: 1
+  xp_reward: 1843
+  gold_reward_copper: 90
+  repeatable: false

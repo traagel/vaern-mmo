@@ -1,0 +1,15 @@
+specs:
+- id: shadowstep_twin
+  name: Twin-Blade
+  emphasis: melee_dps
+  description: dagger-duel shadow-step striker
+  schools_focus:
+  - dagger
+  - silent
+- id: shadowstep_ghost
+  name: Ghost-Walker
+  emphasis: stealth
+  description: pure infiltrator with misdirection
+  schools_focus:
+  - silent
+  - trickster

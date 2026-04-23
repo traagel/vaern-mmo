@@ -1,0 +1,9 @@
+id: rust_creek
+zone: scrap_flats
+name: Rust Creek
+role: outpost
+amenities:
+- innkeeper
+- flight_master
+- repair
+quest_givers: 3

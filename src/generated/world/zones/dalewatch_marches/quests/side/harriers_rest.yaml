@@ -1,0 +1,54 @@
+id: side_quests__harriers_rest
+hub: harriers_rest
+hub_role: outpost
+zone: dalewatch_marches
+biome: river_valley
+quest_count: 4
+quests:
+- id: side__harriers_rest__tending_the_pilgrims
+  name: Tending the Pilgrims
+  hub: harriers_rest
+  type: side
+  level: 2
+  objective:
+    kind: collect
+    target_hint: roadside sunweed for the pilgrims' kettle
+    count: 6
+  xp_reward: 140
+  gold_reward_copper: 22
+  repeatable: false
+- id: side__harriers_rest__road_beast_cull
+  name: Road-Beast Cull
+  hub: harriers_rest
+  type: side
+  level: 3
+  objective:
+    kind: kill
+    target_hint: wolves harrying the Kingsroad
+    count: 10
+  xp_reward: 180
+  gold_reward_copper: 35
+  repeatable: false
+- id: side__harriers_rest__brothers_favor
+  name: Brother's Favor
+  hub: harriers_rest
+  type: side
+  level: 3
+  objective:
+    kind: deliver
+    target_hint: sanctified oil for the mill at Miller's Crossing
+  xp_reward: 180
+  gold_reward_copper: 30
+  repeatable: false
+- id: side__harriers_rest__corrupted_reeds
+  name: Corrupted Reeds
+  hub: harriers_rest
+  type: side
+  level: 4
+  objective:
+    kind: collect
+    target_hint: tainted reeds from the Reed-Brake
+    count: 8
+  xp_reward: 220
+  gold_reward_copper: 45
+  repeatable: false

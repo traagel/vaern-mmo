@@ -1,0 +1,16 @@
+id: quest_summary__market_crossing
+zone: market_crossing
+level_range:
+  min: 18
+  max: 26
+tier: mid
+budget_target: 126
+actual:
+  main_chain_steps: 7
+  side_quests: 9
+  filler_pool: 102
+  total: 118
+coverage_ratio: 0.94
+main_chain: chain_market_crossing_freeport_coup
+notes: Main chain is hand-crafted story; side is templated by biome+hub-role; filler
+  is a procedural pool.

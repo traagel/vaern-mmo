@@ -1,0 +1,15 @@
+specs:
+- id: blood_duel_ripple
+  name: Ripple-Blood
+  emphasis: melee_dps
+  description: drain-attack offense
+  schools_focus:
+  - blood
+  - dagger
+- id: blood_duel_silent
+  name: Silent-Blood
+  emphasis: stealth
+  description: quiet-blood infiltration-killer
+  schools_focus:
+  - blood
+  - silent

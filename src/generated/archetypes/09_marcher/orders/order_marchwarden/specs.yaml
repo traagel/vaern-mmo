@@ -1,0 +1,22 @@
+specs:
+- id: march_bowmaster
+  name: Bowmaster
+  emphasis: ranged_dps
+  description: precision longbow archer, distance-killer
+  schools_focus:
+  - bow
+- id: march_pathhunter
+  name: Pathhunter
+  emphasis: utility
+  description: frontier tracker and scout with survival mastery
+  schools_focus:
+  - bow
+  - silent
+  - alchemy
+- id: march_skirmisher
+  name: Border Skirmisher
+  emphasis: bruiser
+  description: bow-plus-short-blade mobile harasser
+  schools_focus:
+  - bow
+  - spear

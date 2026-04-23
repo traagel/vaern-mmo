@@ -1,0 +1,25 @@
+id: mob_market_crossing_matriarch_boar
+name: Matriarch River Boar
+zone: market_crossing
+level: 26
+creature_type: beast
+armor_class: hide
+rarity: elite
+role: captain
+faction_alignment: neutral_aggressive
+hp_tier: elite
+damage:
+  primary_school: blade
+  attack_range: melee
+  dps_tier: heavy
+behavior:
+  aggro_range: long
+  social_radius: 5
+  flee_threshold: 0.0
+  calls_allies: false
+  patrol: stationary
+loot_tier: rare
+drops:
+  gold_copper_avg: 234
+  item_hint: rare biome reagent; low chance of blue-tier item
+biome_context: 'rare-spawn leader; calls adds; base form: River Boar'

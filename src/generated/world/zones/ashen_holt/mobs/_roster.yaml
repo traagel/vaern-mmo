@@ -1,0 +1,41 @@
+id: _roster__ashen_holt
+zone: ashen_holt
+mob_count: 15
+mob_ids:
+- mob_ashen_holt_beast_ashwolf
+- mob_ashen_holt_beast_cinderdrake
+- mob_ashen_holt_beast_soottick
+- mob_ashen_holt_beast_ashrevenant
+- mob_ashen_holt_beast_embersnake
+- mob_ashen_holt_beast_pitvent
+- mob_ashen_holt_ambient_scarab
+- mob_ashen_holt_exotic_ashwraith
+- mob_ashen_holt_warband_cult_initiate
+- mob_ashen_holt_warband_shadow_scribe
+- mob_ashen_holt_named_exile_shade_named
+- mob_ashen_holt_juvenile_ashwolf
+- mob_ashen_holt_juvenile_cinderdrake
+- mob_ashen_holt_juvenile_soottick
+- mob_ashen_holt_juvenile_ashrevenant
+by_creature_type:
+  beast: 6
+  dragonkin: 2
+  undead: 3
+  elemental: 1
+  humanoid: 3
+by_armor_class:
+  hide: 6
+  scales: 2
+  bone: 3
+  none: 1
+  leather: 1
+  cloth: 1
+  plate: 1
+by_rarity:
+  common: 13
+  elite: 1
+  named: 1
+level_min: 1
+level_max: 5
+named_or_chain_targets:
+- mob_ashen_holt_named_exile_shade_named

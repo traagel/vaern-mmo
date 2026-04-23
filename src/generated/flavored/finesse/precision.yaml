@@ -1,0 +1,107 @@
+pillar: finesse
+category: precision
+variants:
+  25:
+    alchemy:
+      name: acid_flask_minor
+      description: Small thrown vial; minor acid damage.
+      damage_type: acid
+      morality: neutral
+    bow:
+      name: aimed_shot
+      description: Crit chance bonus on first shot from stealth.
+      damage_type: piercing
+      morality: neutral
+    dagger:
+      name: backstab
+      description: Close precision strike from flank.
+      damage_type: piercing
+      morality: neutral
+    poison:
+      name: injected_prick
+      description: Cantrip poison injection.
+      damage_type: poison
+      morality: evil
+    thrown:
+      name: aimed_throw
+      description: Thrown precision attack.
+      damage_type: piercing
+      morality: neutral
+  50:
+    alchemy:
+      name: acid_vial
+      description: Moderate acid damage; light corrosion DoT.
+      damage_type: acid
+      morality: neutral
+    bow:
+      name: marked_shot
+      description: Mark target; next hit crits.
+      damage_type: piercing
+      morality: neutral
+    dagger:
+      name: sneak_attack
+      description: Bonus damage from hidden or flanking.
+      damage_type: piercing
+      morality: neutral
+    poison:
+      name: venom_strike
+      description: Poison DoT on hit.
+      damage_type: poison
+      morality: evil
+    thrown:
+      name: weighted_throw
+      description: Heavy thrown precision.
+      damage_type: piercing
+      morality: neutral
+  75:
+    alchemy:
+      name: acid_spray
+      description: AoE acid damage in cone; damages armor.
+      damage_type: acid
+      morality: neutral
+    bow:
+      name: piercing_shot
+      description: Arrow pierces through multiple targets.
+      damage_type: piercing
+      morality: neutral
+    dagger:
+      name: crit_cascade
+      description: Consecutive crits escalate damage.
+      damage_type: piercing
+      morality: neutral
+    poison:
+      name: mass_envenom
+      description: AoE poison application.
+      damage_type: poison
+      morality: evil
+    thrown:
+      name: flurry_throw
+      description: Multi-thrown volley.
+      damage_type: piercing
+      morality: neutral
+  100:
+    alchemy:
+      name: dissolving_agent
+      description: 'Ritual: corrosive cloud strips armor, heavy damage.'
+      damage_type: acid
+      morality: neutral
+    bow:
+      name: deathsight
+      description: Execute via precise arrow-to-head.
+      damage_type: piercing
+      morality: neutral
+    dagger:
+      name: assassinate
+      description: Execute from stealth.
+      damage_type: piercing
+      morality: neutral
+    poison:
+      name: plague_kiss
+      description: Execute via lethal poison dose.
+      damage_type: poison
+      morality: evil
+    thrown:
+      name: impaling_spear
+      description: Execute via thrown finisher.
+      damage_type: piercing
+      morality: neutral

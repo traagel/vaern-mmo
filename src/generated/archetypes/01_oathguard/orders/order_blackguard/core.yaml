@@ -1,0 +1,25 @@
+id: order_blackguard
+faction: faction_b
+archetype_id: 1
+archetype_position:
+  might: 75
+  arcana: 25
+  finesse: 0
+flagship: false
+player_facing:
+  class_name: Blackguard
+  title_singular: Blackguard
+  title_plural: Blackguards
+schools_taught:
+  might:
+  - fury
+  - blade
+  - shield
+  arcana:
+  - shadow
+  - arcane
+institutions:
+  primary: hearth_broken_clans
+  secondary: bleeding_vaults
+  tertiary: shadow_conclave
+chapter: chapter_blackguard

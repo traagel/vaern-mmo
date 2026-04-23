@@ -1,0 +1,15 @@
+name: poison
+pillar: finesse
+morality: evil
+family: technique
+tag: toxicology / DoT
+damage_type: poison
+applies_to_categories:
+- precision
+- trickery
+- utility
+icon_style:
+  palette: sickly chartreuse, oily black-green, skull-bone white, bruise-purple vapor, wet ichor
+  motif: dripping fangs, coated blades, tiny skull glyphs, dripping vials, creeping vapor
+  silhouette: curved fang or coated dagger dripping venom, small skull-motif accent
+  material: viscous green-black venom, dripping ichor, etched metal coating, cloudy vapor

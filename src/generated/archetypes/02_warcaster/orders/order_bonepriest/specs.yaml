@@ -1,0 +1,23 @@
+specs:
+- id: bonepriest_binder
+  name: Bone-Binder
+  emphasis: support
+  description: ancestor-summoning support-caster with curses
+  schools_focus:
+  - blood
+  - shadow
+- id: bonepriest_reaper
+  name: Grave-Reaper
+  emphasis: magic_dps
+  description: necrotic-damage forward, soul-stealing caster
+  schools_focus:
+  - shadow
+  - blood
+  - blunt
+- id: bonepriest_gravetender
+  name: Grave-Tender
+  emphasis: healer
+  description: dark-healer drawing vitality from the fallen
+  schools_focus:
+  - blood
+  - arcane

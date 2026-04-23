@@ -1,0 +1,15 @@
+specs:
+- id: warhammer_guard_hold
+  name: Shield-Hold
+  emphasis: tank
+  description: shield-wall defender with hammer counter-strikes
+  schools_focus:
+  - shield
+  - blunt
+- id: warhammer_guard_crush
+  name: Crusher
+  emphasis: bruiser
+  description: two-handed hammer bruiser
+  schools_focus:
+  - blunt
+  - honor

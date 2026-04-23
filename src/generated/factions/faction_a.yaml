@@ -1,0 +1,50 @@
+id: faction_a
+morality_alignment: good
+allowed_school_moralities:
+- neutral
+- good
+forbidden_school_moralities:
+- evil
+allowed_schools:
+  arcana:
+  - arcane
+  - devotion
+  - earth
+  - fire
+  - frost
+  - light
+  - lightning
+  - nature
+  might:
+  - blade
+  - blunt
+  - honor
+  - shield
+  - spear
+  - unarmed
+  finesse:
+  - acrobat
+  - alchemy
+  - bow
+  - dagger
+  - silent
+  - thrown
+  - tonics
+  - trickster
+forbidden_schools:
+  arcana:
+  - blood
+  - shadow
+  might:
+  - fury
+  finesse:
+  - poison
+visual:
+  pitch: Concord — polished silver and royal blue, heraldic gold trim, clean chivalric finish, white-on-blue
+  palette: polished silver, royal blue, cream linen, heraldic gold, sky blue
+  heraldry: sun-in-splendor, laurel wreath, castle-crown, crossed-spear oath-seal
+  architecture: classical weighted stone, pointed arches, stained-glass roundels, disciplined civic order
+  garment_style: tabard or surcoat over mail, heraldic white-and-blue trim, oath-sash, dressed leather
+  damage_patina: clean, polished, maintained, tempered with pride
+  material_accents: burnished brass, dyed linen, embossed leather, mirror-silver steel
+  negative_tags: blackened iron, skull-motif, shadow-veined, bone-trophy, war-scarred, grim

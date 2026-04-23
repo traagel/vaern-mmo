@@ -1,0 +1,26 @@
+id: order_oathcaster
+faction: faction_a
+archetype_id: 6
+archetype_position:
+  might: 0
+  arcana: 50
+  finesse: 50
+player_facing:
+  class_name: Oathcaster
+  title_singular: Oathcaster
+  title_plural: Oathcasters
+schools_taught:
+  arcana:
+  - light
+  - devotion
+  finesse:
+  - silent
+  - dagger
+  - acrobat
+  - tonics
+flagship: true
+institutions:
+  primary: night_quick_guild
+  secondary: alchemists_compact
+  tertiary: radiant_church
+chapter: chapter_oathcaster

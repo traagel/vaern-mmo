@@ -1,0 +1,49 @@
+id: _roster__market_crossing
+zone: market_crossing
+mob_count: 27
+mob_ids:
+- mob_market_crossing_beast_wolf
+- mob_market_crossing_beast_boar
+- mob_market_crossing_beast_stag
+- mob_market_crossing_beast_heron
+- mob_market_crossing_beast_otter
+- mob_market_crossing_beast_bear
+- mob_market_crossing_ambient_duck
+- mob_market_crossing_exotic_drifter_shade
+- mob_market_crossing_warband_tradeguild_thug
+- mob_market_crossing_warband_tradeguild_sorcerer
+- mob_market_crossing_warband_double_agent
+- mob_market_crossing_warband_caravan_guard
+- mob_market_crossing_named_trade_patron
+- mob_market_crossing_juvenile_wolf
+- mob_market_crossing_juvenile_boar
+- mob_market_crossing_juvenile_stag
+- mob_market_crossing_juvenile_heron
+- mob_market_crossing_juvenile_otter
+- mob_market_crossing_juvenile_bear
+- mob_market_crossing_alpha_wolf
+- mob_market_crossing_alpha_boar
+- mob_market_crossing_alpha_stag
+- mob_market_crossing_alpha_heron
+- mob_market_crossing_alpha_otter
+- mob_market_crossing_alpha_bear
+- mob_market_crossing_matriarch_wolf
+- mob_market_crossing_matriarch_boar
+by_creature_type:
+  beast: 21
+  aberration: 1
+  humanoid: 5
+by_armor_class:
+  hide: 21
+  ethereal: 1
+  leather: 2
+  cloth: 1
+  plate: 2
+by_rarity:
+  common: 16
+  elite: 10
+  named: 1
+level_min: 20
+level_max: 26
+named_or_chain_targets:
+- mob_market_crossing_named_trade_patron

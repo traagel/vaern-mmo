@@ -1,0 +1,744 @@
+//! Item primitives + compositional item model.
+//!
+//! **Shared enums** (`SizeClass`, `WeaponGrip`, `ArmorType`, `ArmorLayer`,
+//! `BodyZone`, `ItemKind`, `Rarity`) live here since multiple crates need
+//! them (equipment, economy, combat, loot, seeders).
+//!
+//! **Compositional model** (Model B) lives in [`composition`]. An item in
+//! the world is an `ItemInstance = (base, material, quality, affixes)`;
+//! the [`ContentRegistry`] stores the three part tables and
+//! [`ContentRegistry::resolve`] folds a concrete instance into a
+//! [`ResolvedItem`] with display name + stats.
+//!
+//! Session 5 removed the legacy flat `Item` struct + `ItemRegistry`.
+//! Every consumer now speaks in instances + resolved views.
+
+use serde::{Deserialize, Serialize};
+
+// Re-export so consumers of `ResolvedItem.stats` (equipment, combat,
+// server, seeders' downstream code) don't need a separate dep on
+// vaern-stats.
+pub use vaern_stats::SecondaryStats;
+
+// Compositional item model — bases × materials × qualities → resolved items.
+pub mod composition;
+pub use composition::{
+    Affix, AffixPosition, BaseKind, ContentRegistry, ItemBase, ItemInstance, LoadCounts,
+    LoadError as ContentLoadError, Material, Quality, ResolveError, ResolvedItem,
+    rarity_to_max_slots,
+};
+
+// ---------------------------------------------------------------------------
+// Shared enums — used across Item shape, equipment validation, and stats
+// ---------------------------------------------------------------------------
+
+/// D&D 3.5-style size category. Drives wielding rules (what counts as
+/// one-handed for a given race, whether a creature can wield it at all)
+/// independently of raw `weight_kg` / `volume_l` used for encumbrance math.
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, Serialize, Deserialize)]
+#[serde(rename_all = "snake_case")]
+pub enum SizeClass {
+    Tiny,
+    Small,
+    Medium,
+    Large,
+    Huge,
+}
+
+impl SizeClass {
+    /// Coarse volume scalar (litres) used when a base omits `volume_l`.
+    pub fn default_volume_l(self) -> f32 {
+        match self {
+            Self::Tiny => 0.1,
+            Self::Small => 0.5,
+            Self::Medium => 2.0,
+            Self::Large => 8.0,
+            Self::Huge => 32.0,
+        }
+    }
+}
+
+/// Grip category for weapons. Light = offhand-friendly, OneHanded = standard
+/// main hand, TwoHanded = both hands required.
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Serialize, Deserialize)]
+#[serde(rename_all = "snake_case")]
+pub enum WeaponGrip {
+    Light,
+    OneHanded,
+    TwoHanded,
+}
+
+/// Armor material family. Drives the damage-type resist profile an armor
+/// piece rolls from: plate resists slashing heavily but is weak to
+/// bludgeoning; mail is the inverse; cloth rolls magical resists primarily.
+/// KCD-inspired — blade-vs-mail, mace-vs-plate interactions realized via
+/// the resist array.
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Serialize, Deserialize)]
+#[serde(rename_all = "snake_case")]
+pub enum ArmorType {
+    Cloth,
+    Gambeson,
+    Leather,
+    Mail,
+    Plate,
+}
+
+/// Per-piece base resist profile for an armor type, indexed by
+/// `DamageType as usize` (12 channels). These are the *base* values —
+/// the resolver multiplies by `Material.ac_mult * Quality.stat_mult`
+/// and adds `Material.resist_adds` at resolve time.
+///
+/// * **Plate:** top slashing + piercing resist, worst bludgeoning.
+/// * **Mail:** strong vs slashing, poor vs piercing + bludgeoning.
+/// * **Leather:** balanced middle.
+/// * **Gambeson:** best vs bludgeoning (padding dissipates force).
+/// * **Cloth:** near-zero physical, small magical baseline.
+///
+/// Indexing: slashing=0, piercing=1, bludgeoning=2, then fire..acid (3..=11).
+const CLOTH_PROFILE: [f32; 12] = [1.0, 2.0, 1.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0];
+const GAMBESON_PROFILE: [f32; 12] = [3.0, 2.0, 5.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0];
+const LEATHER_PROFILE: [f32; 12] = [4.0, 3.0, 4.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0];
+const MAIL_PROFILE: [f32; 12] = [10.0, 2.0, 3.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0];
+const PLATE_PROFILE: [f32; 12] = [14.0, 9.0, 2.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0];
+
+impl ArmorType {
+    pub fn base_resist_profile(self) -> [f32; 12] {
+        match self {
+            Self::Cloth => CLOTH_PROFILE,
+            Self::Gambeson => GAMBESON_PROFILE,
+            Self::Leather => LEATHER_PROFILE,
+            Self::Mail => MAIL_PROFILE,
+            Self::Plate => PLATE_PROFILE,
+        }
+    }
+}
+
+/// Stacking layer for worn armor. Damage resolution iterates layers
+/// front-to-back (Ward → Over → Plate → Chain → Padding → Under), each
+/// layer reducing by its resist-for-this-damage-type, residual passing
+/// through. Phase B expands `vaern-equipment::EquipSlot` to a
+/// zone-layer matrix so one item per (zone, layer) pair is enforced.
+///
+/// `Ward` is the caster-facing outermost layer — magical absorption
+/// shielding generated by a Rune worn in the Focus slot. Unlike the
+/// physical layers, Ward has no material; its resist profile rolls on
+/// the Rune item and costs mana upkeep (modeled as negative mp5 in
+/// `SecondaryStats`).
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, Serialize, Deserialize)]
+#[serde(rename_all = "snake_case")]
+pub enum ArmorLayer {
+    Under,
+    Padding,
+    Chain,
+    Plate,
+    Over,
+    Ward,
+}
+
+/// Coverage zone on the body. Armor pieces declare one or more zones.
+/// Phase B splits `EquipSlot` into (zone, layer) pairs.
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, Serialize, Deserialize)]
+#[serde(rename_all = "snake_case")]
+pub enum BodyZone {
+    Head,
+    Neck,
+    Shoulders,
+    Chest,
+    Arms,
+    Hands,
+    Waist,
+    Legs,
+    Feet,
+}
+
+/// Resolved item kind — produced by the resolver when it folds a
+/// `BaseKind` through material + quality. Consumers (equipment
+/// validation, economy, combat) pattern-match on this.
+#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[serde(tag = "type", rename_all = "snake_case")]
+pub enum ItemKind {
+    Weapon {
+        grip: WeaponGrip,
+        school: String,
+    },
+    Armor {
+        slot: String,
+        armor_class: u16,
+        armor_type: ArmorType,
+        layer: ArmorLayer,
+        coverage: Vec<BodyZone>,
+    },
+    Shield {
+        armor_class: u16,
+    },
+    /// Caster magical ward generator. Occupies the Focus equip slot.
+    /// Provides absorb via `ResolvedItem.stats.resists` (heavy on one
+    /// damage channel) at a mana upkeep cost encoded as negative
+    /// `stats.mp5` — the "Gandalf magic-tank" surface.
+    Rune {
+        school: String,
+    },
+    Consumable {
+        #[serde(default = "one")]
+        charges: u8,
+        /// What the item does when consumed. `None` = flavour/quest
+        /// consumable with no mechanical effect (still usable to remove
+        /// from inventory).
+        #[serde(default)]
+        effect: ConsumeEffect,
+    },
+    Reagent,
+    Trinket,
+    Quest,
+    Material,
+    Currency,
+    Misc,
+}
+
+fn one() -> u8 {
+    1
+}
+
+/// What happens to the consumer when a `Consumable` is used. YAML-driven;
+/// each potion base declares one variant. Instant heals land on the
+/// matching pool (HP / mana / stamina) and clamp at max; `Buff` attaches a
+/// timed `StatusEffect::StatMods` to the consumer.
+#[derive(Debug, Clone, PartialEq, Serialize, Deserialize, Default)]
+#[serde(tag = "kind", rename_all = "snake_case")]
+pub enum ConsumeEffect {
+    #[default]
+    None,
+    HealHp {
+        amount: f32,
+    },
+    HealMana {
+        amount: f32,
+    },
+    HealStamina {
+        amount: f32,
+    },
+    /// Timed buff applied as `StatusEffect::StatMods`. Reapplying
+    /// refreshes duration. Either field may be zero — a warding elixir
+    /// has `damage_mult_add = 0` but real `resist_adds`; an elixir of
+    /// might has the reverse.
+    Buff {
+        id: String,
+        duration_secs: f32,
+        /// Additive to the caster's damage mult (0.2 = +20%). Can be
+        /// negative for debuffs — but potions are typically positive.
+        #[serde(default)]
+        damage_mult_add: f32,
+        /// Per-damage-type resist added to the buffed entity while
+        /// active. Indexed by `vaern_core::DamageType as usize`. Folded
+        /// into `compute_damage`'s target-side resist lookup via
+        /// `status_resist_bonus`. Matches `SecondaryStats.resists`
+        /// convention — flat 12-element array so YAML stays consistent
+        /// with materials / affixes.
+        #[serde(default = "default_resists")]
+        resist_adds: [f32; vaern_core::DAMAGE_TYPE_COUNT],
+    },
+}
+
+fn default_resists() -> [f32; vaern_core::DAMAGE_TYPE_COUNT] {
+    [0.0; vaern_core::DAMAGE_TYPE_COUNT]
+}
+
+/// Rarity tier. Matches MMO convention; Junk is below Common for vendor-
+/// bait drops that should never hit the player market.
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Serialize, Deserialize)]
+#[serde(rename_all = "snake_case")]
+pub enum Rarity {
+    Junk,
+    Common,
+    Uncommon,
+    Rare,
+    Epic,
+    Legendary,
+}
+
+impl Rarity {
+    /// Multiplier over commodity base price. Tuned so Rare is ~6× Common
+    /// and Legendary is ~40×; rebalance in one place rather than
+    /// sprinkling per-item overrides.
+    pub fn price_multiplier(self) -> f32 {
+        match self {
+            Self::Junk => 0.25,
+            Self::Common => 1.0,
+            Self::Uncommon => 2.5,
+            Self::Rare => 6.0,
+            Self::Epic => 15.0,
+            Self::Legendary => 40.0,
+        }
+    }
+}
+
+// ---------------------------------------------------------------------------
+// Tests for shared primitives. Resolver + content tests live in
+// `composition::tests` (see composition.rs) alongside the types they test.
+// ---------------------------------------------------------------------------
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use std::path::Path;
+
+    #[test]
+    fn armor_profiles_encode_slashing_hierarchy() {
+        use vaern_core::DamageType;
+        let s = DamageType::Slashing.index();
+        // Plate > Mail > Leather > Gambeson > Cloth for slashing resist.
+        let cloth = ArmorType::Cloth.base_resist_profile()[s];
+        let gamb = ArmorType::Gambeson.base_resist_profile()[s];
+        let leath = ArmorType::Leather.base_resist_profile()[s];
+        let mail = ArmorType::Mail.base_resist_profile()[s];
+        let plate = ArmorType::Plate.base_resist_profile()[s];
+        assert!(plate > mail);
+        assert!(mail > leath);
+        assert!(leath > gamb);
+        assert!(gamb > cloth);
+    }
+
+    #[test]
+    fn armor_profiles_encode_bludgeoning_inversion() {
+        use vaern_core::DamageType;
+        let b = DamageType::Bludgeoning.index();
+        // Gambeson (padding) is best vs bludgeoning — better than mail or plate.
+        // Plate worst — mace transmits through the shell.
+        let gamb = ArmorType::Gambeson.base_resist_profile()[b];
+        let leath = ArmorType::Leather.base_resist_profile()[b];
+        let mail = ArmorType::Mail.base_resist_profile()[b];
+        let plate = ArmorType::Plate.base_resist_profile()[b];
+        assert!(gamb > leath);
+        assert!(gamb > mail);
+        assert!(gamb > plate);
+        assert!(mail > plate);
+    }
+
+    #[test]
+    fn armor_profiles_encode_mail_piercing_weakness() {
+        use vaern_core::DamageType;
+        let p = DamageType::Piercing.index();
+        // Mail is notably weak to piercing (arrow finds gaps).
+        // Plate and Leather should outperform it.
+        let leath = ArmorType::Leather.base_resist_profile()[p];
+        let mail = ArmorType::Mail.base_resist_profile()[p];
+        let plate = ArmorType::Plate.base_resist_profile()[p];
+        assert!(plate > mail);
+        assert!(leath > mail);
+    }
+
+    // -----------------------------------------------------------------------
+    // Resolver integration: these load the seeded `src/generated/items/`
+    // tree and exercise the full base × material × quality → ResolvedItem
+    // path. Skip gracefully if the tree hasn't been seeded.
+    // -----------------------------------------------------------------------
+
+    fn load_content() -> Option<ContentRegistry> {
+        let manifest = Path::new(env!("CARGO_MANIFEST_DIR"));
+        let items_root = manifest.join("../../src/generated/items");
+        if !items_root.exists() {
+            return None;
+        }
+        let mut reg = ContentRegistry::new();
+        reg.load_tree(&items_root).ok()?;
+        Some(reg)
+    }
+
+    #[test]
+    fn content_tree_loads_all_parts() {
+        let Some(reg) = load_content() else { return };
+        let c = reg.counts();
+        assert!(c.bases >= 150, "expected 150+ bases, got {}", c.bases);
+        assert!(c.materials >= 20, "expected 20+ materials, got {}", c.materials);
+        assert!(c.qualities >= 5, "expected 5+ qualities, got {}", c.qualities);
+        assert!(reg.get_base("mail_hauberk").is_some());
+        assert!(reg.get_base("plate_breastplate").is_some());
+        assert!(reg.get_base("longsword").is_some());
+        assert!(reg.get_base("rune_of_fire").is_some());
+        assert!(reg.get_base("iron_ingot").is_some());
+        let steel = reg.get_material("steel").expect("steel material");
+        assert_eq!(steel.tier, 4);
+        assert!(steel.weapon_eligible);
+        let mithril = reg.get_material("mithril").expect("mithril material");
+        assert!(mithril.weight_mult < 1.0, "mithril must be lighter than baseline");
+        let crude = reg.get_quality("crude").expect("crude quality");
+        assert!(crude.stat_mult < 1.0);
+        let masterful = reg.get_quality("masterful").expect("masterful quality");
+        assert!(masterful.stat_mult >= 2.0);
+    }
+
+    #[test]
+    fn resolve_masterful_steel_longsword() {
+        let Some(reg) = load_content() else { return };
+        let inst = ItemInstance::new("longsword", "steel", "masterful");
+        let r = reg.resolve(&inst).expect("resolves cleanly");
+        assert!(r.display_name.contains("Masterful"));
+        assert!(r.display_name.contains("Steel"));
+        assert!(r.display_name.contains("Longsword"));
+        assert!(r.stats.weapon_min_dmg > 0.0);
+        // Masterful (2.0x) × steel dmg_mult (1.15) × base 7.0 ≈ 16.1 min dmg.
+        assert!(r.stats.weapon_min_dmg > 10.0, "damage scaling kicked in");
+        // Rarity: steel base uncommon + masterful +2 → epic.
+        assert_eq!(r.rarity, Rarity::Epic);
+    }
+
+    #[test]
+    fn regular_quality_omits_prefix_in_id_and_display() {
+        let Some(reg) = load_content() else { return };
+        let inst = ItemInstance::new("longsword", "iron", "regular");
+        let r = reg.resolve(&inst).unwrap();
+        assert_eq!(r.id, "iron_longsword");
+        assert_eq!(r.display_name, "Iron Longsword");
+    }
+
+    #[test]
+    fn mithril_reduces_weight_vs_iron() {
+        let Some(reg) = load_content() else { return };
+        let iron = reg
+            .resolve(&ItemInstance::new("plate_breastplate", "iron", "regular"))
+            .unwrap();
+        let mithril = reg
+            .resolve(&ItemInstance::new("plate_breastplate", "mithril", "regular"))
+            .unwrap();
+        assert!(mithril.weight_kg < iron.weight_kg);
+        assert!(mithril.stats.armor > iron.stats.armor);
+    }
+
+    #[test]
+    fn silver_boosts_radiant_and_necrotic() {
+        let Some(reg) = load_content() else { return };
+        let silver = reg
+            .resolve(&ItemInstance::new("mail_hauberk", "silver", "regular"))
+            .unwrap();
+        let iron = reg
+            .resolve(&ItemInstance::new("mail_hauberk", "iron", "regular"))
+            .unwrap();
+        use vaern_core::DamageType;
+        assert!(
+            silver.stats.resists[DamageType::Necrotic.index()]
+                > iron.stats.resists[DamageType::Necrotic.index()]
+        );
+        assert!(
+            silver.stats.resists[DamageType::Radiant.index()]
+                > iron.stats.resists[DamageType::Radiant.index()]
+        );
+    }
+
+    #[test]
+    fn runes_carry_magical_absorb_and_mana_drain() {
+        let Some(reg) = load_content() else { return };
+        let fire_regular = reg
+            .resolve(&ItemInstance::materialless("rune_of_fire", "regular"))
+            .unwrap();
+        match &fire_regular.kind {
+            ItemKind::Rune { school } => assert_eq!(school, "fire"),
+            _ => panic!("rune kind expected"),
+        }
+        assert!(fire_regular.stats.mp5 < 0.0, "rune must drain mana");
+        let fire_idx = vaern_core::DamageType::Fire.index();
+        assert!(fire_regular.stats.resists[fire_idx] > 0.0);
+
+        // Masterful variant: bigger absorb + deeper drain.
+        let fire_master = reg
+            .resolve(&ItemInstance::materialless("rune_of_fire", "masterful"))
+            .unwrap();
+        assert!(fire_master.stats.resists[fire_idx] > fire_regular.stats.resists[fire_idx]);
+        assert!(fire_master.stats.mp5 < fire_regular.stats.mp5);
+    }
+
+    #[test]
+    fn invalid_material_pairing_rejected() {
+        let Some(reg) = load_content() else { return };
+        let bad = reg.resolve(&ItemInstance::new("mail_hauberk", "silk", "regular"));
+        assert!(matches!(bad, Err(ResolveError::InvalidPairing { .. })));
+        let bad2 = reg.resolve(&ItemInstance::new("longsword", "dragonscale", "regular"));
+        assert!(matches!(bad2, Err(ResolveError::InvalidPairing { .. })));
+    }
+
+    #[test]
+    fn resolved_id_and_display_compose_predictably() {
+        let Some(reg) = load_content() else { return };
+        let r = reg
+            .resolve(&ItemInstance::new("plate_breastplate", "adamantine", "masterful"))
+            .unwrap();
+        assert_eq!(r.id, "masterful_adamantine_plate_breastplate");
+        assert_eq!(r.display_name, "Masterful Adamantine Breastplate");
+        // Adamantine is epic + masterful +2 → clamped at legendary (top).
+        assert_eq!(r.rarity, Rarity::Legendary);
+    }
+
+    // -----------------------------------------------------------------------
+    // Affix resolution — exercise display weaving, stat_delta folding,
+    // applies_to validation, unknown-id errors, soulbind propagation.
+    // -----------------------------------------------------------------------
+
+    fn with_affix(base: ItemInstance, affix_id: &str) -> ItemInstance {
+        let mut i = base;
+        i.affixes.push(affix_id.into());
+        i
+    }
+
+    #[test]
+    fn affix_table_loads_with_expected_entries() {
+        let Some(reg) = load_content() else { return };
+        let c = reg.counts();
+        assert!(c.affixes >= 25, "expected 25+ affixes, got {}", c.affixes);
+        let warding = reg.get_affix("of_warding").expect("of_warding exists");
+        assert_eq!(warding.position, AffixPosition::Suffix);
+        assert!(warding.weight > 0);
+        assert!(!warding.soulbinds);
+        let frostwarden = reg.get_affix("of_the_frostwarden").expect("frostwarden exists");
+        assert_eq!(frostwarden.weight, 0, "shard-only affixes don't random-roll");
+        assert!(frostwarden.soulbinds, "shard affixes soulbind the item");
+    }
+
+    #[test]
+    fn suffix_affix_weaves_into_display_after_piece() {
+        let Some(reg) = load_content() else { return };
+        let inst = with_affix(
+            ItemInstance::new("longsword", "iron", "regular"),
+            "of_striking",
+        );
+        let r = reg.resolve(&inst).unwrap();
+        assert_eq!(r.display_name, "Iron Longsword of Striking");
+    }
+
+    #[test]
+    fn prefix_affix_weaves_before_material() {
+        let Some(reg) = load_content() else { return };
+        let inst = with_affix(
+            ItemInstance::new("plate_breastplate", "steel", "regular"),
+            "sturdy",
+        );
+        let r = reg.resolve(&inst).unwrap();
+        assert_eq!(r.display_name, "Sturdy Steel Breastplate");
+    }
+
+    #[test]
+    fn prefix_and_suffix_stack_in_composed_name() {
+        let Some(reg) = load_content() else { return };
+        let mut inst = ItemInstance::new("longsword", "steel", "masterful");
+        inst.affixes = vec!["enchanted".into(), "of_the_eagle".into()];
+        let r = reg.resolve(&inst).unwrap();
+        assert_eq!(r.display_name, "Masterful Enchanted Steel Longsword of the Eagle");
+    }
+
+    #[test]
+    fn affix_stat_delta_folds_into_resolved_stats() {
+        let Some(reg) = load_content() else { return };
+        let plain = reg
+            .resolve(&ItemInstance::new("longsword", "iron", "regular"))
+            .unwrap();
+        let striking = reg
+            .resolve(&with_affix(
+                ItemInstance::new("longsword", "iron", "regular"),
+                "of_striking",
+            ))
+            .unwrap();
+        assert!(striking.stats.weapon_min_dmg > plain.stats.weapon_min_dmg);
+        assert!(striking.stats.weapon_max_dmg > plain.stats.weapon_max_dmg);
+        assert!((striking.stats.weapon_min_dmg - (plain.stats.weapon_min_dmg + 1.0)).abs() < 1e-4);
+    }
+
+    #[test]
+    fn shard_affix_applies_soulbind() {
+        let Some(reg) = load_content() else { return };
+        let plain = reg
+            .resolve(&ItemInstance::new("longsword", "mithril", "masterful"))
+            .unwrap();
+        assert!(!plain.soulbound, "unmodified gear is tradeable");
+        let shardbound = reg
+            .resolve(&with_affix(
+                ItemInstance::new("longsword", "mithril", "masterful"),
+                "of_the_frostwarden",
+            ))
+            .unwrap();
+        assert!(shardbound.soulbound, "boss-shard affix must soulbind");
+        assert!(shardbound.display_name.contains("of the Frostwarden"));
+    }
+
+    #[test]
+    fn unknown_affix_id_errors() {
+        let Some(reg) = load_content() else { return };
+        let inst = with_affix(
+            ItemInstance::new("longsword", "iron", "regular"),
+            "of_does_not_exist",
+        );
+        let err = reg.resolve(&inst).unwrap_err();
+        assert!(matches!(err, ResolveError::UnknownAffix(_)));
+    }
+
+    #[test]
+    fn affix_applies_to_mismatch_errors() {
+        let Some(reg) = load_content() else { return };
+        // of_striking is weapon-only. Try applying to armor.
+        let inst = with_affix(
+            ItemInstance::new("plate_breastplate", "iron", "regular"),
+            "of_striking",
+        );
+        let err = reg.resolve(&inst).unwrap_err();
+        assert!(matches!(err, ResolveError::InvalidAffix { .. }));
+    }
+
+    #[test]
+    fn affix_stacks_additively_when_listed_multiple_times() {
+        let Some(reg) = load_content() else { return };
+        let mut inst = ItemInstance::new("plate_breastplate", "iron", "regular");
+        inst.affixes = vec!["of_warding".into(), "of_warding".into()];
+        let r = reg.resolve(&inst).unwrap();
+        let plain = reg
+            .resolve(&ItemInstance::new("plate_breastplate", "iron", "regular"))
+            .unwrap();
+        use vaern_core::DamageType;
+        // fire resist: plain + 2×1.0 = plain + 2.0
+        let diff = r.stats.resists[DamageType::Fire.index()]
+            - plain.stats.resists[DamageType::Fire.index()];
+        assert!((diff - 2.0).abs() < 1e-4, "stacking delta = {diff}");
+    }
+
+    #[test]
+    fn resolved_id_includes_affixes_after_plus_separator() {
+        let Some(reg) = load_content() else { return };
+        let inst = with_affix(
+            ItemInstance::new("longsword", "iron", "masterful"),
+            "of_striking",
+        );
+        let r = reg.resolve(&inst).unwrap();
+        assert_eq!(r.id, "masterful_iron_longsword+of_striking");
+    }
+
+    #[test]
+    fn rarity_slot_count_matches_expected_tiers() {
+        assert_eq!(rarity_to_max_slots(Rarity::Common), 0);
+        assert_eq!(rarity_to_max_slots(Rarity::Uncommon), 1);
+        assert_eq!(rarity_to_max_slots(Rarity::Rare), 2);
+        assert_eq!(rarity_to_max_slots(Rarity::Epic), 3);
+        assert_eq!(rarity_to_max_slots(Rarity::Legendary), 4);
+    }
+
+    #[test]
+    fn minor_healing_potion_carries_heal_hp_effect() {
+        let Some(reg) = load_content() else { return };
+        let r = reg
+            .resolve(&ItemInstance::materialless("minor_healing_potion", "regular"))
+            .unwrap();
+        match &r.kind {
+            ItemKind::Consumable {
+                effect: ConsumeEffect::HealHp { amount },
+                ..
+            } => {
+                assert_eq!(*amount, 40.0);
+            }
+            other => panic!("expected HealHp consumable, got {:?}", other),
+        }
+    }
+
+    #[test]
+    fn mana_potion_carries_heal_mana_effect() {
+        let Some(reg) = load_content() else { return };
+        let r = reg
+            .resolve(&ItemInstance::materialless("minor_mana_potion", "regular"))
+            .unwrap();
+        assert!(
+            matches!(
+                &r.kind,
+                ItemKind::Consumable {
+                    effect: ConsumeEffect::HealMana { .. },
+                    ..
+                }
+            ),
+            "expected HealMana, got {:?}",
+            r.kind
+        );
+    }
+
+    #[test]
+    fn elixir_of_might_carries_buff_effect() {
+        let Some(reg) = load_content() else { return };
+        let r = reg
+            .resolve(&ItemInstance::materialless("elixir_of_might", "regular"))
+            .unwrap();
+        match &r.kind {
+            ItemKind::Consumable {
+                effect:
+                    ConsumeEffect::Buff {
+                        id,
+                        duration_secs,
+                        damage_mult_add,
+                        resist_adds,
+                    },
+                ..
+            } => {
+                assert_eq!(id, "elixir_of_might");
+                assert_eq!(*duration_secs, 300.0);
+                assert!((*damage_mult_add - 0.15).abs() < 1e-6);
+                // Elixir of Might has no resist payload.
+                assert!(resist_adds.iter().all(|r| *r == 0.0));
+            }
+            other => panic!("expected Buff consumable, got {:?}", other),
+        }
+    }
+
+    #[test]
+    fn warding_elixir_buffs_every_resist_channel() {
+        let Some(reg) = load_content() else { return };
+        let r = reg
+            .resolve(&ItemInstance::materialless("elixir_of_warding", "regular"))
+            .unwrap();
+        match &r.kind {
+            ItemKind::Consumable {
+                effect:
+                    ConsumeEffect::Buff {
+                        resist_adds,
+                        damage_mult_add,
+                        ..
+                    },
+                ..
+            } => {
+                // Warding is purely defensive — no damage contribution.
+                assert_eq!(*damage_mult_add, 0.0);
+                // Every channel gets the same positive bump.
+                assert!(resist_adds.iter().all(|r| *r > 0.0));
+                let first = resist_adds[0];
+                assert!(resist_adds.iter().all(|r| (*r - first).abs() < 1e-6));
+            }
+            other => panic!("expected broad Buff, got {:?}", other),
+        }
+    }
+
+    #[test]
+    fn lesser_fire_resist_potion_buffs_fire_channel_only() {
+        use vaern_core::DamageType;
+        let Some(reg) = load_content() else { return };
+        let r = reg
+            .resolve(&ItemInstance::materialless(
+                "lesser_fire_resist_potion",
+                "regular",
+            ))
+            .unwrap();
+        match &r.kind {
+            ItemKind::Consumable {
+                effect:
+                    ConsumeEffect::Buff {
+                        resist_adds,
+                        damage_mult_add,
+                        duration_secs,
+                        ..
+                    },
+                ..
+            } => {
+                assert_eq!(*damage_mult_add, 0.0);
+                assert!(*duration_secs > 0.0);
+                let fire_idx = DamageType::Fire.index();
+                for (i, v) in resist_adds.iter().enumerate() {
+                    if i == fire_idx {
+                        assert!(*v > 0.0, "fire channel should be buffed");
+                    } else {
+                        assert_eq!(*v, 0.0, "channel {i} should be zero");
+                    }
+                }
+            }
+            other => panic!("expected Buff, got {:?}", other),
+        }
+    }
+}

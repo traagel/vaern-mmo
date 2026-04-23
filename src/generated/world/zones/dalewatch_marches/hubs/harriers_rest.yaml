@@ -1,0 +1,10 @@
+id: harriers_rest
+zone: dalewatch_marches
+name: Harrier's Rest
+role: outpost
+amenities:
+- innkeeper
+quest_givers: 2
+offset_from_zone_origin:
+  x: 60.0
+  z: -100.0

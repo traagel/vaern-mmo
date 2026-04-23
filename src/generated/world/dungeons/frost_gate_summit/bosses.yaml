@@ -1,0 +1,21 @@
+id: frost_gate_summit_bosses
+instance: frost_gate_summit
+bosses:
+- id: ice_captain
+  name: The Ice-Captain
+  role_tag: miniboss
+  level: 50
+  mechanic: frost-nova stun, positional kite
+  hp_tier: elite
+- id: wyrm_broodling
+  name: Wyrm-Broodling
+  role_tag: miniboss
+  level: 53
+  mechanic: ice-breath cone
+  hp_tier: elite
+- id: gatekeeper_uthar
+  name: Gatekeeper Uthar
+  role_tag: final
+  level: 56
+  mechanic: summons old-kin bosses as shades of themselves
+  hp_tier: heroic

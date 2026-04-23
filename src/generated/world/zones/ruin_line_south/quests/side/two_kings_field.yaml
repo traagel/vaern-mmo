@@ -1,0 +1,42 @@
+id: side_quests__two_kings_field
+hub: two_kings_field
+hub_role: outpost
+zone: ruin_line_south
+biome: ruin
+quest_count: 3
+quests:
+- id: side__two_kings_field__the_relic_hunter
+  name: The Relic Hunter
+  hub: two_kings_field
+  type: side
+  level: 30
+  objective:
+    kind: collect
+    target_hint: pre-war relics from ruin-edges
+    count: 4
+  xp_reward: 4800
+  gold_reward_copper: 150
+  repeatable: false
+- id: side__two_kings_field__the_wight_cull
+  name: The Wight Cull
+  hub: two_kings_field
+  type: side
+  level: 34
+  objective:
+    kind: kill
+    target_hint: war-wights that don't know the war ended
+    count: 1
+  xp_reward: 6093
+  gold_reward_copper: 170
+  repeatable: false
+- id: side__two_kings_field__the_broken_shrine
+  name: The Broken Shrine
+  hub: two_kings_field
+  type: side
+  level: 38
+  objective:
+    kind: investigate
+    target_hint: a shrine reportedly glowing at night
+  xp_reward: 7539
+  gold_reward_copper: 190
+  repeatable: false

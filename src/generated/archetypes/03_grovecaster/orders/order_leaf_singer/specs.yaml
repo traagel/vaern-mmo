@@ -1,0 +1,11 @@
+specs:
+  - id: leafsinger_bloom
+    name: Bloom-Singer
+    emphasis: healer
+    description: restoration-focused druid, petal-regrowth and tonic-crafting
+    schools_focus: [nature, tonics]
+  - id: leafsinger_thorn
+    name: Thorn-Singer
+    emphasis: support
+    description: entangling-and-buffing druid, thorn-ward and nature-shield
+    schools_focus: [nature, earth]

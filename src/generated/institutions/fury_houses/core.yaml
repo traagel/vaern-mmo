@@ -1,0 +1,17 @@
+id: fury_houses
+faction: faction_b
+name: The Fury-Houses
+tradition: Fury-Rite
+curriculum:
+  major:
+    might:
+    - fury
+  secondary:
+    might:
+    - blade
+    - blunt
+    arcana:
+    - blood
+pillars:
+- arcana
+- might

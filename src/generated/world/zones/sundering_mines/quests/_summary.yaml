@@ -1,0 +1,16 @@
+id: quest_summary__sundering_mines
+zone: sundering_mines
+level_range:
+  min: 50
+  max: 58
+tier: endgame
+budget_target: 108
+actual:
+  main_chain_steps: 9
+  side_quests: 6
+  filler_pool: 86
+  total: 101
+coverage_ratio: 0.94
+main_chain: chain_sundering_mines_carver_mother
+notes: Main chain is hand-crafted story; side is templated by biome+hub-role; filler
+  is a procedural pool.

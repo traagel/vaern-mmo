@@ -1,0 +1,24 @@
+id: order_outrider
+faction: faction_a
+archetype_id: 9
+archetype_position:
+  might: 25
+  arcana: 0
+  finesse: 75
+flagship: false
+player_facing:
+  class_name: Outrider
+  title_singular: Outrider
+  title_plural: Outriders
+schools_taught:
+  might:
+  - spear
+  finesse:
+  - bow
+  - dagger
+  - tonics
+institutions:
+  primary: circle_of_roots
+  secondary: night_quick_guild
+  tertiary: knight_order
+chapter: chapter_outrider

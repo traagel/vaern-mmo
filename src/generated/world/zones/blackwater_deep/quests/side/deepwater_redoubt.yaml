@@ -1,0 +1,30 @@
+id: side_quests__deepwater_redoubt
+hub: deepwater_redoubt
+hub_role: waypoint
+zone: blackwater_deep
+biome: marshland
+quest_count: 2
+quests:
+- id: side__deepwater_redoubt__the_rot_fever_patient
+  name: The Rot Fever Patient
+  hub: deepwater_redoubt
+  type: side
+  level: 45
+  objective:
+    kind: deliver
+    target_hint: rot-fever tonic to an isolated hut
+  xp_reward: 10440
+  gold_reward_copper: 225
+  repeatable: false
+- id: side__deepwater_redoubt__the_drake_hunt
+  name: The Drake Hunt
+  hub: deepwater_redoubt
+  type: side
+  level: 52
+  objective:
+    kind: kill
+    target_hint: marsh-drake preying on travelers
+    count: 1
+  xp_reward: 13811
+  gold_reward_copper: 260
+  repeatable: false

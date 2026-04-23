@@ -1,0 +1,16 @@
+id: shadow_conclave
+faction: faction_b
+name: The Shadow-Conclave
+tradition: Pact-Witness Tradition
+curriculum:
+  major:
+    arcana:
+    - shadow
+    finesse:
+    - dagger
+  secondary:
+    finesse:
+    - silent
+pillars:
+- arcana
+- finesse

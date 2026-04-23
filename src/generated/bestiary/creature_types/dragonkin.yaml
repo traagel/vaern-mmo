@@ -1,0 +1,52 @@
+id: dragonkin
+name: Dragonkin
+category: natural
+description: Drakes, wyrms, cinder-drakes, serpent-kin. Scaled, breath-weapon lineage,
+  apex predators.
+hp_scaling:
+  base_at_level_1: 55
+  per_level_multiplier: 1.17
+  formula: round(base_at_1 * multiplier^(level-1))
+default_armor_class: scales
+resistances:
+  fire: -0.5
+  frost: -0.25
+  nature: -0.1
+  blade: -0.15
+  light: 0.1
+affinities:
+  preferred:
+  - fire
+  - frost
+  - blade
+  allowed:
+  - lightning
+  - blunt
+  - spear
+  forbidden:
+  - arcane
+  - devotion
+  - light
+  - honor
+  - fury
+  - bow
+  - dagger
+  - thrown
+  - acrobat
+  - silent
+  - trickster
+  - alchemy
+  - tonics
+  - poison
+  - shadow
+  - blood
+  - earth
+behavior_defaults:
+  intelligence: standard
+  social: solitary
+  flee_threshold: 0.05
+  aggro_range: long
+tags:
+- scaled
+- breath-weapon
+- apex

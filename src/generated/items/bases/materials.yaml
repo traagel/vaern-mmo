@@ -1,0 +1,337 @@
+bases:
+- id: copper_ingot
+  piece_name: Copper Ingot
+  size: small
+  base_weight_kg: 1.0
+  stackable: true
+  stack_max: 100
+  kind:
+    type: material
+- id: bronze_ingot
+  piece_name: Bronze Ingot
+  size: small
+  base_weight_kg: 1.0
+  stackable: true
+  stack_max: 100
+  kind:
+    type: material
+- id: iron_ingot
+  piece_name: Iron Ingot
+  size: small
+  base_weight_kg: 1.0
+  stackable: true
+  stack_max: 100
+  kind:
+    type: material
+- id: steel_ingot
+  piece_name: Steel Ingot
+  size: small
+  base_weight_kg: 1.0
+  stackable: true
+  stack_max: 100
+  kind:
+    type: material
+- id: silver_ingot
+  piece_name: Silver Ingot
+  size: small
+  base_weight_kg: 1.0
+  stackable: true
+  stack_max: 100
+  kind:
+    type: material
+- id: mithril_ingot
+  piece_name: Mithril Ingot
+  size: small
+  base_weight_kg: 1.0
+  stackable: true
+  stack_max: 100
+  kind:
+    type: material
+- id: adamantine_ingot
+  piece_name: Adamantine Ingot
+  size: small
+  base_weight_kg: 1.0
+  stackable: true
+  stack_max: 100
+  kind:
+    type: material
+- id: rawhide
+  piece_name: Rawhide
+  size: small
+  base_weight_kg: 0.5
+  stackable: true
+  stack_max: 100
+  kind:
+    type: material
+- id: light_leather
+  piece_name: Light Leather
+  size: small
+  base_weight_kg: 0.5
+  stackable: true
+  stack_max: 100
+  kind:
+    type: material
+- id: tough_leather
+  piece_name: Tough Leather
+  size: small
+  base_weight_kg: 0.5
+  stackable: true
+  stack_max: 100
+  kind:
+    type: material
+- id: hardened_leather
+  piece_name: Hardened Leather
+  size: small
+  base_weight_kg: 0.5
+  stackable: true
+  stack_max: 100
+  kind:
+    type: material
+- id: wyvern_leather
+  piece_name: Wyvern Leather
+  size: small
+  base_weight_kg: 0.5
+  stackable: true
+  stack_max: 100
+  kind:
+    type: material
+- id: dragonscale
+  piece_name: Dragonscale
+  size: small
+  base_weight_kg: 0.5
+  stackable: true
+  stack_max: 100
+  kind:
+    type: material
+- id: linen_bolt
+  piece_name: Linen Bolt
+  size: small
+  base_weight_kg: 0.4
+  stackable: true
+  stack_max: 100
+  kind:
+    type: material
+- id: wool_bolt
+  piece_name: Wool Bolt
+  size: small
+  base_weight_kg: 0.4
+  stackable: true
+  stack_max: 100
+  kind:
+    type: material
+- id: silk_bolt
+  piece_name: Silk Bolt
+  size: small
+  base_weight_kg: 0.4
+  stackable: true
+  stack_max: 100
+  kind:
+    type: material
+- id: mageweave_bolt
+  piece_name: Mageweave Bolt
+  size: small
+  base_weight_kg: 0.4
+  stackable: true
+  stack_max: 100
+  kind:
+    type: material
+- id: shadowsilk_bolt
+  piece_name: Shadowsilk Bolt
+  size: small
+  base_weight_kg: 0.4
+  stackable: true
+  stack_max: 100
+  kind:
+    type: material
+- id: stanchweed
+  piece_name: Stanchweed
+  size: tiny
+  base_weight_kg: 0.05
+  stackable: true
+  stack_max: 100
+  kind:
+    type: material
+- id: sunleaf
+  piece_name: Sunleaf
+  size: tiny
+  base_weight_kg: 0.05
+  stackable: true
+  stack_max: 100
+  kind:
+    type: material
+- id: blightroot
+  piece_name: Blightroot
+  size: tiny
+  base_weight_kg: 0.05
+  stackable: true
+  stack_max: 100
+  kind:
+    type: material
+- id: silverfrond
+  piece_name: Silverfrond
+  size: tiny
+  base_weight_kg: 0.05
+  stackable: true
+  stack_max: 100
+  kind:
+    type: material
+- id: emberbloom
+  piece_name: Emberbloom
+  size: tiny
+  base_weight_kg: 0.05
+  stackable: true
+  stack_max: 100
+  kind:
+    type: material
+- id: ghostcap
+  piece_name: Ghostcap
+  size: tiny
+  base_weight_kg: 0.05
+  stackable: true
+  stack_max: 100
+  kind:
+    type: material
+- id: pine_plank
+  piece_name: Pine Plank
+  size: medium
+  base_weight_kg: 2.0
+  stackable: true
+  stack_max: 100
+  kind:
+    type: material
+- id: oak_plank
+  piece_name: Oak Plank
+  size: medium
+  base_weight_kg: 2.0
+  stackable: true
+  stack_max: 100
+  kind:
+    type: material
+- id: yew_plank
+  piece_name: Yew Plank
+  size: medium
+  base_weight_kg: 2.0
+  stackable: true
+  stack_max: 100
+  kind:
+    type: material
+- id: ironwood_plank
+  piece_name: Ironwood Plank
+  size: medium
+  base_weight_kg: 2.0
+  stackable: true
+  stack_max: 100
+  kind:
+    type: material
+- id: rough_quartz
+  piece_name: Rough Quartz
+  size: tiny
+  base_weight_kg: 0.05
+  stackable: true
+  stack_max: 100
+  kind:
+    type: material
+- id: cut_quartz
+  piece_name: Cut Quartz
+  size: tiny
+  base_weight_kg: 0.05
+  stackable: true
+  stack_max: 100
+  kind:
+    type: material
+- id: amber
+  piece_name: Amber
+  size: tiny
+  base_weight_kg: 0.05
+  stackable: true
+  stack_max: 100
+  kind:
+    type: material
+- id: sapphire
+  piece_name: Sapphire
+  size: tiny
+  base_weight_kg: 0.05
+  stackable: true
+  stack_max: 100
+  kind:
+    type: material
+- id: ruby
+  piece_name: Ruby
+  size: tiny
+  base_weight_kg: 0.05
+  stackable: true
+  stack_max: 100
+  kind:
+    type: material
+- id: diamond
+  piece_name: Diamond
+  size: tiny
+  base_weight_kg: 0.05
+  stackable: true
+  stack_max: 100
+  kind:
+    type: material
+- id: soul_gem
+  piece_name: Soul Gem
+  size: tiny
+  base_weight_kg: 0.05
+  stackable: true
+  stack_max: 100
+  kind:
+    type: material
+- id: mana_dust
+  piece_name: Mana Dust
+  size: tiny
+  base_weight_kg: 0.05
+  stackable: true
+  stack_max: 50
+  kind:
+    type: reagent
+- id: spirit_shard
+  piece_name: Spirit Shard
+  size: tiny
+  base_weight_kg: 0.05
+  stackable: true
+  stack_max: 50
+  kind:
+    type: reagent
+- id: essence_of_fire
+  piece_name: Essence of Fire
+  size: tiny
+  base_weight_kg: 0.05
+  stackable: true
+  stack_max: 50
+  kind:
+    type: reagent
+- id: essence_of_cold
+  piece_name: Essence of Cold
+  size: tiny
+  base_weight_kg: 0.05
+  stackable: true
+  stack_max: 50
+  kind:
+    type: reagent
+- id: essence_of_storm
+  piece_name: Essence of Storm
+  size: tiny
+  base_weight_kg: 0.05
+  stackable: true
+  stack_max: 50
+  kind:
+    type: reagent
+- id: essence_of_shadow
+  piece_name: Essence of Shadow
+  size: tiny
+  base_weight_kg: 0.05
+  stackable: true
+  stack_max: 50
+  kind:
+    type: reagent
+- id: essence_of_light
+  piece_name: Essence of Light
+  size: tiny
+  base_weight_kg: 0.05
+  stackable: true
+  stack_max: 50
+  kind:
+    type: reagent

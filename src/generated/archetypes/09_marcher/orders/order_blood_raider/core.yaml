@@ -1,0 +1,24 @@
+id: order_blood_raider
+faction: faction_b
+archetype_id: 9
+archetype_position:
+  might: 25
+  arcana: 0
+  finesse: 75
+flagship: false
+player_facing:
+  class_name: Blood-Raider
+  title_singular: Blood-Raider
+  title_plural: Blood-Raiders
+schools_taught:
+  might:
+  - spear
+  - fury
+  finesse:
+  - bow
+  - thrown
+institutions:
+  primary: hearth_broken_clans
+  secondary: alchemist_tinker_clans
+  tertiary: shadow_conclave
+chapter: chapter_blood_raider

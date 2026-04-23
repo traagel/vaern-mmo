@@ -1,0 +1,25 @@
+id: skrel
+archetype: "goblin-analogue \u2014 small scavenger scrap-folk"
+faction: faction_b
+favored_class: rogue or ranger
+cultural_traits: opportunist scavengers of the Hraun warbands, trap-makers and scrap-smiths,
+  snarling loyalty to their clan, fast-breeding and quarrelsome
+creature_type: humanoid
+size_class: small
+hp_modifier: 0.85
+affinity:
+  might: 50
+  arcana: 50
+  finesse: 100
+  notes: Rogue peak; goblin-shaman arcana access (Mystic/Warlock); small-but-capable
+    martial
+racial_resistances:
+  poison: -0.15
+  disease: -0.1
+racial_school_bonuses:
+- dagger
+- trickster
+- poison
+- thrown
+- alchemy
+lore_hook: scavenger-folk of the Scrap-Marsh; Rend's trap-layers and back-line support

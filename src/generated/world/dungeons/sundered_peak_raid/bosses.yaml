@@ -1,0 +1,27 @@
+id: sundered_peak_raid_bosses
+instance: sundered_peak_raid
+bosses:
+- id: sentinel_pair
+  name: The Sentinel Pair
+  role_tag: lieutenant
+  level: 55
+  mechanic: paired, share damage
+  hp_tier: elite
+- id: brood_mother_ice
+  name: Ice Brood-Mother
+  role_tag: lieutenant
+  level: 57
+  mechanic: continuous add-spawn, aoe
+  hp_tier: elite
+- id: storm_herald
+  name: The Storm Herald
+  role_tag: lieutenant
+  level: 58
+  mechanic: lightning-arc raid mechanic
+  hp_tier: elite
+- id: peak_thing
+  name: The Peak-Thing
+  role_tag: final
+  level: 60
+  mechanic: 'three phases: sky, wind, void; raid-level mechanics'
+  hp_tier: heroic

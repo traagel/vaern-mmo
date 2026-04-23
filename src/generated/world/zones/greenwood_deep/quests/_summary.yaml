@@ -1,0 +1,16 @@
+id: quest_summary__greenwood_deep
+zone: greenwood_deep
+level_range:
+  min: 22
+  max: 30
+tier: mid
+budget_target: 126
+actual:
+  main_chain_steps: 8
+  side_quests: 10
+  filler_pool: 100
+  total: 118
+coverage_ratio: 0.94
+main_chain: chain_greenwood_wyrd_tarn
+notes: Main chain is hand-crafted story; side is templated by biome+hub-role; filler
+  is a procedural pool.

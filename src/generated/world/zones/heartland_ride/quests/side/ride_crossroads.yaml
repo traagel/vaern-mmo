@@ -1,0 +1,53 @@
+id: side_quests__ride_crossroads
+hub: ride_crossroads
+hub_role: capital
+zone: heartland_ride
+biome: river_valley
+quest_count: 4
+quests:
+- id: side__ride_crossroads__the_miller_s_problem
+  name: The Miller S Problem
+  hub: ride_crossroads
+  type: side
+  level: 5
+  objective:
+    kind: kill
+    target_hint: wolves harrying the miller's livestock
+    count: 1
+  xp_reward: 200
+  gold_reward_copper: 25
+  repeatable: false
+- id: side__ride_crossroads__the_lost_ledger
+  name: The Lost Ledger
+  hub: ride_crossroads
+  type: side
+  level: 7
+  objective:
+    kind: collect
+    target_hint: flood-soaked ledger pages
+    count: 4
+  xp_reward: 347
+  gold_reward_copper: 35
+  repeatable: false
+- id: side__ride_crossroads__the_upstream_camp
+  name: The Upstream Camp
+  hub: ride_crossroads
+  type: side
+  level: 10
+  objective:
+    kind: investigate
+    target_hint: an upstream camp that hasn't reported in
+  xp_reward: 640
+  gold_reward_copper: 50
+  repeatable: false
+- id: side__ride_crossroads__the_courier_run
+  name: The Courier Run
+  hub: ride_crossroads
+  type: side
+  level: 12
+  objective:
+    kind: deliver
+    target_hint: a message to the next river settlement
+  xp_reward: 883
+  gold_reward_copper: 60
+  repeatable: false

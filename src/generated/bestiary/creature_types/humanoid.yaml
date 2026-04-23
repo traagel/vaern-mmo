@@ -1,0 +1,50 @@
+id: humanoid
+name: Humanoid
+category: natural
+description: "Sentient bipeds \u2014 bandits, cultists, raiders, guards, merchants-gone-wrong.\
+  \ Use full school access per faction morality."
+hp_scaling:
+  base_at_level_1: 35
+  per_level_multiplier: 1.14
+  formula: round(base_at_1 * multiplier^(level-1))
+default_armor_class: leather
+resistances: {}
+affinities:
+  preferred: []
+  allowed:
+  - arcane
+  - fire
+  - frost
+  - lightning
+  - earth
+  - nature
+  - light
+  - devotion
+  - shadow
+  - blood
+  - blade
+  - blunt
+  - spear
+  - shield
+  - unarmed
+  - honor
+  - fury
+  - bow
+  - dagger
+  - thrown
+  - acrobat
+  - silent
+  - trickster
+  - alchemy
+  - tonics
+  - poison
+  forbidden: []
+behavior_defaults:
+  intelligence: high
+  social: warband
+  flee_threshold: 0.2
+  aggro_range: medium
+tags:
+- sapient
+- social
+- tool-user

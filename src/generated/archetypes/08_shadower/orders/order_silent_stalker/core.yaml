@@ -1,0 +1,22 @@
+id: order_silent_stalker
+faction: faction_a
+archetype_id: 8
+archetype_position:
+  might: 0
+  arcana: 0
+  finesse: 100
+flagship: false
+player_facing:
+  class_name: Silent-Stalker
+  title_singular: Silent-Stalker
+  title_plural: Silent-Stalkers
+schools_taught:
+  finesse:
+  - silent
+  - bow
+  - tonics
+institutions:
+  primary: circle_of_roots
+  secondary: night_quick_guild
+  tertiary: knight_order
+chapter: chapter_silent_stalker

@@ -1,0 +1,25 @@
+specs:
+- id: oathseer_oracle
+  name: Oathseer Oracle
+  emphasis: support
+  description: divination-driven group-support caster
+  schools_focus:
+  - light
+  - arcane
+  - devotion
+- id: oathseer_dawnseer
+  name: Dawn-Seer
+  emphasis: healer
+  description: prophetic single-target healer and spirit-mender
+  schools_focus:
+  - light
+  - devotion
+  - nature
+- id: oathseer_marshal
+  name: Oath-Marshal
+  emphasis: hybrid
+  description: mid-line martial-caster, shield-and-staff protector
+  schools_focus:
+  - honor
+  - light
+  - unarmed

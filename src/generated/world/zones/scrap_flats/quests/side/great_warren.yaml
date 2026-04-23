@@ -1,0 +1,53 @@
+id: side_quests__great_warren
+hub: great_warren
+hub_role: capital
+zone: scrap_flats
+biome: marshland
+quest_count: 4
+quests:
+- id: side__great_warren__the_rot_fever_patient
+  name: The Rot Fever Patient
+  hub: great_warren
+  type: side
+  level: 22
+  objective:
+    kind: deliver
+    target_hint: rot-fever tonic to an isolated hut
+  xp_reward: 2675
+  gold_reward_copper: 110
+  repeatable: false
+- id: side__great_warren__the_drake_hunt
+  name: The Drake Hunt
+  hub: great_warren
+  type: side
+  level: 25
+  objective:
+    kind: kill
+    target_hint: marsh-drake preying on travelers
+    count: 1
+  xp_reward: 3400
+  gold_reward_copper: 125
+  repeatable: false
+- id: side__great_warren__the_sinking_camp
+  name: The Sinking Camp
+  hub: great_warren
+  type: side
+  level: 27
+  objective:
+    kind: investigate
+    target_hint: a camp reportedly sinking into the mire
+  xp_reward: 3931
+  gold_reward_copper: 135
+  repeatable: false
+- id: side__great_warren__the_mire_relics
+  name: The Mire Relics
+  hub: great_warren
+  type: side
+  level: 30
+  objective:
+    kind: collect
+    target_hint: mire-preserved relics
+    count: 4
+  xp_reward: 4800
+  gold_reward_copper: 150
+  repeatable: false

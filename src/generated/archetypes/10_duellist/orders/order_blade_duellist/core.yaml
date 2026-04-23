@@ -1,0 +1,24 @@
+id: order_blade_duellist
+faction: faction_a
+archetype_id: 10
+archetype_position:
+  might: 50
+  arcana: 0
+  finesse: 50
+flagship: false
+player_facing:
+  class_name: Blade-Duellist
+  title_singular: Blade-Duellist
+  title_plural: Blade-Duellists
+schools_taught:
+  might:
+  - blade
+  finesse:
+  - dagger
+  - acrobat
+  - tonics
+institutions:
+  primary: alchemists_compact
+  secondary: knight_order
+  tertiary: night_quick_guild
+chapter: chapter_blade_duellist

@@ -1,0 +1,25 @@
+id: order_bloodborn
+faction: faction_b
+archetype_id: 5
+archetype_position:
+  might: 0
+  arcana: 75
+  finesse: 25
+flagship: false
+player_facing:
+  class_name: Bloodborn
+  title_singular: Bloodborn
+  title_plural: Bloodborns
+schools_taught:
+  arcana:
+  - blood
+  - fire
+  finesse:
+  - acrobat
+  - dagger
+  - poison
+institutions:
+  primary: bleeding_vaults
+  secondary: alchemist_tinker_clans
+  tertiary: shadow_conclave
+chapter: chapter_bloodborn

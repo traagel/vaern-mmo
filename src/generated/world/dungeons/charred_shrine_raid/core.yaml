@@ -1,0 +1,17 @@
+id: charred_shrine_raid
+name: "The Charred Shrine \u2014 Deep Vault"
+kind: raid
+group_size: 10
+zone: ashweald
+entrance_hub: charred_shrine
+level_range:
+  min: 50
+  max: 55
+level_band: 46-60
+tier: endgame
+boss_count: 4
+estimated_clear_minutes: 120
+loot_tier: endgame
+lockout: weekly
+theme: "Beneath the 5-man shrine \u2014 where the prayer that failed still echoes"
+coop_notes: guild-scale content; organized group required

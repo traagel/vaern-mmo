@@ -1,0 +1,263 @@
+pillar: arcana
+category: summoning
+variants:
+  25:
+    arcane:
+      id: arcana.summoning.25.arcane.mage_hand
+      baseline_slot: arcana.summoning.25
+      school: arcane
+      name: mage_hand
+      description: Telekinetic floating hand for utility.
+      morality: neutral
+      damage_type: null
+    fire:
+      id: arcana.summoning.25.fire.fire_sprite
+      baseline_slot: arcana.summoning.25
+      school: fire
+      name: fire_sprite
+      description: Small flame companion, minor damage.
+      morality: neutral
+      damage_type: null
+    frost:
+      id: arcana.summoning.25.frost.ice_wisp
+      baseline_slot: arcana.summoning.25
+      school: frost
+      name: ice_wisp
+      description: Small cold wisp, slows enemies it touches.
+      morality: neutral
+      damage_type: null
+    lightning:
+      id: arcana.summoning.25.lightning.spark_nymph
+      baseline_slot: arcana.summoning.25
+      school: lightning
+      name: spark_nymph
+      description: Small shock companion.
+      morality: neutral
+      damage_type: null
+    earth:
+      id: arcana.summoning.25.earth.stone_homunculus
+      baseline_slot: arcana.summoning.25
+      school: earth
+      name: stone_homunculus
+      description: Small rock helper, blocks paths.
+      morality: neutral
+      damage_type: null
+    light:
+      id: arcana.summoning.25.light.mote_of_dawn
+      baseline_slot: arcana.summoning.25
+      school: light
+      name: mote_of_dawn
+      description: Small radiant orb, lights area + heals trickle.
+      morality: good
+      damage_type: null
+    shadow:
+      id: arcana.summoning.25.shadow.shadow_imp
+      baseline_slot: arcana.summoning.25
+      school: shadow
+      name: shadow_imp
+      description: Small umbral minion, scouts and harries.
+      morality: evil
+      damage_type: null
+    nature:
+      id: arcana.summoning.25.nature.forest_sprite
+      baseline_slot: arcana.summoning.25
+      school: nature
+      name: forest_sprite
+      description: Small nature companion.
+      morality: neutral
+      damage_type: null
+  50:
+    arcane:
+      id: arcana.summoning.50.arcane.arcane_familiar
+      baseline_slot: arcana.summoning.50
+      school: arcane
+      name: arcane_familiar
+      description: Persistent bound magical creature.
+      morality: neutral
+      damage_type: null
+    fire:
+      id: arcana.summoning.50.fire.lesser_fire_elem
+      baseline_slot: arcana.summoning.50
+      school: fire
+      name: lesser_fire_elem
+      description: Small fire elemental companion.
+      morality: neutral
+      damage_type: null
+    frost:
+      id: arcana.summoning.50.frost.lesser_frost_elem
+      baseline_slot: arcana.summoning.50
+      school: frost
+      name: lesser_frost_elem
+      description: Small frost elemental companion.
+      morality: neutral
+      damage_type: null
+    lightning:
+      id: arcana.summoning.50.lightning.storm_wisp
+      baseline_slot: arcana.summoning.50
+      school: lightning
+      name: storm_wisp
+      description: Storm spirit, shock-chains nearby.
+      morality: neutral
+      damage_type: null
+    earth:
+      id: arcana.summoning.50.earth.lesser_earth_elem
+      baseline_slot: arcana.summoning.50
+      school: earth
+      name: lesser_earth_elem
+      description: Small earth elemental companion.
+      morality: neutral
+      damage_type: null
+    light:
+      id: arcana.summoning.50.light.lesser_angel
+      baseline_slot: arcana.summoning.50
+      school: light
+      name: lesser_angel
+      description: Small celestial, aura heals.
+      morality: good
+      damage_type: null
+    shadow:
+      id: arcana.summoning.50.shadow.lesser_shade
+      baseline_slot: arcana.summoning.50
+      school: shadow
+      name: lesser_shade
+      description: Small umbral shade companion.
+      morality: evil
+      damage_type: null
+    nature:
+      id: arcana.summoning.50.nature.beast_companion
+      baseline_slot: arcana.summoning.50
+      school: nature
+      name: beast_companion
+      description: Wolf, hawk, or bear; tankable companion.
+      morality: neutral
+      damage_type: null
+  75:
+    arcane:
+      id: arcana.summoning.75.arcane.arcane_construct
+      baseline_slot: arcana.summoning.75
+      school: arcane
+      name: arcane_construct
+      description: Bound magical warrior.
+      morality: neutral
+      damage_type: null
+    fire:
+      id: arcana.summoning.75.fire.fire_elemental
+      baseline_slot: arcana.summoning.75
+      school: fire
+      name: fire_elemental
+      description: Full-size fire elemental.
+      morality: neutral
+      damage_type: null
+    frost:
+      id: arcana.summoning.75.frost.frost_elemental
+      baseline_slot: arcana.summoning.75
+      school: frost
+      name: frost_elemental
+      description: Full-size frost elemental.
+      morality: neutral
+      damage_type: null
+    lightning:
+      id: arcana.summoning.75.lightning.storm_elemental
+      baseline_slot: arcana.summoning.75
+      school: lightning
+      name: storm_elemental
+      description: Full-size storm elemental.
+      morality: neutral
+      damage_type: null
+    earth:
+      id: arcana.summoning.75.earth.earth_elemental
+      baseline_slot: arcana.summoning.75
+      school: earth
+      name: earth_elemental
+      description: Full-size earth elemental.
+      morality: neutral
+      damage_type: null
+    light:
+      id: arcana.summoning.75.light.celestial_warrior
+      baseline_slot: arcana.summoning.75
+      school: light
+      name: celestial_warrior
+      description: Full angel, combat-tier.
+      morality: good
+      damage_type: null
+    shadow:
+      id: arcana.summoning.75.shadow.wraith
+      baseline_slot: arcana.summoning.75
+      school: shadow
+      name: wraith
+      description: Combat wraith, drains on hit.
+      morality: evil
+      damage_type: null
+    nature:
+      id: arcana.summoning.75.nature.dire_beast
+      baseline_slot: arcana.summoning.75
+      school: nature
+      name: dire_beast
+      description: Large dire beast companion.
+      morality: neutral
+      damage_type: null
+  100:
+    arcane:
+      id: arcana.summoning.100.arcane.arcane_primal
+      baseline_slot: arcana.summoning.100
+      school: arcane
+      name: arcane_primal
+      description: 'Ritual: major force entity, sustained presence.'
+      morality: neutral
+      damage_type: null
+    fire:
+      id: arcana.summoning.100.fire.fire_lord
+      baseline_slot: arcana.summoning.100
+      school: fire
+      name: fire_lord
+      description: 'Ritual: major fire lord.'
+      morality: neutral
+      damage_type: null
+    frost:
+      id: arcana.summoning.100.frost.winter_avatar
+      baseline_slot: arcana.summoning.100
+      school: frost
+      name: winter_avatar
+      description: 'Ritual: major frost avatar.'
+      morality: neutral
+      damage_type: null
+    lightning:
+      id: arcana.summoning.100.lightning.storm_avatar
+      baseline_slot: arcana.summoning.100
+      school: lightning
+      name: storm_avatar
+      description: 'Ritual: major storm avatar.'
+      morality: neutral
+      damage_type: null
+    earth:
+      id: arcana.summoning.100.earth.mountain_avatar
+      baseline_slot: arcana.summoning.100
+      school: earth
+      name: mountain_avatar
+      description: 'Ritual: major earth avatar.'
+      morality: neutral
+      damage_type: null
+    light:
+      id: arcana.summoning.100.light.seraph
+      baseline_slot: arcana.summoning.100
+      school: light
+      name: seraph
+      description: 'Ritual: major celestial seraph.'
+      morality: good
+      damage_type: null
+    shadow:
+      id: arcana.summoning.100.shadow.shadow_dragon
+      baseline_slot: arcana.summoning.100
+      school: shadow
+      name: shadow_dragon
+      description: 'Ritual: major shadow-drake.'
+      morality: evil
+      damage_type: null
+    nature:
+      id: arcana.summoning.100.nature.ancient_treant
+      baseline_slot: arcana.summoning.100
+      school: nature
+      name: ancient_treant
+      description: 'Ritual: major nature avatar.'
+      morality: neutral
+      damage_type: null

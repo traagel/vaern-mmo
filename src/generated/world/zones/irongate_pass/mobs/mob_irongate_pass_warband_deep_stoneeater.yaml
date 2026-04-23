@@ -1,0 +1,25 @@
+id: mob_irongate_pass_warband_deep_stoneeater
+name: Deep-Stone-Eater
+zone: irongate_pass
+level: 14
+creature_type: humanoid
+armor_class: leather
+rarity: common
+role: skirmisher
+faction_alignment: hostile_to_faction_a
+hp_tier: standard
+damage:
+  primary_school: blade
+  attack_range: melee
+  dps_tier: standard
+behavior:
+  aggro_range: medium
+  social_radius: 8
+  flee_threshold: 0.0
+  calls_allies: true
+  patrol: short
+loot_tier: standard
+drops:
+  gold_copper_avg: 28
+  item_hint: biome-flavored trash material
+biome_context: "zone warband \u2014 skirmisher role"

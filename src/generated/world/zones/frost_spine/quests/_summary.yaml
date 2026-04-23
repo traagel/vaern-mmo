@@ -1,0 +1,16 @@
+id: quest_summary__frost_spine
+zone: frost_spine
+level_range:
+  min: 48
+  max: 55
+tier: endgame
+budget_target: 96
+actual:
+  main_chain_steps: 9
+  side_quests: 6
+  filler_pool: 76
+  total: 91
+coverage_ratio: 0.95
+main_chain: chain_frost_spine_elder_wyrm
+notes: Main chain is hand-crafted story; side is templated by biome+hub-role; filler
+  is a procedural pool.

@@ -1,0 +1,12 @@
+id: mail
+name: Mail
+tier: medium
+physical_reduction: 0.25
+magic_reduction: 0.1
+weak_against:
+- spear
+- bow
+strong_against:
+- blade
+mobility_penalty: 0.1
+notes: "rings of forged link \u2014 standard humanoid warrior kit"

@@ -1,0 +1,25 @@
+id: order_twilight_quick
+faction: faction_a
+archetype_id: 8
+archetype_position:
+  might: 0
+  arcana: 0
+  finesse: 100
+player_facing:
+  class_name: Twilight Quick
+  title_singular: Twilight Quick
+  title_plural: Twilight Quick
+schools_taught:
+  finesse:
+  - silent
+  - dagger
+  - thrown
+  - acrobat
+  - tonics
+  - trickster
+flagship: true
+institutions:
+  primary: night_quick_guild
+  secondary: alchemists_compact
+  tertiary: wayhouse_accord
+chapter: chapter_twilight_quick

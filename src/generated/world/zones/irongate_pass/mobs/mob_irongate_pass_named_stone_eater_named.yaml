@@ -1,0 +1,26 @@
+id: mob_irongate_pass_named_stone_eater_named
+name: The Stone-Eater Mother
+zone: irongate_pass
+level: 16
+creature_type: humanoid
+armor_class: plate
+rarity: elite
+role: captain
+faction_alignment: hostile_to_faction_a
+hp_tier: elite
+damage:
+  primary_school: blade
+  attack_range: melee
+  dps_tier: heavy
+behavior:
+  aggro_range: long
+  social_radius: 12
+  flee_threshold: 0.0
+  calls_allies: true
+  patrol: stationary
+loot_tier: rare
+drops:
+  gold_copper_avg: 144
+  item_hint: rare biome reagent; low chance of blue-tier item
+biome_context: main-chain seal-breach hunter
+chain_target: true

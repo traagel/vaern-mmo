@@ -1,0 +1,19 @@
+id: iron_strand
+name: The Iron Strand
+faction_control: contested
+biome: coastal_cliff
+region: northern_cliffs
+tier: contested
+level_range:
+  min: 38
+  max: 45
+starter_race: null
+hub_count: 3
+budget:
+  quest_count_target: 128
+  unique_mob_types: 24
+  mob_kills_to_complete: 1600
+  estimated_hours_to_complete:
+    solo: 36.0
+    duo: 25.6
+notes: Contested zone in the northern cliffs. Targets 31-45 band session math.

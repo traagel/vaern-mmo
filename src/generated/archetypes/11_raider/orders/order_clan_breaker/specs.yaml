@@ -1,0 +1,24 @@
+specs:
+- id: clanbreaker_berserker
+  name: Clan-Berserker
+  emphasis: melee_dps
+  description: rage-burst two-hand striker, peak Rend aggression
+  schools_focus:
+  - fury
+  - blade
+- id: clanbreaker_trophyhunter
+  name: Trophy-Hunter
+  emphasis: bruiser
+  description: duelist-for-trophies, single-target focused raider
+  schools_focus:
+  - fury
+  - spear
+  - thrown
+- id: clanbreaker_bonecrusher
+  name: Bone-Crusher
+  emphasis: tank
+  description: hide-and-bone heavy, enduring the line
+  schools_focus:
+  - fury
+  - blunt
+  - shield

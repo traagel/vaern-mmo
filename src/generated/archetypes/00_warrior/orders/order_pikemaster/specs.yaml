@@ -1,0 +1,11 @@
+specs:
+  - id: pikemaster_lineholder
+    name: Line-Holder
+    emphasis: tank
+    description: phalanx-anchor, absorbing charges behind the pike wall
+    schools_focus: [shield, spear, honor]
+  - id: pikemaster_phalanx
+    name: Phalanx Captain
+    emphasis: bruiser
+    description: mobile spear formation commander, group-coordinated strikes
+    schools_focus: [spear, honor]

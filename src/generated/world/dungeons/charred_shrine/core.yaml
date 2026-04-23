@@ -1,0 +1,17 @@
+id: charred_shrine
+name: The Charred Shrine
+kind: dungeon
+group_size: 5
+zone: ashweald
+entrance_hub: charred_shrine
+level_range:
+  min: 38
+  max: 45
+level_band: 31-45
+tier: endgame
+boss_count: 3
+estimated_clear_minutes: 75
+loot_tier: high
+lockout: none (rerunnable)
+theme: A burned pre-war temple where both factions lost a prayer
+coop_notes: tight-coop-friendly; duo/trio can attempt under-level with care

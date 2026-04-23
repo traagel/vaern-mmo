@@ -1,0 +1,23 @@
+specs:
+- id: brightbrother_ironfist
+  name: Ironfist Monk
+  emphasis: melee_dps
+  description: unarmed striker, rapid combo specialist
+  schools_focus:
+  - unarmed
+  - honor
+- id: brightbrother_vowkeeper
+  name: Vowkeeper Monk
+  emphasis: tank
+  description: defensive stance, absorbing blows in meditative calm
+  schools_focus:
+  - unarmed
+  - blunt
+  - honor
+- id: brightbrother_breathwalker
+  name: Breathwalker Monk
+  emphasis: support
+  description: meditative group-heal through chi sharing
+  schools_focus:
+  - unarmed
+  - tonics

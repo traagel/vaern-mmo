@@ -1,0 +1,25 @@
+id: order_windwarden
+faction: faction_a
+archetype_id: 14
+archetype_position:
+  might: 25
+  arcana: 25
+  finesse: 50
+flagship: false
+player_facing:
+  class_name: Windwarden
+  title_singular: Windwarden
+  title_plural: Windwardens
+schools_taught:
+  might:
+  - spear
+  arcana:
+  - lightning
+  finesse:
+  - bow
+  - silent
+institutions:
+  primary: phalanx_school
+  secondary: night_quick_guild
+  tertiary: silver_quill
+chapter: chapter_windwarden

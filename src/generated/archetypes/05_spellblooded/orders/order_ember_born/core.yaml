@@ -1,0 +1,26 @@
+id: order_ember_born
+faction: faction_b
+archetype_id: 5
+archetype_position:
+  might: 0
+  arcana: 75
+  finesse: 25
+player_facing:
+  class_name: Ember-Born
+  title_singular: Ember-Born Duellist
+  title_plural: Ember-Born
+schools_taught:
+  arcana:
+  - fire
+  - shadow
+  - blood
+  finesse:
+  - dagger
+  - acrobat
+  - trickster
+flagship: true
+institutions:
+  primary: bleeding_vaults
+  secondary: alchemist_tinker_clans
+  tertiary: shadow_conclave
+chapter: chapter_ember_born

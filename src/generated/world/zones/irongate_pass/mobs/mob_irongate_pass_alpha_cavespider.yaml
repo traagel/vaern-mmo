@@ -1,0 +1,25 @@
+id: mob_irongate_pass_alpha_cavespider
+name: Alpha Cave Spider
+zone: irongate_pass
+level: 18
+creature_type: beast
+armor_class: hide
+rarity: elite
+role: elite
+faction_alignment: neutral_aggressive
+hp_tier: elite
+damage:
+  primary_school: blade
+  attack_range: melee
+  dps_tier: heavy
+behavior:
+  aggro_range: long
+  social_radius: 5
+  flee_threshold: 0.0
+  calls_allies: false
+  patrol: stationary
+loot_tier: rare
+drops:
+  gold_copper_avg: 162
+  item_hint: rare biome reagent; low chance of blue-tier item
+biome_context: 'pack-leader, higher HP and damage; base form: Cave Spider'

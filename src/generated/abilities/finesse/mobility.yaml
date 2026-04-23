@@ -1,0 +1,24 @@
+pillar: finesse
+category: mobility
+icon_shape:
+  primary: figure mid-motion — rolling, sprinting, leaping, or blinking through shadow — with strong directional trail
+  composition: diagonal motion across the frame with streaking trail behind, foot-leaving-ground moment
+  motion: forward burst, rolling tumble, airborne arc, teleport-dissolve
+  tier_escalation:
+    25: tumble roll past an implied enemy
+    50: sprinting figure with swept speed-lines
+    75: acrobatic leap across a gap with climbing-grip hint
+    100: shadow-dart — dissolving into and re-forming from dark mist
+tiers:
+  25:
+  - name: tumble
+    description: Roll past an enemy without provoking attacks.
+  50:
+  - name: sprint
+    description: Temporary movement speed boost.
+  75:
+  - name: acrobat
+    description: Climb, leap, and traverse obstacles freely.
+  100:
+  - name: shadow_dart
+    description: Short-range instant teleport via shadow.

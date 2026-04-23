@@ -1,0 +1,129 @@
+# Human-readable classification for each Meshtint base-character
+# piece-node variant. Separate per gender since the base meshes ship
+# different variant sets per gender.
+#
+# Schema:
+#   <gender>:
+#     <category>:       # torso | bottom | feet | hand | belt
+#       <variant_nn>:
+#         name: "display name"          # shown in UI + future item→mesh map
+#         kind: <archetype>             # bare | cloth | leather | plate |
+#                                       # robe | priest | monk  (optional)
+#         tags: [list]                  # optional free-form tags
+#
+# Consumers:
+#   - vaern-museum: labels the outfit sliders with `name`
+#   - vaern-client / item system (future): map item archetypes onto mesh
+#     variants by (kind, tags) filters
+#
+# Status:
+#   male.torso: fully classified from visual inspection
+#   male.bottom, feet, hand, belt: TODO
+#   female.* : TODO
+
+male:
+  torso:
+    1:  { name: "Bare Torso",                kind: bare,    tags: [sleeveless] }
+    2:  { name: "Long-Sleeve Shirt",         kind: cloth,   tags: [sleeves] }
+    3:  { name: "Open Chest Coat",           kind: cloth,   tags: [coat, open] }
+    4:  { name: "Tunic",                     kind: cloth }
+    5:  { name: "Wizard Robe",               kind: robe }
+    6:  { name: "Short-Sleeve Shirt",        kind: cloth,   tags: [short_sleeve] }
+    7:  { name: "Bishop Tabard",             kind: priest,  tags: [tabard] }
+    8:  { name: "Tunic w/ Arm Guards",       kind: cloth,   tags: [arm_guards] }
+    9:  { name: "Short-Sleeve Tunic",        kind: cloth,   tags: [short_sleeve] }
+    10: { name: "Metal Breastplate",         kind: plate }
+    11: { name: "Shoulder Cloak",            kind: cloth,   tags: [cloak, open] }
+    12: { name: "Breastplate",               kind: plate }
+    13: { name: "Monk Belt",                 kind: monk,    tags: [sleeveless, bare] }
+    14: { name: "Tunic w/ Wrappings",        kind: monk,    tags: [wrappings] }
+    15: { name: "Sleeveless Tunic",          kind: cloth,   tags: [sleeveless] }
+    16: { name: "Undershirt + Coat",         kind: cloth,   tags: [coat, sleeves] }
+    17: { name: "Light Breastplate",         kind: plate,   tags: [light] }
+    18: { name: "Strap Breastplate",         kind: plate,   tags: [straps, leather] }
+
+  bottom:
+    1:  { name: "Shorts / Underpants",       kind: bare,    tags: [shorts] }
+    2:  { name: "Long Pants",                kind: cloth,   tags: [long] }
+    3:  { name: "Short Pants",               kind: cloth,   tags: [short] }
+    4:  { name: "Thick Rolled Pants",        kind: cloth,   tags: [thick, rolled] }
+    5:  { name: "Skirt / Robe",              kind: robe,    tags: [skirt] }
+    6:  { name: "Fancy Robe",                kind: robe,    tags: [fancy] }
+    7:  { name: "Plate Pants w/ Tabard",     kind: plate,   tags: [tabard] }
+    8:  { name: "Fancy Caster Pants",        kind: cloth,   tags: [fancy, caster] }
+    9:  { name: "Samurai Greaves",           kind: plate,   tags: [samurai] }
+    10: { name: "Short Pants over Long",     kind: cloth,   tags: [layered, shorts, long] }
+    11: { name: "Shorts over Long Pants",    kind: cloth,   tags: [layered, long] }
+    12: { name: "Caster Robe Legs",          kind: priest,  tags: [caster] }
+    13: { name: "Regular Pants",             kind: cloth,   tags: [long] }
+    14: { name: "Plate Hips + Layered",      kind: plate,   tags: [hips, layered] }
+    15: { name: "Plate Pants w/ Side Tabard", kind: plate,  tags: [tabard] }
+    16: { name: "Armored Pants",             kind: plate,   tags: [long] }
+    17: { name: "Long Pants (alt)",          kind: cloth,   tags: [long] }
+    18: { name: "Flared Long Pants",         kind: cloth,   tags: [long, flared] }
+    19: { name: "Plate Greaves",             kind: plate,   tags: [short] }
+    20: { name: "Ragged Pants",              kind: cloth,   tags: [ragged] }
+  feet:
+    1: { name: "Bare Feet",                  kind: bare }
+    2: { name: "Short Boots",                kind: leather, tags: [boots, short] }
+    3: { name: "High Boots",                 kind: leather, tags: [boots, high] }
+    4: { name: "Pointed Boots",              kind: leather, tags: [boots, pointy, jester] }
+    5: { name: "Leather Shoes",              kind: leather, tags: [shoes] }
+    6: { name: "Leather Boots",              kind: leather, tags: [boots] }
+
+  hand:
+    1: { name: "Bare Hands",                 kind: bare }
+    2: { name: "Fingerless Gloves",          kind: leather, tags: [fingerless] }
+    3: { name: "Fingerless Gloves (Seamed)", kind: leather, tags: [fingerless, seams] }
+    4: { name: "Full Gloves",                kind: leather, tags: [full] }
+
+  belt:
+    0:  { name: "No Belt",                   kind: bare }
+    1:  { name: "Buckle Belt",               kind: leather, tags: [buckle] }
+    2:  { name: "X-Buckle Belt",             kind: leather, tags: [buckle, x] }
+    3:  { name: "Wizard Belt",               kind: cloth,   tags: [ornamental, caster] }
+    4:  { name: "Thin Belt",                 kind: leather, tags: [thin] }
+    5:  { name: "Thin Belt w/ Loops",        kind: leather, tags: [thin, loops] }
+    6:  { name: "Spiked Belt",               kind: leather, tags: [spiked] }
+    7:  { name: "Heavy Belt",                kind: leather, tags: [heavy] }
+    8:  { name: "Small Buckle Belt",         kind: leather, tags: [small, buckle] }
+    9:  { name: "Cloth Sash",                kind: cloth,   tags: [sash] }
+    10: { name: "Rune Belt",                 kind: leather, tags: [runes, magical] }
+
+  pauldron:
+    # 0 = None (handled by fallback in overlay_label)
+    1:  { name: "Armor Pauldron",            kind: leather }
+    2:  { name: "Spiked Pauldron",           kind: plate,   tags: [spiked] }
+    3:  { name: "Curved Spike Pauldron",     kind: plate,   tags: [spiked, curved] }
+    4:  { name: "Metal Pauldron",            kind: plate }
+    5:  { name: "Light Pauldron",            kind: leather, tags: [light] }
+    6:  { name: "Triple Spike Pauldron",     kind: leather, tags: [spiked] }
+    7:  { name: "Horned Pauldron",           kind: plate,   tags: [horns] }
+    8:  { name: "Light Shoulder Guard",      kind: leather, tags: [light] }
+    9:  { name: "Leather Pauldron",          kind: leather }
+    10: { name: "Spiked Leather Pauldron",   kind: leather, tags: [spiked] }
+    11: { name: "Arcane Leather Pauldron",   kind: leather, tags: [curved, caster] }
+    12: { name: "Arcane Orb Pauldron",       kind: robe,    tags: [caster, orbs] }
+    13: { name: "Curved Leather Pauldron",   kind: leather, tags: [curved] }
+    14: { name: "Leather Orb Pauldron",      kind: leather, tags: [orbs, caster] }
+    15: { name: "Square Pauldron",           kind: plate,   tags: [angular] }
+
+  bracer:    {}  # TODO
+  poleyn:    {}  # TODO
+  hair:      {}  # TODO
+  beard:     {}  # TODO
+  brow:      {}  # TODO
+  eyes:      {}  # TODO
+  mouth:     {}  # TODO
+  helmet:    {}  # TODO
+  hat:       {}  # TODO
+  headband:  {}  # TODO
+  earring:   {}  # TODO
+  necklace:  {}  # TODO
+
+female:
+  torso:   {}  # TODO — Female base has 20 torso variants (different set from Male)
+  bottom:  {}  # TODO
+  feet:    {}  # TODO
+  hand:    {}  # TODO
+  belt:    {}  # TODO

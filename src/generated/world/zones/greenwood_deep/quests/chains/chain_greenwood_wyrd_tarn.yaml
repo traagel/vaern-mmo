@@ -1,0 +1,95 @@
+id: chain_greenwood_wyrd_tarn
+zone: greenwood_deep
+title: The Wyrd Tarn
+premise: The deep lake is speaking in old Firland tongue no one has used in a century;
+  it remembers something the Firland elders deliberately forgot
+total_steps: 8
+final_reward:
+  xp_bonus: 28800
+  gold_bonus_copper: 3000
+  item_hint: zone-appropriate mid-tier reward
+  title_hint: '''The Wyrd Tarn'' completion title'
+breadcrumb_from: capital hub of the zone's faction-home
+final_boss_hint: null
+steps:
+- step: 1
+  id: chain_greenwood_wyrd_tarn__01_petition_the_deep_moot
+  name: Petition The Deep Moot
+  level: 22
+  objective:
+    kind: talk
+    target_hint: Elder-Mother Holle at the Deep Moot
+  xp_reward: 8026
+  gold_reward_copper: 330
+  prerequisite: null
+- step: 2
+  id: chain_greenwood_wyrd_tarn__02_walk_the_moss_cairn
+  name: Walk The Moss Cairn
+  level: 23
+  objective:
+    kind: investigate
+    target_hint: the moss-cairn waystone
+  xp_reward: 8722
+  gold_reward_copper: 345
+  prerequisite: chain_greenwood_wyrd_tarn__01_petition_the_deep_moot
+- step: 3
+  id: chain_greenwood_wyrd_tarn__03_gather_the_hunter_testimony
+  name: Gather The Hunter Testimony
+  level: 24
+  objective:
+    kind: talk
+    target_hint: the hunter at the lean-to
+  xp_reward: 9446
+  gold_reward_copper: 360
+  prerequisite: chain_greenwood_wyrd_tarn__02_walk_the_moss_cairn
+- step: 4
+  id: chain_greenwood_wyrd_tarn__04_dive_the_tarn
+  name: Dive The Tarn
+  level: 25
+  objective:
+    kind: ritual
+    target_hint: the tarn-depth diving-rite
+  xp_reward: 10200
+  gold_reward_copper: 375
+  prerequisite: chain_greenwood_wyrd_tarn__03_gather_the_hunter_testimony
+- step: 5
+  id: chain_greenwood_wyrd_tarn__05_meet_the_drowned_warden
+  name: Meet The Drowned Warden
+  level: 27
+  objective:
+    kind: talk
+    target_hint: the drowned-warden at the depths
+  xp_reward: 11794
+  gold_reward_copper: 405
+  prerequisite: chain_greenwood_wyrd_tarn__04_dive_the_tarn
+- step: 6
+  id: chain_greenwood_wyrd_tarn__06_recover_the_forbidden_name
+  name: Recover The Forbidden Name
+  level: 28
+  objective:
+    kind: collect
+    target_hint: the name-stone from the tarn's bed
+    count: 4
+  xp_reward: 12634
+  gold_reward_copper: 420
+  prerequisite: chain_greenwood_wyrd_tarn__05_meet_the_drowned_warden
+- step: 7
+  id: chain_greenwood_wyrd_tarn__07_close_the_old_wound
+  name: Close The Old Wound
+  level: 29
+  objective:
+    kind: ritual
+    target_hint: the closing-rite at Wyrd Tarn
+  xp_reward: 13502
+  gold_reward_copper: 435
+  prerequisite: chain_greenwood_wyrd_tarn__06_recover_the_forbidden_name
+- step: 8
+  id: chain_greenwood_wyrd_tarn__08_return_to_the_moot
+  name: Return To The Moot
+  level: 30
+  objective:
+    kind: deliver
+    target_hint: the resolution to the moot
+  xp_reward: 14400
+  gold_reward_copper: 450
+  prerequisite: chain_greenwood_wyrd_tarn__07_close_the_old_wound

@@ -1,0 +1,24 @@
+pillar: might
+category: offense
+icon_shape:
+  primary: weapon mid-swing or thrust with impact flare at the point of contact
+  composition: diagonal weapon stroke across the frame, sparks or splatter at the impact node
+  motion: decisive kinetic strike, motion-lines trailing the weapon
+  tier_escalation:
+    25: clean single-target weapon strike with modest spark
+    50: cleaving arc striking two enemies, wider motion trail
+    75: full whirlwind radial slash with multiple impact sparks
+    100: executioner finishing blow, shattering contact flash
+tiers:
+  25:
+  - name: power_strike
+    description: Weapon strike with a small damage bonus.
+  50:
+  - name: cleave
+    description: Melee strike that hits up to 2 adjacent enemies.
+  75:
+  - name: whirlwind
+    description: AoE melee attack; all enemies within reach.
+  100:
+  - name: deathblow
+    description: 'Finisher: massive damage vs. low-HP target.'

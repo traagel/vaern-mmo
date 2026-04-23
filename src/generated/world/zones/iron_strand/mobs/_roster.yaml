@@ -1,0 +1,48 @@
+id: _roster__iron_strand
+zone: iron_strand
+mob_count: 24
+mob_ids:
+- mob_iron_strand_beast_seabird
+- mob_iron_strand_beast_seal
+- mob_iron_strand_beast_wyrm
+- mob_iron_strand_beast_crab
+- mob_iron_strand_beast_seaspider
+- mob_iron_strand_beast_stormray
+- mob_iron_strand_ambient_crab_small
+- mob_iron_strand_exotic_stormbound
+- mob_iron_strand_warband_raider_longshipman
+- mob_iron_strand_warband_raider_storm_speaker
+- mob_iron_strand_warband_shipmaster_bodyguard
+- mob_iron_strand_warband_wrecked_sailor
+- mob_iron_strand_named_raider_lord
+- mob_iron_strand_juvenile_seabird
+- mob_iron_strand_juvenile_seal
+- mob_iron_strand_juvenile_wyrm
+- mob_iron_strand_juvenile_crab
+- mob_iron_strand_juvenile_seaspider
+- mob_iron_strand_juvenile_stormray
+- mob_iron_strand_alpha_seabird
+- mob_iron_strand_alpha_seal
+- mob_iron_strand_alpha_wyrm
+- mob_iron_strand_alpha_crab
+- mob_iron_strand_alpha_seaspider
+by_creature_type:
+  beast: 15
+  dragonkin: 3
+  elemental: 1
+  humanoid: 5
+by_armor_class:
+  hide: 15
+  scales: 3
+  none: 1
+  leather: 2
+  cloth: 1
+  plate: 2
+by_rarity:
+  common: 16
+  elite: 7
+  named: 1
+level_min: 39
+level_max: 45
+named_or_chain_targets:
+- mob_iron_strand_named_raider_lord

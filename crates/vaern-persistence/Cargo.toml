@@ -1,0 +1,24 @@
+[package]
+name = "vaern-persistence"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+
+[dependencies]
+serde = { version = "1.0.228", features = ["derive"] }
+serde_json = "1.0"
+serde_yaml = "0.9"
+thiserror = "2"
+uuid = { version = "1", features = ["v4", "serde"] }
+vaern-assets.workspace = true
+vaern-character.workspace = true
+vaern-core.workspace = true
+vaern-equipment.workspace = true
+vaern-inventory.workspace = true
+vaern-items.workspace = true
+vaern-professions.workspace = true
+vaern-stats.workspace = true
+
+[dev-dependencies]
+tempfile = "3"

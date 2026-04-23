@@ -1,0 +1,16 @@
+name: lightning
+pillar: arcana
+morality: neutral
+family: elemental
+tag: storm / speed
+damage_type: lightning
+applies_to_categories:
+- damage
+- control
+- summoning
+- enhancement
+icon_style:
+  palette: electric blue-white, cerulean, silver-purple, indigo thunderhead
+  motif: forked branching arcs, wire-thin filaments, pulsing coronae, static filigree
+  silhouette: jagged bolt with multiple forks, ball of crackling arcs, tight angular lines
+  material: plasma arc, ozone-charged air, electrified metal, storm cloud

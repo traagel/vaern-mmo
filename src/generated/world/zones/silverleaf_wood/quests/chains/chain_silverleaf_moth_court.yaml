@@ -1,0 +1,86 @@
+id: chain_silverleaf_moth_court
+zone: silverleaf_wood
+title: The Moth Court
+premise: "The pre-Veyr ruins in Silverleaf were not abandoned \u2014 the elvish wild-court\
+  \ is waking, and they do not recognize the new treaty"
+total_steps: 7
+final_reward:
+  xp_bonus: 16052
+  gold_bonus_copper: 2200
+  item_hint: zone-appropriate mid-tier reward
+  title_hint: '''The Moth Court'' completion title'
+breadcrumb_from: capital hub of the zone's faction-home
+final_boss_hint: the faction of wild-court refusers
+steps:
+- step: 1
+  id: chain_silverleaf_moth_court__01_meet_the_lodge_keeper
+  name: Meet The Lodge Keeper
+  level: 15
+  objective:
+    kind: talk
+    target_hint: Lodge-Keeper Arvel
+  xp_reward: 3960
+  gold_reward_copper: 225
+  prerequisite: null
+- step: 2
+  id: chain_silverleaf_moth_court__02_track_the_moth_signs
+  name: Track The Moth Signs
+  level: 16
+  objective:
+    kind: investigate
+    target_hint: moth-dust trails in the canopy
+  xp_reward: 4454
+  gold_reward_copper: 240
+  prerequisite: chain_silverleaf_moth_court__01_meet_the_lodge_keeper
+- step: 3
+  id: chain_silverleaf_moth_court__03_stand_the_court_trial
+  name: Stand The Court Trial
+  level: 17
+  objective:
+    kind: ritual
+    target_hint: the wild-court's welcome-challenge
+  xp_reward: 4978
+  gold_reward_copper: 255
+  prerequisite: chain_silverleaf_moth_court__02_track_the_moth_signs
+- step: 4
+  id: chain_silverleaf_moth_court__04_witness_the_old_verdict
+  name: Witness The Old Verdict
+  level: 18
+  objective:
+    kind: talk
+    target_hint: the moth-king's shade
+  xp_reward: 5530
+  gold_reward_copper: 270
+  prerequisite: chain_silverleaf_moth_court__03_stand_the_court_trial
+- step: 5
+  id: chain_silverleaf_moth_court__05_recover_the_broken_treaty
+  name: Recover The Broken Treaty
+  level: 20
+  objective:
+    kind: collect
+    target_hint: the original elvish-Veyr treaty
+    count: 4
+  xp_reward: 6720
+  gold_reward_copper: 300
+  prerequisite: chain_silverleaf_moth_court__04_witness_the_old_verdict
+- step: 6
+  id: chain_silverleaf_moth_court__06_amend_the_treaty
+  name: Amend The Treaty
+  level: 21
+  objective:
+    kind: ritual
+    target_hint: the amendment-binding
+  xp_reward: 7358
+  gold_reward_copper: 315
+  prerequisite: chain_silverleaf_moth_court__05_recover_the_broken_treaty
+- step: 7
+  id: chain_silverleaf_moth_court__07_repel_the_refusers
+  name: Repel The Refusers
+  level: 22
+  objective:
+    kind: kill
+    target_hint: the faction of wild-court refusers
+    count: 1
+  xp_reward: 8026
+  gold_reward_copper: 330
+  prerequisite: chain_silverleaf_moth_court__06_amend_the_treaty

@@ -1,0 +1,22 @@
+id: order_lightning_archmage
+faction: faction_a
+archetype_id: 4
+archetype_position:
+  might: 0
+  arcana: 100
+  finesse: 0
+flagship: false
+player_facing:
+  class_name: Lightning Archmage
+  title_singular: Lightning Archmage
+  title_plural: Lightning Archmages
+schools_taught:
+  arcana:
+  - lightning
+  - arcane
+  - light
+institutions:
+  primary: silver_quill
+  secondary: knight_order
+  tertiary: night_quick_guild
+chapter: chapter_lightning_archmage

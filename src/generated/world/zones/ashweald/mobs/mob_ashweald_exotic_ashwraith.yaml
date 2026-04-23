@@ -1,0 +1,25 @@
+id: mob_ashweald_exotic_ashwraith
+name: Ash-Wraith
+zone: ashweald
+level: 43
+creature_type: undead
+armor_class: bone
+rarity: elite
+role: caster
+faction_alignment: hostile_to_all
+hp_tier: elite
+damage:
+  primary_school: shadow
+  attack_range: ranged_short
+  dps_tier: standard
+behavior:
+  aggro_range: long
+  social_radius: 5
+  flee_threshold: 0.0
+  calls_allies: false
+  patrol: stationary
+loot_tier: rare
+drops:
+  gold_copper_avg: 258
+  item_hint: rare biome reagent; low chance of blue-tier item
+biome_context: char-bound shade

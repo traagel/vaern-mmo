@@ -1,0 +1,21 @@
+id: sunken_grove_crypt_bosses
+instance: sunken_grove_crypt
+bosses:
+- id: rot_cultist
+  name: The Rot Cultist
+  role_tag: miniboss
+  level: 14
+  mechanic: shadow DoT on tank, dispellable
+  hp_tier: elite
+- id: grove_revenant
+  name: The Grove Revenant
+  role_tag: miniboss
+  level: 17
+  mechanic: life-drain beam, tether-break mechanic
+  hp_tier: elite
+- id: exile_matriarch
+  name: The Exile Matriarch
+  role_tag: final
+  level: 20
+  mechanic: shadow-step assassin, mirror-images at 50%
+  hp_tier: heroic

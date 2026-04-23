@@ -1,0 +1,26 @@
+id: order_fury_priest
+faction: faction_b
+archetype_id: 2
+archetype_position:
+  might: 50
+  arcana: 50
+  finesse: 0
+flagship: false
+player_facing:
+  class_name: Fury-Priest
+  title_singular: Fury-Priest
+  title_plural: Fury-Priesthood
+schools_taught:
+  might:
+  - blade
+  - blunt
+  - fury
+  arcana:
+  - arcane
+  - blood
+  - fire
+institutions:
+  primary: fury_houses
+  secondary: hearth_broken_clans
+  tertiary: bleeding_vaults
+chapter: chapter_fury_priest

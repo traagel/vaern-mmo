@@ -1,0 +1,21 @@
+id: deepwater_keep_bosses
+instance: deepwater_keep
+bosses:
+- id: exile_marshal
+  name: The Exile-Marshal
+  role_tag: miniboss
+  level: 50
+  mechanic: banner-buff, destroy the banner mechanic
+  hp_tier: elite
+- id: drowned_honor_guard
+  name: Drowned Honor Guard
+  role_tag: miniboss
+  level: 53
+  mechanic: trio of elites, rotating aggro
+  hp_tier: elite
+- id: warlord_kessen
+  name: Warlord Kessen
+  role_tag: final
+  level: 56
+  mechanic: 'betrayed-lord mechanic: adds were once your allies'
+  hp_tier: heroic

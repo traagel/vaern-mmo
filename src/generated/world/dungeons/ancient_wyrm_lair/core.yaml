@@ -1,0 +1,18 @@
+id: ancient_wyrm_lair
+name: The Ancient Wyrm Lair
+kind: raid
+group_size: 20
+zone: frost_spine
+entrance_hub: frost_gate
+level_range:
+  min: 60
+  max: 60
+level_band: 46-60
+tier: endgame
+boss_count: 3
+estimated_clear_minutes: 180
+loot_tier: endgame
+lockout: weekly
+theme: "Open-world-to-instance transition \u2014 the oldest thing on the Spine, older\
+  \ than both factions"
+coop_notes: guild-scale content; organized group required

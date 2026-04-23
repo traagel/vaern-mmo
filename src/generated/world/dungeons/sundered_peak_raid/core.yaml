@@ -1,0 +1,18 @@
+id: sundered_peak_raid
+name: The Sundered Peak
+kind: raid
+group_size: 10
+zone: frost_spine
+entrance_hub: sundered_peak
+level_range:
+  min: 55
+  max: 60
+level_band: 46-60
+tier: endgame
+boss_count: 4
+estimated_clear_minutes: 120
+loot_tier: endgame
+lockout: weekly
+theme: "Pre-Coming sealed observatory \u2014 broken open during the Sundering, storm-thing\
+  \ still resident"
+coop_notes: guild-scale content; organized group required

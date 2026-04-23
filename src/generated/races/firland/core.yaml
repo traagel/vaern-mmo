@@ -1,0 +1,24 @@
+id: firland
+archetype: "firbolg-analogue \u2014 large gentle forest-folk"
+faction: faction_a
+favored_class: druid or warden
+cultural_traits: deep-forest hermit-clans, oath-to-the-wild, seasonal-migratory, mediators
+  between the woodlands and the Veyr kingdoms
+creature_type: humanoid
+size_class: large
+hp_modifier: 1.15
+affinity:
+  might: 75
+  arcana: 100
+  finesse: 25
+  notes: Druid/nature-Wizard peak; heavy frame limits stealth; no Fighter corner
+racial_resistances:
+  nature: -0.2
+  earth: -0.1
+  fire: 0.1
+racial_school_bonuses:
+- nature
+- unarmed
+- spear
+- earth
+lore_hook: mediator-clans between the wild and the Veyr; too large for fine work

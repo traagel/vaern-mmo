@@ -1,0 +1,42 @@
+id: side_quests__silver_caravanserai
+hub: silver_caravanserai
+hub_role: outpost
+zone: market_crossing
+biome: river_valley
+quest_count: 3
+quests:
+- id: side__silver_caravanserai__the_miller_s_problem
+  name: The Miller S Problem
+  hub: silver_caravanserai
+  type: side
+  level: 18
+  objective:
+    kind: kill
+    target_hint: wolves harrying the miller's livestock
+    count: 1
+  xp_reward: 1843
+  gold_reward_copper: 90
+  repeatable: false
+- id: side__silver_caravanserai__the_lost_ledger
+  name: The Lost Ledger
+  hub: silver_caravanserai
+  type: side
+  level: 22
+  objective:
+    kind: collect
+    target_hint: flood-soaked ledger pages
+    count: 4
+  xp_reward: 2675
+  gold_reward_copper: 110
+  repeatable: false
+- id: side__silver_caravanserai__the_upstream_camp
+  name: The Upstream Camp
+  hub: silver_caravanserai
+  type: side
+  level: 26
+  objective:
+    kind: investigate
+    target_hint: an upstream camp that hasn't reported in
+  xp_reward: 3661
+  gold_reward_copper: 130
+  repeatable: false

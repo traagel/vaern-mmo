@@ -1,0 +1,17 @@
+name: shield
+pillar: might
+morality: neutral
+family: style
+tag: defense / bastion
+damage_type: bludgeoning
+applies_to_categories:
+- offense
+- defense
+- threat
+- sustain
+- control
+icon_style:
+  palette: forged steel, heraldic navy, dark leather strap, dull bronze boss, chipped paint
+  motif: kite and round shields, central boss, bolted rim, heraldic quartering, bracing stance
+  silhouette: broad heraldic shield face centered head-on, flanged rim, raised boss
+  material: riveted iron plates, oak backing, oiled leather grip, embossed bronze

@@ -1,0 +1,12 @@
+[package]
+name = "vaern-loot"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+
+[dependencies]
+rand = "0.9"
+serde = { version = "1.0.228", features = ["derive"] }
+vaern-items.workspace = true
+vaern-combat.workspace = true

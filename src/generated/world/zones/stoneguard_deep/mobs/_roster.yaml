@@ -1,0 +1,39 @@
+id: _roster__stoneguard_deep
+zone: stoneguard_deep
+mob_count: 15
+mob_ids:
+- mob_stoneguard_deep_beast_rockdrake
+- mob_stoneguard_deep_beast_cavespider
+- mob_stoneguard_deep_beast_mountainbear
+- mob_stoneguard_deep_beast_yeti
+- mob_stoneguard_deep_beast_rockworm
+- mob_stoneguard_deep_beast_batswarm
+- mob_stoneguard_deep_ambient_pika
+- mob_stoneguard_deep_exotic_stone_golem
+- mob_stoneguard_deep_warband_deepfolk_raider
+- mob_stoneguard_deep_warband_deepfolk_shaman
+- mob_stoneguard_deep_named_deepworm_brood_named
+- mob_stoneguard_deep_juvenile_rockdrake
+- mob_stoneguard_deep_juvenile_cavespider
+- mob_stoneguard_deep_juvenile_mountainbear
+- mob_stoneguard_deep_juvenile_yeti
+by_creature_type:
+  dragonkin: 2
+  beast: 6
+  aberration: 3
+  construct: 1
+  humanoid: 3
+by_armor_class:
+  scales: 2
+  hide: 6
+  ethereal: 3
+  plate: 2
+  leather: 1
+  cloth: 1
+by_rarity:
+  common: 13
+  elite: 2
+level_min: 1
+level_max: 5
+named_or_chain_targets:
+- mob_stoneguard_deep_named_deepworm_brood_named

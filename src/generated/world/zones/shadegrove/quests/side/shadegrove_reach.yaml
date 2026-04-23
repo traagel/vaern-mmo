@@ -1,0 +1,53 @@
+id: side_quests__shadegrove_reach
+hub: shadegrove_reach
+hub_role: capital
+zone: shadegrove
+biome: ashland
+quest_count: 4
+quests:
+- id: side__shadegrove_reach__the_ashwolf_pack
+  name: The Ashwolf Pack
+  hub: shadegrove_reach
+  type: side
+  level: 10
+  objective:
+    kind: kill
+    target_hint: an ashwolf pack stalking caravans
+    count: 1
+  xp_reward: 640
+  gold_reward_copper: 50
+  repeatable: false
+- id: side__shadegrove_reach__the_cinder_vein
+  name: The Cinder Vein
+  hub: shadegrove_reach
+  type: side
+  level: 13
+  objective:
+    kind: collect
+    target_hint: cinder-vein samples
+    count: 4
+  xp_reward: 1019
+  gold_reward_copper: 65
+  repeatable: false
+- id: side__shadegrove_reach__the_storm_camp_check
+  name: The Storm Camp Check
+  hub: shadegrove_reach
+  type: side
+  level: 15
+  objective:
+    kind: investigate
+    target_hint: a camp caught in the last ash-storm
+  xp_reward: 1320
+  gold_reward_copper: 75
+  repeatable: false
+- id: side__shadegrove_reach__the_soot_lung_remedy
+  name: The Soot Lung Remedy
+  hub: shadegrove_reach
+  type: side
+  level: 18
+  objective:
+    kind: deliver
+    target_hint: soot-lung remedy to afflicted workers
+  xp_reward: 1843
+  gold_reward_copper: 90
+  repeatable: false

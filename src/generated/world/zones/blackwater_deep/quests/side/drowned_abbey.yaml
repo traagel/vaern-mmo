@@ -1,0 +1,18 @@
+id: side_quests__drowned_abbey
+hub: drowned_abbey
+hub_role: ruin
+zone: blackwater_deep
+biome: marshland
+quest_count: 1
+quests:
+- id: side__drowned_abbey__the_rot_fever_patient
+  name: The Rot Fever Patient
+  hub: drowned_abbey
+  type: side
+  level: 48
+  objective:
+    kind: deliver
+    target_hint: rot-fever tonic to an isolated hut
+  xp_reward: 11827
+  gold_reward_copper: 240
+  repeatable: false

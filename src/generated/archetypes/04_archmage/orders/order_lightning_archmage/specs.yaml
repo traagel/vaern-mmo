@@ -1,0 +1,15 @@
+specs:
+- id: storm_mage_bolt
+  name: Bolt-Mage
+  emphasis: magic_dps
+  description: single-target lightning burst
+  schools_focus:
+  - lightning
+  - arcane
+- id: storm_mage_chain
+  name: Chain-Mage
+  emphasis: magic_dps
+  description: chain-lightning AoE
+  schools_focus:
+  - lightning
+  - light

@@ -1,0 +1,15 @@
+specs:
+- id: storm_druid_thunder
+  name: Thunder-Druid
+  emphasis: magic_dps
+  description: lightning-focused storm-caller
+  schools_focus:
+  - lightning
+  - nature
+- id: storm_druid_windward
+  name: Windward-Druid
+  emphasis: control
+  description: wind and entangle crowd-control
+  schools_focus:
+  - nature
+  - arcane

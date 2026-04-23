@@ -1,0 +1,50 @@
+id: faction_b
+morality_alignment: evil
+allowed_school_moralities:
+- neutral
+- evil
+forbidden_school_moralities:
+- good
+allowed_schools:
+  arcana:
+  - arcane
+  - blood
+  - earth
+  - fire
+  - frost
+  - lightning
+  - nature
+  - shadow
+  might:
+  - blade
+  - blunt
+  - fury
+  - shield
+  - spear
+  - unarmed
+  finesse:
+  - acrobat
+  - alchemy
+  - bow
+  - dagger
+  - poison
+  - silent
+  - thrown
+  - trickster
+forbidden_schools:
+  arcana:
+  - devotion
+  - light
+  might:
+  - honor
+  finesse:
+  - tonics
+visual:
+  pitch: Rend — blackened iron and blood-red, ancestor-bone trim, bruise-purple accents, war-patina and grave-silk
+  palette: blackened iron, blood-red, ember-orange, bruise purple, bone-white
+  heraldry: broken-sun, ancestor-skull, three-blades-bound, crow-in-flight, binding-rune sigil
+  architecture: angular stone with timber-and-sinew bindings, upright ancestor-poles, tattered banners, refugee-camp pragmatism
+  garment_style: layered hide and chain, trophy-bone, bound-rope-and-sinew, grave-silk wraps, clan-braid hood optional
+  damage_patina: weathered, war-scarred, rusted iron in active use, scorched edges
+  material_accents: blackened iron, bone, sinew-rope, smoked leather, ember-dyed cloth
+  negative_tags: polished silver, royal blue, heraldic gold, clean chivalric, white-and-gold, sunlit

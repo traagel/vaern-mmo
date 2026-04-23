@@ -1,0 +1,42 @@
+id: side_quests__last_candle
+hub: last_candle
+hub_role: outpost
+zone: crown_of_ruin
+biome: ruin
+quest_count: 3
+quests:
+- id: side__last_candle__the_relic_hunter
+  name: The Relic Hunter
+  hub: last_candle
+  type: side
+  level: 55
+  objective:
+    kind: collect
+    target_hint: pre-war relics from ruin-edges
+    count: 4
+  xp_reward: 15400
+  gold_reward_copper: 275
+  repeatable: false
+- id: side__last_candle__the_wight_cull
+  name: The Wight Cull
+  hub: last_candle
+  type: side
+  level: 58
+  objective:
+    kind: kill
+    target_hint: war-wights that don't know the war ended
+    count: 1
+  xp_reward: 17075
+  gold_reward_copper: 290
+  repeatable: false
+- id: side__last_candle__the_broken_shrine
+  name: The Broken Shrine
+  hub: last_candle
+  type: side
+  level: 60
+  objective:
+    kind: investigate
+    target_hint: a shrine reportedly glowing at night
+  xp_reward: 18240
+  gold_reward_copper: 300
+  repeatable: false

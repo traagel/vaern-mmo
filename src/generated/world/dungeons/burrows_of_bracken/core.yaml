@@ -1,0 +1,17 @@
+id: burrows_of_bracken
+name: The Burrows of Bracken
+kind: dungeon
+group_size: 5
+zone: wyrling_downs
+entrance_hub: brackenhollow
+level_range:
+  min: 10
+  max: 15
+level_band: 1-10
+tier: leveling
+boss_count: 3
+estimated_clear_minutes: 45
+loot_tier: low
+lockout: none (rerunnable)
+theme: Burrowing beast-clan of giant digger-rats and their half-feral handlers
+coop_notes: tight-coop-friendly; duo/trio can attempt under-level with care

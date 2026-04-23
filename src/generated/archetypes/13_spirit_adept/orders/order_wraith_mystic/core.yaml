@@ -1,0 +1,26 @@
+id: order_wraith_mystic
+faction: faction_b
+archetype_id: 13
+archetype_position:
+  might: 25
+  arcana: 50
+  finesse: 25
+flagship: false
+player_facing:
+  class_name: Wraith-Mystic
+  title_singular: Wraith-Mystic
+  title_plural: Wraith-Mystics
+schools_taught:
+  might:
+  - spear
+  arcana:
+  - shadow
+  - arcane
+  finesse:
+  - dagger
+  - silent
+institutions:
+  primary: shadow_conclave
+  secondary: ancestor_binder_houses
+  tertiary: bleeding_vaults
+chapter: chapter_wraith_mystic

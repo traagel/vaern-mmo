@@ -1,0 +1,42 @@
+id: side_quests__bloodwater_landing
+hub: bloodwater_landing
+hub_role: outpost
+zone: skarnreach
+biome: fjord
+quest_count: 3
+quests:
+- id: side__bloodwater_landing__the_landing_sign
+  name: The Landing Sign
+  hub: bloodwater_landing
+  type: side
+  level: 1
+  objective:
+    kind: investigate
+    target_hint: a raider-landing sign
+  xp_reward: 21
+  gold_reward_copper: 5
+  repeatable: false
+- id: side__bloodwater_landing__the_seal_cull
+  name: The Seal Cull
+  hub: bloodwater_landing
+  type: side
+  level: 3
+  objective:
+    kind: kill
+    target_hint: rogue orca harassing fjord fishers
+    count: 1
+  xp_reward: 91
+  gold_reward_copper: 15
+  repeatable: false
+- id: side__bloodwater_landing__the_longship_repair
+  name: The Longship Repair
+  hub: bloodwater_landing
+  type: side
+  level: 5
+  objective:
+    kind: collect
+    target_hint: longship-repair timber
+    count: 4
+  xp_reward: 200
+  gold_reward_copper: 25
+  repeatable: false

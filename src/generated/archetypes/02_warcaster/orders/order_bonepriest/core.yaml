@@ -1,0 +1,26 @@
+id: order_bonepriest
+faction: faction_b
+archetype_id: 2
+archetype_position:
+  might: 50
+  arcana: 50
+  finesse: 0
+player_facing:
+  class_name: Bonepriest
+  title_singular: Bonepriest
+  title_plural: Bonepriesthood
+schools_taught:
+  arcana:
+  - blood
+  - shadow
+  - arcane
+  might:
+  - blunt
+  - shield
+  - fury
+flagship: true
+institutions:
+  primary: fury_houses
+  secondary: bleeding_vaults
+  tertiary: hearth_broken_clans
+chapter: chapter_bonepriest

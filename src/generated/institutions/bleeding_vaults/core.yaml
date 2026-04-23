@@ -1,0 +1,16 @@
+id: bleeding_vaults
+faction: faction_b
+name: The Bleeding Vaults
+tradition: Scarblood Scholarship
+curriculum:
+  major:
+    arcana:
+    - shadow
+  secondary:
+    arcana:
+    - blood
+    - arcane
+    - fire
+    - frost
+pillars:
+- arcana

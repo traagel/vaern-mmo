@@ -1,0 +1,26 @@
+id: order_marchwarden
+faction: faction_a
+archetype_id: 9
+archetype_position:
+  might: 25
+  arcana: 0
+  finesse: 75
+player_facing:
+  class_name: Marchwarden
+  title_singular: Marchwarden
+  title_plural: Marchwardens
+schools_taught:
+  might:
+  - bow
+  finesse:
+  - thrown
+  - silent
+  - alchemy
+  - tonics
+  - acrobat
+flagship: true
+institutions:
+  primary: alchemists_compact
+  secondary: circle_of_roots
+  tertiary: night_quick_guild
+chapter: chapter_marchwarden

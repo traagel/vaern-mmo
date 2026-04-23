@@ -1,0 +1,15 @@
+specs:
+- id: thornblade_strike
+  name: Vine-Strike
+  emphasis: melee_dps
+  description: nature-augmented dual-blade striker
+  schools_focus:
+  - blade
+  - nature
+- id: thornblade_silent
+  name: Silent-Thorn
+  emphasis: stealth
+  description: forest-infiltrator with entangle
+  schools_focus:
+  - silent
+  - nature

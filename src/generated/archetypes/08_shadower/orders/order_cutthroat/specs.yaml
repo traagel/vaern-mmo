@@ -1,0 +1,25 @@
+specs:
+- id: cutthroat_assassin
+  name: Cutthroat Assassin
+  emphasis: melee_dps
+  description: street-bred killer, one-strike specialist
+  schools_focus:
+  - dagger
+  - silent
+  - poison
+- id: cutthroat_thief
+  name: Cutthroat Thief
+  emphasis: utility
+  description: infiltration and theft specialist
+  schools_focus:
+  - silent
+  - trickster
+  - acrobat
+- id: cutthroat_poisoner
+  name: Cutthroat Poisoner
+  emphasis: control
+  description: toxin-applying battlefield debilitator
+  schools_focus:
+  - poison
+  - thrown
+  - dagger

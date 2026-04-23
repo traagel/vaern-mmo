@@ -1,0 +1,17 @@
+name: shadow
+pillar: arcana
+morality: evil
+family: divine
+tag: umbral / fear
+damage_type: necrotic
+applies_to_categories:
+- damage
+- protection
+- control
+- summoning
+- enhancement
+icon_style:
+  palette: void black, deep purple, sickly violet, cold silver edge, bruise-blue
+  motif: writhing tendrils, smoke-drifts, hollow-eyed skulls, tattered wings, unravelling mist
+  silhouette: ragged tendril-mass, asymmetric drifting smoke, wraith-hood shape
+  material: living shadow, umbral smoke, necrotic mist, tarnished silver, cold bone

@@ -1,0 +1,26 @@
+id: order_shade_scout
+faction: faction_b
+archetype_id: 14
+archetype_position:
+  might: 25
+  arcana: 25
+  finesse: 50
+flagship: false
+player_facing:
+  class_name: Shade-Scout
+  title_singular: Shade-Scout
+  title_plural: Shade-Scouts
+schools_taught:
+  might:
+  - spear
+  arcana:
+  - shadow
+  finesse:
+  - silent
+  - bow
+  - trickster
+institutions:
+  primary: ancestor_binder_houses
+  secondary: storm_pact
+  tertiary: alchemist_tinker_clans
+chapter: chapter_shade_scout

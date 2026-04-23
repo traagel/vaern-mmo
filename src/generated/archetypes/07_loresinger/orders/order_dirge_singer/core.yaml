@@ -1,0 +1,25 @@
+id: order_dirge_singer
+faction: faction_b
+archetype_id: 7
+archetype_position:
+  might: 0
+  arcana: 25
+  finesse: 75
+player_facing:
+  class_name: Dirge-Singer
+  title_singular: Dirge-Singer
+  title_plural: Dirge-Singers
+schools_taught:
+  arcana:
+  - blood
+  - shadow
+  finesse:
+  - dagger
+  - silent
+  - trickster
+flagship: true
+institutions:
+  primary: shadow_conclave
+  secondary: alchemist_tinker_clans
+  tertiary: fury_houses
+chapter: chapter_dirge_singer

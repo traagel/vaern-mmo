@@ -1,0 +1,26 @@
+id: order_radiant_priest
+faction: faction_a
+archetype_id: 2
+archetype_position:
+  might: 50
+  arcana: 50
+  finesse: 0
+player_facing:
+  class_name: Radiant Priest
+  title_singular: Radiant Priest
+  title_plural: Radiant Priesthood
+schools_taught:
+  arcana:
+  - light
+  - devotion
+  - arcane
+  might:
+  - blunt
+  - shield
+  - honor
+flagship: true
+institutions:
+  primary: radiant_church
+  secondary: knight_order
+  tertiary: night_quick_guild
+chapter: chapter_radiant_priest

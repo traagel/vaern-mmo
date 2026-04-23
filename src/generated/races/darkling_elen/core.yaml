@@ -1,0 +1,25 @@
+id: darkling_elen
+archetype: fallen elves / dark elves
+faction: faction_b
+favored_class: warlock
+cultural_traits: shadow-touched, exiled kin of Sunward, pact-bound, vengeful scholars
+creature_type: humanoid
+size_class: medium
+hp_modifier: 0.95
+affinity:
+  might: 50
+  arcana: 100
+  finesse: 100
+  notes: "Wizard AND Rogue corners reachable \u2014 assassin-sorcerer identity distinguishes\
+    \ them from Sunward kin; no heavy martial"
+racial_resistances:
+  shadow: -0.2
+  light: 0.2
+  poison: -0.1
+  arcane: -0.1
+racial_school_bonuses:
+- shadow
+- silent
+- dagger
+- arcane
+lore_hook: exiled kin of the Sunward; the original shadow-pact signers

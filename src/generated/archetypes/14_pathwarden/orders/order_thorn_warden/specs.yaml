@@ -1,0 +1,15 @@
+specs:
+- id: thorn_warden_venom
+  name: Venom-Thorn
+  emphasis: melee_dps
+  description: poison-thorn dagger striker
+  schools_focus:
+  - poison
+  - nature
+- id: thorn_warden_shade
+  name: Shade-Thorn
+  emphasis: control
+  description: shadow-and-nature hex-binder
+  schools_focus:
+  - shadow
+  - nature

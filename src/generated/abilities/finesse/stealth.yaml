@@ -1,0 +1,24 @@
+pillar: finesse
+category: stealth
+icon_shape:
+  primary: hooded silhouette dissolving into shadow or disappearing behind a fading cloak-edge
+  composition: centered dim silhouette with the body partially erased into surrounding darkness
+  motion: fading out, cloak-wrap, shadow-drop, silent footfall leaving nothing behind
+  tier_escalation:
+    25: crouched figure blending into cover, only eyes visible
+    50: full cloak-drop with body briefly invisible
+    75: vanish — mid-combat silhouette erasing itself with a smoke-puff
+    100: shadow-walk — figure moving fluidly through a seam of darkness
+tiers:
+  25:
+  - name: hide
+    description: Become hidden while in cover or obscured.
+  50:
+  - name: shadow_cloak
+    description: Brief full invisibility.
+  75:
+  - name: vanish
+    description: Escape active combat into stealth.
+  100:
+  - name: shadow_walk
+    description: Move freely while stealthed for extended duration.

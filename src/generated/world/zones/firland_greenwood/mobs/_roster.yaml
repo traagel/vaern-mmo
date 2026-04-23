@@ -1,0 +1,35 @@
+id: _roster__firland_greenwood
+zone: firland_greenwood
+mob_count: 15
+mob_ids:
+- mob_firland_greenwood_beast_wolf
+- mob_firland_greenwood_beast_boar
+- mob_firland_greenwood_beast_stag
+- mob_firland_greenwood_beast_raven
+- mob_firland_greenwood_beast_fox
+- mob_firland_greenwood_beast_bear
+- mob_firland_greenwood_ambient_squirrel
+- mob_firland_greenwood_exotic_wild_thing
+- mob_firland_greenwood_warband_rot_cultist
+- mob_firland_greenwood_warband_greenwood_poacher
+- mob_firland_greenwood_named_rot_beast_named
+- mob_firland_greenwood_juvenile_wolf
+- mob_firland_greenwood_juvenile_boar
+- mob_firland_greenwood_juvenile_stag
+- mob_firland_greenwood_juvenile_raven
+by_creature_type:
+  beast: 11
+  aberration: 1
+  humanoid: 3
+by_armor_class:
+  hide: 11
+  ethereal: 1
+  leather: 2
+  plate: 1
+by_rarity:
+  common: 13
+  elite: 2
+level_min: 1
+level_max: 5
+named_or_chain_targets:
+- mob_firland_greenwood_named_rot_beast_named

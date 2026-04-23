@@ -1,0 +1,41 @@
+id: side_quests__stone_reader
+hub: stone_reader
+hub_role: outpost
+zone: pact_causeway
+biome: highland
+quest_count: 3
+quests:
+- id: side__stone_reader__the_fog_walker
+  name: The Fog Walker
+  hub: stone_reader
+  type: side
+  level: 15
+  objective:
+    kind: kill
+    target_hint: fog-born predator stalking the high paths
+    count: 1
+  xp_reward: 1320
+  gold_reward_copper: 75
+  repeatable: false
+- id: side__stone_reader__the_lost_herd
+  name: The Lost Herd
+  hub: stone_reader
+  type: side
+  level: 18
+  objective:
+    kind: investigate
+    target_hint: goats gone missing near the cliff-line
+  xp_reward: 1843
+  gold_reward_copper: 90
+  repeatable: false
+- id: side__stone_reader__the_shrine_offering
+  name: The Shrine Offering
+  hub: stone_reader
+  type: side
+  level: 22
+  objective:
+    kind: deliver
+    target_hint: an offering to a remote hill-shrine
+  xp_reward: 2675
+  gold_reward_copper: 110
+  repeatable: false

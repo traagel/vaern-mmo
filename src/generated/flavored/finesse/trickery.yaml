@@ -1,0 +1,127 @@
+pillar: finesse
+category: trickery
+variants:
+  25:
+    alchemy:
+      name: smoke_pellet
+      description: Brief local obscuring smoke.
+      damage_type: null
+      morality: neutral
+    dagger:
+      name: quick_feint
+      description: Feint; next hit bonus damage.
+      damage_type: null
+      morality: neutral
+    poison:
+      name: itch_poison
+      description: Minor irritant; accuracy debuff.
+      damage_type: null
+      morality: evil
+    silent:
+      name: whisper
+      description: Brief distraction via whisper.
+      damage_type: null
+      morality: neutral
+    tonics:
+      name: calming_tonic
+      description: ST debuff cleanse consumable.
+      damage_type: null
+      morality: good
+    trickster:
+      name: feint
+      description: Misdirect; next hit bonus.
+      damage_type: null
+      morality: neutral
+  50:
+    alchemy:
+      name: smoke_bomb
+      description: AoE obscure; accuracy debuff on enemies inside.
+      damage_type: null
+      morality: neutral
+    dagger:
+      name: blind_jab
+      description: Blind via blade-flash.
+      damage_type: null
+      morality: neutral
+    poison:
+      name: distract_venom
+      description: Accuracy debuff via minor toxin.
+      damage_type: null
+      morality: evil
+    silent:
+      name: distract
+      description: Reduce enemy accuracy on a target.
+      damage_type: null
+      morality: neutral
+    tonics:
+      name: blessed_mist
+      description: 'AoE: allies gain accuracy, enemies lose it.'
+      damage_type: null
+      morality: good
+    trickster:
+      name: jester_distract
+      description: Mocking distraction.
+      damage_type: null
+      morality: neutral
+  75:
+    alchemy:
+      name: fog_grenade
+      description: Large AoE obscure zone.
+      damage_type: null
+      morality: neutral
+    dagger:
+      name: blind_blade
+      description: ST visual disable.
+      damage_type: null
+      morality: neutral
+    poison:
+      name: mind_fog_poison
+      description: Mental fog via toxin.
+      damage_type: null
+      morality: evil
+    silent:
+      name: blind
+      description: ST visual disable.
+      damage_type: null
+      morality: neutral
+    tonics:
+      name: sanctified_air
+      description: AoE purification; removes negative effects.
+      damage_type: null
+      morality: good
+    trickster:
+      name: mass_confuse
+      description: Multiple targets confused.
+      damage_type: null
+      morality: neutral
+  100:
+    alchemy:
+      name: hallucinogenic_bomb
+      description: 'Ritual: enemies perceive allies as foes.'
+      damage_type: null
+      morality: neutral
+    dagger:
+      name: shadow_execution
+      description: Kill while disguising identity.
+      damage_type: null
+      morality: neutral
+    poison:
+      name: hallucinate
+      description: Target sees enemies everywhere.
+      damage_type: null
+      morality: evil
+    silent:
+      name: impersonate
+      description: Appear briefly as an ally.
+      damage_type: null
+      morality: neutral
+    tonics:
+      name: revelation_draught
+      description: 'Ritual: allies gain true-sight.'
+      damage_type: null
+      morality: good
+    trickster:
+      name: mass_illusion
+      description: Mass deception; allies appear as enemies.
+      damage_type: null
+      morality: neutral

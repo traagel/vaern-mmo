@@ -1,0 +1,21 @@
+id: elder_grove_ruin_bosses
+instance: elder_grove_ruin
+bosses:
+- id: thornheart_druid
+  name: Thornheart Druid
+  role_tag: miniboss
+  level: 22
+  mechanic: root-and-dot, summon treant adds
+  hp_tier: elite
+- id: silver_stag
+  name: The Silver Stag
+  role_tag: miniboss
+  level: 25
+  mechanic: charge mechanic, hit-and-run
+  hp_tier: elite
+- id: grove_elder
+  name: The Grove-Elder Awake
+  role_tag: final
+  level: 28
+  mechanic: 'seasons rotation: spring/summer/autumn/winter mechanics'
+  hp_tier: heroic

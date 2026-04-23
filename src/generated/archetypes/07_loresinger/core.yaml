@@ -1,0 +1,42 @@
+class_id: 7
+internal_label: Bard
+abstract_name: Loresinger
+position:
+  might: 0
+  arcana: 25
+  finesse: 75
+pillar_classification: edge
+dominant_pillar:
+- finesse
+edge: arcana-finesse
+primary_roles:
+- ranged-dps
+- support
+note: Arcana-Finesse near-Finesse; stealth plus minor spells
+active_tiers:
+  might: []
+  arcana:
+  - 25
+  finesse:
+  - 25
+  - 50
+  - 75
+capabilities:
+  might: []
+  arcana:
+  - Cantrips (at-will minor spells)
+  - Minor debuffs (slow, weaken, minor curse)
+  - Minor utility (light, detect magic, mend)
+  finesse:
+  - Basic stealth (hide in cover)
+  - Finesse weapons (rapier, dagger, shortbow)
+  - Light-armor mobility bonus
+  - Sneak attack (bonus damage from hidden)
+  - Dual-wielding
+  - Evasion / dodge reactions
+  - Advanced stealth (hide in dim light, partial cover)
+  - Bow mastery (longbow, extended range and accuracy)
+  - Critical-strike mastery
+faction_labels:
+  faction_a: null
+  faction_b: null

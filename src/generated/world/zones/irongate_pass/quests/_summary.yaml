@@ -1,0 +1,16 @@
+id: quest_summary__irongate_pass
+zone: irongate_pass
+level_range:
+  min: 10
+  max: 18
+tier: mid
+budget_target: 90
+actual:
+  main_chain_steps: 7
+  side_quests: 8
+  filler_pool: 69
+  total: 84
+coverage_ratio: 0.93
+main_chain: chain_irongate_deep_silence
+notes: Main chain is hand-crafted story; side is templated by biome+hub-role; filler
+  is a procedural pool.

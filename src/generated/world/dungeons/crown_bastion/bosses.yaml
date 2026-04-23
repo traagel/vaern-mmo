@@ -1,0 +1,33 @@
+id: crown_bastion_bosses
+instance: crown_bastion
+bosses:
+- id: outer_gate_captain
+  name: Outer-Gate Captain
+  role_tag: lieutenant
+  level: 60
+  mechanic: aoe trash-clear mechanic
+  hp_tier: elite
+- id: siege_engineer_pair
+  name: Siege-Engineer Pair
+  role_tag: lieutenant
+  level: 60
+  mechanic: dual-boss, destroy siege engines
+  hp_tier: elite
+- id: inner_warden
+  name: The Inner Warden
+  role_tag: lieutenant
+  level: 60
+  mechanic: teleport mechanic, positional
+  hp_tier: elite
+- id: captain_of_the_crown
+  name: Captain of the Crown
+  role_tag: lieutenant
+  level: 60
+  mechanic: charge-phase, tank-rotate
+  hp_tier: elite
+- id: the_throne_claimant
+  name: The Throne-Claimant
+  role_tag: final
+  level: 60
+  mechanic: five-phase final encounter; a contested title, not a boss
+  hp_tier: heroic

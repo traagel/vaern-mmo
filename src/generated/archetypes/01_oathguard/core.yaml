@@ -1,0 +1,43 @@
+class_id: 1
+internal_label: Paladin
+abstract_name: Oathguard
+position:
+  might: 75
+  arcana: 25
+  finesse: 0
+pillar_classification: edge
+dominant_pillar:
+- might
+edge: arcana-might
+primary_roles:
+- tank
+note: Might-Arcana near-Might; magical tank
+active_tiers:
+  might:
+  - 25
+  - 50
+  - 75
+  arcana:
+  - 25
+  finesse: []
+capabilities:
+  might:
+  - Light-medium armor proficiency
+  - Basic melee weapons (club, dagger, short sword)
+  - Hit-point bonus
+  - Medium-to-heavy armor proficiency
+  - Shield use
+  - Martial weapons (long sword, mace, axe)
+  - Basic taunt / threat generation
+  - Heavy armor mastery
+  - Two-handed weapons (greatsword, maul, halberd)
+  - Tank-tier damage mitigation
+  - Strong threat generation and hold
+  arcana:
+  - Cantrips (at-will minor spells)
+  - Minor debuffs (slow, weaken, minor curse)
+  - Minor utility (light, detect magic, mend)
+  finesse: []
+faction_labels:
+  faction_a: null
+  faction_b: null

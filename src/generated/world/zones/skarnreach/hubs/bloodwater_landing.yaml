@@ -1,0 +1,9 @@
+id: bloodwater_landing
+zone: skarnreach
+name: Bloodwater Landing
+role: outpost
+amenities:
+- innkeeper
+- flight_master
+- repair
+quest_givers: 3

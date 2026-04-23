@@ -1,0 +1,17 @@
+id: drowned_abbey
+name: The Drowned Abbey
+kind: raid
+group_size: 10
+zone: blackwater_deep
+entrance_hub: drowned_abbey
+level_range:
+  min: 50
+  max: 55
+level_band: 46-60
+tier: endgame
+boss_count: 4
+estimated_clear_minutes: 120
+loot_tier: endgame
+lockout: weekly
+theme: "The abbey didn't sink alone \u2014 it brought a saint with it"
+coop_notes: guild-scale content; organized group required

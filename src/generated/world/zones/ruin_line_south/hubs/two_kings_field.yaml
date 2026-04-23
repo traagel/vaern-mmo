@@ -1,0 +1,9 @@
+id: two_kings_field
+zone: ruin_line_south
+name: Field of Two Kings
+role: outpost
+amenities:
+- innkeeper
+- flight_master
+- repair
+quest_givers: 3

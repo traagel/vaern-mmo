@@ -1,0 +1,16 @@
+id: quest_summary__gravewatch_fields
+zone: gravewatch_fields
+level_range:
+  min: 5
+  max: 12
+tier: mid
+budget_target: 80
+actual:
+  main_chain_steps: 8
+  side_quests: 8
+  filler_pool: 60
+  total: 76
+coverage_ratio: 0.95
+main_chain: chain_gravewatch_wrong_rite
+notes: Main chain is hand-crafted story; side is templated by biome+hub-role; filler
+  is a procedural pool.

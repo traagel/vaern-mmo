@@ -1,0 +1,25 @@
+id: order_scarblood
+faction: faction_b
+archetype_id: 4
+archetype_position:
+  might: 0
+  arcana: 100
+  finesse: 0
+player_facing:
+  class_name: Scarblood Scholar
+  title_singular: Scarblood Scholar
+  title_plural: Scarblood
+schools_taught:
+  arcana:
+  - blood
+  - shadow
+  - arcane
+  - fire
+  - nature
+  - frost
+flagship: true
+institutions:
+  primary: bleeding_vaults
+  secondary: ancestor_binder_houses
+  tertiary: shadow_conclave
+chapter: chapter_scarblood

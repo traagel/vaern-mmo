@@ -1,0 +1,22 @@
+id: order_ironvow
+faction: faction_a
+archetype_id: 0
+archetype_position:
+  might: 100
+  arcana: 0
+  finesse: 0
+player_facing:
+  class_name: Ironvow
+  title_singular: Ironvow Swordsworn
+  title_plural: Ironvows
+schools_taught:
+  might:
+  - blade
+  - shield
+  - honor
+flagship: true
+institutions:
+  primary: knight_order
+  secondary: alchemists_compact
+  tertiary: night_quick_guild
+chapter: chapter_ironvow

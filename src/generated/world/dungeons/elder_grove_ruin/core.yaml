@@ -1,0 +1,17 @@
+id: elder_grove_ruin
+name: Elder Grove Ruin
+kind: dungeon
+group_size: 5
+zone: silverleaf_wood
+entrance_hub: elder_grove
+level_range:
+  min: 22
+  max: 28
+level_band: 11-30
+tier: leveling
+boss_count: 3
+estimated_clear_minutes: 45
+loot_tier: mid
+lockout: none (rerunnable)
+theme: Pre-Veyr elvish ruin, taken over by feral nature-pact creatures
+coop_notes: tight-coop-friendly; duo/trio can attempt under-level with care

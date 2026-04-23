@@ -1,0 +1,17 @@
+id: watchtower_keep
+name: Bandit-Watch Tower Keep
+kind: dungeon
+group_size: 5
+zone: heartland_ride
+entrance_hub: bandit_watchtower
+level_range:
+  min: 12
+  max: 20
+level_band: 11-30
+tier: leveling
+boss_count: 3
+estimated_clear_minutes: 45
+loot_tier: low
+lockout: none (rerunnable)
+theme: Dalewatch-era highway keep fallen to a bandit-captain's war-band
+coop_notes: tight-coop-friendly; duo/trio can attempt under-level with care

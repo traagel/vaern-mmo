@@ -1,0 +1,88 @@
+# Order schema — documentation only, not loaded as data.
+#
+# An Order is a faction-flavored player-facing class. Multiple Orders can sit
+# on top of the same archetype (position in the M/A/F triangle).
+#
+# Four-tier progression model:
+#   race (pillar caps) → pick core pillar at creation → accumulate tiers
+#   → archetype POSITION crystallizes (one of 15 sum-100 points)
+#   → learn specific schools within the archetype's active tiers (faction-gated)
+#   → reaching a recognized school-combination unlocks an Order (player class)
+#   → pick a Spec within the Order for role-emphasis (no new mechanical dials)
+#
+# Layer responsibilities:
+#   Race        — pillar caps (mechanical constraint on position reach)
+#   Archetype   — mechanical position template
+#                 - abstract_name (e.g. "Oathguard") = setting-neutral
+#                 - internal_label (e.g. "Paladin") = D&D-canonical flagship class
+#   Order       — named player-facing class at an archetype
+#                 - schools_taught = unlock gate (must learn these)
+#                 - multiple Orders per (archetype, faction) allowed
+#                 - flagship=true marks the D&D-canonical variant at an
+#                   archetype; alternatives (e.g. Fireblade at Oathguard
+#                   position) should have flagship=false
+#   Spec        — role emphasis within an Order (tank, support, hybrid, etc.)
+#                 centralized in _specs.yaml for clean diffing
+#                 SPECS DO NOT add mechanical dials — playstyle labels only
+#
+# ============================================================================
+# Order YAML fields
+# ============================================================================
+#
+# id                       — snake_case identifier, unique
+# faction                  — faction_a (Concord) or faction_b (Rend)
+# archetype_id             — references src/generated/classes/NN_label.yaml
+# archetype_position       — { might, arcana, finesse } cached for UI
+# flagship                 — bool. Defaults true. The D&D-canonical class at
+#                            this archetype (e.g. Dawnshield is flagship
+#                            Paladin). Alternatives like "Fireblade" should
+#                            set flagship: false
+#
+# player_facing:
+#   class_name             — what shows on the character sheet
+#   title_singular         — "Dawnshield Knight"
+#   title_plural           — "Dawnshields"
+#
+# aesthetic:
+#   pitch                  — one-sentence visual description, SDXL-ready
+#   palette_shift          — notes on how Order diverges from faction palette
+#   motif                  — heraldic / sigil / banner element
+#
+# schools_taught:          — the UNLOCK GATE (must learn these schools to
+#   arcana: [ ... ]          qualify for this Order at the archetype position)
+#   might:  [ ... ]
+#   finesse: [ ... ]
+#   Constraints:
+#     - subset of archetype's active_tiers schools
+#     - subset of faction's allowed_schools (morality gate)
+#
+# lore:
+#   founded, home, oath, patron, recruitment, doctrine
+#
+# ============================================================================
+# Specs (in _specs.yaml, keyed by Order id)
+# ============================================================================
+#
+# Each Order gets 2–3 specs. Spec fields:
+#   id             — snake_case, unique within Order
+#   name           — player-facing spec name ("Shieldsworn Paladin")
+#   emphasis       — one of:
+#                    tank | bruiser | melee_dps | ranged_dps | magic_dps |
+#                    healer | support | control | stealth | utility |
+#                    sustain | summoner | hybrid
+#   description    — one-line playstyle summary
+#   schools_focus  — (optional) subset of Order's schools this spec leans into
+#
+# ============================================================================
+# Design rules
+# ============================================================================
+#
+# - Every reachable (faction, archetype) slot SHOULD have at least one flagship
+#   Order, so every build has a canonical name.
+# - Multiple Orders per slot is encouraged — flagship (D&D-canonical) plus
+#   alternatives (Fireblade at Paladin-position, Elementalist Knight, etc.).
+# - Morality gate: Concord Orders only draw from neutral + good schools;
+#   Rend Orders only from neutral + evil. Enforced by faction YAML.
+# - Orders / Specs MUST NOT add mechanical dials — archetype capabilities +
+#   faction-allowed schools are the only mechanical layer. Orders name and
+#   flavor; Specs emphasize.

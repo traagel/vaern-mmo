@@ -1,0 +1,42 @@
+id: side_quests__mourner_camp
+hub: mourner_camp
+hub_role: outpost
+zone: gravewatch_fields
+biome: coastal_cliff
+quest_count: 3
+quests:
+- id: side__mourner_camp__the_wrecksalvage
+  name: The Wrecksalvage
+  hub: mourner_camp
+  type: side
+  level: 5
+  objective:
+    kind: collect
+    target_hint: salvage from a recent wreck
+    count: 4
+  xp_reward: 200
+  gold_reward_copper: 25
+  repeatable: false
+- id: side__mourner_camp__the_seabird_plague
+  name: The Seabird Plague
+  hub: mourner_camp
+  type: side
+  level: 8
+  objective:
+    kind: kill
+    target_hint: aggressive seabirds nesting near the fishery
+    count: 1
+  xp_reward: 435
+  gold_reward_copper: 40
+  repeatable: false
+- id: side__mourner_camp__the_cliff_watch
+  name: The Cliff Watch
+  hub: mourner_camp
+  type: side
+  level: 12
+  objective:
+    kind: investigate
+    target_hint: a cliff-watcher who stopped reporting
+  xp_reward: 883
+  gold_reward_copper: 60
+  repeatable: false

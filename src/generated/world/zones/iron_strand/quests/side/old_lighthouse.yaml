@@ -1,0 +1,19 @@
+id: side_quests__old_lighthouse
+hub: old_lighthouse
+hub_role: ruin
+zone: iron_strand
+biome: coastal_cliff
+quest_count: 1
+quests:
+- id: side__old_lighthouse__the_wrecksalvage
+  name: The Wrecksalvage
+  hub: old_lighthouse
+  type: side
+  level: 41
+  objective:
+    kind: collect
+    target_hint: salvage from a recent wreck
+    count: 4
+  xp_reward: 8725
+  gold_reward_copper: 205
+  repeatable: false

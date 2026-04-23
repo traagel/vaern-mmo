@@ -1,0 +1,15 @@
+specs:
+- id: arcane_duel_runeblade
+  name: Rune-Duellist
+  emphasis: melee_dps
+  description: rune-augmented dagger strikes
+  schools_focus:
+  - arcane
+  - dagger
+- id: arcane_duel_silent
+  name: Silent-Scholar
+  emphasis: stealth
+  description: cantrip-cover infiltration
+  schools_focus:
+  - arcane
+  - silent

@@ -1,0 +1,22 @@
+id: order_necromancer
+faction: faction_b
+archetype_id: 4
+archetype_position:
+  might: 0
+  arcana: 100
+  finesse: 0
+flagship: false
+player_facing:
+  class_name: Necromancer
+  title_singular: Necromancer
+  title_plural: Necromancers
+schools_taught:
+  arcana:
+  - blood
+  - shadow
+  - arcane
+institutions:
+  primary: bleeding_vaults
+  secondary: fury_houses
+  tertiary: shadow_conclave
+chapter: chapter_necromancer

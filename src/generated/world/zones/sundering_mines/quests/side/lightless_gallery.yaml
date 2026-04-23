@@ -1,0 +1,18 @@
+id: side_quests__lightless_gallery
+hub: lightless_gallery
+hub_role: ruin
+zone: sundering_mines
+biome: mountain
+quest_count: 1
+quests:
+- id: side__lightless_gallery__the_rockfall_watch
+  name: The Rockfall Watch
+  hub: lightless_gallery
+  type: side
+  level: 54
+  objective:
+    kind: investigate
+    target_hint: a recent rockfall for survivors
+  xp_reward: 14861
+  gold_reward_copper: 270
+  repeatable: false

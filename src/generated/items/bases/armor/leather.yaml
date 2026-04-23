@@ -1,0 +1,110 @@
+bases:
+- id: leather_hood
+  piece_name: Hood
+  size: small
+  base_weight_kg: 0.9
+  kind:
+    type: armor
+    slot: head
+    armor_type: leather
+    layer: padding
+    coverage:
+    - head
+    base_armor_class: 2.8
+- id: leather_shoulder_guard
+  piece_name: Shoulder Guard
+  size: medium
+  base_weight_kg: 1.4
+  kind:
+    type: armor
+    slot: shoulders
+    armor_type: leather
+    layer: padding
+    coverage:
+    - shoulders
+    base_armor_class: 3.85
+- id: leather_jerkin
+  piece_name: Jerkin
+  size: medium
+  base_weight_kg: 5.0
+  kind:
+    type: armor
+    slot: chest
+    armor_type: leather
+    layer: padding
+    coverage:
+    - chest
+    base_armor_class: 7.0
+- id: leather_bracers
+  piece_name: Bracers
+  size: small
+  base_weight_kg: 0.4
+  kind:
+    type: armor
+    slot: wrists
+    armor_type: leather
+    layer: padding
+    coverage:
+    - arms
+    base_armor_class: 2.45
+- id: leather_gloves
+  piece_name: Gloves
+  size: small
+  base_weight_kg: 0.6
+  kind:
+    type: armor
+    slot: hands
+    armor_type: leather
+    layer: padding
+    coverage:
+    - hands
+    base_armor_class: 3.15
+- id: leather_belt
+  piece_name: Belt
+  size: small
+  base_weight_kg: 0.4
+  kind:
+    type: armor
+    slot: waist
+    armor_type: leather
+    layer: padding
+    coverage:
+    - waist
+    base_armor_class: 2.1
+- id: leather_leggings
+  piece_name: Leggings
+  size: medium
+  base_weight_kg: 2.0
+  kind:
+    type: armor
+    slot: legs
+    armor_type: leather
+    layer: padding
+    coverage:
+    - legs
+    base_armor_class: 5.6
+- id: leather_boots
+  piece_name: Boots
+  size: small
+  base_weight_kg: 0.9
+  kind:
+    type: armor
+    slot: feet
+    armor_type: leather
+    layer: padding
+    coverage:
+    - feet
+    base_armor_class: 3.15
+- id: leather_cloak
+  piece_name: Cloak
+  size: medium
+  base_weight_kg: 1.0
+  kind:
+    type: armor
+    slot: back
+    armor_type: leather
+    layer: over
+    coverage:
+    - shoulders
+    - chest
+    base_armor_class: 2.1

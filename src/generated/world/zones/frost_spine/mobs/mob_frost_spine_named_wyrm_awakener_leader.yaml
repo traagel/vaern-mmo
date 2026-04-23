@@ -1,0 +1,26 @@
+id: mob_frost_spine_named_wyrm_awakener_leader
+name: The Wyrm-Awakener Prime
+zone: frost_spine
+level: 55
+creature_type: humanoid
+armor_class: plate
+rarity: named
+role: captain
+faction_alignment: hostile_to_all
+hp_tier: heroic
+damage:
+  primary_school: blade
+  attack_range: melee
+  dps_tier: heavy
+behavior:
+  aggro_range: long
+  social_radius: 12
+  flee_threshold: 0.0
+  calls_allies: true
+  patrol: stationary
+loot_tier: quest_marked
+drops:
+  gold_copper_avg: 1320
+  item_hint: named-drop set (weapon/trinket); quest turn-in item
+biome_context: main-chain refuser-leader
+chain_target: true

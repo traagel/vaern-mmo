@@ -1,0 +1,19 @@
+id: scrap_flats
+name: The Scrap Flats
+faction_control: faction_b
+biome: marshland
+region: ashen_march
+tier: mid
+level_range:
+  min: 22
+  max: 30
+starter_race: null
+hub_count: 4
+budget:
+  quest_count_target: 126
+  unique_mob_types: 27
+  mob_kills_to_complete: 1260
+  estimated_hours_to_complete:
+    solo: 31.5
+    duo: 22.5
+notes: Mid zone in the ashen march. Targets 11-30 band session math.

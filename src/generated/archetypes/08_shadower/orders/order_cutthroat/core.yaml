@@ -1,0 +1,23 @@
+id: order_cutthroat
+faction: faction_b
+archetype_id: 8
+archetype_position:
+  might: 0
+  arcana: 0
+  finesse: 100
+player_facing:
+  class_name: Cutthroat
+  title_singular: Cutthroat
+  title_plural: Cutthroats
+schools_taught:
+  finesse:
+  - dagger
+  - poison
+  - thrown
+  - trickster
+flagship: true
+institutions:
+  primary: alchemist_tinker_clans
+  secondary: shadow_conclave
+  tertiary: fury_houses
+chapter: chapter_cutthroat

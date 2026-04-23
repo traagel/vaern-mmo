@@ -1,0 +1,25 @@
+id: order_stormguard
+faction: faction_a
+archetype_id: 1
+archetype_position:
+  might: 75
+  arcana: 25
+  finesse: 0
+flagship: false
+player_facing:
+  class_name: Stormguard
+  title_singular: Stormguard
+  title_plural: Stormguard
+schools_taught:
+  might:
+  - spear
+  - shield
+  - honor
+  arcana:
+  - lightning
+  - arcane
+institutions:
+  primary: phalanx_school
+  secondary: knight_order
+  tertiary: silver_quill
+chapter: chapter_stormguard

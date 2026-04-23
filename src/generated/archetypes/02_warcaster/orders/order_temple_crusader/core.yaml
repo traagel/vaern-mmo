@@ -1,0 +1,26 @@
+id: order_temple_crusader
+faction: faction_a
+archetype_id: 2
+archetype_position:
+  might: 50
+  arcana: 50
+  finesse: 0
+flagship: false
+player_facing:
+  class_name: Temple Crusader
+  title_singular: Temple Crusader
+  title_plural: Temple Crusaders
+schools_taught:
+  might:
+  - blade
+  - shield
+  - honor
+  arcana:
+  - light
+  - devotion
+  - arcane
+institutions:
+  primary: radiant_church
+  secondary: knight_order
+  tertiary: night_quick_guild
+chapter: chapter_temple_crusader

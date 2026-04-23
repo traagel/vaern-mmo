@@ -1,0 +1,97 @@
+bases:
+- id: plate_helm
+  piece_name: Helm
+  size: medium
+  base_weight_kg: 2.52
+  kind:
+    type: armor
+    slot: head
+    armor_type: plate
+    layer: plate
+    coverage:
+    - head
+    base_armor_class: 5.6
+- id: plate_pauldrons
+  piece_name: Pauldrons
+  size: medium
+  base_weight_kg: 3.92
+  kind:
+    type: armor
+    slot: shoulders
+    armor_type: plate
+    layer: plate
+    coverage:
+    - shoulders
+    base_armor_class: 7.7
+- id: plate_breastplate
+  piece_name: Breastplate
+  size: large
+  base_weight_kg: 14.0
+  kind:
+    type: armor
+    slot: chest
+    armor_type: plate
+    layer: plate
+    coverage:
+    - chest
+    base_armor_class: 14.0
+- id: plate_vambraces
+  piece_name: Vambraces
+  size: small
+  base_weight_kg: 1.12
+  kind:
+    type: armor
+    slot: wrists
+    armor_type: plate
+    layer: plate
+    coverage:
+    - arms
+    base_armor_class: 4.9
+- id: plate_gauntlets
+  piece_name: Gauntlets
+  size: small
+  base_weight_kg: 1.68
+  kind:
+    type: armor
+    slot: hands
+    armor_type: plate
+    layer: plate
+    coverage:
+    - hands
+    base_armor_class: 6.3
+- id: plate_girdle
+  piece_name: Girdle
+  size: small
+  base_weight_kg: 1.12
+  kind:
+    type: armor
+    slot: waist
+    armor_type: plate
+    layer: plate
+    coverage:
+    - waist
+    base_armor_class: 4.2
+- id: plate_greaves
+  piece_name: Greaves
+  size: medium
+  base_weight_kg: 5.6
+  kind:
+    type: armor
+    slot: legs
+    armor_type: plate
+    layer: plate
+    coverage:
+    - legs
+    base_armor_class: 11.2
+- id: plate_sabatons
+  piece_name: Sabatons
+  size: medium
+  base_weight_kg: 2.52
+  kind:
+    type: armor
+    slot: feet
+    armor_type: plate
+    layer: plate
+    coverage:
+    - feet
+    base_armor_class: 6.3

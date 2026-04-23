@@ -1,0 +1,15 @@
+specs:
+- id: seal_blade_witness
+  name: Witness-Blade
+  emphasis: melee_dps
+  description: light-augmented dagger strikes with celestial pact
+  schools_focus:
+  - light
+  - dagger
+- id: seal_blade_warden
+  name: Seal-Warden
+  emphasis: support
+  description: ward-ally protection via tonic-and-light
+  schools_focus:
+  - devotion
+  - tonics

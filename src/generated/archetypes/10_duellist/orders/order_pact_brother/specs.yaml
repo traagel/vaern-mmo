@@ -1,0 +1,22 @@
+specs:
+- id: pact_shadowfist
+  name: Shadow-Fist
+  emphasis: melee_dps
+  description: pact-empowered bare-hand striker
+  schools_focus:
+  - unarmed
+  - fury
+- id: pact_grimbreather
+  name: Grim-Breather
+  emphasis: sustain
+  description: pact-meditation self-sustain, absorb-and-retaliate
+  schools_focus:
+  - unarmed
+  - poison
+- id: pact_ironpact
+  name: Iron-Pact
+  emphasis: tank
+  description: bound-flesh tank, pact-reinforced armor-of-skin
+  schools_focus:
+  - blunt
+  - unarmed

@@ -1,0 +1,26 @@
+id: order_stormkeeper
+faction: faction_b
+archetype_id: 3
+archetype_position:
+  might: 25
+  arcana: 75
+  finesse: 0
+player_facing:
+  class_name: Stormkeeper
+  title_singular: Stormkeeper
+  title_plural: Stormkeepers
+schools_taught:
+  arcana:
+  - nature
+  - shadow
+  - blood
+  - fire
+  might:
+  - spear
+  - fury
+flagship: true
+institutions:
+  primary: ancestor_binder_houses
+  secondary: bleeding_vaults
+  tertiary: fury_houses
+chapter: chapter_stormkeeper

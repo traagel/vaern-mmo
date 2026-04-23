@@ -1,0 +1,24 @@
+pillar: finesse
+category: precision
+icon_shape:
+  primary: targeted-weapon impact at a vital point — crosshair or targeting rune, blade at a vulnerable spot
+  composition: tight focus on a small aim-point with crosshair lines converging, narrow impact spark
+  motion: slow deliberate draw then snap release, pinpoint contact
+  tier_escalation:
+    25: aimed shot with a subtle crosshair rune
+    50: sneak-attack blade at an exposed back
+    75: critical-chain — multiple compounding aim-point flashes
+    100: assassinate — single clean killing stroke with dropped silhouette
+tiers:
+  25:
+  - name: aimed_shot
+    description: First attack from stealth gets crit chance bonus.
+  50:
+  - name: sneak_attack
+    description: Bonus damage when attacking from hidden or flanking.
+  75:
+  - name: critical_chain
+    description: Consecutive crits escalate damage.
+  100:
+  - name: assassinate
+    description: Execute target below HP threshold.

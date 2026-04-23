@@ -1,0 +1,15 @@
+name: acrobat
+pillar: finesse
+morality: neutral
+family: style
+tag: mobility / evasion
+damage_type: bludgeoning
+applies_to_categories:
+- evasion
+- mobility
+- utility
+icon_style:
+  palette: chalk white, dust-tan, kinetic cyan streaks, deep stage-black, muscle-red accent
+  motif: leaping silhouette, motion-blur streaks, tumbling pose, balance-rope, airborne figure
+  silhouette: dynamic mid-air athletic pose with trailing motion lines, curved spine arc
+  material: flexed lean muscle, soft boots, linen wraps, dust-cloud kick-up

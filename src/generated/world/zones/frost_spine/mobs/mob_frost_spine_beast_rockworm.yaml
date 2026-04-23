@@ -1,0 +1,25 @@
+id: mob_frost_spine_beast_rockworm
+name: Deepworm Creep
+zone: frost_spine
+level: 51
+creature_type: aberration
+armor_class: ethereal
+rarity: common
+role: skirmisher
+faction_alignment: neutral_aggressive
+hp_tier: standard
+damage:
+  primary_school: shadow
+  attack_range: melee
+  dps_tier: standard
+behavior:
+  aggro_range: medium
+  social_radius: 5
+  flee_threshold: 0.0
+  calls_allies: false
+  patrol: short
+loot_tier: standard
+drops:
+  gold_copper_avg: 102
+  item_hint: biome-flavored trash material
+biome_context: emerges from burrowed tunnels

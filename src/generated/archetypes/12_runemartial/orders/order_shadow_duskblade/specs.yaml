@@ -1,0 +1,15 @@
+specs:
+- id: shadow_dusk_edge
+  name: Shadow-Edge
+  emphasis: melee_dps
+  description: shadow-augmented fury strikes
+  schools_focus:
+  - blade
+  - shadow
+- id: shadow_dusk_rune
+  name: Rune-Dusk
+  emphasis: control
+  description: arcane-shadow glyph disruptor
+  schools_focus:
+  - arcane
+  - shadow

@@ -1,0 +1,24 @@
+specs:
+- id: ironraider_clanchampion
+  name: Clan-Champion
+  emphasis: tank
+  description: raid-captain anchoring the warband
+  schools_focus:
+  - shield
+  - spear
+  - fury
+- id: ironraider_ravager
+  name: Ironraider Ravager
+  emphasis: melee_dps
+  description: two-weapon assault, front-of-the-raid striker
+  schools_focus:
+  - blade
+  - fury
+  - blunt
+- id: ironraider_shieldraider
+  name: Shield-Raider
+  emphasis: bruiser
+  description: spear-and-shield mobile raider
+  schools_focus:
+  - spear
+  - shield

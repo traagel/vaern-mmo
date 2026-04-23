@@ -1,0 +1,17 @@
+id: moth_hollow_deeps
+name: Moth-Hollow Deeps
+kind: dungeon
+group_size: 5
+zone: silverleaf_wood
+entrance_hub: moth_hollow
+level_range:
+  min: 48
+  max: 54
+level_band: 46-60
+tier: endgame
+boss_count: 3
+estimated_clear_minutes: 75
+loot_tier: endgame
+lockout: none (rerunnable)
+theme: "Moth-hollow's lower chambers \u2014 arcane wildlife, displaced by the Sundering"
+coop_notes: tight-coop-friendly; duo/trio can attempt under-level with care

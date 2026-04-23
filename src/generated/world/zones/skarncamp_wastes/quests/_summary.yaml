@@ -1,0 +1,16 @@
+id: quest_summary__skarncamp_wastes
+zone: skarncamp_wastes
+level_range:
+  min: 18
+  max: 26
+tier: mid
+budget_target: 126
+actual:
+  main_chain_steps: 8
+  side_quests: 9
+  filler_pool: 102
+  total: 119
+coverage_ratio: 0.94
+main_chain: chain_skarncamp_war_that_does_not_end
+notes: Main chain is hand-crafted story; side is templated by biome+hub-role; filler
+  is a procedural pool.

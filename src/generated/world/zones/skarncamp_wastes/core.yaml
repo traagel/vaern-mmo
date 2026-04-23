@@ -1,0 +1,19 @@
+id: skarncamp_wastes
+name: Skarncamp Wastes
+faction_control: faction_b
+biome: fjord
+region: eastern_fjords
+tier: mid
+level_range:
+  min: 18
+  max: 26
+starter_race: null
+hub_count: 3
+budget:
+  quest_count_target: 126
+  unique_mob_types: 27
+  mob_kills_to_complete: 1260
+  estimated_hours_to_complete:
+    solo: 31.5
+    duo: 22.5
+notes: Mid zone in the eastern fjords. Targets 11-30 band session math.

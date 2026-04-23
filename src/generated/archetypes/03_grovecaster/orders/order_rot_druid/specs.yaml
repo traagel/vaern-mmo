@@ -1,0 +1,15 @@
+specs:
+- id: rot_druid_blight
+  name: Blight-Druid
+  emphasis: magic_dps
+  description: decay-damage offense caster
+  schools_focus:
+  - blood
+  - nature
+- id: rot_druid_bone
+  name: Bone-Druid
+  emphasis: support
+  description: ancestor-grove hex and curse-binding
+  schools_focus:
+  - shadow
+  - nature

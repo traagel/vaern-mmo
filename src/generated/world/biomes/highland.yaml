@@ -1,0 +1,15 @@
+id: highland
+name: Forested Highlands
+climate: cool, windswept, fog-prone
+hazards:
+- cliff-fall
+- sudden fog ambush
+typical_flora:
+- pine
+- heather
+- gorse
+typical_fauna:
+- hillcat
+- hawk
+- mountain-goat
+faction_affinity: faction_a

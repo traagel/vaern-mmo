@@ -1,0 +1,15 @@
+specs:
+- id: arrow_bard_chord
+  name: Chord-Archer
+  emphasis: ranged_dps
+  description: rune-augmented longbow damage
+  schools_focus:
+  - arcane
+  - bow
+- id: arrow_bard_wood
+  name: Wood-Herald
+  emphasis: support
+  description: nature-and-arcane ally buff
+  schools_focus:
+  - nature
+  - arcane

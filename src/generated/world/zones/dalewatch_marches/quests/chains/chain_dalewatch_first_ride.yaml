@@ -1,0 +1,164 @@
+id: chain_dalewatch_first_ride
+zone: dalewatch_marches
+title: The First Ride
+premise: A new Dalewatch rider takes the Warden's Oath — then rides into a missing-child case that widens
+  into something the Academies buried three years ago. What starts as a patrol ends at the edge of the
+  Blackwash Fens, where a Grand Drifter has cut a seal no one was meant to cut.
+total_steps: 10
+breadcrumb_from: dalewatch_keep
+final_boss_hint: Grand Drifter Valenn and the Brine-Shade Primarch in the Drifter's Lair
+final_reward:
+  xp_bonus: 3500
+  gold_bonus_copper: 1400
+  item_hint: Warden's full cloak + Ashmere patrol-sigil + rider's steel belt
+  title_hint: '''Rider of the Marches'''
+npcs:
+- id: warden_telyn
+  display_name: Warden Telyn
+  title: Captain of the Dalewatch
+  hub_id: dalewatch_keep
+  dialogue: '"Another rider for the march? Good — the border''s been strange this week. A shepherd down
+    by Miller''s Crossing lost his grandson in the reed-brake. Ride out and find Old Brenn; bring the
+    boy home. I don''t like what the tracks out there are saying."'
+- id: old_brenn
+  display_name: Old Brenn the Shepherd
+  title: Village Elder of Miller's Crossing
+  hub_id: miller_crossing
+  dialogue: '"Thank the old kings — the Warden sent you. My grandson Tam took the flock out to the reed-brake
+    at dawn and hasn''t come back. There''s tracks in the mud. Not wolf. Not man. Please — he''s all I''ve
+    got."'
+- id: brother_fennick
+  display_name: Brother Fennick
+  title: Chapel-Keeper of Harrier's Rest
+  hub_id: harriers_rest
+  dialogue: '"Academy writing, this is. Old Academy. Someone who studied under the Censured before they
+    went east. Give me a day with the folio — I can crack the cipher, but you won''t like what it says.
+    There''s a place named. Copperstep."'
+- id: scout_iwen
+  display_name: Scout Iwen
+  title: Ranger of Ashmere Ford
+  hub_id: ford_of_ashmere
+  dialogue: '"Pact-worked. I''d know that groove-pattern in the dark. That focus was cut east of the border
+    — but it''s in a Concord drifter''s hand. Whatever they''re building in the fens, someone across the
+    river''s been helping."'
+- id: sergeant_rook
+  display_name: Sergeant Rook
+  title: Camp Commander at Ashmere Ford
+  hub_id: ford_of_ashmere
+  dialogue: '"The Warden''s orders came this morning. You''re riding the strike on the Blackwash — I can''t
+    spare riders from the Ford, but I''ve marked the cut-trail on your map. End this Wake business before
+    it crosses the Fen''s edge."'
+steps:
+- step: 1
+  name: Report to Warden Telyn
+  level: 1
+  objective:
+    kind: talk
+    npc: warden_telyn
+    target_hint: Warden Telyn at Dalewatch Keep
+  xp_reward: 520
+  gold_reward_copper: 15
+  id: chain_dalewatch_first_ride__01_report_to_warden_telyn
+  prerequisite: null
+- step: 2
+  name: Ride to Old Brenn at Miller's Crossing
+  level: 1
+  objective:
+    kind: talk
+    npc: old_brenn
+    target_hint: Old Brenn the Shepherd
+  xp_reward: 620
+  gold_reward_copper: 20
+  id: chain_dalewatch_first_ride__02_ride_to_old_brenn_at_millers_crossing
+  prerequisite: chain_dalewatch_first_ride__01_report_to_warden_telyn
+- step: 3
+  name: Follow the Bloodied Trail
+  level: 2
+  objective:
+    kind: investigate
+    target_hint: the bloodied trail into the reed-brake
+    location: dalewatch_reed_brake
+  xp_reward: 720
+  gold_reward_copper: 30
+  id: chain_dalewatch_first_ride__03_follow_the_bloodied_trail
+  prerequisite: chain_dalewatch_first_ride__02_ride_to_old_brenn_at_millers_crossing
+- step: 4
+  name: Confront Corlen the Drifter
+  level: 3
+  objective:
+    kind: kill
+    target_hint: Corlen the Drifter-Mage
+    mob_id: mob_dalewatch_marches_named_drifter_mage_named
+    count: 1
+  xp_reward: 900
+  gold_reward_copper: 45
+  id: chain_dalewatch_first_ride__04_confront_corlen_the_drifter
+  prerequisite: chain_dalewatch_first_ride__03_follow_the_bloodied_trail
+- step: 5
+  name: Return Tam and the Sealed Folio
+  level: 3
+  objective:
+    kind: deliver
+    npc: warden_telyn
+    target_hint: return the rescued child and Corlen's folio to Warden Telyn
+  xp_reward: 1000
+  gold_reward_copper: 60
+  id: chain_dalewatch_first_ride__05_return_tam_and_the_sealed_folio
+  prerequisite: chain_dalewatch_first_ride__04_confront_corlen_the_drifter
+- step: 6
+  name: The Sealed Folio
+  level: 4
+  objective:
+    kind: talk
+    npc: brother_fennick
+    target_hint: bring the folio to Brother Fennick at Harrier's Rest
+  xp_reward: 1100
+  gold_reward_copper: 80
+  id: chain_dalewatch_first_ride__06_the_sealed_folio
+  prerequisite: chain_dalewatch_first_ride__05_return_tam_and_the_sealed_folio
+- step: 7
+  name: Clear Copperstep
+  level: 6
+  objective:
+    kind: kill
+    target_hint: Master Drifter Halen at Copperstep Mine
+    mob_id: mob_dalewatch_marches_named_drifter_master
+    count: 1
+  xp_reward: 1600
+  gold_reward_copper: 120
+  id: chain_dalewatch_first_ride__07_clear_copperstep
+  prerequisite: chain_dalewatch_first_ride__06_the_sealed_folio
+- step: 8
+  name: The Pact-Worked Focus
+  level: 7
+  objective:
+    kind: talk
+    npc: scout_iwen
+    target_hint: show the recovered focus to Scout Iwen at Ashmere Ford
+  xp_reward: 1800
+  gold_reward_copper: 160
+  id: chain_dalewatch_first_ride__08_the_pact_worked_focus
+  prerequisite: chain_dalewatch_first_ride__07_clear_copperstep
+- step: 9
+  name: Strike the Blackwash
+  level: 8
+  objective:
+    kind: investigate
+    target_hint: the cut-trail into the Blackwash Fens
+    location: blackwash_fens
+  xp_reward: 2000
+  gold_reward_copper: 200
+  id: chain_dalewatch_first_ride__09_strike_the_blackwash
+  prerequisite: chain_dalewatch_first_ride__08_the_pact_worked_focus
+- step: 10
+  name: The Wake's Bones
+  level: 8
+  objective:
+    kind: kill
+    target_hint: Grand Drifter Valenn and the Brine-Shade Primarch in the Drifter's Lair
+    mob_id: mob_dalewatch_marches_named_drifter_valenn
+    count: 1
+  xp_reward: 3000
+  gold_reward_copper: 280
+  id: chain_dalewatch_first_ride__10_the_wakes_bones
+  prerequisite: chain_dalewatch_first_ride__09_strike_the_blackwash

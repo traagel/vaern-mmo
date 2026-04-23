@@ -1,0 +1,22 @@
+specs:
+- id: stormkeeper_crowrider
+  name: Crow-Rider
+  emphasis: magic_dps
+  description: storm-caller with lightning and crow-swarm damage
+  schools_focus:
+  - lightning
+  - shadow
+- id: stormkeeper_ancestor
+  name: Ancestor-Binder
+  emphasis: control
+  description: binding-rite caster, wind and root control
+  schools_focus:
+  - nature
+  - blood
+- id: stormkeeper_stormcaller
+  name: Storm-Caller
+  emphasis: healer
+  description: rainfall-heal and regrowth in tribal-forest tradition
+  schools_focus:
+  - nature
+  - fire

@@ -1,0 +1,30 @@
+id: side_quests__elder_grove
+hub: elder_grove
+hub_role: waypoint
+zone: silverleaf_wood
+biome: temperate_forest
+quest_count: 2
+quests:
+- id: side__elder_grove__the_timber_scout
+  name: The Timber Scout
+  hub: elder_grove
+  type: side
+  level: 15
+  objective:
+    kind: investigate
+    target_hint: a timber-camp that went silent
+  xp_reward: 1320
+  gold_reward_copper: 75
+  repeatable: false
+- id: side__elder_grove__the_beast_cull
+  name: The Beast Cull
+  hub: elder_grove
+  type: side
+  level: 22
+  objective:
+    kind: kill
+    target_hint: overpopulated forest predators
+    count: 1
+  xp_reward: 2675
+  gold_reward_copper: 110
+  repeatable: false

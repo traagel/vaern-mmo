@@ -1,0 +1,15 @@
+name: blunt
+pillar: might
+morality: neutral
+family: weapon
+tag: bludgeoning / impact
+damage_type: bludgeoning
+applies_to_categories:
+- offense
+- threat
+- control
+icon_style:
+  palette: iron gray, tarnished bronze, dust cloud tan, shock-white impact flare
+  motif: flanged mace heads, heavy hammers, impact-crater cracks, shockwave rings, dented plate
+  silhouette: top-heavy weapon with thick striking head, broad impact flare at contact point
+  material: cast iron, forged bronze, banded oak haft, compacted stone

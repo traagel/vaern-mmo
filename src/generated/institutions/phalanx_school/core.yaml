@@ -1,0 +1,19 @@
+id: phalanx_school
+faction: faction_a
+name: The Phalanx School
+tradition: March Discipline
+curriculum:
+  major:
+    might:
+    - spear
+    - shield
+  secondary:
+    might:
+    - blunt
+    - unarmed
+    - honor
+    finesse:
+    - bow
+pillars:
+- finesse
+- might

@@ -1,0 +1,25 @@
+id: order_leaf_singer
+faction: faction_a
+archetype_id: 3
+archetype_position:
+  might: 25
+  arcana: 75
+  finesse: 0
+flagship: false
+player_facing:
+  class_name: Leaf-Singer
+  title_singular: Leaf-Singer
+  title_plural: Leaf-Singers
+schools_taught:
+  arcana:
+  - nature
+  - earth
+  might:
+  - spear
+  finesse:
+  - tonics
+institutions:
+  primary: circle_of_roots
+  secondary: knight_order
+  tertiary: night_quick_guild
+chapter: chapter_leaf_singer

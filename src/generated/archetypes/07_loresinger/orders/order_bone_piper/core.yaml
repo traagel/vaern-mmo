@@ -1,0 +1,24 @@
+id: order_bone_piper
+faction: faction_b
+archetype_id: 7
+archetype_position:
+  might: 0
+  arcana: 25
+  finesse: 75
+flagship: false
+player_facing:
+  class_name: Bone-Piper
+  title_singular: Bone-Piper
+  title_plural: Bone-Pipers
+schools_taught:
+  arcana:
+  - shadow
+  finesse:
+  - bow
+  - trickster
+  - dagger
+institutions:
+  primary: shadow_conclave
+  secondary: alchemist_tinker_clans
+  tertiary: storm_pact
+chapter: chapter_bone_piper

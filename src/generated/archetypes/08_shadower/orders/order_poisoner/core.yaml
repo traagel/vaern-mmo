@@ -1,0 +1,22 @@
+id: order_poisoner
+faction: faction_b
+archetype_id: 8
+archetype_position:
+  might: 0
+  arcana: 0
+  finesse: 100
+flagship: false
+player_facing:
+  class_name: Poisoner
+  title_singular: Poisoner
+  title_plural: Poisoners
+schools_taught:
+  finesse:
+  - poison
+  - thrown
+  - silent
+institutions:
+  primary: alchemist_tinker_clans
+  secondary: shadow_conclave
+  tertiary: fury_houses
+chapter: chapter_poisoner

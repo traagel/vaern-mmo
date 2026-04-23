@@ -1,0 +1,11 @@
+id: ford_of_ashmere
+zone: dalewatch_marches
+name: Ford of Ashmere
+role: outpost
+amenities:
+- repair
+- flight_master
+quest_givers: 3
+offset_from_zone_origin:
+  x: 270.0
+  z: 40.0

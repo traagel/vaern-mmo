@@ -1,0 +1,9 @@
+id: scavenger_mound
+zone: scrap_flats
+name: Scavenger Mound
+role: outpost
+amenities:
+- innkeeper
+- flight_master
+- repair
+quest_givers: 3

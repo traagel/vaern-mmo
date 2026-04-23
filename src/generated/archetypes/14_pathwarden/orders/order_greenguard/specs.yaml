@@ -1,0 +1,24 @@
+specs:
+- id: green_thornranger
+  name: Thorn-Ranger
+  emphasis: ranged_dps
+  description: bow-focused forest hunter, nature-augmented shots
+  schools_focus:
+  - bow
+  - nature
+- id: green_leafwarden
+  name: Leaf-Warden
+  emphasis: support
+  description: grove-bond support with minor heals and ward-growth
+  schools_focus:
+  - nature
+  - light
+  - tonics
+- id: green_shadowscout
+  name: Shadow-Scout
+  emphasis: stealth
+  description: dappled-camouflage infiltrator
+  schools_focus:
+  - silent
+  - dagger
+  - acrobat

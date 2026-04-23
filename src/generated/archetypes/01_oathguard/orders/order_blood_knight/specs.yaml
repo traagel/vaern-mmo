@@ -1,0 +1,11 @@
+specs:
+  - id: bloodknight_reaper
+    name: Blood-Reaper
+    emphasis: hybrid
+    description: offensive blade-and-ritual combat, self-wounding for power
+    schools_focus: [blade, blood]
+  - id: bloodknight_warder
+    name: Blood-Warder
+    emphasis: tank
+    description: shield-tank with drain-ward healing from struck enemies
+    schools_focus: [shield, blood, blunt]

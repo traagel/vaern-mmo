@@ -1,0 +1,107 @@
+pillar: might
+category: defense
+variants:
+  25:
+    blade:
+      name: riposte
+      description: Parry with counter-slash.
+      damage_type: null
+      morality: neutral
+    honor:
+      name: disciplined_block
+      description: Formal parry posture.
+      damage_type: null
+      morality: good
+    shield:
+      name: shield_parry
+      description: Block with shield.
+      damage_type: null
+      morality: neutral
+    spear:
+      name: shaft_block
+      description: Parry with spear haft.
+      damage_type: null
+      morality: neutral
+    unarmed:
+      name: deflect_palm
+      description: Catch strike with palm.
+      damage_type: null
+      morality: neutral
+  50:
+    blade:
+      name: weaponform
+      description: Sword-based defensive stance; deflect chance.
+      damage_type: null
+      morality: neutral
+    honor:
+      name: vigilant_guard
+      description: Honor-guard stance.
+      damage_type: null
+      morality: good
+    shield:
+      name: shield_wall
+      description: Classic defensive stance.
+      damage_type: null
+      morality: neutral
+    spear:
+      name: phalanx
+      description: Spear-defensive stance.
+      damage_type: null
+      morality: neutral
+    unarmed:
+      name: iron_body
+      description: Martial hardening technique.
+      damage_type: null
+      morality: neutral
+  75:
+    blade:
+      name: blade_bastion
+      description: Major weapon-form mitigation.
+      damage_type: null
+      morality: neutral
+    honor:
+      name: unbreakable_oath
+      description: Oath-empowered resilience.
+      damage_type: null
+      morality: good
+    shield:
+      name: iron_guard
+      description: Major mitigation, knockback immunity.
+      damage_type: null
+      morality: neutral
+    spear:
+      name: impenetrable
+      description: Spear-wall mitigation.
+      damage_type: null
+      morality: neutral
+    unarmed:
+      name: diamond_body
+      description: Near-invulnerable body hardening.
+      damage_type: null
+      morality: neutral
+  100:
+    blade:
+      name: perfect_sword
+      description: Brief untouchable blade defense.
+      damage_type: null
+      morality: neutral
+    honor:
+      name: knights_valor
+      description: Honor-bound invincibility.
+      damage_type: null
+      morality: good
+    shield:
+      name: last_stand
+      description: Brief immunity stance.
+      damage_type: null
+      morality: neutral
+    spear:
+      name: final_guard
+      description: Brief untouchable spear stance.
+      damage_type: null
+      morality: neutral
+    unarmed:
+      name: ironbody_eternal
+      description: Briefly invulnerable body.
+      damage_type: null
+      morality: neutral

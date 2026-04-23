@@ -1,0 +1,18 @@
+id: first_barrow
+name: The First Barrow
+kind: dungeon
+group_size: 5
+zone: barrow_coast
+entrance_hub: silent_harbor
+level_range:
+  min: 12
+  max: 18
+level_band: 11-30
+tier: leveling
+boss_count: 3
+estimated_clear_minutes: 45
+loot_tier: low
+lockout: none (rerunnable)
+theme: Earliest Gravewrought burial-shell, now haunted by ancestor-shells that never
+  woke
+coop_notes: tight-coop-friendly; duo/trio can attempt under-level with care

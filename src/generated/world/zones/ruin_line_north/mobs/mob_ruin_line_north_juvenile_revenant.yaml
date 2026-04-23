@@ -1,0 +1,25 @@
+id: mob_ruin_line_north_juvenile_revenant
+name: Juvenile Ruin-Revenant
+zone: ruin_line_north
+level: 32
+creature_type: undead
+armor_class: bone
+rarity: common
+role: scout
+faction_alignment: hostile_to_all
+hp_tier: standard
+damage:
+  primary_school: shadow
+  attack_range: melee
+  dps_tier: light
+behavior:
+  aggro_range: medium
+  social_radius: 0
+  flee_threshold: 0.0
+  calls_allies: false
+  patrol: long
+loot_tier: standard
+drops:
+  gold_copper_avg: 32
+  item_hint: biome-flavored trash material
+biome_context: 'young, lower HP but faster; base form: Ruin-Revenant'

@@ -1,0 +1,24 @@
+pillar: might
+category: control
+icon_shape:
+  primary: physical crowd-control impact — shoulder-shove, ground-slam, grapple, or charge-knockdown
+  composition: low-angle impact with force radiating outward, cracked-ground or shove-cloud at base
+  motion: driving forward momentum, shockwave from feet, seized opponent
+  tier_escalation:
+    25: simple shove with a small dust puff
+    50: charging bull-rush knocking a figure down
+    75: ground-slam with radial shockwave and cracked earth
+    100: full-body grapple locking an enemy in a vise-hold
+tiers:
+  25:
+  - name: shove
+    description: Push a single enemy 2-3 meters back.
+  50:
+  - name: bull_rush
+    description: Charge forward; knockdown first hit.
+  75:
+  - name: ground_pound
+    description: AoE knockdown around you.
+  100:
+  - name: grapple_lock
+    description: Single-target total-disable grapple.

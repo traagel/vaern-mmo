@@ -1,0 +1,21 @@
+id: junk_warren_pit_bosses
+instance: junk_warren_pit
+bosses:
+- id: trap_tinker
+  name: The Trap-Tinker
+  role_tag: miniboss
+  level: 14
+  mechanic: room-wide trap-field, disarm check
+  hp_tier: elite
+- id: scrap_champion
+  name: The Scrap Champion
+  role_tag: miniboss
+  level: 17
+  mechanic: cobbled-armor absorb shield
+  hp_tier: elite
+- id: boss_skorr
+  name: Boss Skorr the Many-Eyed
+  role_tag: final
+  level: 20
+  mechanic: 'stolen-alchemy potion phases: fire, poison, stealth'
+  hp_tier: heroic

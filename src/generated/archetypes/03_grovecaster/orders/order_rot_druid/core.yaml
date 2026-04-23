@@ -1,0 +1,24 @@
+id: order_rot_druid
+faction: faction_b
+archetype_id: 3
+archetype_position:
+  might: 25
+  arcana: 75
+  finesse: 0
+flagship: false
+player_facing:
+  class_name: Rot-Druid
+  title_singular: Rot-Druid
+  title_plural: Rot-Druids
+schools_taught:
+  arcana:
+  - blood
+  - nature
+  - shadow
+  might:
+  - spear
+institutions:
+  primary: ancestor_binder_houses
+  secondary: fury_houses
+  tertiary: shadow_conclave
+chapter: chapter_rot_druid

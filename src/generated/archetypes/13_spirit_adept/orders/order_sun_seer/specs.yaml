@@ -1,0 +1,15 @@
+specs:
+- id: sun_seer_dawn
+  name: Dawn-Seer
+  emphasis: healer
+  description: radiant-tonic healer
+  schools_focus:
+  - light
+  - tonics
+- id: sun_seer_witness
+  name: Witness-Oracle
+  emphasis: support
+  description: devotion-divination support
+  schools_focus:
+  - devotion
+  - light

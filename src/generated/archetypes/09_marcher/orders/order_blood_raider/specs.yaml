@@ -1,0 +1,15 @@
+specs:
+- id: blood_raid_hunter
+  name: Blood-Hunter
+  emphasis: ranged_dps
+  description: longbow blood-hunter
+  schools_focus:
+  - bow
+  - spear
+- id: blood_raid_javelin
+  name: Javelin-Raider
+  emphasis: bruiser
+  description: thrown-javelin frontline skirmisher
+  schools_focus:
+  - thrown
+  - fury

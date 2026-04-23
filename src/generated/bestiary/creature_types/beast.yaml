@@ -1,0 +1,44 @@
+id: beast
+name: Beast
+category: natural
+description: "Natural fauna \u2014 bears, wolves, boars, deer, raptors, seals, swarms.\
+  \ Organic, fleshy, mortal."
+hp_scaling:
+  base_at_level_1: 30
+  per_level_multiplier: 1.15
+  formula: round(base_at_1 * multiplier^(level-1))
+default_armor_class: hide
+resistances:
+  nature: -0.15
+  fire: 0.15
+affinities:
+  preferred:
+  - blade
+  - unarmed
+  allowed:
+  - blunt
+  forbidden:
+  - arcane
+  - fire
+  - frost
+  - lightning
+  - earth
+  - light
+  - devotion
+  - shadow
+  - blood
+  - honor
+  - fury
+  - poison
+  - tonics
+  - alchemy
+  - trickster
+behavior_defaults:
+  intelligence: low
+  social: pack
+  flee_threshold: 0.25
+  aggro_range: medium
+tags:
+- flesh
+- organic
+- wild

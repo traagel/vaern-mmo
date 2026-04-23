@@ -1,0 +1,15 @@
+name: bow
+pillar: finesse
+morality: neutral
+family: ranged
+tag: archery / patience
+damage_type: piercing
+applies_to_categories:
+- precision
+- mobility
+- utility
+icon_style:
+  palette: warm yew wood, pale fletching cream, iron arrowhead gray, forest-green wrap, tensioned-string shimmer
+  motif: drawn longbow, nocked arrow, broadhead, feather fletching, taut bowstring, loose-release spark
+  silhouette: curved bow arc with arrow aimed diagonally, taut string, patient steady pose
+  material: yew longbow, sinew string, goose-feather fletching, forged broadhead, waxed leather grip

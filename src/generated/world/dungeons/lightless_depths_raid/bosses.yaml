@@ -1,0 +1,27 @@
+id: lightless_depths_raid_bosses
+instance: lightless_depths_raid
+bosses:
+- id: pit_lords_three
+  name: The Pit-Lords Three
+  role_tag: lieutenant
+  level: 55
+  mechanic: three bosses; must die within 10s of each other
+  hp_tier: elite
+- id: deep_forge_primus
+  name: The Deep-Forge Primus
+  role_tag: lieutenant
+  level: 57
+  mechanic: forge-add-summon, aoe
+  hp_tier: elite
+- id: carver_prime
+  name: The Carver Prime
+  role_tag: lieutenant
+  level: 58
+  mechanic: bigger than the 5-man mother
+  hp_tier: elite
+- id: the_deeper_thing
+  name: The Deeper Thing
+  role_tag: final
+  level: 60
+  mechanic: four-phase, raid-wide mechanic rotation
+  hp_tier: heroic

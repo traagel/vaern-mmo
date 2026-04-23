@@ -1,0 +1,26 @@
+id: order_grovewarden
+faction: faction_a
+archetype_id: 3
+archetype_position:
+  might: 25
+  arcana: 75
+  finesse: 0
+player_facing:
+  class_name: Grovewarden
+  title_singular: Grovewarden
+  title_plural: Grovewardens
+schools_taught:
+  arcana:
+  - nature
+  - earth
+  - light
+  - arcane
+  might:
+  - spear
+  - unarmed
+flagship: true
+institutions:
+  primary: circle_of_roots
+  secondary: phalanx_school
+  tertiary: radiant_church
+chapter: chapter_grovewarden

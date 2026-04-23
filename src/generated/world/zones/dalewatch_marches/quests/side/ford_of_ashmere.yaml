@@ -1,0 +1,42 @@
+id: side_quests__ford_of_ashmere
+hub: ford_of_ashmere
+hub_role: outpost
+zone: dalewatch_marches
+biome: river_valley
+quest_count: 3
+quests:
+- id: side__ford_of_ashmere__pact_patrol_kills
+  name: Thin the Pact Patrols
+  hub: ford_of_ashmere
+  type: side
+  level: 6
+  objective:
+    kind: kill
+    target_hint: Pact scouts probing the eastern bank
+    count: 10
+  xp_reward: 420
+  gold_reward_copper: 90
+  repeatable: false
+- id: side__ford_of_ashmere__scouts_tokens
+  name: Scout Iwen's Tokens
+  hub: ford_of_ashmere
+  type: side
+  level: 7
+  objective:
+    kind: collect
+    target_hint: pact-worked charms off fallen skirmishers
+    count: 6
+  xp_reward: 520
+  gold_reward_copper: 110
+  repeatable: false
+- id: side__ford_of_ashmere__engineers_survey
+  name: The Engineer's Survey
+  hub: ford_of_ashmere
+  type: side
+  level: 6
+  objective:
+    kind: deliver
+    target_hint: the survey bag to Engineer Tuck near Copperstep Mine
+  xp_reward: 420
+  gold_reward_copper: 90
+  repeatable: false

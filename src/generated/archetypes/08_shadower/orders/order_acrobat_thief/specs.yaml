@@ -1,0 +1,15 @@
+specs:
+- id: acrobat_thief_flip
+  name: Flip-Thief
+  emphasis: utility
+  description: acrobatic infiltration-burglar
+  schools_focus:
+  - acrobat
+  - trickster
+- id: acrobat_thief_throw
+  name: Throw-Artist
+  emphasis: ranged_dps
+  description: thrown-dagger circus killer
+  schools_focus:
+  - thrown
+  - acrobat

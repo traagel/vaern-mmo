@@ -1,0 +1,53 @@
+id: side_quests__silverleaf_lodge
+hub: silverleaf_lodge
+hub_role: capital
+zone: silverleaf_wood
+biome: temperate_forest
+quest_count: 4
+quests:
+- id: side__silverleaf_lodge__the_timber_scout
+  name: The Timber Scout
+  hub: silverleaf_lodge
+  type: side
+  level: 15
+  objective:
+    kind: investigate
+    target_hint: a timber-camp that went silent
+  xp_reward: 1320
+  gold_reward_copper: 75
+  repeatable: false
+- id: side__silverleaf_lodge__the_beast_cull
+  name: The Beast Cull
+  hub: silverleaf_lodge
+  type: side
+  level: 17
+  objective:
+    kind: kill
+    target_hint: overpopulated forest predators
+    count: 1
+  xp_reward: 1659
+  gold_reward_copper: 85
+  repeatable: false
+- id: side__silverleaf_lodge__the_ranger_arms
+  name: The Ranger Arms
+  hub: silverleaf_lodge
+  type: side
+  level: 20
+  objective:
+    kind: collect
+    target_hint: recovered ranger-arms from an ambush site
+    count: 4
+  xp_reward: 2240
+  gold_reward_copper: 100
+  repeatable: false
+- id: side__silverleaf_lodge__the_oath_sapling
+  name: The Oath Sapling
+  hub: silverleaf_lodge
+  type: side
+  level: 22
+  objective:
+    kind: deliver
+    target_hint: a ritual sapling to a distant grove
+  xp_reward: 2675
+  gold_reward_copper: 110
+  repeatable: false

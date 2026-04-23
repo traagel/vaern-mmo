@@ -1,0 +1,15 @@
+specs:
+- id: rot_bard_jest
+  name: Jester-of-Rot
+  emphasis: control
+  description: toxin-and-trickery debilitator
+  schools_focus:
+  - poison
+  - blood
+- id: rot_bard_silk
+  name: Silk-Dagger
+  emphasis: melee_dps
+  description: silent-dagger court-killer
+  schools_focus:
+  - dagger
+  - silent

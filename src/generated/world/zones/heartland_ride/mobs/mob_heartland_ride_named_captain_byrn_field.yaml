@@ -1,0 +1,26 @@
+id: mob_heartland_ride_named_captain_byrn_field
+name: Captain Byrn (field)
+zone: heartland_ride
+level: 10
+creature_type: humanoid
+armor_class: plate
+rarity: elite
+role: captain
+faction_alignment: hostile_to_faction_a
+hp_tier: elite
+damage:
+  primary_school: blade
+  attack_range: melee
+  dps_tier: heavy
+behavior:
+  aggro_range: long
+  social_radius: 12
+  flee_threshold: 0.0
+  calls_allies: true
+  patrol: stationary
+loot_tier: rare
+drops:
+  gold_copper_avg: 90
+  item_hint: rare biome reagent; low chance of blue-tier item
+biome_context: field-side rare spawn before keep
+chain_target: true

@@ -1,0 +1,27 @@
+id: lightless_gallery_bosses
+instance: lightless_gallery
+bosses:
+- id: pit_stalker
+  name: The Pit-Stalker
+  role_tag: miniboss
+  level: 42
+  mechanic: stealth-ambush, requires light sources
+  hp_tier: elite
+- id: deep_carver
+  name: The Deep-Carver
+  role_tag: miniboss
+  level: 45
+  mechanic: tunnel-and-emerge position mechanic
+  hp_tier: elite
+- id: dark_forgemaster
+  name: The Dark Forgemaster
+  role_tag: miniboss
+  level: 47
+  mechanic: crafts adds mid-fight
+  hp_tier: elite
+- id: the_carver_mother
+  name: The Carver-Mother
+  role_tag: final
+  level: 50
+  mechanic: "blind-fight phase \u2014 all vision obscured, sound cues only"
+  hp_tier: heroic

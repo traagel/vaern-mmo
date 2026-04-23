@@ -1,0 +1,15 @@
+id: fjord
+name: Fjord Coast
+climate: cold, deep-water harbors, island-strewn
+hazards:
+- ice-floe
+- raider-longship landings
+typical_flora:
+- pine
+- moss
+- kelp
+typical_fauna:
+- seal
+- orca
+- fjord-serpent
+faction_affinity: faction_b

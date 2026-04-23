@@ -1,0 +1,18 @@
+id: side_quests__sundered_peak
+hub: sundered_peak
+hub_role: ruin
+zone: frost_spine
+biome: mountain
+quest_count: 1
+quests:
+- id: side__sundered_peak__the_rockfall_watch
+  name: The Rockfall Watch
+  hub: sundered_peak
+  type: side
+  level: 51
+  objective:
+    kind: investigate
+    target_hint: a recent rockfall for survivors
+  xp_reward: 13301
+  gold_reward_copper: 255
+  repeatable: false

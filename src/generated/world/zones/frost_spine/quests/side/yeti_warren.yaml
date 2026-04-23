@@ -1,0 +1,42 @@
+id: side_quests__yeti_warren
+hub: yeti_warren
+hub_role: outpost
+zone: frost_spine
+biome: mountain
+quest_count: 3
+quests:
+- id: side__yeti_warren__the_rockfall_watch
+  name: The Rockfall Watch
+  hub: yeti_warren
+  type: side
+  level: 48
+  objective:
+    kind: investigate
+    target_hint: a recent rockfall for survivors
+  xp_reward: 11827
+  gold_reward_copper: 240
+  repeatable: false
+- id: side__yeti_warren__the_ore_sample
+  name: The Ore Sample
+  hub: yeti_warren
+  type: side
+  level: 52
+  objective:
+    kind: collect
+    target_hint: ore samples from the upper shafts
+    count: 4
+  xp_reward: 13811
+  gold_reward_copper: 260
+  repeatable: false
+- id: side__yeti_warren__the_stoneworm_cull
+  name: The Stoneworm Cull
+  hub: yeti_warren
+  type: side
+  level: 55
+  objective:
+    kind: kill
+    target_hint: rockworms threatening a settlement
+    count: 1
+  xp_reward: 15400
+  gold_reward_copper: 275
+  repeatable: false

@@ -1,0 +1,15 @@
+specs:
+- id: black_grove_stone
+  name: Stone-Shadow
+  emphasis: control
+  description: earth-and-shadow terrain control
+  schools_focus:
+  - earth
+  - shadow
+- id: black_grove_thorn
+  name: Thorn-Shade
+  emphasis: magic_dps
+  description: shadow-entangle and piercing nature offense
+  schools_focus:
+  - nature
+  - shadow

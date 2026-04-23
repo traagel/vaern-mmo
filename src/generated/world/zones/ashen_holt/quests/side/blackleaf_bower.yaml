@@ -1,0 +1,42 @@
+id: side_quests__blackleaf_bower
+hub: blackleaf_bower
+hub_role: outpost
+zone: ashen_holt
+biome: ashland
+quest_count: 3
+quests:
+- id: side__blackleaf_bower__the_ashwolf_pack
+  name: The Ashwolf Pack
+  hub: blackleaf_bower
+  type: side
+  level: 1
+  objective:
+    kind: kill
+    target_hint: an ashwolf pack stalking caravans
+    count: 1
+  xp_reward: 21
+  gold_reward_copper: 5
+  repeatable: false
+- id: side__blackleaf_bower__the_cinder_vein
+  name: The Cinder Vein
+  hub: blackleaf_bower
+  type: side
+  level: 3
+  objective:
+    kind: collect
+    target_hint: cinder-vein samples
+    count: 4
+  xp_reward: 91
+  gold_reward_copper: 15
+  repeatable: false
+- id: side__blackleaf_bower__the_storm_camp_check
+  name: The Storm Camp Check
+  hub: blackleaf_bower
+  type: side
+  level: 5
+  objective:
+    kind: investigate
+    target_hint: a camp caught in the last ash-storm
+  xp_reward: 200
+  gold_reward_copper: 25
+  repeatable: false

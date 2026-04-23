@@ -1,0 +1,18 @@
+id: lightless_gallery
+name: The Lightless Gallery
+kind: dungeon
+group_size: 5
+zone: sundering_mines
+entrance_hub: lightless_gallery
+level_range:
+  min: 42
+  max: 50
+level_band: 31-45
+tier: endgame
+boss_count: 4
+estimated_clear_minutes: 75
+loot_tier: endgame
+lockout: none (rerunnable)
+theme: "The deepest shaft of the Sundering Mines \u2014 no light reaches the bottom,\
+  \ and something digs back"
+coop_notes: tight-coop-friendly; duo/trio can attempt under-level with care

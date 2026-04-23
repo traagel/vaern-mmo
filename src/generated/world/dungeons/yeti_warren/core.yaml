@@ -1,0 +1,17 @@
+id: yeti_warren
+name: The Yeti-Warren
+kind: dungeon
+group_size: 5
+zone: frost_spine
+entrance_hub: yeti_warren
+level_range:
+  min: 48
+  max: 54
+level_band: 46-60
+tier: endgame
+boss_count: 3
+estimated_clear_minutes: 75
+loot_tier: endgame
+lockout: none (rerunnable)
+theme: "Ice-mammal lair beneath the Spine \u2014 the yetis are only half the threat"
+coop_notes: tight-coop-friendly; duo/trio can attempt under-level with care

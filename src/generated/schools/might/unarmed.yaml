@@ -1,0 +1,16 @@
+name: unarmed
+pillar: might
+morality: neutral
+family: style
+tag: fist / discipline
+damage_type: bludgeoning
+applies_to_categories:
+- offense
+- defense
+- sustain
+- control
+icon_style:
+  palette: warm skin-brown, knuckle red, wrapping off-white, dust-tan, subtle chi-glow gold
+  motif: calloused fists, wrapped knuckles, open palm, flowing breath or chi swirl, meditative stance
+  silhouette: clenched fist or open palm in motion, dynamic pose with trailing motion-glow
+  material: worn linen wraps, callused skin, faint inner-light aura, simple prayer beads

@@ -1,0 +1,42 @@
+id: side_quests__wreckshore
+hub: wreckshore
+hub_role: outpost
+zone: iron_strand
+biome: coastal_cliff
+quest_count: 3
+quests:
+- id: side__wreckshore__the_wrecksalvage
+  name: The Wrecksalvage
+  hub: wreckshore
+  type: side
+  level: 38
+  objective:
+    kind: collect
+    target_hint: salvage from a recent wreck
+    count: 4
+  xp_reward: 7539
+  gold_reward_copper: 190
+  repeatable: false
+- id: side__wreckshore__the_seabird_plague
+  name: The Seabird Plague
+  hub: wreckshore
+  type: side
+  level: 42
+  objective:
+    kind: kill
+    target_hint: aggressive seabirds nesting near the fishery
+    count: 1
+  xp_reward: 9139
+  gold_reward_copper: 210
+  repeatable: false
+- id: side__wreckshore__the_cliff_watch
+  name: The Cliff Watch
+  hub: wreckshore
+  type: side
+  level: 45
+  objective:
+    kind: investigate
+    target_hint: a cliff-watcher who stopped reporting
+  xp_reward: 10440
+  gold_reward_copper: 225
+  repeatable: false
