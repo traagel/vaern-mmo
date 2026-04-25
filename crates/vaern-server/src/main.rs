@@ -14,6 +14,8 @@
 //! - `class_kits` — per-class ability kit builder
 //! - `logging`    — diagnostics
 
+mod accounts;
+mod accounts_io;
 mod aoi;
 mod belt_io;
 mod chat_io;
@@ -136,6 +138,11 @@ fn main() {
             ServerCharacterStore::open_default()
                 .expect("open character store at ~/.config/vaern/server/characters"),
         ))
+        .insert_resource(
+            accounts::AccountStore::open_default()
+                .expect("open accounts.db at ~/.config/vaern/server/accounts.db"),
+        )
+        .insert_resource(accounts_io::ServerAuthConfig::from_env())
         .init_resource::<persistence::CharactersDirty>()
         .init_resource::<persistence::SaveTimer>()
         .add_systems(
@@ -273,6 +280,11 @@ fn main() {
                 // chats land in the right room on the same tick the
                 // player crossed a boundary.
                 chat_io::handle_chat_messages.after(aoi::sync_player_zone_subscriptions),
+                // Auth message handling. Runs every tick; on Login /
+                // Register success attaches `AuthedAccount` to the
+                // link, which `process_pending_spawns` reads to gate
+                // the `ClientHello` -> spawn path.
+                accounts_io::handle_auth_messages,
             ),
         )
         .add_systems(

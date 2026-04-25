@@ -157,6 +157,102 @@ pub struct ClientHello {
     pub cosmetics: Option<PersistedCosmetics>,
 }
 
+// ─── account auth (Slice 8e) ─────────────────────────────────────────────────
+//
+// Three pairs of messages drive the post-netcode-handshake auth dance:
+//   - `ClientLogin`  / `LoginResult`
+//   - `ClientRegister` / `RegisterResult`
+//   - `ClientCreateCharacter` / `CreateCharacterResult`
+//
+// Server stores accounts in SQLite at `~/.config/vaern/server/accounts.db`.
+// Until the link sends a successful login or register, ClientHello is
+// refused (under VAERN_REQUIRE_AUTH=1; the dev loop sets =0).
+
+/// Client → Server: log in to an existing account. Sent over the
+/// already-open netcode channel after the lightyear handshake completes.
+#[derive(Serialize, Deserialize, Clone, Debug, PartialEq)]
+pub struct ClientLogin {
+    pub username: String,
+    pub password: String,
+}
+
+/// Client → Server: register a fresh account and immediately treat it
+/// as logged-in. Username is unique (case-insensitive); password is
+/// bcrypt-hashed server-side.
+#[derive(Serialize, Deserialize, Clone, Debug, PartialEq)]
+pub struct ClientRegister {
+    pub username: String,
+    pub password: String,
+}
+
+/// Server → Client: result of `ClientLogin`. On success, `characters`
+/// is populated with the account's character roster so the client can
+/// show the character-select screen without a separate roundtrip. On
+/// failure, `error_msg` is human-readable and safe to display in the
+/// login form.
+#[derive(Serialize, Deserialize, Clone, Debug, PartialEq, Default)]
+pub struct LoginResult {
+    pub ok: bool,
+    pub error_msg: String,
+    pub characters: Vec<CharacterSummary>,
+}
+
+/// Server → Client: result of `ClientRegister`. On success, the
+/// character list is empty (registration doesn't auto-create a
+/// character) — the client should immediately show the char-create
+/// form. Same `error_msg` semantics as `LoginResult`.
+#[derive(Serialize, Deserialize, Clone, Debug, PartialEq, Default)]
+pub struct RegisterResult {
+    pub ok: bool,
+    pub error_msg: String,
+}
+
+/// Client → Server: create a new character on the authed account.
+/// Server allocates the UUID and inserts the row in the `characters`
+/// table with the case-insensitive uniqueness check on `name`.
+#[derive(Serialize, Deserialize, Clone, Debug, PartialEq)]
+pub struct ClientCreateCharacter {
+    pub name: String,
+    pub race_id: String,
+    pub core_pillar: Pillar,
+    #[serde(default)]
+    pub cosmetics: Option<PersistedCosmetics>,
+}
+
+/// Server → Client: result of `ClientCreateCharacter`. On success,
+/// `character_id` is the freshly-minted UUID — client should append a
+/// `CharacterSummary` to its in-memory list and select it.
+#[derive(Serialize, Deserialize, Clone, Debug, PartialEq, Default)]
+pub struct CreateCharacterResult {
+    pub ok: bool,
+    pub error_msg: String,
+    pub character_id: String,
+}
+
+/// One row of the per-account character roster. Carried inside
+/// `LoginResult.characters`. Mirrors `CharacterRow` in the server's
+/// account store but adds the gameplay metadata (race, pillar) so the
+/// client can render the row without a second lookup.
+#[derive(Serialize, Deserialize, Clone, Debug, PartialEq)]
+pub struct CharacterSummary {
+    pub character_id: String,
+    pub name: String,
+    /// May be empty for legacy characters whose row pre-dates the
+    /// account-store schema. Client falls back to "mannin" in that case.
+    #[serde(default)]
+    pub race_id: String,
+    /// Defaults to Might if absent from the row.
+    #[serde(default = "default_pillar_might")]
+    pub core_pillar: Pillar,
+    /// Last-known level. 0 if the character hasn't been played yet.
+    #[serde(default)]
+    pub level: u32,
+}
+
+fn default_pillar_might() -> Pillar {
+    Pillar::Might
+}
+
 /// Client → Server: the player pressed a hotbar key, targeting `target`.
 /// Target is a client-local entity id; lightyear remaps it to the server's id.
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq)]
@@ -965,6 +1061,18 @@ impl Plugin for SharedPlugin {
             .add_direction(NetworkDirection::Bidirectional);
         app.register_message::<ClientHello>()
             .add_direction(NetworkDirection::ClientToServer);
+        app.register_message::<ClientLogin>()
+            .add_direction(NetworkDirection::ClientToServer);
+        app.register_message::<ClientRegister>()
+            .add_direction(NetworkDirection::ClientToServer);
+        app.register_message::<ClientCreateCharacter>()
+            .add_direction(NetworkDirection::ClientToServer);
+        app.register_message::<LoginResult>()
+            .add_direction(NetworkDirection::ServerToClient);
+        app.register_message::<RegisterResult>()
+            .add_direction(NetworkDirection::ServerToClient);
+        app.register_message::<CreateCharacterResult>()
+            .add_direction(NetworkDirection::ServerToClient);
         app.register_message::<CastIntent>()
             .add_map_entities()
             .add_direction(NetworkDirection::ClientToServer);

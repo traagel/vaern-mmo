@@ -29,14 +29,17 @@ use crate::persistence::{
 use crate::resource_nodes::starter_profession_skills;
 use vaern_protocol::{
     AbandonQuest, AcceptQuest, BindBeltSlotRequest, CastFired, CastIntent, ChatMessage, ChatSend,
-    ClearBeltSlotRequest, ClientHello, ConsumableBeltSnapshot, ConsumeBeltRequest,
-    ConsumeItemRequest, HotbarSlotInfo, HotbarSnapshot, Inputs, PartyDisbandedNotice,
+    ClearBeltSlotRequest, ClientCreateCharacter, ClientHello, ClientLogin, ClientRegister,
+    ConsumableBeltSnapshot, ConsumeBeltRequest, ConsumeItemRequest, CreateCharacterResult,
+    HotbarSlotInfo, HotbarSnapshot, Inputs, LoginResult, PartyDisbandedNotice,
     PartyIncomingInvite, PartyInviteRequest, PartyInviteResponse, PartyKickRequest,
     PartyLeaveRequest, PartySnapshot, PlayerStateSnapshot, PlayerTag, ProgressQuest,
-    QuestLogSnapshot, StanceRequest, VendorBuyRequest, VendorClosedNotice, VendorOpenRequest,
-    VendorSellRequest, VendorWindowSnapshot, WalletSnapshot,
+    QuestLogSnapshot, RegisterResult, StanceRequest, VendorBuyRequest, VendorClosedNotice,
+    VendorOpenRequest, VendorSellRequest, VendorWindowSnapshot, WalletSnapshot,
 };
 
+use crate::accounts::AccountStore;
+use crate::accounts_io::{AuthedAccount, ServerAuthConfig};
 use crate::class_kits;
 use crate::data::GameData;
 use crate::quests::QuestLog;
@@ -153,6 +156,17 @@ pub fn handle_new_client(trigger: On<Add, LinkOf>, mut commands: Commands) {
         MessageSender::<PartySnapshot>::default(),
         MessageSender::<PartyDisbandedNotice>::default(),
     ));
+    // Auth (Slice 8e): login / register / create-character message
+    // pumps. Receivers drained by `accounts_io::handle_auth_messages`;
+    // senders shipped on response.
+    commands.entity(trigger.entity).insert((
+        MessageReceiver::<ClientLogin>::default(),
+        MessageReceiver::<ClientRegister>::default(),
+        MessageReceiver::<ClientCreateCharacter>::default(),
+        MessageSender::<LoginResult>::default(),
+        MessageSender::<RegisterResult>::default(),
+        MessageSender::<CreateCharacterResult>::default(),
+    ));
     println!("new client link: {:?}", trigger.entity);
 }
 
@@ -264,12 +278,21 @@ fn resolve_spawn_source(hello: HelloData, store: &CharacterStore) -> SpawnSource
 /// Drain `ClientHello` messages from each link and resolve pending spawns.
 /// Spawns via the requested UUID-anchored character if available, falls
 /// back to CreateNew for first-time UUIDs, or anonymous on timeout.
+///
+/// When `ServerAuthConfig.require_auth` is true (Slice 8e), a ClientHello
+/// from a link that doesn't have `AuthedAccount` attached is dropped, and
+/// the timeout fallback path is suppressed — the pending spawn just keeps
+/// waiting until the account auth lands. When require_auth is false (the
+/// dev-loop default), behavior is identical to pre-8e.
 pub fn process_pending_spawns(
     time: Res<Time>,
     data: Res<GameData>,
     store: Res<CharacterStore>,
+    accounts: Res<AccountStore>,
+    auth_cfg: Res<ServerAuthConfig>,
     mut pending: ResMut<PendingSpawns>,
     mut hello_rx: Query<(&RemoteId, &mut MessageReceiver<ClientHello>), With<ClientOf>>,
+    authed: Query<&AuthedAccount>,
     mut commands: Commands,
 ) {
     let dt = time.delta_secs();
@@ -296,15 +319,60 @@ pub fn process_pending_spawns(
         let entry = &mut pending.0[i];
         entry.waited_secs += dt;
 
+        // Auth gate. When require_auth is on AND this link hasn't yet
+        // attached AuthedAccount, drop any pending ClientHello (the
+        // client must re-send after auth) and skip the timeout
+        // fallback so we don't spawn an unauthenticated player.
+        let link_authed = authed.get(entry.link_entity).ok().cloned();
+        if auth_cfg.require_auth && link_authed.is_none() {
+            // Discard any hello captured this tick — it's premature.
+            hellos.remove(&entry.client_id);
+            i += 1;
+            continue;
+        }
+
         let chosen: Option<HelloData> = if let Some(h) = hellos.remove(&entry.client_id) {
             Some(h)
-        } else if entry.waited_secs >= HELLO_TIMEOUT_SECS {
+        } else if entry.waited_secs >= HELLO_TIMEOUT_SECS && !auth_cfg.require_auth {
             Some(HelloData::fallback())
         } else {
             None
         };
 
         if let Some(hello) = chosen {
+            // Account ownership check: when auth is required and the
+            // hello carries a character_id, verify that character_id
+            // belongs to the authed account. Refuse with a log if not.
+            if auth_cfg.require_auth
+                && !hello.character_id.is_empty()
+                && let Some(ref acct) = link_authed
+            {
+                match accounts.account_for_character(&hello.character_id) {
+                    Ok(Some(owner)) if owner == acct.account_id => { /* ok */ }
+                    Ok(Some(_)) => {
+                        warn!(
+                            "[auth] refusing ClientHello: character {} not owned by account {}",
+                            hello.character_id, acct.account_id
+                        );
+                        i += 1;
+                        continue;
+                    }
+                    Ok(None) => {
+                        warn!(
+                            "[auth] refusing ClientHello: character {} not registered to any account (must use CreateCharacter)",
+                            hello.character_id
+                        );
+                        i += 1;
+                        continue;
+                    }
+                    Err(e) => {
+                        warn!("[auth] account lookup failed: {e}");
+                        i += 1;
+                        continue;
+                    }
+                }
+            }
+
             let entry = pending.0.swap_remove(i);
             let source = resolve_spawn_source(hello, &store);
             spawn_player(
