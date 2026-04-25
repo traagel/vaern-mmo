@@ -13,7 +13,7 @@ use serde::{Deserialize, Serialize};
 use vaern_character::{Experience, PlayerRace};
 use vaern_combat::{
     AnimOverride, AnimState, Casting, DisplayName, Health, NpcKind, ProjectileVisual, QuestGiverHub,
-    ResourcePool,
+    QuestPoi, ResourcePool,
 };
 use vaern_core::pillar::Pillar;
 use vaern_persistence::PersistedCosmetics;
@@ -379,6 +379,15 @@ pub struct QuestLogEntry {
     pub current_step: u32,
     pub total_steps: u32,
     pub completed: bool,
+    /// Multi-kill counter on the current step. 0 for non-kill steps or
+    /// kill steps with `count <= 1`. Lets the client tracker render `2/3`
+    /// without re-loading chain YAML.
+    #[serde(default)]
+    pub kill_count: u32,
+    /// `objective.count` of the current step when it's a kill objective.
+    /// 0 for non-kill steps.
+    #[serde(default)]
+    pub kill_count_required: u32,
 }
 
 /// Server → Client: full snapshot of the owning player's quest log. Resent
@@ -1036,6 +1045,7 @@ impl Plugin for SharedPlugin {
         app.register_component::<DisplayName>().add_prediction();
         app.register_component::<NpcKind>().add_prediction();
         app.register_component::<QuestGiverHub>().add_prediction();
+        app.register_component::<QuestPoi>().add_prediction();
         app.register_component::<Experience>().add_prediction();
         app.register_component::<PlayerRace>().add_prediction();
         app.register_component::<ProjectileVisual>().add_prediction();

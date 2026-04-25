@@ -57,6 +57,25 @@ pub struct QuestObjective {
     /// For `investigate` / `explore` steps: waypoint id in the zone.
     #[serde(default)]
     pub location: Option<String>,
+    /// For `deliver` steps: the item the player must hand over. Server
+    /// validates inventory contains it before advancing the step, then
+    /// consumes the entry. Absent on talk/investigate/kill.
+    #[serde(default)]
+    pub item_required: Option<ItemRequirement>,
+}
+
+/// One item the player must hand in for a `deliver` step. Same shape as
+/// `ItemReward` minus the pillar filter — every pillar must hand in the
+/// same item.
+#[derive(Debug, Clone, Deserialize)]
+pub struct ItemRequirement {
+    pub base: String,
+    #[serde(default)]
+    pub material: Option<String>,
+    #[serde(default = "default_quality")]
+    pub quality: String,
+    #[serde(default = "default_count")]
+    pub count: u32,
 }
 
 /// Named NPC entry in a chain's registry. Authoritative source for display
@@ -93,6 +112,16 @@ pub struct QuestStep {
     pub item_reward: Vec<ItemReward>,
     #[serde(default)]
     pub prerequisite: Option<String>,
+    /// NPC reply / waypoint description shown in the turn-in dialogue when
+    /// the player reports in for a talk / deliver / investigate step. The
+    /// player must read it and click the contextual button — no silent
+    /// auto-advance. Falls back to a generic "ready" line if absent.
+    #[serde(default)]
+    pub completion_text: Option<String>,
+    /// Override label for the contextual turn-in button. Defaults: talk →
+    /// "Continue", deliver → "Hand it over", investigate → "Continue".
+    #[serde(default)]
+    pub completion_button: Option<String>,
 }
 
 #[derive(Debug, Clone, Deserialize)]

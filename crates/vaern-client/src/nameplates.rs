@@ -191,10 +191,11 @@ fn spawn_nameplates(
             ))
             .id();
 
-        // "!" quest-giver indicator above the name label. Spawned for every
-        // nameplate but added to the plate only for QuestGiver kind.
-        let quest_marker = if matches!(kind, Some(NpcKind::QuestGiver)) {
-            Some(
+        // "!" / "?" indicator above the name label. QuestGivers get the
+        // classic gold "!"; QuestPoi waypoints get a teal "?" to read as
+        // "investigate here". Other NPC kinds get no marker.
+        let quest_marker = match kind {
+            Some(NpcKind::QuestGiver) => Some(
                 commands
                     .spawn((
                         Text::new("!"),
@@ -205,9 +206,20 @@ fn spawn_nameplates(
                         TextColor(Color::srgb(1.0, 0.85, 0.15)),
                     ))
                     .id(),
-            )
-        } else {
-            None
+            ),
+            Some(NpcKind::QuestPoi) => Some(
+                commands
+                    .spawn((
+                        Text::new("?"),
+                        TextFont {
+                            font_size: 22.0,
+                            ..default()
+                        },
+                        TextColor(Color::srgb(0.35, 0.85, 0.95)),
+                    ))
+                    .id(),
+            ),
+            _ => None,
         };
 
         let plate = commands

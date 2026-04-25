@@ -99,4 +99,8 @@ pub struct PersistedQuestEntry {
     pub total_steps: u32,
     #[serde(default)]
     pub completed: bool,
+    /// Per-step kill-objective progress for multi-kill steps (`count > 1`).
+    /// Reset to 0 when the step advances. Defaults to 0 for legacy saves.
+    #[serde(default)]
+    pub kill_count: u32,
 }

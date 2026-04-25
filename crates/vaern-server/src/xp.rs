@@ -28,7 +28,7 @@ fn xp_base_for_kind(kind: NpcKind) -> u32 {
         NpcKind::Combat => 50,
         NpcKind::Elite => 150,
         NpcKind::Named => 400,
-        NpcKind::QuestGiver | NpcKind::Vendor => 0,
+        NpcKind::QuestGiver | NpcKind::Vendor | NpcKind::QuestPoi => 0,
     }
 }
 

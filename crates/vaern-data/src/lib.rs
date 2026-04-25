@@ -11,6 +11,7 @@ use vaern_core::{Pillar, School};
 pub mod bestiary;
 pub mod dungeon;
 pub mod flavored;
+pub mod landmark;
 pub mod quest;
 pub mod race;
 pub mod world;
@@ -21,12 +22,13 @@ pub use flavored::{
     load_flavored, FlavoredAbility, FlavoredEffect, FlavoredEffectKind, FlavoredIndex,
     FlavoredShape,
 };
+pub use landmark::{load_all_landmarks, Landmark, LandmarkIndex, LandmarkOffset};
 pub use quest::{
     load_all_side_quests, HubSideQuests, SideQuest, SideQuestIndex,
 };
 pub use quest::{
-    load_all_chains, ItemReward, QuestChain, QuestChainFinalReward, QuestIndex, QuestNpc,
-    QuestObjective, QuestStep,
+    load_all_chains, ItemRequirement, ItemReward, QuestChain, QuestChainFinalReward, QuestIndex,
+    QuestNpc, QuestObjective, QuestStep,
 };
 pub use race::{load_races, Race, RacePillarAffinity};
 pub use world::{

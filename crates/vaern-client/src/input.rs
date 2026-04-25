@@ -189,7 +189,10 @@ fn update_player_target(
         let mut candidates: Vec<(Entity, f32, bool)> = npcs
             .iter()
             .filter(|(_, _, kind)| {
-                !matches!(kind, Some(NpcKind::QuestGiver) | Some(NpcKind::Vendor))
+                !matches!(
+                    kind,
+                    Some(NpcKind::QuestGiver) | Some(NpcKind::Vendor) | Some(NpcKind::QuestPoi)
+                )
             })
             .filter_map(|(e, tf, _)| {
                 let mut d = tf.translation - player_pos;

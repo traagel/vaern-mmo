@@ -87,6 +87,9 @@ steps:
     target_hint: Old Brenn the Shepherd
   xp_reward: 620
   gold_reward_copper: 20
+  completion_text: '"You came. Bless the old kings. The boy went out at dawn and the dogs won''t cross
+    the bog after him. Take the cut-trail east — there''s blood on the reeds, and that''s no wolf-track."'
+  completion_button: I'll find him
   id: chain_dalewatch_first_ride__02_ride_to_old_brenn_at_millers_crossing
   prerequisite: chain_dalewatch_first_ride__01_report_to_warden_telyn
 - step: 3
@@ -98,6 +101,10 @@ steps:
     location: dalewatch_reed_brake
   xp_reward: 720
   gold_reward_copper: 30
+  completion_text: The reeds are flat where something heavy was dragged through. Behind a knot of
+    alder you find the boy's cap, half-soaked, and a single boot-print pressed deep into the mud — too
+    deep for a man on his own feet. Whoever carried Tam off was not alone.
+  completion_button: Press on
   id: chain_dalewatch_first_ride__03_follow_the_bloodied_trail
   prerequisite: chain_dalewatch_first_ride__02_ride_to_old_brenn_at_millers_crossing
 - step: 4
@@ -124,8 +131,15 @@ steps:
     kind: deliver
     npc: warden_telyn
     target_hint: return the rescued child and Corlen's folio to Warden Telyn
+    # NOTE: item_required intentionally omitted at pre-alpha — no quest-item
+    # base exists in the content registry yet. Server validates proximity
+    # only; the folio is treated as narrative-implied.
   xp_reward: 1000
   gold_reward_copper: 60
+  completion_text: '"Tam''s with his grandfather and Corlen''s folio is on my desk. Whatever this Drifter
+    was running, the cipher''s beyond me. Brother Fennick at Harrier''s Rest reads the old Academy hand.
+    Ride to him before sundown."'
+  completion_button: Hand over the folio
   id: chain_dalewatch_first_ride__05_return_tam_and_the_sealed_folio
   prerequisite: chain_dalewatch_first_ride__04_confront_corlen_the_drifter
 - step: 6
@@ -137,11 +151,14 @@ steps:
     target_hint: bring the folio to Brother Fennick at Harrier's Rest
   xp_reward: 1100
   gold_reward_copper: 80
+  completion_text: '"Academy writing, this. Old Academy. Someone trained at the Censured Hall before
+    they went east. The cipher names a place — Copperstep. Whatever the Drifters built there, you''re
+    not finishing it in a gambeson. Take this; you''ll move quieter and live longer."'
+  completion_button: Take the leather kit
   # Tier 2 — full-set ArmorType progression. Might flips gambeson → leather
   # for the silhouette change; Finesse upgrades to bearhide; Arcana to wool
-  # set. Grants on talk-progression (auto-advance for `talk` not yet wired,
-  # so today this fires when the player relogs / sends an explicit Progress
-  # message — matches existing gold/xp behavior on talk steps).
+  # set. Lands on the player's click in the Fennick turn-in dialogue
+  # (slice 6: quest polish — server validates proximity to Fennick).
   item_reward:
     # Might → flip to leather (Ranger silhouette)
     - { base: leather_jerkin,   material: bearhide, quality: well_crafted, pillar: might }
@@ -183,8 +200,13 @@ steps:
     target_hint: show the recovered focus to Scout Iwen at Ashmere Ford
   xp_reward: 1800
   gold_reward_copper: 160
+  completion_text: '"Pact-worked, that focus. I''d know the groove-pattern in the dark. Cut east of
+    the border, but it ended up in a Concord Drifter''s hand. Whatever they''re building in the fens,
+    someone across the river''s helping. Mail this time, friend — the Blackwash doesn''t reward leather."'
+  completion_button: Take the mail kit
   # Tier 4 — second silhouette flip. Might/Finesse pivot to mail; Arcana
-  # upgrades to silk set.
+  # upgrades to silk set. Lands on the player's click in the Iwen turn-in
+  # dialogue (slice 6: quest polish — server validates proximity to Iwen).
   item_reward:
     # Might → flip to mail (KnightCloth silhouette)
     - { base: mail_hauberk,  material: iron, quality: fine, pillar: might }
@@ -209,6 +231,10 @@ steps:
     location: blackwash_fens
   xp_reward: 2000
   gold_reward_copper: 200
+  completion_text: The cut-trail bends past a crow-haunted alder and opens onto black water. Reed-cages
+    bob in the shallows; bones inside, picked clean. Past the cages, a crooked stone arch — the entrance
+    to the Drifter's Lair, marked exactly where Sergeant Rook said it would be.
+  completion_button: Ready your weapon
   id: chain_dalewatch_first_ride__09_strike_the_blackwash
   prerequisite: chain_dalewatch_first_ride__08_the_pact_worked_focus
 - step: 10

@@ -250,6 +250,11 @@ pub enum NpcKind {
     /// `src/generated/vendors.yaml` and attached as `VendorStock`
     /// components on spawn.
     Vendor,
+    /// Quest point of interest — a non-combat waypoint marker for
+    /// `investigate` / `explore` quest steps. F-key opens an investigate
+    /// dialogue (client) and sends `ProgressQuest` once the player has
+    /// read the authored description.
+    QuestPoi,
 }
 
 /// Replicated marker on quest-giver NPCs. Identifies the hub they belong
@@ -270,6 +275,22 @@ pub struct QuestGiverHub {
     /// player's current step matches).
     #[serde(default)]
     pub step_index: Option<u32>,
+}
+
+/// Replicated marker on a quest point-of-interest entity (waypoint marker
+/// for `investigate` / `explore` quest steps). Spawned by the server at
+/// the world position of the referenced landmark. Client F-press while
+/// in proximity opens an investigate dialogue.
+#[derive(Component, Debug, Clone, PartialEq, Serialize, Deserialize)]
+pub struct QuestPoi {
+    pub chain_id: String,
+    /// Zero-indexed step that this POI represents.
+    pub step_index: u32,
+    /// Landmark id — primarily for debugging / display fallback. The
+    /// authoritative location is the entity's `Transform`.
+    pub landmark_id: String,
+    /// Display name shown above the marker (e.g. "The Reed-Brake").
+    pub name: String,
 }
 
 /// Explicit cast request from input / AI. Points at the ability entity the

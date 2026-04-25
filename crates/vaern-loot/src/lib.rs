@@ -152,7 +152,7 @@ impl DropTable {
             NpcKind::Combat => Some(Self::combat(material_tier)),
             NpcKind::Elite => Some(Self::elite(material_tier)),
             NpcKind::Named => Some(Self::named(material_tier)),
-            NpcKind::QuestGiver | NpcKind::Vendor => None,
+            NpcKind::QuestGiver | NpcKind::Vendor | NpcKind::QuestPoi => None,
         }
     }
 }

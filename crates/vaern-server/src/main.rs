@@ -153,6 +153,7 @@ fn main() {
                 // `assign_added_entities_to_rooms` can find their room.
                 aoi::init_zone_rooms,
                 npc::seed_npc_spawns,
+                npc::seed_quest_pois,
                 resource_nodes::seed_resource_nodes,
             )
                 .chain(),

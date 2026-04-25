@@ -15,6 +15,7 @@ use vaern_data::ItemReward;
 use vaern_economy::PlayerWallet;
 use vaern_inventory::PlayerInventory;
 use vaern_items::{ContentRegistry, ItemInstance};
+use vaern_combat::{DisplayName, QuestGiverHub};
 use vaern_protocol::{
     AbandonQuest, AcceptQuest, PlayerTag, ProgressQuest, QuestLogEntry, QuestLogSnapshot,
 };
@@ -23,6 +24,101 @@ use vaern_stats::{PillarCaps, PillarScores};
 use crate::data::GameData;
 use crate::npc::MobSourceId;
 use crate::xp::grant_xp_with_levelup_bonus;
+
+/// Distance the player must be within of a quest NPC / landmark to fire
+/// a `ProgressQuest` for talk / deliver / investigate steps. Mirrors
+/// `vendor_io::VENDOR_INTERACT_RANGE` and the client's `INTERACT_RANGE`.
+pub const QUEST_INTERACT_RANGE: f32 = 5.0;
+
+/// Outcome of validating a `ProgressQuest` action against the player's
+/// current step. Pure — no world access — so the decision logic can be
+/// unit-tested without a Bevy `App`.
+#[derive(Debug, PartialEq)]
+pub enum ProgressDecision {
+    /// Advance the step.
+    Ok,
+    /// Advance the step after consuming `count` of the matching item.
+    ConsumeItem {
+        base: String,
+        material: Option<String>,
+        quality: String,
+        count: u32,
+    },
+    /// Reject; reason is a static string for the server log.
+    Reject(&'static str),
+}
+
+/// One NPC the player is *close enough to* for a turn-in. Caller filters
+/// by `distance <= QUEST_INTERACT_RANGE` and supplies the survivors.
+pub struct NearbyChainNpc<'a> {
+    pub display_name: &'a str,
+    pub chain_id: Option<&'a str>,
+}
+
+/// Decide whether a `ProgressQuest` should advance the step. Pure
+/// function — caller gathers the bevy-query inputs.
+///
+/// `inventory_total_for_req` should be `Some(total)` for `deliver`
+/// steps that have an `item_required`, even when total is 0; `None`
+/// means the caller didn't bother to look it up (and we can't validate).
+///
+/// `landmark_in_range` mirrors the same convention for `investigate` /
+/// `explore`: the caller resolves the landmark + distance and reports a
+/// boolean.
+pub fn decide_progress(
+    objective: &vaern_data::QuestObjective,
+    chain: &vaern_data::QuestChain,
+    nearby_npcs: &[NearbyChainNpc<'_>],
+    inventory_total_for_req: Option<u32>,
+    landmark_in_range: Option<bool>,
+) -> ProgressDecision {
+    match objective.kind.as_str() {
+        "kill" => ProgressDecision::Reject("kill steps advance via mob death only"),
+        "talk" | "deliver" => {
+            let Some(npc_id) = objective.npc.as_deref() else {
+                return ProgressDecision::Reject("step has no objective.npc");
+            };
+            let Some(qnpc) = chain.npc(npc_id) else {
+                return ProgressDecision::Reject("unknown npc id");
+            };
+            let in_range = nearby_npcs.iter().any(|n| {
+                n.chain_id == Some(chain.id.as_str()) && n.display_name == qnpc.display_name
+            });
+            if !in_range {
+                return ProgressDecision::Reject("not in range of NPC");
+            }
+            if objective.kind == "deliver" {
+                if let Some(req) = &objective.item_required {
+                    let Some(total) = inventory_total_for_req else {
+                        return ProgressDecision::Reject("inventory not consulted");
+                    };
+                    let needed = req.count.max(1);
+                    if total < needed {
+                        return ProgressDecision::Reject("missing required item");
+                    }
+                    return ProgressDecision::ConsumeItem {
+                        base: req.base.clone(),
+                        material: req.material.clone(),
+                        quality: req.quality.clone(),
+                        count: needed,
+                    };
+                }
+            }
+            ProgressDecision::Ok
+        }
+        "investigate" | "explore" => {
+            if objective.location.is_none() {
+                return ProgressDecision::Reject("step has no objective.location");
+            }
+            match landmark_in_range {
+                Some(true) => ProgressDecision::Ok,
+                Some(false) => ProgressDecision::Reject("not in range of landmark"),
+                None => ProgressDecision::Reject("landmark not resolvable"),
+            }
+        }
+        _ => ProgressDecision::Reject("unknown objective kind"),
+    }
+}
 
 /// Hand out a list of `ItemReward` entries to one player. Entries with a
 /// `pillar` filter that doesn't match the player's `core_pillar` are
@@ -84,11 +180,14 @@ pub struct QuestLog {
     pub dirty: bool,
 }
 
-#[derive(Debug, Clone, Copy)]
+#[derive(Debug, Clone, Copy, Default)]
 pub struct QuestLogProgress {
     pub current_step: u32,
     pub total_steps: u32,
     pub completed: bool,
+    /// Per-step kill counter for multi-kill objectives (`count > 1`). Reset
+    /// to 0 when the step advances. Always 0 for non-kill steps.
+    pub kill_count: u32,
 }
 
 /// Drain quest-related client messages and mutate the matching player's
@@ -109,10 +208,18 @@ pub fn handle_quest_messages(
         &PillarCaps,
         &mut PlayerInventory,
     )>,
+    player_positions: Query<(Entity, &Transform), With<PlayerTag>>,
+    npcs: Query<(&Transform, &DisplayName, &QuestGiverHub), Without<PlayerTag>>,
     mut accept_rx: Query<(Entity, &mut MessageReceiver<AcceptQuest>), With<ClientOf>>,
     mut abandon_rx: Query<(Entity, &mut MessageReceiver<AbandonQuest>), With<ClientOf>>,
     mut progress_rx: Query<(Entity, &mut MessageReceiver<ProgressQuest>), With<ClientOf>>,
 ) {
+    // Snapshot every player's position once so the validation loop
+    // doesn't need to re-borrow against the mutable `players` query.
+    let player_pos_map: HashMap<Entity, Vec3> = player_positions
+        .iter()
+        .map(|(e, t)| (e, t.translation))
+        .collect();
     enum Action {
         Accept(String),
         Abandon(String),
@@ -188,6 +295,7 @@ pub fn handle_quest_messages(
                         current_step: initial_step,
                         total_steps: chain.total_steps,
                         completed: false,
+                        kill_count: 0,
                     },
                 );
                 log.dirty = true;
@@ -203,6 +311,107 @@ pub fn handle_quest_messages(
                 }
             }
             Action::Progress(chain_id) => {
+                // Validate that the player is at the right place + has the
+                // right item before advancing. `ProgressQuest` was a dev
+                // scaffold; auto-advance for talk / deliver / investigate
+                // steps now goes through here too. Kill steps are rejected
+                // — they advance via the mob-death observer only.
+                let entry_snapshot = match log.entries.get(&chain_id) {
+                    Some(e) if !e.completed => *e,
+                    _ => continue,
+                };
+                let Some(chain) = data.quests.chain(&chain_id) else { continue };
+                let Some(step_def) = chain.step(entry_snapshot.current_step) else {
+                    continue;
+                };
+                let objective = &step_def.objective;
+                let player_pos = match player_pos_map.get(&player_e) {
+                    Some(p) => *p,
+                    None => continue,
+                };
+
+                // Gather inputs for the pure validation helper.
+                let nearby_npcs: Vec<NearbyChainNpc> = npcs
+                    .iter()
+                    .filter(|(tf, _, _)| {
+                        let dx = tf.translation.x - player_pos.x;
+                        let dz = tf.translation.z - player_pos.z;
+                        (dx * dx + dz * dz).sqrt() <= QUEST_INTERACT_RANGE
+                    })
+                    .map(|(_, name, hub)| NearbyChainNpc {
+                        display_name: name.0.as_str(),
+                        chain_id: hub.chain_id.as_deref(),
+                    })
+                    .collect();
+                let inventory_total = if objective.kind == "deliver" {
+                    objective.item_required.as_ref().map(|req| {
+                        let template = match &req.material {
+                            Some(m) => vaern_items::ItemInstance::new(
+                                &req.base, m, &req.quality,
+                            ),
+                            None => vaern_items::ItemInstance::materialless(
+                                &req.base, &req.quality,
+                            ),
+                        };
+                        inventory.total_matching(&template)
+                    })
+                } else {
+                    None
+                };
+                let landmark_in_range = match objective.kind.as_str() {
+                    "investigate" | "explore" => {
+                        objective.location.as_deref().map(|loc_id| {
+                            match data.landmarks.get(&chain.zone, loc_id) {
+                                Some(lm) => {
+                                    let zo = data.zone_origin(&chain.zone);
+                                    let lx = zo.x + lm.offset_from_zone_origin.x;
+                                    let lz = zo.z + lm.offset_from_zone_origin.z;
+                                    let dx = lx - player_pos.x;
+                                    let dz = lz - player_pos.z;
+                                    (dx * dx + dz * dz).sqrt() <= QUEST_INTERACT_RANGE
+                                }
+                                None => false,
+                            }
+                        })
+                    }
+                    _ => None,
+                };
+
+                let decision = decide_progress(
+                    objective,
+                    chain,
+                    &nearby_npcs,
+                    inventory_total,
+                    landmark_in_range,
+                );
+                let consume = match decision {
+                    ProgressDecision::Ok => None,
+                    ProgressDecision::ConsumeItem {
+                        base,
+                        material,
+                        quality,
+                        count,
+                    } => {
+                        let template = match &material {
+                            Some(m) => vaern_items::ItemInstance::new(&base, m, &quality),
+                            None => vaern_items::ItemInstance::materialless(&base, &quality),
+                        };
+                        Some((template, count))
+                    }
+                    ProgressDecision::Reject(reason) => {
+                        println!(
+                            "[quest] player {player_e:?} ProgressQuest '{chain_id}' rejected: {reason}"
+                        );
+                        continue;
+                    }
+                };
+
+                if let Some((template, n)) = consume {
+                    for _ in 0..n {
+                        inventory.consume_matching(&template);
+                    }
+                }
+
                 let (completed_step_idx, current_step_after, total_steps, completed) = {
                     let Some(entry) = log.entries.get_mut(&chain_id) else { continue };
                     if entry.completed {
@@ -210,6 +419,7 @@ pub fn handle_quest_messages(
                     }
                     let completed_idx = entry.current_step;
                     entry.current_step += 1;
+                    entry.kill_count = 0;
                     let chain_done = entry.current_step >= entry.total_steps;
                     if chain_done {
                         entry.current_step = entry.total_steps;
@@ -335,15 +545,31 @@ pub fn apply_kill_objectives(
                 continue;
             }
 
-            // Match — advance the step. (Count > 1 isn't tracked per-kill
-            // yet; most chains use count=1. When we need multi-kill steps,
-            // accumulate per-step kill_count in QuestLogProgress.)
+            // Match — bump the kill counter. Advance the step only when the
+            // counter reaches `objective.count` (treated as 1 if 0, since
+            // legacy authoring used count=0 for single-target steps).
+            let required = step.objective.count.max(1);
             let step_xp = step.xp_reward;
             let step_gold = step.gold_reward_copper;
             let step_items = step.item_reward.clone();
+            let advanced = {
+                let entry_mut = log.entries.get_mut(&chain_id).unwrap();
+                entry_mut.kill_count = entry_mut.kill_count.saturating_add(1);
+                entry_mut.kill_count >= required
+            };
+            log.dirty = true;
+            if !advanced {
+                let entry_mut = log.entries.get(&chain_id).unwrap();
+                println!(
+                    "[quest:kill] '{chain_id}' kill {} / {required} (target {dead_mob_id})",
+                    entry_mut.kill_count
+                );
+                continue;
+            }
             let (current_after, total_after, chain_complete) = {
                 let entry_mut = log.entries.get_mut(&chain_id).unwrap();
                 entry_mut.current_step += 1;
+                entry_mut.kill_count = 0;
                 let done = entry_mut.current_step >= entry_mut.total_steps;
                 if done {
                     entry_mut.current_step = entry_mut.total_steps;
@@ -351,7 +577,6 @@ pub fn apply_kill_objectives(
                 }
                 (entry_mut.current_step, entry_mut.total_steps, done)
             };
-            log.dirty = true;
 
             if step_xp > 0 {
                 grant_xp_with_levelup_bonus(
@@ -406,7 +631,11 @@ pub fn apply_kill_objectives(
 }
 
 /// Ship a QuestLogSnapshot to each player whose log was dirtied this tick.
+/// Resolves `kill_count_required` from the chain's current step so the
+/// client tracker can render `2/3`-style multi-kill counters without
+/// re-loading YAML.
 pub fn broadcast_quest_logs(
+    data: Res<GameData>,
     mut players: Query<(&ControlledBy, &mut QuestLog), With<PlayerTag>>,
     mut senders: Query<&mut MessageSender<QuestLogSnapshot>, With<ClientOf>>,
 ) {
@@ -418,11 +647,22 @@ pub fn broadcast_quest_logs(
         let entries: Vec<QuestLogEntry> = log
             .entries
             .iter()
-            .map(|(id, p)| QuestLogEntry {
-                chain_id: id.clone(),
-                current_step: p.current_step,
-                total_steps: p.total_steps,
-                completed: p.completed,
+            .map(|(id, p)| {
+                let kill_count_required = data
+                    .quests
+                    .chain(id)
+                    .and_then(|c| c.step(p.current_step))
+                    .filter(|s| s.objective.kind == "kill")
+                    .map(|s| s.objective.count.max(1))
+                    .unwrap_or(0);
+                QuestLogEntry {
+                    chain_id: id.clone(),
+                    current_step: p.current_step,
+                    total_steps: p.total_steps,
+                    completed: p.completed,
+                    kill_count: p.kill_count,
+                    kill_count_required,
+                }
             })
             .collect();
         let _ = sender.send::<vaern_protocol::Channel1>(QuestLogSnapshot { entries });
@@ -548,5 +788,220 @@ mod tests {
                 pillars
             );
         }
+    }
+
+    // ─── quest polish (slice 6) ──────────────────────────────────────────
+
+    /// Every non-kill step in `chain_dalewatch_first_ride` (other than
+    /// step 1, which auto-skips on Accept) must have authored
+    /// `completion_text`. Catches a regression where the YAML loses
+    /// turn-in dialogue and players fall back to a generic line.
+    #[test]
+    fn dalewatch_first_ride_authors_completion_text() {
+        let idx = chains();
+        let chain = idx.chain("chain_dalewatch_first_ride").unwrap();
+        for step in &chain.steps {
+            if step.objective.kind == "kill" {
+                continue;
+            }
+            // Step 1 auto-skips (initial_step = 1 for talk-as-first-step
+            // chains in handle_quest_messages). No need to author a
+            // turn-in line for it.
+            if step.step == 1 {
+                continue;
+            }
+            assert!(
+                step.completion_text.is_some(),
+                "step {} ({}, kind={}) must author completion_text — players need an authored NPC reply at the click-through, not the fallback",
+                step.step, step.id, step.objective.kind,
+            );
+        }
+    }
+
+    fn sample_chain() -> vaern_data::QuestChain {
+        // Synthetic chain matching the shape `decide_progress` reads.
+        let yaml = r#"
+id: test_chain
+zone: dalewatch_marches
+title: Test
+premise: Test
+total_steps: 4
+final_reward:
+  xp_bonus: 0
+  gold_bonus_copper: 0
+npcs:
+  - id: telyn
+    display_name: Warden Telyn
+steps:
+  - step: 1
+    name: Talk to Telyn
+    level: 1
+    objective:
+      kind: talk
+      npc: telyn
+      target_hint: Telyn
+    xp_reward: 0
+    gold_reward_copper: 0
+    id: test_chain__01
+  - step: 2
+    name: Bring the folio
+    level: 1
+    objective:
+      kind: deliver
+      npc: telyn
+      target_hint: Telyn
+      item_required:
+        base: quest_folio
+        quality: regular
+        count: 1
+    xp_reward: 0
+    gold_reward_copper: 0
+    id: test_chain__02
+  - step: 3
+    name: Investigate
+    level: 1
+    objective:
+      kind: investigate
+      target_hint: a place
+      location: dalewatch_reed_brake
+    xp_reward: 0
+    gold_reward_copper: 0
+    id: test_chain__03
+  - step: 4
+    name: Kill it
+    level: 1
+    objective:
+      kind: kill
+      target_hint: a thing
+      mob_id: mob_test
+      count: 3
+    xp_reward: 0
+    gold_reward_copper: 0
+    id: test_chain__04
+"#;
+        serde_yaml::from_str(yaml).expect("synthetic chain parses")
+    }
+
+    #[test]
+    fn decide_progress_rejects_kill_step() {
+        let chain = sample_chain();
+        let kill = chain.step(3).unwrap(); // 0-indexed step 3 = "Kill it"
+        let decision =
+            decide_progress(&kill.objective, &chain, &[], None, None);
+        assert_eq!(
+            decision,
+            ProgressDecision::Reject("kill steps advance via mob death only")
+        );
+    }
+
+    #[test]
+    fn decide_progress_talk_requires_npc_in_range() {
+        let chain = sample_chain();
+        let talk = chain.step(0).unwrap();
+
+        // No nearby NPCs — reject.
+        let decision =
+            decide_progress(&talk.objective, &chain, &[], None, None);
+        assert_eq!(decision, ProgressDecision::Reject("not in range of NPC"));
+
+        // Wrong NPC nearby (different name) — reject.
+        let wrong = [NearbyChainNpc {
+            display_name: "Old Brenn",
+            chain_id: Some("test_chain"),
+        }];
+        let decision = decide_progress(&talk.objective, &chain, &wrong, None, None);
+        assert_eq!(decision, ProgressDecision::Reject("not in range of NPC"));
+
+        // Right NPC, wrong chain — reject.
+        let wrong_chain = [NearbyChainNpc {
+            display_name: "Warden Telyn",
+            chain_id: Some("other_chain"),
+        }];
+        let decision =
+            decide_progress(&talk.objective, &chain, &wrong_chain, None, None);
+        assert_eq!(decision, ProgressDecision::Reject("not in range of NPC"));
+
+        // Right NPC, right chain — Ok.
+        let right = [NearbyChainNpc {
+            display_name: "Warden Telyn",
+            chain_id: Some("test_chain"),
+        }];
+        let decision = decide_progress(&talk.objective, &chain, &right, None, None);
+        assert_eq!(decision, ProgressDecision::Ok);
+    }
+
+    #[test]
+    fn decide_progress_deliver_gates_on_inventory() {
+        let chain = sample_chain();
+        let deliver = chain.step(1).unwrap();
+        let in_range = [NearbyChainNpc {
+            display_name: "Warden Telyn",
+            chain_id: Some("test_chain"),
+        }];
+
+        // Inventory not consulted — defensive reject.
+        let decision =
+            decide_progress(&deliver.objective, &chain, &in_range, None, None);
+        assert_eq!(
+            decision,
+            ProgressDecision::Reject("inventory not consulted")
+        );
+
+        // Inventory empty — reject.
+        let decision =
+            decide_progress(&deliver.objective, &chain, &in_range, Some(0), None);
+        assert_eq!(decision, ProgressDecision::Reject("missing required item"));
+
+        // Inventory has it — ConsumeItem.
+        let decision =
+            decide_progress(&deliver.objective, &chain, &in_range, Some(1), None);
+        match decision {
+            ProgressDecision::ConsumeItem {
+                base,
+                material,
+                quality,
+                count,
+            } => {
+                assert_eq!(base, "quest_folio");
+                assert_eq!(material, None);
+                assert_eq!(quality, "regular");
+                assert_eq!(count, 1);
+            }
+            other => panic!("expected ConsumeItem, got {other:?}"),
+        }
+    }
+
+    #[test]
+    fn decide_progress_investigate_requires_landmark_in_range() {
+        let chain = sample_chain();
+        let invest = chain.step(2).unwrap();
+
+        // Landmark not loaded — reject.
+        let decision = decide_progress(&invest.objective, &chain, &[], None, None);
+        assert_eq!(
+            decision,
+            ProgressDecision::Reject("landmark not resolvable")
+        );
+
+        // Out of range — reject.
+        let decision =
+            decide_progress(&invest.objective, &chain, &[], None, Some(false));
+        assert_eq!(
+            decision,
+            ProgressDecision::Reject("not in range of landmark")
+        );
+
+        // In range — Ok.
+        let decision =
+            decide_progress(&invest.objective, &chain, &[], None, Some(true));
+        assert_eq!(decision, ProgressDecision::Ok);
+    }
+
+    #[test]
+    fn quest_log_progress_kill_count_starts_zero() {
+        let p = QuestLogProgress::default();
+        assert_eq!(p.kill_count, 0);
+        assert_eq!(p.current_step, 0);
+        assert!(!p.completed);
     }
 }

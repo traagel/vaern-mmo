@@ -10,8 +10,9 @@ use bevy::prelude::*;
 use vaern_character::XpCurve;
 use vaern_core::School;
 use vaern_data::{
-    AbilityIndex, ClassDef, QuestIndex, Race, SideQuestIndex, into_index, load_abilities,
-    load_all_side_quests, load_classes, load_races, load_schools,
+    AbilityIndex, ClassDef, LandmarkIndex, QuestIndex, Race, SideQuestIndex, into_index,
+    load_abilities, load_all_landmarks, load_all_side_quests, load_classes, load_races,
+    load_schools,
 };
 use vaern_items::ContentRegistry;
 
@@ -33,6 +34,9 @@ pub struct GameData {
     /// Per-hub side-quest bundles. Each bundle has an authored giver
     /// NPC who hands out every side quest at that hub.
     pub side_quests: SideQuestIndex,
+    /// Per-zone landmark registry. Used to anchor `QuestPoi` waypoints
+    /// for `investigate` / `explore` quest steps.
+    pub landmarks: LandmarkIndex,
     /// Playable races loaded from `src/generated/races/<id>/core.yaml`.
     /// Used by spawn to derive `PillarCaps` from `affinity`.
     pub races: Vec<Race>,
@@ -192,6 +196,13 @@ pub fn load_game_data() -> GameData {
         side_quests.by_hub.len(),
         side_quests.by_zone.len()
     );
+    let landmarks = load_all_landmarks(root.join("world"))
+        .expect("vaern-server: failed to load landmark YAMLs from src/generated/world");
+    println!(
+        "loaded landmarks: {} entries across {} zones",
+        landmarks.by_id.len(),
+        landmarks.by_zone.len()
+    );
     let races = load_races(root.join("races"))
         .expect("vaern-server: failed to load race YAMLs from src/generated/races");
     let schools_vec = load_schools(root.join("schools"))
@@ -277,6 +288,7 @@ pub fn load_game_data() -> GameData {
         bestiary,
         quests,
         side_quests,
+        landmarks,
         races,
         race_to_zone,
         zone_offsets,

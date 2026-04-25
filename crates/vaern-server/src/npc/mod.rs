@@ -13,6 +13,7 @@
 
 mod ai;
 mod components;
+mod quest_poi;
 mod spawn;
 mod stats;
 
@@ -23,6 +24,7 @@ pub use ai::{
     snap_npcs_to_terrain,
 };
 pub use components::{MobLevel, MobSourceId, Npc, NpcHome, NpcSpawns, ThreatTable};
+pub use quest_poi::seed_quest_pois;
 pub use spawn::{manage_npc_respawn, seed_npc_spawns};
 
 // ─── constants ─────────────────────────────────────────────────────────────
@@ -33,7 +35,7 @@ pub use spawn::{manage_npc_respawn, seed_npc_spawns};
 /// they're an event.
 pub(crate) fn respawn_secs_for_kind(kind: NpcKind) -> f32 {
     match kind {
-        NpcKind::QuestGiver | NpcKind::Vendor => 5.0, // re-spawn fast if despawned
+        NpcKind::QuestGiver | NpcKind::Vendor | NpcKind::QuestPoi => 5.0, // re-spawn fast if despawned
         NpcKind::Named => 30.0 * 60.0,
         NpcKind::Elite => 10.0 * 60.0,
         NpcKind::Combat => 3.0 * 60.0,
@@ -56,7 +58,7 @@ pub(crate) const NPC_DEFAULT_AGGRO: f32 = 8.0;
 
 pub(crate) fn aggro_for_kind(kind: NpcKind) -> f32 {
     match kind {
-        NpcKind::QuestGiver | NpcKind::Vendor => 0.0, // never aggros
+        NpcKind::QuestGiver | NpcKind::Vendor | NpcKind::QuestPoi => 0.0, // never aggros
         NpcKind::Named => 14.0,
         NpcKind::Elite => 11.0,
         NpcKind::Combat => NPC_DEFAULT_AGGRO,

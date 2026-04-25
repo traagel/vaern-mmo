@@ -153,6 +153,7 @@ fn quest_log_to_persisted(log: &QuestLog) -> Vec<PersistedQuestEntry> {
             current_step: p.current_step,
             total_steps: p.total_steps,
             completed: p.completed,
+            kill_count: p.kill_count,
         })
         .collect();
     entries.sort_by(|a, b| a.chain_id.cmp(&b.chain_id));
@@ -170,6 +171,7 @@ pub fn persisted_to_quest_log(persisted: &PersistedQuestLog) -> QuestLog {
                 current_step: entry.current_step,
                 total_steps: entry.total_steps,
                 completed: entry.completed,
+                kill_count: entry.kill_count,
             },
         );
     }
