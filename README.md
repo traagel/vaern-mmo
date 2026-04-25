@@ -4,26 +4,30 @@ Solo-developer hardcore two-faction persistent-coop RPG. Rust · Bevy 0.18 · Li
 
 ## Status
 
-**Playable MMO scaffold with closed combat-gear-loot-prep loop, combat depth, and visible characters.** Menu → character create (race / body / pillar) → live 3D world with a gear-driven Quaternius character mesh playing UAL clips keyed off `AnimState` (idle / walk / run / cast-hold / sword-swing / block / hit / death), per-race zones, shaped abilities with YAML-driven status-effect riders (burning / chilled / bleeding / decay), Active Block + Parry stances backed by a stamina pool, kill mobs for XP + loot drops, equip gear that actually modifies combat **and visually swaps the body mesh** via a WoW-style paper doll with rarity-colored tooltips, gather materials from world resource nodes, quaff potions (healing / mana / stamina / damage + resist buffs) mid-fight from a 4-slot hotkey belt. Server-authoritative over UDP + netcode, multi-client, with client prediction + interpolation + zone-scoped area-of-interest replication.
+**Pre-alpha-shaped MMO that reads as a place.** Menu → character create (race / body / pillar) → live 3D world with a gear-driven Quaternius character mesh on a **PBR-dressed Dalewatch** (Poly Haven trees / rocks / shrubs / ground cover scattered across a 1200×1200u box, plus ~55 hand-authored hub props — castle door, iron gates, weapon rack, banners, well, fire pit, market barrels, vendor table) layered onto the voxel ground. Full combat-gear-loot loop, **currency economy with 10 capital-hub vendors**, **text chat with 5 channels + speech bubbles**, **party system with shared XP**, **player nameplates with V-toggle**, **5 side-quest givers in Dalewatch (Quartermaster Hayes / Captain Morwen / Innkeeper Bel / Smith Garrick / Mistress Pell)**, **mob level banding** (L1-2 keep, L3-4 mid, L5-6 outer, L7+ Drifter's-Lair direction) **with per-kind respawn timers** (commons 3 min, elites 10 min, named 30 min), **felt level progression** — kill XP scales by mob-vs-killer level (greys give 0, +5 reds give 1.5×), every level-up grants +1 pillar point to your committed pillar with a centered banner + screen flash, quests refuse if more than 3 levels above you. **Text emotes** (/wave /bow /sit /cheer /dance /point) ride the chat-bubble system. **Corpse-run death penalty** — die → respawn at home with 25% HP, your corpse stays at the death site for 10 minutes; walk back to it → full HP restored. Server-authoritative over UDP + netcode, multi-client, client prediction + interpolation + zone-scoped area-of-interest replication. **309 workspace tests passing.**
 
 What works end-to-end:
 - **Main menu** with character create/select (egui). Race + **body** (Male / Female — cosmetic, client-local) + **pillar** pickers (Might / Finesse / Arcana — characters commit to a pillar only at creation; archetype / Order unlocks are deferred to an evolution path). Saved characters persist to `~/.config/vaern/characters.json`.
 - **10 starter zones** (1 per race) populated on startup on a 2800u ring; each player spawns in their race's zone. **Dalewatch Marches** (Mannin starter) was redesigned to Classic-Elwynn scope: 4 hubs, 12 sub-zones / landmarks, 10-step main chain, 2 side chains, 20 side quests, 24 mob types in a 1200×1200u playable box. Other 9 zones still ~15 mobs, 2 hubs, 1 main chain, 5 resource nodes.
-- **Procedural uneven terrain + atmospheric sky.** Ground is an 8000×8000u tessellated plane (320 cells/axis, ~25u cell) textured with a CC0 ambientCG grass PBR set (Color + NormalGL + AO) and displaced by two octaves of sine noise. Sky is Bevy 0.18's `AtmospherePlugin` (procedural scattering), paired with `DistanceFog` (exp-squared, 1500u visibility), `Bloom::NATURAL`, `Tonemapping::TonyMcMapface`, `Exposure::SUNLIGHT`, `Hdr`. Shared `vaern_core::terrain::height` function drives both the client mesh and server-side Y-snapping for players + NPCs so entities hug the hills.
+- **Server-authoritative biome voxel ground + atmospheric sky.** The world's ground is the `vaern-voxel` crate: a hand-rolled Surface Nets extractor (no external `fast-surface-nets` / `ndshape` / `glam` deps) over a sparse `HashMap<ChunkCoord, VoxelChunk>` store with 32³-content + 1-padding chunks (34³ f32 samples, ~157 KB), streamed around every active player on **both** server and client. 8 editable algorithm layers behind traits: `SdfField`, `VertexPlacement`, `NormalStrategy`, `QuadSplitter`, `IsoSurfaceExtractor`, `MeshSink`, `WorldGenerator`, `Brush`. Server uses `HeightfieldGenerator` to seed 5×3×5 chunks around each player; client streams 11×3×11 around the camera and adds world-XZ UVs + MikkTSpace tangents + a per-chunk `StandardMaterial` from a cached 9-biome CC0 ambientCG PBR table resolved via nearest-hub Voronoi (`vaern-client/src/voxel_biomes.rs`). **F10 crater flow is fully server-authoritative**: client sends `ServerEditStroke` → server validates (range ≤ 12u, distance ≤ 40u from requesting player) → applies `EditStroke::new(SphereBrush { mode: Subtract, .. })` → broadcasts up to 8 `VoxelChunkDelta`/tick to every client. Reconnecting clients are caught up via a per-link `PendingReconnectSnapshots` queue (4 chunks/tick/client) seeded from the server's `EditedChunks` set. Server player + NPC Y-snap and client predicted-player Y-snap all query `vaern_voxel::query::ground_y(store, x, z, top_y, descent)` (with `terrain::height` fallback for unseeded chunks), so craters affect physics the same way they affect visuals. Two load-bearing voxel crate fixes landed this slice: `ChunkShape::MESH_MIN = PADDING - 1` to close static chunk seams, and `chunks_containing_voxel` enumeration extended from `{-1, 0}` to `{-1, 0, +1}` to propagate halo writes correctly across chunk boundaries (without the latter, a textured "cap" floats over every carved crater). Sky is Bevy 0.18's `AtmospherePlugin` (procedural scattering) paired with `DistanceFog` (exp-squared, 1500u visibility), `Bloom::NATURAL`, `Tonemapping::TonyMcMapface`, `Exposure::SUNLIGHT`, `Hdr`. 46/46 voxel unit + e2e tests pass.
+- **Voronoi hub biomes baked into the voxel ground.** Each hub YAML still declares a `biome: <key>` from the 9-biome palette (grass / grass_lush / mossy / dirt / snow / stone / scorched / marsh / rocky; all CC0 PBR from ambientCG). On client startup, `voxel_biomes::BiomeResolver` loads the world YAML and builds a nearest-hub table with a 900u influence radius per hub. At chunk seed time (both the camera streamer and the delta-receive path), the chunk's footprint center is resolved to a `BiomeKey`, cached in `ChunkBiomeMap`, and the material-attach system pulls the matching `StandardMaterial` from the lazy per-biome cache. Transitions are chunk-aligned (32u tiles) — smooth per-fragment blending would need a custom triplanar shader with per-vertex biome weights. The legacy `scene/hub_regions.rs` overlay-mesh plugin (with its 1024 floor patches + 7 road ribbons per zone) is retired and unregistered; the file stays as source-level reference for porting roads (which are NOT yet represented in the voxel ground — that's a follow-up).
+- **PBR world dressing on top of the voxel ground.** 57-asset Poly Haven CC0 pack at `assets/polyhaven/`, downloaded via `scripts/download_polyhaven.py` (see `memory/reference_polyhaven_pipeline.md` for API gotchas — UA blocking + texture URL rewrite). `PolyHavenCatalog` resource in `vaern-assets` keys slug → category. Zone YAML carries `scatter:` rules (biome + density + min spacing + slope cap + hub exclusion + seed salt) and hub YAML carries `props:` lists (slug + offset + rotation + scale). `crates/vaern-client/src/scene/dressing.rs` runs a deterministic seeded Poisson-disk scatter inside each zone's 1200×1200u footprint, snaps Y to the voxel ground via `vaern_core::terrain::height`, and culls beyond 250u. `MAX_SCATTER_PER_ZONE=1500` is a safety cap. Dalewatch is dressed: ~55 authored hub props (castle door, iron gates, weapon rack, banners, well, fire pit, market barrels) + 5 scatter rules covering trees / rocks / dead wood / shrubs / ground cover. **Trees are saplings only** — Poly Haven's hero-tree photoscans are 100MB-905MB each and excluded from the scatter pack. **No collision on dressing props yet** (deferred). See `memory/project_world_dressing.md`.
 - **Top-left unit frame** — race portrait, character name, level, HP / mana / stamina bars (amber while blocking), `BLOCKING` / `PARRY` tags when active, XP bar. Populated by server-pushed `PlayerStateSnapshot` (not replication — see architecture).
 - **Mouse-look camera** — cursor locked + hidden in-game; mouse drives camera yaw/pitch; scroll for zoom. Hold **LeftAlt** to free the cursor for UI clicks. Cursor auto-frees whenever an egui panel is open.
 - **Target lock (Tab-cycle)** — **Tab cycles** through combat NPCs within 40u, preferring those in the camera's front cone (falls back to nearest overall when none in front). QuestGivers are excluded. **Esc clears**. While locked, the player continuously turns toward the target (kinematic motion controller).
 - **Combat shapes** (tuned per-ability in flavored YAML): `target`, `aoe_on_target`, `aoe_on_self`, `cone`, `line`, `projectile`. Friendly fire on — AoE hits party. Channeled cones/lines/projectiles snapshot their `range` onto `Casting`, so heavy attack (cast-time cone) doesn't sweep to infinity.
 - **Hotbar (6 key-bound + 2 mouse-bound)** — keys 1-6 fire class kit; **LMB** = light auto-attack; **RMB** = heavy auto-attack. No GCD.
 - **Cast bar** (bottom-center) for abilities with `cast_secs > 0` — school-colored fill.
-- **Quest flow**: walk up to a gold "!" NPC → `F` → Accept → quest log (`L`) tracks.
+- **Quest flow**: walk up to a gold "!" NPC → `F` → Accept → quest log (`L`) tracks. **Server hard-refuses accept if `chain.steps[0].level > player.level + 3`** (no entry appears in the log). Side-quest givers populated in Dalewatch — Quartermaster Hayes (capital) + Captain Morwen (Harrier's) + Innkeeper Bel (Ford) + Smith Garrick (Kingsroad) + Mistress Pell (Miller's), each at the NW 4u offset of their hub.
+- **Mob level banding** — Dalewatch tiers mobs into bands by level: L1-2 cluster around the keep, L3-4 around Harrier's Rest + Kingsroad, L5-6 around Miller's + Ford, L7+ at a fixed (470, 80) "Drifter's Lair" anchor east of Ford. Per-rarity scatter radius (named 110u / elite 90u / common 70+jitter). Other zones still ring around zone origin (legacy procedural fallback). **Per-kind respawn timers**: combat=180s / elite=600s / named=1800s (was a flat 30s).
+- **Felt level progression** — `level_xp_multiplier` curve scales kill XP by `mob_level - killer_level`: parity = 1.0×, +5 = 1.5× (cap), -3 = 0.5×, -6+ = 0.0× (grey). Each level-up grants +1 pillar point auto-targeted at your committed pillar (highest-cap, tie-break Might > Finesse > Arcana). Both kill and quest XP paths use the wrapped `grant_xp_with_levelup_bonus` so every level-up gives the bonus regardless of source. Client renders a centered "LEVEL UP / Level N" banner with 0.35s gold screen flash + 2.5s fade (egui).
 - **XP + levels**: kills + quest steps grant XP. Level-up via `xp_curve.yaml`.
 - **Pillar XP from play**: every ability cast grants pillar points to the ability's pillar (Might/Finesse/Arcana). HP auto-scales on pillar gain via `derive_primaries`.
 - **NPC AI**: per-type aggro, threat-table targeting, roaming idle, leash-home. Slow-aware (chilled NPCs actually slow down).
 - **NPC stats from bestiary** — creature_type resistances + armor_class physical/magic reduction fold into `CombinedStats` per mob, scaled by rarity (Combat 1.0× / Elite 1.25× / Named 1.5×). Fire dragons resist fire; plate knights resist blade.
 
-**Character rendering (own player):**
-- **Quaternius modular character mesh** drives the own-player avatar. Body / legs / arms / feet / head-piece spawned slot-by-slot under the player entity, each independently colored.
+**Character rendering (all humanoids):**
+- **Quaternius modular character mesh** drives the own-player avatar, every remote player, and every humanoid NPC (quest-givers, bandits, cultists) — all on the same UE-Mannequin skeleton and all driven by the shared UAL `AnimationGraph`. Body / legs / arms / feet / head-piece spawned slot-by-slot under the player entity, each independently colored.
 - **Gear-driven outfit.** `outfit_from_equipped(OwnEquipped, ContentRegistry)` maps each primary armor slot's `ArmorType` to a Quaternius outfit family + color variant: cloth→Wizard, gambeson→Peasant V2, leather→Ranger, mail→KnightCloth V3, plate→Knight V2. **Unequipped = Peasant BaseColor** — the reserved "naked rags" identity, never used by any equipped armor. Mail vs plate differ by body mesh (KnightCloth vs Knight) AND color (V3 vs V2).
 - **Respawn on change.** A `sync_own_player_visual` system watches `OwnEquipped`; on any change that alters the resolved `QuaterniusOutfit` it despawns the old mesh and spawns a new one. Equipping a ring or trinket is a no-op visually.
 - **UAL animation pipeline.** `MeshtintAnimationCatalog::scan` at startup loads both UAL GLBs (86 Quaternius clips). `install_character_animation_player` (per scene) wires an `AnimationPlayer` on every Quaternius child (body, legs, arms, feet, head piece, Superhero head split, hair, beard) pointing at a shared `AnimationGraph`. UAL is authored on the UE Mannequin skeleton — same as Quaternius — so no retargeting.
@@ -90,6 +94,46 @@ What works end-to-end:
 - `H` proximity-harvests nearest Available node within 3.5u → material enters inventory → node flips to Harvested → respawns after 60s (tier 1).
 - 4 gathering professions wired (Mining, Herbalism, Skinning, Logging); 7 crafting professions typed but no recipes yet.
 
+**Currency loop** (closed earn→spend):
+- **`PlayerWallet { copper: u64 }`** component on every player; `saturating_add` credit + `try_debit` spend + `can_afford` check. Lives in `vaern-economy`.
+- **Mob kills drop coin** in addition to items. `DropTable.coin_range: (u32, u32)` scaled by `(material_tier, NpcTier)`: combat 2-10c at T1 → 8-46c at T6; elite 15-50c → 63-210c; named 100-300c → 420-1260c. Coin rolls independently of item drop_chance — a no-item kill still pays. Credited directly to the top-threat player's wallet (no loot-container dance for coin).
+- **Quest rewards pay copper** — step `gold_reward_copper` on progress + chain `gold_bonus_copper` on completion. `apply_kill_objectives` pays the step reward on auto-advance.
+- **`WalletSnapshot { copper: u64 }`** S→C broadcast only on `Changed<PlayerWallet>` (idle ticks cost nothing).
+- **Gold displayed in the inventory panel** (press `I`) under the Inventory heading, formatted as `"12g 34s 56c"` via `format_copper_as_gsc`. **Not** in the combat unit frame — currency is an inventory concern.
+- **Persisted** as `PersistedCharacter.wallet_copper: u64` with `#[serde(default)]` for legacy saves.
+
+**Vendor NPCs** (10 per starter-zone capital):
+- **One general-goods vendor per capital hub** (Merchant Kell at Dalewatch Keep, Merchant Seyla at Shadegrove Spire, etc.), seeded from `src/generated/vendors.yaml`. Each stocks ~12 items: minor potions (healing / mana / stamina), food (bread / hardtack / rations), a scroll of recall, linen cloth shirt / trousers / cowl, and two copper weapons sized to the region's flavor.
+- **`NpcKind::Vendor`** variant; cool-blue nameplate color; excluded from Tab-targeting; non-combat.
+- **F within 5u opens the vendor window** (two tabs: Buy / Sell). Buy tab lists stock with `vendor_buy_price` server-computed prices; click "Buy Xc" — server debits wallet, adds item to inventory, decrements stock if `VendorSupply::Limited(n)`. Sell tab iterates the player's own inventory, shows `vendor_sell_price` (60% spread) per sellable stack; click "Sell Xc" — server credits wallet, removes the item. Soulbound / `no_vendor` items show a grey "(no sale)" row.
+- **Auto-close** when the player walks out of range (5u) via `VendorClosedNotice`.
+- **`VendorIdTag`** stamped by a startup pass (`tag_new_vendors`) so wire ids stay stable across reconnects.
+
+**Chat system**:
+- **Five channels**: Say (20u proximity), Zone (whole-zone AoI room), Whisper (single recipient by display name), Party (cross-zone party members), System (server-authored banners).
+- **Enter** opens input bar; type + Enter sends. Prefix parser: no prefix = Say, `/s /say`, `/z /zone`, `/p /party`, `/w /whisper /tell /msg <name>`. Unknown `/foo` falls through to Say.
+- **Party commands** (`/invite /inv /leave /disband /kick`) intercept before chat parsing — same input bar.
+- **Emotes**: `/wave /bow /sit /cheer /dance /point` translate client-side into a Say-channel send with body `*waves.*` / etc. Bubble + history both render. Animation playback (UAL clip per emote) is post-pre-alpha scope.
+- **Rate-limited** at 5 messages/sec per sender (rolling 1s window). Truncated to 256 chars. Server authoritative on `from` (reads sender's `DisplayName` — clients never stamp their own name).
+- **Speech bubbles** render above the speaker's head on Say and Zone only — Whisper and Party stay private visually. 5s lifetime with a 1s fade, truncated to 72 chars with an ellipsis, one-bubble-per-speaker policy (new bubble replaces old). Bubble anchors at `head + 2.8u`; nameplate at `+2.1u` — they stack without overlap.
+- **`ChatInputFocused`** resource: while the input has keyboard focus, movement (WASD), targeting (Tab/Esc), combat (1-6, LMB/RMB), stances (Q/E), spellbook (K), and nameplate-toggle (V) are all suppressed. Cooldowns still tick; mouse-look still streams — matches the standard MMO-client model.
+- **History**: 50-line ring in the bottom-left overlay. Channel colors: Say white, Zone mint-green, Party cool-blue, Whisper magenta (received) / pink (echo), System yellow.
+
+**Party system** (strict-coop core):
+- **Invite by display name** — `/invite Brenn` (or `/inv Brenn`). Server validates target exists, target isn't already in a party, your party has room (max 5). Target gets `PartyIncomingInvite`; UI pops an Accept/Decline modal at center-top. 60s invite TTL server-side.
+- **Party frame** top-left below the unit frame — one row per member with name + level + HP bar + `[L]` leader tag + Leave button. Rebuilt from `PartySnapshot` (broadcast on join/leave/kick/disband; dirty-set gated — not per-tick).
+- **Leave / kick / disband**: `/leave` or Leave button leaves the party; `/kick <name>` (leader-only); party auto-disbands when size drops below 2 (every ex-member gets `PartyDisbandedNotice`, their `PlayerPartyId` component is stripped). Leader-leave promotes `members[0]` before the size check.
+- **Shared XP** — `vaern-server::xp::award_xp_on_mob_death` splits XP across every party member within `PARTY_SHARE_RADIUS = 40u` of the killer. Killer gets full base reward; each partner in range gets a `per` share with small-group multiplier: `1.0× / 0.7× / 0.55× / 0.45× / 0.38×` for 1/2/3/4/5 sharers. Total group payout rises with party size (5-party ≈ 1.9× solo) so grouping pays, but never scales linearly to 5×.
+- **Party chat** (`/p <msg>`) routes through `ChatChannel::Party` — `chat_io` queries `PartyTable` and ships to every member's link across zones. Same 5/sec rate limit as other channels.
+
+**Nameplates**:
+- **Every entity with `Health`** gets a nameplate — players, quest-givers, vendors, combat mobs. Projected each frame from world-space (`head + 2.1u`) to screen.
+- **Label = `DisplayName`** for both players and NPCs. Pillar label only shown for anonymous spawns (empty `DisplayName` from headless test clients).
+- **60u culling** (`NAMEPLATE_MAX_RANGE`) — distant plates hide before projection so dense crowds don't become letter soup.
+- **V toggles** on/off via `NameplatesVisible` resource (gated on chat focus). When off, also hides chat bubbles.
+- **Color by kind**: players + combat mobs white, quest-givers gold, vendors cool-blue, elites violet, named pink. `"!"` quest marker renders above quest-giver plates.
+- **State tag** under HP bar reads `[idle]` / `[running]` / `[blocking]` / `[attacking]` etc. — live from replicated `AnimState`.
+
 ## Quick start
 
 ```bash
@@ -111,24 +155,45 @@ VAERN_CLIENT_ID=1001 ./target/debug/vaern-client    # terminal 3 — second clie
 - `7 8 9 0` — consumable belt (bound potions, quaffable mid-fight)
 - **Q** — hold for Active Block (drains stamina; 60% frontal damage reduction)
 - **E** — tap for Active Parry (0.35s window, 20 stamina on successful negate)
-- `Tab` — cycle target (40u max range, prefers NPCs in the camera's front cone, QuestGivers excluded)
-- `Esc` — clear current target
-- `I` — toggle inventory + paper doll (auto-frees cursor while open)
+- `Tab` — cycle target (40u max range, prefers NPCs in the camera's front cone, QuestGivers + Vendors excluded)
+- `Esc` — clear current target / close focused panel
+- `I` — toggle inventory + paper doll (wallet shown under Inventory heading)
 - `C` — toggle character / stat screen
 - `G` — loot nearest container within 5 units (opens loot window)
 - `H` — harvest nearest resource node within 3.5 units (mining / herbalism / logging)
 - `LeftAlt` — hold to free cursor for UI clicks + disable mouse-look
-- `F` — talk to nearest quest-giver (≤5u range, gold "!" nameplate)
+- `F` — talk to nearest quest-giver OR open nearest vendor's buy/sell window (≤5u range)
 - `K` — toggle spellbook · `L` — toggle quest log · `☰` top-right — logout / quit
+- **`V` — toggle nameplates + chat bubbles on/off** (gated on chat focus — typing "V" in chat is safe)
+- **`Enter`** — open chat input. Type + Enter sends to the selected channel. `Esc` cancels.
+  - No prefix = `/say` (20u proximity). `/z` = zone. `/p` = party. `/w <name>` = whisper.
+  - `/invite <name>`, `/leave`, `/kick <name>` are party commands (also work from the same input bar).
+  - `/wave /bow /sit /cheer /dance /point` are emotes — render as third-person bubble text ("Brenn waves.").
+  - **While the chat input has focus, WASD / hotbar / Tab / Q / E / K / V are all suppressed** — typing "W" doesn't walk.
+- `F10` — **debug voxel stomp** — carve a 6u-radius sphere crater in the voxel world at the camera's forward focus.
 
 ## Architecture
 
-Workspace of sixteen crates + modular client + modular server:
+Workspace of seventeen crates + modular client + modular server:
 
 ```
 crates/
 ├── vaern-core/       abstract types: Pillar, ClassPosition, Morality, Faction, School,
-│                     DamageType (12 variants)
+│                     DamageType (12 variants), terrain height field, Voronoi
+│                     partition + Catmull-Rom spline utilities (voronoi.rs)
+├── vaern-voxel/      chunked SDF voxel world (hand-rolled, not fast-surface-nets):
+│                     sdf/ (trait + Sphere/BoxSdf/Capsule/Plane + Union/Subtract/
+│                     Intersect/SmoothUnion/SmoothSubtract), chunk/ (32³ content +
+│                     1 padding = 34³ samples per chunk, sparse HashMap store,
+│                     DirtyChunks), mesh/ (IsoSurfaceExtractor + VertexPlacement +
+│                     NormalStrategy + QuadSplitter + MeshSink — 4 swappable
+│                     algorithm layers), edit/ (Brush + EditStroke with halo sync),
+│                     generator/ (HeightfieldGenerator bridges terrain::height),
+│                     query/ (ground_y + raycast against ChunkStore),
+│                     replication/ (ChunkDelta FullSnapshot | SparseWrites,
+│                     version-numbered + replay-safe), plugin.rs (VoxelCorePlugin
+│                     resources-only for server, VoxelMeshPlugin for client, combined
+│                     VaernVoxelPlugin). 46 unit+e2e tests pass.
 ├── vaern-data/       YAML loaders: schools, classes, abilities, flavored, bestiary,
 │                     races, world, dungeons, quest chains
 ├── vaern-protocol/   SharedPlugin: lightyear registration, channels, every network
@@ -163,8 +228,20 @@ crates/
 ├── vaern-server/     bin: UDP + modular — data / connect / npc / quests / xp /
 │                     player_state / combat_io / movement / util / starter_gear /
 │                     stats_sync / inventory_io / loot_io / consume_io /
-│                     belt_io / resource_nodes / aoi (zone-room AoI replication)
-├── vaern-client/     bin: DefaultPlugins + 18 focused modules (see below)
+│                     belt_io / resource_nodes / aoi (zone-room AoI replication) /
+│                     voxel_world (authoritative chunk store + streamer + edit
+│                     validator + delta broadcast + reconnect catch-up pipeline) /
+│                     wallet_io (broadcast WalletSnapshot on Changed<PlayerWallet>) /
+│                     vendor_io (open/buy/sell handlers + stable VendorIdTag) /
+│                     chat_io (Say/Zone/Whisper/Party/System routing + rate limit) /
+│                     party_io (PartyTable + invite/accept/leave/kick + dirty-set
+│                     snapshot broadcast; shared-XP scaling inlined in xp.rs) /
+│                     respawn (corpse-run death penalty: spawn server-only
+│                     Corpse entity at death pos, 25% HP respawn, walk-back
+│                     restoration at 3u proximity, 10-min expiry; CorpseOnDeath
+│                     marker makes shared apply_deaths skip players)
+├── vaern-client/     bin: DefaultPlugins + 22 focused modules (see below) incl.
+│                     vendor_ui, chat_ui, party_ui wired for the MMO-feel slice
 ├── vaern-sim/        bin: headless deterministic sim — reserved for PPO balance training
 ├── vaern-assets/     shared Bevy plugin: two character-rendering stacks
 │                     + shared animation pipeline + NamedRegions cache.
@@ -220,21 +297,53 @@ src/
 ├── unit_frame.rs    top-left player frame (portrait/name/L#/HP/XP)
 ├── combat_ui.rs     Bevy-native cast bar + target frame + swing flash
 ├── vfx.rs           impact flashes, cast-beam gizmos, gold target ring
-├── nameplates.rs    world-space HP plates + floating damage numbers + "!" quest-givers
+├── nameplates.rs    world-space HP plates (DisplayName label, 60u cull, V-toggle) +
+│                    floating damage numbers + "!" quest-givers + chat speech bubbles
+│                    (5s lifetime, fade, 72-char truncate, 1-per-speaker)
 ├── hud.rs           compass strip
 ├── quests.rs        loads chain YAMLs, drains QuestLogSnapshot
 ├── interact.rs      [F] quest-giver dialogue, [L] quest log
-├── inventory_ui.rs  [I] inventory + equipment window, ClientContent registry loader,
-│                    right-click consumable → bind to belt menu
+├── inventory_ui.rs  [I] inventory + equipment window + wallet line (amber, under
+│                    Inventory heading), ClientContent registry loader, right-click
+│                    consumable → bind to belt menu
+├── vendor_ui.rs     [F] vendor Buy/Sell window (5u proximity), NearbyVendor detect,
+│                    ActiveVendor snapshot, wallet header, local sell-price display
+├── chat_ui.rs       Enter-opens input + bottom-left history (50-line ring) + prefix
+│                    parser (/s /z /p /w) + ChatInputFocused gate that suppresses
+│                    WASD/hotbar/Tab/Q/E/K/V while typing + ChatBubbleEvent emit
+├── party_ui.rs      Party frame (name + level + HP bar + [L] leader + Leave btn),
+│                    invite popup (Accept/Decline), party-command parser
+│                    (/invite /inv /leave /disband /kick)
 ├── belt_ui.rs       4-slot consumable belt strip (keys 7/8/9/0), binding snapshot
 ├── loot_ui.rs       [G] loot window + pending-loot gizmo markers
 ├── stat_screen.rs   [C] character stats (pillars + CombinedStats breakdown)
 ├── harvest_ui.rs    [H] resource-node markers + harvest-proximity input
+├── voxel_biomes.rs  BiomeResolver: loads world YAML, builds nearest-hub biome
+│                    table (900u influence radius), answers BiomeKey queries
+│                    per chunk footprint. BiomeKey::textures() maps to a CC0
+│                    ambientCG PBR set.
+├── voxel_demo.rs    Voxel ground plugin: streams 11×3×11 chunk cube around
+│                    camera, attaches world-XZ UVs + MikkTSpace tangents +
+│                    per-biome StandardMaterial on new chunk entities (with
+│                    refresh_uvs_on_remesh for edit-driven mesh swaps). F10
+│                    sends a server-authoritative ServerEditStroke; server
+│                    broadcasts ChunkDeltas back via apply_server_chunk_deltas.
+├── level_up_ui.rs  Centered "LEVEL UP / Level N" banner + 0.35s gold
+│                    screen-flash overlay + 2.5s fade. Watches OwnPlayerState
+│                    .snap.xp_level for upward transitions; first snapshot
+│                    just records the persisted level (no banner on resync).
+├── scene/dressing.rs  Loads world YAML on enter-game, walks each zone's
+│                    `scatter:` rules + each hub's `props:` list, spawns
+│                    SceneRoot-per-asset tagged `GameWorld` for teardown.
+│                    Deterministic Poisson scatter via splitmix64 hash of
+│                    (zone_id, biome, category, seed_salt). 250u distance
+│                    cull; MAX_SCATTER_PER_ZONE safety cap.
 └── diagnostic.rs    periodic snapshot + connect/disconnect + cast-fired logs
 ```
 
 **Dependency graph (roughly):**
 - `vaern-core` → nothing
+- `vaern-voxel` → core (bridges terrain::height via HeightfieldGenerator; bevy 0.18, serde, thiserror only — no fast-surface-nets / ndshape / glam)
 - `vaern-combat` → core + stats (for CombinedStats lookup in compute_damage)
 - `vaern-character` → core (leaf)
 - `vaern-stats` → core (leaf)
@@ -258,12 +367,16 @@ src/
   - *Inventory + equip*: `InventorySnapshot`, `EquippedSnapshot` (S→C on change, not per tick); `EquipRequest`, `UnequipRequest` (C→S).
   - *Loot*: `PendingLootsSnapshot` (S→C on `PendingLootsDirty` flag, not per tick), `LootWindowSnapshot` / `LootClosedNotice` (S→C), `LootOpenRequest` / `LootTakeRequest` / `LootTakeAllRequest` (C→S).
   - *Harvest*: `HarvestRequest` (C→S, MapEntities). Node state flows through component replication.
+  - *Voxel edits*: `ServerEditStroke { center, radius, mode }` (C→S); `VoxelChunkDelta(ChunkDelta)` (S→C). Server applies via `EditStroke::new(SphereBrush).apply()` and broadcasts up to 8 deltas/tick; reconnecting clients get catch-up snapshots at 4/tick from the server's persistent `EditedChunks` set.
+  - *Wallet + vendors*: `WalletSnapshot { copper: u64 }` (S→C on `Changed<PlayerWallet>` only — not per-tick). `VendorOpenRequest { vendor }` (C→S, MapEntities), `VendorBuyRequest { vendor_id, listing_idx }` (C→S), `VendorSellRequest { vendor_id, inventory_idx }` (C→S). `VendorWindowSnapshot { vendor_id, vendor_name, listings }` (S→C on open + after buy + on stock change), `VendorClosedNotice { vendor_id }` (S→C when player walks out of 5u range).
+  - *Chat*: `ChatSend { channel, text, whisper_target? }` (C→S). `ChatMessage { channel, from, to, text, timestamp_unix }` (S→C). Server stamps `from` from the sender's `DisplayName` — clients never stamp their own. Rate-limited at 5 msg/sec/sender on a rolling 1s window.
+  - *Party*: `PartyInviteRequest { target_name }` / `PartyInviteResponse { party_id, accept }` / `PartyLeaveRequest` / `PartyKickRequest { target_name }` (C→S). `PartyIncomingInvite { party_id, from_name }` / `PartySnapshot { party_id, leader_name, members: Vec<PartyMember> }` / `PartyDisbandedNotice { party_id }` (S→C). Snapshot broadcast is dirty-set gated (join/leave/kick/disband) — not per-tick; HP staleness between snapshots is acceptable at pre-alpha.
 - **Area-of-interest replication** — one lightyear `Room` per starter zone. NPCs + resource nodes carry `NetworkVisibility` and join their zone's room at spawn; each client's link migrates between rooms as its player crosses zones. Players + projectiles stay globally visible. Pre-AoI, 603 NPCs × 60Hz Transform replication saturated the kernel UDP buffer on localhost and caused NPC rubber-banding. `RoomPlugin` must be added explicitly — it's not in lightyear's `SharedPlugins`.
 - **Prediction:** own player on a `Predicted` copy; `buffer_wasd_input` → `ActionState<Inputs>` with `camera_yaw_mrad` bundled.
 - **Own-player state via message, not replication.** Lightyear 0.26 gives the owning client only a `Predicted` copy — filter `(With<Replicated>, Without<Predicted>)` matches zero. HP/pool/XP/cast/stamina/stance + inventory + equipped + pending-loots all push via per-tick messages instead. Dynamic insertion/removal of predicted components (e.g. `AnimOverride`) is also unreliable on the Predicted copy, so **own-player transient animation flashes (Attacking / Hit) are driven client-side from the `CastFired` message** — server sets the flash, sends `CastFired { caster, … }`, client inspects `caster == own_player` and stamps `AnimState::Attacking` + a local `AnimOverride` to hold the swing for its full UAL clip duration.
 - **`CastFired` local relay.** Lightyear's `MessageReceiver::receive()` drains on read. Multiple consumers (vfx impact flashes, nameplate damage numbers, animation flash driver, diagnostic logger) would compete over the single queue. A single `relay_cast_fired` system is the sole `MessageReceiver<CastFired>` reader and re-emits every received message as a Bevy-local `CastFiredLocal` (via `MessageWriter`). All downstream consumers read `MessageReader<CastFiredLocal>` — Bevy's per-system cursor tracking lets every subscriber see every message.
 - **Loot containers are server-only entities** (not replicated). Clients see them only through `PendingLootsSnapshot` summaries owned by the top-threat player. Kills → one container per player-threat → loot is personal.
-- **Respawnable component** on players resets HP/position/pool instead of despawning.
+- **Respawnable component** on players resets HP/position/pool instead of despawning. Players ALSO carry `CorpseOnDeath`, which makes the shared `apply_deaths` skip them; server-only `respawn::apply_player_corpse_run` is the sole player-death handler — captures pre-teleport position, spawns a server-only `Corpse { owner, position, remaining_secs }` entity, sets HP to 25% of max instead of full, teleports to `Respawnable.home`. `respawn::tick_corpses` ticks lifetime, restores HP to max + despawns when owner walks within 3u (`CORPSE_RECOVERY_RADIUS`), and despawns expired corpses (10-min `CORPSE_LIFETIME_SECS`) or corpses whose owner has logged out. **No client-visible corpse marker yet** — players navigate back from memory of their death position; visual marker is a follow-up.
 - **Server tick-rate logger** — prints `[tick] 60 Hz  avg_frame=16.72ms  max_frame=16.74ms` each second; catches Update-loop stretch that would cause client rubber-banding.
 
 ### Combat model
@@ -393,7 +506,9 @@ Each pillar ∈ {0, 25, 50, 75, 100}, summing to 100. **15 valid positions**. In
 cargo test --workspace
 ```
 
-**106+ tests pass** across: class position invariants, combat parity (GCD-aware), stats-aware damage pipeline (armor/resist/crit/weapon-roll), YAML loads (schools/archetypes/abilities/world/bestiary/races/dungeons), item composition resolver (bases × materials × qualities × affixes), affix validation (applies_to, unknown id, soulbind propagation), loot drop distribution (combat vs named rarity skew, shard-only-never-random invariant), inventory stack merging, equipment slot validation (rune-in-focus, shield-in-offhand, two-hander-displaces-offhand), economy vendor pricing, profession skill clamps + node tier gates, NPC stat derivation from bestiary.
+**309 tests pass** across the prior coverage (class position invariants, combat parity (GCD-aware), stats-aware damage pipeline, YAML loads, item composition, affix validation, loot drops, inventory stacking, equipment slot validation, economy / wallet, profession skills, NPC stat derivation, party split-XP, chat rate-limit + parser, persistence round-trip) PLUS new this slice: **PolyHavenCatalog** (4 tests), **dressing schema validation** (2: Dalewatch scatter rules + every authored prop slug resolves), **scatter algorithm determinism** (4: deterministic seed, footprint bounds, hub exclusion, category map), **side-quest giver schema** (1: every Dalewatch hub has a giver), **mob level-band anchoring** (4: keep / mid / Drifter's Lair / fallback), **level-XP curve** (7: parity / +5 cap / -3 / -6+ grey / non-combat / red bonus), **emote parser** (2: /wave + all six emotes), **corpse-run constants** (3: HP fraction / radius / 600s lifetime).
+
+4 pre-existing `vaern-combat` failures (`attacker_kills_dummy`, `resource_gate_delays_kill`, `parity.rs` × 2) all stem from `apply_deaths` being moved to the server-only schedule — the `common::headless_app` test harness loads only the shared `CombatPlugin` which has `detect_deaths` without its follow-up despawn. Unrelated to runtime gameplay.
 
 Re-seed items:
 ```bash
@@ -410,13 +525,30 @@ python3 scripts/seed_items.py
 - [ ] **Race × class modifiers** — small racial tweaks on class stats
 - [ ] **Blood counterpart beyond devotion** — audit remaining evil-school mechanical gaps
 
+### MMO-feel (pre-alpha Tier-1)
+- [x] **Currency loop** — `PlayerWallet` + coin drops scaled by mob rarity + tier, quest gold payout on step/chain complete, `WalletSnapshot` on change, wallet UI under Inventory heading. Persisted as `PersistedCharacter.wallet_copper`.
+- [x] **Live vendor NPCs** — 10 general-goods vendors at starter-zone capitals, `NpcKind::Vendor` + `VendorStock` + F-interact Buy/Sell window, seeded from `src/generated/vendors.yaml`.
+- [x] **Text chat** — Say (20u) / Zone (AoI room) / Whisper (by name) / Party (cross-zone) / System channels, rate-limited at 5/sec, 256-char truncate, server-authoritative `from`.
+- [x] **Party system v1** — invite/accept/leave/kick by name, `PartyTable` + dirty-set snapshot broadcast, party frame top-left with member HP, shared XP within 40u (1.0/0.7/0.55/0.45/0.38× scaling), party chat cross-zone.
+- [x] **Player nameplates** — `DisplayName` label (not pillar), 60u culling, V-toggle, chat-input-aware gating.
+- [x] **Chat bubbles** — 5s speech balloons above speakers on public channels only (Say + Zone), 1s fade, 72-char truncate.
+- [x] **World dressing** (Slice 1) — Poly Haven PBR scatter + ~55 authored Dalewatch hub props. See `memory/project_world_dressing.md`.
+- [x] **Mob level banding** (Slice 3) — Dalewatch tiers L1-2/3-4/5-6/7+ to keep / mid / outer / Drifter's Lair. Per-kind respawn (commons 3min / elites 10min / named 30min).
+- [x] **Felt level progression** (Slice 4a-c) — `level_xp_multiplier` curve (greys=0, +5 reds=1.5×), pillar-point bonus on every level-up, centered "LEVEL UP" banner + screen flash.
+- [x] **Text emotes** (Slice 7) — `/wave /bow /sit /cheer /dance /point` ride the chat-bubble system. Animation playback per emote is post-pre-alpha.
+- [x] **Death penalty** (Slice 5) — corpse-run MVP: 25% HP respawn, walk back to corpse for full restore, 10-min expiry. Visual marker + party-rez are post-MVP.
+- [ ] **Drifter's Lair pseudo-dungeon** (Slice 6) — the L10 capstone. Depends on Slice 4e (gear ladder) for the boss reward.
+- [ ] **Shipping hardening** (Slice 8) — env netcode key + configurable bind + panic handler + auto-reconnect + local SQLite accounts.
+
 ### Quest + content gaps
 - [x] Dalewatch Marches redesigned to Classic-Elwynn scope — 12 sub-zones, 4 hubs, 10-step main chain, 2 side chains, 20 side quests, 24 mob types, 1200×1200u playable box.
-- [ ] Hand-curate remaining 9 starter chains (hearthkin, sunward_elen, …) with `npcs:` registries like dalewatch.
-- [ ] **Side-quest givers don't actually spawn.** Only `chain.npcs:` entries become world NPCs; the 20 side-quest givers in Dalewatch are orphan. Need to extend the side-quest YAML schema with `npcs:` and merge into the quest-giver spawn pass. Without this, the capital shows 1 giver instead of the budgeted 6.
+- [x] Gold / item quest rewards — `gold_reward_copper` + `gold_bonus_copper` wired to the wallet on step / chain completion.
+- [x] **Side-quest givers spawn** (Slice 2). `vaern-data::HubSideQuests` schema has optional `giver:` block; server walks each zone's `quests/side/<hub>.yaml` and spawns one giver NPC per declared block. Dalewatch seeded with 5 (Hayes / Morwen / Bel / Garrick / Pell). Other zones still rely on procedural target-hint fallback.
+- [x] **Level-gated quest accept** (Slice 4d). Server hard-refuses `AcceptQuest` if `chain.steps[0].level > player.level + 3`.
+- [ ] Hand-curate remaining 9 starter chains (hearthkin, sunward_elen, …) with `npcs:` registries like dalewatch — **out of pre-alpha scope** (Mannin-only spawn).
 - [ ] Auto-advance talk/investigate/deliver objectives (kill-step auto-advance works).
-- [ ] Quest state persistence — server QuestLog is in-memory.
-- [ ] Gold / item quest rewards — currently XP only; currency pool + item drops pending.
+- [x] Quest state persistence — server `QuestLog` now persists via `PersistedCharacter.quest_log`.
+- [ ] Quest item rewards (Slice 4e) — only XP + gold today; rolled-item rewards pending. **Blocks Slice 6.**
 - [ ] Multi-kill objectives (`count > 1`) — currently advance on first kill.
 
 ### Gear / loot / crafting next steps
@@ -437,25 +569,41 @@ python3 scripts/seed_items.py
 - [ ] **Threat decoupled from damage** — `threat_multiplier` exists but scales off damage; tanks should hold aggro while dealing less damage.
 - [ ] **Ability-category shape tuning** — `might/offense` hand-tuned; rest fall back to defaults.
 
+### Voxel world
+- [x] **`vaern-voxel` crate landed** — chunked SDF + hand-rolled Surface Nets, 8 swappable algorithm layers, 46/46 tests.
+- [x] **Client streaming + F10 stomp** — voxels stream around the camera, F10 issues a server-authoritative edit stroke.
+- [x] **Server-authoritative edits** — `ValidatedEditStroke` pipeline on server: `validate_edit_requests` gates by radius + range + live-player, `apply_validated_edits` runs `EditStroke<SphereBrush>` against the authoritative `ChunkStore` and marks `EditedChunks`.
+- [x] **`ChunkDelta` replication** — `VoxelChunkDelta(ChunkDelta)` (S→C) ships up to 8 chunks/tick live, plus per-client reconnect catch-up at 4 chunks/tick via `PendingReconnectSnapshots`.
+- [x] **Retire the legacy ground plane** — 8000u grass plane deleted; `scene/hub_regions.rs` overlay unregistered. Voxels are the only ground.
+- [x] **Server Y-snap via voxel query** — server `movement` + `npc::ai` and client `predicted_player_movement` all call `vaern_voxel::query::ground_y` with `terrain::height` fallback for unseeded chunks.
+- [x] **Biome-aware voxel materials** — `BiomeResolver` + per-biome cached `StandardMaterial`s with world-XZ UVs + MikkTSpace tangents. 9 CC0 ambientCG sets, chunk-aligned transitions.
+- [x] **Seam closure** — `ChunkShape::MESH_MIN = PADDING - 1` closes static +side chunk seams; `chunks_containing_voxel` enumeration `{-1, 0, +1}` closes dynamic seams after edits (no more textured cap over carved craters).
+- [ ] **Chunk eviction** — earlier per-frame distance evictor made the whole 3D scene go dark when enabled (unknown render-pipeline interaction). Disabled. Memory grows monotonically on both server and client until this is root-caused.
+- [ ] **Zone-scoped delta broadcast** — today every `VoxelChunkDelta` goes to every client; wiring lightyear Room scope by chunk zone would reduce bandwidth with multi-zone concurrent play.
+- [ ] **Sparse delta encoding** — broadcast uses `ChunkDelta::full_snapshot` (~150 KB/chunk). `encode_delta(old, new, writes)` exists in the crate but needs per-sample write tracking through `EditStroke`.
+- [ ] **Roads on voxel ground** — the `hub_regions.rs` Catmull-Rom + wiggle helper isn't ported yet. A "dirt-road" biome override along each road path would bake roads into the same biome pipeline.
+- [ ] **Teardown** — chunk entities don't carry `GameWorld`, so they persist across logout into the next in-game session.
+- [ ] **F10 bandwidth / re-mesh lag** — a few-tick visual delay between stomp and the textured cap despawning. Not a bug, just network RTT + `MESHING_BUDGET=64/frame` chunks draining. Raise the budget (or async mesher) if this becomes annoying.
+
 ### Infrastructure / polish
 - [x] **Area-of-interest replication** — zone-scoped lightyear rooms; only the player's current zone replicates.
 - [x] **Per-tick broadcast spam** — InventorySnapshot / EquippedSnapshot / PendingLootsSnapshot gated on change.
 - [x] **Server tick-rate logger** — Hz + max-frame telemetry every second.
 - [x] **Own-player character mesh** — Quaternius modular outfit driven by equipped armor; gender picker in char-create.
 - [x] **Own-player animation** — UAL clip pipeline via AnimState + cast_school + mainhand weapon. Transient one-shot swings hold until clip finishes.
-- [x] Ground pipeline — tessellated 8000u plane with procedural sine displacement + CC0 grass PBR set (`assets/extracted/terrain/grass002/`); shared `vaern_core::terrain::height` drives both mesh generation and entity Y-snap.
+- [x] Ground pipeline — chunked SDF voxel world (`vaern-voxel`) streamed around the camera, seeded from `vaern_core::terrain::height`. Replaces the retired tessellated grass plane. Shared heightmap still drives server-side Y-snap for players + NPCs.
 - [x] Atmosphere + fog + bloom + tonemapping + HDR — procedural `AtmospherePlugin` sky, `FogFalloff::from_visibility_squared(1500.0)`, `Bloom::NATURAL`, `Tonemapping::TonyMcMapface`, `Exposure::SUNLIGHT`.
 - [x] Loot container visual — `assets/extracted/props/Bag.gltf` mesh (replaces the yellow gizmo sphere).
 - [x] Quest-giver humanoid skins — hashed fallback picks one of 12 Quaternius archetypes from the display name when the mob map has no explicit entry.
 - [ ] Replace zeroed netcode private key before public exposure.
-- [ ] Server-side character persistence (currently client-local JSON).
+- [x] Server-side character persistence — `PersistedCharacter` JSON at `~/.config/vaern/server/characters/<uuid>.json`; 5s wall-clock flush + save-on-disconnect observer; inventory, equipped, belt, pillars, quest log, wallet, position all survive. See `memory/project_server_persistence.md`.
 - [ ] Zone transitions / portals / dungeon entry UI (32 dungeon YAMLs exist, not instanced).
 - [ ] Ground mesh / fancy visuals for resource nodes (still gizmo spheres).
 - [ ] HDRI-based skybox + IBL (3 Poly Haven `.hdr` files downloaded; needs equirectangular → cubemap bake for Bevy's `Skybox` + `EnvironmentMapLight`). Procedural `Atmosphere` covers the sky for now.
 - [ ] Player-follow / tiled ground (ground is a finite 8000u plane centered on world origin; content past ±4000u would reveal the edge).
 - [ ] PPO balance trainer in `vaern-sim`.
-- [ ] **Remote player + NPC mesh** — only own player is Quaternius so far. Remote players + NPCs still render as cuboids. Needs server-broadcast of minimal equipment summaries + animation-state routing per-entity.
-- [ ] **Weapon overlay on Quaternius rig** — character swings an empty hand. Meshtint has `WeaponOverlay` + `WeaponGrips` calibration; Quaternius needs equivalent grips YAML.
+- [x] **Remote player + NPC Quaternius mesh** — all visible characters (own, remote, humanoid NPCs) render as Quaternius on the UE-Mannequin skeleton and share the UAL animation pipeline.
+- [x] **Weapon overlay on Quaternius rig** — `QuaterniusWeaponOverlay` attaches MEGAKIT props (Sword_Bronze / Axe_Bronze / Table_Knife / Shield_Wooden / Pickaxe_Bronze) to the `hand_r` / `hand_l` bones via `assets/quaternius_weapon_grips.yaml`. Own + remote players derive from equipped gear; humanoid NPCs derive from their `NpcAppearance.archetype` (knights carry sword + shield, nobles sword, rangers knife, peasants axe, wizards empty-handed). MEGAKIT only ships 5 props so bow/staff/wand slots still render empty — asset expansion is a separate slice.
 - [ ] **Clip per weapon / ability category** — `Sword_Attack` is used for every physical cast. UAL has `Sword_Regular_A/B/C + Combo` for multi-stage swings; bow needs a separate clip set (none ship in UAL).
 
 ### Known rough edges
@@ -465,6 +613,9 @@ python3 scripts/seed_items.py
 - Starter gear + hotbar are pillar-keyed (Might / Finesse / Arcana × 1 kit each). Archetype-specific kits land with the archetype-unlock path.
 - Paper doll is two columns of slot buttons; no real character silhouette yet.
 - Character gender is client-local only; no server-side storage or replication.
+- Party HP updates between snapshots rely on join/leave/kick to re-broadcast — a future 500ms heartbeat would keep frame bars live during combat.
+- Own player's Replicated + Predicted copies both spawn their own nameplate (double plate over own head in third-person); fix by filtering out own entity on spawn.
+- 4 pre-existing `vaern-combat` test failures (`attacker_kills_dummy`, `resource_gate_delays_kill`, parity tests) from `apply_deaths` living on the server-only schedule — the headless test harness runs only the shared `CombatPlugin`. Unrelated to gameplay runtime.
 
 ## World & lore
 

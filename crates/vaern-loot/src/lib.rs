@@ -39,6 +39,10 @@ use vaern_items::{
 ///   might drop weapons-only.
 /// * `drop_chance` — probability any drop happens at all on kill. 0.3
 ///   = 30% of kills produce an item.
+/// * `coin_range` — min/max copper dropped on kill, uniform in the
+///   closed interval. Rolled independently of `drop_chance` — even a
+///   no-item kill pays coin. `(0, 0)` disables coin drops entirely
+///   (quest-givers, training dummies).
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct DropTable {
     pub drop_chance: f32,
@@ -50,6 +54,26 @@ pub struct DropTable {
     /// Junk drops use a separate hidden probability to turn a drop
     /// into "nothing" (represented by rarity_curve below failing).
     pub rarity_curve: [f32; 5],
+    /// Copper coin range `(min, max)` awarded on kill. Uniform sample.
+    /// `(0, 0)` disables coin drops. Rolls independently of the item
+    /// drop_chance so even a no-item kill pays something.
+    #[serde(default)]
+    pub coin_range: (u32, u32),
+}
+
+/// One roll from a [`DropTable`] — item (optional) + coin (always rolled).
+/// Split so callers can pay coin directly to the wallet and spawn a
+/// loot container only when there's a meaningful item to put in it.
+#[derive(Debug, Clone, PartialEq, Eq)]
+pub struct DropRoll {
+    pub item: Option<ItemInstance>,
+    pub copper: u32,
+}
+
+impl DropRoll {
+    pub fn is_empty(&self) -> bool {
+        self.item.is_none() && self.copper == 0
+    }
 }
 
 fn default_base_kinds() -> Vec<String> {
@@ -60,35 +84,63 @@ fn default_base_kinds() -> Vec<String> {
     ]
 }
 
+#[derive(Copy, Clone)]
+enum NpcTier {
+    Combat,
+    Elite,
+    Named,
+}
+
+/// Coin-drop range keyed on NPC rarity + mob material tier. The tier
+/// multiplier doubles the base range every ~2 material tiers so a T1
+/// trash mob pays single-digit copper and a T6 named boss pays gold.
+fn coin_range_for_tier(material_tier: u8, tier: NpcTier) -> (u32, u32) {
+    // Scale: 1.0 at T1, 2.0 at T3, 4.0 at T5, 6.0 at T6. Rounded to a
+    // u32 so the output range stays integer-clean.
+    let mult = 1.0 + ((material_tier.saturating_sub(1)) as f32) * 0.6;
+    let (base_min, base_max) = match tier {
+        NpcTier::Combat => (2.0, 10.0),
+        NpcTier::Elite => (15.0, 50.0),
+        NpcTier::Named => (100.0, 300.0),
+    };
+    let lo = (base_min * mult).round() as u32;
+    let hi = (base_max * mult).round() as u32;
+    (lo, hi.max(lo))
+}
+
 impl DropTable {
     /// Default table for a regular combat mob. 30% drop chance, mostly
-    /// commons, occasional uncommon, rare rare.
+    /// commons, occasional uncommon, rare rare. 2–10 copper per kill.
     pub fn combat(material_tier: u8) -> Self {
         Self {
             drop_chance: 0.30,
             material_tier,
             base_kinds: default_base_kinds(),
             rarity_curve: [0.80, 0.15, 0.04, 0.009, 0.001],
+            coin_range: coin_range_for_tier(material_tier, NpcTier::Combat),
         }
     }
 
     /// Elite mob — 60% drop, skews uncommon with meaningful rare chance.
+    /// 15–50 copper per kill.
     pub fn elite(material_tier: u8) -> Self {
         Self {
             drop_chance: 0.60,
             material_tier,
             base_kinds: default_base_kinds(),
             rarity_curve: [0.30, 0.45, 0.20, 0.04, 0.01],
+            coin_range: coin_range_for_tier(material_tier, NpcTier::Elite),
         }
     }
 
-    /// Named / mini-boss — guaranteed drop, skews rare+.
+    /// Named / mini-boss — guaranteed drop, skews rare+. 100–300 copper.
     pub fn named(material_tier: u8) -> Self {
         Self {
             drop_chance: 1.00,
             material_tier,
             base_kinds: default_base_kinds(),
             rarity_curve: [0.05, 0.20, 0.45, 0.25, 0.05],
+            coin_range: coin_range_for_tier(material_tier, NpcTier::Named),
         }
     }
 
@@ -100,14 +152,15 @@ impl DropTable {
             NpcKind::Combat => Some(Self::combat(material_tier)),
             NpcKind::Elite => Some(Self::elite(material_tier)),
             NpcKind::Named => Some(Self::named(material_tier)),
-            NpcKind::QuestGiver => None,
+            NpcKind::QuestGiver | NpcKind::Vendor => None,
         }
     }
 }
 
-/// Roll a single drop against the table. Returns `None` if no item
-/// dropped (drop_chance gate failed). Caller wraps with its own RNG
-/// — pass a seeded `StdRng` for deterministic tests.
+/// Roll a single drop against the table. Returns a [`DropRoll`] with
+/// an optional item + copper coin amount. Both are rolled independently
+/// — a kill that failed the item-drop gate still pays coin. Caller wraps
+/// with its own RNG — pass a seeded `StdRng` for deterministic tests.
 ///
 /// Rarity in this model is *derived* from (material.base_rarity + quality
 /// offset), not set independently. The table's `rarity_curve` biases
@@ -117,6 +170,29 @@ impl DropTable {
 /// tracks material base. This keeps one rarity view (the resolver's)
 /// instead of a rolled-vs-resolved schism.
 pub fn roll_drop(
+    table: &DropTable,
+    registry: &ContentRegistry,
+    rng: &mut impl Rng,
+) -> DropRoll {
+    let copper = roll_coin(table.coin_range, rng);
+    let item = roll_item(table, registry, rng);
+    DropRoll { item, copper }
+}
+
+/// Uniform sample on `[lo, hi]`. `(0, 0)` → always zero.
+fn roll_coin(range: (u32, u32), rng: &mut impl Rng) -> u32 {
+    let (lo, hi) = range;
+    if hi == 0 {
+        return 0;
+    }
+    let hi = hi.max(lo);
+    if lo == hi {
+        return lo;
+    }
+    rng.random_range(lo..=hi)
+}
+
+fn roll_item(
     table: &DropTable,
     registry: &ContentRegistry,
     rng: &mut impl Rng,
@@ -202,7 +278,7 @@ pub fn roll_drop_seeded(
     table: &DropTable,
     registry: &ContentRegistry,
     seed: u64,
-) -> Option<ItemInstance> {
+) -> DropRoll {
     let mut rng = StdRng::seed_from_u64(seed);
     roll_drop(table, registry, &mut rng)
 }
@@ -435,7 +511,7 @@ mod tests {
         let mut rng = StdRng::seed_from_u64(42);
         let mut drops = 0;
         for _ in 0..10_000 {
-            if roll_drop(&table, &reg, &mut rng).is_some() {
+            if roll_drop(&table, &reg, &mut rng).item.is_some() {
                 drops += 1;
             }
         }
@@ -453,11 +529,11 @@ mod tests {
         let mut named_rarities = [0; 6];
         let mut rng = StdRng::seed_from_u64(7);
         for _ in 0..3_000 {
-            if let Some(inst) = roll_drop(&combat_tbl, &reg, &mut rng) {
+            if let Some(inst) = roll_drop(&combat_tbl, &reg, &mut rng).item {
                 let r = reg.resolve(&inst).unwrap();
                 combat_rarities[r.rarity as usize] += 1;
             }
-            if let Some(inst) = roll_drop(&named_tbl, &reg, &mut rng) {
+            if let Some(inst) = roll_drop(&named_tbl, &reg, &mut rng).item {
                 let r = reg.resolve(&inst).unwrap();
                 named_rarities[r.rarity as usize] += 1;
             }
@@ -494,7 +570,7 @@ mod tests {
         let mut rng = StdRng::seed_from_u64(999);
         let mut tested = 0;
         for _ in 0..2_000 {
-            if let Some(inst) = roll_drop(&table, &reg, &mut rng) {
+            if let Some(inst) = roll_drop(&table, &reg, &mut rng).item {
                 let r = reg.resolve(&inst);
                 assert!(r.is_ok(), "drop failed to resolve: {inst:?} → {r:?}");
                 tested += 1;
@@ -509,7 +585,7 @@ mod tests {
         let table = DropTable::named(6);
         let mut rng = StdRng::seed_from_u64(1337);
         for _ in 0..5_000 {
-            if let Some(inst) = roll_drop(&table, &reg, &mut rng) {
+            if let Some(inst) = roll_drop(&table, &reg, &mut rng).item {
                 for affix_id in &inst.affixes {
                     let a = reg.get_affix(affix_id).unwrap();
                     assert!(
@@ -528,7 +604,7 @@ mod tests {
         let table = DropTable::named(4);
         let mut rng = StdRng::seed_from_u64(2024);
         for _ in 0..2_000 {
-            if let Some(inst) = roll_drop(&table, &reg, &mut rng) {
+            if let Some(inst) = roll_drop(&table, &reg, &mut rng).item {
                 let r = reg.resolve(&inst).unwrap();
                 let slots = rarity_to_max_slots(r.rarity) as usize;
                 // Pre-rolled drops leave 1 open slot (or 0 if rarity has 0 slots).
@@ -552,5 +628,36 @@ mod tests {
         let a = roll_drop_seeded(&table, &reg, 42);
         let b = roll_drop_seeded(&table, &reg, 42);
         assert_eq!(a, b, "same seed must produce same drop");
+    }
+
+    #[test]
+    fn combat_table_pays_coin_in_expected_range() {
+        let Some(reg) = load_content() else { return };
+        let table = DropTable::combat(3);
+        assert_ne!(table.coin_range, (0, 0), "combat must pay coin");
+        let mut rng = StdRng::seed_from_u64(99);
+        for _ in 0..500 {
+            let roll = roll_drop(&table, &reg, &mut rng);
+            assert!(roll.copper >= table.coin_range.0);
+            assert!(roll.copper <= table.coin_range.1);
+        }
+    }
+
+    #[test]
+    fn named_table_pays_more_coin_than_combat_at_same_tier() {
+        let c = DropTable::combat(4);
+        let n = DropTable::named(4);
+        assert!(n.coin_range.0 > c.coin_range.1,
+            "named floor {} should exceed combat ceiling {}",
+            n.coin_range.0, c.coin_range.1);
+    }
+
+    #[test]
+    fn coin_scales_with_material_tier() {
+        let t1 = DropTable::combat(1);
+        let t6 = DropTable::combat(6);
+        assert!(t6.coin_range.1 > t1.coin_range.1 * 2,
+            "T6 coin ceiling {} should clearly exceed T1 {}",
+            t6.coin_range.1, t1.coin_range.1);
     }
 }

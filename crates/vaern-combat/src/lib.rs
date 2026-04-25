@@ -11,8 +11,8 @@ pub mod systems;
 pub use anim::{AnimOverride, AnimState};
 pub use components::{
     AbilityCooldown, AbilityPriority, AbilityShape, AbilitySpec, CastRequest, Caster, Casting,
-    DisplayName, FactionTag, Health, ManualCast, NpcKind, Position3Pillar, ProjectileVisual,
-    QuestGiverHub, Respawnable, ResourcePool, Stamina, Target,
+    CorpseOnDeath, DisplayName, FactionTag, Health, ManualCast, NpcKind, Position3Pillar,
+    ProjectileVisual, QuestGiverHub, Respawnable, ResourcePool, Stamina, Target,
 };
 pub use effects::{EffectKind, StanceKind, StatusEffect, StatusEffects};
 pub use systems::{CastEvent, DeathEvent, Projectile};

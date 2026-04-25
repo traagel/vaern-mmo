@@ -4,6 +4,12 @@ hub_role: outpost
 zone: dalewatch_marches
 biome: river_valley
 quest_count: 3
+giver:
+  id: ford_of_ashmere__innkeeper_bel
+  display_name: Innkeeper Bel
+  title: Keeper of the Ford-Side Inn
+  hub_id: ford_of_ashmere
+  dialogue: '"Sergeant Rook''s riders bring stories I''d rather not hear at the bar. Travelers have problems too — broken cart, missing courier, river-witch sightings. The board''s on the wall. Pay''s in coin and a hot meal."'
 quests:
 - id: side__ford_of_ashmere__pact_patrol_kills
   name: Thin the Pact Patrols

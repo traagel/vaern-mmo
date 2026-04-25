@@ -218,6 +218,13 @@ pub struct Respawnable {
     pub home: Vec3,
 }
 
+/// If present, `apply_deaths` skips this entity entirely — death handling
+/// is delegated to a server-side corpse-run system. Used for player
+/// entities so the death position can be captured before teleport-home,
+/// a corpse marker spawned, and HP reduced to a penalty fraction.
+#[derive(Component, Debug, Clone, Copy)]
+pub struct CorpseOnDeath;
+
 /// Player-facing display name replicated to clients for nameplates /
 /// interaction prompts. Set once at spawn, not mutated after.
 #[derive(Component, Debug, Clone, PartialEq, Serialize, Deserialize)]
@@ -238,6 +245,11 @@ pub enum NpcKind {
     QuestGiver,
     Named,
     Elite,
+    /// Non-combat shopkeeper. F-key opens the vendor UI (client) /
+    /// sends `VendorOpenRequest` (server). Stocks are authored in
+    /// `src/generated/vendors.yaml` and attached as `VendorStock`
+    /// components on spawn.
+    Vendor,
 }
 
 /// Replicated marker on quest-giver NPCs. Identifies the hub they belong

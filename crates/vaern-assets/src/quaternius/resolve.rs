@@ -194,6 +194,40 @@ fn weapon_prop_from_kind(kind: &ItemKind, offhand: bool) -> Option<String> {
     }
 }
 
+/// Derive a MEGAKIT prop pair for a humanoid NPC from its archetype
+/// key (the same string shipped in `NpcAppearance.archetype`). NPCs
+/// don't have replicated equipment today — their armament follows
+/// their visual role so the rendered silhouette reads correctly:
+///
+/// - `knight_plate_male` / `knight_cloth_male` → sword + shield
+/// - `noble_*`                                 → sword (ceremonial)
+/// - `ranger_*` / `ranger_hooded_male`         → knife (woodsman)
+/// - `peasant_*`                               → axe (lumberjack/farm)
+/// - `wizard_*` / unknown                      → empty hands
+///
+/// Quest-giver humanoids fall through to the same archetype mapping,
+/// so a peasant quest-giver will carry an axe (reads as laborer) and
+/// a wizard quest-giver will stay unarmed (reads as scholar). That's
+/// the right visual default until combat/role info is wired.
+pub fn weapon_props_for_archetype(archetype: &str) -> EquippedProps {
+    let (mainhand, offhand) = match archetype {
+        "knight_plate_male" | "knight_cloth_male" => (
+            Some("Sword_Bronze"),
+            Some("Shield_Wooden"),
+        ),
+        "noble_male" | "noble_female" => (Some("Sword_Bronze"), None),
+        "ranger_male" | "ranger_female" | "ranger_hooded_male" => {
+            (Some("Table_Knife"), None)
+        }
+        "peasant_male" | "peasant_female" => (Some("Axe_Bronze"), None),
+        _ => (None, None),
+    };
+    EquippedProps {
+        mainhand: mainhand.map(str::to_string),
+        offhand: offhand.map(str::to_string),
+    }
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;

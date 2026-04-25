@@ -22,6 +22,7 @@ use lightyear::prelude::*;
 use rand::{SeedableRng, rngs::StdRng};
 
 use vaern_combat::NpcKind;
+use vaern_economy::PlayerWallet;
 use vaern_inventory::{InventorySlot, PlayerInventory};
 use vaern_loot::{DropTable, roll_drop};
 use vaern_protocol::{
@@ -89,13 +90,14 @@ pub struct LootContainer {
     pub age_secs: f32,
 }
 
-/// Observer on mob despawn. Rolls a drop against the mob's NpcKind
-/// table; if anything dropped, spawn a LootContainer entity at the
-/// mob's position owned by the top-threat player.
+/// Observer on mob despawn. Rolls the NpcKind-derived drop table for
+/// both item + coin. Coin credits the top-threat player's wallet
+/// directly (no loot container dance — pre-alpha keeps coin flow
+/// immediate and legible). Item drops still spawn a container.
 pub fn spawn_loot_container_on_mob_death(
     trigger: On<Remove, MobSourceId>,
     mobs: Query<(Option<&NpcKind>, Option<&ThreatTable>, Option<&Transform>, Option<&Npc>)>,
-    players: Query<&PlayerTag>,
+    mut players: Query<(&PlayerTag, &mut PlayerWallet)>,
     data: Res<GameData>,
     mut rng: ResMut<LootRng>,
     mut counter: ResMut<LootIdCounter>,
@@ -121,11 +123,24 @@ pub fn spawn_loot_container_on_mob_death(
         .max_by(|a, b| a.1.total_cmp(b.1));
     let Some((top_entity, _)) = top else { return };
     let owner_entity = *top_entity;
-    let Ok(owner_tag) = players.get(owner_entity) else {
+    let Ok((owner_tag, mut owner_wallet)) = players.get_mut(owner_entity) else {
         return;
     };
+    let owner_client = owner_tag.client_id;
 
-    let Some(instance) = roll_drop(&table, &data.content, &mut rng.0) else {
+    let roll = roll_drop(&table, &data.content, &mut rng.0);
+
+    if roll.copper > 0 {
+        owner_wallet.credit(roll.copper as u64);
+        info!(
+            "[loot] credited {c}c to client {owner_client} (wallet now {total}c)",
+            c = roll.copper,
+            total = owner_wallet.copper,
+        );
+    }
+
+    let Some(instance) = roll.item else {
+        // Coin-only drop (or nothing) — no container needed.
         return;
     };
 
@@ -136,7 +151,7 @@ pub fn spawn_loot_container_on_mob_death(
         Name::new(format!("loot-container-{loot_id}")),
         LootContainer {
             loot_id,
-            owner: owner_tag.client_id,
+            owner: owner_client,
             position: transform.translation,
             contents: vec![InventorySlot { instance, count: 1 }],
             age_secs: 0.0,
@@ -144,8 +159,8 @@ pub fn spawn_loot_container_on_mob_death(
     ));
     dirty.0 = true;
     info!(
-        "[loot] spawned container #{loot_id} for client {} at {:?}",
-        owner_tag.client_id, transform.translation
+        "[loot] spawned container #{loot_id} for client {owner_client} at {:?}",
+        transform.translation
     );
 }
 

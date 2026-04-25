@@ -19,6 +19,7 @@ members = [
     "crates/vaern-museum",
     "crates/vaern-assets",
     "crates/vaern-persistence",
+    "crates/vaern-voxel",
 ]
 
 [workspace.package]
@@ -42,6 +43,7 @@ vaern-loot = { path = "crates/vaern-loot" }
 vaern-professions = { path = "crates/vaern-professions" }
 vaern-assets = { path = "crates/vaern-assets" }
 vaern-persistence = { path = "crates/vaern-persistence" }
+vaern-voxel = { path = "crates/vaern-voxel" }
 
 [profile.dev]
 opt-level = 1

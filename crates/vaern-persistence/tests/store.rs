@@ -30,6 +30,7 @@ fn sample_character(uuid: Uuid) -> PersistedCharacter {
         equipped: Equipped::default(),
         belt: ConsumableBelt::default(),
         professions: ProfessionSkills::default(),
+        wallet_copper: 0,
         quest_log: PersistedQuestLog::default(),
         position: None,
         yaw_rad: None,

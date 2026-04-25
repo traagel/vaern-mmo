@@ -13,6 +13,7 @@
 
 mod attack_viz;
 mod belt_ui;
+mod chat_ui;
 mod combat_ui;
 mod diagnostic;
 mod hotbar_ui;
@@ -22,16 +23,21 @@ mod interact;
 mod harvest_ui;
 mod inventory_ui;
 mod item_icons;
+mod level_up_ui;
 mod loot_ui;
 mod menu;
 mod nameplates;
 mod net;
+mod party_ui;
 mod quests;
 mod scene;
 mod shared;
 mod stat_screen;
 mod unit_frame;
+mod vendor_ui;
 mod vfx;
+mod voxel_biomes;
+mod voxel_demo;
 
 use core::time::Duration;
 use std::path::Path;
@@ -65,6 +71,7 @@ use crate::hotbar_ui::HotbarUiPlugin;
 use crate::hud::HudPlugin;
 use crate::input::ClientInputPlugin;
 use crate::interact::InteractPlugin;
+use crate::level_up_ui::LevelUpEffectsPlugin;
 use crate::harvest_ui::HarvestUiPlugin;
 use crate::inventory_ui::InventoryUiPlugin;
 use crate::item_icons::ItemIconsPlugin;
@@ -77,6 +84,7 @@ use crate::quests::QuestsPlugin;
 use crate::scene::ScenePlugin;
 use crate::unit_frame::UnitFramePlugin;
 use crate::vfx::VfxPlugin;
+use crate::voxel_demo::VoxelDemoPlugin;
 
 fn main() {
     let tick = Duration::from_secs_f64(1.0 / FIXED_TIMESTEP_HZ);
@@ -156,6 +164,9 @@ fn main() {
         .add_plugins(QuestsPlugin)
         .add_plugins(InteractPlugin)
         .add_plugins(InventoryUiPlugin)
+        .add_plugins(vendor_ui::VendorUiPlugin)
+        .add_plugins(chat_ui::ChatUiPlugin)
+        .add_plugins(party_ui::PartyUiPlugin)
         .add_plugins(BeltUiPlugin)
         .add_plugins(LootUiPlugin)
         .add_plugins(ItemIconsPlugin)
@@ -167,10 +178,15 @@ fn main() {
         .add_plugins(ClientInputPlugin)
         .add_plugins(CombatUiPlugin)
         .add_plugins(UnitFramePlugin)
+        .add_plugins(LevelUpEffectsPlugin)
         .add_plugins(AttackVizPlugin)
         .add_plugins(VfxPlugin)
         .add_plugins(NameplatesPlugin)
         .add_plugins(DiagnosticsPlugin)
+        // Voxel world — SDF chunks streamed around the camera, F10
+        // carves a debug crater. Coexists with the existing ground
+        // plane today; will retire it once server-side authority lands.
+        .add_plugins(VoxelDemoPlugin)
         .insert_resource(ClearColor(Color::srgb(0.05, 0.07, 0.10)))
         .run();
 }

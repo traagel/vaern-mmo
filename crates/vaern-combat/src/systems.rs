@@ -2,7 +2,8 @@ use bevy::prelude::*;
 
 use crate::components::{
     AbilityCooldown, AbilityPriority, AbilityShape, AbilitySpec, Caster, CastRequest, Casting,
-    Health, ManualCast, ProjectileVisual, Respawnable, ResourcePool, Stamina, Target,
+    CorpseOnDeath, Health, ManualCast, ProjectileVisual, Respawnable, ResourcePool, Stamina,
+    Target,
 };
 use crate::effects::{EffectSpec, StatusEffects};
 
@@ -791,13 +792,22 @@ pub fn apply_deaths(
             &mut Health,
             &mut Transform,
             Option<&mut ResourcePool>,
+            Option<&CorpseOnDeath>,
         ),
         (),
     >,
     mut commands: Commands,
 ) {
     for ev in events.read() {
-        if let Ok((respawn, mut hp, mut tf, pool)) = respawnables.get_mut(ev.entity) {
+        if let Ok((respawn, mut hp, mut tf, pool, corpse_on_death)) =
+            respawnables.get_mut(ev.entity)
+        {
+            // CorpseOnDeath entities (players) are handled by a server-side
+            // corpse-run system that needs the death position before
+            // teleport. Skip the default reset here.
+            if corpse_on_death.is_some() {
+                continue;
+            }
             hp.current = hp.max;
             tf.translation = respawn.home;
             if let Some(mut p) = pool {

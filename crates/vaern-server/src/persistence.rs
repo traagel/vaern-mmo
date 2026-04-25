@@ -25,6 +25,7 @@ use lightyear::prelude::*;
 use uuid::Uuid;
 use vaern_character::{Experience, PlayerRace};
 use vaern_combat::DisplayName;
+use vaern_economy::PlayerWallet;
 use vaern_equipment::Equipped;
 use vaern_inventory::{ConsumableBelt, PlayerInventory};
 use vaern_assets::quaternius::{outfit_from_equipped, weapon_props_from_equipped};
@@ -101,6 +102,7 @@ pub struct PersistedPlayerQuery {
     pub equipped: &'static Equipped,
     pub belt: &'static ConsumableBelt,
     pub professions: &'static ProfessionSkills,
+    pub wallet: &'static PlayerWallet,
     pub quest_log: &'static QuestLog,
     pub transform: &'static Transform,
     pub controlled_by: &'static ControlledBy,
@@ -124,6 +126,7 @@ pub fn build_persisted(item: &PersistedPlayerQueryItem<'_, '_>, now: i64) -> Per
         equipped: item.equipped.clone(),
         belt: item.belt.clone(),
         professions: item.professions.clone(),
+        wallet_copper: item.wallet.copper,
         quest_log: PersistedQuestLog {
             entries: quest_log_to_persisted(item.quest_log),
         },
@@ -197,6 +200,7 @@ pub fn mark_dirty_on_change(
             Changed<PillarXp>,
             Changed<ProfessionSkills>,
             Changed<QuestLog>,
+            Changed<PlayerWallet>,
             Changed<Transform>,
         )>,
     >,

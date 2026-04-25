@@ -18,8 +18,8 @@ use bevy::prelude::*;
 use lightyear::input::native::prelude::InputMarker;
 use lightyear::prelude::*;
 use vaern_assets::{
-    outfit_from_equipped, spawn_quaternius_character, weapon_props_from_equipped, AnimalCatalog,
-    QuaterniusOutfit, QuaterniusWeaponOverlay,
+    outfit_from_equipped, spawn_quaternius_character, weapon_props_for_archetype,
+    weapon_props_from_equipped, AnimalCatalog, QuaterniusOutfit, QuaterniusWeaponOverlay,
 };
 use vaern_combat::Health;
 use vaern_protocol::{Inputs, NpcAppearance, NpcMesh, PlayerAppearance, PlayerTag, PlayerWeapons};
@@ -185,6 +185,24 @@ fn render_replicated_npcs(
                     // subtree's `AnimationPlayer`s without walking
                     // the whole world.
                     ec.insert((Npc, ModelAttached, NpcHumanoidVisual { child }));
+                }
+                // Archetype-driven weapon overlay — knights carry sword
+                // + shield, nobles sword, rangers knife, peasants axe,
+                // wizards empty-handed. NPCs don't have replicated
+                // equipment today so the prop follows the visual role.
+                // One-shot spawn — NPC armament never changes mid-life.
+                let props = weapon_props_for_archetype(&appearance.archetype);
+                if let Some(prop_id) = props.mainhand {
+                    commands.spawn(QuaterniusWeaponOverlay {
+                        target: child,
+                        prop_id,
+                    });
+                }
+                if let Some(prop_id) = props.offhand {
+                    commands.spawn(QuaterniusWeaponOverlay {
+                        target: child,
+                        prop_id,
+                    });
                 }
                 continue;
             }

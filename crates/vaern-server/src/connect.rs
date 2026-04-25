@@ -13,10 +13,11 @@ use lightyear::prelude::*;
 use uuid::Uuid;
 use vaern_character::{Experience, PlayerRace};
 use vaern_combat::{
-    AbilityCooldown, AnimState, Caster, DisplayName, Health, ManualCast, ResourcePool,
-    Respawnable, Stamina,
+    AbilityCooldown, AnimState, Caster, CorpseOnDeath, DisplayName, Health, ManualCast,
+    ResourcePool, Respawnable, Stamina,
 };
 use vaern_core::pillar::Pillar;
+use vaern_economy::PlayerWallet;
 use vaern_equipment::Equipped;
 use vaern_persistence::{PersistedCharacter, PersistedCosmetics, sanitize_loadout};
 use vaern_protocol::{PlayerAppearance, PlayerWeapons};
@@ -27,10 +28,13 @@ use crate::persistence::{
 };
 use crate::resource_nodes::starter_profession_skills;
 use vaern_protocol::{
-    AbandonQuest, AcceptQuest, BindBeltSlotRequest, CastFired, CastIntent, ClearBeltSlotRequest,
-    ClientHello, ConsumableBeltSnapshot, ConsumeBeltRequest, ConsumeItemRequest, HotbarSlotInfo,
-    HotbarSnapshot, Inputs, PlayerStateSnapshot, PlayerTag, ProgressQuest, QuestLogSnapshot,
-    StanceRequest,
+    AbandonQuest, AcceptQuest, BindBeltSlotRequest, CastFired, CastIntent, ChatMessage, ChatSend,
+    ClearBeltSlotRequest, ClientHello, ConsumableBeltSnapshot, ConsumeBeltRequest,
+    ConsumeItemRequest, HotbarSlotInfo, HotbarSnapshot, Inputs, PartyDisbandedNotice,
+    PartyIncomingInvite, PartyInviteRequest, PartyInviteResponse, PartyKickRequest,
+    PartyLeaveRequest, PartySnapshot, PlayerStateSnapshot, PlayerTag, ProgressQuest,
+    QuestLogSnapshot, StanceRequest, VendorBuyRequest, VendorClosedNotice, VendorOpenRequest,
+    VendorSellRequest, VendorWindowSnapshot, WalletSnapshot,
 };
 
 use crate::class_kits;
@@ -131,6 +135,23 @@ pub fn handle_new_client(trigger: On<Add, LinkOf>, mut commands: Commands) {
         MessageReceiver::<ClearBeltSlotRequest>::default(),
         MessageReceiver::<ConsumeBeltRequest>::default(),
         MessageSender::<ConsumableBeltSnapshot>::default(),
+        MessageSender::<WalletSnapshot>::default(),
+        MessageReceiver::<VendorOpenRequest>::default(),
+        MessageReceiver::<VendorBuyRequest>::default(),
+        MessageReceiver::<VendorSellRequest>::default(),
+        MessageSender::<VendorWindowSnapshot>::default(),
+        MessageSender::<VendorClosedNotice>::default(),
+        MessageReceiver::<ChatSend>::default(),
+        MessageSender::<ChatMessage>::default(),
+    ));
+    commands.entity(trigger.entity).insert((
+        MessageReceiver::<PartyInviteRequest>::default(),
+        MessageReceiver::<PartyInviteResponse>::default(),
+        MessageReceiver::<PartyLeaveRequest>::default(),
+        MessageReceiver::<PartyKickRequest>::default(),
+        MessageSender::<PartyIncomingInvite>::default(),
+        MessageSender::<PartySnapshot>::default(),
+        MessageSender::<PartyDisbandedNotice>::default(),
     ));
     println!("new client link: {:?}", trigger.entity);
 }
@@ -453,40 +474,51 @@ fn spawn_player(
     // per the design call — no logout-safe-zone concept); caps always
     // re-derive from race YAML so a race-balance patch applies to
     // existing characters on next login.
-    let (pillar_scores, pillar_xp, experience, quest_log, professions, inventory, equipped, belt) =
-        if let Some(ch) = seed.persisted.as_ref() {
-            let mut inv = ch.inventory.clone();
-            let mut eq = ch.equipped.clone();
-            let mut b = ch.belt.clone();
-            let dropped = sanitize_loadout(&mut inv, &mut eq, &mut b, &data.content);
-            for d in &dropped {
-                warn!(
-                    "[persist] dropped unresolvable item on load: source={} base_id={}",
-                    d.source, d.base_id
-                );
-            }
-            (
-                ch.pillar_scores,
-                ch.pillar_xp,
-                ch.experience,
-                persisted_to_quest_log(&ch.quest_log),
-                ch.professions.clone(),
-                inv,
-                eq,
-                b,
-            )
-        } else {
-            (
-                starter_pillar_scores(core_pillar, caps),
-                PillarXp::default(),
-                Experience::default(),
-                QuestLog::default(),
-                starter_profession_skills(),
-                starter_gear::build_starter_inventory_for_pillar(core_pillar, &data.content),
-                Equipped::default(),
-                vaern_inventory::ConsumableBelt::default(),
-            )
-        };
+    let (
+        pillar_scores,
+        pillar_xp,
+        experience,
+        quest_log,
+        professions,
+        inventory,
+        equipped,
+        belt,
+        wallet,
+    ) = if let Some(ch) = seed.persisted.as_ref() {
+        let mut inv = ch.inventory.clone();
+        let mut eq = ch.equipped.clone();
+        let mut b = ch.belt.clone();
+        let dropped = sanitize_loadout(&mut inv, &mut eq, &mut b, &data.content);
+        for d in &dropped {
+            warn!(
+                "[persist] dropped unresolvable item on load: source={} base_id={}",
+                d.source, d.base_id
+            );
+        }
+        (
+            ch.pillar_scores,
+            ch.pillar_xp,
+            ch.experience,
+            persisted_to_quest_log(&ch.quest_log),
+            ch.professions.clone(),
+            inv,
+            eq,
+            b,
+            PlayerWallet::new(ch.wallet_copper),
+        )
+    } else {
+        (
+            starter_pillar_scores(core_pillar, caps),
+            PillarXp::default(),
+            Experience::default(),
+            QuestLog::default(),
+            starter_profession_skills(),
+            starter_gear::build_starter_inventory_for_pillar(core_pillar, &data.content),
+            Equipped::default(),
+            vaern_inventory::ConsumableBelt::default(),
+            PlayerWallet::default(),
+        )
+    };
 
     let derived = derive_primaries(&pillar_scores);
     let combat = (
@@ -499,9 +531,10 @@ fn spawn_player(
         AnimState::default(),
         ManualCast,
         Respawnable { home: zone_hub },
+        CorpseOnDeath,
     );
     let progression = (quest_log, experience, pillar_scores, caps, pillar_xp);
-    let gear = (inventory, equipped, belt, professions);
+    let gear = (inventory, equipped, belt, professions, wallet);
     let net = (
         ActionState::<Inputs>::default(),
         Replicate::to_clients(NetworkTarget::All),
@@ -516,6 +549,9 @@ fn spawn_player(
     let entity = commands
         .spawn((identity, combat, progression, gear, net))
         .id();
+    // Every player is a potential party member — this marker lets the
+    // shared-XP query scope itself without a full `PlayerTag` scan.
+    commands.entity(entity).insert(crate::party_io::PartyMemberMarker);
 
     // Persistence marker. Anonymous fallback spawns don't get one, so
     // the dirty-mark + save path ignores them entirely.

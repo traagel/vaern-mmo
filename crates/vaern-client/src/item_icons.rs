@@ -111,9 +111,20 @@ fn load_pending_item_icons(
     }
 }
 
+/// Target atlas size for cached item icons. SDXL writes 1024² but cells
+/// render at 48px — keep 128² (2.6× oversample) so high-DPI monitors
+/// and future larger cells stay crisp while cutting per-icon VRAM from
+/// ~4 MB to ~64 KB. Lanczos3 downsample preserves the painted detail.
+const ICON_ATLAS_SIZE: u32 = 128;
+
 fn load_icon_from_disk(path: &Path) -> Result<egui::ColorImage, String> {
     let bytes = std::fs::read(path).map_err(|e| e.to_string())?;
     let img = image::load_from_memory(&bytes).map_err(|e| e.to_string())?;
+    let img = img.resize_exact(
+        ICON_ATLAS_SIZE,
+        ICON_ATLAS_SIZE,
+        image::imageops::FilterType::Lanczos3,
+    );
     let rgba = img.to_rgba8();
     let size = [rgba.width() as usize, rgba.height() as usize];
     Ok(egui::ColorImage::from_rgba_unmultiplied(size, rgba.as_raw()))

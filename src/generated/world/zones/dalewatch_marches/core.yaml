@@ -18,3 +18,59 @@ budget:
     duo: 10.0
 notes: 'Starter zone in the western dales, redesigned 2026-04 to Classic-Elwynn scope: 12 sub-zones, 4
   hubs, 10-step main chain, two side chains, plus side quests and filler.'
+
+# ─── world dressing ──────────────────────────────────────────────────────────
+# Client-side only. Deterministic scatter from (zone_id, seed_salt) so every
+# client sees identical placement without replication. Categories resolve to
+# assets/polyhaven/ via PolyHavenCatalog; biome "*" matches any biome.
+scatter:
+  # NOTE: densities kept conservative for pre-alpha. Poly Haven meshes
+  # are full-scan polycount; each zone spawns ~1000 total props at these
+  # rates. Bump only after a LOD / billboard impostor pass lands.
+
+  # Saplings across the river-valley floor and scrub edges.
+  - biome: "*"
+    category: tree
+    density_per_100m2: 0.08
+    min_spacing: 6.0
+    max_slope_deg: 30.0
+    exclude_radius_from_hubs: 25.0
+    seed_salt: 1
+
+  # Boulders + rock faces — low density, keep collision clear of hubs.
+  - biome: "*"
+    category: rock
+    density_per_100m2: 0.05
+    min_spacing: 7.0
+    max_slope_deg: 60.0
+    exclude_radius_from_hubs: 18.0
+    seed_salt: 2
+
+  # Stumps, roots, dried branches — woodland floor detail.
+  - biome: "*"
+    category: dead_wood
+    density_per_100m2: 0.08
+    min_spacing: 4.0
+    max_slope_deg: 40.0
+    exclude_radius_from_hubs: 15.0
+    seed_salt: 3
+
+  # Shrubs + meadow flowers. Medium density, reads as ground-level life.
+  - biome: "*"
+    category: shrub
+    density_per_100m2: 0.15
+    min_spacing: 2.5
+    max_slope_deg: 35.0
+    exclude_radius_from_hubs: 10.0
+    seed_salt: 4
+
+  # Grass + moss + fern tufts — reads as dense at close range (Bevy
+  # dedupes the shared mesh handle). Billboard impostors will replace
+  # this for distant density in a follow-up slice.
+  - biome: "*"
+    category: ground_cover
+    density_per_100m2: 0.5
+    min_spacing: 1.0
+    max_slope_deg: 40.0
+    exclude_radius_from_hubs: 6.0
+    seed_salt: 5

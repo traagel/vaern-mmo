@@ -7872,6 +7872,7 @@ dependencies = [
  "vaern-combat",
  "vaern-core",
  "vaern-data",
+ "vaern-economy",
  "vaern-equipment",
  "vaern-inventory",
  "vaern-items",
@@ -7879,6 +7880,7 @@ dependencies = [
  "vaern-professions",
  "vaern-protocol",
  "vaern-stats",
+ "vaern-voxel",
 ]
 
 [[package]]
@@ -8009,11 +8011,13 @@ dependencies = [
  "vaern-character",
  "vaern-combat",
  "vaern-core",
+ "vaern-economy",
  "vaern-equipment",
  "vaern-items",
  "vaern-persistence",
  "vaern-professions",
  "vaern-stats",
+ "vaern-voxel",
 ]
 
 [[package]]
@@ -8032,6 +8036,7 @@ dependencies = [
  "vaern-combat",
  "vaern-core",
  "vaern-data",
+ "vaern-economy",
  "vaern-equipment",
  "vaern-inventory",
  "vaern-items",
@@ -8040,6 +8045,7 @@ dependencies = [
  "vaern-professions",
  "vaern-protocol",
  "vaern-stats",
+ "vaern-voxel",
 ]
 
 [[package]]
@@ -8058,6 +8064,16 @@ version = "0.1.0"
 dependencies = [
  "bevy",
  "serde",
+ "vaern-core",
+]
+
+[[package]]
+name = "vaern-voxel"
+version = "0.1.0"
+dependencies = [
+ "bevy",
+ "serde",
+ "thiserror 2.0.18",
  "vaern-core",
 ]
 

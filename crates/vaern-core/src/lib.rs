@@ -5,6 +5,7 @@ pub mod morality;
 pub mod pillar;
 pub mod school;
 pub mod terrain;
+pub mod voronoi;
 
 pub use class_position::{ClassLabel, ClassPosition, INVALID_POSITION, VALID_POSITIONS};
 pub use damage_type::{DAMAGE_TYPE_COUNT, DamageType};

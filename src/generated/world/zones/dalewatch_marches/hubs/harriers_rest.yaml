@@ -5,6 +5,28 @@ role: outpost
 amenities:
 - innkeeper
 quest_givers: 2
+biome: snow
 offset_from_zone_origin:
   x: 60.0
   z: -100.0
+
+# Patrol outpost — sparse camp dressing.
+props:
+  - slug: stone_fire_pit
+    offset: {x: 0.0, z: 0.0}
+  - slug: WoodenTable_01
+    offset: {x: -3.0, z: 1.0}
+  - slug: WoodenChair_01
+    offset: {x: -3.2, z: 2.2}
+    rotation_y_deg: 180.0
+  - slug: wooden_crate_02
+    offset: {x: 2.8, z: 2.0}
+  - slug: wooden_barrels_01
+    offset: {x: 3.5, z: -1.0}
+    rotation_y_deg: 45.0
+  - slug: wooden_bucket_01
+    offset: {x: 1.0, z: 2.5}
+  - slug: wooden_lantern_01
+    offset: {x: -1.5, z: -2.0}
+  - slug: wooden_lantern_01
+    offset: {x: 1.5, z: -2.0}

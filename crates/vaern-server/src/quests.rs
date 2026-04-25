@@ -10,13 +10,20 @@ use bevy::prelude::*;
 use lightyear::prelude::server::*;
 use lightyear::prelude::*;
 use vaern_character::{Experience, XpCurve};
+use vaern_economy::PlayerWallet;
 use vaern_protocol::{
     AbandonQuest, AcceptQuest, PlayerTag, ProgressQuest, QuestLogEntry, QuestLogSnapshot,
 };
+use vaern_stats::{PillarCaps, PillarScores};
 
 use crate::data::GameData;
 use crate::npc::MobSourceId;
-use crate::xp::grant_xp;
+use crate::xp::grant_xp_with_levelup_bonus;
+
+/// Hard refuse a quest accept if its starting level is more than this many
+/// above the player's current level. 3 = "you can pick up quests up to 3
+/// over your head, but no further" — matches WoW's yellow/orange threshold.
+const QUEST_LEVEL_GATE: u32 = 3;
 
 /// Per-player quest state, server-authoritative. Not replicated directly —
 /// the owning client gets `QuestLogSnapshot` messages on change. Marked dirty
@@ -43,7 +50,15 @@ pub fn handle_quest_messages(
     data: Res<GameData>,
     curve: Res<XpCurve>,
     mut players: Query<
-        (Entity, &ControlledBy, &mut QuestLog, &mut Experience),
+        (
+            Entity,
+            &ControlledBy,
+            &mut QuestLog,
+            &mut Experience,
+            &mut PlayerWallet,
+            &mut PillarScores,
+            &PillarCaps,
+        ),
         With<PlayerTag>,
     >,
     mut accept_rx: Query<(Entity, &mut MessageReceiver<AcceptQuest>), With<ClientOf>>,
@@ -56,7 +71,7 @@ pub fn handle_quest_messages(
         Progress(String),
     }
     let link_to_player: HashMap<Entity, Entity> =
-        players.iter().map(|(p, cb, _, _)| (cb.owner, p)).collect();
+        players.iter().map(|(p, cb, _, _, _, _, _)| (cb.owner, p)).collect();
 
     let mut actions: Vec<(Entity, Action)> = Vec::new();
     for (link, mut rx) in &mut accept_rx {
@@ -76,7 +91,11 @@ pub fn handle_quest_messages(
     }
     for (link, action) in actions {
         let Some(&player_e) = link_to_player.get(&link) else { continue };
-        let Ok((_, _, mut log, mut xp)) = players.get_mut(player_e) else { continue };
+        let Ok((_, _, mut log, mut xp, mut wallet, mut scores, caps)) =
+            players.get_mut(player_e)
+        else {
+            continue;
+        };
         match action {
             Action::Accept(chain_id) => {
                 let Some(chain) = data.quests.chain(&chain_id) else {
@@ -85,6 +104,18 @@ pub fn handle_quest_messages(
                 };
                 if log.entries.contains_key(&chain_id) {
                     continue; // already in log
+                }
+                // Level gate: refuse if the chain's starting step is more than
+                // QUEST_LEVEL_GATE levels above the player's current level. Soft
+                // failure: log + skip; client will simply not see the entry
+                // appear in their quest log, same as an unknown-chain reject.
+                let chain_level = chain.steps.first().map(|s| s.level).unwrap_or(1);
+                if chain_level > xp.level.saturating_add(QUEST_LEVEL_GATE) {
+                    println!(
+                        "[quest] player {player_e:?} L{} refused '{}' (chain starts at L{}, gate=+{})",
+                        xp.level, chain_id, chain_level, QUEST_LEVEL_GATE
+                    );
+                    continue;
                 }
                 // Convention: step 1 is "meet / talk to the giver". Accepting
                 // the quest from that giver IS completing step 1, so skip
@@ -137,27 +168,43 @@ pub fn handle_quest_messages(
                 };
                 log.dirty = true;
 
-                let step_reward = data
+                let step = data
                     .quests
                     .chain(&chain_id)
-                    .and_then(|c| c.step(completed_step_idx))
-                    .map(|s| s.xp_reward)
-                    .unwrap_or(0);
+                    .and_then(|c| c.step(completed_step_idx));
+                let step_reward = step.map(|s| s.xp_reward).unwrap_or(0);
+                let step_gold = step.map(|s| s.gold_reward_copper).unwrap_or(0);
                 if step_reward > 0 {
-                    grant_xp(player_e, &mut xp, &curve, step_reward, "quest-step");
+                    grant_xp_with_levelup_bonus(
+                        player_e, &mut xp, &mut scores, caps, &curve, step_reward, "quest-step",
+                    );
+                }
+                if step_gold > 0 {
+                    wallet.credit(step_gold as u64);
+                    println!(
+                        "[quest] player {player_e:?} +{step_gold}c (step reward, wallet={})",
+                        wallet.copper
+                    );
                 }
 
                 if completed {
-                    let (title, final_xp) = data
-                        .quests
-                        .chain(&chain_id)
-                        .map(|c| (c.title.as_str(), c.final_reward.xp_bonus))
-                        .unwrap_or(("?", 0));
+                    let chain_ref = data.quests.chain(&chain_id);
+                    let title = chain_ref.map(|c| c.title.as_str()).unwrap_or("?");
+                    let final_xp = chain_ref.map(|c| c.final_reward.xp_bonus).unwrap_or(0);
+                    let final_gold = chain_ref
+                        .map(|c| c.final_reward.gold_bonus_copper)
+                        .unwrap_or(0);
                     if final_xp > 0 {
-                        grant_xp(player_e, &mut xp, &curve, final_xp, "quest-complete");
+                        grant_xp_with_levelup_bonus(
+                            player_e, &mut xp, &mut scores, caps, &curve, final_xp,
+                            "quest-complete",
+                        );
+                    }
+                    if final_gold > 0 {
+                        wallet.credit(final_gold as u64);
                     }
                     println!(
-                        "[quest] player {player_e:?} COMPLETED '{chain_id}' ({title}) — final +{final_xp}xp"
+                        "[quest] player {player_e:?} COMPLETED '{chain_id}' ({title}) — final +{final_xp}xp +{final_gold}c"
                     );
                 } else {
                     println!(
@@ -178,12 +225,22 @@ pub fn apply_kill_objectives(
     sources: Query<&MobSourceId>,
     data: Res<GameData>,
     curve: Res<XpCurve>,
-    mut players: Query<(Entity, &mut QuestLog, &mut Experience), With<PlayerTag>>,
+    mut players: Query<
+        (
+            Entity,
+            &mut QuestLog,
+            &mut Experience,
+            &mut PlayerWallet,
+            &mut PillarScores,
+            &PillarCaps,
+        ),
+        With<PlayerTag>,
+    >,
 ) {
     let Ok(src) = sources.get(trigger.entity) else { return };
     let dead_mob_id = src.0.clone();
 
-    for (player_e, mut log, mut xp) in &mut players {
+    for (player_e, mut log, mut xp, mut wallet, mut scores, caps) in &mut players {
         let chain_ids: Vec<String> = log.entries.keys().cloned().collect();
         for chain_id in chain_ids {
             let Some(chain) = data.quests.chain(&chain_id) else { continue };
@@ -204,6 +261,7 @@ pub fn apply_kill_objectives(
             // yet; most chains use count=1. When we need multi-kill steps,
             // accumulate per-step kill_count in QuestLogProgress.)
             let step_xp = step.xp_reward;
+            let step_gold = step.gold_reward_copper;
             let (current_after, total_after, chain_complete) = {
                 let entry_mut = log.entries.get_mut(&chain_id).unwrap();
                 entry_mut.current_step += 1;
@@ -217,14 +275,27 @@ pub fn apply_kill_objectives(
             log.dirty = true;
 
             if step_xp > 0 {
-                grant_xp(player_e, &mut xp, &curve, step_xp, "quest-kill-step");
+                grant_xp_with_levelup_bonus(
+                    player_e, &mut xp, &mut scores, caps, &curve, step_xp, "quest-kill-step",
+                );
+            }
+            if step_gold > 0 {
+                wallet.credit(step_gold as u64);
             }
             if chain_complete {
                 let final_xp = chain.final_reward.xp_bonus;
+                let final_gold = chain.final_reward.gold_bonus_copper;
                 if final_xp > 0 {
-                    grant_xp(player_e, &mut xp, &curve, final_xp, "quest-complete");
+                    grant_xp_with_levelup_bonus(
+                        player_e, &mut xp, &mut scores, caps, &curve, final_xp, "quest-complete",
+                    );
                 }
-                println!("[quest:kill] '{chain_id}' COMPLETED via killing {dead_mob_id}");
+                if final_gold > 0 {
+                    wallet.credit(final_gold as u64);
+                }
+                println!(
+                    "[quest:kill] '{chain_id}' COMPLETED via killing {dead_mob_id} (+{final_gold}c final)"
+                );
             } else {
                 println!(
                     "[quest:kill] '{chain_id}' advanced to step {current_after}/{total_after} via kill of {dead_mob_id}"

@@ -4,6 +4,12 @@ hub_role: outpost
 zone: dalewatch_marches
 biome: river_valley
 quest_count: 5
+giver:
+  id: miller_crossing__mistress_pell
+  display_name: Mistress Pell
+  title: Mill Foreman, Miller's Crossing
+  hub_id: miller_crossing
+  dialogue: '"Old Brenn keeps the flock and his grandsons; I keep the wheel turning. Wolves at the grain stores, river-rats fouling the sluice, an apprentice who didn''t come back from the brake. Take what you''ll work."'
 quests:
 - id: side__miller_crossing__wolf_cull
   name: The Wolf Cull

@@ -8,19 +8,25 @@ use bevy::prelude::*;
 use vaern_combat::{CastEvent, Health, StatusEffects, Target};
 use vaern_core::terrain;
 use vaern_protocol::PlayerTag;
+use vaern_voxel::chunk::ChunkStore;
+use vaern_voxel::query::ground_y;
 
 use super::components::{AggroRange, LeashRange, Npc, NpcHome, NonCombat, RoamState, ThreatTable};
 use super::{NPC_MELEE_RANGE, NPC_MOVE_SPEED, NPC_ROAM_RADIUS, NPC_ROAM_SPEED};
 
-/// Snap every NPC's Y onto the shared terrain height field. Runs
-/// after the chase/roam/leash systems each fixed tick so any X/Z
-/// movement that frame is immediately followed by a Y correction.
-/// Cheap — two sin + one cos per NPC per tick — and keeps the
-/// server's authoritative positions aligned with the client's
-/// displaced mesh (both sample `vaern_core::terrain::height`).
-pub fn snap_npcs_to_terrain(mut npcs: Query<&mut Transform, With<Npc>>) {
+/// Snap every NPC's Y onto the authoritative voxel ground — falling
+/// back to the analytical heightmap for chunks that haven't been
+/// seeded on the server yet (NPCs in zones with no active players,
+/// which the voxel streamer doesn't cover). Matches the approach in
+/// `movement::apply_player_movement`.
+pub fn snap_npcs_to_terrain(
+    store: Res<ChunkStore>,
+    mut npcs: Query<&mut Transform, With<Npc>>,
+) {
     for mut tf in &mut npcs {
-        tf.translation.y = terrain::height(tf.translation.x, tf.translation.z);
+        let top = tf.translation.y + 64.0;
+        tf.translation.y = ground_y(&store, tf.translation.x, tf.translation.z, top, 96.0)
+            .unwrap_or_else(|| terrain::height(tf.translation.x, tf.translation.z));
     }
 }
 

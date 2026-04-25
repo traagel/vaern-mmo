@@ -7,6 +7,42 @@ amenities:
 - flight_master
 - repair
 quest_givers: 4
+biome: marsh
 offset_from_zone_origin:
   x: -220.0
   z: 20.0
+
+# Mill + river-crossing village — grain stores, chairs, and chests.
+props:
+  - slug: stone_fire_pit
+    offset: {x: 0.0, z: 0.0}
+  - slug: spinning_wheel_01
+    offset: {x: 2.5, z: -1.0}
+    rotation_y_deg: -30.0
+  - slug: wooden_barrels_01
+    offset: {x: -3.0, z: 1.0}
+    rotation_y_deg: 20.0
+  - slug: wooden_barrels_01
+    offset: {x: -5.0, z: 2.0}
+    rotation_y_deg: 90.0
+  - slug: wooden_crate_02
+    offset: {x: -4.5, z: 0.0}
+  - slug: WoodenTable_01
+    offset: {x: 4.0, z: 2.5}
+  - slug: WoodenChair_01
+    offset: {x: 4.5, z: 3.5}
+    rotation_y_deg: 180.0
+  - slug: wooden_bowl_01
+    offset: {x: 4.0, z: 2.8}
+  - slug: wooden_bucket_01
+    offset: {x: 1.5, z: 3.5}
+  - slug: wooden_bucket_02
+    offset: {x: 2.0, z: 3.8}
+  - slug: treasure_chest
+    offset: {x: -1.0, z: 3.0}
+  - slug: wooden_lantern_01
+    offset: {x: 0.0, z: -4.0}
+  - slug: vintage_oil_lamp
+    offset: {x: -3.0, z: -3.0}
+  - slug: vintage_oil_lamp
+    offset: {x: 3.0, z: -3.0}

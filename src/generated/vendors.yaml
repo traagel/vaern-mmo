@@ -1,0 +1,219 @@
+# Vendors — pre-alpha v1.
+#
+# One general-goods vendor per starter-zone capital hub. Stock is
+# authored flat (infinite supply) per listing; all listings ship with
+# no affixes and default to "regular" quality. Server prices via
+# `vendor_buy_price` / `vendor_sell_price` from vaern-economy, so
+# pricing tuning lives in the economy crate and flows here
+# automatically.
+#
+# Schema:
+#   id:               stable lookup key; appears in logs only.
+#   display_name:     shown on the nameplate + vendor window title.
+#   zone_id + hub_id: placement. hub_id must match a hub YAML in that zone.
+#   archetype:        optional humanoid mesh archetype key (see
+#                     assets/npc_mesh_map.yaml). Omit for hashed fallback.
+#   listings:         [ { base_id, material_id?, quality_id?, stock? } ]
+#                     stock: null or absent = infinite. material_id/quality_id
+#                     omitted = (none) / "regular".
+
+vendors:
+  # ── Dalewatch Marches (Mannin) ──
+  - id: vendor_dalewatch_keep_general
+    display_name: "Merchant Kell"
+    zone_id: dalewatch_marches
+    hub_id: dalewatch_keep
+    archetype: noble_male
+    listings:
+      - { base_id: minor_healing_potion }
+      - { base_id: minor_mana_potion }
+      - { base_id: minor_stamina_potion }
+      - { base_id: bread_loaf }
+      - { base_id: hardtack }
+      - { base_id: traveler_rations }
+      - { base_id: scroll_of_recall }
+      - { base_id: cloth_shirt, material_id: linen }
+      - { base_id: cloth_trousers, material_id: linen }
+      - { base_id: cloth_cowl, material_id: linen }
+      - { base_id: short_sword, material_id: copper }
+      - { base_id: handaxe, material_id: copper }
+
+  # ── Ashen Holt (Darkling Elen) ──
+  - id: vendor_shadegrove_spire_general
+    display_name: "Merchant Seyla"
+    zone_id: ashen_holt
+    hub_id: shadegrove_spire
+    archetype: noble_female
+    listings:
+      - { base_id: minor_healing_potion }
+      - { base_id: minor_mana_potion }
+      - { base_id: minor_stamina_potion }
+      - { base_id: bread_loaf }
+      - { base_id: hardtack }
+      - { base_id: traveler_rations }
+      - { base_id: scroll_of_recall }
+      - { base_id: cloth_shirt, material_id: linen }
+      - { base_id: cloth_trousers, material_id: linen }
+      - { base_id: cloth_cowl, material_id: linen }
+      - { base_id: short_sword, material_id: copper }
+      - { base_id: rapier, material_id: copper }
+
+  # ── Firland Greenwood (Firland) ──
+  - id: vendor_greenmoot_general
+    display_name: "Merchant Tavin"
+    zone_id: firland_greenwood
+    hub_id: greenmoot
+    archetype: noble_male
+    listings:
+      - { base_id: minor_healing_potion }
+      - { base_id: minor_mana_potion }
+      - { base_id: minor_stamina_potion }
+      - { base_id: bread_loaf }
+      - { base_id: hardtack }
+      - { base_id: traveler_rations }
+      - { base_id: scroll_of_recall }
+      - { base_id: cloth_shirt, material_id: linen }
+      - { base_id: cloth_trousers, material_id: linen }
+      - { base_id: cloth_cowl, material_id: linen }
+      - { base_id: short_sword, material_id: copper }
+      - { base_id: handaxe, material_id: copper }
+
+  # ── Stoneguard Deep (Hearthkin) ──
+  - id: vendor_stoneguard_halls_general
+    display_name: "Merchant Hodrun"
+    zone_id: stoneguard_deep
+    hub_id: stoneguard_halls
+    archetype: noble_male
+    listings:
+      - { base_id: minor_healing_potion }
+      - { base_id: minor_mana_potion }
+      - { base_id: minor_stamina_potion }
+      - { base_id: bread_loaf }
+      - { base_id: hardtack }
+      - { base_id: traveler_rations }
+      - { base_id: scroll_of_recall }
+      - { base_id: cloth_shirt, material_id: linen }
+      - { base_id: cloth_trousers, material_id: linen }
+      - { base_id: cloth_cowl, material_id: linen }
+      - { base_id: handaxe, material_id: copper }
+      - { base_id: club, material_id: copper }
+
+  # ── Barrow Coast (Gravewrought) ──
+  - id: vendor_iron_barrow_general
+    display_name: "Merchant Vess"
+    zone_id: barrow_coast
+    hub_id: iron_barrow
+    archetype: noble_female
+    listings:
+      - { base_id: minor_healing_potion }
+      - { base_id: minor_mana_potion }
+      - { base_id: minor_stamina_potion }
+      - { base_id: bread_loaf }
+      - { base_id: hardtack }
+      - { base_id: traveler_rations }
+      - { base_id: scroll_of_recall }
+      - { base_id: cloth_shirt, material_id: linen }
+      - { base_id: cloth_trousers, material_id: linen }
+      - { base_id: cloth_cowl, material_id: linen }
+      - { base_id: short_sword, material_id: copper }
+      - { base_id: scimitar, material_id: copper }
+
+  # ── Pactmarch (Kharun) ──
+  - id: vendor_pactstone_hold_general
+    display_name: "Merchant Juri"
+    zone_id: pactmarch
+    hub_id: pactstone_hold
+    archetype: noble_male
+    listings:
+      - { base_id: minor_healing_potion }
+      - { base_id: minor_mana_potion }
+      - { base_id: minor_stamina_potion }
+      - { base_id: bread_loaf }
+      - { base_id: hardtack }
+      - { base_id: traveler_rations }
+      - { base_id: scroll_of_recall }
+      - { base_id: cloth_shirt, material_id: linen }
+      - { base_id: cloth_trousers, material_id: linen }
+      - { base_id: cloth_cowl, material_id: linen }
+      - { base_id: handaxe, material_id: copper }
+      - { base_id: kukri, material_id: copper }
+
+  # ── Wyrling Downs (Wyrling) ──
+  - id: vendor_market_town_general
+    display_name: "Merchant Peg"
+    zone_id: wyrling_downs
+    hub_id: market_town
+    archetype: noble_female
+    listings:
+      - { base_id: minor_healing_potion }
+      - { base_id: minor_mana_potion }
+      - { base_id: minor_stamina_potion }
+      - { base_id: bread_loaf }
+      - { base_id: hardtack }
+      - { base_id: traveler_rations }
+      - { base_id: scroll_of_recall }
+      - { base_id: cloth_shirt, material_id: linen }
+      - { base_id: cloth_trousers, material_id: linen }
+      - { base_id: cloth_cowl, material_id: linen }
+      - { base_id: short_sword, material_id: copper }
+      - { base_id: kukri, material_id: copper }
+
+  # ── Skarnreach (Skarn) ──
+  - id: vendor_skarn_longhall_general
+    display_name: "Merchant Drak"
+    zone_id: skarnreach
+    hub_id: skarn_longhall
+    archetype: noble_male
+    listings:
+      - { base_id: minor_healing_potion }
+      - { base_id: minor_mana_potion }
+      - { base_id: minor_stamina_potion }
+      - { base_id: bread_loaf }
+      - { base_id: hardtack }
+      - { base_id: traveler_rations }
+      - { base_id: scroll_of_recall }
+      - { base_id: cloth_shirt, material_id: linen }
+      - { base_id: cloth_trousers, material_id: linen }
+      - { base_id: cloth_cowl, material_id: linen }
+      - { base_id: handaxe, material_id: copper }
+      - { base_id: battleaxe, material_id: copper }
+
+  # ── Sunward Reach (Sunward Elen) ──
+  - id: vendor_sunward_spire_general
+    display_name: "Merchant Aelin"
+    zone_id: sunward_reach
+    hub_id: sunward_spire
+    archetype: noble_female
+    listings:
+      - { base_id: minor_healing_potion }
+      - { base_id: minor_mana_potion }
+      - { base_id: minor_stamina_potion }
+      - { base_id: bread_loaf }
+      - { base_id: hardtack }
+      - { base_id: traveler_rations }
+      - { base_id: scroll_of_recall }
+      - { base_id: cloth_shirt, material_id: linen }
+      - { base_id: cloth_trousers, material_id: linen }
+      - { base_id: cloth_cowl, material_id: linen }
+      - { base_id: rapier, material_id: copper }
+      - { base_id: short_sword, material_id: copper }
+
+  # ── Scrap Marsh (Skrel) ──
+  - id: vendor_junk_warren_general
+    display_name: "Merchant Grik"
+    zone_id: scrap_marsh
+    hub_id: junk_warren
+    archetype: noble_male
+    listings:
+      - { base_id: minor_healing_potion }
+      - { base_id: minor_mana_potion }
+      - { base_id: minor_stamina_potion }
+      - { base_id: bread_loaf }
+      - { base_id: hardtack }
+      - { base_id: traveler_rations }
+      - { base_id: scroll_of_recall }
+      - { base_id: cloth_shirt, material_id: linen }
+      - { base_id: cloth_trousers, material_id: linen }
+      - { base_id: cloth_cowl, material_id: linen }
+      - { base_id: kukri, material_id: copper }
+      - { base_id: club, material_id: copper }

@@ -4,6 +4,12 @@ hub_role: outpost
 zone: dalewatch_marches
 biome: river_valley
 quest_count: 3
+giver:
+  id: kingsroad_waypost__smith_garrick
+  display_name: Smith Garrick
+  title: Forge-Master, Kingsroad Waypost
+  hub_id: kingsroad_waypost
+  dialogue: '"Aye, the forge takes coin or work — your pick. Carts get jumped on the road; lost mail in the brush; bandits cut a tax-keeper''s purse last week. Pull up a tool, take a job."'
 quests:
 - id: side__kingsroad_waypost__lost_mail
   name: Lost Mail

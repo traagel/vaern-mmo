@@ -16,6 +16,7 @@
 
 mod aoi;
 mod belt_io;
+mod chat_io;
 mod class_kits;
 mod combat_io;
 mod connect;
@@ -27,13 +28,18 @@ mod loot_io;
 mod movement;
 mod npc;
 mod npc_mesh;
+mod party_io;
 mod persistence;
 mod player_state;
 mod quests;
 mod resource_nodes;
+mod respawn;
 mod starter_gear;
 mod stats_sync;
 mod util;
+mod vendor_io;
+mod voxel_world;
+mod wallet_io;
 mod xp;
 
 use core::time::Duration;
@@ -46,6 +52,7 @@ use lightyear::prelude::*;
 use lightyear::prelude::RoomPlugin;
 use vaern_combat::{CombatPlugin, systems as combat_systems};
 use vaern_persistence::ServerCharacterStore;
+use vaern_voxel::plugin::VoxelCorePlugin;
 use vaern_protocol::{
     FIXED_TIMESTEP_HZ, SERVER_ADDR, SHARED_PRIVATE_KEY, SHARED_PROTOCOL_ID, SharedPlugin,
 };
@@ -64,6 +71,14 @@ fn main() {
         .add_plugins(ServerPlugins { tick_duration: tick })
         .add_plugins(SharedPlugin)
         .add_plugins(CombatPlugin)
+        // Authoritative voxel world. `VoxelCorePlugin` provides the
+        // `ChunkStore` + `DirtyChunks` resources; `VoxelServerPlugin`
+        // (our own) streams chunks around each active player every
+        // fixed tick so `vaern_voxel::query::ground_y` has data to
+        // probe against from `movement` + `npc::ai`. Edit strokes land
+        // on this store; delta replication is a follow-up slice.
+        .add_plugins(VoxelCorePlugin)
+        .add_plugins(voxel_world::VoxelServerPlugin)
         .add_plugins(RoomPlugin)
         .add_plugins(logging::LoggingPlugin)
         .insert_resource(npc::NpcSpawns::default())
@@ -74,6 +89,10 @@ fn main() {
         .init_resource::<loot_io::LootRng>()
         .init_resource::<loot_io::LootIdCounter>()
         .init_resource::<loot_io::PendingLootsDirty>()
+        .init_resource::<vendor_io::VendorIdCounter>()
+        .init_resource::<chat_io::ChatRateLimiter>()
+        .init_resource::<party_io::PartyTable>()
+        .init_resource::<party_io::PendingInvites>()
         .init_resource::<aoi::ZoneRooms>()
         .init_resource::<aoi::ClientZone>()
         .insert_resource(CharacterStore(
@@ -136,7 +155,16 @@ fn main() {
                 // despawn replicated NPCs ahead of lightyear's canonical
                 // despawn packet. Must run after detect_deaths so the
                 // DeathEvent buffer is populated this tick.
-                combat_systems::apply_deaths.after(combat_systems::detect_deaths),
+                //
+                // Player entities carry `CorpseOnDeath`, which makes
+                // `apply_deaths` skip them — `respawn::apply_player_corpse_run`
+                // is the sole handler for player deaths. Both read the same
+                // DeathEvent stream (per-system cursors).
+                (
+                    combat_systems::apply_deaths.after(combat_systems::detect_deaths),
+                    respawn::apply_player_corpse_run.after(combat_systems::detect_deaths),
+                    respawn::tick_corpses.after(respawn::apply_player_corpse_run),
+                ),
                 npc::npc_select_targets,
                 (connect::process_pending_spawns, connect::send_pending_hotbars).chain(),
                 combat_io::handle_cast_intents,
@@ -148,6 +176,7 @@ fn main() {
                 inventory_io::handle_equip_requests,
                 inventory_io::handle_unequip_requests,
                 inventory_io::broadcast_inventory_and_equipped,
+                wallet_io::broadcast_wallet_on_change,
                 consume_io::handle_consume_requests,
                 belt_io::handle_bind_belt_slot,
                 belt_io::handle_clear_belt_slot,
@@ -192,6 +221,38 @@ fn main() {
                 // Same, but for weapon loadout — server authoritative
                 // mainhand/offhand prop ids pushed via PlayerWeapons.
                 persistence::sync_player_weapons_from_gear,
+                // Vendor NPC IO. Tag-new-vendors runs first so every
+                // vendor carries a stable `VendorIdTag` before open /
+                // buy / sell handlers query by id.
+                (
+                    vendor_io::tag_new_vendors,
+                    vendor_io::handle_vendor_open_requests,
+                    vendor_io::handle_vendor_buy_requests,
+                    vendor_io::handle_vendor_sell_requests,
+                    vendor_io::sweep_out_of_range_vendor_windows,
+                )
+                    .chain(),
+                // Chat routing. Runs after per-tick zone sync so zone
+                // chats land in the right room on the same tick the
+                // player crossed a boundary.
+                chat_io::handle_chat_messages.after(aoi::sync_player_zone_subscriptions),
+            ),
+        )
+        .add_systems(
+            Update,
+            (
+                // Party system — invite/response/leave/kick drained and
+                // routed to the party table. Snapshot broadcast last so
+                // it sees every mutation this tick.
+                (
+                    party_io::handle_party_invite,
+                    party_io::handle_party_response,
+                    party_io::handle_party_leave,
+                    party_io::handle_party_kick,
+                    party_io::expire_pending_invites,
+                    party_io::broadcast_party_snapshots,
+                )
+                    .chain(),
             ),
         )
         .add_observer(connect::handle_new_client)

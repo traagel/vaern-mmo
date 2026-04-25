@@ -147,6 +147,7 @@ fn track_keypress_cooldowns(
     time: Res<Time>,
     keys: Res<ButtonInput<KeyCode>>,
     mouse: Res<ButtonInput<MouseButton>>,
+    chat_focused: Res<crate::chat_ui::ChatInputFocused>,
     mut hotbar: ResMut<Hotbar>,
     mut attempts: MessageWriter<CastAttempted>,
 ) {
@@ -155,6 +156,12 @@ fn track_keypress_cooldowns(
         if slot.cooldown_remaining > 0.0 {
             slot.cooldown_remaining = (slot.cooldown_remaining - dt).max(0.0);
         }
+    }
+    // Cooldowns still tick while the player is typing — only ability
+    // firing is suppressed. Mouse clicks also suppressed so a click
+    // on the chat field doesn't fire an auto-attack.
+    if chat_focused.0 {
+        return;
     }
     let pressed_slot = if keys.just_pressed(KeyCode::Digit1) {
         Some(0usize)
@@ -186,8 +193,12 @@ fn track_keypress_cooldowns(
 
 fn toggle_spellbook_hotkey(
     keys: Res<ButtonInput<KeyCode>>,
+    chat_focused: Res<crate::chat_ui::ChatInputFocused>,
     mut state: ResMut<SpellbookState>,
 ) {
+    if chat_focused.0 {
+        return;
+    }
     if keys.just_pressed(KeyCode::KeyK) {
         state.open = !state.open;
     }

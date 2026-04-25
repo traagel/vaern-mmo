@@ -1,0 +1,155 @@
+{
+  "asset": {
+    "generator": "Khronos glTF Blender I/O v1.6.16",
+    "version": "2.0"
+  },
+  "scene": 0,
+  "scenes": [
+    {
+      "name": "Scene",
+      "nodes": [
+        0
+      ]
+    }
+  ],
+  "nodes": [
+    {
+      "mesh": 0,
+      "name": "spinning_wheel_01"
+    }
+  ],
+  "materials": [
+    {
+      "doubleSided": true,
+      "name": "spinning_wheel_01",
+      "normalTexture": {
+        "index": 0
+      },
+      "pbrMetallicRoughness": {
+        "baseColorTexture": {
+          "index": 1
+        },
+        "metallicRoughnessTexture": {
+          "index": 2
+        }
+      }
+    }
+  ],
+  "meshes": [
+    {
+      "name": "BezierCurve.020",
+      "primitives": [
+        {
+          "attributes": {
+            "POSITION": 0,
+            "NORMAL": 1,
+            "TEXCOORD_0": 2
+          },
+          "indices": 3,
+          "material": 0
+        }
+      ]
+    }
+  ],
+  "textures": [
+    {
+      "sampler": 0,
+      "source": 0
+    },
+    {
+      "sampler": 0,
+      "source": 1
+    },
+    {
+      "sampler": 0,
+      "source": 2
+    }
+  ],
+  "images": [
+    {
+      "mimeType": "image/jpeg",
+      "name": "spinning_wheel_01_nor_gl",
+      "uri": "textures/spinning_wheel_01_nor_gl_1k.jpg"
+    },
+    {
+      "mimeType": "image/jpeg",
+      "name": "spinning_wheel_01_diff",
+      "uri": "textures/spinning_wheel_01_diff_1k.jpg"
+    },
+    {
+      "mimeType": "image/jpeg",
+      "name": "spinning_wheel_01_metal-spinning_wheel_01_rough",
+      "uri": "textures/spinning_wheel_01_arm_1k.jpg"
+    }
+  ],
+  "accessors": [
+    {
+      "bufferView": 0,
+      "componentType": 5126,
+      "count": 35380,
+      "max": [
+        0.269286572933197,
+        0.9663301706314087,
+        0.550261378288269
+      ],
+      "min": [
+        -0.22011323273181915,
+        0.00010898223263211548,
+        -0.4745956361293793
+      ],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 1,
+      "componentType": 5126,
+      "count": 35380,
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 2,
+      "componentType": 5126,
+      "count": 35380,
+      "type": "VEC2"
+    },
+    {
+      "bufferView": 3,
+      "componentType": 5123,
+      "count": 156069,
+      "type": "SCALAR"
+    }
+  ],
+  "bufferViews": [
+    {
+      "buffer": 0,
+      "byteLength": 424560,
+      "byteOffset": 0
+    },
+    {
+      "buffer": 0,
+      "byteLength": 424560,
+      "byteOffset": 424560
+    },
+    {
+      "buffer": 0,
+      "byteLength": 283040,
+      "byteOffset": 849120
+    },
+    {
+      "buffer": 0,
+      "byteLength": 312138,
+      "byteOffset": 1132160
+    }
+  ],
+  "samplers": [
+    {
+      "magFilter": 9729,
+      "minFilter": 9987
+    }
+  ],
+  "buffers": [
+    {
+      "byteLength": 1444300,
+      "uri": "spinning_wheel_01.bin"
+    }
+  ]
+}

@@ -10,6 +10,90 @@ amenities:
 - flight_master
 - profession_trainers
 quest_givers: 6
+biome: stone
 offset_from_zone_origin:
   x: 0.0
   z: 0.0
+
+# ─── authored dressing ───────────────────────────────────────────────────────
+# Hub-local coordinates (meters, +X east, +Z south). Y sampled from voxel
+# ground unless absolute_y is set. Slugs must match PolyHavenCatalog entries.
+props:
+  # Keep entrance — castle door + flanking iron gates
+  - slug: large_castle_door
+    offset: {x: 0.0, z: -8.0}
+    rotation_y_deg: 0.0
+  - slug: large_iron_gate
+    offset: {x: -5.0, z: -8.5}
+    rotation_y_deg: 0.0
+  - slug: large_iron_gate
+    offset: {x: 5.0, z: -8.5}
+    rotation_y_deg: 0.0
+
+  # Modular fort wall pieces flanking the keep
+  - slug: modular_fort_01
+    offset: {x: -12.0, z: -6.0}
+    rotation_y_deg: 0.0
+  - slug: modular_fort_01
+    offset: {x: 12.0, z: -6.0}
+    rotation_y_deg: 0.0
+
+  # Courtyard center: horse statue as a landmark + fire pit
+  - slug: horse_statue_01
+    offset: {x: 0.0, z: 3.0}
+    rotation_y_deg: 0.0
+  - slug: stone_fire_pit
+    offset: {x: 0.0, z: 8.0}
+
+  # Market-stall dressing: barrels + crates
+  - slug: wooden_barrels_01
+    offset: {x: 6.0, z: 5.0}
+    rotation_y_deg: 15.0
+  - slug: wooden_crate_02
+    offset: {x: 6.8, z: 6.8}
+    rotation_y_deg: -30.0
+  - slug: wooden_barrels_01
+    offset: {x: -6.0, z: 5.0}
+    rotation_y_deg: -15.0
+
+  # Vendor area: table + chair + chest
+  - slug: WoodenTable_01
+    offset: {x: -4.5, z: 9.0}
+    rotation_y_deg: 0.0
+  - slug: WoodenChair_01
+    offset: {x: -6.0, z: 9.2}
+    rotation_y_deg: 90.0
+  - slug: treasure_chest
+    offset: {x: -3.5, z: 9.0}
+    rotation_y_deg: 0.0
+
+  # Alchemist's corner — spinning wheel + buckets
+  - slug: spinning_wheel_01
+    offset: {x: 4.5, z: 10.0}
+    rotation_y_deg: 0.0
+  - slug: wooden_bucket_01
+    offset: {x: 5.5, z: 10.2}
+  - slug: wooden_bucket_02
+    offset: {x: 6.0, z: 10.6}
+
+  # Lantern ring around the keep entrance
+  - slug: vintage_oil_lamp
+    offset: {x: -2.0, z: -5.0}
+  - slug: vintage_oil_lamp
+    offset: {x: 2.0, z: -5.0}
+  - slug: wooden_lantern_01
+    offset: {x: 0.0, z: -3.5}
+
+  # Weapon-rack dressing near the class trainer
+  - slug: katana_stand_01
+    offset: {x: 4.5, z: -2.0}
+    rotation_y_deg: 180.0
+  - slug: kite_shield
+    offset: {x: 5.5, z: -2.2}
+    rotation_y_deg: 180.0
+  - slug: antique_estoc
+    offset: {x: 4.5, z: -1.5}
+    rotation_y_deg: 180.0
+  - slug: ornate_war_hammer
+    offset: {x: 4.0, z: -2.5}
+    rotation_y_deg: 180.0

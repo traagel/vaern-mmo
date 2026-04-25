@@ -4,6 +4,12 @@ hub_role: capital
 zone: dalewatch_marches
 biome: river_valley
 quest_count: 5
+giver:
+  id: dalewatch_keep__quartermaster_hayes
+  display_name: Quartermaster Hayes
+  title: Keep Quartermaster
+  hub_id: dalewatch_keep
+  dialogue: '"You here for work? Good. Warden''s riders chase the big trouble — I keep the keep running. Wolves on the hide-stock, missing recruits, cargo down the road. Pick a job from the board. Steel pays steel."'
 quests:
 - id: side__dalewatch_keep__reynes_armory
   name: Reyne's Armory

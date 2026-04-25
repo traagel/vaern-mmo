@@ -16,7 +16,7 @@ use super::components::{
     AggroRange, LeashRange, MobSourceId, NonCombat, Npc, NpcHome, NpcSpawnSlot, NpcSpawns,
     RoamState, ThreatTable,
 };
-use super::{NPC_RESPAWN_SECS, aggro_for_kind, leash_for_kind};
+use super::{aggro_for_kind, leash_for_kind, respawn_secs_for_kind};
 use crate::data::GameData;
 use crate::util::prettify_npc_name;
 
@@ -33,27 +33,54 @@ pub fn seed_npc_spawns(
     let mut zone_count = 0usize;
     let mut mob_total = 0usize;
     let mut giver_total = 0usize;
+    let mut vendor_total = 0usize;
 
     let starter_ids: Vec<String> = data.zone_offsets.keys().cloned().collect();
     for zone_id in &starter_ids {
         let zone_origin = data.zone_origin(zone_id);
         zone_count += 1;
 
-        // ── Combat mobs: scatter around the zone's own origin in a ring ──
+        // Pre-compute hub centers so the level-banded mob anchor can use
+        // them. Same logic as the quest-giver block below.
+        let zone_hubs: Vec<_> = data.world.hubs_in_zone(zone_id).collect();
+        let hub_count_f = zone_hubs.len() as f32;
+        let hub_centers: HashMap<&str, Vec3> = zone_hubs
+            .iter()
+            .enumerate()
+            .map(|(i, hub)| {
+                let pos = match &hub.offset_from_zone_origin {
+                    Some(o) => Vec3::new(o.x, 0.0, o.z),
+                    None => {
+                        let angle =
+                            (i as f32 / hub_count_f.max(1.0)) * std::f32::consts::TAU;
+                        Vec3::new(8.0 * angle.cos(), 0.0, 8.0 * angle.sin())
+                    }
+                };
+                (hub.id.as_str(), pos)
+            })
+            .collect();
+        let capital_hub = zone_hubs.iter().find(|h| h.role == "capital").copied();
+
+        // ── Combat mobs: scatter around level-appropriate anchor hubs ──
+        //
+        // Dalewatch tiers mobs into four bands by level so a player at the
+        // keep doesn't see L8 named bosses in their face. Other zones still
+        // ring around zone_origin (legacy procedural fallback).
         //
         // Big-zone layout (dalewatch redesign): each zone spans ~1200u, so
-        // mob scatter radii grew ~7× from the legacy 18–45u so mobs actually
-        // spread across the zone rather than pileup at zone_origin.
+        // scatter radii are 70–110u around the anchor — wide enough that
+        // mobs spread but tight enough that the level band reads.
         let zone_mobs: Vec<_> = data.world.mobs_in_zone(zone_id).collect();
         let mob_count = zone_mobs.len() as f32;
         for (i, mob) in zone_mobs.iter().enumerate() {
+            let anchor = mob_anchor_for_level(zone_id, mob.level, &hub_centers);
             let radius = match mob.rarity.as_str() {
-                "named" => 320.0,
-                "elite" | "rare" => 240.0,
-                _ => 140.0 + (i as f32 % 5.0) * 25.0,
+                "named" => 110.0,
+                "elite" | "rare" => 90.0,
+                _ => 70.0 + (i as f32 % 5.0) * 18.0,
             };
             let angle = (i as f32 / mob_count.max(1.0)) * std::f32::consts::TAU;
-            let local = Vec3::new(radius * angle.cos(), 0.0, radius * angle.sin());
+            let local = anchor + Vec3::new(radius * angle.cos(), 0.0, radius * angle.sin());
 
             let ctype = data
                 .bestiary
@@ -94,10 +121,12 @@ pub fn seed_npc_spawns(
                 hub_info: None,
                 chain_info: None,
                 mob_slot_id: Some(mob.id.clone()),
+                level: mob.level,
                 current: None,
                 countdown: 0.0,
                 combined_stats,
                 visual_from_map,
+                vendor_stock: None,
             });
             mob_total += 1;
         }
@@ -107,28 +136,8 @@ pub fn seed_npc_spawns(
         // Layout: place each hub at its own angle around the zone origin,
         // so NPCs belonging to different hubs live in distinct clusters.
         // An NPC's spawn position = zone_origin + hub_center + local_ring.
-        let zone_hubs: Vec<_> = data.world.hubs_in_zone(zone_id).collect();
-        let hub_count = zone_hubs.len() as f32;
-        // Hub placement: prefer an explicit `offset_from_zone_origin` in the
-        // hub YAML (big-zone layout — dalewatch redesign). Fall back to the
-        // legacy tight radial placement (8u ring) when the offset is absent,
-        // so un-redesigned zones still spawn coherently.
-        let hub_centers: HashMap<&str, Vec3> = zone_hubs
-            .iter()
-            .enumerate()
-            .map(|(i, hub)| {
-                let pos = match &hub.offset_from_zone_origin {
-                    Some(o) => Vec3::new(o.x, 0.0, o.z),
-                    None => {
-                        let angle =
-                            (i as f32 / hub_count.max(1.0)) * std::f32::consts::TAU;
-                        Vec3::new(8.0 * angle.cos(), 0.0, 8.0 * angle.sin())
-                    }
-                };
-                (hub.id.as_str(), pos)
-            })
-            .collect();
-        let capital_hub = zone_hubs.iter().find(|h| h.role == "capital").copied();
+        // (zone_hubs / hub_centers / capital_hub were computed above so the
+        // mob-level-band anchor could share them.)
 
         let chains: Vec<_> = data.quests.zone_chains(zone_id).collect();
         let mut placed: HashSet<String> = HashSet::new();
@@ -178,10 +187,12 @@ pub fn seed_npc_spawns(
                         hub_info: Some((hub.id.clone(), hub.role.clone(), zone_id.clone())),
                         chain_info: Some((chain.id.clone(), step_index)),
                         mob_slot_id: None,
+                        level: 0,
                         current: None,
                         countdown: 0.0,
                         combined_stats: None,
                         visual_from_map,
+                vendor_stock: None,
                     });
                     giver_total += 1;
                 }
@@ -230,22 +241,139 @@ pub fn seed_npc_spawns(
                     )),
                     chain_info: Some((chain.id.clone(), *step_idx)),
                     mob_slot_id: None,
+                    level: 0,
                     current: None,
                     countdown: 0.0,
                     combined_stats: None,
                     visual_from_map,
+                vendor_stock: None,
                 });
                 giver_total += 1;
             }
         }
+
+        // ── Side-quest givers ──
+        //
+        // Each `world/zones/<zone>/quests/side/<hub>.yaml` may declare an
+        // authored `giver:` NPC. Spawn one per declared giver at the
+        // matching hub, on a small offset that doesn't collide with the
+        // chain-NPC ring or the vendor ring.
+        for bundle in data.side_quests.hubs_in_zone(zone_id) {
+            let Some(giver) = bundle.giver.as_ref() else {
+                continue;
+            };
+            if !placed.insert(giver.id.clone()) {
+                continue;
+            }
+            let hub_id = giver.hub_id.as_deref().unwrap_or(&bundle.hub);
+            let Some(hub) = zone_hubs.iter().find(|h| h.id == hub_id).copied() else {
+                warn!(
+                    "[side-quests] giver {} references unknown hub {} in zone {} — skipped",
+                    giver.id, hub_id, zone_id,
+                );
+                continue;
+            };
+            let hub_center = hub_centers.get(hub.id.as_str()).copied().unwrap_or(Vec3::ZERO);
+            // Place 4u NW of hub center (angle = 3π/4) so side-quest
+            // givers cluster predictably away from chain NPCs (2.5u) and
+            // vendors (5u NE-ish).
+            let angle = 3.0 * std::f32::consts::FRAC_PI_4;
+            let offset = Vec3::new(4.0 * angle.cos(), 0.0, 4.0 * angle.sin());
+            let visual_from_map = mesh_map
+                .lookup(&giver.display_name)
+                .or_else(|| mesh_map.quest_giver_visual(&giver.display_name));
+            slots.push(NpcSpawnSlot {
+                position: zone_origin + hub_center + offset,
+                max_hp: 9999.0,
+                attack_damage: 0.0,
+                display_name: giver.display_name.clone(),
+                kind: NpcKind::QuestGiver,
+                non_combat: true,
+                hub_info: Some((hub.id.clone(), hub.role.clone(), zone_id.clone())),
+                // No chain context — side-quest givers aren't tied to a
+                // single chain step. Quest pickup goes through hub_info.
+                chain_info: None,
+                mob_slot_id: None,
+                level: 0,
+                current: None,
+                countdown: 0.0,
+                combined_stats: None,
+                visual_from_map,
+                vendor_stock: None,
+            });
+            giver_total += 1;
+        }
+
+        // ── Vendor NPCs ──
+        //
+        // Vendors are authored in `src/generated/vendors.yaml` and
+        // placed at a named hub in the zone. Pre-alpha: infinite
+        // stock, no restock cycle. Placed on a wider ring than
+        // quest-givers so they don't overlap; hub_id must match a
+        // real hub in this zone.
+        let vendors_here: Vec<_> = data
+            .vendors
+            .iter()
+            .filter(|v| v.zone_id == *zone_id)
+            .collect();
+        for (i, vdef) in vendors_here.iter().enumerate() {
+            let Some(hub_center) = hub_centers.get(vdef.hub_id.as_str()).copied() else {
+                warn!(
+                    "[vendors] {} references unknown hub {} in zone {} — skipped",
+                    vdef.id, vdef.hub_id, vdef.zone_id,
+                );
+                continue;
+            };
+            let n = vendors_here.len().max(1) as f32;
+            let angle = (i as f32 / n) * std::f32::consts::TAU + std::f32::consts::FRAC_PI_4;
+            // 5u ring — outside the 2.5u quest-giver ring, but still
+            // inside the hub's "near the square" cluster.
+            let offset = Vec3::new(5.0 * angle.cos(), 0.0, 5.0 * angle.sin());
+            let listings: Vec<_> = vdef
+                .listings
+                .iter()
+                .map(|l| l.to_stock_listing())
+                .collect();
+            // Prefer the authored archetype hint if set; otherwise fall
+            // through to the hashed quest-giver-style visual so every
+            // vendor has a distinct look without hand-mapping.
+            let visual_from_map = vdef
+                .archetype
+                .as_deref()
+                .map(|arch| {
+                    crate::npc_mesh::NpcVisual::Humanoid(
+                        vaern_protocol::NpcAppearance::new(arch, 1.0),
+                    )
+                })
+                .or_else(|| mesh_map.quest_giver_visual(&vdef.display_name));
+            slots.push(NpcSpawnSlot {
+                position: zone_origin + hub_center + offset,
+                max_hp: 9999.0,
+                attack_damage: 0.0,
+                display_name: vdef.display_name.clone(),
+                kind: NpcKind::Vendor,
+                non_combat: true,
+                hub_info: Some((vdef.hub_id.clone(), "vendor".into(), zone_id.clone())),
+                chain_info: None,
+                mob_slot_id: None,
+                level: 0,
+                current: None,
+                countdown: 0.0,
+                combined_stats: None,
+                visual_from_map,
+                vendor_stock: Some(vaern_economy::VendorStock::new(listings)),
+            });
+            vendor_total += 1;
+        }
     }
 
     println!(
-        "seeded {} NPC spawn slots across {} starter zones: {} mobs + {} quest givers",
+        "seeded {} NPC spawn slots across {} starter zones: {} mobs + {} quest givers + {} vendors",
         slots.len(),
         zone_count,
         mob_total,
         giver_total,
+        vendor_total,
     );
     spawns.slots = slots;
 }
@@ -302,6 +430,10 @@ fn spawn_one_npc(commands: &mut Commands, slot: &NpcSpawnSlot) -> Entity {
     }
     if let Some(mob_id) = &slot.mob_slot_id {
         ec.insert(MobSourceId(mob_id.clone()));
+        ec.insert(super::components::MobLevel(slot.level));
+    }
+    if let Some(stock) = &slot.vendor_stock {
+        ec.insert(stock.clone());
     }
     // Mesh lookup is keyed on the mob's display-name (the `name:`
     // field in the zone YAML). See `assets/npc_mesh_map.yaml` — the
@@ -354,7 +486,7 @@ pub fn manage_npc_respawn(
         if let Some(e) = slot.current {
             if !alive.contains(&e) {
                 slot.current = None;
-                slot.countdown = NPC_RESPAWN_SECS;
+                slot.countdown = respawn_secs_for_kind(slot.kind);
             }
         } else {
             slot.countdown -= dt;
@@ -369,5 +501,92 @@ pub fn manage_npc_respawn(
                 slot.current = Some(entity);
             }
         }
+    }
+}
+
+/// Pick a zone-local anchor (relative to `zone_origin`) for a mob based
+/// on its level. Dalewatch tiers level → hub band; other zones return
+/// `Vec3::ZERO` and fall back to the legacy "ring around zone origin"
+/// placement.
+fn mob_anchor_for_level(
+    zone_id: &str,
+    level: u32,
+    hub_centers: &HashMap<&str, Vec3>,
+) -> Vec3 {
+    if zone_id == "dalewatch_marches" {
+        // Pick the most level-appropriate hub. Falls through if a hub
+        // isn't loaded (degenerate test or pre-redesign zone).
+        let preferred: &[&str] = match level {
+            0..=2 => &["dalewatch_keep"],
+            3..=4 => &["harriers_rest", "kingsroad_waypost"],
+            5..=6 => &["miller_crossing", "ford_of_ashmere"],
+            // L7+ — Drifter's Lair anchor: east of Ford of Ashmere,
+            // outside any authored hub. Drives final-boss placement.
+            _ => return Vec3::new(470.0, 0.0, 80.0),
+        };
+        for hub_id in preferred {
+            if let Some(c) = hub_centers.get(hub_id) {
+                return *c;
+            }
+        }
+    }
+    Vec3::ZERO
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    fn dalewatch_hub_centers() -> HashMap<&'static str, Vec3> {
+        let mut h = HashMap::new();
+        h.insert("dalewatch_keep", Vec3::new(0.0, 0.0, 0.0));
+        h.insert("harriers_rest", Vec3::new(60.0, 0.0, -100.0));
+        h.insert("kingsroad_waypost", Vec3::new(-110.0, 0.0, -30.0));
+        h.insert("miller_crossing", Vec3::new(-220.0, 0.0, 20.0));
+        h.insert("ford_of_ashmere", Vec3::new(270.0, 0.0, 40.0));
+        h
+    }
+
+    #[test]
+    fn level_band_picks_keep_for_low_levels() {
+        let h = dalewatch_hub_centers();
+        assert_eq!(mob_anchor_for_level("dalewatch_marches", 1, &h), Vec3::ZERO);
+        assert_eq!(mob_anchor_for_level("dalewatch_marches", 2, &h), Vec3::ZERO);
+    }
+
+    #[test]
+    fn level_band_picks_mid_hubs_for_mid_levels() {
+        let h = dalewatch_hub_centers();
+        for lvl in [3, 4] {
+            let a = mob_anchor_for_level("dalewatch_marches", lvl, &h);
+            assert!(
+                a == Vec3::new(60.0, 0.0, -100.0)
+                    || a == Vec3::new(-110.0, 0.0, -30.0),
+                "L{lvl} should anchor at harriers/kingsroad, got {a:?}"
+            );
+        }
+        for lvl in [5, 6] {
+            let a = mob_anchor_for_level("dalewatch_marches", lvl, &h);
+            assert!(
+                a == Vec3::new(-220.0, 0.0, 20.0) || a == Vec3::new(270.0, 0.0, 40.0),
+                "L{lvl} should anchor at miller/ford, got {a:?}"
+            );
+        }
+    }
+
+    #[test]
+    fn level_band_picks_drifters_lair_for_capstone() {
+        let h = dalewatch_hub_centers();
+        let a = mob_anchor_for_level("dalewatch_marches", 8, &h);
+        assert_eq!(a, Vec3::new(470.0, 0.0, 80.0));
+        let a = mob_anchor_for_level("dalewatch_marches", 10, &h);
+        assert_eq!(a, Vec3::new(470.0, 0.0, 80.0));
+    }
+
+    #[test]
+    fn other_zones_fall_back_to_zero() {
+        let h = dalewatch_hub_centers();
+        assert_eq!(mob_anchor_for_level("ashen_holt", 5, &h), Vec3::ZERO);
+        assert_eq!(mob_anchor_for_level("scrap_marsh", 1, &h), Vec3::ZERO);
     }
 }

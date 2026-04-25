@@ -11,6 +11,8 @@ use vaern_core::terrain;
 use vaern_protocol::{
     CastIntent, Channel1, Inputs, MOVE_PER_TICK, StanceRequest, WasdInput, input_to_direction,
 };
+use vaern_voxel::chunk::ChunkStore;
+use vaern_voxel::query::ground_y;
 
 use crate::hotbar_ui::CastAttempted;
 use crate::menu::AppState;
@@ -52,6 +54,7 @@ impl Plugin for ClientInputPlugin {
 fn buffer_wasd_input(
     keys: Res<ButtonInput<KeyCode>>,
     controller: Res<CameraController>,
+    chat_focused: Res<crate::chat_ui::ChatInputFocused>,
     mut q: Query<&mut ActionState<Inputs>, With<InputMarker<Inputs>>>,
 ) {
     let Ok(mut state) = q.single_mut() else {
@@ -61,20 +64,28 @@ fn buffer_wasd_input(
     // rollback needs bitwise input equality) while still having ~0.057°
     // resolution — finer than any camera motion a player can perceive.
     let camera_yaw_mrad = (controller.yaw * 1000.0).round() as i32;
+    // While the chat input has focus, suppress W/A/S/D so typing a
+    // message doesn't walk the character. Camera yaw still streams
+    // (mouse-look keeps working in the background — same model most
+    // MMO clients use).
+    let typing = chat_focused.0;
     let wasd = WasdInput {
-        up: keys.pressed(KeyCode::KeyW),
-        down: keys.pressed(KeyCode::KeyS),
-        left: keys.pressed(KeyCode::KeyA),
-        right: keys.pressed(KeyCode::KeyD),
+        up: !typing && keys.pressed(KeyCode::KeyW),
+        down: !typing && keys.pressed(KeyCode::KeyS),
+        left: !typing && keys.pressed(KeyCode::KeyA),
+        right: !typing && keys.pressed(KeyCode::KeyD),
         camera_yaw_mrad,
     };
     state.0 = Inputs::Move(wasd);
 }
 
 /// Mirror of the server's `apply_player_movement`, but only on the local
-/// predicted entity. Identical math → minimal mispredict.
+/// predicted entity. Identical math → minimal mispredict — including the
+/// voxel-first Y-snap so predicted steps honor carved craters + server
+/// edits instead of floating over them until the next correction.
 fn predicted_player_movement(
     mut q: Query<(&mut Transform, &ActionState<Inputs>), With<Predicted>>,
+    store: Res<ChunkStore>,
 ) {
     for (mut tf, state) in &mut q {
         let Inputs::Move(d) = &state.0;
@@ -86,11 +97,13 @@ fn predicted_player_movement(
         if dir != Vec3::ZERO {
             tf.translation += dir * MOVE_PER_TICK;
         }
-        // Mirror the server-side Y-snap in `vaern-server::movement` so
-        // the predicted player hugs the same terrain surface the mesh
-        // was generated from — otherwise the predicted feet float over
-        // the hills until the next server correction rewrites Y.
-        tf.translation.y = terrain::height(tf.translation.x, tf.translation.z);
+        // Voxel-first Y-snap — matches `vaern-server::movement` so the
+        // predicted player stays on the authoritative surface (voxel
+        // edits visible locally). Falls back to analytical heightmap
+        // for chunks not yet streamed into the local store.
+        let top = tf.translation.y + 64.0;
+        tf.translation.y = ground_y(&store, tf.translation.x, tf.translation.z, top, 96.0)
+            .unwrap_or_else(|| terrain::height(tf.translation.x, tf.translation.z));
     }
 }
 
@@ -137,6 +150,7 @@ const FRONT_CONE_HALF_ANGLE_DEG: f32 = 80.0;
 fn update_player_target(
     time: Res<Time>,
     keys: Res<ButtonInput<KeyCode>>,
+    chat_focused: Res<crate::chat_ui::ChatInputFocused>,
     mut attempts: MessageReader<CastAttempted>,
     mut player: Query<(Entity, &mut Transform, Option<&Target>), With<Player>>,
     npcs: Query<(Entity, &Transform, Option<&NpcKind>), (With<Npc>, Without<Player>)>,
@@ -154,11 +168,14 @@ fn update_player_target(
     let player_pos = player_tf.translation;
 
     // ---- Target selection: Tab to cycle, Escape to clear ----
-    if keys.just_pressed(KeyCode::Escape) {
+    // Suppressed while chat input is focused so typing a message with
+    // Esc to cancel or Tab to switch fields doesn't swap combat targets.
+    let typing = chat_focused.0;
+    if !typing && keys.just_pressed(KeyCode::Escape) {
         if let Ok(mut ec) = commands.get_entity(player_e) {
             ec.remove::<Target>();
         }
-    } else if keys.just_pressed(KeyCode::Tab) {
+    } else if !typing && keys.just_pressed(KeyCode::Tab) {
         // Camera forward (XZ): at yaw=0 the camera looks -Z. Matches the
         // target_yaw = atan2(-d.x, -d.z) convention used by the follow math
         // below — a target directly ahead has dot(forward) == 1.
@@ -171,7 +188,9 @@ fn update_player_target(
         // marker with enemies but shouldn't be combat targets.
         let mut candidates: Vec<(Entity, f32, bool)> = npcs
             .iter()
-            .filter(|(_, _, kind)| !matches!(kind, Some(NpcKind::QuestGiver)))
+            .filter(|(_, _, kind)| {
+                !matches!(kind, Some(NpcKind::QuestGiver) | Some(NpcKind::Vendor))
+            })
             .filter_map(|(e, tf, _)| {
                 let mut d = tf.translation - player_pos;
                 d.y = 0.0;
@@ -289,9 +308,17 @@ fn update_player_target(
 /// whether the key is still held. Parry is a one-shot tap.
 fn handle_stance_input(
     keys: Res<ButtonInput<KeyCode>>,
+    chat_focused: Res<crate::chat_ui::ChatInputFocused>,
     mut sender: Query<&mut MessageSender<StanceRequest>, With<Client>>,
 ) {
     let Ok(mut sender) = sender.single_mut() else { return };
+    // Don't trigger block / parry while the user is typing in chat.
+    // Also cleanly release a held block if chat grabs focus mid-hold
+    // (handled by just_released never firing — the server auto-drops
+    // block on disconnect/timeout anyway).
+    if chat_focused.0 {
+        return;
+    }
     if keys.just_pressed(KeyCode::KeyQ) {
         let _ = sender.send::<Channel1>(StanceRequest::SetBlock(true));
     }

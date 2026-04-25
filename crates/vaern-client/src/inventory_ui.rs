@@ -25,6 +25,7 @@ use lightyear::prelude::*;
 use lightyear::prelude::client::Client;
 
 use vaern_core::DamageType;
+use vaern_economy::format_copper_as_gsc;
 use vaern_equipment::EquipSlot;
 use vaern_items::{
     ContentRegistry, ItemInstance, ItemKind, Rarity, ResolvedItem, WeaponGrip,
@@ -32,7 +33,7 @@ use vaern_items::{
 use vaern_inventory::BELT_SLOTS;
 use vaern_protocol::{
     BindBeltSlotRequest, Channel1, ConsumeItemRequest, EquipRequest, EquippedSnapshot,
-    InventorySlotEntry, InventorySnapshot, UnequipRequest,
+    InventorySlotEntry, InventorySnapshot, UnequipRequest, WalletSnapshot,
 };
 
 use crate::item_icons::{
@@ -64,12 +65,23 @@ pub struct OwnEquipped {
 #[derive(Resource, Default)]
 pub struct InventoryWindowOpen(pub bool);
 
+/// Latest wallet balance pushed from the server via `WalletSnapshot`.
+/// `received` gates the "waiting…" placeholder until the first message
+/// arrives. Displayed under the Inventory heading — currency lives with
+/// inventory, not the combat unit frame.
+#[derive(Resource, Debug, Default, Clone, Copy)]
+pub struct OwnWallet {
+    pub received: bool,
+    pub copper: u64,
+}
+
 pub struct InventoryUiPlugin;
 
 impl Plugin for InventoryUiPlugin {
     fn build(&self, app: &mut App) {
         app.init_resource::<OwnInventory>()
             .init_resource::<OwnEquipped>()
+            .init_resource::<OwnWallet>()
             .init_resource::<InventoryWindowOpen>()
             .add_systems(Startup, load_client_content)
             // Input + snapshot ingestion stay in Update — they don't touch
@@ -81,6 +93,7 @@ impl Plugin for InventoryUiPlugin {
                     toggle_inventory_window,
                     ingest_inventory_snapshot,
                     ingest_equipped_snapshot,
+                    ingest_wallet_snapshot,
                 )
                     .run_if(in_state(AppState::InGame)),
             )
@@ -142,6 +155,18 @@ fn ingest_equipped_snapshot(
                 .into_iter()
                 .map(|e| (e.slot, e.instance))
                 .collect();
+        }
+    }
+}
+
+fn ingest_wallet_snapshot(
+    mut rx: Query<&mut MessageReceiver<WalletSnapshot>, With<Client>>,
+    mut wallet: ResMut<OwnWallet>,
+) {
+    for mut receiver in &mut rx {
+        if let Some(snap) = receiver.receive().last() {
+            wallet.received = true;
+            wallet.copper = snap.copper;
         }
     }
 }
@@ -618,6 +643,7 @@ fn draw_inventory_window(
     open: Res<InventoryWindowOpen>,
     inv: Res<OwnInventory>,
     eq: Res<OwnEquipped>,
+    wallet: Res<OwnWallet>,
     content: Option<Res<ClientContent>>,
     icons: Res<ItemIconCache>,
     mut equip_tx: Query<&mut MessageSender<EquipRequest>, With<Client>>,
@@ -651,6 +677,22 @@ fn draw_inventory_window(
                         inv.slots.iter().filter(|s| s.is_some()).count(),
                         inv.capacity
                     ));
+                    // Gold line — currency lives with the inventory, not
+                    // the combat unit frame. Purse sits right above the
+                    // item grid so spend/earn reads in the player's line
+                    // of sight whenever they open the window.
+                    let gold_text = if wallet.received {
+                        format!("Gold  {}", format_copper_as_gsc(wallet.copper))
+                    } else {
+                        "Gold  —".to_string()
+                    };
+                    ui.label(
+                        egui::RichText::new(gold_text)
+                            .size(13.0)
+                            .strong()
+                            .color(egui::Color32::from_rgb(230, 200, 100)),
+                    );
+                    ui.add_space(4.0);
                     egui::ScrollArea::vertical()
                         .max_height(480.0)
                         .id_salt("inv_scroll")

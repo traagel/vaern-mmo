@@ -17,10 +17,12 @@ vaern-character.workspace = true
 vaern-items.workspace = true
 vaern-equipment.workspace = true
 vaern-inventory.workspace = true
+vaern-economy.workspace = true
 vaern-stats.workspace = true
 vaern-professions.workspace = true
 vaern-assets.workspace = true
 vaern-persistence.workspace = true
+vaern-voxel.workspace = true
 uuid = { version = "1", features = ["v4", "serde"] }
 bevy = { version = "0.18", features = ["jpeg"] }
 lightyear = { version = "0.26", features = ["client", "input_native", "interpolation", "netcode", "prediction", "replication", "udp"] }

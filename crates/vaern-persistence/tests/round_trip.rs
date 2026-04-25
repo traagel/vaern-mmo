@@ -74,6 +74,7 @@ fn sample_character() -> PersistedCharacter {
         equipped: Equipped::default(),
         belt,
         professions,
+        wallet_copper: 9_876,
         position: Some([123.5, 0.0, -45.2]),
         yaw_rad: Some(1.5),
         quest_log: PersistedQuestLog {

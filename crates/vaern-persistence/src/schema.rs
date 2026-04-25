@@ -59,6 +59,10 @@ pub struct PersistedCharacter {
     pub equipped: Equipped,
     pub belt: ConsumableBelt,
     pub professions: ProfessionSkills,
+    /// Wallet balance in copper. Defaulted to 0 for legacy saves predating
+    /// the currency system.
+    #[serde(default)]
+    pub wallet_copper: u64,
 
     // --- quests ---
     pub quest_log: PersistedQuestLog,

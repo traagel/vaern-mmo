@@ -457,6 +457,248 @@ pub struct ConsumableBeltSnapshot {
     pub slots: Vec<Option<vaern_items::ItemInstance>>,
 }
 
+// ─── party protocol ────────────────────────────────────────────────────────
+//
+// Flow:
+//   1. Leader types `/invite <name>` → client sends `PartyInviteRequest`.
+//   2. Server creates a `PendingInvite` (60s TTL) and pushes
+//      `PartyIncomingInvite` to the target.
+//   3. Target clicks Accept/Decline → `PartyInviteResponse`. On accept,
+//      server creates (or extends) a `Party` and broadcasts
+//      `PartySnapshot` to every member.
+//   4. Any member can `/leave` → `PartyLeaveRequest`. Leader can `/kick`
+//      → `PartyKickRequest`. Party auto-disbands when size drops to 1
+//      (everyone gets `PartyDisbandedNotice`).
+//
+// Party IDs are a server-monotonic u64. Max party size at pre-alpha is 5.
+// Party chat is routed as a separate channel (see `ChatChannel::Party`).
+
+pub type PartyId = u64;
+
+/// Party-member view for the UI. Server rebuilds this on any change
+/// (join/leave/HP update) — the HP numbers get refreshed every tick
+/// alongside the player-state snapshot already carrying own-player HP.
+#[derive(Serialize, Deserialize, Clone, Debug, PartialEq)]
+pub struct PartyMember {
+    pub client_id: u64,
+    pub display_name: String,
+    pub race_id: String,
+    pub level: u32,
+    pub hp_current: f32,
+    pub hp_max: f32,
+    pub zone_id: String,
+    pub is_leader: bool,
+}
+
+/// Client → Server: "invite this player by display name to my party."
+/// Creates a new party with the sender as leader if they weren't in
+/// one. Server validates: target exists, target isn't in a party
+/// already, sender's party has room (size < `MAX_PARTY_SIZE`), and
+/// there's no already-pending invite to the same target.
+#[derive(Serialize, Deserialize, Clone, Debug, PartialEq, Eq)]
+pub struct PartyInviteRequest {
+    pub target_name: String,
+}
+
+/// Client → Server: "I got your invite — accepting / declining." The
+/// client already knows the `party_id` from the incoming invite, so
+/// the server can bind the response to the right offer even if the
+/// inviter kept inviting other people in the meantime.
+#[derive(Serialize, Deserialize, Clone, Debug, PartialEq, Eq)]
+pub struct PartyInviteResponse {
+    pub party_id: PartyId,
+    pub accept: bool,
+}
+
+/// Client → Server: "I'm leaving the party." Leader leaving triggers
+/// a disband.
+#[derive(Serialize, Deserialize, Clone, Copy, Debug, PartialEq, Eq)]
+pub struct PartyLeaveRequest;
+
+/// Client → Server: "kick this player." Only accepted from the leader.
+#[derive(Serialize, Deserialize, Clone, Debug, PartialEq, Eq)]
+pub struct PartyKickRequest {
+    pub target_name: String,
+}
+
+/// Server → Client: "you've been invited." Pushed to the target only;
+/// the inviter hears nothing until an accept flips the snapshot or a
+/// 60s timeout elapses.
+#[derive(Serialize, Deserialize, Clone, Debug, PartialEq, Eq)]
+pub struct PartyIncomingInvite {
+    pub party_id: PartyId,
+    pub from_name: String,
+}
+
+/// Server → Client: full-party state. Broadcast to every member on
+/// any join / leave / HP-significant-change / zone-crossing. Clients
+/// render the party frame entirely from the latest snapshot.
+#[derive(Serialize, Deserialize, Clone, Debug, Default, PartialEq)]
+pub struct PartySnapshot {
+    pub party_id: PartyId,
+    pub leader_name: String,
+    pub members: Vec<PartyMember>,
+}
+
+/// Server → Client: "your party is gone — leader left, you were
+/// kicked, or size dropped below 2." Client drops its party state.
+#[derive(Serialize, Deserialize, Clone, Copy, Debug, PartialEq, Eq)]
+pub struct PartyDisbandedNotice {
+    pub party_id: PartyId,
+}
+
+// ─── chat protocol ─────────────────────────────────────────────────────────
+//
+// Three channels at pre-alpha v1:
+//   Say     — 20u radius around sender (proximity gossip)
+//   Zone    — everyone in the sender's current AoI room (zone-wide)
+//   Whisper — single recipient by display name
+//
+// Server is authoritative on `from` (server reads sender's `DisplayName`;
+// client never stamps its own name). Rate-limited at 5 messages/sec per
+// sender so a stuck-key loop can't flood the room. Max payload 256 UTF-8
+// chars; server truncates silently (cheap + safe).
+
+/// Chat channel. Wire-size byte enum; expand as we add chat lanes
+/// (party, guild, global, trade, etc.).
+#[derive(Serialize, Deserialize, Clone, Copy, Debug, PartialEq, Eq)]
+#[serde(rename_all = "snake_case")]
+pub enum ChatChannel {
+    Say,
+    Zone,
+    Whisper,
+    /// Routed to every member of the sender's party, cross-zone.
+    /// Dropped silently if the sender isn't in a party.
+    Party,
+    /// Server-issued system messages (welcome banners, error toasts).
+    /// Never originates from a client. UI renders in yellow.
+    System,
+}
+
+/// Client → Server: "send this line." Channel is explicit; for whispers
+/// `whisper_target` holds the recipient's display name (client parses
+/// `/w <name> <rest>` into `ChatSend { channel: Whisper, text: rest,
+/// whisper_target: Some(name) }`). Empty target on whisper is a no-op.
+#[derive(Serialize, Deserialize, Clone, Debug, PartialEq, Eq)]
+pub struct ChatSend {
+    pub channel: ChatChannel,
+    pub text: String,
+    #[serde(default)]
+    pub whisper_target: Option<String>,
+}
+
+/// Server → Client: "deliver this message." Server stamps `from` from
+/// the sender's `DisplayName` + `timestamp_unix` for ordering. Whispers
+/// ship to both parties; the recipient sees the sender's name, the
+/// sender sees an echo `to` tag (client renders "To Kell: ..." when
+/// `channel == Whisper && from == own_name`).
+#[derive(Serialize, Deserialize, Clone, Debug, PartialEq, Eq)]
+pub struct ChatMessage {
+    pub channel: ChatChannel,
+    pub from: String,
+    /// For whispers, the intended recipient display name. Empty
+    /// otherwise. Lets the sender's own client tag its echo as
+    /// "To X:" rather than "From X:".
+    #[serde(default)]
+    pub to: String,
+    pub text: String,
+    pub timestamp_unix: u64,
+}
+
+// ─── vendor protocol ───────────────────────────────────────────────────────
+//
+// Vendor NPCs sit in capital hubs carrying a `VendorStock` component.
+// Player presses F while in range → client sends `VendorOpenRequest` →
+// server validates proximity and responds with `VendorWindowSnapshot`.
+// Buy/sell go through `VendorBuyRequest` / `VendorSellRequest`; each
+// mutates wallet + inventory + stock and server broadcasts fresh
+// snapshots (WalletSnapshot, InventorySnapshot, VendorWindowSnapshot)
+// on the same tick. `VendorClosedNotice` auto-closes the client window
+// when the vendor leaves range / despawns.
+
+/// Server-assigned stable id for a vendor NPC. Decoupled from the
+/// Bevy `Entity` so the wire doesn't lock onto generation counters
+/// (same pattern as `LootId`).
+pub type VendorId = u64;
+
+/// One sellable listing in a vendor's window — resolved on the server
+/// into a pretty wire shape. Price is already computed via
+/// `vendor_buy_price` so the client doesn't need to re-run the economy
+/// math. `stock` is `None` for infinite; `Some(n)` reflects current
+/// remaining. Quality defaults to `"regular"` server-side when the
+/// authored listing omits it.
+#[derive(Serialize, Deserialize, Clone, Debug, PartialEq, Eq)]
+pub struct VendorWindowListing {
+    pub idx: u32,
+    pub instance: vaern_items::ItemInstance,
+    pub price_copper: u32,
+    #[serde(default)]
+    pub stock: Option<u32>,
+}
+
+/// Server → Client: full vendor window contents, sent on open and
+/// re-sent on buy-complete / stock-depleted. Indexed by `vendor_id`.
+#[derive(Serialize, Deserialize, Clone, Debug, PartialEq, Eq)]
+pub struct VendorWindowSnapshot {
+    pub vendor_id: VendorId,
+    pub vendor_name: String,
+    pub listings: Vec<VendorWindowListing>,
+}
+
+/// Client → Server: "I pressed F near this vendor, open it."
+/// Server validates proximity + the target's `VendorStock` component.
+#[derive(Serialize, Deserialize, Clone, Debug, PartialEq)]
+pub struct VendorOpenRequest {
+    /// Client-local entity id. Lightyear remaps to the server's.
+    pub vendor: Entity,
+}
+
+impl bevy::ecs::entity::MapEntities for VendorOpenRequest {
+    fn map_entities<M: bevy::ecs::entity::EntityMapper>(&mut self, mapper: &mut M) {
+        self.vendor = mapper.get_mapped(self.vendor);
+    }
+}
+
+/// Client → Server: "buy listing `listing_idx` from vendor `vendor_id`."
+/// Server re-validates (in range, affordable, stock, item resolves);
+/// on success debits wallet, adds item to inventory, decrements stock.
+#[derive(Serialize, Deserialize, Clone, Debug, PartialEq, Eq)]
+pub struct VendorBuyRequest {
+    pub vendor_id: VendorId,
+    pub listing_idx: u32,
+}
+
+/// Client → Server: "sell the inventory stack at `inventory_idx` to
+/// vendor `vendor_id`." Server validates resolvability, non-soulbound,
+/// non-quest, and in-range; pays `vendor_sell_price` and removes the
+/// item.
+#[derive(Serialize, Deserialize, Clone, Debug, PartialEq, Eq)]
+pub struct VendorSellRequest {
+    pub vendor_id: VendorId,
+    pub inventory_idx: u32,
+}
+
+/// Server → Client: "the vendor window is closing" — vendor left
+/// range, despawned, or player walked away. Client auto-closes.
+#[derive(Serialize, Deserialize, Clone, Debug, PartialEq, Eq)]
+pub struct VendorClosedNotice {
+    pub vendor_id: VendorId,
+}
+
+// ─── wallet protocol ───────────────────────────────────────────────────────
+//
+// Server owns `PlayerWallet`; client receives snapshots only. Broadcast
+// on `Changed<PlayerWallet>` (matches the inventory/equipped pattern).
+// Quiet in the common case — most ticks don't mutate the wallet.
+
+/// Server → Client: the owning player's current copper balance. Sent on
+/// every change (mob-death credit, quest-reward payout, future vendor
+/// buy/sell). Client resource `OwnWallet` stores the latest value.
+#[derive(Serialize, Deserialize, Clone, Copy, Debug, Default, PartialEq, Eq)]
+pub struct WalletSnapshot {
+    pub copper: u64,
+}
+
 // ─── loot container protocol ────────────────────────────────────────────────
 //
 // Mob dies → server spawns a server-only entity with a `LootContainer`
@@ -570,6 +812,38 @@ impl bevy::ecs::entity::MapEntities for HarvestRequest {
         self.node = mapper.get_mapped(self.node);
     }
 }
+
+// -- Voxel edit replication --------------------------------------------------
+
+/// Client → Server: "please carve / fill a sphere at `center`."
+///
+/// The server validates (range from player, cooldown, authority to edit
+/// this zone's voxels) and if accepted, runs an `EditStroke` against
+/// the authoritative `ChunkStore`. Affected chunks are then streamed
+/// back to every client in the zone as [`VoxelChunkDelta`] messages.
+#[derive(Serialize, Deserialize, Clone, Copy, Debug, PartialEq)]
+pub struct ServerEditStroke {
+    pub center: [f32; 3],
+    pub radius: f32,
+    pub mode: ServerBrushMode,
+}
+
+/// Wire-level mirror of `vaern_voxel::edit::BrushMode` — decoupled so
+/// network shape doesn't break when the crate adds new brush modes
+/// clients can't initiate.
+#[derive(Serialize, Deserialize, Clone, Copy, Debug, PartialEq, Eq)]
+pub enum ServerBrushMode {
+    Subtract,
+    Union,
+}
+
+/// Server → Client: one chunk's new state after an authoritative edit.
+///
+/// Wraps `vaern_voxel::replication::ChunkDelta`. Clients apply via
+/// `ChunkDelta::apply_to` against their local store; the voxel crate's
+/// version-check drops out-of-order packets so replay is safe.
+#[derive(Serialize, Deserialize, Clone, Debug)]
+pub struct VoxelChunkDelta(pub vaern_voxel::replication::ChunkDelta);
 
 /// Marker on a player entity. Lets server+client distinguish players from
 /// NPCs, and lets a client find its own replicated player by matching its
@@ -712,6 +986,37 @@ impl Plugin for SharedPlugin {
             .add_direction(NetworkDirection::ServerToClient);
         app.register_message::<EquippedSnapshot>()
             .add_direction(NetworkDirection::ServerToClient);
+        app.register_message::<WalletSnapshot>()
+            .add_direction(NetworkDirection::ServerToClient);
+        app.register_message::<VendorOpenRequest>()
+            .add_map_entities()
+            .add_direction(NetworkDirection::ClientToServer);
+        app.register_message::<VendorBuyRequest>()
+            .add_direction(NetworkDirection::ClientToServer);
+        app.register_message::<VendorSellRequest>()
+            .add_direction(NetworkDirection::ClientToServer);
+        app.register_message::<VendorWindowSnapshot>()
+            .add_direction(NetworkDirection::ServerToClient);
+        app.register_message::<VendorClosedNotice>()
+            .add_direction(NetworkDirection::ServerToClient);
+        app.register_message::<ChatSend>()
+            .add_direction(NetworkDirection::ClientToServer);
+        app.register_message::<ChatMessage>()
+            .add_direction(NetworkDirection::ServerToClient);
+        app.register_message::<PartyInviteRequest>()
+            .add_direction(NetworkDirection::ClientToServer);
+        app.register_message::<PartyInviteResponse>()
+            .add_direction(NetworkDirection::ClientToServer);
+        app.register_message::<PartyLeaveRequest>()
+            .add_direction(NetworkDirection::ClientToServer);
+        app.register_message::<PartyKickRequest>()
+            .add_direction(NetworkDirection::ClientToServer);
+        app.register_message::<PartyIncomingInvite>()
+            .add_direction(NetworkDirection::ServerToClient);
+        app.register_message::<PartySnapshot>()
+            .add_direction(NetworkDirection::ServerToClient);
+        app.register_message::<PartyDisbandedNotice>()
+            .add_direction(NetworkDirection::ServerToClient);
         app.register_message::<EquipRequest>()
             .add_direction(NetworkDirection::ClientToServer);
         app.register_message::<UnequipRequest>()
@@ -741,6 +1046,10 @@ impl Plugin for SharedPlugin {
         app.register_message::<HarvestRequest>()
             .add_map_entities()
             .add_direction(NetworkDirection::ClientToServer);
+        app.register_message::<ServerEditStroke>()
+            .add_direction(NetworkDirection::ClientToServer);
+        app.register_message::<VoxelChunkDelta>()
+            .add_direction(NetworkDirection::ServerToClient);
         // Resource nodes replicate normally like NPCs so all clients
         // see them in the world. State changes (harvested ↔ available)
         // flow via component replication, no explicit message needed.

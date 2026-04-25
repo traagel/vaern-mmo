@@ -22,11 +22,17 @@ pub use flavored::{
     FlavoredShape,
 };
 pub use quest::{
+    load_all_side_quests, HubSideQuests, SideQuest, SideQuestIndex,
+};
+pub use quest::{
     load_all_chains, QuestChain, QuestChainFinalReward, QuestIndex, QuestNpc, QuestObjective,
     QuestStep,
 };
 pub use race::{load_races, Race, RacePillarAffinity};
-pub use world::{load_biomes, load_world, Biome, Hub, HubOffset, LevelRange, Mob, World, Zone};
+pub use world::{
+    load_biomes, load_world, AuthoredProp, Biome, Hub, HubOffset, LevelRange, Mob, PropOffset,
+    ScatterRule, World, Zone,
+};
 
 #[derive(Debug, Error)]
 pub enum LoadError {
@@ -524,4 +530,159 @@ mod tests {
         assert_eq!(damage.variant_at(50).map(|v| v.name.as_str()), Some("firebolt"));
         assert_eq!(damage.highest_tier_at_or_below(75), Some(75));
     }
+
+    // ─── world dressing schema ────────────────────────────────────────────────
+
+    #[test]
+    fn dalewatch_zone_has_scatter_rules() {
+        let world = load_world(generated_root().join("world")).unwrap();
+        let dalewatch = world.zone("dalewatch_marches").expect("dalewatch zone");
+        assert!(
+            dalewatch.scatter.len() >= 3,
+            "expected >=3 scatter rules, got {}",
+            dalewatch.scatter.len()
+        );
+        // Every rule must target a valid category
+        for rule in &dalewatch.scatter {
+            assert!(
+                matches!(
+                    rule.category.as_str(),
+                    "tree" | "dead_wood" | "rock" | "ground_cover" | "shrub"
+                ),
+                "unknown scatter category {:?}",
+                rule.category
+            );
+            assert!(rule.density_per_100m2 > 0.0);
+            assert!(rule.min_spacing > 0.0);
+        }
+    }
+
+    // ─── side quests + givers ─────────────────────────────────────────────────
+
+    #[test]
+    fn dalewatch_side_quests_have_givers() {
+        let idx = load_all_side_quests(generated_root().join("world")).unwrap();
+        let hubs: Vec<&str> = idx
+            .by_zone
+            .get("dalewatch_marches")
+            .map(|v| v.iter().map(|s| s.as_str()).collect())
+            .unwrap_or_default();
+        assert_eq!(hubs.len(), 5, "expected 5 dalewatch hubs with side quests, got {hubs:?}");
+        for hub_id in &hubs {
+            let bundle = idx.for_hub(hub_id).unwrap();
+            assert!(!bundle.quests.is_empty(), "hub {hub_id} has no side quests");
+            let giver = bundle.giver.as_ref().unwrap_or_else(|| {
+                panic!("hub {hub_id} side-quest bundle has no giver — Slice 2 regression")
+            });
+            assert!(!giver.id.is_empty());
+            assert!(!giver.display_name.is_empty());
+            assert_eq!(
+                giver.hub_id.as_deref().unwrap_or(*hub_id),
+                *hub_id,
+                "giver hub_id must match bundle hub"
+            );
+        }
+    }
+
+    #[test]
+    fn dalewatch_hubs_have_authored_props() {
+        let world = load_world(generated_root().join("world")).unwrap();
+        let keep = world.hub("dalewatch_keep").expect("keep hub");
+        assert!(
+            keep.props.len() >= 15,
+            "capital expected >=15 props, got {}",
+            keep.props.len()
+        );
+        // Every slug must resolve in the Poly Haven catalog — defensive
+        // check so authoring typos surface at test time.
+        let known: std::collections::HashSet<&str> =
+            POLYHAVEN_CURATED_SLUGS.iter().copied().collect();
+        for prop in &keep.props {
+            assert!(
+                known.contains(prop.slug.as_str()),
+                "unknown polyhaven slug {:?} in dalewatch_keep props",
+                prop.slug
+            );
+        }
+
+        for id in [
+            "harriers_rest",
+            "kingsroad_waypost",
+            "miller_crossing",
+            "ford_of_ashmere",
+        ] {
+            let hub = world.hub(id).unwrap_or_else(|| panic!("hub {id}"));
+            assert!(!hub.props.is_empty(), "hub {id} should have props");
+            for prop in &hub.props {
+                assert!(
+                    known.contains(prop.slug.as_str()),
+                    "unknown polyhaven slug {:?} in {id} props",
+                    prop.slug
+                );
+            }
+        }
+    }
+
+    /// Mirror of `crates/vaern-assets/src/polyhaven/mod.rs::CURATED` slug
+    /// list. Kept inline here to avoid a dependency edge from `vaern-data`
+    /// to `vaern-assets`. If the Poly Haven pack changes, update both.
+    const POLYHAVEN_CURATED_SLUGS: &[&str] = &[
+        "pine_sapling_small",
+        "fir_sapling",
+        "fir_sapling_medium",
+        "dead_tree_trunk",
+        "dead_tree_trunk_02",
+        "tree_stump_01",
+        "tree_stump_02",
+        "pine_roots",
+        "root_cluster_01",
+        "single_root",
+        "dry_branches_medium_01",
+        "boulder_01",
+        "rock_07",
+        "rock_09",
+        "rock_face_01",
+        "rock_face_02",
+        "rock_moss_set_01",
+        "rock_moss_set_02",
+        "stone_01",
+        "mountainside",
+        "coast_rocks_01",
+        "grass_medium_01",
+        "grass_medium_02",
+        "grass_bermuda_01",
+        "moss_01",
+        "fern_02",
+        "dandelion_01",
+        "shrub_01",
+        "shrub_02",
+        "shrub_03",
+        "shrub_04",
+        "celandine_01",
+        "wooden_barrels_01",
+        "wooden_crate_02",
+        "wooden_bucket_01",
+        "wooden_bucket_02",
+        "wooden_bowl_01",
+        "wooden_lantern_01",
+        "Lantern_01",
+        "vintage_oil_lamp",
+        "wooden_candlestick",
+        "lantern_chandelier_01",
+        "treasure_chest",
+        "WoodenTable_01",
+        "WoodenChair_01",
+        "large_castle_door",
+        "large_iron_gate",
+        "modular_fort_01",
+        "stone_fire_pit",
+        "spinning_wheel_01",
+        "horse_statue_01",
+        "katana_stand_01",
+        "antique_estoc",
+        "kite_shield",
+        "ornate_medieval_dagger",
+        "ornate_medieval_mace",
+        "ornate_war_hammer",
+    ];
 }

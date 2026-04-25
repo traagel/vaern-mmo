@@ -4,6 +4,12 @@ hub_role: outpost
 zone: dalewatch_marches
 biome: river_valley
 quest_count: 4
+giver:
+  id: harriers_rest__captain_morwen
+  display_name: Captain Morwen
+  title: Patrol Commander, Harrier's Rest
+  hub_id: harriers_rest
+  dialogue: '"Brother Fennick keeps the chapel. I keep the patrol. Two different ledgers. Wolves are pressing the high passes; a courier hasn''t come back from the snow-line. Pick what you can stomach."'
 quests:
 - id: side__harriers_rest__tending_the_pilgrims
   name: Tending the Pilgrims

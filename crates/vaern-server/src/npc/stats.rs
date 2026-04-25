@@ -50,7 +50,7 @@ fn rarity_mult(kind: NpcKind) -> f32 {
         NpcKind::Combat => 1.0,
         NpcKind::Elite => 1.25,
         NpcKind::Named => 1.5,
-        NpcKind::QuestGiver => 1.0, // unused — quest givers don't fight
+        NpcKind::QuestGiver | NpcKind::Vendor => 1.0, // unused — non-combat
     }
 }
 

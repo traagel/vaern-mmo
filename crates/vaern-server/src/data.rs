@@ -10,8 +10,8 @@ use bevy::prelude::*;
 use vaern_character::XpCurve;
 use vaern_core::School;
 use vaern_data::{
-    AbilityIndex, ClassDef, QuestIndex, Race, into_index, load_abilities, load_classes,
-    load_races, load_schools,
+    AbilityIndex, ClassDef, QuestIndex, Race, SideQuestIndex, into_index, load_abilities,
+    load_all_side_quests, load_classes, load_races, load_schools,
 };
 use vaern_items::ContentRegistry;
 
@@ -30,6 +30,9 @@ pub struct GameData {
     pub bestiary: vaern_data::Bestiary,
     /// All main-chain quest definitions. Keyed by chain_id.
     pub quests: QuestIndex,
+    /// Per-hub side-quest bundles. Each bundle has an authored giver
+    /// NPC who hands out every side quest at that hub.
+    pub side_quests: SideQuestIndex,
     /// Playable races loaded from `src/generated/races/<id>/core.yaml`.
     /// Used by spawn to derive `PillarCaps` from `affinity`.
     pub races: Vec<Race>,
@@ -49,6 +52,81 @@ pub struct GameData {
     /// points to the caster based on the ability's school. Loaded from
     /// `src/generated/schools/{might,finesse,arcana}/*.yaml`.
     pub schools: HashMap<String, School>,
+    /// Vendor NPC authoring — one entry per vendor, seeded into world
+    /// hubs during `seed_npc_spawns`. Empty if the YAML is missing
+    /// (dev-path; ships a warn log).
+    pub vendors: Vec<VendorDef>,
+}
+
+/// Authored vendor NPC — placed at `hub_id` in `zone_id`, stocks the
+/// listed items. Loaded from `src/generated/vendors.yaml`.
+#[derive(Debug, Clone, serde::Deserialize)]
+pub struct VendorDef {
+    pub id: String,
+    pub display_name: String,
+    pub zone_id: String,
+    pub hub_id: String,
+    /// Optional humanoid-archetype hint for the mesh (maps into
+    /// `assets/npc_mesh_map.yaml`'s humanoid_archetypes table). Falls
+    /// back to hashed-archetype if unset, same as other quest-givers.
+    #[serde(default)]
+    pub archetype: Option<String>,
+    pub listings: Vec<VendorListingDef>,
+}
+
+#[derive(Debug, Clone, serde::Deserialize)]
+pub struct VendorListingDef {
+    pub base_id: String,
+    #[serde(default)]
+    pub material_id: Option<String>,
+    #[serde(default)]
+    pub quality_id: Option<String>,
+    /// Optional stock cap. Unset = infinite supply.
+    #[serde(default)]
+    pub stock: Option<u32>,
+}
+
+impl VendorListingDef {
+    pub fn to_stock_listing(&self) -> vaern_economy::VendorListing {
+        vaern_economy::VendorListing {
+            base_id: self.base_id.clone(),
+            material_id: self.material_id.clone(),
+            quality_id: self.quality_id.clone(),
+            supply: match self.stock {
+                Some(n) => vaern_economy::VendorSupply::Limited(n),
+                None => vaern_economy::VendorSupply::Infinite,
+            },
+        }
+    }
+}
+
+#[derive(Debug, Clone, serde::Deserialize, Default)]
+struct VendorsFile {
+    #[serde(default)]
+    vendors: Vec<VendorDef>,
+}
+
+fn load_vendors(path: &Path) -> Vec<VendorDef> {
+    if !path.exists() {
+        warn!("[vendors] {} missing; no vendors will spawn", path.display());
+        return Vec::new();
+    }
+    let text = match std::fs::read_to_string(path) {
+        Ok(s) => s,
+        Err(e) => {
+            warn!("[vendors] read {} failed: {e}", path.display());
+            return Vec::new();
+        }
+    };
+    let parsed: VendorsFile = match serde_yaml::from_str(&text) {
+        Ok(v) => v,
+        Err(e) => {
+            warn!("[vendors] parse {} failed: {e}", path.display());
+            return Vec::new();
+        }
+    };
+    info!("[vendors] loaded {} from {}", parsed.vendors.len(), path.display());
+    parsed.vendors
 }
 
 impl GameData {
@@ -107,6 +185,13 @@ pub fn load_game_data() -> GameData {
         .expect("vaern-server: failed to load bestiary YAMLs from src/generated/bestiary");
     let quests = vaern_data::load_all_chains(root.join("world"))
         .expect("vaern-server: failed to load quest-chain YAMLs from src/generated/world");
+    let side_quests = load_all_side_quests(root.join("world"))
+        .expect("vaern-server: failed to load side-quest YAMLs from src/generated/world");
+    println!(
+        "loaded side quests: {} hubs across {} zones",
+        side_quests.by_hub.len(),
+        side_quests.by_zone.len()
+    );
     let races = load_races(root.join("races"))
         .expect("vaern-server: failed to load race YAMLs from src/generated/races");
     let schools_vec = load_schools(root.join("schools"))
@@ -182,6 +267,8 @@ pub fn load_game_data() -> GameData {
 
     println!("loaded {} races", races.len());
 
+    let vendors = load_vendors(&root.join("vendors.yaml"));
+
     GameData {
         classes,
         abilities,
@@ -189,10 +276,12 @@ pub fn load_game_data() -> GameData {
         world,
         bestiary,
         quests,
+        side_quests,
         races,
         race_to_zone,
         zone_offsets,
         content,
         schools,
+        vendors,
     }
 }

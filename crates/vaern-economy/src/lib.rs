@@ -14,6 +14,14 @@
 //! of an `ItemInstance`), not the retired flat `Item` struct. Callers
 //! compose the instance, resolve via `ContentRegistry`, then price.
 
+mod currency;
+mod vendor;
+mod wallet;
+
+pub use currency::{COPPER_PER_GOLD, COPPER_PER_SILVER, format_copper_as_gsc, split_copper};
+pub use vendor::{VendorListing, VendorStock, VendorSupply};
+pub use wallet::PlayerWallet;
+
 use serde::{Deserialize, Serialize};
 use vaern_items::ResolvedItem;
 

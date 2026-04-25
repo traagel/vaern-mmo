@@ -84,6 +84,45 @@ pub struct Zone {
     pub budget: ZoneBudget,
     #[serde(default)]
     pub notes: String,
+    /// World-dressing scatter rules applied to the voxel ground inside
+    /// this zone's footprint. Rendered client-side only.
+    #[serde(default)]
+    pub scatter: Vec<ScatterRule>,
+}
+
+/// One dressing-scatter rule. Client-side scatter samples Poisson-disk
+/// positions within the zone's footprint where the local biome matches
+/// `biome` and the terrain slope is <= `max_slope_deg`, then picks a
+/// random [`crate::world::...`] slug from the Poly Haven catalog matching
+/// `category`.
+///
+/// Deterministic across clients via `zone_seed` XOR `seed_salt` so every
+/// player sees the same world without per-prop replication.
+#[derive(Debug, Clone, Deserialize)]
+pub struct ScatterRule {
+    /// Biome key to match (e.g. `"river_valley"`, `"grass"`, `"stone"`).
+    /// Set to `"*"` to match any biome.
+    pub biome: String,
+    /// Poly Haven category: `tree` / `dead_wood` / `rock` / `ground_cover`
+    /// / `shrub`. Drives mesh selection from the catalog.
+    pub category: String,
+    /// Props per 100 m² footprint at the nominal density setting.
+    pub density_per_100m2: f32,
+    /// Minimum spacing between instances of this rule, in meters.
+    pub min_spacing: f32,
+    /// Cull placements on terrain steeper than this, in degrees.
+    #[serde(default = "default_max_slope")]
+    pub max_slope_deg: f32,
+    /// Keep this many meters clear around every hub center.
+    #[serde(default)]
+    pub exclude_radius_from_hubs: f32,
+    /// Per-rule seed offset so two rules over the same biome don't overlap.
+    #[serde(default)]
+    pub seed_salt: u32,
+}
+
+fn default_max_slope() -> f32 {
+    45.0
 }
 
 // ─── hub ─────────────────────────────────────────────────────────────────────
@@ -108,6 +147,53 @@ pub struct Hub {
     /// Expressed as `(x, z)` — Y is sampled from the shared terrain.
     #[serde(default)]
     pub offset_from_zone_origin: Option<HubOffset>,
+    /// Biome key for the client's Voronoi region renderer. Drives the
+    /// per-hub floor-patch texture. Unknown biomes fall back to `grass`.
+    /// Default is `grass` so existing zones without explicit biomes
+    /// keep their current look.
+    #[serde(default = "default_biome")]
+    pub biome: String,
+    /// Authored prop placements rendered around this hub, in hub-local
+    /// coordinates (meters, +X east, +Z south). Y is sampled from the
+    /// voxel terrain at spawn time.
+    #[serde(default)]
+    pub props: Vec<AuthoredProp>,
+}
+
+/// One hand-placed prop in a hub. Slug must match a
+/// `PolyHavenEntry::slug` in the catalog; unknown slugs are logged and
+/// skipped at load time.
+#[derive(Debug, Clone, Deserialize)]
+pub struct AuthoredProp {
+    /// Poly Haven catalog slug (e.g. `"wooden_barrels_01"`).
+    pub slug: String,
+    /// Hub-local offset in meters. Y is sampled from voxel ground unless
+    /// `absolute_y` is set.
+    pub offset: PropOffset,
+    /// Facing in degrees around Y axis. 0 = facing -Z.
+    #[serde(default)]
+    pub rotation_y_deg: f32,
+    /// Uniform scale. Defaults to 1.0.
+    #[serde(default = "default_scale")]
+    pub scale: f32,
+    /// Override automatic voxel-ground Y-snap. Use for lanterns on walls
+    /// or banners hung above doorways.
+    #[serde(default)]
+    pub absolute_y: Option<f32>,
+}
+
+#[derive(Debug, Clone, Deserialize)]
+pub struct PropOffset {
+    pub x: f32,
+    pub z: f32,
+}
+
+fn default_scale() -> f32 {
+    1.0
+}
+
+fn default_biome() -> String {
+    "grass".to_string()
 }
 
 // ─── mob ─────────────────────────────────────────────────────────────────────

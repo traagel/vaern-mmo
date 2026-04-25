@@ -30,7 +30,9 @@ pub use character::{
 pub use grips::{AttachHand, PropGrip, QuaterniusGrips, QuaterniusGripSpec};
 pub use overlay::{spawn_quaternius_weapon_overlays, QuaterniusWeaponOverlay};
 pub use props::{MegakitCatalog, PropEntry};
-pub use resolve::{outfit_from_equipped, weapon_props_from_equipped, EquippedProps};
+pub use resolve::{
+    outfit_from_equipped, weapon_props_for_archetype, weapon_props_from_equipped, EquippedProps,
+};
 
 pub struct QuaterniusPlugin;
 

@@ -28,6 +28,11 @@ pub struct NonCombat;
 #[derive(Component, Debug, Clone)]
 pub struct MobSourceId(pub String);
 
+/// Mob level (1..). Carried so the XP-on-kill observer can scale rewards
+/// against the killer's level (red mobs pay more, grey mobs nothing).
+#[derive(Component, Debug, Clone, Copy)]
+pub struct MobLevel(pub u32);
+
 /// Per-NPC aggro radius. Different creature tiers have different detection
 /// profiles — common mobs are tight-aggro so you don't pull the whole zone
 /// by breathing near them.
@@ -95,6 +100,8 @@ pub struct NpcSpawnSlot {
     pub chain_info: Option<(String, u32)>,
     /// Canonical mob slot id for combat mobs. `None` for quest-givers.
     pub mob_slot_id: Option<String>,
+    /// Mob level (drives XP scaling on kill). 0 for non-combat NPCs.
+    pub level: u32,
     pub current: Option<Entity>,
     /// Seconds until next respawn. Ticks while `current` is None.
     pub countdown: f32,
@@ -108,6 +115,9 @@ pub struct NpcSpawnSlot {
     /// At spawn time the right replicated component is inserted
     /// (`NpcMesh` for `Beast`, `NpcAppearance` for `Humanoid`).
     pub visual_from_map: Option<crate::npc_mesh::NpcVisual>,
+    /// Vendor listings (for `NpcKind::Vendor`). Attached as a
+    /// `VendorStock` component at spawn time. `None` → not a vendor.
+    pub vendor_stock: Option<vaern_economy::VendorStock>,
 }
 
 #[derive(Resource, Default)]

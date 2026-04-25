@@ -22,12 +22,23 @@ pub use ai::{
     credit_threat_from_casts, npc_chase_target, npc_leash_home, npc_roam, npc_select_targets,
     snap_npcs_to_terrain,
 };
-pub use components::{MobSourceId, Npc, NpcHome, NpcSpawns, ThreatTable};
+pub use components::{MobLevel, MobSourceId, Npc, NpcHome, NpcSpawns, ThreatTable};
 pub use spawn::{manage_npc_respawn, seed_npc_spawns};
 
 // ─── constants ─────────────────────────────────────────────────────────────
 
-pub(crate) const NPC_RESPAWN_SECS: f32 = 30.0;
+/// Per-kind respawn timer in seconds. Pre-alpha tuning per the goal plan:
+/// commons cycle every few minutes so casual play feels populated; elites
+/// every 8–15 min so they read as a real find; named bosses 30+ min so
+/// they're an event.
+pub(crate) fn respawn_secs_for_kind(kind: NpcKind) -> f32 {
+    match kind {
+        NpcKind::QuestGiver | NpcKind::Vendor => 5.0, // re-spawn fast if despawned
+        NpcKind::Named => 30.0 * 60.0,
+        NpcKind::Elite => 10.0 * 60.0,
+        NpcKind::Combat => 3.0 * 60.0,
+    }
+}
 /// NPC movement speed in world units per second (player is 6 u/s).
 pub(crate) const NPC_MOVE_SPEED: f32 = 4.5;
 /// Stop chasing when within this distance of the target (melee range).
@@ -45,7 +56,7 @@ pub(crate) const NPC_DEFAULT_AGGRO: f32 = 8.0;
 
 pub(crate) fn aggro_for_kind(kind: NpcKind) -> f32 {
     match kind {
-        NpcKind::QuestGiver => 0.0, // never aggros
+        NpcKind::QuestGiver | NpcKind::Vendor => 0.0, // never aggros
         NpcKind::Named => 14.0,
         NpcKind::Elite => 11.0,
         NpcKind::Combat => NPC_DEFAULT_AGGRO,
