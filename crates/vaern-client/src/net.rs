@@ -41,6 +41,7 @@ pub struct NetworkingPlugin;
 impl Plugin for NetworkingPlugin {
     fn build(&self, app: &mut App) {
         app.init_resource::<ReconnectState>()
+            .init_resource::<AwaitingReconnectAuth>()
             .init_resource::<ServerCharacterRoster>()
             .add_observer(send_hello_on_connect)
             .add_observer(send_auth_on_connect)
@@ -50,7 +51,8 @@ impl Plugin for NetworkingPlugin {
             .add_systems(OnExit(AppState::Reconnecting), exit_reconnecting)
             .add_systems(
                 Update,
-                (reconnect_tick, detect_reconnected).run_if(in_state(AppState::Reconnecting)),
+                (reconnect_tick, detect_reconnected, drain_reconnect_auth_results)
+                    .run_if(in_state(AppState::Reconnecting)),
             )
             .add_systems(
                 Update,
@@ -81,6 +83,23 @@ pub struct ClientCredentials {
 pub struct CachedCredentials {
     pub username: String,
     pub password: String,
+}
+
+/// `pending=true` while a reconnect cycle is replaying a cached
+/// `ClientLogin` and waiting for the server's `LoginResult`. Cleared
+/// once the reply lands (and a fresh `ClientHello` is shipped) or the
+/// reconnect flow falls back to `MainMenu`. Gates `send_hello_on_connect`,
+/// `reconnect_tick`, and `detect_reconnected` so they don't race the
+/// auth round-trip.
+///
+/// Always-resident `Resource` (not toggled via `Commands::insert_resource`)
+/// so writes from the `send_auth_on_connect` observer are visible to
+/// systems on the same tick — `Commands` are deferred until the next
+/// sync point, which would let `detect_reconnected` transition to
+/// `InGame` before the marker showed up.
+#[derive(Resource, Default, Debug)]
+pub struct AwaitingReconnectAuth {
+    pub pending: bool,
 }
 
 /// Server-driven character roster after a successful login. Populated
@@ -185,11 +204,21 @@ fn resolve_client_id() -> u64 {
 /// On netcode handshake completion, ship a `ClientHello` with the selected
 /// character's pillar. Falls back to `VAERN_PILLAR`, then server default
 /// (Might).
+///
+/// Suppressed when `AwaitingReconnectAuth` is set: a reconnect cycle that
+/// replays cached credentials must wait for the `LoginResult` round-trip
+/// before sending Hello, otherwise the server rejects the spawn (no
+/// `AuthedAccount` on the link yet). `drain_reconnect_auth_results` ships
+/// the deferred Hello after auth replay succeeds.
 fn send_hello_on_connect(
     trigger: On<Add, Connected>,
     mut senders: Query<&mut MessageSender<ClientHello>, With<Client>>,
     selected: Option<Res<SelectedCharacter>>,
+    awaiting_reconnect_auth: Res<AwaitingReconnectAuth>,
 ) {
+    if awaiting_reconnect_auth.pending {
+        return;
+    }
     let core_pillar = selected
         .as_deref()
         .map(|c| c.core_pillar)
@@ -313,8 +342,11 @@ fn enter_reconnecting(
     net_config: Res<ClientNetConfig>,
     own_client: Option<Res<OwnClientId>>,
     mut state: ResMut<ReconnectState>,
+    mut awaiting_reconnect_auth: ResMut<AwaitingReconnectAuth>,
 ) {
     state.reset();
+    // Defensive: clear any leftover marker from a previous reconnect.
+    awaiting_reconnect_auth.pending = false;
     let client_id = own_client.map(|c| c.0).unwrap_or_else(resolve_client_id);
     commands.insert_resource(OwnClientId(client_id));
     info!("reconnect: attempt 1/{RECONNECT_MAX_ATTEMPTS} (client_id={client_id})");
@@ -351,10 +383,16 @@ fn reconnect_tick(
     mut state: ResMut<ReconnectState>,
     net_config: Res<ClientNetConfig>,
     own_client: Option<Res<OwnClientId>>,
+    awaiting_reconnect_auth: Res<AwaitingReconnectAuth>,
     mut commands: Commands,
     mut next: ResMut<NextState<AppState>>,
     clients: Query<Entity, With<Client>>,
 ) {
+    // Don't fire backoff retries while a cached-creds login is in flight —
+    // despawning the in-flight client would lose the LoginResult reply.
+    if awaiting_reconnect_auth.pending {
+        return;
+    }
     state.elapsed_secs += time.delta_secs();
     state.timer.tick(time.delta());
     if !state.timer.is_finished() {
@@ -385,53 +423,223 @@ fn reconnect_tick(
     state.timer = Timer::new(Duration::from_secs_f32(next_delay), TimerMode::Once);
 }
 
-/// Detect a successful reconnect — when any `Client` is `Connected`,
-/// transition out of `Reconnecting` back to `InGame`. The replicated
-/// world then rebuilds via the standard `OnEnter(InGame)` path.
+/// Detect a successful reconnect — when any `Client` is `Connected` AND
+/// auth replay isn't pending, transition out of `Reconnecting` back to
+/// `InGame`. The replicated world then rebuilds via the standard
+/// `OnEnter(InGame)` path.
+///
+/// Gated on `AwaitingReconnectAuth.is_none()` so we don't advance to
+/// InGame mid-auth — `drain_reconnect_auth_results` clears the marker
+/// once `LoginResult` arrives and ships the deferred Hello, after which
+/// this system fires on the next tick.
 fn detect_reconnected(
     clients: Query<Entity, (With<Client>, With<Connected>)>,
+    awaiting_reconnect_auth: Res<AwaitingReconnectAuth>,
     mut next: ResMut<NextState<AppState>>,
 ) {
+    if awaiting_reconnect_auth.pending {
+        return;
+    }
     if clients.iter().next().is_some() {
         info!("reconnect: handshake succeeded — re-entering game");
         next.set(AppState::InGame);
     }
 }
 
-/// On `Add Connected`, if `ClientCredentials` is present, ship the
-/// matching `ClientLogin` or `ClientRegister` and transition to
-/// `Authenticating`. Cleared by `drain_auth_results` whether the
-/// attempt succeeds or fails — clients have to re-fill the form for a
-/// retry. The legacy `send_hello_on_connect` observer is gated on the
-/// absence of `ClientCredentials` so it doesn't double-send.
+/// Reconnect-only counterpart to `drain_auth_results`. Watches for the
+/// `LoginResult` from a replayed cached login; on success, ships the
+/// deferred `ClientHello` so the server re-spawns the player. On failure
+/// (e.g. server-side accounts wiped during the bounce), clears cached
+/// state and falls back to MainMenu.
+fn drain_reconnect_auth_results(
+    mut commands: Commands,
+    mut awaiting: ResMut<AwaitingReconnectAuth>,
+    selected: Option<Res<SelectedCharacter>>,
+    mut next: ResMut<NextState<AppState>>,
+    mut login_rx: Query<&mut MessageReceiver<LoginResult>, With<Client>>,
+    mut hello_tx: Query<&mut MessageSender<ClientHello>, With<Client>>,
+    clients: Query<Entity, With<Client>>,
+) {
+    if !awaiting.pending {
+        return;
+    }
+    let mut ok = false;
+    let mut failed = false;
+    let mut error_msg = String::new();
+    for mut rx in &mut login_rx {
+        for msg in rx.receive() {
+            if msg.ok {
+                ok = true;
+                info!("[auth] reconnect: re-auth ok — shipping ClientHello");
+            } else {
+                failed = true;
+                error_msg = msg.error_msg.clone();
+                warn!("[auth] reconnect: re-auth refused: {}", msg.error_msg);
+            }
+        }
+    }
+    if ok {
+        // Re-ship the deferred Hello using the still-resident
+        // `SelectedCharacter`. Without it we have no character to spawn
+        // — fall back to MainMenu so the user re-selects.
+        let Some(selected) = selected.as_deref() else {
+            warn!("[auth] reconnect: no SelectedCharacter — returning to MainMenu");
+            awaiting.pending = false;
+            commands.remove_resource::<CachedCredentials>();
+            next.set(AppState::MainMenu);
+            return;
+        };
+        for mut sender in &mut hello_tx {
+            let _ = sender.send::<Channel1>(ClientHello {
+                core_pillar: selected.core_pillar,
+                race_id: selected.race_id.clone(),
+                character_id: selected.character_id.clone(),
+                character_name: selected.name.clone(),
+                cosmetics: Some(selected.cosmetics.clone()),
+            });
+        }
+        awaiting.pending = false;
+        // detect_reconnected fires on the next tick now that the marker
+        // is gone, advancing to InGame.
+        return;
+    }
+    if failed {
+        // Order matters: clear cached state BEFORE state transition so a
+        // subsequent manual login attempt starts fresh.
+        awaiting.pending = false;
+        commands.remove_resource::<CachedCredentials>();
+        for e in &clients {
+            commands.entity(e).despawn();
+        }
+        warn!("[auth] reconnect: dropping to MainMenu ({error_msg})");
+        next.set(AppState::MainMenu);
+    }
+}
+
+/// On `Add Connected`, decide whether to ship an auth message:
+///
+/// - If `ClientCredentials` is present (initial login from MainMenu), ship
+///   the matching `ClientLogin` / `ClientRegister` and transition to
+///   `Authenticating`.
+/// - Else if `CachedCredentials` is present and the app is in
+///   `Reconnecting` (auto-reconnect path under `VAERN_REQUIRE_AUTH=1`),
+///   ship `ClientLogin` from the cached creds, mark
+///   `AwaitingReconnectAuth`, and reset the reconnect backoff timer so
+///   `reconnect_tick` doesn't despawn the in-flight client. Stays in
+///   `Reconnecting`; `drain_reconnect_auth_results` advances on the reply.
+/// - Otherwise no-op (legacy local-only flow handled by
+///   `send_hello_on_connect`).
+///
+/// Bevy 0.18 observers fire synchronously per `Add` event — no double-fire
+/// risk on the `Add<Connected>` trigger.
+/// Decision returned by [`decide_auth_send`]. Decoupled from the
+/// observer's Bevy plumbing so the branch logic is unit-testable.
+#[derive(Debug, PartialEq, Eq)]
+enum AuthSendIntent {
+    SendLogin {
+        username: String,
+        password: String,
+        /// `true` = reconnect-replay path (don't transition state, mark
+        /// pending). `false` = initial login from MainMenu.
+        from_cache: bool,
+    },
+    SendRegister {
+        username: String,
+        password: String,
+    },
+    NoOp,
+}
+
+/// Pure-function decision used by `send_auth_on_connect`. Splits the
+/// logic out so it can be tested without spinning up an `App`.
+fn decide_auth_send(
+    creds: Option<&ClientCredentials>,
+    cached: Option<&CachedCredentials>,
+    in_reconnect: bool,
+) -> AuthSendIntent {
+    if let Some(c) = creds {
+        if c.register_instead {
+            return AuthSendIntent::SendRegister {
+                username: c.username.clone(),
+                password: c.password.clone(),
+            };
+        }
+        return AuthSendIntent::SendLogin {
+            username: c.username.clone(),
+            password: c.password.clone(),
+            from_cache: false,
+        };
+    }
+    if in_reconnect
+        && let Some(c) = cached
+    {
+        return AuthSendIntent::SendLogin {
+            username: c.username.clone(),
+            password: c.password.clone(),
+            from_cache: true,
+        };
+    }
+    AuthSendIntent::NoOp
+}
+
 fn send_auth_on_connect(
     trigger: On<Add, Connected>,
     creds: Option<Res<ClientCredentials>>,
+    cached: Option<Res<CachedCredentials>>,
+    state: Res<State<AppState>>,
     mut login_tx: Query<&mut MessageSender<ClientLogin>, With<Client>>,
     mut register_tx: Query<&mut MessageSender<ClientRegister>, With<Client>>,
     mut next_state: ResMut<NextState<AppState>>,
+    mut reconnect: ResMut<ReconnectState>,
+    mut awaiting_reconnect_auth: ResMut<AwaitingReconnectAuth>,
 ) {
-    let Some(creds) = creds else { return };
-    if creds.register_instead {
-        let Ok(mut sender) = register_tx.get_mut(trigger.entity) else {
-            return;
-        };
-        let _ = sender.send::<Channel1>(ClientRegister {
-            username: creds.username.clone(),
-            password: creds.password.clone(),
-        });
-        info!("[auth] sent ClientRegister for username '{}'", creds.username);
-    } else {
-        let Ok(mut sender) = login_tx.get_mut(trigger.entity) else {
-            return;
-        };
-        let _ = sender.send::<Channel1>(ClientLogin {
-            username: creds.username.clone(),
-            password: creds.password.clone(),
-        });
-        info!("[auth] sent ClientLogin for username '{}'", creds.username);
+    let intent = decide_auth_send(
+        creds.as_deref(),
+        cached.as_deref(),
+        matches!(state.get(), AppState::Reconnecting),
+    );
+    match intent {
+        AuthSendIntent::SendLogin {
+            username,
+            password,
+            from_cache,
+        } => {
+            let Ok(mut sender) = login_tx.get_mut(trigger.entity) else {
+                return;
+            };
+            let _ = sender.send::<Channel1>(ClientLogin {
+                username: username.clone(),
+                password,
+            });
+            if from_cache {
+                info!("[auth] reconnect: replayed ClientLogin for '{username}'");
+                awaiting_reconnect_auth.pending = true;
+                // Reset backoff timer so reconnect_tick doesn't fire mid-
+                // auth and despawn the connected client.
+                // drain_reconnect_auth_results advances state once the
+                // LoginResult arrives.
+                reconnect.timer = Timer::new(
+                    Duration::from_secs_f32(RECONNECT_BACKOFF_CAP_SECS),
+                    TimerMode::Once,
+                );
+            } else {
+                info!("[auth] sent ClientLogin for username '{username}'");
+                next_state.set(AppState::Authenticating);
+            }
+        }
+        AuthSendIntent::SendRegister { username, password } => {
+            let Ok(mut sender) = register_tx.get_mut(trigger.entity) else {
+                return;
+            };
+            let _ = sender.send::<Channel1>(ClientRegister {
+                username: username.clone(),
+                password,
+            });
+            info!("[auth] sent ClientRegister for username '{username}'");
+            next_state.set(AppState::Authenticating);
+        }
+        AuthSendIntent::NoOp => {}
     }
-    next_state.set(AppState::Authenticating);
 }
 
 /// Drain server auth responses. Runs in `Authenticating` and
@@ -588,6 +796,103 @@ mod tests {
         };
         assert_eq!(delays, vec![1.0, 2.0, 4.0, 8.0]);
         assert_eq!(RECONNECT_MAX_ATTEMPTS, 5);
+    }
+
+    #[test]
+    fn decide_auth_send_initial_login() {
+        let creds = ClientCredentials {
+            username: "brenn".into(),
+            password: "hunter2".into(),
+            register_instead: false,
+        };
+        let intent = decide_auth_send(Some(&creds), None, false);
+        assert_eq!(
+            intent,
+            AuthSendIntent::SendLogin {
+                username: "brenn".into(),
+                password: "hunter2".into(),
+                from_cache: false,
+            }
+        );
+    }
+
+    #[test]
+    fn decide_auth_send_initial_register() {
+        let creds = ClientCredentials {
+            username: "newbie".into(),
+            password: "passw0rd".into(),
+            register_instead: true,
+        };
+        let intent = decide_auth_send(Some(&creds), None, false);
+        assert_eq!(
+            intent,
+            AuthSendIntent::SendRegister {
+                username: "newbie".into(),
+                password: "passw0rd".into(),
+            }
+        );
+    }
+
+    #[test]
+    fn decide_auth_send_reconnect_replay_uses_cached_creds() {
+        let cached = CachedCredentials {
+            username: "brenn".into(),
+            password: "hunter2".into(),
+        };
+        let intent = decide_auth_send(None, Some(&cached), true);
+        assert_eq!(
+            intent,
+            AuthSendIntent::SendLogin {
+                username: "brenn".into(),
+                password: "hunter2".into(),
+                from_cache: true,
+            }
+        );
+    }
+
+    #[test]
+    fn decide_auth_send_noops_outside_reconnect_with_only_cached_creds() {
+        // Cached creds alone aren't enough — only the reconnect path
+        // replays them. In other states (MainMenu, InGame, etc.) the
+        // observer should noop.
+        let cached = CachedCredentials {
+            username: "brenn".into(),
+            password: "hunter2".into(),
+        };
+        let intent = decide_auth_send(None, Some(&cached), false);
+        assert_eq!(intent, AuthSendIntent::NoOp);
+    }
+
+    #[test]
+    fn decide_auth_send_client_creds_take_priority_over_cached() {
+        // If both are present (edge case: stale cached creds + a fresh
+        // login form submission), the user's current input wins.
+        let creds = ClientCredentials {
+            username: "alice".into(),
+            password: "new".into(),
+            register_instead: false,
+        };
+        let cached = CachedCredentials {
+            username: "bob".into(),
+            password: "old".into(),
+        };
+        let intent = decide_auth_send(Some(&creds), Some(&cached), true);
+        assert_eq!(
+            intent,
+            AuthSendIntent::SendLogin {
+                username: "alice".into(),
+                password: "new".into(),
+                from_cache: false,
+            }
+        );
+    }
+
+    #[test]
+    fn decide_auth_send_noops_when_no_creds_anywhere() {
+        let intent = decide_auth_send(None, None, true);
+        assert_eq!(intent, AuthSendIntent::NoOp);
+        let intent = decide_auth_send(None, None, false);
+        assert_eq!(intent, AuthSendIntent::NoOp);
     }
 
     #[test]

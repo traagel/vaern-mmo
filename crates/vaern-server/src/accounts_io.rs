@@ -15,6 +15,7 @@ use vaern_protocol::{
 };
 
 use crate::accounts::{AccountError, AccountId, AccountStore};
+use crate::persistence::CharacterStore;
 
 /// Component attached to a `ClientOf` link entity once that client has
 /// successfully logged in or registered. `process_pending_spawns`
@@ -53,6 +54,7 @@ impl ServerAuthConfig {
 /// the link entity.
 pub fn handle_auth_messages(
     store: Res<AccountStore>,
+    character_store: Res<CharacterStore>,
     mut commands: Commands,
     mut login_rx: Query<(Entity, &mut MessageReceiver<ClientLogin>), With<ClientOf>>,
     mut register_rx: Query<(Entity, &mut MessageReceiver<ClientRegister>), With<ClientOf>>,
@@ -65,7 +67,7 @@ pub fn handle_auth_messages(
     // ── login ────────────────────────────────────────────────────────
     for (link, mut rx) in &mut login_rx {
         for msg in rx.receive() {
-            let result = process_login(&store, &msg, link, &authed);
+            let result = process_login(&store, &character_store, &msg, link, &authed);
             apply_login_result(&mut commands, &mut login_tx, link, result);
         }
     }
@@ -101,6 +103,7 @@ struct LoginOutcome {
 
 fn process_login(
     store: &AccountStore,
+    character_store: &CharacterStore,
     msg: &ClientLogin,
     link: Entity,
     authed: &Query<&AuthedAccount>,
@@ -120,13 +123,7 @@ fn process_login(
                 .list_characters(&account_id)
                 .unwrap_or_default()
                 .into_iter()
-                .map(|c| CharacterSummary {
-                    character_id: c.character_id,
-                    name: c.character_name,
-                    race_id: String::new(),
-                    core_pillar: vaern_core::Pillar::Might,
-                    level: 0,
-                })
+                .map(|c| build_character_summary(character_store, c))
                 .collect();
             LoginOutcome {
                 ok: true,
@@ -142,6 +139,36 @@ fn process_login(
             account_id: None,
             username: msg.username.clone(),
             characters: vec![],
+        },
+    }
+}
+
+/// Resolve a `CharacterRow` (from accounts.db) into a wire-side
+/// `CharacterSummary` by joining with the on-disk `PersistedCharacter`
+/// JSON. Falls back to placeholder fields when the JSON is missing or
+/// can't parse — the row still appears in the roster (so the user can
+/// see their stranded character) just with `?` race and L0.
+fn build_character_summary(
+    character_store: &CharacterStore,
+    row: crate::accounts::CharacterRow,
+) -> CharacterSummary {
+    match Uuid::parse_str(&row.character_id)
+        .ok()
+        .and_then(|uuid| character_store.load(uuid).ok())
+    {
+        Some(persisted) => CharacterSummary {
+            character_id: row.character_id,
+            name: row.character_name,
+            race_id: persisted.race_id,
+            core_pillar: persisted.core_pillar,
+            level: persisted.experience.level,
+        },
+        None => CharacterSummary {
+            character_id: row.character_id,
+            name: row.character_name,
+            race_id: String::new(),
+            core_pillar: vaern_core::Pillar::Might,
+            level: 0,
         },
     }
 }
@@ -303,5 +330,122 @@ fn client_facing_error(e: &AccountError) -> String {
         AccountError::Sql(_) | AccountError::Hash(_) | AccountError::Io(_) => {
             "server error — try again".to_string()
         }
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use crate::accounts::CharacterRow;
+    use tempfile::TempDir;
+    use vaern_character::Experience;
+    use vaern_core::pillar::Pillar;
+    use vaern_equipment::Equipped;
+    use vaern_inventory::{ConsumableBelt, PlayerInventory};
+    use vaern_persistence::{
+        PersistedCharacter, PersistedCosmetics, PersistedQuestLog, SCHEMA_VERSION,
+        ServerCharacterStore,
+    };
+    use vaern_professions::ProfessionSkills;
+    use vaern_stats::{PillarCaps, PillarScores, PillarXp};
+
+    fn temp_character_store() -> (CharacterStore, TempDir) {
+        let dir = TempDir::new().unwrap();
+        let inner = ServerCharacterStore::open(dir.path().into()).unwrap();
+        (CharacterStore(inner), dir)
+    }
+
+    fn sample_character(
+        uuid: Uuid,
+        name: &str,
+        race_id: &str,
+        pillar: Pillar,
+        level: u32,
+    ) -> PersistedCharacter {
+        PersistedCharacter {
+            schema_version: SCHEMA_VERSION,
+            character_id: uuid.to_string(),
+            name: name.into(),
+            race_id: race_id.into(),
+            core_pillar: pillar,
+            cosmetics: PersistedCosmetics::default(),
+            experience: Experience { current: 0, level },
+            pillar_scores: PillarScores::default(),
+            pillar_caps: PillarCaps::default(),
+            pillar_xp: PillarXp::default(),
+            inventory: PlayerInventory::default(),
+            equipped: Equipped::default(),
+            belt: ConsumableBelt::default(),
+            professions: ProfessionSkills::default(),
+            wallet_copper: 0,
+            quest_log: PersistedQuestLog::default(),
+            position: None,
+            yaw_rad: None,
+            created_at: 1_714_000_000,
+            updated_at: 1_714_000_000,
+        }
+    }
+
+    #[test]
+    fn build_character_summary_populates_from_persisted() {
+        let (store, _dir) = temp_character_store();
+        let uuid = Uuid::new_v4();
+        let chr = sample_character(uuid, "Telyn", "hearthkin", Pillar::Finesse, 7);
+        store.save(uuid, &chr).expect("save");
+
+        let row = CharacterRow {
+            character_id: uuid.to_string(),
+            character_name: "Telyn".into(),
+            created_at: 0,
+        };
+        let summary = build_character_summary(&store, row);
+
+        assert_eq!(summary.character_id, uuid.to_string());
+        assert_eq!(summary.name, "Telyn");
+        assert_eq!(summary.race_id, "hearthkin");
+        assert_eq!(summary.core_pillar, Pillar::Finesse);
+        assert_eq!(summary.level, 7);
+    }
+
+    #[test]
+    fn build_character_summary_falls_back_when_persisted_file_missing() {
+        // Orphan row — DB has the row but no on-disk JSON. The summary
+        // should still appear with placeholder fields rather than dropping
+        // the row or panicking.
+        let (store, _dir) = temp_character_store();
+        let uuid = Uuid::new_v4();
+
+        let row = CharacterRow {
+            character_id: uuid.to_string(),
+            character_name: "Stranded".into(),
+            created_at: 0,
+        };
+        let summary = build_character_summary(&store, row);
+
+        assert_eq!(summary.character_id, uuid.to_string());
+        assert_eq!(summary.name, "Stranded");
+        assert_eq!(summary.race_id, "");
+        assert_eq!(summary.core_pillar, Pillar::Might);
+        assert_eq!(summary.level, 0);
+    }
+
+    #[test]
+    fn build_character_summary_falls_back_when_character_id_unparsable() {
+        // Defensive: row exists but its `character_id` isn't a valid UUID
+        // (shouldn't happen via accounts.rs but the build_character_summary
+        // helper must not panic on bad input).
+        let (store, _dir) = temp_character_store();
+
+        let row = CharacterRow {
+            character_id: "not-a-uuid".into(),
+            character_name: "Garbage".into(),
+            created_at: 0,
+        };
+        let summary = build_character_summary(&store, row);
+
+        assert_eq!(summary.character_id, "not-a-uuid");
+        assert_eq!(summary.race_id, "");
+        assert_eq!(summary.core_pillar, Pillar::Might);
+        assert_eq!(summary.level, 0);
     }
 }

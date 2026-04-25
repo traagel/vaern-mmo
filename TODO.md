@@ -6,7 +6,7 @@ Forward-looking slice list. For the full current state see `README.md`; for desi
 
 ## Where we are today (2026-04-25)
 
-Pre-alpha-shaped scaffold. Menu → char create → **PBR-dressed Dalewatch** with scattered trees / rocks / shrubs + ~55 authored hub props → side-quest givers populated → mob level bands by hub → kill mobs (XP scales by mob-vs-killer level: greys=0, +5 reds=1.5×) → level up (centered banner + screen flash + +1 pillar point auto-granted) → die → 25% HP at home, walk back to corpse for full restore → /wave at your friend → repeat. Multi-client, server-authoritative, zone-AoI replicated, **309 tests green** (4 pre-existing combat-test failures unchanged).
+Pre-alpha-shaped scaffold. Menu → login/register against the server-side SQLite account store → char create → **PBR-dressed Dalewatch** with scattered trees / rocks / shrubs + ~55 authored hub props → side-quest givers populated → mob level bands by hub → kill mobs (XP scales by mob-vs-killer level: greys=0, +5 reds=1.5×) → level up (centered banner + screen flash + +1 pillar point auto-granted) → die → 25% HP at home, walk back to corpse for full restore → /wave at your friend → repeat. Server bounce mid-session: client auto-reconnects with exponential backoff, replays cached credentials, resumes the session without a re-prompt. Multi-client, server-authoritative, zone-AoI replicated, **349 tests green** (4 pre-existing combat-test failures unchanged).
 
 The pre-alpha goal hierarchy plan at `~/.claude/plans/set-and-prioritze-goals-delightful-mochi.md` decomposes into ~8 slices. **Status as of 2026-04-25**:
 
@@ -33,9 +33,9 @@ The pre-alpha goal hierarchy plan at `~/.claude/plans/set-and-prioritze-goals-de
 - ✅ Slice 8d — Client auto-reconnect with backoff (`AppState::Reconnecting` + 5-attempt 1→2→4→8s exponential backoff; reuses `OwnClientId` so server-side state lookup keys match)
 - ✅ Slice 8e Phase 1 — Server-side AccountStore (rusqlite + bcrypt) + 6 auth protocol messages + AuthedAccount gating in `process_pending_spawns` (gated on `VAERN_REQUIRE_AUTH=1`, default off)
 - ✅ Slice 8e Phase 2 MVP — Client AppState::Authenticating + CharacterSelect, login/register/create-character UI, server-driven roster
-- ⏸ Slice 8e Phase 3 — Reconnect re-auth via CachedCredentials, local-JSON migration prompt, race/pillar/level populated in CharacterSummary from PersistedCharacter, full MainMenu restructure
+- ✅ Slice 8e Phase 3 — Reconnect re-auth via cached credentials (`AwaitingReconnectAuth` resource gates `send_hello_on_connect` / `reconnect_tick` / `detect_reconnected` until LoginResult round-trips; `drain_reconnect_auth_results` ships deferred ClientHello on success, drops to MainMenu on fail) + race/pillar/level populated in `CharacterSummary` from `PersistedCharacter` via new `build_character_summary` helper (orphan rows fall back to `?` placeholder rather than dropping). Migration cut — all current characters are throwaway test data.
 
-**Recommended next slice**: Slice 8e Phase 3 polish (~1 session: reconnect re-auth + JSON migration + populate CharacterSummary from PersistedCharacter), then Slice 6 dungeon (6-8 sessions). Quest polish (talk/deliver/investigate auto-advance, ~0.5-1 session) is also a quick win that activates Slice 4e Tier-2/4 ladder rewards.
+**Recommended next slice**: Slice 6 dungeon (6-8 sessions) is the L10 capstone. Quest polish (talk/deliver/investigate auto-advance, ~0.5-1 session) is a quick win that activates Slice 4e Tier-2/4 ladder rewards on first encounter.
 
 ---
 
@@ -57,7 +57,7 @@ Organized by blocker severity. A ❌ is a hard blocker for pre-alpha. A ⚠️ i
 - ✅ **Dedicated server deployment** — `--bind <addr>` CLI flag + `VAERN_BIND` env; default `0.0.0.0:27015`. Systemd unit / Docker image / real host (Hetzner/OVH EU box) is the deployment task that follows.
 - ✅ **Client-side server picker or hardcoded prod server** — `--server <addr>` CLI flag + `VAERN_SERVER` env; default loopback for dev. (No menu picker yet — env/flag is sufficient for pre-alpha tester onboarding via launch script.)
 - ✅ **Crash handlers + auto-reconnect** — Slice 8c: `crash::install` writes `~/.local/share/vaern/server/crash_<unix_ts>.log` with panic message, location, thread, captured backtrace, git_sha (`VAERN_GIT_SHA` env), and chains to the default panic hook. Slice 8d: client auto-reconnect with exponential backoff (1s → 2s → 4s → 8s, 5 attempts max) on lightyear `Remove<Connected>`; reuses `OwnClientId` so server-side state lookup keys match across the reconnect.
-- ⚠️ **Account identity beyond client-local JSON** — Slice 8e Phase 1 + 2 MVP shipped: server-side SQLite at `~/.config/vaern/server/accounts.db` with bcrypt-hashed passwords; case-insensitive username + character-name uniqueness; client login/register/create-character UI behind `AppState::Authenticating` + `CharacterSelect`. **Deferred to Phase 3 (still ❌):** reconnect re-auth via CachedCredentials (today: a reconnect under `VAERN_REQUIRE_AUTH=1` would fail because we don't replay the credentials), local-JSON migration prompt for existing characters, populating race/pillar/level in `CharacterSummary` from `PersistedCharacter`.
+- ✅ **Account identity beyond client-local JSON** — Slice 8e Phase 1 + 2 + 3 shipped: server-side SQLite at `~/.config/vaern/server/accounts.db` with bcrypt-hashed passwords; case-insensitive username + character-name uniqueness; client login/register/create-character UI behind `AppState::Authenticating` + `CharacterSelect`; reconnect re-auth replays `CachedCredentials` automatically under `VAERN_REQUIRE_AUTH=1` (Phase 3); `CharacterSummary` populated from `PersistedCharacter` so the roster shows real race/pillar/level. Local-JSON migration was cut — existing characters are throwaway test data.
 - ⏸ **Steam integration** — deferred to full alpha (was ❌, now post-pre-alpha per user decision).
 
 #### Content floor (the "something to do" floor)
@@ -123,16 +123,15 @@ Organized by blocker severity. A ❌ is a hard blocker for pre-alpha. A ⚠️ i
 
 ## Recommended slice ordering for pre-alpha (remaining work)
 
-Slice 8a-8d + Slice 4e + Slice 8e Phase 1+2 shipped — release builds reject an unset key, server bind is configurable, server panics land in a crash log, client auto-reconnects with exponential backoff after a server restart, Dalewatch's `chain_dalewatch_first_ride` hands out a 5-tier per-pillar gear ladder that visibly flips silhouette twice, and the server now has SQLite-backed accounts with bcrypt passwords + a client login/register/create-character UI. What's left:
+Slice 8a-8d + Slice 4e + Slice 8e Phases 1+2+3 shipped — release builds reject an unset key, server bind is configurable, server panics land in a crash log, client auto-reconnects with exponential backoff after a server restart and now replays cached credentials so reconnect under `VAERN_REQUIRE_AUTH=1` survives a server bounce, Dalewatch's `chain_dalewatch_first_ride` hands out a 5-tier per-pillar gear ladder that visibly flips silhouette twice, the server has SQLite-backed accounts with bcrypt passwords + a client login/register/create-character UI, and `CharacterSummary` is populated from `PersistedCharacter` so the roster shows real race/pillar/level. What's left:
 
-1. **Slice 8e Phase 3 polish** — reconnect re-auth via cached credentials, local-JSON migration prompt, populate race/pillar/level in `CharacterSummary` from `PersistedCharacter`, full MainMenu restructure. ~1 session.
-2. **Slice 6 — Drifter's Lair pseudo-dungeon + shared loot rolls** — hub-external cave region, 4-mob pull cadence, mini-boss + boss tuned for 2-4 players, Need/Greed/Pass loot panel. End-boss drops the L10 plate piece. Slice 4e ladder ships steel/wyvern/mageweave at L8; Slice 6 boss should drop a step above (e.g. mithril or exceptional quality). ~6-8 sessions.
+1. **Slice 6 — Drifter's Lair pseudo-dungeon + shared loot rolls** — hub-external cave region, 4-mob pull cadence, mini-boss + boss tuned for 2-4 players, Need/Greed/Pass loot panel. End-boss drops the L10 plate piece. Slice 4e ladder ships steel/wyvern/mageweave at L8; Slice 6 boss should drop a step above (e.g. mithril or exceptional quality). ~6-8 sessions.
+2. **Quest polish** — multi-kill objectives + auto-advance for talk/investigate/deliver. **Note**: Slice 4e Tier-2 (step 6) and Tier-4 (step 8) ladder rewards live on talk steps, so they don't fire until this lands or the player relogs. ~0.5-1 session.
 3. **Slice 1f — Foliage card billboards** — PBR atlas + facing system for carpet-grass density. Polish, not pre-alpha-blocking. ~2 sessions.
 4. **Slice 7 phase 2 — Emote animation playback** — UAL clip per emote (Wave / Bow / Sit / etc) needs a new replicated `Emote(EmoteKind)` AnimState variant + transient override. ~1-2 sessions.
 5. **Slice 5 polish — Visual corpse marker on client + party-rez skill** — pulsing gizmo at own-corpse position via `OwnCorpsesSnapshot`-style message; party-rez via new `ConsumeEffect::Revive`. ~1-2 sessions.
-6. **Quest polish** — multi-kill objectives + auto-advance for talk/investigate/deliver. **Note**: Slice 4e Tier-2 (step 6) and Tier-4 (step 8) ladder rewards live on talk steps, so they don't fire until this lands or the player relogs. ~0.5-1 session.
 
-Total remaining: ~13-19 sessions to ship pre-alpha. Hand-curating the other 9 starter chains is post-pre-alpha (Mannin-only spawn for pre-alpha).
+Total remaining: ~10-14 sessions to ship pre-alpha. Hand-curating the other 9 starter chains is post-pre-alpha (Mannin-only spawn for pre-alpha).
 
 ---
 
