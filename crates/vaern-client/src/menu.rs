@@ -36,6 +36,11 @@ pub enum AppState {
     MainMenu,
     Connecting,
     InGame,
+    /// Server connection lost mid-game. The retry loop in
+    /// `net::reconnect_tick` re-spawns the lightyear client with
+    /// exponential backoff. On success returns to `InGame`; on
+    /// max-attempts-exhausted falls back to `MainMenu`.
+    Reconnecting,
 }
 
 // ─── character data ─────────────────────────────────────────────────────────
@@ -244,6 +249,7 @@ impl Plugin for MenuPlugin {
                 (
                     main_menu_ui.run_if(in_state(AppState::MainMenu)),
                     connecting_ui.run_if(in_state(AppState::Connecting)),
+                    reconnecting_ui.run_if(in_state(AppState::Reconnecting)),
                     in_game_menu_ui.run_if(in_state(AppState::InGame)),
                 ),
             )
@@ -604,6 +610,47 @@ fn connecting_ui(mut contexts: EguiContexts) {
             ui.heading("Connecting…");
             ui.add_space(12.0);
             ui.spinner();
+        });
+    });
+}
+
+/// UI shown while `AppState::Reconnecting` is active. Shows attempt
+/// counter + countdown to the next retry. Cancel button drops the user
+/// back to the main menu without waiting out the remaining attempts.
+fn reconnecting_ui(
+    mut contexts: EguiContexts,
+    state: Res<crate::net::ReconnectState>,
+    mut next_state: ResMut<NextState<AppState>>,
+) {
+    let ctx = match contexts.ctx_mut() {
+        Ok(c) => c,
+        Err(_) => return,
+    };
+    egui::CentralPanel::default().show(ctx, |ui| {
+        ui.vertical_centered(|ui| {
+            ui.add_space(100.0);
+            ui.heading(
+                egui::RichText::new("Reconnecting…")
+                    .color(egui::Color32::from_rgb(240, 200, 80)),
+            );
+            ui.add_space(12.0);
+            ui.spinner();
+            ui.add_space(16.0);
+            let attempt = state.attempts.max(1);
+            ui.label(format!(
+                "attempt {attempt} of {}",
+                crate::net::RECONNECT_MAX_ATTEMPTS
+            ));
+            let remaining = state.seconds_until_next_retry();
+            if remaining > 0 {
+                ui.label(format!("next try in {remaining}s"));
+            } else {
+                ui.label("trying now…");
+            }
+            ui.add_space(20.0);
+            if ui.button("Cancel").clicked() {
+                next_state.set(AppState::MainMenu);
+            }
         });
     });
 }

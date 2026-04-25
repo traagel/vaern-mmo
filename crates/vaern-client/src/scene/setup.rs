@@ -53,7 +53,7 @@ fn menu_camera_bg_clear(
 ) {
     let Ok(mut c) = cam.single_mut() else { return };
     let wanted = match state.get() {
-        AppState::MainMenu | AppState::Connecting => {
+        AppState::MainMenu | AppState::Connecting | AppState::Reconnecting => {
             ClearColorConfig::Custom(Color::srgb(0.06, 0.08, 0.11))
         }
         AppState::InGame => ClearColorConfig::None,
