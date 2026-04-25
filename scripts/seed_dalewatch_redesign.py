@@ -273,7 +273,7 @@ NEW_MOBS: list[dict[str, Any]] = [
     {
         "id": "mob_dalewatch_marches_named_drifter_master",
         "name": "Master Drifter Halen",
-        "level": 6,
+        "level": 9,
         "creature_type": "humanoid",
         "armor_class": "cloth",
         "rarity": "named",
@@ -297,7 +297,7 @@ NEW_MOBS: list[dict[str, Any]] = [
             "gold_copper_avg": 180,
             "item_hint": "pact-worked focus (main-chain turn-in); scorched tome",
         },
-        "biome_context": "mine cultist leader; main-chain step 7 target at Copperstep",
+        "biome_context": "mine cultist leader; mini-boss in the Drifter's Lair (main-chain step 7 target)",
         "chain_target": True,
     },
     {
@@ -362,7 +362,7 @@ NEW_MOBS: list[dict[str, Any]] = [
     {
         "id": "mob_dalewatch_marches_named_drifter_valenn",
         "name": "Grand Drifter Valenn",
-        "level": 8,
+        "level": 10,
         "creature_type": "humanoid",
         "armor_class": "cloth",
         "rarity": "named",
@@ -386,8 +386,96 @@ NEW_MOBS: list[dict[str, Any]] = [
             "gold_copper_avg": 500,
             "item_hint": "valenn's signet + sealed confession (chain finisher)",
         },
-        "biome_context": "the expelled Academian behind the Wake; final boss in the Drifter's Lair",
+        "biome_context": "the expelled Academian behind the Wake; L10 capstone boss of the Drifter's Lair",
         "chain_target": True,
+    },
+    # Slice 6 — Drifter's Lair trash adds (L8-L10).
+    {
+        "id": "mob_dalewatch_marches_warband_drifter_brute",
+        "name": "Drifter Brute",
+        "level": 8,
+        "creature_type": "humanoid",
+        "armor_class": "leather",
+        "rarity": "common",
+        "role": "brawler",
+        "faction_alignment": "hostile_to_faction_a",
+        "hp_tier": "standard",
+        "damage": {
+            "primary_school": "blade",
+            "attack_range": "melee",
+            "dps_tier": "standard",
+        },
+        "behavior": {
+            "aggro_range": "medium",
+            "social_radius": 10,
+            "flee_threshold": 0.0,
+            "calls_allies": True,
+            "patrol": "stationary",
+        },
+        "loot_tier": "standard",
+        "drops": {
+            "gold_copper_avg": 32,
+            "item_hint": "cult-rag wraps; chipped iron cleaver",
+        },
+        "biome_context": "enforcer of the cult; pulls form around him in the Drifter's Lair approach",
+    },
+    {
+        "id": "mob_dalewatch_marches_warband_drifter_acolyte",
+        "name": "Whispering Acolyte",
+        "level": 9,
+        "creature_type": "humanoid",
+        "armor_class": "cloth",
+        "rarity": "common",
+        "role": "caster",
+        "faction_alignment": "hostile_to_faction_a",
+        "hp_tier": "standard",
+        "damage": {
+            "primary_school": "shadow",
+            "attack_range": "ranged",
+            "dps_tier": "standard",
+        },
+        "behavior": {
+            "aggro_range": "long",
+            "social_radius": 12,
+            "flee_threshold": 0.2,
+            "calls_allies": True,
+            "patrol": "stationary",
+        },
+        "loot_tier": "standard",
+        "drops": {
+            "gold_copper_avg": 40,
+            "item_hint": "ritual-inked vellum; bone censer",
+        },
+        "biome_context": "chants the Wake's litany; backline support in the Drifter's Lair",
+    },
+    {
+        "id": "mob_dalewatch_marches_warband_drifter_fanatic",
+        "name": "Lair Fanatic",
+        "level": 10,
+        "creature_type": "humanoid",
+        "armor_class": "leather",
+        "rarity": "elite",
+        "role": "brawler",
+        "faction_alignment": "hostile_to_faction_a",
+        "hp_tier": "elite",
+        "damage": {
+            "primary_school": "blade",
+            "attack_range": "melee",
+            "dps_tier": "heavy",
+        },
+        "behavior": {
+            "aggro_range": "long",
+            "social_radius": 10,
+            "flee_threshold": 0.0,
+            "calls_allies": True,
+            "patrol": "stationary",
+        },
+        "loot_tier": "standard",
+        "drops": {
+            "gold_copper_avg": 90,
+            "item_hint": "cult-marked steel longsword; lair-passage token",
+        },
+        "biome_context": "front-line elite at the Drifter's Lair boss-room threshold; one per major pull",
     },
 ]
 
@@ -536,7 +624,7 @@ MAIN_CHAIN_STEPS: list[dict[str, Any]] = [
     {
         "step": 7,
         "name": "Clear Copperstep",
-        "level": 6,
+        "level": 8,
         "objective": {
             "kind": "kill",
             "target_hint": "Master Drifter Halen at Copperstep Mine",
@@ -573,7 +661,7 @@ MAIN_CHAIN_STEPS: list[dict[str, Any]] = [
     {
         "step": 10,
         "name": "The Wake's Bones",
-        "level": 8,
+        "level": 10,
         "objective": {
             "kind": "kill",
             "target_hint": "Grand Drifter Valenn and the Brine-Shade Primarch in the Drifter's Lair",
@@ -1209,7 +1297,7 @@ def build_roster() -> dict[str, Any]:
         "by_armor_class": armor_counts,
         "by_rarity": rarity_counts,
         "level_min": 1,
-        "level_max": 8,
+        "level_max": 10,
         "named_or_chain_targets": [
             m["id"] for m in NEW_MOBS if m.get("chain_target") or m["rarity"] == "named"
         ] + ["mob_dalewatch_marches_named_drifter_mage_named"],

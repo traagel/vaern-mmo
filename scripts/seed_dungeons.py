@@ -33,6 +33,19 @@ def write(path: Path, data: dict) -> None:
 
 INSTANCES = [
     # =========================================================================
+    # PRE-ALPHA L10 CAPSTONE (Slice 6 — pseudo-dungeon, open-world)
+    # =========================================================================
+    # Open-world inside the Dalewatch zone room (no instance lockout); the
+    # mob anchor is hard-coded at (470, 80) zone-local in
+    # vaern-server/src/npc/spawn.rs::mob_anchor_for_level. Hub-anchored
+    # dressing props at Ford of Ashmere give the entrance silhouette.
+    ("drifters_lair", "The Drifter's Lair", "dalewatch_marches", "ford_of_ashmere",
+     5, 9, 10,
+     "The Wake's anchor in the Blackwash Fens — an Academian's expelled Wake-rite, now a 2-4-player capstone",
+     [("master_drifter_halen", "Master Drifter Halen", "miniboss", "fire ranged caster + cult adds; flanks via ritual smoke"),
+      ("grand_drifter_valenn", "Grand Drifter Valenn", "final", "arcane caster + Brine-Shade Primarch summon at 50%; phase shift on death of Primarch")]),
+
+    # =========================================================================
     # LOW-TIER 5-MANS (levels 10-22)
     # =========================================================================
     ("burrows_of_bracken", "The Burrows of Bracken", "wyrling_downs", "brackenhollow",

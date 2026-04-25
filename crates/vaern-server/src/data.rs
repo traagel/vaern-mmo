@@ -10,9 +10,9 @@ use bevy::prelude::*;
 use vaern_character::XpCurve;
 use vaern_core::School;
 use vaern_data::{
-    AbilityIndex, ClassDef, LandmarkIndex, QuestIndex, Race, SideQuestIndex, into_index,
-    load_abilities, load_all_landmarks, load_all_side_quests, load_classes, load_races,
-    load_schools,
+    AbilityIndex, BossDrops, ClassDef, LandmarkIndex, QuestIndex, Race, SideQuestIndex, into_index,
+    load_abilities, load_all_boss_drops, load_all_landmarks, load_all_side_quests, load_classes,
+    load_races, load_schools,
 };
 use vaern_items::ContentRegistry;
 
@@ -60,6 +60,12 @@ pub struct GameData {
     /// hubs during `seed_npc_spawns`. Empty if the YAML is missing
     /// (dev-path; ships a warn log).
     pub vendors: Vec<VendorDef>,
+    /// Slice 6 boss-drop ladder. Maps `MobSourceId` → guaranteed
+    /// `ItemReward`s the named mob drops on kill. Loaded from
+    /// `world/dungeons/<id>/loot.yaml`. Drops are merged into the
+    /// post-kill `LootContainer` ahead of the random table roll;
+    /// shared Need-Before-Greed-Pass distribution lands in Phase C.
+    pub boss_drops: BossDrops,
 }
 
 /// Authored vendor NPC — placed at `hub_id` in `zone_id`, stocks the
@@ -280,6 +286,10 @@ pub fn load_game_data() -> GameData {
 
     let vendors = load_vendors(&root.join("vendors.yaml"));
 
+    let boss_drops = load_all_boss_drops(root.join("world").join("dungeons"))
+        .expect("vaern-server: failed to load boss-drop YAMLs from src/generated/world/dungeons");
+    println!("loaded boss drops: {} mob entries", boss_drops.len());
+
     GameData {
         classes,
         abilities,
@@ -295,5 +305,6 @@ pub fn load_game_data() -> GameData {
         content,
         schools,
         vendors,
+        boss_drops,
     }
 }

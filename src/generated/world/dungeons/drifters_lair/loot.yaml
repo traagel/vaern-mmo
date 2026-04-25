@@ -1,0 +1,42 @@
+id: drifters_lair_loot
+instance: drifters_lair
+
+# Slice 6 boss-drop ladder. One tier above the chain capstone reward
+# (chain_dalewatch_first_ride final = steel/wyvern/mageweave + superior).
+#
+# Halen (mini-boss): 3 chest pieces — one per pillar at the chain-capstone
+# material with the next quality bump (steel/wyvern/mageweave + exceptional).
+# Bridges chain reward and Valenn drop.
+#
+# Valenn (boss): full 4-piece set per pillar at one material tier above the
+# chain capstone (mithril plate / dragonscale leather / shadowsilk cloth +
+# exceptional). 12 items total — distributed via Slice 6 Need-Before-Greed
+# rolls (Phase C). On solo kills, all items land in the standard
+# single-owner LootContainer.
+#
+# Open Need: rolls are not pillar-gated (user decision). Pillar tags here
+# are advisory only — they tell players which kit each piece belongs to.
+boss_drops:
+- mob_id: mob_dalewatch_marches_named_drifter_master
+  drops:
+    - { base: plate_breastplate,  material: steel,     quality: exceptional, pillar: might }
+    - { base: leather_jerkin,     material: wyvern,    quality: exceptional, pillar: finesse }
+    - { base: cloth_robe,         material: mageweave, quality: exceptional, pillar: arcana }
+
+- mob_id: mob_dalewatch_marches_named_drifter_valenn
+  drops:
+    # Might — full mithril plate (T5)
+    - { base: plate_breastplate,  material: mithril,     quality: exceptional, pillar: might }
+    - { base: plate_helm,         material: mithril,     quality: exceptional, pillar: might }
+    - { base: plate_greaves,      material: mithril,     quality: exceptional, pillar: might }
+    - { base: plate_sabatons,     material: mithril,     quality: exceptional, pillar: might }
+    # Finesse — full dragonscale leather (T6)
+    - { base: leather_jerkin,     material: dragonscale, quality: exceptional, pillar: finesse }
+    - { base: leather_hood,       material: dragonscale, quality: exceptional, pillar: finesse }
+    - { base: leather_leggings,   material: dragonscale, quality: exceptional, pillar: finesse }
+    - { base: leather_boots,      material: dragonscale, quality: exceptional, pillar: finesse }
+    # Arcana — full shadowsilk cloth (T6)
+    - { base: cloth_robe,         material: shadowsilk,  quality: exceptional, pillar: arcana }
+    - { base: cloth_cowl,         material: shadowsilk,  quality: exceptional, pillar: arcana }
+    - { base: cloth_trousers,     material: shadowsilk,  quality: exceptional, pillar: arcana }
+    - { base: cloth_slippers,     material: shadowsilk,  quality: exceptional, pillar: arcana }

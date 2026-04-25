@@ -28,6 +28,7 @@ mod data;
 mod inventory_io;
 mod logging;
 mod loot_io;
+mod loot_rolls;
 mod movement;
 mod npc;
 mod npc_mesh;
@@ -237,6 +238,11 @@ fn main() {
                 loot_io::handle_loot_take_all_requests,
                 loot_io::broadcast_pending_loots,
                 loot_io::cleanup_loot_containers,
+                // Slice 6 — shared Need/Greed/Pass rolls for boss-tier kills.
+                // tick first so deadline-elapsed items settle this tick;
+                // vote handling can also settle on all-voted reaches.
+                loot_rolls::tick_roll_containers,
+                loot_rolls::handle_loot_roll_votes,
                 resource_nodes::handle_harvest_requests,
                 resource_nodes::tick_node_respawn,
                 // Pillar XP must read CastEvents before they're consumed by

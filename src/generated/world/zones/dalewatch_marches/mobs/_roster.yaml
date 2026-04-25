@@ -1,6 +1,6 @@
 id: _roster__dalewatch_marches
 zone: dalewatch_marches
-mob_count: 24
+mob_count: 27
 mob_ids:
 - mob_dalewatch_marches_beast_wolf
 - mob_dalewatch_marches_beast_boar
@@ -26,24 +26,27 @@ mob_ids:
 - mob_dalewatch_marches_exotic_brine_shade
 - mob_dalewatch_marches_named_brine_primarch
 - mob_dalewatch_marches_named_drifter_valenn
+- mob_dalewatch_marches_warband_drifter_brute
+- mob_dalewatch_marches_warband_drifter_acolyte
+- mob_dalewatch_marches_warband_drifter_fanatic
 by_creature_type:
   beast: 12
   aberration: 3
-  humanoid: 9
+  humanoid: 12
   plant: 0
 by_armor_class:
   hide: 12
   ethereal: 3
-  cloth: 4
-  leather: 3
+  cloth: 5
+  leather: 5
   plate: 2
 by_rarity:
-  common: 17
+  common: 19
   rare: 0
-  elite: 1
+  elite: 2
   named: 6
 level_min: 1
-level_max: 8
+level_max: 10
 named_or_chain_targets:
 - mob_dalewatch_marches_named_wolf_alpha
 - mob_dalewatch_marches_named_pact_captain

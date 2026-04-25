@@ -9,6 +9,7 @@ use thiserror::Error;
 use vaern_core::{Pillar, School};
 
 pub mod bestiary;
+pub mod boss_drops;
 pub mod dungeon;
 pub mod flavored;
 pub mod landmark;
@@ -17,6 +18,7 @@ pub mod race;
 pub mod world;
 
 pub use bestiary::{load_bestiary, Affinities, ArmorClass, Bestiary, CreatureType};
+pub use boss_drops::{load_all_boss_drops, BossDropEntry, BossDrops};
 pub use dungeon::{load_dungeons, Boss, Dungeon};
 pub use flavored::{
     load_flavored, FlavoredAbility, FlavoredEffect, FlavoredEffectKind, FlavoredIndex,
@@ -407,8 +409,10 @@ mod tests {
         // 76 baseline + 3 new hubs from the dalewatch redesign
         // (harriers_rest, kingsroad_waypost, ford_of_ashmere).
         assert_eq!(w.hubs.len(), 79, "expected 79 hubs");
-        // 603 baseline + 9 new mobs from the dalewatch redesign.
-        assert_eq!(w.mobs.len(), 612, "expected 612 mobs");
+        // 603 baseline + 9 new mobs from the dalewatch redesign + 3 Slice 6
+        // Drifter's Lair trash adds (drifter_brute L8, drifter_acolyte L9,
+        // drifter_fanatic L10).
+        assert_eq!(w.mobs.len(), 615, "expected 615 mobs");
     }
 
     #[test]
@@ -474,11 +478,12 @@ mod tests {
     #[test]
     fn loads_all_dungeons() {
         let d = load_dungeons(generated_root().join("world").join("dungeons")).unwrap();
-        assert_eq!(d.len(), 32, "expected 32 instances");
+        // 32 baseline + Slice 6 Drifter's Lair (Dalewatch L9-L10 capstone).
+        assert_eq!(d.len(), 33, "expected 33 instances");
         let five_mans = d.iter().filter(|i| i.group_size == 5).count();
         let ten_mans = d.iter().filter(|i| i.group_size == 10).count();
         let twenty_mans = d.iter().filter(|i| i.group_size == 20).count();
-        assert_eq!(five_mans, 26);
+        assert_eq!(five_mans, 27);
         assert_eq!(ten_mans, 4);
         assert_eq!(twenty_mans, 2);
     }
@@ -519,6 +524,65 @@ mod tests {
                 inst.bosses.len()
             );
         }
+    }
+
+    // ─── Slice 6 — Drifter's Lair guards ────────────────────────────────────
+
+    #[test]
+    fn drifter_valenn_authors_level_10() {
+        let w = load_world(generated_root().join("world")).unwrap();
+        let v = w
+            .mobs
+            .iter()
+            .find(|m| m.id == "mob_dalewatch_marches_named_drifter_valenn")
+            .expect("Valenn mob must exist");
+        assert_eq!(v.level, 10, "Valenn is the L10 capstone boss for Slice 6");
+    }
+
+    #[test]
+    fn drifter_halen_authors_level_9() {
+        let w = load_world(generated_root().join("world")).unwrap();
+        let h = w
+            .mobs
+            .iter()
+            .find(|m| m.id == "mob_dalewatch_marches_named_drifter_master")
+            .expect("Halen mob must exist");
+        assert_eq!(h.level, 9, "Halen is the L9 mini-boss for Slice 6");
+    }
+
+    #[test]
+    fn drifters_lair_dungeon_yaml_loads_with_two_bosses() {
+        let d = load_dungeons(generated_root().join("world").join("dungeons")).unwrap();
+        let lair = d
+            .iter()
+            .find(|i| i.id == "drifters_lair")
+            .expect("drifters_lair dungeon must exist");
+        assert_eq!(lair.zone, "dalewatch_marches");
+        assert_eq!(lair.entrance_hub, "ford_of_ashmere");
+        assert_eq!(lair.level_range.min, 9);
+        assert_eq!(lair.level_range.max, 10);
+        assert_eq!(lair.bosses.len(), 2);
+        assert!(lair.bosses.iter().any(|b| b.id == "master_drifter_halen"));
+        assert!(lair.bosses.iter().any(|b| b.id == "grand_drifter_valenn"));
+    }
+
+    #[test]
+    fn first_ride_step_10_targets_valenn_at_level_10() {
+        let chains = load_all_chains(generated_root().join("world")).unwrap();
+        let chain = chains
+            .chains
+            .get("chain_dalewatch_first_ride")
+            .expect("first-ride chain must exist");
+        let step10 = chain
+            .steps
+            .iter()
+            .find(|s| s.step == 10)
+            .expect("step 10 must exist");
+        assert_eq!(step10.level, 10, "step 10 (kill Valenn) must be the L10 capstone");
+        assert_eq!(
+            step10.objective.mob_id.as_deref(),
+            Some("mob_dalewatch_marches_named_drifter_valenn"),
+        );
     }
 
     #[test]

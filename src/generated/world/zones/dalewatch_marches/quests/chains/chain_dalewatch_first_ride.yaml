@@ -176,7 +176,7 @@ steps:
   prerequisite: chain_dalewatch_first_ride__05_return_tam_and_the_sealed_folio
 - step: 7
   name: Clear Copperstep
-  level: 6
+  level: 8
   objective:
     kind: kill
     target_hint: Master Drifter Halen at Copperstep Mine
@@ -239,7 +239,7 @@ steps:
   prerequisite: chain_dalewatch_first_ride__08_the_pact_worked_focus
 - step: 10
   name: The Wake's Bones
-  level: 8
+  level: 10
   objective:
     kind: kill
     target_hint: Grand Drifter Valenn and the Brine-Shade Primarch in the Drifter's Lair

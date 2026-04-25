@@ -1,0 +1,16 @@
+id: drifters_lair_bosses
+instance: drifters_lair
+bosses:
+- id: master_drifter_halen
+  name: Master Drifter Halen
+  role_tag: miniboss
+  level: 9
+  mechanic: fire ranged caster + cult adds; flanks via ritual smoke
+  hp_tier: elite
+- id: grand_drifter_valenn
+  name: Grand Drifter Valenn
+  role_tag: final
+  level: 10
+  mechanic: arcane caster + Brine-Shade Primarch summon at 50%; phase shift on death
+    of Primarch
+  hp_tier: heroic

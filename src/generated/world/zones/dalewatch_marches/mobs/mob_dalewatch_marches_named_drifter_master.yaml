@@ -1,7 +1,7 @@
 id: mob_dalewatch_marches_named_drifter_master
 name: Master Drifter Halen
 zone: dalewatch_marches
-level: 6
+level: 9
 creature_type: humanoid
 armor_class: cloth
 rarity: named
@@ -22,5 +22,5 @@ loot_tier: quest_marked
 drops:
   gold_copper_avg: 180
   item_hint: pact-worked focus (main-chain turn-in); scorched tome
-biome_context: mine cultist leader; main-chain step 7 target at Copperstep
+biome_context: mine cultist leader; mini-boss in the Drifter's Lair (main-chain step 7 target)
 chain_target: true

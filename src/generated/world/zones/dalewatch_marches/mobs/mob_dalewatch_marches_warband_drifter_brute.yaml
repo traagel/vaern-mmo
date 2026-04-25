@@ -1,0 +1,25 @@
+id: mob_dalewatch_marches_warband_drifter_brute
+name: Drifter Brute
+zone: dalewatch_marches
+level: 8
+creature_type: humanoid
+armor_class: leather
+rarity: common
+role: brawler
+faction_alignment: hostile_to_faction_a
+hp_tier: standard
+damage:
+  primary_school: blade
+  attack_range: melee
+  dps_tier: standard
+behavior:
+  aggro_range: medium
+  social_radius: 10
+  flee_threshold: 0.0
+  calls_allies: true
+  patrol: stationary
+loot_tier: standard
+drops:
+  gold_copper_avg: 32
+  item_hint: cult-rag wraps; chipped iron cleaver
+biome_context: enforcer of the cult; pulls form around him in the Drifter's Lair approach

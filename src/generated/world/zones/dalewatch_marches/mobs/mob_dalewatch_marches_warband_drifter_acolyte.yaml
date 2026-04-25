@@ -1,0 +1,25 @@
+id: mob_dalewatch_marches_warband_drifter_acolyte
+name: Whispering Acolyte
+zone: dalewatch_marches
+level: 9
+creature_type: humanoid
+armor_class: cloth
+rarity: common
+role: caster
+faction_alignment: hostile_to_faction_a
+hp_tier: standard
+damage:
+  primary_school: shadow
+  attack_range: ranged
+  dps_tier: standard
+behavior:
+  aggro_range: long
+  social_radius: 12
+  flee_threshold: 0.2
+  calls_allies: true
+  patrol: stationary
+loot_tier: standard
+drops:
+  gold_copper_avg: 40
+  item_hint: ritual-inked vellum; bone censer
+biome_context: chants the Wake's litany; backline support in the Drifter's Lair

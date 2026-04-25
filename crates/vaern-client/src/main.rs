@@ -27,6 +27,7 @@ mod level_up_ui;
 mod loot_ui;
 mod menu;
 mod nameplates;
+mod roll_window;
 mod net;
 mod party_ui;
 mod quests;
@@ -79,6 +80,7 @@ use crate::inventory_ui::InventoryUiPlugin;
 use crate::item_icons::ItemIconsPlugin;
 use crate::loot_ui::LootUiPlugin;
 use crate::menu::MenuPlugin;
+use crate::roll_window::RollWindowPlugin;
 use crate::stat_screen::StatScreenPlugin;
 use crate::nameplates::NameplatesPlugin;
 use crate::net::{ClientNetConfig, NetworkingPlugin};
@@ -193,6 +195,7 @@ fn main() {
         .add_plugins(party_ui::PartyUiPlugin)
         .add_plugins(BeltUiPlugin)
         .add_plugins(LootUiPlugin)
+        .add_plugins(RollWindowPlugin)
         .add_plugins(ItemIconsPlugin)
         .add_plugins(HarvestUiPlugin)
         .add_plugins(StatScreenPlugin)

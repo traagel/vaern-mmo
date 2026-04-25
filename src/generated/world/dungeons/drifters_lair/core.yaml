@@ -1,0 +1,18 @@
+id: drifters_lair
+name: The Drifter's Lair
+kind: dungeon
+group_size: 5
+zone: dalewatch_marches
+entrance_hub: ford_of_ashmere
+level_range:
+  min: 9
+  max: 10
+level_band: 1-10
+tier: leveling
+boss_count: 2
+estimated_clear_minutes: 45
+loot_tier: low
+lockout: none (rerunnable)
+theme: "The Wake's anchor in the Blackwash Fens \u2014 an Academian's expelled Wake-rite,\
+  \ now a 2-4-player capstone"
+coop_notes: tight-coop-friendly; duo/trio can attempt under-level with care

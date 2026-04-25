@@ -1,0 +1,25 @@
+id: mob_dalewatch_marches_warband_drifter_fanatic
+name: Lair Fanatic
+zone: dalewatch_marches
+level: 10
+creature_type: humanoid
+armor_class: leather
+rarity: elite
+role: brawler
+faction_alignment: hostile_to_faction_a
+hp_tier: elite
+damage:
+  primary_school: blade
+  attack_range: melee
+  dps_tier: heavy
+behavior:
+  aggro_range: long
+  social_radius: 10
+  flee_threshold: 0.0
+  calls_allies: true
+  patrol: stationary
+loot_tier: standard
+drops:
+  gold_copper_avg: 90
+  item_hint: cult-marked steel longsword; lair-passage token
+biome_context: front-line elite at the Drifter's Lair boss-room threshold; one per major pull

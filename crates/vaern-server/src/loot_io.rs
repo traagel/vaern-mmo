@@ -22,16 +22,24 @@ use lightyear::prelude::*;
 use rand::{SeedableRng, rngs::StdRng};
 
 use vaern_combat::NpcKind;
+use vaern_combat::components::DisplayName;
+use vaern_data::ItemReward;
 use vaern_economy::PlayerWallet;
 use vaern_inventory::{InventorySlot, PlayerInventory};
+use vaern_items::{ContentRegistry, ItemInstance};
 use vaern_loot::{DropTable, roll_drop};
 use vaern_protocol::{
-    Channel1, LootClosedNotice, LootContainerSummary, LootId, LootOpenRequest, LootTakeAllRequest,
-    LootTakeRequest, LootWindowEntry, LootWindowSnapshot, PendingLootsSnapshot, PlayerTag,
+    Channel1, LootClosedNotice, LootContainerSummary, LootId, LootOpenRequest, LootRollOpen,
+    LootTakeAllRequest, LootTakeRequest, LootWindowEntry, LootWindowSnapshot,
+    PendingLootsSnapshot, PlayerTag,
 };
 
 use crate::data::GameData;
+use crate::loot_rolls::{
+    build_roll_open_payload, LootRollContainer, RollItemState, ROLL_EXPIRES_SECS,
+};
 use crate::npc::{MobSourceId, Npc, ThreatTable};
+use crate::party_io::{PartyTable, PARTY_SHARE_RADIUS};
 
 /// How long a loot container persists before auto-despawn. Generous at
 /// 5 minutes so a player fighting through a zone can circle back for
@@ -94,10 +102,31 @@ pub struct LootContainer {
 /// both item + coin. Coin credits the top-threat player's wallet
 /// directly (no loot container dance — pre-alpha keeps coin flow
 /// immediate and legible). Item drops still spawn a container.
+///
+/// Slice 6: when the dying mob has authored boss-drops in
+/// `GameData::boss_drops` (keyed on `MobSourceId`), those guaranteed
+/// `ItemReward`s are resolved through the content registry and appended
+/// to the same container's contents alongside the random roll. Phase C
+/// will gate distribution to a party via Need-Before-Greed-Pass; for now
+/// every drop lands with the top-threat owner.
 pub fn spawn_loot_container_on_mob_death(
     trigger: On<Remove, MobSourceId>,
-    mobs: Query<(Option<&NpcKind>, Option<&ThreatTable>, Option<&Transform>, Option<&Npc>)>,
-    mut players: Query<(&PlayerTag, &mut PlayerWallet)>,
+    mobs: Query<(
+        Option<&NpcKind>,
+        Option<&ThreatTable>,
+        Option<&Transform>,
+        Option<&Npc>,
+        Option<&MobSourceId>,
+    )>,
+    mut players: Query<(
+        &PlayerTag,
+        &Transform,
+        &DisplayName,
+        &mut PlayerWallet,
+        &ControlledBy,
+    )>,
+    party_table: Res<PartyTable>,
+    mut roll_open_tx: Query<&mut MessageSender<LootRollOpen>, With<ClientOf>>,
     data: Res<GameData>,
     mut rng: ResMut<LootRng>,
     mut counter: ResMut<LootIdCounter>,
@@ -105,7 +134,7 @@ pub fn spawn_loot_container_on_mob_death(
     mut commands: Commands,
 ) {
     let entity = trigger.entity;
-    let Ok((kind_opt, threat_opt, transform_opt, _)) = mobs.get(entity) else {
+    let Ok((kind_opt, threat_opt, transform_opt, _, source_id_opt)) = mobs.get(entity) else {
         return;
     };
     let Some(kind) = kind_opt else { return };
@@ -123,45 +152,157 @@ pub fn spawn_loot_container_on_mob_death(
         .max_by(|a, b| a.1.total_cmp(b.1));
     let Some((top_entity, _)) = top else { return };
     let owner_entity = *top_entity;
-    let Ok((owner_tag, mut owner_wallet)) = players.get_mut(owner_entity) else {
-        return;
-    };
-    let owner_client = owner_tag.client_id;
 
-    let roll = roll_drop(&table, &data.content, &mut rng.0);
+    let kill_pos = transform.translation;
+    let is_named = matches!(*kind, NpcKind::Named);
 
-    if roll.copper > 0 {
-        owner_wallet.credit(roll.copper as u64);
-        info!(
-            "[loot] credited {c}c to client {owner_client} (wallet now {total}c)",
-            c = roll.copper,
-            total = owner_wallet.copper,
-        );
+    // Roll the random table once (coins + optional item) and credit
+    // coins to the killer's wallet inside a scoped mut borrow. The
+    // optional rolled item gets folded into `final_contents` below.
+    let owner_client;
+    let rolled_item;
+    {
+        let Ok((owner_tag, _tf, _dname, mut owner_wallet, _cb)) =
+            players.get_mut(owner_entity)
+        else {
+            return;
+        };
+        owner_client = owner_tag.client_id;
+        let r = roll_drop(&table, &data.content, &mut rng.0);
+        if r.copper > 0 {
+            owner_wallet.credit(r.copper as u64);
+            info!(
+                "[loot] credited {c}c to client {owner_client} (wallet now {total}c)",
+                c = r.copper,
+                total = owner_wallet.copper,
+            );
+        }
+        rolled_item = r.item;
     }
 
-    let Some(instance) = roll.item else {
-        // Coin-only drop (or nothing) — no container needed.
+    // Build container contents: authored boss drops first (deterministic),
+    // then the random table roll (if any).
+    let mut final_contents: Vec<InventorySlot> = Vec::new();
+    if let Some(source_id) = source_id_opt {
+        if let Some(drops) = data.boss_drops.drops_for_mob(&source_id.0) {
+            for slot in resolve_boss_drops(drops, &data.content) {
+                final_contents.push(slot);
+            }
+            if !final_contents.is_empty() {
+                info!(
+                    "[loot] boss drops for {mob}: {n} item(s) added to container",
+                    mob = source_id.0,
+                    n = final_contents.len(),
+                );
+            }
+        }
+    }
+    if let Some(instance) = rolled_item {
+        final_contents.push(InventorySlot { instance, count: 1 });
+    }
+    if final_contents.is_empty() {
         return;
-    };
+    }
 
     counter.0 += 1;
     let loot_id = counter.0;
 
-    commands.spawn((
-        Name::new(format!("loot-container-{loot_id}")),
-        LootContainer {
+    // Eligibility for shared rolls — boss-tier (Named) + party + radius.
+    let mut eligible_clients: Vec<u64> = Vec::new();
+    let mut eligible_names: Vec<String> = Vec::new();
+    let mut eligible_links: Vec<(u64, Entity)> = Vec::new();
+    if is_named {
+        if let Some(party) = party_table.party_of(owner_client) {
+            for (tag, tf, dname, _wallet, cb) in players.iter() {
+                if !party.members.contains(&tag.client_id) {
+                    continue;
+                }
+                if (tf.translation - kill_pos).length() <= PARTY_SHARE_RADIUS {
+                    eligible_clients.push(tag.client_id);
+                    eligible_names.push(dname.0.clone());
+                    eligible_links.push((tag.client_id, cb.owner));
+                }
+            }
+        }
+    }
+
+    // ≥2 means "killer + at least one partner in radius" → shared rolls.
+    let use_shared_rolls = eligible_clients.len() >= 2;
+
+    if use_shared_rolls {
+        let items: Vec<RollItemState> = final_contents
+            .into_iter()
+            .map(RollItemState::new)
+            .collect();
+        let container = LootRollContainer {
             loot_id,
-            owner: owner_client,
-            position: transform.translation,
-            contents: vec![InventorySlot { instance, count: 1 }],
+            eligible: eligible_clients.clone(),
+            items,
             age_secs: 0.0,
-        },
-    ));
-    dirty.0 = true;
-    info!(
-        "[loot] spawned container #{loot_id} for client {owner_client} at {:?}",
-        transform.translation
-    );
+            expires_at_secs: ROLL_EXPIRES_SECS,
+        };
+        let payload = build_roll_open_payload(&container, eligible_names);
+        for (_, link) in &eligible_links {
+            if let Ok(mut tx) = roll_open_tx.get_mut(*link) {
+                let _ = tx.send::<Channel1>(payload.clone());
+            }
+        }
+        commands.spawn((
+            Name::new(format!("loot-roll-container-{loot_id}")),
+            container,
+        ));
+        info!(
+            "[loot:roll] spawned roll container #{loot_id} for {n} eligible voter(s) at {:?}",
+            kill_pos,
+            n = eligible_clients.len(),
+        );
+    } else {
+        commands.spawn((
+            Name::new(format!("loot-container-{loot_id}")),
+            LootContainer {
+                loot_id,
+                owner: owner_client,
+                position: kill_pos,
+                contents: final_contents,
+                age_secs: 0.0,
+            },
+        ));
+        dirty.0 = true;
+        info!(
+            "[loot] spawned container #{loot_id} for client {owner_client} at {:?}",
+            kill_pos
+        );
+    }
+}
+
+/// Resolve a list of `ItemReward`s into `InventorySlot`s for a boss-drop
+/// container. Mirrors `quests.rs::grant_item_rewards` for the per-item
+/// resolve + skip-on-error semantics, but without the per-pillar filter
+/// — boss-drops are dropped as a pool and Phase C distributes via party
+/// rolls (Open Need; pillar tags are advisory only).
+pub(crate) fn resolve_boss_drops(
+    drops: &[ItemReward],
+    registry: &ContentRegistry,
+) -> Vec<InventorySlot> {
+    let mut out = Vec::with_capacity(drops.len());
+    for r in drops {
+        let instance = match &r.material {
+            Some(m) => ItemInstance::new(&r.base, m, &r.quality),
+            None => ItemInstance::materialless(&r.base, &r.quality),
+        };
+        if let Err(e) = registry.resolve(&instance) {
+            info!(
+                "[loot:boss] skipping {} ({:?}/{}): {e}",
+                r.base, r.material, r.quality
+            );
+            continue;
+        }
+        out.push(InventorySlot {
+            instance,
+            count: r.count,
+        });
+    }
+    out
 }
 
 /// Age every container; despawn those older than LOOT_DESPAWN_SECS or

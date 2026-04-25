@@ -896,6 +896,88 @@ pub struct LootClosedNotice {
     pub loot_id: LootId,
 }
 
+// ─── shared loot rolls (Slice 6 — Drifter's Lair / boss-tier kills) ─────────
+//
+// When a Named-tier mob dies with a party of 2+ players within
+// `PARTY_SHARE_RADIUS=40u`, the kill spawns a roll-container instead of
+// the single-owner `LootContainer`. Eligible party members each get a
+// `LootRollOpen` modal listing the boss drops; per-item Need/Greed/Pass
+// votes resolve via `decide_roll_winner` server-side and the winner
+// receives the item directly into inventory. Solo kills bypass — the
+// existing single-owner flow runs unchanged.
+//
+// Open Need (user decision): no pillar gating. Any eligible member can
+// roll Need on any item.
+
+/// Ballot kind in a Need-Before-Greed-Pass roll. Need beats Greed beats
+/// Pass; tied Needs roll a hidden d100, tied Greeds same. All-Pass = no
+/// winner (item despawns).
+#[derive(Serialize, Deserialize, Clone, Copy, Debug, PartialEq, Eq, Hash)]
+pub enum RollVote {
+    Need,
+    Greed,
+    Pass,
+}
+
+/// One item entry inside a `LootRollOpen` broadcast. Indexed by the
+/// item's slot position inside the container so subsequent
+/// `LootRollVote` and `LootRollResult` messages can reference it.
+#[derive(Serialize, Deserialize, Clone, Debug, PartialEq, Eq)]
+pub struct LootRollItem {
+    pub item_index: u32,
+    pub instance: vaern_items::ItemInstance,
+    pub count: u32,
+}
+
+/// Server → Client: roll opened on a boss-tier loot container. Sent to
+/// every party member within `PARTY_SHARE_RADIUS` of the kill site at
+/// container spawn. Client pops a centered Need/Greed/Pass modal listing
+/// each item with a countdown to `expires_in_secs`.
+#[derive(Serialize, Deserialize, Clone, Debug, PartialEq, Eq)]
+pub struct LootRollOpen {
+    pub loot_id: LootId,
+    pub items: Vec<LootRollItem>,
+    /// Display names of every eligible voter. Lets the client preview
+    /// the participant set + show "waiting on N players" while votes
+    /// trickle in. Authoritative source is server-side.
+    pub eligible: Vec<String>,
+    /// Initial deadline, expressed as seconds-from-now. Client mirrors
+    /// the countdown locally for the UI; settlement is server-side.
+    pub expires_in_secs: u32,
+}
+
+/// Client → Server: cast one of `Need` / `Greed` / `Pass` on a single
+/// item in an active roll container. Server validates the sender is in
+/// the eligible set + the vote hasn't already been recorded. Late
+/// votes after settlement are silently dropped.
+#[derive(Serialize, Deserialize, Clone, Debug, PartialEq, Eq)]
+pub struct LootRollVote {
+    pub loot_id: LootId,
+    pub item_index: u32,
+    pub vote: RollVote,
+}
+
+/// Server → Client: one item's roll has settled. Sent to every eligible
+/// member (winners + losers + observers) so each client can update its
+/// modal and post a chat-history line. `roll_value` is the d100 used to
+/// break the winning vote-kind tier; `255` if there was a single
+/// uncontested vote (no roll needed) or `0` if no winner (all-Pass /
+/// expired with zero votes).
+#[derive(Serialize, Deserialize, Clone, Debug, PartialEq, Eq)]
+pub struct LootRollResult {
+    pub loot_id: LootId,
+    pub item_index: u32,
+    /// Display name of the winning player. Empty string if no winner
+    /// (all-Pass or expired with zero votes).
+    pub winner: String,
+    /// Vote kind that won — `Need`/`Greed`/`Pass`. `Pass` here means
+    /// "no winner" (item despawned).
+    pub vote_kind: RollVote,
+    /// d100 roll for the winner (1-100). `255` = single-vote auto-win,
+    /// `0` = no winner.
+    pub roll_value: u8,
+}
+
 // ─── harvest protocol ──────────────────────────────────────────────────────
 //
 // Resource nodes live in the world as replicated entities carrying
@@ -1164,6 +1246,13 @@ impl Plugin for SharedPlugin {
             .add_direction(NetworkDirection::ClientToServer);
         app.register_message::<LootTakeAllRequest>()
             .add_direction(NetworkDirection::ClientToServer);
+        // Slice 6 shared-roll messages.
+        app.register_message::<LootRollOpen>()
+            .add_direction(NetworkDirection::ServerToClient);
+        app.register_message::<LootRollVote>()
+            .add_direction(NetworkDirection::ClientToServer);
+        app.register_message::<LootRollResult>()
+            .add_direction(NetworkDirection::ServerToClient);
         app.register_message::<HarvestRequest>()
             .add_map_entities()
             .add_direction(NetworkDirection::ClientToServer);

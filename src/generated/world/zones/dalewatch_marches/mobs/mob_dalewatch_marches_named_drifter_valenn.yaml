@@ -1,7 +1,7 @@
 id: mob_dalewatch_marches_named_drifter_valenn
 name: Grand Drifter Valenn
 zone: dalewatch_marches
-level: 8
+level: 10
 creature_type: humanoid
 armor_class: cloth
 rarity: named
@@ -22,5 +22,5 @@ loot_tier: quest_marked
 drops:
   gold_copper_avg: 500
   item_hint: valenn's signet + sealed confession (chain finisher)
-biome_context: the expelled Academian behind the Wake; final boss in the Drifter's Lair
+biome_context: the expelled Academian behind the Wake; L10 capstone boss of the Drifter's Lair
 chain_target: true
