@@ -35,6 +35,18 @@ pub enum AppState {
     #[default]
     MainMenu,
     Connecting,
+    /// Connected to the server, awaiting a `LoginResult` /
+    /// `RegisterResult` after sending `ClientLogin` /
+    /// `ClientRegister`. Only entered when account-gated login is
+    /// active (VAERN_USE_ACCOUNTS=1). On success, we transition to
+    /// `CharacterSelect`; on failure, we tear down the connection and
+    /// return to `MainMenu` with an inline error.
+    Authenticating,
+    /// Authed; the client knows the server-driven character roster and
+    /// shows the pick-or-create UI. Selecting a character sends
+    /// `ClientHello` and transitions to `InGame`. "New character" sends
+    /// `ClientCreateCharacter`; the result appends to the roster.
+    CharacterSelect,
     InGame,
     /// Server connection lost mid-game. The retry loop in
     /// `net::reconnect_tick` re-spawns the lightyear client with
@@ -142,6 +154,11 @@ pub struct MenuState {
     /// In-game menu modal open?
     pub in_game_modal: bool,
     pub selected_existing: Option<usize>,
+    /// Slice 8e auth form fields. Only used when the user is opting into
+    /// the server-account flow; the legacy local-JSON flow ignores them.
+    pub auth_username: String,
+    pub auth_password: String,
+    pub auth_error: String,
     // Quaternius cosmetic sliders (mirror museum's composer picks).
     pub q_body: Option<QOutfit>,
     pub q_legs: Option<QOutfit>,
@@ -234,6 +251,9 @@ impl Plugin for MenuPlugin {
                 races,
                 in_game_modal: false,
                 selected_existing: None,
+                auth_username: String::new(),
+                auth_password: String::new(),
+                auth_error: String::new(),
                 q_body: None,
                 q_legs: None,
                 q_arms: None,
@@ -249,6 +269,8 @@ impl Plugin for MenuPlugin {
                 (
                     main_menu_ui.run_if(in_state(AppState::MainMenu)),
                     connecting_ui.run_if(in_state(AppState::Connecting)),
+                    authenticating_ui.run_if(in_state(AppState::Authenticating)),
+                    character_select_ui.run_if(in_state(AppState::CharacterSelect)),
                     reconnecting_ui.run_if(in_state(AppState::Reconnecting)),
                     in_game_menu_ui.run_if(in_state(AppState::InGame)),
                 ),
@@ -284,6 +306,63 @@ fn main_menu_ui(
             );
             ui.add_space(24.0);
         });
+
+        // ── Server account (Slice 8e) ─────────────────────────────────
+        // Optional. Leave blank to use the legacy local-JSON flow.
+        ui.group(|ui| {
+            ui.heading("Server account (optional)");
+            ui.add_space(4.0);
+            if !menu.auth_error.is_empty() {
+                ui.colored_label(egui::Color32::from_rgb(220, 90, 90), &menu.auth_error);
+                ui.add_space(4.0);
+            }
+            ui.horizontal(|ui| {
+                ui.label("Username:");
+                ui.add(
+                    egui::TextEdit::singleline(&mut menu.auth_username).desired_width(140.0),
+                );
+                ui.label("Password:");
+                ui.add(
+                    egui::TextEdit::singleline(&mut menu.auth_password)
+                        .password(true)
+                        .desired_width(140.0),
+                );
+                let can_auth = !menu.auth_username.trim().is_empty()
+                    && !menu.auth_password.is_empty();
+                if ui
+                    .add_enabled(can_auth, egui::Button::new("Login"))
+                    .clicked()
+                {
+                    commands.insert_resource(crate::net::ClientCredentials {
+                        username: menu.auth_username.trim().to_string(),
+                        password: menu.auth_password.clone(),
+                        register_instead: false,
+                    });
+                    menu.auth_error.clear();
+                    next_state.set(AppState::Connecting);
+                }
+                if ui
+                    .add_enabled(can_auth, egui::Button::new("Register"))
+                    .clicked()
+                {
+                    commands.insert_resource(crate::net::ClientCredentials {
+                        username: menu.auth_username.trim().to_string(),
+                        password: menu.auth_password.clone(),
+                        register_instead: true,
+                    });
+                    menu.auth_error.clear();
+                    next_state.set(AppState::Connecting);
+                }
+            });
+            ui.label(
+                egui::RichText::new(
+                    "Server-side accounts (Slice 8e). Leave blank + use legacy flow below for the dev loop.",
+                )
+                .small()
+                .color(egui::Color32::from_gray(140)),
+            );
+        });
+        ui.add_space(12.0);
 
         ui.columns(2, |cols| {
             // ── Left: existing characters ──────────────────────────────────
@@ -610,6 +689,183 @@ fn connecting_ui(mut contexts: EguiContexts) {
             ui.heading("Connecting…");
             ui.add_space(12.0);
             ui.spinner();
+        });
+    });
+}
+
+/// UI shown while `AppState::Authenticating` is active. Spinner +
+/// "Authenticating..." copy. Result-handling lives in
+/// `net::drain_auth_results` which transitions us out.
+fn authenticating_ui(mut contexts: EguiContexts) {
+    let ctx = match contexts.ctx_mut() {
+        Ok(c) => c,
+        Err(_) => return,
+    };
+    egui::CentralPanel::default().show(ctx, |ui| {
+        ui.vertical_centered(|ui| {
+            ui.add_space(100.0);
+            ui.heading("Authenticating…");
+            ui.add_space(12.0);
+            ui.spinner();
+        });
+    });
+}
+
+/// UI shown while `AppState::CharacterSelect` is active. Lists the
+/// server-supplied character roster with a Play button per row, plus a
+/// minimal "Create Character" form that ships `ClientCreateCharacter`
+/// over the wire.
+#[allow(clippy::too_many_arguments)]
+fn character_select_ui(
+    mut contexts: EguiContexts,
+    mut menu: ResMut<MenuState>,
+    mut roster: ResMut<crate::net::ServerCharacterRoster>,
+    mut next_state: ResMut<NextState<AppState>>,
+    mut create_tx_q: Query<
+        &mut lightyear::prelude::MessageSender<vaern_protocol::ClientCreateCharacter>,
+        With<lightyear::prelude::client::Client>,
+    >,
+    mut hello_tx_q: Query<
+        &mut lightyear::prelude::MessageSender<vaern_protocol::ClientHello>,
+        With<lightyear::prelude::client::Client>,
+    >,
+    mut commands: Commands,
+) {
+    let ctx = match contexts.ctx_mut() {
+        Ok(c) => c,
+        Err(_) => return,
+    };
+    egui::CentralPanel::default().show(ctx, |ui| {
+        ui.vertical_centered(|ui| {
+            ui.add_space(28.0);
+            ui.heading(format!(
+                "Welcome, {}",
+                if roster.account_username.is_empty() {
+                    "wanderer"
+                } else {
+                    roster.account_username.as_str()
+                }
+            ));
+            ui.add_space(16.0);
+        });
+
+        if !roster.last_error.is_empty() {
+            ui.colored_label(egui::Color32::from_rgb(220, 90, 90), &roster.last_error);
+            ui.add_space(8.0);
+        }
+
+        ui.columns(2, |cols| {
+            // ── Left: server-side character roster ───────────────────────
+            cols[0].group(|ui| {
+                ui.heading("Your characters");
+                ui.add_space(4.0);
+                if roster.characters.is_empty() {
+                    ui.label(
+                        egui::RichText::new("(no characters yet — create one →)")
+                            .italics(),
+                    );
+                }
+                let summaries = roster.characters.clone();
+                for c in summaries {
+                    ui.horizontal(|ui| {
+                        ui.label(format!(
+                            "{}  ·  {}  ·  {}  ·  L{}",
+                            if c.name.is_empty() {
+                                "(unnamed)".to_string()
+                            } else {
+                                c.name.clone()
+                            },
+                            if c.race_id.is_empty() {
+                                "?".to_string()
+                            } else {
+                                prettify(&c.race_id)
+                            },
+                            pillar_display(c.core_pillar),
+                            c.level
+                        ));
+                        if ui.button("▶ Play").clicked() {
+                            // Ship ClientHello with this character_id.
+                            // Server resolves via PersistedCharacter file.
+                            let cosmetics = if c.race_id.is_empty() {
+                                None
+                            } else {
+                                Some(PersistedCosmetics::default())
+                            };
+                            commands.insert_resource(SelectedCharacter {
+                                name: c.name.clone(),
+                                race_id: c.race_id.clone(),
+                                core_pillar: c.core_pillar,
+                                gender: Gender::Male,
+                                character_id: c.character_id.clone(),
+                                cosmetics: cosmetics.clone().unwrap_or_default(),
+                            });
+                            for mut sender in &mut hello_tx_q {
+                                let _ = sender
+                                    .send::<vaern_protocol::Channel1>(
+                                        vaern_protocol::ClientHello {
+                                            core_pillar: c.core_pillar,
+                                            race_id: c.race_id.clone(),
+                                            character_id: c.character_id.clone(),
+                                            character_name: c.name.clone(),
+                                            cosmetics: cosmetics.clone(),
+                                        },
+                                    );
+                            }
+                            next_state.set(AppState::InGame);
+                        }
+                    });
+                }
+            });
+
+            // ── Right: create-new-character form ─────────────────────────
+            cols[1].group(|ui| {
+                ui.heading("Create character");
+                ui.add_space(4.0);
+                ui.horizontal(|ui| {
+                    ui.label("Name:");
+                    ui.text_edit_singleline(&mut menu.character_name);
+                });
+                ui.add_space(4.0);
+                race_picker(ui, &mut menu);
+                ui.add_space(4.0);
+                gender_picker(ui, &mut menu);
+                ui.add_space(4.0);
+                pillar_picker(ui, &mut menu);
+                ui.add_space(8.0);
+                let can_create = !menu.character_name.trim().is_empty()
+                    && !menu.races.is_empty();
+                if ui
+                    .add_enabled(can_create, egui::Button::new("Create on Server"))
+                    .clicked()
+                {
+                    let name = menu.character_name.trim().to_string();
+                    let race = &menu.races[menu.race_index];
+                    let cosmetics = menu.cosmetics_from_form();
+                    for mut sender in &mut create_tx_q {
+                        let _ = sender
+                            .send::<vaern_protocol::Channel1>(
+                                vaern_protocol::ClientCreateCharacter {
+                                    name: name.clone(),
+                                    race_id: race.id.clone(),
+                                    core_pillar: PILLARS[menu.pillar_index],
+                                    cosmetics: Some(cosmetics.clone()),
+                                },
+                            );
+                    }
+                    roster.last_error.clear();
+                }
+            });
+        });
+
+        ui.add_space(16.0);
+        ui.separator();
+        ui.horizontal(|ui| {
+            if ui.button("← Log out").clicked() {
+                commands.remove_resource::<crate::net::CachedCredentials>();
+                roster.characters.clear();
+                roster.account_username.clear();
+                next_state.set(AppState::MainMenu);
+            }
         });
     });
 }

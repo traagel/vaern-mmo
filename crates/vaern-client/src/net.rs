@@ -18,9 +18,10 @@ use lightyear::prelude::client::*;
 use lightyear::prelude::*;
 use vaern_core::pillar::Pillar;
 use vaern_protocol::{
-    AbandonQuest, AcceptQuest, CLIENT_ADDR, CastFired, CastIntent, Channel1, ClientHello,
-    HotbarSnapshot, NetcodeKeySource, ProgressQuest, QuestLogSnapshot, SHARED_PROTOCOL_ID,
-    StanceRequest,
+    AbandonQuest, AcceptQuest, CLIENT_ADDR, CastFired, CastIntent, Channel1, CharacterSummary,
+    ClientCreateCharacter, ClientHello, ClientLogin, ClientRegister, CreateCharacterResult,
+    HotbarSnapshot, LoginResult, NetcodeKeySource, ProgressQuest, QuestLogSnapshot,
+    RegisterResult, SHARED_PROTOCOL_ID, StanceRequest,
 };
 
 use crate::menu::{AppState, SelectedCharacter};
@@ -40,7 +41,9 @@ pub struct NetworkingPlugin;
 impl Plugin for NetworkingPlugin {
     fn build(&self, app: &mut App) {
         app.init_resource::<ReconnectState>()
+            .init_resource::<ServerCharacterRoster>()
             .add_observer(send_hello_on_connect)
+            .add_observer(send_auth_on_connect)
             .add_observer(handle_disconnect)
             .add_systems(OnEnter(AppState::Connecting), connect_on_connecting_enter)
             .add_systems(OnEnter(AppState::Reconnecting), enter_reconnecting)
@@ -48,8 +51,48 @@ impl Plugin for NetworkingPlugin {
             .add_systems(
                 Update,
                 (reconnect_tick, detect_reconnected).run_if(in_state(AppState::Reconnecting)),
+            )
+            .add_systems(
+                Update,
+                drain_auth_results.run_if(
+                    in_state(AppState::Authenticating).or(in_state(AppState::CharacterSelect)),
+                ),
             );
     }
+}
+
+/// Set when the user clicks Login or Register on the main menu.
+/// Consumed by `send_auth_on_connect`: when the netcode handshake
+/// completes and this resource is present, we ship `ClientLogin` (or
+/// `ClientRegister` if `register_instead`) and transition to
+/// `Authenticating`.
+#[derive(Resource, Clone, Debug)]
+pub struct ClientCredentials {
+    pub username: String,
+    pub password: String,
+    /// `true` = the user clicked Register; ship `ClientRegister`. `false`
+    /// = ship `ClientLogin`.
+    pub register_instead: bool,
+}
+
+/// Last successful credentials, kept around for the reconnect path so a
+/// dropped connection mid-game can re-auth without a re-prompt.
+#[derive(Resource, Clone, Debug)]
+pub struct CachedCredentials {
+    pub username: String,
+    pub password: String,
+}
+
+/// Server-driven character roster after a successful login. Populated
+/// from `LoginResult.characters` and updated on each
+/// `CreateCharacterResult`. Drives the `CharacterSelect` UI.
+#[derive(Resource, Clone, Debug, Default)]
+pub struct ServerCharacterRoster {
+    pub account_username: String,
+    pub characters: Vec<CharacterSummary>,
+    /// Last server-side error message, displayed in the UI. Cleared on
+    /// the next successful action.
+    pub last_error: String,
 }
 
 /// Reconnect retry bookkeeping. Reset on every entry to `Reconnecting`.
@@ -221,7 +264,15 @@ fn spawn_client_entity(commands: &mut Commands, net_config: &ClientNetConfig, cl
         MessageReceiver::<HotbarSnapshot>::default(),
         MessageReceiver::<QuestLogSnapshot>::default(),
     );
-    let client = commands.spawn((net_core, senders, receivers)).id();
+    let auth_io = (
+        MessageSender::<ClientLogin>::default(),
+        MessageSender::<ClientRegister>::default(),
+        MessageSender::<ClientCreateCharacter>::default(),
+        MessageReceiver::<LoginResult>::default(),
+        MessageReceiver::<RegisterResult>::default(),
+        MessageReceiver::<CreateCharacterResult>::default(),
+    );
+    let client = commands.spawn((net_core, senders, receivers, auth_io)).id();
     commands.trigger(Connect { entity: client });
     info!(
         "connecting to {server_addr} as client {client_id} (netcode key: {})",
@@ -344,6 +395,143 @@ fn detect_reconnected(
     if clients.iter().next().is_some() {
         info!("reconnect: handshake succeeded — re-entering game");
         next.set(AppState::InGame);
+    }
+}
+
+/// On `Add Connected`, if `ClientCredentials` is present, ship the
+/// matching `ClientLogin` or `ClientRegister` and transition to
+/// `Authenticating`. Cleared by `drain_auth_results` whether the
+/// attempt succeeds or fails — clients have to re-fill the form for a
+/// retry. The legacy `send_hello_on_connect` observer is gated on the
+/// absence of `ClientCredentials` so it doesn't double-send.
+fn send_auth_on_connect(
+    trigger: On<Add, Connected>,
+    creds: Option<Res<ClientCredentials>>,
+    mut login_tx: Query<&mut MessageSender<ClientLogin>, With<Client>>,
+    mut register_tx: Query<&mut MessageSender<ClientRegister>, With<Client>>,
+    mut next_state: ResMut<NextState<AppState>>,
+) {
+    let Some(creds) = creds else { return };
+    if creds.register_instead {
+        let Ok(mut sender) = register_tx.get_mut(trigger.entity) else {
+            return;
+        };
+        let _ = sender.send::<Channel1>(ClientRegister {
+            username: creds.username.clone(),
+            password: creds.password.clone(),
+        });
+        info!("[auth] sent ClientRegister for username '{}'", creds.username);
+    } else {
+        let Ok(mut sender) = login_tx.get_mut(trigger.entity) else {
+            return;
+        };
+        let _ = sender.send::<Channel1>(ClientLogin {
+            username: creds.username.clone(),
+            password: creds.password.clone(),
+        });
+        info!("[auth] sent ClientLogin for username '{}'", creds.username);
+    }
+    next_state.set(AppState::Authenticating);
+}
+
+/// Drain server auth responses. Runs in `Authenticating` and
+/// `CharacterSelect`:
+///
+/// - `LoginResult` / `RegisterResult` (ok=true): populate
+///   `ServerCharacterRoster`, cache credentials for reconnect, transition
+///   to `CharacterSelect`.
+/// - `LoginResult` / `RegisterResult` (ok=false): record `last_error`,
+///   tear down the netcode client, transition to `MainMenu`.
+/// - `CreateCharacterResult`: append to the roster; record errors.
+fn drain_auth_results(
+    mut commands: Commands,
+    mut roster: ResMut<ServerCharacterRoster>,
+    creds: Option<Res<ClientCredentials>>,
+    mut next_state: ResMut<NextState<AppState>>,
+    mut login_rx: Query<&mut MessageReceiver<LoginResult>, With<Client>>,
+    mut register_rx: Query<&mut MessageReceiver<RegisterResult>, With<Client>>,
+    mut create_rx: Query<&mut MessageReceiver<CreateCharacterResult>, With<Client>>,
+    clients: Query<Entity, With<Client>>,
+) {
+    let mut auth_succeeded = false;
+    let mut auth_failed = false;
+    let mut error_msg = String::new();
+
+    for mut rx in &mut login_rx {
+        for msg in rx.receive() {
+            if msg.ok {
+                roster.characters = msg.characters.clone();
+                roster.last_error.clear();
+                if let Some(c) = creds.as_deref() {
+                    roster.account_username = c.username.clone();
+                }
+                auth_succeeded = true;
+                info!(
+                    "[auth] login ok; roster has {} character(s)",
+                    msg.characters.len()
+                );
+            } else {
+                error_msg = msg.error_msg.clone();
+                auth_failed = true;
+                warn!("[auth] login refused: {}", msg.error_msg);
+            }
+        }
+    }
+
+    for mut rx in &mut register_rx {
+        for msg in rx.receive() {
+            if msg.ok {
+                roster.characters.clear();
+                roster.last_error.clear();
+                if let Some(c) = creds.as_deref() {
+                    roster.account_username = c.username.clone();
+                }
+                auth_succeeded = true;
+                info!("[auth] register ok; new account, empty roster");
+            } else {
+                error_msg = msg.error_msg.clone();
+                auth_failed = true;
+                warn!("[auth] register refused: {}", msg.error_msg);
+            }
+        }
+    }
+
+    for mut rx in &mut create_rx {
+        for msg in rx.receive() {
+            if msg.ok {
+                roster.characters.push(CharacterSummary {
+                    character_id: msg.character_id.clone(),
+                    name: String::new(), // populated by the menu via the form data
+                    race_id: String::new(),
+                    core_pillar: Pillar::Might,
+                    level: 0,
+                });
+                roster.last_error.clear();
+                info!("[auth] create_character ok; character_id={}", msg.character_id);
+            } else {
+                roster.last_error = msg.error_msg.clone();
+                warn!("[auth] create_character refused: {}", msg.error_msg);
+            }
+        }
+    }
+
+    if auth_succeeded {
+        if let Some(c) = creds.as_deref() {
+            commands.insert_resource(CachedCredentials {
+                username: c.username.clone(),
+                password: c.password.clone(),
+            });
+        }
+        commands.remove_resource::<ClientCredentials>();
+        next_state.set(AppState::CharacterSelect);
+    } else if auth_failed {
+        roster.last_error = error_msg;
+        commands.remove_resource::<ClientCredentials>();
+        // Tear down the netcode client so the next attempt starts fresh.
+        for e in &clients {
+            commands.entity(e).despawn();
+        }
+        next_state.set(AppState::MainMenu);
     }
 }
 
