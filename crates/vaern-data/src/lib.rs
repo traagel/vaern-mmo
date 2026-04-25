@@ -25,8 +25,8 @@ pub use quest::{
     load_all_side_quests, HubSideQuests, SideQuest, SideQuestIndex,
 };
 pub use quest::{
-    load_all_chains, QuestChain, QuestChainFinalReward, QuestIndex, QuestNpc, QuestObjective,
-    QuestStep,
+    load_all_chains, ItemReward, QuestChain, QuestChainFinalReward, QuestIndex, QuestNpc,
+    QuestObjective, QuestStep,
 };
 pub use race::{load_races, Race, RacePillarAffinity};
 pub use world::{

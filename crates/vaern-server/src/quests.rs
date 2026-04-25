@@ -10,7 +10,11 @@ use bevy::prelude::*;
 use lightyear::prelude::server::*;
 use lightyear::prelude::*;
 use vaern_character::{Experience, XpCurve};
+use vaern_core::Pillar;
+use vaern_data::ItemReward;
 use vaern_economy::PlayerWallet;
+use vaern_inventory::PlayerInventory;
+use vaern_items::{ContentRegistry, ItemInstance};
 use vaern_protocol::{
     AbandonQuest, AcceptQuest, PlayerTag, ProgressQuest, QuestLogEntry, QuestLogSnapshot,
 };
@@ -19,6 +23,51 @@ use vaern_stats::{PillarCaps, PillarScores};
 use crate::data::GameData;
 use crate::npc::MobSourceId;
 use crate::xp::grant_xp_with_levelup_bonus;
+
+/// Hand out a list of `ItemReward` entries to one player. Entries with a
+/// `pillar` filter that doesn't match the player's `core_pillar` are
+/// skipped silently. Resolution failures (missing base / material /
+/// quality, or invalid combination) log + skip; inventory-full overflow
+/// logs but the rest of the list keeps trying.
+fn grant_item_rewards(
+    rewards: &[ItemReward],
+    inventory: &mut PlayerInventory,
+    registry: &ContentRegistry,
+    player_pillar: Pillar,
+    player_e: Entity,
+    label: &str,
+) {
+    for r in rewards {
+        if let Some(p) = r.pillar
+            && p != player_pillar
+        {
+            continue;
+        }
+        let instance = match &r.material {
+            Some(m) => ItemInstance::new(&r.base, m, &r.quality),
+            None => ItemInstance::materialless(&r.base, &r.quality),
+        };
+        if let Err(e) = registry.resolve(&instance) {
+            println!(
+                "[quest:reward] {label}: skipping {} ({:?}/{}) for player {player_e:?}: {e}",
+                r.base, r.material, r.quality
+            );
+            continue;
+        }
+        let leftover = inventory.add(instance, r.count, registry);
+        if leftover > 0 {
+            println!(
+                "[quest:reward] {label}: inventory full, {leftover} of {} didn't fit (player {player_e:?})",
+                r.base
+            );
+        } else {
+            println!(
+                "[quest:reward] {label}: granted {}× {} to player {player_e:?}",
+                r.count, r.base
+            );
+        }
+    }
+}
 
 /// Hard refuse a quest accept if its starting level is more than this many
 /// above the player's current level. 3 = "you can pick up quests up to 3
@@ -49,18 +98,17 @@ pub struct QuestLogProgress {
 pub fn handle_quest_messages(
     data: Res<GameData>,
     curve: Res<XpCurve>,
-    mut players: Query<
-        (
-            Entity,
-            &ControlledBy,
-            &mut QuestLog,
-            &mut Experience,
-            &mut PlayerWallet,
-            &mut PillarScores,
-            &PillarCaps,
-        ),
-        With<PlayerTag>,
-    >,
+    mut players: Query<(
+        Entity,
+        &ControlledBy,
+        &PlayerTag,
+        &mut QuestLog,
+        &mut Experience,
+        &mut PlayerWallet,
+        &mut PillarScores,
+        &PillarCaps,
+        &mut PlayerInventory,
+    )>,
     mut accept_rx: Query<(Entity, &mut MessageReceiver<AcceptQuest>), With<ClientOf>>,
     mut abandon_rx: Query<(Entity, &mut MessageReceiver<AbandonQuest>), With<ClientOf>>,
     mut progress_rx: Query<(Entity, &mut MessageReceiver<ProgressQuest>), With<ClientOf>>,
@@ -70,8 +118,10 @@ pub fn handle_quest_messages(
         Abandon(String),
         Progress(String),
     }
-    let link_to_player: HashMap<Entity, Entity> =
-        players.iter().map(|(p, cb, _, _, _, _, _)| (cb.owner, p)).collect();
+    let link_to_player: HashMap<Entity, Entity> = players
+        .iter()
+        .map(|(p, cb, _, _, _, _, _, _, _)| (cb.owner, p))
+        .collect();
 
     let mut actions: Vec<(Entity, Action)> = Vec::new();
     for (link, mut rx) in &mut accept_rx {
@@ -91,11 +141,12 @@ pub fn handle_quest_messages(
     }
     for (link, action) in actions {
         let Some(&player_e) = link_to_player.get(&link) else { continue };
-        let Ok((_, _, mut log, mut xp, mut wallet, mut scores, caps)) =
+        let Ok((_, _, tag, mut log, mut xp, mut wallet, mut scores, caps, mut inventory)) =
             players.get_mut(player_e)
         else {
             continue;
         };
+        let core_pillar = tag.core_pillar;
         match action {
             Action::Accept(chain_id) => {
                 let Some(chain) = data.quests.chain(&chain_id) else {
@@ -174,6 +225,8 @@ pub fn handle_quest_messages(
                     .and_then(|c| c.step(completed_step_idx));
                 let step_reward = step.map(|s| s.xp_reward).unwrap_or(0);
                 let step_gold = step.map(|s| s.gold_reward_copper).unwrap_or(0);
+                let step_items: Vec<ItemReward> =
+                    step.map(|s| s.item_reward.clone()).unwrap_or_default();
                 if step_reward > 0 {
                     grant_xp_with_levelup_bonus(
                         player_e, &mut xp, &mut scores, caps, &curve, step_reward, "quest-step",
@@ -186,6 +239,16 @@ pub fn handle_quest_messages(
                         wallet.copper
                     );
                 }
+                if !step_items.is_empty() {
+                    grant_item_rewards(
+                        &step_items,
+                        &mut inventory,
+                        &data.content,
+                        core_pillar,
+                        player_e,
+                        "quest-step",
+                    );
+                }
 
                 if completed {
                     let chain_ref = data.quests.chain(&chain_id);
@@ -194,6 +257,9 @@ pub fn handle_quest_messages(
                     let final_gold = chain_ref
                         .map(|c| c.final_reward.gold_bonus_copper)
                         .unwrap_or(0);
+                    let final_items: Vec<ItemReward> = chain_ref
+                        .map(|c| c.final_reward.item_reward.clone())
+                        .unwrap_or_default();
                     if final_xp > 0 {
                         grant_xp_with_levelup_bonus(
                             player_e, &mut xp, &mut scores, caps, &curve, final_xp,
@@ -202,6 +268,16 @@ pub fn handle_quest_messages(
                     }
                     if final_gold > 0 {
                         wallet.credit(final_gold as u64);
+                    }
+                    if !final_items.is_empty() {
+                        grant_item_rewards(
+                            &final_items,
+                            &mut inventory,
+                            &data.content,
+                            core_pillar,
+                            player_e,
+                            "quest-complete",
+                        );
                     }
                     println!(
                         "[quest] player {player_e:?} COMPLETED '{chain_id}' ({title}) — final +{final_xp}xp +{final_gold}c"
@@ -225,22 +301,24 @@ pub fn apply_kill_objectives(
     sources: Query<&MobSourceId>,
     data: Res<GameData>,
     curve: Res<XpCurve>,
-    mut players: Query<
-        (
-            Entity,
-            &mut QuestLog,
-            &mut Experience,
-            &mut PlayerWallet,
-            &mut PillarScores,
-            &PillarCaps,
-        ),
-        With<PlayerTag>,
-    >,
+    mut players: Query<(
+        Entity,
+        &PlayerTag,
+        &mut QuestLog,
+        &mut Experience,
+        &mut PlayerWallet,
+        &mut PillarScores,
+        &PillarCaps,
+        &mut PlayerInventory,
+    )>,
 ) {
     let Ok(src) = sources.get(trigger.entity) else { return };
     let dead_mob_id = src.0.clone();
 
-    for (player_e, mut log, mut xp, mut wallet, mut scores, caps) in &mut players {
+    for (player_e, tag, mut log, mut xp, mut wallet, mut scores, caps, mut inventory) in
+        &mut players
+    {
+        let core_pillar = tag.core_pillar;
         let chain_ids: Vec<String> = log.entries.keys().cloned().collect();
         for chain_id in chain_ids {
             let Some(chain) = data.quests.chain(&chain_id) else { continue };
@@ -262,6 +340,7 @@ pub fn apply_kill_objectives(
             // accumulate per-step kill_count in QuestLogProgress.)
             let step_xp = step.xp_reward;
             let step_gold = step.gold_reward_copper;
+            let step_items = step.item_reward.clone();
             let (current_after, total_after, chain_complete) = {
                 let entry_mut = log.entries.get_mut(&chain_id).unwrap();
                 entry_mut.current_step += 1;
@@ -282,9 +361,20 @@ pub fn apply_kill_objectives(
             if step_gold > 0 {
                 wallet.credit(step_gold as u64);
             }
+            if !step_items.is_empty() {
+                grant_item_rewards(
+                    &step_items,
+                    &mut inventory,
+                    &data.content,
+                    core_pillar,
+                    player_e,
+                    "quest-kill-step",
+                );
+            }
             if chain_complete {
                 let final_xp = chain.final_reward.xp_bonus;
                 let final_gold = chain.final_reward.gold_bonus_copper;
+                let final_items = chain.final_reward.item_reward.clone();
                 if final_xp > 0 {
                     grant_xp_with_levelup_bonus(
                         player_e, &mut xp, &mut scores, caps, &curve, final_xp, "quest-complete",
@@ -292,6 +382,16 @@ pub fn apply_kill_objectives(
                 }
                 if final_gold > 0 {
                     wallet.credit(final_gold as u64);
+                }
+                if !final_items.is_empty() {
+                    grant_item_rewards(
+                        &final_items,
+                        &mut inventory,
+                        &data.content,
+                        core_pillar,
+                        player_e,
+                        "quest-complete-kill",
+                    );
                 }
                 println!(
                     "[quest:kill] '{chain_id}' COMPLETED via killing {dead_mob_id} (+{final_gold}c final)"
@@ -327,5 +427,126 @@ pub fn broadcast_quest_logs(
             .collect();
         let _ = sender.send::<vaern_protocol::Channel1>(QuestLogSnapshot { entries });
         log.dirty = false;
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use std::path::Path;
+
+    fn workspace_data_root() -> std::path::PathBuf {
+        Path::new(env!("CARGO_MANIFEST_DIR"))
+            .join("../../src/generated")
+            .canonicalize()
+            .expect("workspace src/generated must exist")
+    }
+
+    fn registry() -> ContentRegistry {
+        let mut reg = ContentRegistry::new();
+        reg.load_tree(workspace_data_root().join("items"))
+            .expect("load content registry");
+        reg
+    }
+
+    fn chains() -> vaern_data::QuestIndex {
+        vaern_data::load_all_chains(workspace_data_root().join("world"))
+            .expect("load quest chains")
+    }
+
+    /// Every `ItemReward` (step + final_reward) in every chain must resolve
+    /// against the live content registry. Catches typos in base / material /
+    /// quality ids before they hit the server.
+    #[test]
+    fn every_quest_item_reward_resolves() {
+        let reg = registry();
+        let idx = chains();
+        let mut checked = 0usize;
+        for (chain_id, chain) in &idx.chains {
+            for step in &chain.steps {
+                for r in &step.item_reward {
+                    let inst = match &r.material {
+                        Some(m) => ItemInstance::new(&r.base, m, &r.quality),
+                        None => ItemInstance::materialless(&r.base, &r.quality),
+                    };
+                    reg.resolve(&inst).unwrap_or_else(|e| {
+                        panic!(
+                            "chain '{chain_id}' step '{}' item_reward {:?} failed to resolve: {e}",
+                            step.id, r,
+                        )
+                    });
+                    checked += 1;
+                }
+            }
+            for r in &chain.final_reward.item_reward {
+                let inst = match &r.material {
+                    Some(m) => ItemInstance::new(&r.base, m, &r.quality),
+                    None => ItemInstance::materialless(&r.base, &r.quality),
+                };
+                reg.resolve(&inst).unwrap_or_else(|e| {
+                    panic!(
+                        "chain '{chain_id}' final_reward item_reward {:?} failed to resolve: {e}",
+                        r,
+                    )
+                });
+                checked += 1;
+            }
+        }
+        // Sanity: at least the Dalewatch ladder should be authored. If
+        // someone removes it without replacement, this guards against a
+        // silent regression.
+        assert!(
+            checked >= 30,
+            "expected at least 30 ItemReward entries across all chains, got {checked}"
+        );
+    }
+
+    /// The Dalewatch first-ride chain specifically should ship its 5-tier
+    /// ladder. If the chain id is renamed or rewards are stripped, fail
+    /// loudly rather than silently dropping the felt-progression slice.
+    #[test]
+    fn dalewatch_first_ride_has_5_tier_ladder() {
+        let idx = chains();
+        let chain = idx
+            .chain("chain_dalewatch_first_ride")
+            .expect("chain_dalewatch_first_ride must exist");
+        // Steps with rewards: 4, 6, 7, 8 + final_reward = 5 reward tiers.
+        let steps_with_items: Vec<u32> = chain
+            .steps
+            .iter()
+            .filter(|s| !s.item_reward.is_empty())
+            .map(|s| s.step)
+            .collect();
+        assert_eq!(
+            steps_with_items,
+            vec![4, 6, 7, 8],
+            "expected item_reward on steps 4, 6, 7, 8"
+        );
+        assert!(
+            !chain.final_reward.item_reward.is_empty(),
+            "final_reward must hand out the capstone outfit"
+        );
+
+        // Each step's per-pillar entries must cover all three pillars (no
+        // pillar should silently miss out on a ladder tier).
+        for step in chain
+            .steps
+            .iter()
+            .filter(|s| !s.item_reward.is_empty())
+        {
+            let pillars: std::collections::HashSet<_> = step
+                .item_reward
+                .iter()
+                .filter_map(|r| r.pillar)
+                .collect();
+            assert_eq!(
+                pillars.len(),
+                3,
+                "step {} ({}) must reward all three pillars, got {:?}",
+                step.step,
+                step.id,
+                pillars
+            );
+        }
     }
 }

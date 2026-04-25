@@ -12,6 +12,24 @@ final_reward:
   gold_bonus_copper: 1400
   item_hint: Warden's full cloak + Ashmere patrol-sigil + rider's steel belt
   title_hint: '''Rider of the Marches'''
+  # Tier 5 — Drifter's-Lair capstone. Per-pillar capstone outfits handed
+  # out when Step 10 (kill Valenn) advances the chain to completed.
+  item_reward:
+    # Might → full plate set (breastplate + helm + greaves + sabatons)
+    - { base: plate_breastplate, material: steel, quality: superior, pillar: might }
+    - { base: plate_helm,        material: steel, quality: superior, pillar: might }
+    - { base: plate_greaves,     material: steel, quality: superior, pillar: might }
+    - { base: plate_sabatons,    material: steel, quality: superior, pillar: might }
+    # Finesse → capstone steel mail (already flipped to mail at T4, this is the upgrade)
+    - { base: mail_hauberk,  material: steel, quality: superior, pillar: finesse }
+    - { base: mail_coif,     material: steel, quality: superior, pillar: finesse }
+    - { base: mail_chausses, material: steel, quality: superior, pillar: finesse }
+    - { base: mail_sabatons, material: steel, quality: superior, pillar: finesse }
+    # Arcana → capstone mageweave (the wizard stays robed; capstone is material+slippers)
+    - { base: cloth_robe,     material: mageweave, quality: superior, pillar: arcana }
+    - { base: cloth_cowl,     material: mageweave, quality: superior, pillar: arcana }
+    - { base: cloth_trousers, material: mageweave, quality: superior, pillar: arcana }
+    - { base: cloth_slippers, material: mageweave, quality: superior, pillar: arcana }
 npcs:
 - id: warden_telyn
   display_name: Warden Telyn
@@ -92,6 +110,11 @@ steps:
     count: 1
   xp_reward: 900
   gold_reward_copper: 45
+  # Tier 1 — single-piece material upgrade in the player's starter ArmorType.
+  item_reward:
+    - { base: gambeson_gambeson, material: wool_padding, quality: regular, pillar: might }
+    - { base: leather_jerkin,    material: deerhide,     quality: regular, pillar: finesse }
+    - { base: cloth_robe,        material: wool,         quality: regular, pillar: arcana }
   id: chain_dalewatch_first_ride__04_confront_corlen_the_drifter
   prerequisite: chain_dalewatch_first_ride__03_follow_the_bloodied_trail
 - step: 5
@@ -114,6 +137,24 @@ steps:
     target_hint: bring the folio to Brother Fennick at Harrier's Rest
   xp_reward: 1100
   gold_reward_copper: 80
+  # Tier 2 — full-set ArmorType progression. Might flips gambeson → leather
+  # for the silhouette change; Finesse upgrades to bearhide; Arcana to wool
+  # set. Grants on talk-progression (auto-advance for `talk` not yet wired,
+  # so today this fires when the player relogs / sends an explicit Progress
+  # message — matches existing gold/xp behavior on talk steps).
+  item_reward:
+    # Might → flip to leather (Ranger silhouette)
+    - { base: leather_jerkin,   material: bearhide, quality: well_crafted, pillar: might }
+    - { base: leather_hood,     material: bearhide, quality: well_crafted, pillar: might }
+    - { base: leather_leggings, material: bearhide, quality: well_crafted, pillar: might }
+    # Finesse → upgrade leather to bearhide
+    - { base: leather_jerkin,   material: bearhide, quality: well_crafted, pillar: finesse }
+    - { base: leather_hood,     material: bearhide, quality: well_crafted, pillar: finesse }
+    - { base: leather_leggings, material: bearhide, quality: well_crafted, pillar: finesse }
+    # Arcana → matched wool cloth set
+    - { base: cloth_robe,     material: wool, quality: well_crafted, pillar: arcana }
+    - { base: cloth_cowl,     material: wool, quality: well_crafted, pillar: arcana }
+    - { base: cloth_trousers, material: wool, quality: well_crafted, pillar: arcana }
   id: chain_dalewatch_first_ride__06_the_sealed_folio
   prerequisite: chain_dalewatch_first_ride__05_return_tam_and_the_sealed_folio
 - step: 7
@@ -126,6 +167,11 @@ steps:
     count: 1
   xp_reward: 1600
   gold_reward_copper: 120
+  # Tier 3 — single-piece quality bump on the chest. Silhouette holds.
+  item_reward:
+    - { base: leather_jerkin, material: ironhide, quality: fine, pillar: might }
+    - { base: leather_jerkin, material: ironhide, quality: fine, pillar: finesse }
+    - { base: cloth_robe,     material: silk,     quality: fine, pillar: arcana }
   id: chain_dalewatch_first_ride__07_clear_copperstep
   prerequisite: chain_dalewatch_first_ride__06_the_sealed_folio
 - step: 8
@@ -137,6 +183,21 @@ steps:
     target_hint: show the recovered focus to Scout Iwen at Ashmere Ford
   xp_reward: 1800
   gold_reward_copper: 160
+  # Tier 4 — second silhouette flip. Might/Finesse pivot to mail; Arcana
+  # upgrades to silk set.
+  item_reward:
+    # Might → flip to mail (KnightCloth silhouette)
+    - { base: mail_hauberk,  material: iron, quality: fine, pillar: might }
+    - { base: mail_coif,     material: iron, quality: fine, pillar: might }
+    - { base: mail_chausses, material: iron, quality: fine, pillar: might }
+    # Finesse → flip to mail (matches the strike on the Blackwash)
+    - { base: mail_hauberk,  material: iron, quality: fine, pillar: finesse }
+    - { base: mail_coif,     material: iron, quality: fine, pillar: finesse }
+    - { base: mail_chausses, material: iron, quality: fine, pillar: finesse }
+    # Arcana → full silk set
+    - { base: cloth_robe,     material: silk, quality: fine, pillar: arcana }
+    - { base: cloth_cowl,     material: silk, quality: fine, pillar: arcana }
+    - { base: cloth_trousers, material: silk, quality: fine, pillar: arcana }
   id: chain_dalewatch_first_ride__08_the_pact_worked_focus
   prerequisite: chain_dalewatch_first_ride__07_clear_copperstep
 - step: 9

@@ -21,7 +21,7 @@ The pre-alpha goal hierarchy plan at `~/.claude/plans/set-and-prioritze-goals-de
 - ✅ Slice 4b — Pillar-point on level-up (`grant_xp_with_levelup_bonus`)
 - ✅ Slice 4c — Level-up UI (`level_up_ui.rs`)
 - ✅ Slice 4d — Level-gated quest accept (server hard-refuses if `quest.level > player.level + 3`)
-- ⏸ Slice 4e — Dalewatch gear reward ladder (needs `item_reward:` schema + content authoring; **blocks Slice 6**)
+- ✅ Slice 4e — Dalewatch gear reward ladder (`vaern-data::ItemReward` pillar-keyed; 5 tiers on `chain_dalewatch_first_ride` steps 4/6/7/8 + final; per-pillar Might gambeson→leather→leather→mail→plate, Finesse leather progression to mail, Arcana cloth wool→silk→mageweave)
 - ⏸ Slice 5 polish — visual corpse marker on client + party-rez skill
 - ✅ Slice 5 MVP — Corpse-run death penalty (server-only Corpse entity; 25% HP respawn; 3u proximity = full HP; 10min expiry)
 - ⏸ Slice 6 — Drifter's Lair pseudo-dungeon + shared loot rolls (the L10 capstone)
@@ -33,7 +33,7 @@ The pre-alpha goal hierarchy plan at `~/.claude/plans/set-and-prioritze-goals-de
 - ⏸ Slice 8d — Client auto-reconnect with backoff
 - ⏸ Slice 8e — Local SQLite accounts (server-side bcrypt + session token)
 
-**Recommended next slice**: 4e gear ladder (1 session) so Slice 6 has its boss reward, then Slice 6 dungeon (6-8 sessions). 8d-8e (auto-reconnect + accounts, 3-4 sessions) can run in parallel.
+**Recommended next slice**: Slice 6 dungeon (6-8 sessions) now that 4e ladder is in place; Slice 8d-8e (auto-reconnect + accounts, 3-4 sessions) can run in parallel for tester durability.
 
 ---
 
@@ -73,7 +73,7 @@ Organized by blocker severity. A ❌ is a hard blocker for pre-alpha. A ⚠️ i
 - ⏸ **World boss + zone-level elite content** — out of pre-alpha scope.
 - ⏸ **Banking / shared stash** — out of pre-alpha scope (30-slot inventory suffices for L1→L10 arc).
 - ⏸ **Zone portals UI** — moot for single-zone pre-alpha.
-- ⏸ **Quest item rewards (Slice 4e)** — needs `item_reward:` schema + 5 curated items per Dalewatch chain (peasant rags → linen → patrol leather → marcher mail → Drifter's-Lair plate). **Blocks Slice 6**.
+- ✅ **Quest item rewards (Slice 4e)** — `vaern-data::ItemReward` (pillar-keyed) on `QuestStep` + `QuestChainFinalReward`; server `grant_item_rewards` injects into kill-step + chain-complete + talk-progress paths. 5-tier ladder on `chain_dalewatch_first_ride`: T1 single-piece material upgrade @ step 4, T2 full-set ArmorType flip @ step 6, T3 single piece @ step 7, T4 second silhouette flip @ step 8, T5 capstone full set @ chain final.
 - ⏸ **Multi-kill objectives (`count > 1`)** — quests auto-advance on first kill even when count > 1. Counter exists in YAML but progress handler ignores it.
 - ⏸ **Auto-advance for talk / investigate / deliver steps** — kill-step advance works; others require relog.
 - ✅ **Emotes (Slice 7 phase 1)** — `/wave /bow /sit /cheer /dance /point` via chat-bubble path. Animation playback per emote is phase 2, deferred.
@@ -121,15 +121,14 @@ Organized by blocker severity. A ❌ is a hard blocker for pre-alpha. A ⚠️ i
 
 ## Recommended slice ordering for pre-alpha (remaining work)
 
-Slice 8a-8c shipped — release builds reject an unset key, server bind is configurable, server panics land in a crash log. What's left to ship pre-alpha:
+Slice 8a-8c + Slice 4e shipped — release builds reject an unset key, server bind is configurable, server panics land in a crash log, and Dalewatch's `chain_dalewatch_first_ride` hands out a 5-tier per-pillar gear ladder that visibly flips silhouette twice (gambeson→leather→mail→plate for Might, leather→mail for Finesse, cloth material progression for Arcana). What's left:
 
-1. **Slice 4e — Dalewatch gear reward ladder** — needs `item_reward:` schema on QuestStep (template ItemInstance) + server wiring to grant on quest XP grant + 5 curated armor items in Dalewatch chains (peasant rags → linen → patrol leather → marcher mail → Drifter's-Lair plate). **Blocks Slice 6**. ~1 session.
-2. **Slice 8d-8e — Auto-reconnect + local SQLite accounts** — client backoff retry; server-side bcrypt accounts at `~/.config/vaern/server/accounts.db`. ~3-4 sessions.
-3. **Slice 6 — Drifter's Lair pseudo-dungeon + shared loot rolls** — hub-external cave region, 4-mob pull cadence, mini-boss + boss tuned for 2-4 players, Need/Greed/Pass loot panel. End-boss drops the L10 plate piece. ~6-8 sessions.
-4. **Slice 1f — Foliage card billboards** — PBR atlas + facing system for carpet-grass density. Polish, not pre-alpha-blocking. ~2 sessions.
-5. **Slice 7 phase 2 — Emote animation playback** — UAL clip per emote (Wave / Bow / Sit / etc) needs a new replicated `Emote(EmoteKind)` AnimState variant + transient override. ~1-2 sessions.
-6. **Slice 5 polish — Visual corpse marker on client + party-rez skill** — pulsing gizmo at own-corpse position via `OwnCorpsesSnapshot`-style message; party-rez via new `ConsumeEffect::Revive`. ~1-2 sessions.
-7. **Quest polish** — multi-kill objectives + auto-advance for talk/investigate/deliver. ~0.5-1 session.
+1. **Slice 8d-8e — Auto-reconnect + local SQLite accounts** — client backoff retry; server-side bcrypt accounts at `~/.config/vaern/server/accounts.db`. ~3-4 sessions.
+2. **Slice 6 — Drifter's Lair pseudo-dungeon + shared loot rolls** — hub-external cave region, 4-mob pull cadence, mini-boss + boss tuned for 2-4 players, Need/Greed/Pass loot panel. End-boss drops the L10 plate piece. Slice 4e ladder ships steel/wyvern/mageweave at L8; Slice 6 boss should drop a step above (e.g. mithril or exceptional quality). ~6-8 sessions.
+3. **Slice 1f — Foliage card billboards** — PBR atlas + facing system for carpet-grass density. Polish, not pre-alpha-blocking. ~2 sessions.
+4. **Slice 7 phase 2 — Emote animation playback** — UAL clip per emote (Wave / Bow / Sit / etc) needs a new replicated `Emote(EmoteKind)` AnimState variant + transient override. ~1-2 sessions.
+5. **Slice 5 polish — Visual corpse marker on client + party-rez skill** — pulsing gizmo at own-corpse position via `OwnCorpsesSnapshot`-style message; party-rez via new `ConsumeEffect::Revive`. ~1-2 sessions.
+6. **Quest polish** — multi-kill objectives + auto-advance for talk/investigate/deliver. **Note**: Slice 4e Tier-2 (step 6) and Tier-4 (step 8) ladder rewards live on talk steps, so they don't fire until this lands or the player relogs. ~0.5-1 session.
 
 Total remaining: ~13-19 sessions to ship pre-alpha. Hand-curating the other 9 starter chains is post-pre-alpha (Mannin-only spawn for pre-alpha).
 

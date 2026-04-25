@@ -5,8 +5,35 @@
 use std::{collections::HashMap, fs, path::Path};
 
 use serde::Deserialize;
+use vaern_core::Pillar;
 
 use crate::{read_dir, LoadError};
+
+/// One armor / item piece a quest hands out as a reward. Optional
+/// `pillar` makes the entry pillar-gated (None = grant to everyone;
+/// `Some(p)` = only grant when the player's `core_pillar == p`).
+///
+/// `material` is `None` for materialless bases (consumables / runes /
+/// scrolls). `quality` defaults to `"regular"` and `count` to `1`.
+#[derive(Debug, Clone, Deserialize)]
+pub struct ItemReward {
+    pub base: String,
+    #[serde(default)]
+    pub material: Option<String>,
+    #[serde(default = "default_quality")]
+    pub quality: String,
+    #[serde(default = "default_count")]
+    pub count: u32,
+    #[serde(default)]
+    pub pillar: Option<Pillar>,
+}
+
+fn default_quality() -> String {
+    "regular".to_string()
+}
+fn default_count() -> u32 {
+    1
+}
 
 #[derive(Debug, Clone, Deserialize)]
 pub struct QuestObjective {
@@ -60,6 +87,10 @@ pub struct QuestStep {
     pub objective: QuestObjective,
     pub xp_reward: u32,
     pub gold_reward_copper: u32,
+    /// Optional list of items handed out when the step advances. Pillar
+    /// filtering is applied per-entry at grant time on the server.
+    #[serde(default)]
+    pub item_reward: Vec<ItemReward>,
     #[serde(default)]
     pub prerequisite: Option<String>,
 }
@@ -72,6 +103,10 @@ pub struct QuestChainFinalReward {
     pub item_hint: String,
     #[serde(default)]
     pub title_hint: String,
+    /// Optional list of items handed out on chain completion. Same
+    /// pillar-filter rules as `QuestStep::item_reward`.
+    #[serde(default)]
+    pub item_reward: Vec<ItemReward>,
 }
 
 #[derive(Debug, Clone, Deserialize)]
