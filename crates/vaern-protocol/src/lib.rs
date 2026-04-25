@@ -18,13 +18,16 @@ use vaern_combat::{
 use vaern_core::pillar::Pillar;
 use vaern_persistence::PersistedCosmetics;
 
+pub mod config;
+pub use config::{
+    DEFAULT_DEV_SERVER_ADDR, DEFAULT_SERVER_BIND_ADDR, DEV_NETCODE_KEY, NetcodeKeySource,
+    netcode_key_from_hex, parse_socket_addr, resolve_netcode_key, resolve_server_bind,
+    resolve_server_connect,
+};
+
 pub const FIXED_TIMESTEP_HZ: f64 = 60.0;
-pub const SERVER_ADDR: SocketAddr = SocketAddr::new(IpAddr::V4(Ipv4Addr::LOCALHOST), 27015);
 pub const CLIENT_ADDR: SocketAddr = SocketAddr::new(IpAddr::V4(Ipv4Addr::UNSPECIFIED), 0);
 
-/// 32-byte shared key for netcode. Zeroed for scaffold — swap to env-loaded
-/// key before anything faces the real internet.
-pub const SHARED_PRIVATE_KEY: [u8; 32] = [0; 32];
 pub const SHARED_PROTOCOL_ID: u64 = 0x7661_6572_6E00_0001;
 
 /// Player movement units per FixedUpdate tick. Both client (predicted) and

@@ -61,7 +61,9 @@ impl std::ops::Deref for ArchetypeTableRes {
     }
 }
 use vaern_combat::CombatPlugin;
-use vaern_protocol::{FIXED_TIMESTEP_HZ, SharedPlugin};
+use vaern_protocol::{
+    FIXED_TIMESTEP_HZ, NetcodeKeySource, SharedPlugin, resolve_netcode_key, resolve_server_connect,
+};
 
 use crate::attack_viz::AttackVizPlugin;
 use crate::belt_ui::BeltUiPlugin;
@@ -79,7 +81,7 @@ use crate::loot_ui::LootUiPlugin;
 use crate::menu::MenuPlugin;
 use crate::stat_screen::StatScreenPlugin;
 use crate::nameplates::NameplatesPlugin;
-use crate::net::NetworkingPlugin;
+use crate::net::{ClientNetConfig, NetworkingPlugin};
 use crate::quests::QuestsPlugin;
 use crate::scene::ScenePlugin;
 use crate::unit_frame::UnitFramePlugin;
@@ -87,6 +89,28 @@ use crate::vfx::VfxPlugin;
 use crate::voxel_demo::VoxelDemoPlugin;
 
 fn main() {
+    let net_config = match (resolve_netcode_key(), resolve_server_connect()) {
+        (Ok((private_key, key_source)), Ok(server_addr)) => ClientNetConfig {
+            server_addr,
+            private_key,
+            key_source,
+        },
+        (Err(e), _) | (_, Err(e)) => {
+            eprintln!("vaern-client config error: {e}");
+            std::process::exit(2);
+        }
+    };
+    if matches!(net_config.key_source, NetcodeKeySource::DevFallback) {
+        eprintln!(
+            "vaern-client: VAERN_NETCODE_KEY unset — using all-zero dev key (debug build only)"
+        );
+    }
+    println!(
+        "vaern-client: server = {} | netcode key source = {}",
+        net_config.server_addr,
+        net_config.key_source.label()
+    );
+
     let tick = Duration::from_secs_f64(1.0 / FIXED_TIMESTEP_HZ);
     // Point Bevy's AssetServer at the workspace-level assets/ (Quaternius
     // glTFs + textures live there). Default path is `assets/` next to the
@@ -188,5 +212,6 @@ fn main() {
         // plane today; will retire it once server-side authority lands.
         .add_plugins(VoxelDemoPlugin)
         .insert_resource(ClearColor(Color::srgb(0.05, 0.07, 0.10)))
+        .insert_resource(net_config)
         .run();
 }

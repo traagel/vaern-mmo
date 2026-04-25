@@ -2,14 +2,16 @@
 //! ship a `ClientHello` with the selected core pillar once netcode hands back
 //! `Connected`. `VAERN_PILLAR` env var still works as a dev override.
 
+use core::net::SocketAddr;
+
 use bevy::prelude::*;
 use lightyear::prelude::client::*;
 use lightyear::prelude::*;
 use vaern_core::pillar::Pillar;
 use vaern_protocol::{
     AbandonQuest, AcceptQuest, CLIENT_ADDR, CastFired, CastIntent, Channel1, ClientHello,
-    HotbarSnapshot, ProgressQuest, QuestLogSnapshot, SERVER_ADDR, SHARED_PRIVATE_KEY,
-    SHARED_PROTOCOL_ID, StanceRequest,
+    HotbarSnapshot, NetcodeKeySource, ProgressQuest, QuestLogSnapshot, SHARED_PROTOCOL_ID,
+    StanceRequest,
 };
 
 use crate::menu::{AppState, SelectedCharacter};
@@ -22,6 +24,15 @@ impl Plugin for NetworkingPlugin {
         app.add_observer(send_hello_on_connect)
             .add_systems(OnEnter(AppState::Connecting), connect_to_server);
     }
+}
+
+/// Resolved boot-time network config for the client. Inserted as a
+/// `Resource` from `main` so `connect_to_server` doesn't re-read env vars.
+#[derive(Resource, Clone, Copy, Debug)]
+pub struct ClientNetConfig {
+    pub server_addr: SocketAddr,
+    pub private_key: [u8; 32],
+    pub key_source: NetcodeKeySource,
 }
 
 /// Resolve the pillar from `VAERN_PILLAR`. Accepts case-insensitive
@@ -91,23 +102,23 @@ fn send_hello_on_connect(
     );
 }
 
-/// Spawn the lightyear client entity and fire the Connect trigger. Manual
-/// auth with the shared key — fine for scaffold / local dev, not prod.
-fn connect_to_server(mut commands: Commands) -> Result {
+/// Spawn the lightyear client entity and fire the Connect trigger.
+fn connect_to_server(mut commands: Commands, net_config: Res<ClientNetConfig>) -> Result {
     let client_id = resolve_client_id();
     commands.insert_resource(OwnClientId(client_id));
 
+    let server_addr = net_config.server_addr;
     let auth = Authentication::Manual {
-        server_addr: SERVER_ADDR,
+        server_addr,
         client_id,
-        private_key: SHARED_PRIVATE_KEY,
+        private_key: net_config.private_key,
         protocol_id: SHARED_PROTOCOL_ID,
     };
     // Bevy tuple bundles cap at 15, so split sender/receiver groups.
     let net_core = (
         Client::default(),
         LocalAddr(CLIENT_ADDR),
-        PeerAddr(SERVER_ADDR),
+        PeerAddr(server_addr),
         Link::new(None),
         ReplicationReceiver::default(),
         NetcodeClient::new(auth, NetcodeConfig::default())?,
@@ -128,6 +139,9 @@ fn connect_to_server(mut commands: Commands) -> Result {
     );
     let client = commands.spawn((net_core, senders, receivers)).id();
     commands.trigger(Connect { entity: client });
-    info!("connecting to {SERVER_ADDR} as client {client_id}");
+    info!(
+        "connecting to {server_addr} as client {client_id} (netcode key: {})",
+        net_config.key_source.label()
+    );
     Ok(())
 }

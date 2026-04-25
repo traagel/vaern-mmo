@@ -26,7 +26,13 @@ trap cleanup EXIT INT TERM
 
 BIN_DIR="target/$PROFILE"
 
-echo "==> starting server"
+# Local dev defaults: bind + connect on loopback. Override either by
+# exporting before invoking. Debug builds fall back to the all-zero dev
+# key when VAERN_NETCODE_KEY is unset; release builds reject it.
+export VAERN_BIND="${VAERN_BIND:-127.0.0.1:27015}"
+export VAERN_SERVER="${VAERN_SERVER:-127.0.0.1:27015}"
+
+echo "==> starting server (bind $VAERN_BIND)"
 "$BIN_DIR/vaern-server" &
 SERVER_PID=$!
 

@@ -27,9 +27,13 @@ The pre-alpha goal hierarchy plan at `~/.claude/plans/set-and-prioritze-goals-de
 - ⏸ Slice 6 — Drifter's Lair pseudo-dungeon + shared loot rolls (the L10 capstone)
 - ✅ Slice 7 phase 1 — Text emotes via chat-bubble path
 - ⏸ Slice 7 phase 2 — Animation playback (UAL clip per emote; needs new replicated state)
-- ⏸ Slice 8 — Shipping hardening (env netcode key + configurable bind + panic handler + auto-reconnect + local SQLite accounts)
+- ✅ Slice 8a — Netcode key from `VAERN_NETCODE_KEY` env (release rejects unset/all-zero/wrong-length; debug falls back to dev key)
+- ✅ Slice 8b — Configurable bind/connect (`--bind`/`VAERN_BIND` server, `--server`/`VAERN_SERVER` client)
+- ✅ Slice 8c — Server panic handler writes `~/.local/share/vaern/server/crash_<ts>.log`
+- ⏸ Slice 8d — Client auto-reconnect with backoff
+- ⏸ Slice 8e — Local SQLite accounts (server-side bcrypt + session token)
 
-**Recommended next slice**: 8a-8c (env netcode key + configurable bind + panic handler ≈ 1-2 sessions) since they unlock external testing on a Hetzner/OVH box. Then 4e gear ladder (1 session) before Slice 6 (dungeon, 6-8 sessions).
+**Recommended next slice**: 4e gear ladder (1 session) so Slice 6 has its boss reward, then Slice 6 dungeon (6-8 sessions). 8d-8e (auto-reconnect + accounts, 3-4 sessions) can run in parallel.
 
 ---
 
@@ -47,10 +51,10 @@ Organized by blocker severity. A ❌ is a hard blocker for pre-alpha. A ⚠️ i
 ### Tier 1 — Hard blockers (ship is unshippable without these)
 
 #### Infrastructure
-- ❌ **Real netcode private key** — `vaern-protocol::SHARED_PRIVATE_KEY` is `[0; 32]`. Load from env var (`VAERN_NETCODE_KEY`) or a secrets file on server startup; fail-fast if missing in release builds.
-- ❌ **Dedicated server deployment** — currently binds `127.0.0.1:27015`. Needs: configurable bind address via CLI/env, systemd unit (or Docker image), a real host (Hetzner/OVH EU box), connection instructions for players.
-- ❌ **Client-side server picker or hardcoded prod server** — menu currently connects to localhost. Ship with prod address baked in OR add a server-list dialog.
-- ❌ **Crash handlers + auto-reconnect** — today a panic kills the server for everyone. Wrap the main loop with `std::panic::catch_unwind` per connection-handling path; client needs a reconnect-with-backoff flow instead of crashing to desktop.
+- ✅ **Real netcode private key** — `VAERN_NETCODE_KEY` (hex, 32 bytes) resolved at boot in `vaern-protocol::config::resolve_netcode_key`. Release rejects unset / all-zero / wrong-length with `exit 2`; debug builds warn and fall back to all-zero dev key.
+- ✅ **Dedicated server deployment** — `--bind <addr>` CLI flag + `VAERN_BIND` env; default `0.0.0.0:27015`. Systemd unit / Docker image / real host (Hetzner/OVH EU box) is the deployment task that follows.
+- ✅ **Client-side server picker or hardcoded prod server** — `--server <addr>` CLI flag + `VAERN_SERVER` env; default loopback for dev. (No menu picker yet — env/flag is sufficient for pre-alpha tester onboarding via launch script.)
+- ⚠️ **Crash handlers + auto-reconnect** — Slice 8c shipped: `crash::install` writes `~/.local/share/vaern/server/crash_<unix_ts>.log` with panic message, location, thread, captured backtrace, git_sha (`VAERN_GIT_SHA` env), and chains to the default panic hook. **Auto-reconnect with backoff (Slice 8d) still ❌** — a panic still kills every active session.
 - ❌ **Account identity beyond client-local JSON** — `~/.config/vaern/characters.json` is client-side. Pre-alpha decision: local username+password in server-side SQLite at `~/.config/vaern/server/accounts.db` with bcrypt. Server-enforced name uniqueness, one character list per account.
 - ⏸ **Steam integration** — deferred to full alpha (was ❌, now post-pre-alpha per user decision).
 
@@ -117,18 +121,17 @@ Organized by blocker severity. A ❌ is a hard blocker for pre-alpha. A ⚠️ i
 
 ## Recommended slice ordering for pre-alpha (remaining work)
 
-The high-impact gameplay slices are mostly done. What's left to ship pre-alpha:
+Slice 8a-8c shipped — release builds reject an unset key, server bind is configurable, server panics land in a crash log. What's left to ship pre-alpha:
 
-1. **Slice 8a-8c — Shipping hardening quick wins** — env netcode key + configurable bind + panic handler with crash log. ~1-2 sessions. Unlocks "can my friend on a different network connect?".
-2. **Slice 4e — Dalewatch gear reward ladder** — needs `item_reward:` schema on QuestStep (template ItemInstance) + server wiring to grant on quest XP grant + 5 curated armor items in Dalewatch chains (peasant rags → linen → patrol leather → marcher mail → Drifter's-Lair plate). **Blocks Slice 6**. ~1 session.
-3. **Slice 8d-8e — Auto-reconnect + local SQLite accounts** — client backoff retry; server-side bcrypt accounts at `~/.config/vaern/server/accounts.db`. ~3-4 sessions.
-4. **Slice 6 — Drifter's Lair pseudo-dungeon + shared loot rolls** — hub-external cave region, 4-mob pull cadence, mini-boss + boss tuned for 2-4 players, Need/Greed/Pass loot panel. End-boss drops the L10 plate piece. ~6-8 sessions.
-5. **Slice 1f — Foliage card billboards** — PBR atlas + facing system for carpet-grass density. Polish, not pre-alpha-blocking. ~2 sessions.
-6. **Slice 7 phase 2 — Emote animation playback** — UAL clip per emote (Wave / Bow / Sit / etc) needs a new replicated `Emote(EmoteKind)` AnimState variant + transient override. ~1-2 sessions.
-7. **Slice 5 polish — Visual corpse marker on client + party-rez skill** — pulsing gizmo at own-corpse position via `OwnCorpsesSnapshot`-style message; party-rez via new `ConsumeEffect::Revive`. ~1-2 sessions.
-8. **Quest polish** — multi-kill objectives + auto-advance for talk/investigate/deliver. ~0.5-1 session.
+1. **Slice 4e — Dalewatch gear reward ladder** — needs `item_reward:` schema on QuestStep (template ItemInstance) + server wiring to grant on quest XP grant + 5 curated armor items in Dalewatch chains (peasant rags → linen → patrol leather → marcher mail → Drifter's-Lair plate). **Blocks Slice 6**. ~1 session.
+2. **Slice 8d-8e — Auto-reconnect + local SQLite accounts** — client backoff retry; server-side bcrypt accounts at `~/.config/vaern/server/accounts.db`. ~3-4 sessions.
+3. **Slice 6 — Drifter's Lair pseudo-dungeon + shared loot rolls** — hub-external cave region, 4-mob pull cadence, mini-boss + boss tuned for 2-4 players, Need/Greed/Pass loot panel. End-boss drops the L10 plate piece. ~6-8 sessions.
+4. **Slice 1f — Foliage card billboards** — PBR atlas + facing system for carpet-grass density. Polish, not pre-alpha-blocking. ~2 sessions.
+5. **Slice 7 phase 2 — Emote animation playback** — UAL clip per emote (Wave / Bow / Sit / etc) needs a new replicated `Emote(EmoteKind)` AnimState variant + transient override. ~1-2 sessions.
+6. **Slice 5 polish — Visual corpse marker on client + party-rez skill** — pulsing gizmo at own-corpse position via `OwnCorpsesSnapshot`-style message; party-rez via new `ConsumeEffect::Revive`. ~1-2 sessions.
+7. **Quest polish** — multi-kill objectives + auto-advance for talk/investigate/deliver. ~0.5-1 session.
 
-Total remaining: ~14-20 sessions to ship pre-alpha. Hand-curating the other 9 starter chains is post-pre-alpha (Mannin-only spawn for pre-alpha).
+Total remaining: ~13-19 sessions to ship pre-alpha. Hand-curating the other 9 starter chains is post-pre-alpha (Mannin-only spawn for pre-alpha).
 
 ---
 

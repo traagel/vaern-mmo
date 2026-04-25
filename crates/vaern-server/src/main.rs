@@ -21,6 +21,7 @@ mod class_kits;
 mod combat_io;
 mod connect;
 mod consume_io;
+mod crash;
 mod data;
 mod inventory_io;
 mod logging;
@@ -42,6 +43,7 @@ mod voxel_world;
 mod wallet_io;
 mod xp;
 
+use core::net::SocketAddr;
 use core::time::Duration;
 
 use bevy::app::ScheduleRunnerPlugin;
@@ -54,14 +56,49 @@ use vaern_combat::{CombatPlugin, systems as combat_systems};
 use vaern_persistence::ServerCharacterStore;
 use vaern_voxel::plugin::VoxelCorePlugin;
 use vaern_protocol::{
-    FIXED_TIMESTEP_HZ, SERVER_ADDR, SHARED_PRIVATE_KEY, SHARED_PROTOCOL_ID, SharedPlugin,
+    FIXED_TIMESTEP_HZ, NetcodeKeySource, SHARED_PROTOCOL_ID, SharedPlugin, resolve_netcode_key,
+    resolve_server_bind,
 };
 
 use persistence::CharacterStore;
 
+/// Resolved boot-time network config. Inserted as a `Resource` so
+/// `start_server` can pull the values without re-reading env vars.
+#[derive(Resource, Clone, Copy, Debug)]
+struct ServerNetConfig {
+    bind: SocketAddr,
+    private_key: [u8; 32],
+    key_source: NetcodeKeySource,
+}
+
 fn main() {
+    crash::install();
+
+    let net_config = match (resolve_netcode_key(), resolve_server_bind()) {
+        (Ok((private_key, key_source)), Ok(bind)) => ServerNetConfig {
+            bind,
+            private_key,
+            key_source,
+        },
+        (Err(e), _) | (_, Err(e)) => {
+            eprintln!("vaern-server config error: {e}");
+            std::process::exit(2);
+        }
+    };
+    if matches!(net_config.key_source, NetcodeKeySource::DevFallback) {
+        eprintln!(
+            "vaern-server: VAERN_NETCODE_KEY unset — using all-zero dev key (debug build only)"
+        );
+    }
+    println!(
+        "vaern-server: bind = {} | netcode key source = {}",
+        net_config.bind,
+        net_config.key_source.label()
+    );
+
     let tick = Duration::from_secs_f64(1.0 / FIXED_TIMESTEP_HZ);
     App::new()
+        .insert_resource(net_config)
         .add_plugins(MinimalPlugins.set(ScheduleRunnerPlugin::run_loop(tick)))
         // Route tracing output to stdout. Default filter keeps player-level
         // events (info!) visible; the NPC firehose lives at debug! — enable
@@ -283,18 +320,18 @@ fn load_npc_mesh_map() -> npc_mesh::NpcMeshMap {
     }
 }
 
-fn start_server(mut commands: Commands) {
+fn start_server(mut commands: Commands, net_config: Res<ServerNetConfig>) {
     let server = commands
         .spawn((
             NetcodeServer::new(NetcodeConfig {
                 protocol_id: SHARED_PROTOCOL_ID,
-                private_key: SHARED_PRIVATE_KEY,
+                private_key: net_config.private_key,
                 ..default()
             }),
-            LocalAddr(SERVER_ADDR),
+            LocalAddr(net_config.bind),
             ServerUdpIo::default(),
         ))
         .id();
     commands.trigger(Start { entity: server });
-    println!("vaern-server listening on {}", SERVER_ADDR);
+    println!("vaern-server listening on {}", net_config.bind);
 }
