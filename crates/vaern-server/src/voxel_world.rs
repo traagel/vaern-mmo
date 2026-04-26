@@ -336,6 +336,7 @@ fn apply_validated_edits(
             center: ev.center,
             radius: ev.radius,
             mode: ev.mode,
+            falloff: vaern_voxel::edit::Falloff::Hard,
         };
         let touched = EditStroke::new(brush, &mut store, &mut dirty).apply();
         for coord in &touched {

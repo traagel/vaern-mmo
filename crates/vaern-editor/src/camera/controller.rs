@@ -10,6 +10,7 @@ use bevy::window::{CursorGrabMode, CursorOptions, PrimaryWindow};
 use bevy_egui::EguiContexts;
 
 use super::FreeFlyCamera;
+use crate::modes::{ActiveMode, EditorMode};
 
 /// Mouse-look sensitivity (radians per pixel of motion).
 pub const MOUSE_SENSITIVITY: f32 = 0.0035;
@@ -166,11 +167,20 @@ pub fn apply_movement(
 
 /// Mouse wheel scales `state.speed`. Multiplicative so the same number
 /// of ticks moves through the speed range linearly in log space.
+///
+/// Suppressed while VoxelBrush mode is active — that mode owns the
+/// scroll wheel for radius adjustment. Events are drained so a brush
+/// stroke doesn't see a buffered backlog when modes switch.
 pub fn apply_scroll_speed(
     mut wheel: MessageReader<MouseWheel>,
     mut state: ResMut<FreeFlyState>,
+    active_mode: Res<ActiveMode>,
     mut egui: EguiContexts,
 ) {
+    if active_mode.0 == EditorMode::VoxelBrush {
+        return;
+    }
+
     let egui_owns = egui
         .ctx_mut()
         .map(|c| c.is_pointer_over_area())

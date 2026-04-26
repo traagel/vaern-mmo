@@ -8164,6 +8164,7 @@ dependencies = [
  "anyhow",
  "bevy",
  "bevy_egui",
+ "bincode 1.3.3",
  "clap",
  "dirs",
  "serde",

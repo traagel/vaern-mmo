@@ -74,9 +74,11 @@ const MESHING_BUDGET: usize = 64;
 /// characters.
 const GROUND_BIAS_Y: f32 = 0.0;
 
-/// World meters per biome-texture tile. Matches the `hub_regions`
-/// value so familiar biomes read at the same density.
-const TEXTURE_TILE_M: f32 = 8.0;
+/// World meters per biome-texture tile. ambientCG ground textures
+/// are authored at roughly 2–4 m physical scale; 24u puts the grain
+/// at a believable density. Mirrored in
+/// `vaern-editor/src/voxel/stream.rs`.
+const TEXTURE_TILE_M: f32 = 24.0;
 
 // --- plugin -----------------------------------------------------------------
 
@@ -317,31 +319,47 @@ fn build_biome_material(
     materials: &mut Assets<StandardMaterial>,
     biome: BiomeKey,
 ) -> Handle<StandardMaterial> {
-    // Biome textures tile via world-XZ UVs; default sampler clamps to
-    // edge, which would read a single pixel across the whole world.
-    // Force Repeat so textures tile.
-    let repeat = |s: &mut ImageLoaderSettings| {
-        s.sampler = ImageSampler::Descriptor(ImageSamplerDescriptor {
-            address_mode_u: ImageAddressMode::Repeat,
-            address_mode_v: ImageAddressMode::Repeat,
-            address_mode_w: ImageAddressMode::Repeat,
-            ..ImageSamplerDescriptor::linear()
-        });
+    // Biome textures tile via world-XZ UVs; force Repeat addressing
+    // + max anisotropy so grazing camera angles don't shimmer.
+    //
+    // Critical: normal + AO maps are *linear* data (XYZ vector /
+    // luminance), not perceptual color. They MUST be loaded with
+    // `is_srgb = false` — the default sRGB decoding warps normal
+    // vectors and reads as static-grain noise.
+    let color_settings = |s: &mut ImageLoaderSettings| {
+        s.sampler = ground_sampler();
+    };
+    let linear_settings = |s: &mut ImageLoaderSettings| {
+        s.sampler = ground_sampler();
+        s.is_srgb = false;
     };
     let tex = biome.textures();
-    let color = assets.load_with_settings(tex.color, repeat);
-    let normal = assets.load_with_settings(tex.normal, repeat);
-    let ao = tex.ao.map(|p| assets.load_with_settings(p, repeat));
+    let color = assets.load_with_settings(tex.color, color_settings);
+    let normal = assets.load_with_settings(tex.normal, linear_settings);
+    let ao = tex.ao.map(|p| assets.load_with_settings(p, linear_settings));
 
     let _ = RenderAssetUsages::default(); // keep the import live
     materials.add(StandardMaterial {
         base_color_texture: Some(color),
         normal_map_texture: Some(normal),
         occlusion_texture: ao,
-        perceptual_roughness: 0.95,
+        perceptual_roughness: 1.0,
         metallic: 0.0,
         uv_transform: Affine2::from_scale(Vec2::splat(1.0 / TEXTURE_TILE_M)),
         ..default()
+    })
+}
+
+/// Repeat-addressed trilinear+anisotropic sampler shared by every
+/// biome ground texture. Mirrored in
+/// `vaern-editor/src/voxel/stream.rs::ground_sampler`.
+fn ground_sampler() -> ImageSampler {
+    ImageSampler::Descriptor(ImageSamplerDescriptor {
+        address_mode_u: ImageAddressMode::Repeat,
+        address_mode_v: ImageAddressMode::Repeat,
+        address_mode_w: ImageAddressMode::Repeat,
+        anisotropy_clamp: 16,
+        ..ImageSamplerDescriptor::linear()
     })
 }
 

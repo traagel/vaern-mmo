@@ -10,24 +10,20 @@ level_range:
 starter_race: mannin
 hub_count: 5
 vibe: Late-medieval river-valley frontier; civic, practical, not heroic.
-description: |
-  The Concord's eastern frontier — a green river-valley of yeoman farms,
-  kingsroads, and warden patrols, watched from Dalewatch Keep at the heart
-  of the Marches. Three crises meet here. East at the Ford of Ashmere,
-  Pact scouts are crossing in numbers nobody can explain. South in the
-  Blackwash Fens, the drifters who fled the Censure three years ago have
-  made common cause with something older than the Concord. And along the
-  cairn-ridges and copper drifts under the keep, the country itself is
-  starting to misbehave. The Warden Corps rides the line so the plough
-  stays in the field — but the line is thinning, and you ride it the
-  morning you take the oath.
-prompt: >-
-  wide establishing landscape, late-medieval Burgundian river valley, stone
-  keep on a low ridge above tilled fields, kingsroad winding past mills,
-  distant marsh on the eastern horizon, summer dusk warm gold-hour light,
-  painterly atmospheric, no figures, no characters
-negative_prompt: >-
-  modern, futuristic, sci-fi, neon, anime, cyberpunk, concept sheet,
+description: "The Concord's eastern frontier \u2014 a green river-valley of yeoman\
+  \ farms,\nkingsroads, and warden patrols, watched from Dalewatch Keep at the heart\n\
+  of the Marches. Three crises meet here. East at the Ford of Ashmere,\nPact scouts\
+  \ are crossing in numbers nobody can explain. South in the\nBlackwash Fens, the\
+  \ drifters who fled the Censure three years ago have\nmade common cause with something\
+  \ older than the Concord. And along the\ncairn-ridges and copper drifts under the\
+  \ keep, the country itself is\nstarting to misbehave. The Warden Corps rides the\
+  \ line so the plough\nstays in the field \u2014 but the line is thinning, and you\
+  \ ride it the\nmorning you take the oath.\n"
+prompt: wide establishing landscape, late-medieval Burgundian river valley, stone
+  keep on a low ridge above tilled fields, kingsroad winding past mills, distant marsh
+  on the eastern horizon, summer dusk warm gold-hour light, painterly atmospheric,
+  no figures, no characters
+negative_prompt: modern, futuristic, sci-fi, neon, anime, cyberpunk, concept sheet,
   character portrait, figure, person, watermark, text
 budget:
   quest_count_target: 50
@@ -36,61 +32,6 @@ budget:
   estimated_hours_to_complete:
     solo: 14.0
     duo: 10.0
-notes: 'Starter zone in the western dales, redesigned 2026-04 to Classic-Elwynn scope: 12 sub-zones, 4
-  hubs, 10-step main chain, two side chains, plus side quests and filler.'
-
-# ─── world dressing ──────────────────────────────────────────────────────────
-# Client-side only. Deterministic scatter from (zone_id, seed_salt) so every
-# client sees identical placement without replication. Categories resolve to
-# assets/polyhaven/ via PolyHavenCatalog; biome "*" matches any biome.
-scatter:
-  # NOTE: densities kept conservative for pre-alpha. Poly Haven meshes
-  # are full-scan polycount; each zone spawns ~1000 total props at these
-  # rates. Bump only after a LOD / billboard impostor pass lands.
-
-  # Saplings across the river-valley floor and scrub edges.
-  - biome: "*"
-    category: tree
-    density_per_100m2: 0.08
-    min_spacing: 6.0
-    max_slope_deg: 30.0
-    exclude_radius_from_hubs: 25.0
-    seed_salt: 1
-
-  # Boulders + rock faces — low density, keep collision clear of hubs.
-  - biome: "*"
-    category: rock
-    density_per_100m2: 0.05
-    min_spacing: 7.0
-    max_slope_deg: 60.0
-    exclude_radius_from_hubs: 18.0
-    seed_salt: 2
-
-  # Stumps, roots, dried branches — woodland floor detail.
-  - biome: "*"
-    category: dead_wood
-    density_per_100m2: 0.08
-    min_spacing: 4.0
-    max_slope_deg: 40.0
-    exclude_radius_from_hubs: 15.0
-    seed_salt: 3
-
-  # Shrubs + meadow flowers. Medium density, reads as ground-level life.
-  - biome: "*"
-    category: shrub
-    density_per_100m2: 0.15
-    min_spacing: 2.5
-    max_slope_deg: 35.0
-    exclude_radius_from_hubs: 10.0
-    seed_salt: 4
-
-  # Grass + moss + fern tufts — reads as dense at close range (Bevy
-  # dedupes the shared mesh handle). Billboard impostors will replace
-  # this for distant density in a follow-up slice.
-  - biome: "*"
-    category: ground_cover
-    density_per_100m2: 0.5
-    min_spacing: 1.0
-    max_slope_deg: 40.0
-    exclude_radius_from_hubs: 6.0
-    seed_salt: 5
+notes: 'Starter zone in the western dales, redesigned 2026-04 to Classic-Elwynn scope:
+  12 sub-zones, 4 hubs, 10-step main chain, two side chains, plus side quests and
+  filler.'

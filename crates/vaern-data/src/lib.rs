@@ -600,15 +600,14 @@ mod tests {
     // ─── world dressing schema ────────────────────────────────────────────────
 
     #[test]
-    fn dalewatch_zone_has_scatter_rules() {
+    fn dalewatch_zone_scatter_rules_are_well_formed() {
+        // After the editor wipe, scatter rules may be absent — the
+        // dressing pipeline is being re-authored via the editor's
+        // BiomePaint + brush tools. This test now validates the
+        // SCHEMA: any rule that exists must carry a known category +
+        // sane density/spacing.
         let world = load_world(generated_root().join("world")).unwrap();
         let dalewatch = world.zone("dalewatch_marches").expect("dalewatch zone");
-        assert!(
-            dalewatch.scatter.len() >= 3,
-            "expected >=3 scatter rules, got {}",
-            dalewatch.scatter.len()
-        );
-        // Every rule must target a valid category
         for rule in &dalewatch.scatter {
             assert!(
                 matches!(
@@ -651,38 +650,26 @@ mod tests {
     }
 
     #[test]
-    fn dalewatch_hubs_have_authored_props() {
+    fn dalewatch_hub_props_use_known_slugs() {
+        // After the editor wipe, hub props are expected to be empty
+        // until re-authored via the editor. This test now validates
+        // that every slug actually present resolves in the Poly Haven
+        // catalog — protects against authoring typos.
         let world = load_world(generated_root().join("world")).unwrap();
-        let keep = world.hub("dalewatch_keep").expect("keep hub");
-        assert!(
-            keep.props.len() >= 15,
-            "capital expected >=15 props, got {}",
-            keep.props.len()
-        );
-        // Every slug must resolve in the Poly Haven catalog — defensive
-        // check so authoring typos surface at test time.
         let known: std::collections::HashSet<&str> =
             POLYHAVEN_CURATED_SLUGS.iter().copied().collect();
-        for prop in &keep.props {
-            assert!(
-                known.contains(prop.slug.as_str()),
-                "unknown polyhaven slug {:?} in dalewatch_keep props",
-                prop.slug
-            );
-        }
-
-        for id in [
+        for hub_id in [
+            "dalewatch_keep",
             "harriers_rest",
             "kingsroad_waypost",
             "miller_crossing",
             "ford_of_ashmere",
         ] {
-            let hub = world.hub(id).unwrap_or_else(|| panic!("hub {id}"));
-            assert!(!hub.props.is_empty(), "hub {id} should have props");
+            let hub = world.hub(hub_id).unwrap_or_else(|| panic!("hub {hub_id}"));
             for prop in &hub.props {
                 assert!(
                     known.contains(prop.slug.as_str()),
-                    "unknown polyhaven slug {:?} in {id} props",
+                    "unknown polyhaven slug {:?} in {hub_id} props",
                     prop.slug
                 );
             }

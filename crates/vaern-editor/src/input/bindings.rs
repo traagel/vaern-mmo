@@ -12,33 +12,18 @@ use std::collections::HashSet;
 use super::focus::EguiFocusGuard;
 
 /// Editor-wide actions the binding table maps to.
-///
-/// V1 covers: mode hotkeys + save + undo. Mode-internal inputs (e.g.
-/// brush radius scrolling) are still raw KeyCode reads in their mode
-/// systems — promote here once a second mode wants the same key.
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 pub enum EditorAction {
-    /// Default mode (1): select / pick / inspect.
     SelectMode,
-    /// Place mode (2): drop the palette-selected prop at cursor.
     PlaceMode,
-    /// Voxel-brush mode (3): sphere add/subtract.
     VoxelBrushMode,
-    /// Biome paint mode (4): paint biome tags onto chunk-aligned tiles.
     BiomePaintMode,
-    /// Scatter preview mode (5): live scatter-rule simulation.
     ScatterPreviewMode,
-    /// Save current zone (Ctrl+S).
     SaveZone,
-    /// Undo last edit (Ctrl+Z).
     Undo,
-    /// Redo last undone edit (Ctrl+Shift+Z or Ctrl+Y).
     Redo,
 }
 
-/// Static binding table. Returned as a `Vec` so each entry pairs an
-/// action with a `Binding`. Keep this small + flat — the table walks
-/// linearly per frame.
 fn default_bindings() -> Vec<(EditorAction, Binding)> {
     use EditorAction as A;
     use KeyCode as K;

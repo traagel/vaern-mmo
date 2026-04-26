@@ -17,6 +17,7 @@
 //! gated independently in V2 (e.g. an `F2`-toggle for the inspector).
 
 pub mod console;
+pub mod environment_panel;
 pub mod inspector;
 pub mod palette;
 pub mod theme;
@@ -39,6 +40,7 @@ impl Plugin for EditorUiPlugin {
                 EguiPrimaryContextPass,
                 (
                     toolbar::draw_toolbar,
+                    environment_panel::draw_environment_panel,
                     palette::draw_palette,
                     inspector::draw_inspector,
                     console::draw_console,

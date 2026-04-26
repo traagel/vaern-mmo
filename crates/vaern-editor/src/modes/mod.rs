@@ -1,21 +1,4 @@
 //! Editor mode stack.
-//!
-//! Exactly one mode is "active" at a time. Modes are inert by default
-//! in V1 — the toolbar can switch between them but only the [`select`]
-//! mode is the wired default; the rest log a "not implemented" status
-//! when activated.
-//!
-//! Each mode is implemented as its own `Plugin` whose systems run only
-//! while [`ActiveMode`] matches that mode.
-//!
-//! # Adding a real mode
-//!
-//! 1. Create `modes/<my_mode>.rs`.
-//! 2. Implement a `Plugin` that gates its systems on
-//!    `.run_if(active_mode_is(EditorMode::MyMode))`.
-//! 3. Register the plugin under `ModeStackPlugin::build`.
-//! 4. Wire a button into `ui::toolbar` and a [`bindings::EditorAction`]
-//!    in `input::bindings`.
 
 pub mod biome_paint;
 pub mod place;
@@ -28,8 +11,6 @@ use bevy::prelude::*;
 use crate::input::bindings::{EditorAction, EditorActionState};
 use crate::state::{EditorAppState, EditorContext};
 
-/// Discriminated mode identifier. The active value lives in
-/// [`ActiveMode`].
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, Default)]
 pub enum EditorMode {
     #[default]
@@ -41,7 +22,6 @@ pub enum EditorMode {
 }
 
 impl EditorMode {
-    /// Short label for toolbar buttons + status line.
     pub fn label(self) -> &'static str {
         match self {
             Self::Select => "Select",
@@ -52,8 +32,6 @@ impl EditorMode {
         }
     }
 
-    /// All variants in declaration order. Used by the toolbar to render
-    /// one button per mode.
     pub fn all() -> [EditorMode; 5] {
         [
             Self::Select,
@@ -64,25 +42,21 @@ impl EditorMode {
         ]
     }
 
-    /// True iff this mode is fully implemented in V1. The toolbar grays
-    /// out unimplemented buttons + the activator falls through to a
-    /// status-line "not implemented" notice.
     pub fn is_implemented(self) -> bool {
-        matches!(self, Self::Select | Self::VoxelBrush | Self::Place)
+        matches!(
+            self,
+            Self::Select | Self::VoxelBrush | Self::Place | Self::BiomePaint
+        )
     }
 }
 
-/// Active mode. Mode plugins gate their systems on this resource.
 #[derive(Resource, Debug, Clone, Copy, Default)]
 pub struct ActiveMode(pub EditorMode);
 
-/// Run-condition helper: true while `ActiveMode` matches `mode`.
 pub fn active_mode_is(mode: EditorMode) -> impl FnMut(Res<ActiveMode>) -> bool + Clone {
     move |active: Res<ActiveMode>| active.0 == mode
 }
 
-/// Aggregator plugin — registers every mode plugin + the keybind
-/// handler that swaps `ActiveMode`.
 pub struct ModeStackPlugin;
 
 impl Plugin for ModeStackPlugin {
@@ -122,7 +96,6 @@ fn handle_mode_hotkeys(
     }
 }
 
-/// Public switch helper — also called by the toolbar's mode buttons.
 pub fn switch_mode(active: &mut ActiveMode, ctx: &mut EditorContext, mode: EditorMode) {
     if active.0 == mode {
         return;
@@ -148,13 +121,12 @@ mod tests {
     }
 
     #[test]
-    fn select_place_voxel_brush_are_implemented() {
+    fn select_place_voxel_brush_biome_paint_are_implemented() {
         assert!(EditorMode::Select.is_implemented());
         assert!(EditorMode::VoxelBrush.is_implemented());
         assert!(EditorMode::Place.is_implemented());
-        for m in [EditorMode::BiomePaint, EditorMode::ScatterPreview] {
-            assert!(!m.is_implemented());
-        }
+        assert!(EditorMode::BiomePaint.is_implemented());
+        assert!(!EditorMode::ScatterPreview.is_implemented());
     }
 
     #[test]
@@ -171,8 +143,8 @@ mod tests {
     fn switch_mode_unimplemented_flags_status() {
         let mut active = ActiveMode::default();
         let mut ctx = EditorContext::default();
-        switch_mode(&mut active, &mut ctx, EditorMode::BiomePaint);
-        assert_eq!(active.0, EditorMode::BiomePaint);
+        switch_mode(&mut active, &mut ctx, EditorMode::ScatterPreview);
+        assert_eq!(active.0, EditorMode::ScatterPreview);
         assert!(ctx.status.contains("not implemented"));
     }
 }

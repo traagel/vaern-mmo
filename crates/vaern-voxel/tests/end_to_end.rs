@@ -91,6 +91,7 @@ fn edit_makes_a_previously_empty_chunk_dirty() {
         center: Vec3::new(5.0, 5.0, 5.0),
         radius: 3.0,
         mode: BrushMode::Union,
+        falloff: vaern_voxel::edit::Falloff::Hard,
     };
     let touched = EditStroke::new(brush, &mut store, &mut dirty).apply();
     assert!(!touched.is_empty(), "union brush should create chunks");
@@ -118,6 +119,7 @@ fn edit_plus_remesh_changes_mesh_output() {
         center: Vec3::new(8.0, 8.0, 8.0),
         radius: 6.0,
         mode: BrushMode::Subtract,
+        falloff: vaern_voxel::edit::Falloff::Hard,
     };
     EditStroke::new(hollow, &mut store, &mut dirty).apply();
     dirty.drain_all();
@@ -133,6 +135,7 @@ fn edit_plus_remesh_changes_mesh_output() {
         center: Vec3::new(24.0, 24.0, 24.0),
         radius: 4.0,
         mode: BrushMode::Subtract,
+        falloff: vaern_voxel::edit::Falloff::Hard,
     };
     EditStroke::new(second, &mut store, &mut dirty).apply();
 

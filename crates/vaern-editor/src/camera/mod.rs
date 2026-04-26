@@ -25,7 +25,12 @@
 pub mod controller;
 pub mod ground_clamp;
 
+use bevy::camera::Exposure;
+use bevy::core_pipeline::tonemapping::Tonemapping;
+use bevy::pbr::{DistanceFog, FogFalloff};
+use bevy::post_process::bloom::Bloom;
 use bevy::prelude::*;
+use bevy::render::view::Hdr;
 
 pub use controller::FreeFlyState;
 
@@ -59,15 +64,28 @@ impl Plugin for FreeFlyCameraPlugin {
 /// origin so the loaded zone footprint is visible without scrolling
 /// (`world::load::load_active_zone` re-positions us over the zone).
 ///
-/// `AmbientLight` is attached as a component (per-camera in Bevy 0.18)
-/// so PBR dressing props don't render black against the dark clear
-/// color before the directional sun catches them. Brightness 200
-/// matches the look of the client's runtime camera.
+/// Carries the **same HDR / Atmosphere / Bloom / Tonemapping /
+/// DistanceFog stack** as the runtime client camera
+/// (`vaern-client/src/scene/setup.rs::setup_scene`). The `Atmosphere`
+/// component is NOT inserted here — the environment driver
+/// (`environment::apply_environment`) inserts it on first frame from
+/// the cached `EnvAssets.atmosphere_medium` handle, so atmosphere
+/// toggling can remove + re-insert without leaking medium handles.
 fn spawn_camera(mut commands: Commands) {
     let pos = Vec3::new(0.0, 80.0, 80.0);
     commands.spawn((
         Camera3d::default(),
         Transform::from_translation(pos).looking_at(Vec3::ZERO, Vec3::Y),
+        Hdr,
+        Tonemapping::TonyMcMapface,
+        Bloom::NATURAL,
+        Exposure::SUNLIGHT,
+        DistanceFog {
+            color: Color::srgba(0.70, 0.78, 0.85, 1.0),
+            directional_light_color: Color::srgba(1.0, 0.95, 0.80, 0.5),
+            directional_light_exponent: 30.0,
+            falloff: FogFalloff::from_visibility_squared(1500.0),
+        },
         AmbientLight {
             color: Color::WHITE,
             brightness: 200.0,

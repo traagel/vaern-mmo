@@ -1,75 +1,69 @@
 //! Chunk streamer + post-mesh material attach.
 //!
-//! Each frame, ensure chunks within `STREAM_RADIUS_*` of the editor
-//! camera are seeded into the `ChunkStore`. Post-mesh, attach a
-//! placeholder PBR material (the editor doesn't read biome YAML in V1
-//! — that's deferred to a follow-up that promotes the client's
-//! `BiomeResolver` into a shared crate).
-//!
-//! Approach mirrors `vaern-client/src/voxel_demo.rs::stream_chunks_around_camera`.
+//! Each frame, ensure chunks within the camera's `draw_distance_chunks`
+//! radius are seeded into the `ChunkStore`. Post-mesh, attach a per-
+//! biome PBR material via `BiomeMaterials` cache + `ChunkBiomeMap`
+//! lookup, with biome resolved by override map → nearest-hub voronoi
+//! fallback.
 
 use bevy::image::{ImageAddressMode, ImageLoaderSettings, ImageSampler, ImageSamplerDescriptor};
 use bevy::math::Affine2;
 use bevy::mesh::VertexAttributeValues;
 use bevy::prelude::*;
-use vaern_core::terrain;
 use vaern_voxel::chunk::{ChunkCoord, ChunkStore, DirtyChunks};
-use vaern_voxel::config::CHUNK_WORLD_SIZE;
 use vaern_voxel::generator::WorldGenerator;
 use vaern_voxel::plugin::ChunkRenderTag;
 use vaern_voxel::VoxelChunk;
 
-use super::biomes::{BiomeKey, BiomeResolver};
+use super::biomes::BiomeKey;
+use super::overrides::BiomeOverrideMap;
 use super::store::EditorHeightfield;
 use super::{BiomeMaterials, ChunkBiomeMap};
 use crate::camera::FreeFlyCamera;
+use crate::environment::EnvSettings;
 
-/// World meters per biome-texture tile. Mirrors the client's value so
-/// textures read at the same density.
-const TEXTURE_TILE_M: f32 = 8.0;
+/// Default biome for chunks not covered by a paint override. Voronoi
+/// hub-based resolution was removed — every unpainted chunk uses this.
+pub const DEFAULT_BIOME: BiomeKey = BiomeKey::Marsh;
 
-/// 11-chunk-wide horizontal streaming radius (R=5).
-pub const STREAM_RADIUS_XZ: i32 = 5;
+/// World meters per biome-texture tile.
+const TEXTURE_TILE_M: f32 = 24.0;
+
+/// Default horizontal streaming radius (chunks).
+pub const DEFAULT_STREAM_RADIUS_XZ: i32 = 5;
 /// Vertical radius — terrain amplitude is small, so 3 layers cover
-/// surface + a slice of underground for cave editing. The vertical
-/// band is centered on the **terrain surface** at the camera's XZ
-/// (not on the camera's chunk-Y) so flying high doesn't make the
-/// ground stop streaming.
+/// surface + a slice of underground.
 pub const STREAM_RADIUS_Y: i32 = 1;
 
 /// Each frame: seed any not-yet-loaded chunks around the camera's XZ.
-///
-/// The vertical band is anchored to the terrain surface, not the
-/// camera's height. Without this, flying the free-fly camera up to 80u
-/// puts the seeded Y range at world [32, 128] while the ground sits at
-/// world Y ≈ 0–5 — the surface-nets extractor finds no zero-crossing
-/// in any seeded chunk and the viewport renders empty.
 pub fn stream_chunks_around_editor_camera(
     camera_q: Query<&Transform, With<FreeFlyCamera>>,
     mut store: ResMut<ChunkStore>,
     mut dirty: ResMut<DirtyChunks>,
-    resolver: Res<BiomeResolver>,
+    overrides: Res<BiomeOverrideMap>,
+    env: Res<EnvSettings>,
     mut chunk_biomes: ResMut<ChunkBiomeMap>,
 ) {
     let Ok(cam) = camera_q.single() else {
         return;
     };
 
-    // Anchor vertical streaming on the terrain surface at the camera's
-    // XZ, not the camera's Y. The analytical heightmap is cheap enough
-    // to sample every frame (~1 µs); voxel-store ground lookups would
-    // also work but bootstrap to the same answer on the first frame
-    // anyway because the chunks aren't loaded yet.
-    let terrain_y = terrain::height(cam.translation.x, cam.translation.z);
-    let surface_world = Vec3::new(cam.translation.x, terrain_y, cam.translation.z);
+    // Flat ground: every chunk's surface lands at world Y =
+    // GROUND_BIAS_Y, which `ChunkCoord::containing` resolves to chunk
+    // y = 0. Anchor vertical streaming there directly — the previous
+    // `terrain::height(cam.xz)` lookup was meaningless once the noise
+    // heightfield was removed.
+    let surface_world =
+        Vec3::new(cam.translation.x, super::store::GROUND_BIAS_Y, cam.translation.z);
     let surface_chunk_y = ChunkCoord::containing(surface_world).0.y;
     let cam_chunk_xz = ChunkCoord::containing(cam.translation);
 
     let generator = EditorHeightfield;
+    let r_xz = env.draw_distance_chunks.max(1);
     let mut seeded = 0;
-    for dz in -STREAM_RADIUS_XZ..=STREAM_RADIUS_XZ {
+    for dz in -r_xz..=r_xz {
         for dy in -STREAM_RADIUS_Y..=STREAM_RADIUS_Y {
-            for dx in -STREAM_RADIUS_XZ..=STREAM_RADIUS_XZ {
+            for dx in -r_xz..=r_xz {
                 let coord = ChunkCoord::new(
                     cam_chunk_xz.0.x + dx,
                     surface_chunk_y + dy,
@@ -83,13 +77,12 @@ pub fn stream_chunks_around_editor_camera(
                 store.insert(coord, chunk);
                 dirty.mark(coord);
 
-                // Sample biome at the chunk footprint center so the
-                // material attach (PostUpdate) doesn't have to re-query
-                // the resolver per chunk.
-                let origin = coord.world_origin();
-                let cx = origin.x + CHUNK_WORLD_SIZE * 0.5;
-                let cz = origin.z + CHUNK_WORLD_SIZE * 0.5;
-                chunk_biomes.by_coord.insert(coord, resolver.biome_at(cx, cz));
+                // Biome resolution: paint override wins over the
+                // global default. Voronoi hub-based fallback is gone.
+                let biome = overrides
+                    .get(coord.0.x, coord.0.z)
+                    .unwrap_or(DEFAULT_BIOME);
+                chunk_biomes.by_coord.insert(coord, biome);
 
                 seeded += 1;
             }
@@ -105,11 +98,6 @@ pub fn stream_chunks_around_editor_camera(
 }
 
 /// PostUpdate: attach the chunk's biome PBR material + world-XZ UVs.
-///
-/// Mirrors `vaern-client/src/voxel_demo.rs::attach_biome_material_and_uvs`:
-/// look up the chunk in `ChunkBiomeMap` (populated by the streamer at
-/// seed time), fetch-or-build the per-biome material from
-/// `BiomeMaterials`, insert it on the entity.
 pub fn attach_biome_material(
     mut commands: Commands,
     asset_server: Res<AssetServer>,
@@ -143,46 +131,54 @@ pub fn attach_biome_material(
             .clone();
         commands
             .entity(entity)
-            .insert(MeshMaterial3d(handle));
+            .try_insert(MeshMaterial3d(handle));
     }
 }
 
 /// Build the per-biome `StandardMaterial`. World-XZ UVs tile the
-/// texture every `TEXTURE_TILE_M` world units; sampler set to Repeat
-/// so neighboring chunks read from the same tile-grid.
-fn build_biome_material(
+/// texture every `TEXTURE_TILE_M` world units; sampler is Repeat with
+/// max anisotropic filtering. Normal + AO maps loaded LINEAR.
+pub fn build_biome_material(
     assets: &AssetServer,
     materials: &mut Assets<StandardMaterial>,
     biome: BiomeKey,
 ) -> Handle<StandardMaterial> {
-    let repeat = |s: &mut ImageLoaderSettings| {
-        s.sampler = ImageSampler::Descriptor(ImageSamplerDescriptor {
-            address_mode_u: ImageAddressMode::Repeat,
-            address_mode_v: ImageAddressMode::Repeat,
-            address_mode_w: ImageAddressMode::Repeat,
-            ..ImageSamplerDescriptor::linear()
-        });
+    let color_settings = |s: &mut ImageLoaderSettings| {
+        s.sampler = ground_sampler();
+    };
+    let linear_settings = |s: &mut ImageLoaderSettings| {
+        s.sampler = ground_sampler();
+        s.is_srgb = false;
     };
     let tex = biome.textures();
-    let color = assets.load_with_settings(tex.color, repeat);
-    let normal = assets.load_with_settings(tex.normal, repeat);
-    let ao = tex.ao.map(|p| assets.load_with_settings(p, repeat));
+    let color = assets.load_with_settings(tex.color, color_settings);
+    let normal = assets.load_with_settings(tex.normal, linear_settings);
+    let ao = tex.ao.map(|p| assets.load_with_settings(p, linear_settings));
 
     materials.add(StandardMaterial {
         base_color_texture: Some(color),
         normal_map_texture: Some(normal),
         occlusion_texture: ao,
-        perceptual_roughness: 0.95,
+        perceptual_roughness: 1.0,
         metallic: 0.0,
         uv_transform: Affine2::from_scale(Vec2::splat(1.0 / TEXTURE_TILE_M)),
         ..default()
     })
 }
 
-/// When the voxel crate re-meshes a chunk (e.g. after an edit stroke
-/// carves a crater), the new mesh has positions + normals only. Re-add
-/// world-XZ UVs + tangents so the placeholder material samples
-/// correctly across edits.
+fn ground_sampler() -> ImageSampler {
+    ImageSampler::Descriptor(ImageSamplerDescriptor {
+        address_mode_u: ImageAddressMode::Repeat,
+        address_mode_v: ImageAddressMode::Repeat,
+        address_mode_w: ImageAddressMode::Repeat,
+        anisotropy_clamp: 16,
+        ..ImageSamplerDescriptor::linear()
+    })
+}
+
+/// When the voxel crate re-meshes a chunk, the new mesh has positions
+/// + normals only. Re-add world-XZ UVs + tangents so the material
+/// samples correctly across re-meshes.
 pub fn refresh_uvs_on_remesh(
     mut meshes: ResMut<Assets<Mesh>>,
     chunks: Query<(&ChunkRenderTag, &Transform, &Mesh3d), Changed<Mesh3d>>,
@@ -192,8 +188,6 @@ pub fn refresh_uvs_on_remesh(
     }
 }
 
-/// Add world-XZ UVs + tangents to the chunk mesh in place. No-op if
-/// the asset has been despawned mid-frame or already has UVs.
 fn ensure_chunk_mesh_attributes(
     meshes: &mut Assets<Mesh>,
     mesh_handle: &Handle<Mesh>,

@@ -2,16 +2,20 @@ id: kingsroad_waypost
 zone: dalewatch_marches
 name: Kingsroad Waypost
 role: outpost
-description: |
-  A prefab patrol cabin on the kingsroad, halfway between the Keep and
-  Miller's Crossing. Two bored deputies, a stove, a boot rack, and the
+description: 'A prefab patrol cabin on the kingsroad, halfway between the Keep and
+
+  Miller''s Crossing. Two bored deputies, a stove, a boot rack, and the
+
   courier relay for the eastern run. Roadside bandit work stages from
-  here, and most of the Marches' couriers pass under its lantern at some
+
+  here, and most of the Marches'' couriers pass under its lantern at some
+
   hour of the night.
-prompt: >-
-  establishing shot, small timber patrol cabin beside a paved kingsroad
-  at dusk, single hanging lantern, courier post sign, autumn rain in the
-  distance, painterly atmospheric, late-medieval Burgundian, no figures
+
+  '
+prompt: establishing shot, small timber patrol cabin beside a paved kingsroad at dusk,
+  single hanging lantern, courier post sign, autumn rain in the distance, painterly
+  atmospheric, late-medieval Burgundian, no figures
 amenities:
 - repair
 quest_givers: 2
@@ -19,23 +23,3 @@ biome: scorched
 offset_from_zone_origin:
   x: -110.0
   z: -30.0
-
-# Waystation on the Kingsroad — repair forge + traveler rest.
-props:
-  - slug: stone_fire_pit
-    offset: {x: 0.0, z: 0.0}
-  - slug: wooden_barrels_01
-    offset: {x: -3.5, z: 1.5}
-    rotation_y_deg: 60.0
-  - slug: wooden_crate_02
-    offset: {x: -4.2, z: 0.5}
-  - slug: WoodenTable_01
-    offset: {x: 3.5, z: 1.5}
-  - slug: wooden_bowl_01
-    offset: {x: 3.5, z: 1.8}
-  - slug: treasure_chest
-    offset: {x: 3.3, z: 2.8}
-  - slug: vintage_oil_lamp
-    offset: {x: -2.0, z: -3.0}
-  - slug: vintage_oil_lamp
-    offset: {x: 2.0, z: -3.0}

@@ -2,17 +2,20 @@ id: miller_crossing
 zone: dalewatch_marches
 name: Miller's Crossing
 role: outpost
-description: |
-  A stone bridge across the Ash, a working grain mill, and ten or so
+description: 'A stone bridge across the Ash, a working grain mill, and ten or so
+
   steadings packed close to the water. Bread and grain, suspicion of
-  strangers, short coin. Old Brenn's flock grazes a half-day upriver,
-  and the miller's daughter has been losing sacks to someone the
-  deputies can't catch.
-prompt: >-
-  establishing shot, low stone arch bridge over a slow river, working
-  timber grain mill with waterwheel, packed thatched steadings,
-  late-afternoon golden light, painterly atmospheric, late-medieval
-  Burgundian, no figures
+
+  strangers, short coin. Old Brenn''s flock grazes a half-day upriver,
+
+  and the miller''s daughter has been losing sacks to someone the
+
+  deputies can''t catch.
+
+  '
+prompt: establishing shot, low stone arch bridge over a slow river, working timber
+  grain mill with waterwheel, packed thatched steadings, late-afternoon golden light,
+  painterly atmospheric, late-medieval Burgundian, no figures
 amenities:
 - innkeeper
 - flight_master
@@ -22,38 +25,3 @@ biome: marsh
 offset_from_zone_origin:
   x: -220.0
   z: 20.0
-
-# Mill + river-crossing village — grain stores, chairs, and chests.
-props:
-  - slug: stone_fire_pit
-    offset: {x: 0.0, z: 0.0}
-  - slug: spinning_wheel_01
-    offset: {x: 2.5, z: -1.0}
-    rotation_y_deg: -30.0
-  - slug: wooden_barrels_01
-    offset: {x: -3.0, z: 1.0}
-    rotation_y_deg: 20.0
-  - slug: wooden_barrels_01
-    offset: {x: -5.0, z: 2.0}
-    rotation_y_deg: 90.0
-  - slug: wooden_crate_02
-    offset: {x: -4.5, z: 0.0}
-  - slug: WoodenTable_01
-    offset: {x: 4.0, z: 2.5}
-  - slug: WoodenChair_01
-    offset: {x: 4.5, z: 3.5}
-    rotation_y_deg: 180.0
-  - slug: wooden_bowl_01
-    offset: {x: 4.0, z: 2.8}
-  - slug: wooden_bucket_01
-    offset: {x: 1.5, z: 3.5}
-  - slug: wooden_bucket_02
-    offset: {x: 2.0, z: 3.8}
-  - slug: treasure_chest
-    offset: {x: -1.0, z: 3.0}
-  - slug: wooden_lantern_01
-    offset: {x: 0.0, z: -4.0}
-  - slug: vintage_oil_lamp
-    offset: {x: -3.0, z: -3.0}
-  - slug: vintage_oil_lamp
-    offset: {x: 3.0, z: -3.0}

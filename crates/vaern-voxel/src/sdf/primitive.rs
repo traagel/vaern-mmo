@@ -6,7 +6,7 @@
 //! primitives are cheap to clone and pass into composite SDFs by value.
 
 use super::SdfField;
-use bevy::math::Vec3;
+use bevy::math::{Vec2, Vec3};
 
 /// Solid sphere.
 #[derive(Clone, Copy, Debug)]
@@ -49,6 +49,39 @@ impl SdfField for BoxSdf {
         let d = (p - self.center).abs() - self.half_extents;
         let outside = d.max(Vec3::ZERO).length();
         let inside = d.x.max(d.y.max(d.z)).min(0.0);
+        outside + inside
+    }
+}
+
+/// Y-axis solid cylinder with flat caps. For arbitrary axes, transform
+/// the query point into the cylinder's local frame before sampling.
+#[derive(Clone, Copy, Debug)]
+pub struct Cylinder {
+    pub center: Vec3,
+    pub radius: f32,
+    pub half_height: f32,
+}
+
+impl Cylinder {
+    pub const fn new(center: Vec3, radius: f32, half_height: f32) -> Self {
+        Self {
+            center,
+            radius,
+            half_height,
+        }
+    }
+}
+
+impl SdfField for Cylinder {
+    #[inline]
+    fn sample(&self, p: Vec3) -> f32 {
+        // Inigo Quilez's standard cylinder SDF: 2D distance in the
+        // (xz_radius, |local_y|) plane with rectangular cap.
+        let local = p - self.center;
+        let xz = Vec2::new(local.x, local.z).length();
+        let d = Vec2::new(xz - self.radius, local.y.abs() - self.half_height);
+        let outside = d.max(Vec2::ZERO).length();
+        let inside = d.x.max(d.y).min(0.0);
         outside + inside
     }
 }
@@ -139,6 +172,20 @@ mod tests {
     fn box_is_zero_on_face() {
         let b = BoxSdf::new(Vec3::ZERO, Vec3::splat(2.0));
         assert!(b.sample(Vec3::new(2.0, 0.0, 0.0)).abs() < 1e-4);
+    }
+
+    #[test]
+    fn cylinder_sdf_zero_on_side_surface() {
+        let c = Cylinder::new(Vec3::ZERO, 5.0, 10.0);
+        // Side surface at xz_radius == radius, |y| < half_height.
+        assert!(c.sample(Vec3::new(5.0, 0.0, 0.0)).abs() < 1e-4);
+    }
+
+    #[test]
+    fn cylinder_sdf_zero_on_top_cap() {
+        let c = Cylinder::new(Vec3::ZERO, 5.0, 10.0);
+        // Top cap at xz < radius, y == half_height.
+        assert!(c.sample(Vec3::new(0.0, 10.0, 0.0)).abs() < 1e-4);
     }
 
     #[test]

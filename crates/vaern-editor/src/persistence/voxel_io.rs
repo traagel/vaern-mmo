@@ -91,6 +91,7 @@ pub fn drain_save_requests(
     store: Res<ChunkStore>,
     hubs: Res<crate::world::ActiveZoneHubs>,
     dressing_q: Query<&crate::dressing::EditorDressingEntity>,
+    overrides: Res<crate::voxel::overrides::BiomeOverrideMap>,
     mut log: ResMut<ConsoleLog>,
 ) {
     if !req.requested {
@@ -122,6 +123,21 @@ pub fn drain_save_requests(
         Err(e) => {
             warn!("editor: hub yaml save failed: {e}");
             log.push(format!("HUB YAML SAVE FAILED: {e}"));
+        }
+    }
+
+    // 3. Biome overrides.
+    let overrides_path = crate::voxel::overrides::biome_overrides_path();
+    match crate::voxel::overrides::save_biome_overrides(&overrides_path, &overrides) {
+        Ok(count) => {
+            info!(
+                "editor: saved {count} biome overrides to {overrides_path:?}"
+            );
+            log.push(format!("saved {count} biome overrides"));
+        }
+        Err(e) => {
+            warn!("editor: biome override save failed: {e}");
+            log.push(format!("BIOME OVERRIDE SAVE FAILED: {e}"));
         }
     }
 }

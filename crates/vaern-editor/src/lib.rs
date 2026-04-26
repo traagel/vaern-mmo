@@ -30,6 +30,7 @@
 pub mod camera;
 pub mod cli;
 pub mod dressing;
+pub mod environment;
 pub mod input;
 pub mod modes;
 pub mod persistence;
@@ -38,6 +39,7 @@ pub mod ui;
 pub mod voxel;
 pub mod world;
 
+use bevy::diagnostic::FrameTimeDiagnosticsPlugin;
 use bevy::prelude::*;
 
 /// Top-level plugin. Aggregates every editor subsystem.
@@ -50,6 +52,10 @@ pub struct EditorPlugin;
 impl Plugin for EditorPlugin {
     fn build(&self, app: &mut App) {
         app.add_plugins((
+            // Frame-time diagnostics → drives the toolbar FPS readout.
+            // Without this, `DiagnosticsStore.get(FrameTimeDiagnosticsPlugin::FPS)`
+            // returns None and the toolbar shows `--`.
+            FrameTimeDiagnosticsPlugin::default(),
             state::EditorStatePlugin,
             input::EditorInputPlugin,
             camera::FreeFlyCameraPlugin,
@@ -59,6 +65,7 @@ impl Plugin for EditorPlugin {
             ui::EditorUiPlugin,
             persistence::EditorPersistencePlugin,
             modes::ModeStackPlugin,
+            environment::EnvironmentPlugin,
         ));
     }
 }

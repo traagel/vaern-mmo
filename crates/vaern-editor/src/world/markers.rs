@@ -11,3 +11,9 @@ use bevy::prelude::*;
 /// `crate::dressing::EditorDressingEntity` marker; both can coexist.
 #[derive(Component, Debug, Default, Clone, Copy)]
 pub struct EditorWorld;
+
+/// Marker on the directional sun light. The environment driver
+/// (`environment::apply_environment`) queries `With<EditorSun>` to
+/// rotate / re-color it from the time-of-day setting.
+#[derive(Component, Debug, Default, Clone, Copy)]
+pub struct EditorSun;

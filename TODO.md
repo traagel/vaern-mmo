@@ -6,17 +6,27 @@ Forward-looking slice list. For the full current state see `README.md`; for desi
 
 ## Map editor (post-Slice-9)
 
-`vaern-editor` is a new standalone Bevy binary at `crates/vaern-editor/`, sibling of `vaern-client`. Source-of-truth authoring for the same YAML + voxel data the runtime reads.
+`vaern-editor` is a standalone Bevy binary at `crates/vaern-editor/`, sibling of `vaern-client`. Source-of-truth authoring for the same YAML + voxel data the runtime reads.
 
-Implemented:
-- Free-fly camera + chunk streaming + biome PBR materials over any zone (`--zone <id>`).
-- **Voxel brush mode** — sphere add/subtract at cursor, inspector radius slider, Shift inverts. Saves to `src/generated/world/voxel_edits.bin`; server reads on startup + ships to clients via existing reconnect-snapshot path.
+Implemented (run `cargo run --release -p vaern-editor -- --zone dalewatch_marches`):
+
+- **Free-fly camera** + camera-relative chunk streaming with despawn-based eviction (`voxel/render_opt.rs::evict_chunks_outside_draw_distance` despawns out-of-range entities, `pending_respawn: HashSet<ChunkCoord>` tracks despawned coords for reliable re-spawn on return — never re-marks always-empty chunks).
+- **HDR atmospheric pipeline matching the runtime client**: camera carries `Hdr + Tonemapping::TonyMcMapface + Bloom::NATURAL + Exposure::SUNLIGHT + Atmosphere::earthlike + DistanceFog`. Editor preview = runtime preview.
+- **Environment panel** (left SidePanel) — time-of-day slider 0–24h with autoplay (configurable seconds/game-hour); fog enable + visibility + falloff mode + auto-or-manual color; atmosphere toggle; **draw distance slider 1–64 chunks** (logarithmic, ~32m–2km radius) with km/m readout + chunk count + perf warning.
+- **Voxel sculpt toolkit (8 tools)**: Sphere / Smooth / Flatten / Ramp / Reset / Cylinder / Box / Stamp. Continuous drag stroke, falloff curves (Hard / Linear / Smooth), X/Z mirror plane with configurable origin, 4-slot brush presets (Ctrl+1..4 load, Ctrl+Shift+N save), Shift/Ctrl scroll-modifier for fine/coarse radius. Undo/redo (Ctrl+Z / Ctrl+Shift+Z) with twin ring buffers per-stroke. New brush types live in `vaern-voxel::edit` (Cylinder primitive, Falloff trait extension, FlattenBrush, RampBrush, ResetBrush, StampBrush, SmoothStroke).
+- **Biome paint mode** — chunk-aligned XZ painting, 9-biome palette + 0–4 chunk-radius brush. `BiomeOverrideMap` (XZ → BiomeKey) persists to `src/generated/world/biome_overrides.bin` (bincode, deterministic ordering). Material swap is direct on chunk entities via `commands.entity(e).insert(MeshMaterial3d(handle))` because `attach_biome_material`'s `Added<ChunkRenderTag>` filter only fires once per entity.
 - **Place mode** — palette-selected Poly Haven slug + LMB on ground spawns a new prop into the nearest hub.
-- **Select / inspect / edit / delete** — LMB picks prop via scene-mesh AABB raycast (handles big stretched assets); inspector mutates offset/rotation/scale/Y-override; Delete button + key.
-- **Save → hub YAMLs** — `props:` array spliced into each touched hub's YAML via `serde_yaml::Value` (preserves all other fields). Round-trips into runtime client via the existing `vaern-client/src/scene/dressing.rs` reader.
+- **Select / inspect / edit / delete** — LMB picks prop via scene-mesh AABB raycast.
+- **Save → hub YAMLs + biome overrides + voxel edits** — `props:` array spliced into each touched hub's YAML via `serde_yaml::Value` (preserves all other fields). Round-trips into runtime client via the existing `vaern-client/src/scene/dressing.rs` reader.
 - **Bundle splitting on disk** — `scripts/split_polyhaven_bundle.py` peels multi-mesh glTFs into per-piece glTFs sharing the original `.bin` + textures. Already run on `modular_fort_01` (22 piece slugs in catalog).
+- **`scripts/wipe_dressing.py`** — strips `props:` from every hub YAML + `scatter:` from every zone core YAML + deletes `voxel_edits.bin`. Used to reset the world to a blank canvas for re-authoring.
+- **Texture quality**: ground materials load normal + AO maps as **linear** (`is_srgb = false`) — sRGB decoding had warped the normal vectors and read as static-noise lighting. Sampler now uses `anisotropy_clamp: 16` + Repeat addressing; tile size 24u. Ground material is `perceptual_roughness: 1.0` (matte). `NotShadowCaster` on every chunk so the directional sun's cascade pass skips them.
+- **Heightfield**: `EditorHeightfield` is a flat plane at `GROUND_BIAS_Y = 0.5` (half-voxel offset deliberate — places the iso-surface mid-cube so surface nets extracts a clean horizontal slab; values like `0.0` would land exactly on chunk-Y boundaries and produce degenerate vertices). No voronoi biome resolver in the editor — every unpainted chunk uses `BiomeKey::Marsh`. `BiomeOverrideMap` overrides per XZ.
+- **FPS counter** in the toolbar — driven by `bevy::diagnostic::FrameTimeDiagnosticsPlugin` registered in `EditorPlugin`.
 
-Stubbed slots (file scaffold + plugin shells): biome paint mode, scatter preview mode, transform gizmo, voxel undo recording.
+Stubbed slots (file scaffold + plugin shells): scatter preview mode, transform gizmo.
+
+**Performance notes**: at 12-chunk draw distance (~384m radius, 625 surface chunks) → ~35 FPS on a Ryzen 9 7950X3D + RX 7900 XTX in release mode. Frame time scales O(N²) with draw distance (one draw call per chunk; no LOD). The cap was raised to 64 chunks (~2km radius) but expect <2 FPS at the top end. Real "big landscape" rendering needs LOD / GPU instancing / async meshing — separate slice.
 
 ---
 

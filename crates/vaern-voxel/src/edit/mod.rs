@@ -25,8 +25,13 @@
 //! Adding a new brush = one new file in `brush/` + an `impl Brush`.
 
 pub mod brush;
+pub mod smooth;
 
-pub use brush::{AddSphereBrush, BoxBrush, Brush, BrushMode, SphereBrush};
+pub use brush::{
+    AddSphereBrush, BoxBrush, Brush, BrushMode, CylinderBrush, Falloff, FlattenBrush, RampBrush,
+    ResetBrush, SphereBrush, StampBrush, StampShape,
+};
+pub use smooth::SmoothStroke;
 
 use crate::chunk::{ChunkCoord, ChunkStore, DirtyChunks};
 use crate::config::{CHUNK_DIM, PADDING, VOXEL_SIZE};
@@ -85,11 +90,16 @@ impl<'a, B: Brush> EditStroke<'a, B> {
                     // (via the shared-edge padding), so we route it
                     // to every chunk whose padded array would
                     // contain a sample at this position.
+                    let nd = self.brush.normalized_dist_at(world);
+                    let weight = self.brush.falloff().weight(nd);
+                    if weight <= 0.0 {
+                        continue;
+                    }
                     for (coord, padded_local) in chunks_containing_voxel(x, y, z) {
                         let chunk = self.store.get_or_insert_air(coord);
                         let existing = chunk.get(padded_local);
-                        let candidate = self.brush.sample(world);
-                        let blended = self.brush.blend(existing, candidate);
+                        let raw = self.brush.apply_at(world, existing);
+                        let blended = existing * (1.0 - weight) + raw * weight;
                         if (blended - existing).abs() > 1e-6 {
                             chunk.set(padded_local, blended);
                             touched.insert(coord);
@@ -176,6 +186,7 @@ mod tests {
             center: Vec3::new(5.0, 5.0, 5.0),
             radius: 3.0,
             mode: BrushMode::Subtract,
+            falloff: brush::Falloff::Hard,
         };
         let stroke = EditStroke::new(brush, &mut store, &mut dirty);
         let touched = stroke.apply();

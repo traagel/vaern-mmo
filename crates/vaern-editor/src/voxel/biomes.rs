@@ -10,12 +10,6 @@
 //! Biome → ambientCG PBR texture set table is the same as the client's.
 
 use std::collections::HashMap;
-use std::path::Path;
-
-use bevy::prelude::*;
-use vaern_data::{load_world, World};
-
-use crate::world::load::compute_zone_origins;
 
 /// Same 9-biome palette as the runtime client. Unknown YAML keys fall
 /// through to `Grass`.
@@ -46,6 +40,64 @@ impl BiomeKey {
             _ => Self::Grass,
         }
     }
+
+    pub fn label(self) -> &'static str {
+        match self {
+            Self::Grass => "Grass",
+            Self::GrassLush => "Grass (lush)",
+            Self::Mossy => "Mossy",
+            Self::Dirt => "Dirt",
+            Self::Snow => "Snow",
+            Self::Stone => "Stone",
+            Self::Scorched => "Scorched",
+            Self::Marsh => "Marsh",
+            Self::Rocky => "Rocky",
+        }
+    }
+
+    /// Stable u8 mapping for on-disk biome-override persistence. The
+    /// numeric values must NEVER be reordered — existing files would
+    /// silently swap biomes. Add new variants only at the end.
+    pub const fn id(self) -> u8 {
+        match self {
+            Self::Grass => 0,
+            Self::GrassLush => 1,
+            Self::Mossy => 2,
+            Self::Dirt => 3,
+            Self::Snow => 4,
+            Self::Stone => 5,
+            Self::Scorched => 6,
+            Self::Marsh => 7,
+            Self::Rocky => 8,
+        }
+    }
+
+    pub fn from_id(id: u8) -> Option<Self> {
+        Some(match id {
+            0 => Self::Grass,
+            1 => Self::GrassLush,
+            2 => Self::Mossy,
+            3 => Self::Dirt,
+            4 => Self::Snow,
+            5 => Self::Stone,
+            6 => Self::Scorched,
+            7 => Self::Marsh,
+            8 => Self::Rocky,
+            _ => return None,
+        })
+    }
+
+    pub const ALL: [BiomeKey; 9] = [
+        Self::Grass,
+        Self::GrassLush,
+        Self::Mossy,
+        Self::Dirt,
+        Self::Snow,
+        Self::Stone,
+        Self::Scorched,
+        Self::Marsh,
+        Self::Rocky,
+    ];
 
     /// PBR triple for this biome. Paths are relative to the
     /// `vaern-editor` binary's `AssetServer` root (the workspace
@@ -107,85 +159,9 @@ pub struct BiomeTextures {
     pub ao: Option<&'static str>,
 }
 
-/// Pre-computed hub anchors for nearest-hub biome resolution.
-#[derive(Resource, Default)]
-pub struct BiomeResolver {
-    hubs: Vec<HubBiome>,
-}
-
-#[derive(Clone, Copy, Debug)]
-struct HubBiome {
-    x: f32,
-    z: f32,
-    biome: BiomeKey,
-    influence_sq: f32,
-}
-
-/// Same influence radius as the client: 900u covers Dalewatch's
-/// 1200×1200u playable box without bleeding into a neighboring zone.
-const HUB_INFLUENCE_RADIUS: f32 = 900.0;
-
-impl BiomeResolver {
-    pub fn load(world_root: &Path) -> Self {
-        let world = match load_world(world_root) {
-            Ok(w) => w,
-            Err(e) => {
-                warn!("editor BiomeResolver: load_world failed: {e}");
-                return Self::default();
-            }
-        };
-        Self::from_world(&world)
-    }
-
-    pub fn from_world(world: &World) -> Self {
-        let zone_origins = compute_zone_origins(world);
-        let mut hubs = Vec::new();
-        for zone in &world.zones {
-            let Some(&(ox, oz)) = zone_origins.get(&zone.id) else {
-                continue;
-            };
-            for hub in world.hubs_in_zone(&zone.id) {
-                let Some(off) = hub.offset_from_zone_origin.as_ref() else {
-                    continue;
-                };
-                hubs.push(HubBiome {
-                    x: ox + off.x,
-                    z: oz + off.z,
-                    biome: BiomeKey::from_yaml(&hub.biome),
-                    influence_sq: HUB_INFLUENCE_RADIUS * HUB_INFLUENCE_RADIUS,
-                });
-            }
-        }
-        info!("editor BiomeResolver: {} hub anchors", hubs.len());
-        Self { hubs }
-    }
-
-    pub fn biome_at(&self, x: f32, z: f32) -> BiomeKey {
-        let mut best: Option<(f32, BiomeKey)> = None;
-        for h in &self.hubs {
-            let dx = h.x - x;
-            let dz = h.z - z;
-            let d2 = dx * dx + dz * dz;
-            if d2 > h.influence_sq {
-                continue;
-            }
-            if best.map_or(true, |(b, _)| d2 < b) {
-                best = Some((d2, h.biome));
-            }
-        }
-        best.map(|(_, k)| k).unwrap_or(BiomeKey::Grass)
-    }
-}
-
 #[cfg(test)]
 mod tests {
     use super::*;
-
-    #[test]
-    fn empty_resolver_falls_back_to_grass() {
-        let r = BiomeResolver::default();
-        assert_eq!(r.biome_at(100.0, 100.0), BiomeKey::Grass);
-    }
 
     #[test]
     fn from_yaml_maps_known_keys() {

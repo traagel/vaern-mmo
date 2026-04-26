@@ -61,9 +61,10 @@ impl Plugin for EditorWorldPlugin {
     }
 }
 
-/// Single directional light. The dressing meshes are PBR; matches the
-/// client's 100k-lux sun so the editor reads as the same world the
-/// runtime renders.
+/// Single directional light tagged with `EditorSun` so the
+/// `environment::apply_environment` driver can rotate / re-color it
+/// from the time-of-day setting. Initial transform is overwritten on
+/// the first frame of `Update`.
 fn spawn_sun(mut commands: Commands) {
     commands.spawn((
         DirectionalLight {
@@ -71,13 +72,9 @@ fn spawn_sun(mut commands: Commands) {
             shadows_enabled: true,
             ..default()
         },
-        Transform::from_rotation(Quat::from_euler(
-            EulerRot::XYZ,
-            -std::f32::consts::FRAC_PI_3,
-            std::f32::consts::FRAC_PI_4,
-            0.0,
-        )),
+        Transform::IDENTITY.looking_to(Vec3::new(0.0, -1.0, 0.0), Vec3::Z),
         markers::EditorWorld,
+        markers::EditorSun,
         Name::new("EditorSun"),
     ));
 }
