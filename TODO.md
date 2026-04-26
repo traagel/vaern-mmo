@@ -4,6 +4,22 @@ Forward-looking slice list. For the full current state see `README.md`; for desi
 
 ---
 
+## Map editor (post-Slice-9)
+
+`vaern-editor` is a new standalone Bevy binary at `crates/vaern-editor/`, sibling of `vaern-client`. Source-of-truth authoring for the same YAML + voxel data the runtime reads.
+
+Implemented:
+- Free-fly camera + chunk streaming + biome PBR materials over any zone (`--zone <id>`).
+- **Voxel brush mode** — sphere add/subtract at cursor, inspector radius slider, Shift inverts. Saves to `src/generated/world/voxel_edits.bin`; server reads on startup + ships to clients via existing reconnect-snapshot path.
+- **Place mode** — palette-selected Poly Haven slug + LMB on ground spawns a new prop into the nearest hub.
+- **Select / inspect / edit / delete** — LMB picks prop via scene-mesh AABB raycast (handles big stretched assets); inspector mutates offset/rotation/scale/Y-override; Delete button + key.
+- **Save → hub YAMLs** — `props:` array spliced into each touched hub's YAML via `serde_yaml::Value` (preserves all other fields). Round-trips into runtime client via the existing `vaern-client/src/scene/dressing.rs` reader.
+- **Bundle splitting on disk** — `scripts/split_polyhaven_bundle.py` peels multi-mesh glTFs into per-piece glTFs sharing the original `.bin` + textures. Already run on `modular_fort_01` (22 piece slugs in catalog).
+
+Stubbed slots (file scaffold + plugin shells): biome paint mode, scatter preview mode, transform gizmo, voxel undo recording.
+
+---
+
 ## Where we are today (2026-04-26)
 
 Pre-alpha-shaped scaffold. Menu → login/register against the server-side SQLite account store → char create → **PBR-dressed Dalewatch** with scattered trees / rocks / shrubs + ~55 authored hub props → side-quest givers populated → mob level bands by hub → walk to NPC, F-press, **read authored turn-in dialogue + click contextual button** (talk/deliver) or F-press a cyan `?` waypoint marker (investigate) → kill mobs (XP scales by mob-vs-killer level: greys=0, +5 reds=1.5×; multi-kill objectives track `2/3` in the tracker) → level up (centered banner + screen flash + +1 pillar point auto-granted) → die → 25% HP at home, walk back to corpse for full restore → /wave at your friend → ride east of Ford of Ashmere to **Drifter's Lair** (zone-local 470, 80) → 4-mob pulls of L8-L10 drifters → kill **Halen** mini-boss (L9) and **Valenn** capstone boss (L10) → if grouped, vote Need/Greed/Pass on the mithril/dragonscale/shadowsilk + exceptional drops in a centered modal → repeat. Server bounce mid-session: client auto-reconnects with exponential backoff, replays cached credentials, resumes the session without a re-prompt. Multi-client, server-authoritative, zone-AoI replicated, **374 tests green** (4 pre-existing combat-test failures unchanged). Slice 6 is **code-complete + tests green; 2-client playtest pending.**

@@ -40,6 +40,7 @@ pub mod config;
 pub mod edit;
 pub mod generator;
 pub mod mesh;
+pub mod persistence;
 pub mod plugin;
 pub mod query;
 pub mod replication;

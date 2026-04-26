@@ -183,7 +183,34 @@ const CURATED: &[(&str, PolyHavenCategory)] = &[
     ("WoodenChair_01", PolyHavenCategory::HubProp),
     ("large_castle_door", PolyHavenCategory::HubProp),
     ("large_iron_gate", PolyHavenCategory::HubProp),
-    ("modular_fort_01", PolyHavenCategory::HubProp),
+    // `modular_fort_01` is a 22-piece bundle. Each piece was split out
+    // into its own glTF by `scripts/split_polyhaven_bundle.py` so the
+    // editor can place individual fort sections. The original parent
+    // `.gltf` + `.bin` + textures still live on disk; the piece glTFs
+    // reference them via relative URIs (see the script for details).
+    // Re-run the script if you re-download the pack.
+    ("modular_fort_01__tower_round", PolyHavenCategory::HubProp),
+    ("modular_fort_01__wall_stairs_straight_01", PolyHavenCategory::HubProp),
+    ("modular_fort_01__wall_thick_corner_01", PolyHavenCategory::HubProp),
+    ("modular_fort_01__wall_thick_corner_02", PolyHavenCategory::HubProp),
+    ("modular_fort_01__wall_thick_end_01", PolyHavenCategory::HubProp),
+    ("modular_fort_01__wall_thick_end_02", PolyHavenCategory::HubProp),
+    ("modular_fort_01__wall_thick_straight_01", PolyHavenCategory::HubProp),
+    ("modular_fort_01__wall_thick_straight_02", PolyHavenCategory::HubProp),
+    ("modular_fort_01__wall_thick_thin_transition_01", PolyHavenCategory::HubProp),
+    ("modular_fort_01__wall_thin_corner_01", PolyHavenCategory::HubProp),
+    ("modular_fort_01__wall_thin_corner_02", PolyHavenCategory::HubProp),
+    ("modular_fort_01__wall_thin_corner_03", PolyHavenCategory::HubProp),
+    ("modular_fort_01__wall_thin_gate_01", PolyHavenCategory::HubProp),
+    ("modular_fort_01__wall_thin_straight_01", PolyHavenCategory::HubProp),
+    ("modular_fort_01__wall_thin_straight_02", PolyHavenCategory::HubProp),
+    ("modular_fort_01__wall_thin_straight_03", PolyHavenCategory::HubProp),
+    ("modular_fort_01__wall_thin_straight_04", PolyHavenCategory::HubProp),
+    ("modular_fort_01__wall_walkway_corner_01", PolyHavenCategory::HubProp),
+    ("modular_fort_01__wall_walkway_corner_02", PolyHavenCategory::HubProp),
+    ("modular_fort_01__wall_walkway_end_01", PolyHavenCategory::HubProp),
+    ("modular_fort_01__wall_walkway_straight_01", PolyHavenCategory::HubProp),
+    ("modular_fort_01__wall_walkway_straight_02", PolyHavenCategory::HubProp),
     ("stone_fire_pit", PolyHavenCategory::HubProp),
     ("spinning_wheel_01", PolyHavenCategory::HubProp),
     ("horse_statue_01", PolyHavenCategory::HubProp),

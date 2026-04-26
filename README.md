@@ -224,6 +224,27 @@ All humanoids (own player, remote players, humanoid NPCs) are Quaternius modular
 - **`CharacterSummary` populated from `PersistedCharacter`** so the roster shows real race/pillar/level.
 - **Gated by `VAERN_REQUIRE_AUTH=1`** (default off so the dev loop keeps working without credentials).
 
+### Map editor (`vaern-editor`)
+
+Standalone Bevy binary, sibling of `vaern-client`. Authoring tool for the same world data the runtime reads — saved edits round-trip into the live game.
+
+```bash
+cargo run -p vaern-editor -- --zone dalewatch_marches
+```
+
+- **Free-fly camera** (WASD + Q/E + RMB-look + scroll-speed) over the active zone.
+- **Voxel terrain sculpt** — Mode 3: LMB carves (Subtract), Shift+LMB raises (Union), inspector slider for radius (0.5–32u). Uses the same `EditStroke::apply` pipeline as the runtime F10 stomp.
+- **Asset placement** — Mode 2 + palette: pick a Poly Haven slug from the left panel, LMB on ground spawns a new prop into the nearest hub at hub-local offset.
+- **Selection + edit** — Mode 1: LMB picks a prop via scene-mesh AABB raycast (handles big stretched assets like castle doors). Inspector edits offset / rotation / scale / Y-override; Delete button or Delete key removes.
+- **Save** — toolbar button writes both:
+  - `src/generated/world/voxel_edits.bin` — bincode `Vec<ChunkDelta>` of every chunk that diverged from the heightfield baseline (sparse-vs-snapshot encoded by size).
+  - `src/generated/world/zones/<zone>/hubs/<hub>.yaml` — the `props:` array spliced into each touched hub's YAML via `serde_yaml::Value` (preserves all other fields).
+- **Round-trip to runtime** — server reads `voxel_edits.bin` on Startup and registers every chunk in the existing `EditedChunks` set, so connecting clients receive the deltas through the established `queue_reconnect_snapshots` path. Hub YAML edits land via the existing client `OnEnter(InGame)` reader.
+
+**Bundle splitting** — `scripts/split_polyhaven_bundle.py` peels a multi-mesh Poly Haven glTF into one glTF per top-level node, sharing the original `.bin` + textures via relative URIs. Already run on `modular_fort_01` (22 piece slugs in the catalog: tower_round + thick/thin walls + walkways + stairs).
+
+**Stubbed** (slots reserved): biome paint, scatter preview, voxel undo recording, transform gizmo.
+
 ### Hostable build (Slice 8)
 
 - **Netcode key** resolved from `VAERN_NETCODE_KEY` (release rejects unset / all-zero / wrong-length).
@@ -288,7 +309,7 @@ VAERN_CLIENT_ID=1001 ./target/debug/vaern-client    # terminal 3 — second clie
 
 ## Architecture
 
-Workspace of seventeen crates + modular client + modular server.
+Workspace of eighteen crates + modular client + modular server + standalone editor.
 
 ### Crates
 
@@ -322,7 +343,9 @@ crates/
 ├── vaern-client/     DefaultPlugins + 22 focused modules (see below)
 ├── vaern-sim/        headless deterministic sim — reserved for PPO training
 ├── vaern-assets/     shared Bevy plugin: Meshtint + Quaternius + UAL animation
-└── vaern-museum/     two bins: vaern-museum (composer) + vaern-atlas (taxonomy)
+├── vaern-museum/     two bins: vaern-museum (composer) + vaern-atlas (taxonomy)
+└── vaern-editor/     standalone Bevy authoring tool: voxel sculpt, prop placement,
+                      hub YAML write-back, voxel-delta save-to-disk → runtime load
 ```
 
 #### `vaern-voxel` detail

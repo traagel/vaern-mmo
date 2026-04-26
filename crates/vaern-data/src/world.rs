@@ -3,7 +3,7 @@
 
 use std::{collections::HashMap, fs, path::Path};
 
-use serde::Deserialize;
+use serde::{Deserialize, Serialize};
 
 use crate::{read_dir, LoadError};
 
@@ -163,7 +163,7 @@ pub struct Hub {
 /// One hand-placed prop in a hub. Slug must match a
 /// `PolyHavenEntry::slug` in the catalog; unknown slugs are logged and
 /// skipped at load time.
-#[derive(Debug, Clone, Deserialize)]
+#[derive(Debug, Clone, Deserialize, Serialize)]
 pub struct AuthoredProp {
     /// Poly Haven catalog slug (e.g. `"wooden_barrels_01"`).
     pub slug: String,
@@ -178,11 +178,11 @@ pub struct AuthoredProp {
     pub scale: f32,
     /// Override automatic voxel-ground Y-snap. Use for lanterns on walls
     /// or banners hung above doorways.
-    #[serde(default)]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
     pub absolute_y: Option<f32>,
 }
 
-#[derive(Debug, Clone, Deserialize)]
+#[derive(Debug, Clone, Deserialize, Serialize)]
 pub struct PropOffset {
     pub x: f32,
     pub z: f32,

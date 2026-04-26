@@ -39,8 +39,12 @@ use vaern_protocol::{
 use vaern_voxel::chunk::{ChunkCoord, ChunkStore, DirtyChunks};
 use vaern_voxel::edit::{BrushMode, EditStroke, SphereBrush};
 use vaern_voxel::generator::{HeightfieldGenerator, WorldGenerator};
+use vaern_voxel::persistence::{apply_into_store, load_from_disk};
 use vaern_voxel::replication::ChunkDelta;
 use vaern_voxel::VoxelChunk;
+
+use bevy::math::IVec3;
+use std::path::{Path, PathBuf};
 
 use std::collections::{HashMap, HashSet, VecDeque};
 
@@ -78,6 +82,11 @@ impl Plugin for VoxelServerPlugin {
             .init_resource::<PendingDeltas>()
             .init_resource::<PendingReconnectSnapshots>()
             .add_message::<ValidatedEditStroke>()
+            // Replay authored voxel edits at boot. Each chunk loaded
+            // from disk is registered in `EditedChunks` so the existing
+            // `queue_reconnect_snapshots` system ships it to every
+            // connecting client — no separate broadcast path needed.
+            .add_systems(Startup, load_authored_voxel_edits)
             .add_systems(
                 FixedUpdate,
                 (
@@ -92,6 +101,58 @@ impl Plugin for VoxelServerPlugin {
                     .chain(),
             );
     }
+}
+
+// --- startup: replay authored edits ----------------------------------------
+
+/// Resolve the path to the authored voxel-edits file. Server can
+/// override via `VAERN_VOXEL_EDITS` for staging environments; default
+/// is the workspace canonical `src/generated/world/voxel_edits.bin`.
+fn voxel_edits_path() -> PathBuf {
+    if let Ok(env) = std::env::var("VAERN_VOXEL_EDITS") {
+        return PathBuf::from(env);
+    }
+    Path::new(env!("CARGO_MANIFEST_DIR"))
+        .join("../../src/generated/world/voxel_edits.bin")
+}
+
+/// Read the on-disk delta file. For each delta:
+/// 1. Seed the destination chunk from the heightfield (if not already
+///    loaded — startup `ChunkStore` is empty).
+/// 2. Apply the delta in-place, version-gated.
+/// 3. Mark the chunk dirty (mesher would care if we ran one server-side
+///    — currently a no-op since the server doesn't mesh).
+/// 4. **Register in `EditedChunks`** so `queue_reconnect_snapshots`
+///    sends the chunk to every newly-connecting client.
+fn load_authored_voxel_edits(
+    mut store: ResMut<ChunkStore>,
+    mut dirty: ResMut<DirtyChunks>,
+    mut edited: ResMut<EditedChunks>,
+) {
+    let path = voxel_edits_path();
+    let deltas = match load_from_disk(&path) {
+        Ok(d) => d,
+        Err(e) => {
+            warn!("server: failed to load voxel_edits at {path:?}: {e}");
+            return;
+        }
+    };
+    if deltas.is_empty() {
+        info!("server: no authored voxel edits at {path:?} (file missing or empty)");
+        return;
+    }
+    let generator = HeightfieldGenerator::new();
+    let applied = apply_into_store(&deltas, &mut store, &mut dirty, &generator);
+    for delta in &deltas {
+        edited
+            .coords
+            .insert(ChunkCoord(IVec3::from_array(delta.coord)));
+    }
+    info!(
+        "server: replayed {applied} authored chunk edits from {path:?} \
+         ({} registered for reconnect-broadcast)",
+        edited.coords.len()
+    );
 }
 
 // --- resources --------------------------------------------------------------

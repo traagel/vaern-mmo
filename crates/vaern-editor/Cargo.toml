@@ -1,0 +1,26 @@
+[package]
+name = "vaern-editor"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+
+[lib]
+path = "src/lib.rs"
+
+[[bin]]
+name = "vaern-editor"
+path = "src/bin/editor.rs"
+
+[dependencies]
+vaern-core.workspace = true
+vaern-data.workspace = true
+vaern-voxel.workspace = true
+vaern-assets.workspace = true
+bevy = { version = "0.18", features = ["jpeg"] }
+bevy_egui = "0.39"
+clap = { version = "4", features = ["derive"] }
+serde = { version = "1.0.228", features = ["derive"] }
+serde_yaml = "0.9.34"
+anyhow = "1"
+dirs = "5"

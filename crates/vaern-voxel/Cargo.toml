@@ -8,5 +8,6 @@ license.workspace = true
 [dependencies]
 bevy = "0.18"
 serde = { version = "1.0.228", features = ["derive"] }
+bincode = "1.3"
 thiserror = "2.0.18"
 vaern-core.workspace = true
