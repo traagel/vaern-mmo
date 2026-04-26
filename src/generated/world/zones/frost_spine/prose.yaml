@@ -1,0 +1,57 @@
+zone:
+  vibe: Endgame alpine spine — wyrm country, sealed observatory, the Coming's high mark.
+  description: The spine of the iron mountains where the Concord lines ended and the Coming
+    reached its highest point. Wyrms in the cliff-cracks, yetis in the hollows, a sealed pre-Coming
+    observatory at the top that the Hearthkin say is occupied. The Frost Gate guards what's
+    left of the way up and lets very few past.
+  prompt: wide establishing landscape, snow-capped alpine spine, sheer ice ridges, ancient
+    stone observatory at the highest peak, blizzard haze, cold blue cast, painterly atmospheric,
+    oppressive mood, no figures
+hubs:
+  frost_gate:
+    description: The pass-fortress at the lower end of the spine — Concord by garrison, Hearthkin
+      by treaty, both by exhaustion. Gatekeeper Uthar is the third generation in his family
+      to hold the post. He is also the last; his children will not be keepers, and he will
+      not say why.
+    prompt: establishing shot, alpine pass fortress at the lower edge of an iced mountain
+      spine, stone curtain wall, snow on the upper crags, banners of the Concord, painterly
+      atmospheric, late-medieval, no figures
+  yeti_warren:
+    description: A trapper outpost beneath the upper Spine — built into an old rockfall scar,
+      bone-trophies in the rafters, a trapper named Hesska who has lost three companions and
+      all of her superstitions. The yetis above the warren are her livelihood and her closest
+      neighbours.
+    prompt: establishing shot, alpine trapper outpost dug into a rockfall scar, log-and-stone
+      shelter with bone trophies, snow on every flat surface, cold blue light, painterly atmospheric,
+      late-medieval, no figures
+  sundered_peak:
+    description: A sealed pre-Coming observatory at the highest reachable point on the spine.
+      The Hearthkin say it's still occupied. The Concord seal it set is intact. Something
+      inside has been answering questions in handwriting since last winter.
+    prompt: establishing shot, sealed pre-Coming stone observatory at the icy summit of an
+      alpine spine, blizzard haze, dim blue light, oppressive cold mood, painterly atmospheric,
+      no figures
+landmarks:
+  blue_glacier:
+    description: A glacier on the lower spine that is unusually blue and unusually still.
+      Hearthkin scholars believe something is frozen in it; expeditions have not returned
+      with answers.
+    prompt: establishing shot, immense pale blue alpine glacier in a narrow valley, snow-covered
+      ridges, cold blue afternoon light, oppressive cold mood, painterly atmospheric, no figures
+  frozen_seal:
+    description: A pre-Coming seal-stone half-buried in the snow at the lower spine. The seal
+      is intact. The Concord set it; nobody admits to setting it. Nobody has tested it.
+    prompt: establishing shot, pre-Coming carved stone seal half-buried in alpine snow, runic
+      markings clear of ice, cold blue light, painterly atmospheric, late-medieval, no figures
+  storm_stone:
+    description: A standing stone the local weather appears to attend to. Lightning strikes
+      it on the Spine's worst storm-nights. The stone has never broken.
+    prompt: establishing shot, single ancient standing stone on an alpine ridge, lightning-scarred,
+      blizzard haze, cold blue light, oppressive cold mood, painterly atmospheric, late-medieval,
+      no figures
+  yeti_skull_pile:
+    description: A pile of yeti skulls left as warning by trappers a generation ago. The yetis
+      don't approach. New skulls have been added recently, by no one anyone identifies.
+    prompt: establishing shot, pile of weathered massive yeti skulls on an alpine slope, snow
+      on the lower bones, cold blue afternoon light, oppressive mood, painterly atmospheric,
+      no figures

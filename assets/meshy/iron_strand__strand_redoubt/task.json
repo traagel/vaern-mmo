@@ -1,0 +1,16 @@
+{
+  "id": "019dc76a-3cb3-767f-b9df-42e88c41fb74",
+  "type": "text-to-image",
+  "ai_model": "nano-banana-pro",
+  "prompt": "establishing shot, square stone redoubt on a sheer cliff-top above a grey sea, gun-port loopholes, Concord banner snapping in salt wind, painterly atmospheric, late-medieval, no figures",
+  "status": "SUCCEEDED",
+  "progress": 100,
+  "created_at": 1777167121598,
+  "started_at": 1777167122207,
+  "finished_at": 1777167141273,
+  "expires_at": 1777426341273,
+  "image_urls": [
+    "https://assets.meshy.ai/2872987b-afbf-4fa0-95f0-231417dc567c/uploads/image_019dc76a-3cb3-767f-b9df-42e88c41fb74_0.png?Expires=1777426341&Signature=Wop1u3Jro-EGbin3paAO97lBBSYNWc9gO5EzW9455ooh8IEju2IxKLkCxzFh0K~cOZgsuEMbvpYH11CPMKqOkQWRkuS4LRYfB4g~z3OPPX-b0GQqmGmqoj6YxGTOCQYTsA6Mc0AMqwJP06BGF7LaW0CgSGRV3U~AbQHQVFmclx0o1Uw9om7FqkGb97hgyzuxyowIc6oiYQK0QEzc7i~6VGuava-aqoM1ZUCx2C4S923fC21-leYXSVu0NkEoAIg2x5dbLcGABApdWcDDrEbTCH9SajRwWG3N8L1zidj5x0WtPRwm6i-EX6XT0dxBp18P1xmusZ2wE1kEIcTgJjSTyQ__&Key-Pair-Id=K1VGYTHIYLM9UM"
+  ],
+  "consumed_credits": 9
+}

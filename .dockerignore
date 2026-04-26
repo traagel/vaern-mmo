@@ -1,0 +1,54 @@
+# Keep the docker build context lean. Only the dirs the web image actually
+# needs go through (web/, icons/, emblems/, characters/, assets/meshy/,
+# docker/).
+
+# Rust build artifacts (huge)
+target/
+
+# Everything under crates/ — the web image doesn't need server source
+crates/
+
+# Source-of-truth YAML — already baked into web/data.json
+src/generated/
+
+# Untracked working assets
+assets/extracted/
+assets/zips/
+assets/polyhaven/
+
+# Old bulk asset zips
+*.zip
+
+# Git + editor + tooling
+.git/
+.github/
+.idea/
+.vscode/
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/
+.cache/
+
+# Local secrets — never bake into an image
+.env
+.env.*
+
+# Log files / scratch
+*.log
+
+# Web symlinks (broken inside the container — we COPY the targets directly
+# in the Dockerfile)
+web/icons
+web/emblems
+web/characters
+web/assets
+
+# Misc files we don't need in the image
+README.md
+TODO.md
+*.md
+dalewatch_redesign.md
+docs/
+scripts/
+target/

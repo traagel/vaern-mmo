@@ -1,0 +1,16 @@
+{
+  "id": "019dc76d-1123-731f-a750-f129b414ce41",
+  "type": "text-to-image",
+  "ai_model": "nano-banana-pro",
+  "prompt": "establishing shot, woodland pool fed by a clear spring, deer trail leading to it, mossy stones, soft green-blue light, painterly atmospheric, late-medieval fey, no figures",
+  "status": "SUCCEEDED",
+  "progress": 100,
+  "created_at": 1777167307052,
+  "started_at": 1777167307196,
+  "finished_at": 1777167328339,
+  "expires_at": 1777426528339,
+  "image_urls": [
+    "https://assets.meshy.ai/2872987b-afbf-4fa0-95f0-231417dc567c/uploads/image_019dc76d-1123-731f-a750-f129b414ce41_0.png?Expires=1777426528&Signature=YD7md~tPN8pMSINlEkM44oT9DJvjUulovAXC5DH35w~QpnTS9uFhsM-tEOt04~OhMX2~iYDgrgvoRHCZxmfsL~bfcztzSwJzMAKwq2J~ekFVuCsj33hJaJ2IkeABFhLy8WIoEIGXAq5W4QYgL4hs-C4lWcPm7m7bsY04rIZ9HXJfYaigD3q3~2q4U45R0TKI3A001mEM2yBjj3D2Y6TikR7R8u142Dq~Uu~klZxV~55S6hlG~yUfE9j9Og7HoYA0OP8G3M1Inm59BIWzJ3GIUwDwFYotRzk53nk5bwUqJv0w6gmwoQLRuJnP3Y0ItrnzhKagHFeAZjo0Sp26VQMklQ__&Key-Pair-Id=K1VGYTHIYLM9UM"
+  ],
+  "consumed_credits": 9
+}

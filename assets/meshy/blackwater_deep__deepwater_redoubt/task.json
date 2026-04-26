@@ -1,0 +1,16 @@
+{
+  "id": "019dc769-f0ce-766d-b083-d432c6720506",
+  "type": "text-to-image",
+  "ai_model": "nano-banana-pro",
+  "prompt": "establishing shot, weathered stone bunkhouse on a marsh edge, three timber watch-platforms above black water, leaden cold afternoon light, painterly atmospheric, oppressive mood, no figures",
+  "status": "SUCCEEDED",
+  "progress": 100,
+  "created_at": 1777167102248,
+  "started_at": 1777167102273,
+  "finished_at": 1777167121587,
+  "expires_at": 1777426321587,
+  "image_urls": [
+    "https://assets.meshy.ai/2872987b-afbf-4fa0-95f0-231417dc567c/uploads/image_019dc769-f0ce-766d-b083-d432c6720506_0.png?Expires=1777426321&Signature=Diiy1Yt8rV~JCJkg-yZSdzH4QJ1bnvziBJUqo7sjjhJKtdJmeLwUs~35jxMJYO~kADmLdC-So-~2Ql6X3hY5equuJF5QjP5wtDgjVjGSNrKmZSiK8s~CPP~rcSDUj0YnFqmpt-49bZKWiahgWwHhZHsKdF79vmPAj0JRy-QrVq~hQ6NPJUZMWJYccwmIrkE3nhlD8faxyWo2iNtm2mlqoMJOmEc41PL7EPZpsehGBafHDY-S8EvTVWn0MWWUdDT5jtWwz89FBBool66mgriUPVKM3ALSTwVK8CmFWgGb-grab-DCm2dvKffQFMnWCK~MyLNoAg2rcpLUgnugNbgdOw__&Key-Pair-Id=K1VGYTHIYLM9UM"
+  ],
+  "consumed_credits": 9
+}

@@ -1,0 +1,59 @@
+zone:
+  vibe: Darkling Elen ashland — silver-black trees, hidden cult, the Reach watching.
+  description: The Darkling Elen mid-zone in the Ashen March — silver-ash trees on a slope
+    of grey volcanic soil, the Reach looming above with its black-iron banners, a cult operating
+    out of the Dark Glade Sanctum that the Reach officially does not employ and unofficially
+    does not discourage. New arrivals learn quickly which questions to leave alone.
+  prompt: wide establishing landscape, silver-ash forest on volcanic soil, dark fortress reach
+    on a high crag, banked red coals in the foreground, sickly amber light, painterly atmospheric,
+    late-medieval dark elf, no figures
+hubs:
+  shadegrove_reach:
+    description: The Darkling Elen mid-capital — a black-iron Reach fortress on a high crag
+      above the silver-ash forest, banners of cooled obsidian, an under-gallery the Spire
+      publicly does not visit and privately controls. Reach-Mother Velna keeps the Spire's
+      polite distance by enforcing it personally.
+    prompt: establishing shot, black-iron Darkling Elen fortress on a sheer crag above silver-ash
+      forest, obsidian banners, sickly amber-red dusk, painterly atmospheric, late-medieval
+      dark elf, no figures
+  cinder_post:
+    description: A volcanic-soil outpost in the lower forest — turf-roofed shelters, a smith
+      working volcanic-glass blades, a patrol-house manned by Reach veterans who lost a feud
+      and are too old to fight a new one. The grove-cult to the south uses the post's roads
+      without asking.
+    prompt: establishing shot, ash-forest outpost on volcanic soil, turf-roofed shelters,
+      smithy with banked red coals, dim amber afternoon light, painterly atmospheric, late-medieval
+      dark elf, no figures
+  dark_glade:
+    description: A glade-shrine that the Reach officially does not endorse. The Pact-Speakers
+      visit it; the Speakers do not say so out loud. The cultists in the deeper sanctum have
+      begun signing their letters with a glyph the Reach scholars have politely declined to
+      translate.
+    prompt: establishing shot, ash-forest glade with a half-buried shadow-shrine, banked obsidian
+      fire, hanging silver leaves, sickly amber dusk, painterly atmospheric, oppressive mood,
+      no figures
+landmarks:
+  witch_cinder_pyre:
+    description: A pyre-pit the Reach maintains for ritual cremations of matters they prefer
+      cremated. The pit is never cold and never explained.
+    prompt: establishing shot, deep stone pyre-pit on volcanic soil, embers always burning,
+      ash drifts, sickly amber-red light, painterly atmospheric, late-medieval dark elf, oppressive
+      mood, no figures
+  silver_bone_cairn:
+    description: A cairn of weathered animal bones bleached to silver. The Reach scholars
+      insist they are not human. The Reach scholars have a very specific definition of human.
+    prompt: establishing shot, mossy stone cairn topped with weathered silver-bleached animal
+      bones, ashen forest around it, dim amber-grey light, painterly atmospheric, late-medieval
+      dark elf, no figures
+  hidden_glade:
+    description: A glade nobody official will admit to using. The fire-ring is fresh; the
+      offerings are not. Reach patrols visit regularly and report finding nothing of note.
+    prompt: establishing shot, secluded ash-forest glade with fresh fire-ring and broken offerings,
+      sickly amber dusk, oppressive mood, painterly atmospheric, late-medieval dark elf, no
+      figures
+  black_iron_gate:
+    description: A free-standing iron gate set in the middle of a clearing with no wall on
+      either side. The gate is locked. The lock is ancient and untouched and somehow not rusted.
+    prompt: establishing shot, black wrought-iron gate standing free in an ash-forest clearing
+      with no walls, ancient unrusted lock, oppressive amber-red dusk, painterly atmospheric,
+      late-medieval dark elf, no figures

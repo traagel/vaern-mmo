@@ -1,0 +1,16 @@
+{
+  "id": "019dc76a-5263-767f-8a0a-35528af4716d",
+  "type": "text-to-image",
+  "ai_model": "nano-banana-pro",
+  "prompt": "establishing shot, turf earthwork outpost above an old battle field, half-buried banners and broken weapons in the grass, lone roadside chapel, oppressive grey light, painterly atmospheric, late-medieval, no figures",
+  "status": "SUCCEEDED",
+  "progress": 100,
+  "created_at": 1777167127150,
+  "started_at": 1777167127677,
+  "finished_at": 1777167147935,
+  "expires_at": 1777426347935,
+  "image_urls": [
+    "https://assets.meshy.ai/2872987b-afbf-4fa0-95f0-231417dc567c/uploads/image_019dc76a-5263-767f-8a0a-35528af4716d_0.png?Expires=1777426347&Signature=IYZPtanjtNEq3btLFDh5EGpnEk-fh7KFQ506VWZuOPk6kw9-2NlB7whiOIXE7c9yEf-SHvQWT9pZmmXvtmEHRelYrKfTUgfh9DxyebUm42YrXjYyFF3ak7h-IDikKWwT-rijzbRhRZtbu2hF6u7v9soIhvs1rbBZXWHWxRYGUmmrPojK7q8kQjkpHaIdDRxKMX6jo29aBf3IIj8mC4Plp2F6-8XSDX1~t7cAGyQcQLgLYkSHS4rTLigRj-T7qF~gEU74WOGGW5NYSEsmbFpHx3-~HuJzIdZZvHWi928-d136wC1hjHmqBn4vDiRTbHjGRV6ivMm3fF~3nPviC7aeqg__&Key-Pair-Id=K1VGYTHIYLM9UM"
+  ],
+  "consumed_credits": 9
+}

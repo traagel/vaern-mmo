@@ -1,0 +1,63 @@
+zone:
+  vibe: Endgame contested capstone — crown bastion, throne-claimant, both sides besieging
+    the same stone.
+  description: The stone the Coming was about, the bastion the war was fought over and lost
+    on both sides. Concord and Pact siege lines wrap the Crown's slopes from opposite directions;
+    the Throne-Claimant inside the bastion holds a contested title nobody's been able to settle.
+    Walk a quarter-circle around the Crown and you change which army shoots at you.
+  prompt: wide establishing landscape, ruined fortress crown atop a rocky height, two distant
+    siege-camps from opposing flags, smoke columns and trench works, oppressive grey-amber
+    sky, painterly atmospheric, late-medieval, no figures
+hubs:
+  last_candle:
+    description: A neutral hostel at the foot of the Crown — three bunkhouses, a chapel of
+      no faction, a candle that the innkeeper never lets go out and never explains. Combatants
+      come here under truce and leave under summons. The candle has been there longer than
+      the siege.
+    prompt: establishing shot, neutral stone hostel at the foot of a ruined fortress crown,
+      lone candle in a window, low siege-camps in the distance, oppressive grey-amber twilight,
+      painterly atmospheric, no figures
+  crown_bastion:
+    description: The outer bastion of the Crown — the contested capstone of the ruin-line,
+      currently jointly besieged by Concord and Pact armies who agree on nothing except that
+      this stone matters. The bastion is held by what's left of a garrison that signed a fifth
+      oath to a fourth flag.
+    prompt: establishing shot, ruined fortress crown bastion under joint siege, two distant
+      siege-camps from opposing flags, smoke columns and trench-works, oppressive grey-amber
+      sky, painterly atmospheric, late-medieval, no figures
+  throne_of_ash:
+    description: The throne-chamber inside the bastion — broken stone, ash drifts, a seat
+      that the Throne-Claimant occupies without comment. The chamber is entered through agreement
+      of both besieging armies. Everyone leaves intact, by long-standing custom.
+    prompt: establishing shot, ruined throne-chamber interior, broken stone seat in drifts
+      of ash, holes in the vaulted ceiling letting in cold light, oppressive mood, painterly
+      atmospheric, late-medieval, no figures
+landmarks:
+  siege_camp_concord:
+    description: The Concord besieging army's main camp on the Crown's western slope. Tents
+      in disciplined rows, heavy mangonels, the smell of trench-fires that have not been cold
+      in three years.
+    prompt: establishing shot, disciplined Concord siege camp on a rocky slope, rows of tents
+      and heavy siege engines, smoke from trench fires, oppressive grey-amber light, painterly
+      atmospheric, late-medieval, no figures
+  siege_camp_pact:
+    description: The Pact besieging army's main camp on the Crown's eastern slope. Yurts and
+      longhouses in rough circles, a row of oath-pillars hammered into the ground, smoke columns
+      directly opposing the Concord's.
+    prompt: establishing shot, Pact siege camp on a rocky slope, yurts and longhouses in circles,
+      oath-pillars driven into the ground, smoke columns, oppressive grey-amber light, painterly
+      atmospheric, late-medieval, no figures
+  breach_corner:
+    description: The point in the Crown's curtain wall where both armies have repeatedly broken
+      through, briefly held the breach, and been pushed back. The masonry has been re-laid
+      four times.
+    prompt: establishing shot, fortress curtain wall corner with repeatedly-rebuilt masonry
+      breach, broken weapons in the rubble, oppressive grey-amber sky, painterly atmospheric,
+      late-medieval, no figures
+  neutral_well:
+    description: A well below both siege-camps that both armies use under tacit agreement.
+      The well is patrolled by a single non-affiliated watchman who answers to neither and
+      gets paid by both.
+    prompt: establishing shot, single stone well-head on a rocky slope between two distant
+      siege-camps, lone watchman's lean-to, oppressive grey-amber light, painterly atmospheric,
+      late-medieval, no figures

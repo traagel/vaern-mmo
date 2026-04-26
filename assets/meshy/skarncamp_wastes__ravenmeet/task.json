@@ -1,0 +1,16 @@
+{
+  "id": "019dc76b-1961-7afe-9851-8fe84a3cba3d",
+  "type": "text-to-image",
+  "ai_model": "nano-banana-pro",
+  "prompt": "establishing shot, Skarn longhall on a basalt headland between two cold fjord arms, longships drawn up below, smoke from braziers, leaden afternoon light, painterly atmospheric, late-medieval viking, no figures",
+  "status": "SUCCEEDED",
+  "progress": 100,
+  "created_at": 1777167178097,
+  "started_at": 1777167178415,
+  "finished_at": 1777167220931,
+  "expires_at": 1777426420931,
+  "image_urls": [
+    "https://assets.meshy.ai/2872987b-afbf-4fa0-95f0-231417dc567c/uploads/image_019dc76b-1961-7afe-9851-8fe84a3cba3d_0.png?Expires=1777426420&Signature=ilatl6yZtz3EkMl7krjnKSd7wS5QRVwdNmwgTI2PWU~DkPvRGDXJczHUXKJ9XkTJ4GFFPh5OtMfRPcALpYEQ~IYtQGf8AoBY3f2YspNoZywygwB7G2mvcrNCsHs~GdLxLe0fK2HSYr3mdsHfsdTL-oIQfZ~aVG7F2S01a8oJ5wf1D7mWLxeKr5P6jOMG48O7nzdkS35Vv6RLld8iPbySsSYEO-6HOfFSTt~yWku56ZDLYsyldCEsoQXGe2Yt4Scxrfmi5e8IdvMHgx~sJG2kPFKU61ZVCVDCKlrO17uagPfoE0k9pUDbYWOdoDB3C059dSYlxg2jQp3d-kDimRi2-w__&Key-Pair-Id=K1VGYTHIYLM9UM"
+  ],
+  "consumed_credits": 9
+}

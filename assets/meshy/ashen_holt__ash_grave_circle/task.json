@@ -1,0 +1,16 @@
+{
+  "id": "019dc76b-e72a-76ba-bfa3-f8cccc237297",
+  "type": "text-to-image",
+  "ai_model": "nano-banana-pro",
+  "prompt": "establishing shot, circle of low ash-covered burial mounds in a dark forest clearing, leaning weathered stones, sickly amber dusk, painterly atmospheric, late-medieval, no figures",
+  "status": "SUCCEEDED",
+  "progress": 100,
+  "created_at": 1777167230788,
+  "started_at": 1777167230823,
+  "finished_at": 1777167325180,
+  "expires_at": 1777426525180,
+  "image_urls": [
+    "https://assets.meshy.ai/2872987b-afbf-4fa0-95f0-231417dc567c/uploads/image_019dc76b-e72a-76ba-bfa3-f8cccc237297_0.png?Expires=1777426525&Signature=l7VCdAMtaFqRLbfLoC~ptyCyJg4pEG5~BsInWTdsDJQi7OU33lhx0VXfHICS0cTSq~rIb7luErZwAIjxWXTjqWFrUGnV~UXEjyJzw5tc3~44BuXAxYv1Q2jWiQ82AO8fr24S-z7f-~inNHgS1uRXDZoCzn41IpmGHgFv1CByCQOHs4P0zhqGktn0TsGgy9uVPu67C9rq2hhhkPAcE9RraHfe33b3YEM4Yse4IR2z48nD1BeLvMgb~UInD57UM2p49TissgmaO1O5apWtJDZJjcaRHWvW~TAOIujuHh80saS9oWzkzrbbI~jRnPFSu370Xk739ZtvtNAg5cXFQVgo-g__&Key-Pair-Id=K1VGYTHIYLM9UM"
+  ],
+  "consumed_credits": 9
+}

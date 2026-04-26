@@ -1,0 +1,54 @@
+zone:
+  vibe: Firland fey-forest — old-growth pine, deep silence, Concord-allied but not Concord.
+  description: The Firland starter in the central highlands — old-growth fir and silver birch
+    under a permanent green twilight, deer trails worn into mast that hasn't been turned in
+    centuries, the mute Firland working their craft in clearings the Mannin are politely never
+    invited to. They signed the Concord oath in the Second; they've kept it without ever quite
+    agreeing to it. The Greenmoot is opening up to outsiders for the first time in a generation.
+  prompt: wide establishing landscape, old-growth fir and silver birch forest, green twilight,
+    soft moss floor, pale shafts of sunlight, painterly atmospheric, late-medieval fey, no
+    figures
+hubs:
+  greenmoot:
+    description: 'The Firland capital — a moot-glade beneath six ancestral fir-trunks grown
+      into living pillars. The Speaker is elected by silence: the candidate who can sit longest
+      without being interrupted by the wind takes the chair. The Greenmoot is opening up to
+      outsiders for the first time in a generation, which is making everyone nervous.'
+    prompt: establishing shot, Firland moot-glade beneath six massive living fir trunks, low
+      woven seats around a central hearth, green twilight, dappled shafts of light, painterly
+      atmospheric, late-medieval fey, no figures
+  oldfir_camp:
+    description: An old-fir camp at the wood's south edge — half a dozen weathered timber
+      lodges round a hearth that hasn't gone out since the Coming, by tradition. Camp-Mother
+      Velar doesn't believe in tradition but doesn't put the fire out either. New arrivals
+      are tested first by whether they ask why.
+    prompt: establishing shot, weathered timber lodges around a permanent hearth fire in a
+      clearing of old fir, dim green afternoon light, painterly atmospheric, late-medieval
+      fey, no figures
+landmarks:
+  speakers_silence:
+    description: A clearing where the Greenmoot's Speakers go to perform the annual silence.
+      No outsider has ever been admitted; nobody is sure what the silence is for.
+    prompt: establishing shot, mossy forest clearing with six worn timber seats around a cold
+      central fire-ring, deep green twilight, painterly atmospheric, late-medieval fey, no
+      figures
+  witch_birch:
+    description: A single silver birch in the wood's east, twice the size of the others around
+      it. The Firland do not name it. The bark has been carved on, by no one anyone admits
+      to knowing.
+    prompt: establishing shot, single immense silver birch tree in a deep fir forest, scarred
+      runic carvings on its trunk, dim green light, painterly atmospheric, late-medieval fey,
+      no figures
+  deer_path_pool:
+    description: A pool fed by an underground spring in the forest floor. The deer drink here.
+      The deer don't all come back the same. The tarn-wardens list the count.
+    prompt: establishing shot, woodland pool fed by a clear spring, deer trail leading to
+      it, mossy stones, soft green-blue light, painterly atmospheric, late-medieval fey, no
+      figures
+  oldfir_remains:
+    description: The fallen trunk of a fir that the Firland insist was alive in the second
+      Concord. The trunk is hollow, large enough to shelter a horse, and warm to the touch
+      in winter.
+    prompt: establishing shot, vast hollow fallen fir trunk on a moss forest floor, large
+      enough to walk into, soft warm light from inside, painterly atmospheric, late-medieval
+      fey, no figures

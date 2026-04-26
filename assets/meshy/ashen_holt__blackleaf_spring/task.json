@@ -1,0 +1,16 @@
+{
+  "id": "019dc76b-d118-76ba-bbdf-1937666bc8c8",
+  "type": "text-to-image",
+  "ai_model": "nano-banana-pro",
+  "prompt": "establishing shot, dark forest spring with faintly black water, mossy stones, dim sickly amber-red light, painterly atmospheric, late-medieval dark elf, no figures",
+  "status": "SUCCEEDED",
+  "progress": 100,
+  "created_at": 1777167225125,
+  "started_at": 1777167225869,
+  "finished_at": 1777167275362,
+  "expires_at": 1777426475362,
+  "image_urls": [
+    "https://assets.meshy.ai/2872987b-afbf-4fa0-95f0-231417dc567c/uploads/image_019dc76b-d118-76ba-bbdf-1937666bc8c8_0.png?Expires=1777426475&Signature=fVOndbWt~a7FGBsz6F8sfU96jUvayxirItQuRlMtybxZKBWnYKu7eqzjPBA4i7h4KqEhQR2mqCd5jDGmJDQ32LcJkN4bXDvfglIqrW5PwPXuRondrokNtNVZnMH~rCW6fD6ZaMwQeNyPTawrpxBfGiyp84RsLJM95lI-i7DQdY7HwPYz5GxwmLWV8kLUOjG5jIS5x0SudVMy2LbL7Dm6SL5yX3RNMvGKTnoaU1nly2PTqShO5hTISkMKHlt~MVnn2Z7jgriZXx6LMswbx9IYsfcZFDIjnGSogT~JGXWsT~Qfg51~00hqlw81qfYoV2pKgXuKd5yAYtSgC79slkz-Ow__&Key-Pair-Id=K1VGYTHIYLM9UM"
+  ],
+  "consumed_credits": 9
+}

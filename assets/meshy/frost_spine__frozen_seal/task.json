@@ -1,0 +1,16 @@
+{
+  "id": "019dc76d-5628-7b29-b490-e8fee9d3e4ea",
+  "type": "text-to-image",
+  "ai_model": "nano-banana-pro",
+  "prompt": "establishing shot, pre-Coming carved stone seal half-buried in alpine snow, runic markings clear of ice, cold blue light, painterly atmospheric, late-medieval, no figures",
+  "status": "SUCCEEDED",
+  "progress": 100,
+  "created_at": 1777167324733,
+  "started_at": 1777167325423,
+  "finished_at": 1777167359527,
+  "expires_at": 1777426559527,
+  "image_urls": [
+    "https://assets.meshy.ai/2872987b-afbf-4fa0-95f0-231417dc567c/uploads/image_019dc76d-5628-7b29-b490-e8fee9d3e4ea_0.png?Expires=1777426559&Signature=OvLJ22HnBiv2i6BwK35HyWN9DGc0JQp5~mK9ejqryZEfMDKip2YKC5lJPFD0Pl~XwEej6lxq2B2kzZk2LMhe3FkYLmHBaczXxIzOg5Jzozsc1HZxYDyHk8T2bvbCa-Lut8yjvPghBVvJ4FJHn0uy9MGVl2ocZWTbh3794gnGDgrTY~28Xm4Z~jfunXZLWgc4MCiU5Kz1fiyx9HDNePpvL9OORKyxwTHH27DemLO3F4tDbZqg0pN7PdPP2YXueglgEQAJb5JpULINitSeaJqV7QgNXbCu-EW2go29WNJf8nISecU-PDnsHO3jiFJ1ZrL4Eaa78hFnw82rQcBzkd2KjA__&Key-Pair-Id=K1VGYTHIYLM9UM"
+  ],
+  "consumed_credits": 9
+}

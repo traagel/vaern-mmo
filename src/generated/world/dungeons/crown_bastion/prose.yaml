@@ -1,0 +1,99 @@
+dungeon:
+  description: |
+    The Crown of Ruin under siege from both sides at once. The Concord
+    army camps north and west; the Pact army camps south and east;
+    inside the walls a Throne-Claimant holds a contested title nobody
+    has been able to settle in three generations and will not be
+    settled by the raid below. The bastion's outer ring is rubble. The
+    inner ring is held. The throne room is held by one man and his
+    silence. Twenty-man raid country, and the fight that ends every
+    fight before it.
+  prompt: >-
+    establishing shot, ruined exterior, immense fortress under dual
+    siege, rival banners on opposing hills, smoke from siege engines,
+    breached outer wall, painterly atmospheric, oppressive mood, no
+    figures
+bosses:
+  outer_gate_captain:
+    description: |
+      The captain who has held the outer gate for the Throne-Claimant
+      across both sieges, alternating fronts as the day demands. He
+      doesn't know which army you came up with and at this point he
+      does not care — the raid is just the next push. He clears the
+      forecourt with a sweeping cut that turns the killing-ground
+      into exactly that. He has not slept inside the wall in eleven
+      months.
+    prompt: >-
+      portrait, single subject, gaunt fortress gate captain in dented
+      plate, helmet under arm, surcoat torn, banner pole reversed at
+      his side, painterly atmospheric, oppressive mood, isolated
+      subject, no other figures
+    negative_prompt: >-
+      multiple figures, party, group, modern, futuristic, sci-fi,
+      anime, cyberpunk, watermark, text
+  siege_engineer_pair:
+    description: |
+      Two engineers — a Hearthkin and a Skarn, conscripted from
+      opposite sides of the siege and now serving the same Throne-
+      Claimant because the alternative was the rope. They keep two
+      siege engines running in the inner ward and the engines must
+      come down before the engineers will. The Hearthkin will not
+      meet the Skarn's eye. The Skarn does not seem to notice.
+    prompt: >-
+      portrait, two engineers at opposed siege engines, one Hearthkin
+      one Skarn, soot-marked overalls, tools at their belts,
+      lit-fuse braziers behind them, painterly atmospheric,
+      oppressive mood
+    negative_prompt: >-
+      multiple figures, party, group, modern, futuristic, sci-fi,
+      anime, cyberpunk, watermark, text
+  inner_warden:
+    description: |
+      The warden of the inner keep, a Sunward Elen who has been the
+      Claimant's chief of guard since before the second siege began.
+      She teleports the length of the warden's hall by lines drawn in
+      the floor — old marks, pre-Coming, the kind of work the
+      Hearthkin did when they still did courtesy. Step on a line at
+      the wrong moment and you're somewhere worse than you were.
+    prompt: >-
+      portrait, single subject, tall Sunward Elen warden in pale
+      ceremonial plate, slim sword reversed in salute, sigil-lines on
+      the marble floor at her feet, painterly atmospheric, oppressive
+      mood, isolated subject, no other figures
+    negative_prompt: >-
+      multiple figures, party, group, modern, futuristic, sci-fi,
+      anime, cyberpunk, watermark, text
+  captain_of_the_crown:
+    description: |
+      The Throne-Claimant's last living captain, the man who would have
+      been Marshal of the Crown if the Crown had a marshal anyone
+      recognized. He charges in straight lines and the raid rotates
+      tanks across his lane because nobody alive holds three of his
+      charges in a row. He greets each tank by name in turn — he's
+      had eleven months to study the rosters of both armies, and his
+      memory is excellent.
+    prompt: >-
+      portrait, single subject, broad-shouldered captain in ornate
+      crown-livery plate, charging lance grounded, helm visor raised,
+      tired courteous face, painterly atmospheric, oppressive mood,
+      isolated subject, no other figures
+    negative_prompt: >-
+      multiple figures, party, group, modern, futuristic, sci-fi,
+      anime, cyberpunk, watermark, text
+  the_throne_claimant:
+    description: |
+      The Throne-Claimant. He has held the title his grandfather
+      claimed and never proved, and he holds it the way a man holds a
+      promise he cannot keep — as a duty. He fights you because
+      somebody has to. Five phases, one per army that has come for
+      him in his lifetime, and each phase is something he answered
+      for, alone. The title does not pass when he falls. The title
+      cannot pass. That is the contest.
+    prompt: >-
+      portrait, single subject, regal Throne-Claimant in tarnished
+      crown-plate, contested standard at his shoulder, sword across
+      his knees, hollow tired eyes, painterly atmospheric, oppressive
+      mood, isolated subject, no other figures
+    negative_prompt: >-
+      multiple figures, party, group, modern, futuristic, sci-fi,
+      anime, cyberpunk, watermark, text

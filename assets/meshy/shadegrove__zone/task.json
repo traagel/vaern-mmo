@@ -1,0 +1,16 @@
+{
+  "id": "019dc772-bc69-7e35-9366-84848cee1ed1",
+  "type": "text-to-image",
+  "ai_model": "nano-banana-pro",
+  "prompt": "wide establishing landscape, silver-ash forest on volcanic soil, dark fortress reach on a high crag, banked red coals in the foreground, sickly amber light, painterly atmospheric, late-medieval dark elf, no figures",
+  "status": "SUCCEEDED",
+  "progress": 100,
+  "created_at": 1777167678582,
+  "started_at": 1777167678838,
+  "finished_at": 1777167707520,
+  "expires_at": 1777426907520,
+  "image_urls": [
+    "https://assets.meshy.ai/2872987b-afbf-4fa0-95f0-231417dc567c/uploads/image_019dc772-bc69-7e35-9366-84848cee1ed1_0.png?Expires=1777426907&Signature=e-VKAncaCuTNsmJRZXbJlS7jZ4jllubTuCDlMK-cZJ02v6KfPHCscJ0QJfddWRKuG05rdkfkhcW6E5ntIR1HEXB7wOc2mUUxrTScsfVzM8GBkCnqYGv6GIGKYslQyG2GbGA51mbqjMa0lbBRngmzHyuBioprugYXPZdn1F6Ju85MMhV4YtTBJlvyh3qzgPyr04zCEEV8WN3jeWLIXRSq5IQ3KdaRnUpFbA6TxSV30oLo0ytdxY8WTyxd2hnW9hUiD1vtyCUAyy7-HZKLMSG8DH9Vd9377Ym-OKnL5uKFdVEoKLg8d-BuId1qhEmm4Jnn6INzMITnMAhNOKP93Q0V5Q__&Key-Pair-Id=K1VGYTHIYLM9UM"
+  ],
+  "consumed_credits": 9
+}

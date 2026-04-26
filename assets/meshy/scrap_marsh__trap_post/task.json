@@ -1,0 +1,16 @@
+{
+  "id": "019dc76a-af4e-7685-ab07-386fff372e7f",
+  "type": "text-to-image",
+  "ai_model": "nano-banana-pro",
+  "prompt": "establishing shot, Skrel trap-post on a marsh road, warren entrance, scrap-built watchtower, half-rotten plank walkways, sickly amber dusk, painterly atmospheric, no figures",
+  "status": "SUCCEEDED",
+  "progress": 100,
+  "created_at": 1777167150935,
+  "started_at": 1777167150951,
+  "finished_at": 1777167244258,
+  "expires_at": 1777426444258,
+  "image_urls": [
+    "https://assets.meshy.ai/2872987b-afbf-4fa0-95f0-231417dc567c/uploads/image_019dc76a-af4e-7685-ab07-386fff372e7f_0.png?Expires=1777426444&Signature=FRutDAm5jM89TSVqBXimVaImuqiKVqGPfqvRcigvXz990ZU6Fpj1Ke~D0pqnEM0GjDCAsA4AqjSP3EQ-cDjVfQ9rV8-bXAXyTb6-PHoq~1VFA5pKn0WmaDSldsdcqcaV4c9ao8dXgH-Ny39luRsLaDyqerStZ0uj0NWjXG0XjUORR~M7CIu7vpM-3NphM6xoi9mt85fkKCLTkmsl-HCFhDnwvwfX~Cg8PK191Lw61ATaTHlqmuAOH9bETvvw7T~DfaAd3fCKyB6RwqtnN2p-pYqOEemGKElwMhW-W2-JousJj1igg6ZPq7c8~FTvakEGRpz3kqSjeEWFXouazwHlfw__&Key-Pair-Id=K1VGYTHIYLM9UM"
+  ],
+  "consumed_credits": 9
+}

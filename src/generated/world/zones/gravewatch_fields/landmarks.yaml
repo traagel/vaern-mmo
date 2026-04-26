@@ -1,0 +1,40 @@
+id: landmarks__gravewatch_fields
+zone: gravewatch_fields
+landmarks:
+- id: memorial_lane
+  name: Memorial Lane
+  offset_from_zone_origin:
+    x: 200.0
+    z: 90.0
+  description: A long road lined on both sides by low memorial stones. Each stone has a name.
+    The Gravewrought walk the road in ritual procession at the funerary moon.
+  prompt: establishing shot, long stone road lined with low memorial stones on both sides,
+    windswept turf, leaden cold light, painterly atmospheric, late-medieval, no figures
+- id: hollow_chapel
+  name: The Hollow Chapel
+  offset_from_zone_origin:
+    x: -180.0
+    z: 60.0
+  description: A chapel whose roof was removed by lightning during a particularly bad summer.
+    The Gravewrought have not rebuilt the roof. The services continue regardless.
+  prompt: establishing shot, ruined open-air stone chapel on windswept fields, no roof, leaning
+    altar, oppressive grey-amber light, painterly atmospheric, late-medieval, no figures
+- id: ancestor_field
+  name: The Ancestor Field
+  offset_from_zone_origin:
+    x: 90.0
+    z: -240.0
+  description: A field reserved for ancestor-rite manifestations. The Gravewrought ask outsiders
+    not to walk through it after dark. Most outsiders comply.
+  prompt: establishing shot, windswept turf field with low burial markers in irregular rows,
+    distant funerary fires, oppressive twilight, painterly atmospheric, late-medieval, no
+    figures
+- id: salt_well
+  name: The Salt Well
+  offset_from_zone_origin:
+    x: -90.0
+    z: -180.0
+  description: A working well dug into the cliff that brings up faintly salt water. The water
+    is used in the funerary rites and in no other context.
+  prompt: establishing shot, weathered stone well-head on a wind-cut cliff edge, ritual buckets
+    and ladles, leaden cold light, painterly atmospheric, late-medieval, no figures

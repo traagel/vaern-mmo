@@ -1,0 +1,16 @@
+{
+  "id": "019dc76e-642d-7b44-8c3c-96fa8a71045e",
+  "type": "text-to-image",
+  "ai_model": "nano-banana-pro",
+  "prompt": "establishing shot, single weathered Kharun yurt on a windswept steppe slope, beside a tall oath-stone, overcast cold light, painterly atmospheric, late-medieval steppe, no figures",
+  "status": "SUCCEEDED",
+  "progress": 100,
+  "created_at": 1777167393855,
+  "started_at": 1777167394289,
+  "finished_at": 1777167444690,
+  "expires_at": 1777426644690,
+  "image_urls": [
+    "https://assets.meshy.ai/2872987b-afbf-4fa0-95f0-231417dc567c/uploads/image_019dc76e-642d-7b44-8c3c-96fa8a71045e_0.png?Expires=1777426644&Signature=a~8o2WutaQSthCYvQDDZzKBPOZ7VfLul1-jFrRz9Eyfb7bNAEp2kDfZxT3j9adRqSB5mKF20sYIPaGxW8S3784EPPzODgZvvXy8X5ZU~NyAeb7nFD52ysJcNFFXjM6fsJ6MzznEpHChztroUqRvvA~gFXCO5krtXpxql8U2OgkQ-OlVwJkT5LX~S3-QSPcQKvh3NuGbROuev1HBJ~BF-MXjD3ZGBvv7FuTExvXy5jhVenh0k4ldo80Qc3CW2mLm9nfFBFpAqO7i2WNwl7RRJ5mGEtIs4xtZu-PVR8JQnu4Gg-ToPVdYbr9t1YnczrUzJpnxtUh8qbrCP3iwppk4GlA__&Key-Pair-Id=K1VGYTHIYLM9UM"
+  ],
+  "consumed_credits": 9
+}

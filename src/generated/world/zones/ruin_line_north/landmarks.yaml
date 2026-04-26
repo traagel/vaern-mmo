@@ -1,0 +1,43 @@
+id: landmarks__ruin_line_north
+zone: ruin_line_north
+landmarks:
+- id: burnt_orchard
+  name: The Burnt Orchard
+  offset_from_zone_origin:
+    x: 200.0
+    z: 110.0
+  description: A pre-war Concord orchard burned in the Coming. The trees came back; the apples
+    are smoky-tasting and grey. Both factions agree not to harvest.
+  prompt: establishing shot, burnt orchard regrowing with grey-leafed trees on a windswept
+    ridge, sickly grey-green light, painterly atmospheric, late-medieval, no figures
+- id: trench_line
+  name: The Trench Line
+  offset_from_zone_origin:
+    x: -180.0
+    z: 80.0
+  description: A line of pre-war trenches where the first Concord-Pact engagement of the Coming
+    happened. The trenches are preserved by both factions, by separate agreement.
+  prompt: establishing shot, weathered preserved pre-war trench line on a windswept ridge,
+    broken weapons in the bottom, oppressive grey-amber light, painterly atmospheric, late-medieval,
+    no figures
+- id: crow_field
+  name: The Crow Field
+  offset_from_zone_origin:
+    x: 90.0
+    z: -240.0
+  description: A field where the local crow population has settled permanently since the Coming.
+    The crows behave oddly here. They do not flock when disturbed.
+  prompt: establishing shot, windswept ruin-line field full of crows standing on the ground
+    rather than flying, sickly grey-green light, painterly atmospheric, oppressive mood, no
+    figures
+- id: memorial_arch
+  name: The Memorial Arch
+  offset_from_zone_origin:
+    x: -90.0
+    z: -210.0
+  description: A stone arch raised by both factions after the Coming, carrying both their
+    inscriptions. The arch is a rare shared monument; both factions agree it has nothing to
+    do with reconciliation.
+  prompt: establishing shot, weathered stone memorial arch on a blasted ruin-line ridge, dual
+    inscriptions in two scripts, oppressive grey-amber light, painterly atmospheric, late-medieval,
+    no figures

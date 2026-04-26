@@ -1,0 +1,16 @@
+{
+  "id": "019dc76a-521e-72bb-a37d-c51304d597bc",
+  "type": "text-to-image",
+  "ai_model": "nano-banana-pro",
+  "prompt": "establishing shot, contested stone way-fort at the edge of a blasted ruin-line, two faction banners flying side by side, broken bell-tower, sickly grey-green sky, painterly atmospheric, late-medieval, no figures",
+  "status": "SUCCEEDED",
+  "progress": 100,
+  "created_at": 1777167127081,
+  "started_at": 1777167127666,
+  "finished_at": 1777167221129,
+  "expires_at": 1777426421129,
+  "image_urls": [
+    "https://assets.meshy.ai/2872987b-afbf-4fa0-95f0-231417dc567c/uploads/image_019dc76a-521e-72bb-a37d-c51304d597bc_0.png?Expires=1777426421&Signature=m8Z8NCMsDQ3IOy9F36DLrKuQY6SxYkZg8~8crFIadgR3u7oNFUCT~vzTT7pu3RyYXKXVyL-L-ZRY3wY0GyCB1TkGDv78Vg0mtvnVbeE3Ws59B7a6hvf2PbMTINbtpRMSQx52SeeFDv4OM4foMmzyTCWycfaDwE22SEPwS7SupAPswBch~1URb~0MST1yGJNL5AcmOdA5m6XFQzN-5lAMwq~t2sxLBlePFOXXZ~J3kpu0ZT-~EOYsp2aPW1nou51~PfOx44q-lAf7I-LPlcpBdRsDnnVej9VwN0r0iACu2GBjVFlZ8xb-X-iG3D4Fc4Rxq~7~YFIpt2NIZ6gWYLKwrg__&Key-Pair-Id=K1VGYTHIYLM9UM"
+  ],
+  "consumed_credits": 9
+}

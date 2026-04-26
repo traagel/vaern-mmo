@@ -1,0 +1,16 @@
+{
+  "id": "019dc76a-4e29-72ba-a02e-d6da0043bc2d",
+  "type": "text-to-image",
+  "ai_model": "nano-banana-pro",
+  "prompt": "establishing shot, pre-Concord stone river fortress on a bend of a slow river, half-overgrown walls, smugglers' boats moored below, twilight grey-amber light, painterly atmospheric, late-medieval, no figures",
+  "status": "SUCCEEDED",
+  "progress": 100,
+  "created_at": 1777167126067,
+  "started_at": 1777167126511,
+  "finished_at": 1777167169583,
+  "expires_at": 1777426369583,
+  "image_urls": [
+    "https://assets.meshy.ai/2872987b-afbf-4fa0-95f0-231417dc567c/uploads/image_019dc76a-4e29-72ba-a02e-d6da0043bc2d_0.png?Expires=1777426369&Signature=CVco8wlCx9DnaXYq~g8KIEehteeYW61Mf8l~nhkButdSbhSRcB2eFkbGfOnZcrzoQACqbbSiswvyx6733sjmfqnIsivTP2PoR89URjCLN3xGUgBI~mLUJSvPIit3HmzD9UOHkPFgumgVJdw8zv14D8aIhj8Gy~E1tPqXlLufkWFFiJjw-dvadO8kxeMhr2iLd6FY9~6YcjwShQqVmq7Bh0xhdz74hy1mbuQQH2rvZ6zuwdxGbU1ZUZLcqi0YZ7vOoqsrFUCDe-TzHc9I2oIeU1CutmS5So-3nFrsvUtrroeQ0jQjJHraXS1gGha-2qvWbFZtec1bIeoinNa32Wfi4g__&Key-Pair-Id=K1VGYTHIYLM9UM"
+  ],
+  "consumed_credits": 9
+}

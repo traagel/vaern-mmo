@@ -1,0 +1,40 @@
+id: landmarks__scrap_marsh
+zone: scrap_marsh
+landmarks:
+- id: rusted_wagon_field
+  name: The Rusted Wagon Field
+  offset_from_zone_origin:
+    x: 180.0
+    z: 90.0
+  description: A flat sump where Skrel scavengers stack salvaged Hearthkin wagons until somebody
+    decides what to do with them. The stacks have been growing for six years.
+  prompt: establishing shot, marshy field full of rusted broken Hearthkin wagons stacked in
+    disorderly piles, sickly green-amber light, painterly atmospheric, no figures
+- id: acid_pool
+  name: The Acid Pool
+  offset_from_zone_origin:
+    x: -160.0
+    z: 100.0
+  description: A deep pool of by-product alchemy that the Skrel have weighed for hazard and
+    pronounced acceptable. Outsiders are advised to circle widely. Wildlife near the pool
+    is unusual.
+  prompt: establishing shot, dark green-yellow acid pool in a marsh, warning sticks driven
+    into the mud at the edges, sickly amber dusk, painterly atmospheric, no figures
+- id: warren_smoke_vent
+  name: The Warren Smoke-Vent
+  offset_from_zone_origin:
+    x: 90.0
+    z: -200.0
+  description: A vent where the Skrel under-warrens release alchemical smoke. The smoke is
+    colour-coded by chemistry, and the Skrel watch the colour from a kilometre away.
+  prompt: establishing shot, marsh ground vent leaking sickly yellow-green smoke, scrap-built
+    ring of stones around it, sickly amber-green light, painterly atmospheric, no figures
+- id: sunken_skrel_shrine
+  name: The Sunken Skrel Shrine
+  offset_from_zone_origin:
+    x: -90.0
+    z: -260.0
+  description: A half-submerged shrine to the patron of opportunistic salvage, dedicated by
+    an unnamed Skrel scholar who never claimed credit. Offerings are by tradition broken-but-valuable.
+  prompt: establishing shot, half-submerged scrap-built shrine in a marsh, broken pieces of
+    salvaged metal hung as offerings, sickly green twilight, painterly atmospheric, no figures

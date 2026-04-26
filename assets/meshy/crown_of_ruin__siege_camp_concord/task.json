@@ -1,0 +1,16 @@
+{
+  "id": "019dc76c-ab0f-76c3-8cf9-d00baaa1d67e",
+  "type": "text-to-image",
+  "ai_model": "nano-banana-pro",
+  "prompt": "establishing shot, disciplined Concord siege camp on a rocky slope, rows of tents and heavy siege engines, smoke from trench fires, oppressive grey-amber light, painterly atmospheric, late-medieval, no figures",
+  "status": "SUCCEEDED",
+  "progress": 100,
+  "created_at": 1777167280922,
+  "started_at": 1777167280976,
+  "finished_at": 1777167331921,
+  "expires_at": 1777426531921,
+  "image_urls": [
+    "https://assets.meshy.ai/2872987b-afbf-4fa0-95f0-231417dc567c/uploads/image_019dc76c-ab0f-76c3-8cf9-d00baaa1d67e_0.png?Expires=1777426531&Signature=o06u20yoq51FTC1Na-9xkuQ3P5livVveRa0YHx94fXY79uCgSzhd~ZxPhGbdaIW~~jSYBWWVB0nbhMZz95xwr~-cxsm7Yju1jJJLo3TX~4S-i4B54rvOspQdCqcGjLEckw~ZrwGZUEDufuiLF1qTrxSiSv7LeXF~MDGFXgdFKlVAFi-UpWszMspermcxN805tDFAwOIbczmFrtlqi2oal5mKxX2HzRNep6mPGnUxXTJ~m71pLEcgeusQCy8QrNKB9XuD-LWFG~~EEP0SfwPhEte~6nU0XryomXdpS~duSfc8HfVzryOuU9k6Ldm7ncENoattGRe1~tlOkPAw9ytcwg__&Key-Pair-Id=K1VGYTHIYLM9UM"
+  ],
+  "consumed_credits": 9
+}

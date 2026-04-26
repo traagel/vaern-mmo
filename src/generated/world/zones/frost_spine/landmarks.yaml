@@ -1,0 +1,41 @@
+id: landmarks__frost_spine
+zone: frost_spine
+landmarks:
+- id: blue_glacier
+  name: The Blue Glacier
+  offset_from_zone_origin:
+    x: 200.0
+    z: 90.0
+  description: A glacier on the lower spine that is unusually blue and unusually still. Hearthkin
+    scholars believe something is frozen in it; expeditions have not returned with answers.
+  prompt: establishing shot, immense pale blue alpine glacier in a narrow valley, snow-covered
+    ridges, cold blue afternoon light, oppressive cold mood, painterly atmospheric, no figures
+- id: frozen_seal
+  name: The Frozen Seal
+  offset_from_zone_origin:
+    x: -180.0
+    z: 60.0
+  description: A pre-Coming seal-stone half-buried in the snow at the lower spine. The seal
+    is intact. The Concord set it; nobody admits to setting it. Nobody has tested it.
+  prompt: establishing shot, pre-Coming carved stone seal half-buried in alpine snow, runic
+    markings clear of ice, cold blue light, painterly atmospheric, late-medieval, no figures
+- id: storm_stone
+  name: The Storm Stone
+  offset_from_zone_origin:
+    x: 90.0
+    z: -240.0
+  description: A standing stone the local weather appears to attend to. Lightning strikes
+    it on the Spine's worst storm-nights. The stone has never broken.
+  prompt: establishing shot, single ancient standing stone on an alpine ridge, lightning-scarred,
+    blizzard haze, cold blue light, oppressive cold mood, painterly atmospheric, late-medieval,
+    no figures
+- id: yeti_skull_pile
+  name: The Yeti-Skull Pile
+  offset_from_zone_origin:
+    x: -90.0
+    z: -180.0
+  description: A pile of yeti skulls left as warning by trappers a generation ago. The yetis
+    don't approach. New skulls have been added recently, by no one anyone identifies.
+  prompt: establishing shot, pile of weathered massive yeti skulls on an alpine slope, snow
+    on the lower bones, cold blue afternoon light, oppressive mood, painterly atmospheric,
+    no figures

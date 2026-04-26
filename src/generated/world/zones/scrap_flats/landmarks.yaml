@@ -1,0 +1,39 @@
+id: landmarks__scrap_flats
+zone: scrap_flats
+landmarks:
+- id: conveyor_skeleton
+  name: The Conveyor Skeleton
+  offset_from_zone_origin:
+    x: 180.0
+    z: 90.0
+  description: A pre-Coming conveyor scaffold the Skrel kept upright because it works. The
+    conveyor is patched with a hundred different alloys and produces an unpredictable noise.
+  prompt: establishing shot, towering pre-Coming industrial conveyor scaffold patched with
+    mixed metals, smoke columns, sickly green light, painterly atmospheric, no figures
+- id: vat_field
+  name: The Vat Field
+  offset_from_zone_origin:
+    x: -180.0
+    z: 60.0
+  description: A field of open vat-tanks at varying acid concentrations. The Skrel maintain
+    them by formal rota. The Hearthkin will not approach within a kilometre.
+  prompt: establishing shot, open field full of square acid vat-tanks, sickly green-amber
+    light, scrap-built walkways between them, painterly atmospheric, no figures
+- id: alloy_pillar
+  name: The Alloy Pillar
+  offset_from_zone_origin:
+    x: 100.0
+    z: -240.0
+  description: A pillar cast from two centuries of failed alloy experiments, layered like
+    a tree-ring. Skrel scholars come to read it; they leave with arguments.
+  prompt: establishing shot, tall layered alloy pillar in a marshy industrial flat, sickly
+    green-amber dusk, painterly atmospheric, no figures
+- id: rust_field
+  name: The Rust Field
+  offset_from_zone_origin:
+    x: -90.0
+    z: -180.0
+  description: A field where every salvaged piece of Concord iron has gone to rust. The Skrel
+    keep it as inventory. The inventory is extensive.
+  prompt: establishing shot, vast field of rusted salvaged iron pieces in disorderly piles,
+    sickly amber-green dusk, painterly atmospheric, no figures

@@ -1,0 +1,62 @@
+dungeon:
+  description: |
+    The lower forge-halls under Stoneguard Deep, abandoned after the
+    Third Bellow gave way in the cave-in of '91 and killed sixty-four
+    Hearthkin in a shift change. The uppers were re-cut around the
+    collapse; the lowers were sealed and left. Rockworm came up through
+    the slag-drains, deepfolk came up through the rockworm, and the
+    quartermaster's ledger has never been recovered. The bellows still
+    breathe on a slow tide nobody set.
+  prompt: >-
+    establishing shot, dungeon interior, vast collapsed dwarven forge
+    hall, broken anvils, dead bellows, dust-shafts of light, slag-pools
+    cooled black, painterly atmospheric, oppressive mood, no figures
+bosses:
+  anvil_warden:
+    description: |
+      A Hearthkin smith-warden who refused to leave his post when the
+      Bellow gave way and was buried with his anvil. Dug himself out
+      eventually — slower, harder, with stone in him that wasn't there
+      before. He buffs his own skin to slate and slams the floor in a
+      knockback arc. The roster at Stoneguard still pays his widow,
+      which is technically against three regulations.
+    prompt: >-
+      portrait, single subject, hulking Hearthkin smith, stone-fused
+      skin, soot-blackened beard, oversized forging hammer, ember-light
+      from chest seams, painterly atmospheric, oppressive mood, isolated
+      subject, no other figures
+    negative_prompt: >-
+      multiple figures, party, group, modern, futuristic, sci-fi, anime,
+      cyberpunk, watermark, text
+  deepworm_brood:
+    description: |
+      A breeding-mother rockworm, easily nine paces from snout to tail-
+      hook, that nested in the cooled slag-pit of the Fifth Forge. She
+      spawns smaller rockworms on a slow tick and ruptures the floor in
+      a radial line that breaks tank positioning. Hearthkin engineers
+      have argued for two seasons whether she predates the cave-in or
+      came in through the collapse.
+    prompt: >-
+      portrait, single subject, massive segmented rockworm, chitin
+      ridges, gnashing ring-teeth, slag-crust on flanks, eyeless
+      blunt-snout, painterly atmospheric, oppressive mood, isolated
+      subject, no other figures
+    negative_prompt: >-
+      multiple figures, party, group, modern, futuristic, sci-fi, anime,
+      cyberpunk, watermark, text
+  old_smith:
+    description: |
+      Master-Smith Vorrik Ashbeard, named on the cave-in roster as
+      missing-presumed-killed sixty-three years ago. Still down there,
+      still working. The forge-heat aura around him is genuine — he is
+      keeping a fire alive that has not gone out since the collapse —
+      and he summons cinder-elementals from the coal-bed when his
+      hammer-rhythm steadies. He thinks the party is the relief shift.
+    prompt: >-
+      portrait, single subject, ancient Hearthkin master-smith, ember-
+      cracked skin, white beard ash-streaked, glowing tongs, leather
+      apron scorched through, painterly atmospheric, oppressive mood,
+      isolated subject, no other figures
+    negative_prompt: >-
+      multiple figures, party, group, modern, futuristic, sci-fi, anime,
+      cyberpunk, watermark, text

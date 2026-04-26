@@ -1,0 +1,16 @@
+{
+  "id": "019dc72f-acae-771b-95ad-c9063a0d1acf",
+  "type": "text-to-image",
+  "ai_model": "nano-banana-pro",
+  "prompt": "establishing shot, single weathered timber farmhouse with three small barns, sheep grazing, low ridge in the background, late afternoon overcast light, painterly atmospheric, late-medieval, no figures",
+  "status": "SUCCEEDED",
+  "progress": 100,
+  "created_at": 1777163283675,
+  "started_at": 1777163284040,
+  "finished_at": 1777163303215,
+  "expires_at": 1777422503215,
+  "image_urls": [
+    "https://assets.meshy.ai/2872987b-afbf-4fa0-95f0-231417dc567c/uploads/image_019dc72f-acae-771b-95ad-c9063a0d1acf_0.png?Expires=1777422503&Signature=OPv75LRdNyxjNvHnXHVl3g9QcTZLXg7ayLBnvxQQDZj80oyd4Thx~mUD-qYJwr5JgeQjQWAua9FREfESasBWeOzO9V-Che4xzf7Dv9IlGumde0sTDYMo-CPzSuBf-Gw2iEOWf48xZzy6X1RUWHdJYrFwpr4GYphsiHSaWA4mRnUqHUYupi~Y2nAT2BqxrRjNqZOeAbU7yBVQSxBY~7lNdWT9ATbdV~AEJvI~EADJOshLOV~nAkQ1Y4Si5VfvRz846CYsdPKrUFttpxZEyRIVokZMrAMezcDRaBDNhxDnurVr4YnKEIqgy6EQ2O8EqZUQ6Xn3eGaPnhPmMl9iTOmu3A__&Key-Pair-Id=K1VGYTHIYLM9UM"
+  ],
+  "consumed_credits": 9
+}

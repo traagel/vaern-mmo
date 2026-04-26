@@ -1,0 +1,16 @@
+{
+  "id": "019dc76e-1812-7b30-9eea-da81f7feb850",
+  "type": "text-to-image",
+  "ai_model": "nano-banana-pro",
+  "prompt": "establishing shot, reed-fringed river cove with mooring posts and dark barges, low twilight, painterly atmospheric, late-medieval, no figures",
+  "status": "SUCCEEDED",
+  "progress": 100,
+  "created_at": 1777167374370,
+  "started_at": 1777167375224,
+  "finished_at": 1777167430945,
+  "expires_at": 1777426630945,
+  "image_urls": [
+    "https://assets.meshy.ai/2872987b-afbf-4fa0-95f0-231417dc567c/uploads/image_019dc76e-1812-7b30-9eea-da81f7feb850_0.png?Expires=1777426630&Signature=WdOmJsY8vtAloTJQq~vKib5FxSY-WFG1YdSxDlIrr33NAqBV31ZzA3DUVHg7CwUUl3DeTGQWnjrXGVmIWF34yBUde4PGgfQl44w3P0e15CkvHaw6H04l3iN2vVk4nJqmFKye6z2DRA6YU5sAxV-Y3jj00qWZ3oHSXJsqJyTAPacadqAc-dyt0iz84ZQQGR-58XTr7psnN8G1UvKD5VJeGcXFUrrmQUdpl9AMUUfv2PV7UysghnRVVuQ51Z503rSMI67ocy9VpUChCMDx9CDaAz5jJvijquYmXZPma~iZGGYrDZToFrR5b1IU3Ry-gdlcThrxFdBGE~CkarlVfeDBPw__&Key-Pair-Id=K1VGYTHIYLM9UM"
+  ],
+  "consumed_credits": 9
+}

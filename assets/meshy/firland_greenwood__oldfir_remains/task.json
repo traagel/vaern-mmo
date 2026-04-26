@@ -1,0 +1,16 @@
+{
+  "id": "019dc76d-3f90-76d6-b71c-cd9342bd595e",
+  "type": "text-to-image",
+  "ai_model": "nano-banana-pro",
+  "prompt": "establishing shot, vast hollow fallen fir trunk on a moss forest floor, large enough to walk into, soft warm light from inside, painterly atmospheric, late-medieval fey, no figures",
+  "status": "SUCCEEDED",
+  "progress": 100,
+  "created_at": 1777167318939,
+  "started_at": 1777167319032,
+  "finished_at": 1777167348641,
+  "expires_at": 1777426548641,
+  "image_urls": [
+    "https://assets.meshy.ai/2872987b-afbf-4fa0-95f0-231417dc567c/uploads/image_019dc76d-3f90-76d6-b71c-cd9342bd595e_0.png?Expires=1777426548&Signature=TrNVsYb8wy1a7tmH1icEtWwif3JR9zthUhcQaHeajFuWFGIWqv2ZeyXaQkxajZ3tx5Ke5XuiQLXYSzfWb53CG3tNp1CPHzlFVPaSKLcDZCrrhe60Ns0M6899omfMr5nvb5n4vGVdGYNqZC0WI0AhAGw8SsNQr4h0oQHuVx0TM6U1mD3WAe3tJKKAFoDykLGzbrcJfom6yuBWZRVxYZcd46o90~tqulrTTWrU8WDCswvYG6G~Ljn5vtIzumyMnnFRDMSIUkqApWWrd3sJMYRKpyR5rHE9TS9cKblmWC65zpZTs6GjInLuHCnLLFr-jic10irJrh395HEeG9JDwEkEBQ__&Key-Pair-Id=K1VGYTHIYLM9UM"
+  ],
+  "consumed_credits": 9
+}

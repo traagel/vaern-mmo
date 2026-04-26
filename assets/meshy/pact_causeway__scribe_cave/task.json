@@ -1,0 +1,16 @@
+{
+  "id": "019dc76e-37d9-7b3f-9a4b-6d231472bdfc",
+  "type": "text-to-image",
+  "ai_model": "nano-banana-pro",
+  "prompt": "establishing shot, small cave entrance below a stone causeway ridge, weathered scribal markings on the walls, lantern-lit interior, painterly atmospheric, late-medieval steppe, no figures",
+  "status": "SUCCEEDED",
+  "progress": 100,
+  "created_at": 1777167382505,
+  "started_at": 1777167382652,
+  "finished_at": 1777167420307,
+  "expires_at": 1777426620307,
+  "image_urls": [
+    "https://assets.meshy.ai/2872987b-afbf-4fa0-95f0-231417dc567c/uploads/image_019dc76e-37d9-7b3f-9a4b-6d231472bdfc_0.png?Expires=1777426620&Signature=CKmH331O9NEyJGQhCPCi3kuInMv~Cv-gAvQ~nvlHQxW4v49OpdJx5ng5mLppgSNQusks4hmKB-piy19kLhv4nsj9tnVymVi3OXfSmRZMiOfNW8lXNkLvS6om2tlde5sROKhNpBjvBFBEAddx5JbcxMLT0pydawMAnQICiUHYpQcoAUsDzvcUZG4e1ZGVbC~kQfDer3bQZ4HHD6tLB5NZ6ZURvnpLpg1ZV3GMe0o1-Lzni1ZVT4BlUOCIMsFmOpT~nFs5DV89HyU1GnwozzlPW4tx7AYJu5qD0H3Ea5rC5WtOr30WRtJycwIhS7HXxoizg1GKSvD-1EtLUCTWePG6bQ__&Key-Pair-Id=K1VGYTHIYLM9UM"
+  ],
+  "consumed_credits": 9
+}

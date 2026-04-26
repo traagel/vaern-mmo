@@ -1,0 +1,57 @@
+zone:
+  vibe: Concord-Hearthkin trade pass — switchback road, snow-line, customs men.
+  description: The chartered trade-road between the Concord lowlands and the Hearthkin deeps.
+    Switchbacks under sheer granite, a customs station at every fourth bridge, snow on the
+    upper stretch even in midsummer. The collapsed forge halfway up still vents heat through
+    the rockfall and nobody has been back inside since the cave-in two years ago.
+  prompt: wide establishing landscape, switchback mountain pass, sheer granite cliffs, narrow
+    paved road with stone bridges, snow on upper switchbacks, overcast cold light, painterly
+    atmospheric, late-medieval, no figures
+hubs:
+  irongate_keep:
+    description: 'The pass-keep at the lower switchback — Concord garrison, Hearthkin customs
+      hall, a single trade-court that meets in two languages and adjudicates in three. Reeve
+      Marn runs the customs ledger; Captain Vellan runs the gate. They co-operate like long-married
+      professionals: sparingly and with elaborate politeness.'
+    prompt: establishing shot, mountain pass keep at a switchback, stone curtain wall and
+      customs hall, snow on the upper slopes, banners of two factions side by side, painterly
+      atmospheric, late-medieval, no figures
+  snowline_camp:
+    description: An upper-pass camp where the road touches snow even in midsummer — turf-roofed
+      shelters, a forge, and a mountain-rescue post manned by veterans who lost a season to
+      a slide. Captain Threll teaches the new arrivals about exposure first and combat second.
+      Some of them resent it; most of them survive it.
+    prompt: establishing shot, mountain-pass shelter camp at the snowline, turf-roofed huts
+      and a stone forge, distant ice-crowned peaks, cold blue afternoon light, painterly atmospheric,
+      late-medieval, no figures
+  collapsed_forge:
+    description: The cave-in scar of a Hearthkin forge that vented through the road two years
+      ago. Still hot at the rockfall, still venting acrid smoke when the wind shifts. The
+      lower hall below the collapse is sealed and posted — but the seal has been tampered
+      with twice this season.
+    prompt: establishing shot, scar of a collapsed Hearthkin forge in a mountainside, broken
+      stone gateway venting smoke, abandoned scaffolds, leaden cold light, painterly atmospheric,
+      late-medieval, no figures
+landmarks:
+  tollstone_bend:
+    description: A switchback corner where a Concord tollstone marks the boundary of the chartered
+      trade-road. The stone is chipped from carriage wheels; the toll-master keeps a fresh
+      chisel.
+    prompt: establishing shot, mountain road switchback with a carved stone tollstone, valley
+      view below, snow on upper slopes, painterly atmospheric, late-medieval, no figures
+  hearthkin_shrine:
+    description: A small under-rock shrine set into the cliff at the road's halfway point.
+      Hearthkin travellers leave a coin and a spoken name. The names accumulate in carving.
+    prompt: establishing shot, small Hearthkin road shrine carved into a granite cliffside,
+      banked offering coins, lantern, dim warm light, painterly atmospheric, late-medieval
+      dwarven, no figures
+  wreck_of_the_seven:
+    description: A pile of broken wagon-frames at a known avalanche corner. Seven wagons in
+      one slide. The drivers were buried where they fell; the wagons stayed where they stopped.
+    prompt: establishing shot, mountain road corner with broken wagon frames in a snow-fall
+      scar, leaden cold light, painterly atmospheric, late-medieval, oppressive mood, no figures
+  ice_face_cliff:
+    description: An overhang where seasonal melt-water freezes into a sheer ice face every
+      winter and thaws into a ten-metre fall every spring. The road below is permanently sand-bagged.
+    prompt: establishing shot, sheer mountain ice-face cliff above a narrow road, sand-bag
+      berms below, cold blue light, painterly atmospheric, late-medieval, no figures

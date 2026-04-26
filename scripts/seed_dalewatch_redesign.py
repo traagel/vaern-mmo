@@ -50,6 +50,19 @@ HUBS: list[dict[str, Any]] = [
         ],
         "quest_givers": 6,
         "offset": (0.0, 0.0),
+        "description": (
+            "Stone curtain wall, packed muster yard, the smell of horse and "
+            "forge. Banners of the Warden Corps hang over the gate. The county "
+            "seat — trainers, taxmen, and the chapel where you take the Oath. "
+            "Nothing inside the walls is hostile yet, though half the experienced "
+            "riders have already been pulled east to the Ford."
+        ),
+        "prompt": (
+            "establishing shot, late-medieval Burgundian curtain wall and "
+            "gatehouse, heraldic banners over the gate, packed muster yard, "
+            "stone forge smoke, dawn warm gold light, painterly atmospheric, "
+            "no figures, no characters"
+        ),
     },
     {
         "id": "harriers_rest",
@@ -58,6 +71,19 @@ HUBS: list[dict[str, Any]] = [
         "amenities": ["innkeeper"],
         "quest_givers": 2,
         "offset": (60.0, -100.0),
+        "description": (
+            "A wooden chapel to a minor road-saint, with a one-pot hostel tucked "
+            "behind the bell. Pilgrims and travelling smiths stop here before "
+            "the bridge. Brother Fennick keeps the place — translator and "
+            "letter-writer when he isn't tending the lamp. Sheltered from the "
+            "fens by the upland scrub."
+        ),
+        "prompt": (
+            "establishing shot, small wooden roadside chapel with bell tower, "
+            "modest hostel beside it, upland scrub and dark pines, overcast "
+            "afternoon, lantern by the door, painterly atmospheric, "
+            "late-medieval Burgundian, no figures"
+        ),
     },
     {
         "id": "kingsroad_waypost",
@@ -66,6 +92,19 @@ HUBS: list[dict[str, Any]] = [
         "amenities": ["repair"],
         "quest_givers": 2,
         "offset": (-110.0, -30.0),
+        "description": (
+            "A prefab patrol cabin on the kingsroad, halfway between the Keep "
+            "and Miller's Crossing. Two bored deputies, a stove, a boot rack, "
+            "and the courier relay for the eastern run. Roadside bandit work "
+            "stages from here, and most of the Marches' couriers pass under "
+            "its lantern at some hour of the night."
+        ),
+        "prompt": (
+            "establishing shot, small timber patrol cabin beside a paved "
+            "kingsroad at dusk, single hanging lantern, courier post sign, "
+            "autumn rain in the distance, painterly atmospheric, "
+            "late-medieval Burgundian, no figures"
+        ),
     },
     {
         "id": "miller_crossing",
@@ -74,6 +113,19 @@ HUBS: list[dict[str, Any]] = [
         "amenities": ["innkeeper", "flight_master", "repair"],
         "quest_givers": 4,
         "offset": (-220.0, 20.0),
+        "description": (
+            "A stone bridge across the Ash, a working grain mill, and ten or so "
+            "steadings packed close to the water. Bread and grain, suspicion of "
+            "strangers, short coin. Old Brenn's flock grazes a half-day upriver, "
+            "and the miller's daughter has been losing sacks to someone the "
+            "deputies can't catch."
+        ),
+        "prompt": (
+            "establishing shot, low stone arch bridge over a slow river, "
+            "working timber grain mill with waterwheel, packed thatched "
+            "steadings, late-afternoon golden light, painterly atmospheric, "
+            "late-medieval Burgundian, no figures"
+        ),
     },
     {
         "id": "ford_of_ashmere",
@@ -82,6 +134,20 @@ HUBS: list[dict[str, Any]] = [
         "amenities": ["repair", "flight_master"],
         "quest_givers": 3,
         "offset": (270.0, 40.0),
+        "description": (
+            "A forward Warden camp at the strategic river crossing, east of "
+            "everything safe. Earthworks, pickets, and skirmish scouts trading "
+            "rumours over cold tea. Pact pressure is no longer hypothetical "
+            "here — patrol parties have started crossing the shallows in numbers "
+            "nobody at the Keep can explain. Veterans arrive from Dalewatch "
+            "faster than recruits can replace them."
+        ),
+        "prompt": (
+            "establishing shot, forward earthwork camp at a wide shallow river "
+            "ford, picket fences and timber palisade, distant mist on the far "
+            "bank, dusk overcast cool light, watchfires, painterly atmospheric, "
+            "late-medieval Burgundian, no figures"
+        ),
     },
 ]
 
@@ -90,13 +156,128 @@ HUBS: list[dict[str, Any]] = [
 # Non-hub sub-zones. Listed in landmarks.yaml for lore + future
 # location-resolving logic. Not consumed by the server today.
 LANDMARKS: list[dict[str, Any]] = [
-    {"id": "old_brenns_croft",  "name": "Old Brenn's Croft",  "offset": (-240.0, 120.0)},
-    {"id": "dalewatch_reed_brake", "name": "The Reed-Brake",  "offset": (-150.0, 200.0)},
-    {"id": "thornroot_grove",   "name": "Thornroot Grove",    "offset": ( 100.0, 140.0)},
-    {"id": "sidlow_cairn",      "name": "Sidlow Cairn",       "offset": ( 180.0, -180.0)},
-    {"id": "copperstep_mine",   "name": "Copperstep Mine",    "offset": ( 150.0, -260.0)},
-    {"id": "blackwash_fens",    "name": "The Blackwash Fens", "offset": ( -50.0, 280.0)},
-    {"id": "drifters_lair",     "name": "The Drifter's Lair", "offset": (  20.0, 320.0)},
+    {
+        "id": "old_brenns_croft",
+        "name": "Old Brenn's Croft",
+        "offset": (-240.0, 120.0),
+        "description": (
+            "A single farmhouse and three weather-worn barns set against the "
+            "western ridge. Brenn keeps sheep and the occasional cow; the dogs "
+            "are the best part of the local economy. Wolf packs come down from "
+            "the ridge at night, and the croft has lost lambs four times this "
+            "season."
+        ),
+        "prompt": (
+            "establishing shot, single weathered timber farmhouse with three "
+            "small barns, sheep grazing, low ridge in the background, late "
+            "afternoon overcast light, painterly atmospheric, late-medieval, "
+            "no figures"
+        ),
+    },
+    {
+        "id": "dalewatch_reed_brake",
+        "name": "The Reed-Brake",
+        "offset": (-150.0, 200.0),
+        "description": (
+            "A shallow marsh on a slow river bend, threaded with reed-cutter "
+            "paths and the occasional half-rotten coracle. Mist comes off the "
+            "water at first light. Corlen's old drifter camp was hidden in an "
+            "abandoned fisherman's hut here — the burnt timbers and the symbol "
+            "scratched into the door are still readable in good weather."
+        ),
+        "prompt": (
+            "establishing shot, shallow reed marsh on a slow river bend, mist "
+            "rising from black water, abandoned thatch fisher hut on stilts, "
+            "dawn cool light, painterly atmospheric, no figures"
+        ),
+    },
+    {
+        "id": "thornroot_grove",
+        "name": "Thornroot Grove",
+        "offset": (100.0, 140.0),
+        "description": (
+            "A ring of old-growth oak around a black standing stone and a "
+            "cold spring. The keeper — half druid, half forester, wholly "
+            "suspicious of outsiders — tends a small fire under the largest "
+            "tree. The beasts here get territorial when something's wrong "
+            "with the grove, and lately something is."
+        ),
+        "prompt": (
+            "establishing shot, ancient oak grove around a black standing "
+            "stone and a cold spring, small fire under the central tree, "
+            "dappled overcast light, painterly atmospheric, no figures"
+        ),
+    },
+    {
+        "id": "sidlow_cairn",
+        "name": "Sidlow Cairn",
+        "offset": (180.0, -180.0),
+        "description": (
+            "Low turf-covered barrow-mounds on the ridge south-east of the "
+            "Keep — old Mannin grave-sites no one cuts hay near. Local lore "
+            "says the cairns \"don't stay shut\", and at least three of the "
+            "slabs have been moved recently in ways no badger could account "
+            "for."
+        ),
+        "prompt": (
+            "establishing shot, low turf-covered barrow mounds on a "
+            "windswept ridge, weathered standing slabs, scattered crows, "
+            "twilight cold light, oppressive mood, painterly atmospheric, "
+            "no figures"
+        ),
+    },
+    {
+        "id": "copperstep_mine",
+        "name": "Copperstep Mine",
+        "offset": (150.0, -260.0),
+        "description": (
+            "A copper vein that played out a decade ago, and that the company "
+            "sealed when too many men stopped coming back. Drifter cultists "
+            "have pried open the upper shafts and dug deeper — not for ore "
+            "but for something at the bottom of the longest drift. The lift "
+            "cage is gone; you go down on rope."
+        ),
+        "prompt": (
+            "establishing shot, abandoned copper mine entrance cut into a "
+            "hillside, broken winch and rotted timber, scattered ore "
+            "tailings, overcast cold light, painterly atmospheric, "
+            "late-medieval, no figures"
+        ),
+    },
+    {
+        "id": "blackwash_fens",
+        "name": "The Blackwash Fens",
+        "offset": (-50.0, 280.0),
+        "description": (
+            "The deep marsh beyond the Reed-Brake. Black water, no roads, "
+            "the wrong smells. Brine-shade aberrations rise from the channels "
+            "at dusk and don't go quietly. This is where the main chain ends, "
+            "and where the sealed confessions of three Drifters were found "
+            "drifting in a nailed-shut barrel."
+        ),
+        "prompt": (
+            "establishing shot, deep mist-bound black-water fen, broken sedge "
+            "islands, twisted dead trees, sickly green twilight, oppressive "
+            "atmosphere, painterly, no figures, no characters"
+        ),
+    },
+    {
+        "id": "drifters_lair",
+        "name": "The Drifter's Lair",
+        "offset": (20.0, 320.0),
+        "description": (
+            "A cave entrance in the fen, edged with hand-cut stone and the "
+            "remains of a Drifter ward-circle. Inside: a tight encounter "
+            "chamber where Grand Drifter Valenn finished what the Censure "
+            "couldn't bury. The Wake's anchor sits at the back, still humming."
+        ),
+        "prompt": (
+            "establishing shot, cave entrance in a marsh edged with carved "
+            "stone and a broken ward-circle, lantern at the threshold, low "
+            "fog over black water, painterly atmospheric, oppressive mood, "
+            "no figures"
+        ),
+    },
 ]
 
 
@@ -1177,6 +1358,33 @@ def build_core() -> dict[str, Any]:
         "level_range": {"min": 1, "max": 10},
         "starter_race": "mannin",
         "hub_count": len(HUBS),
+        "vibe": (
+            "Late-medieval river-valley frontier; civic, practical, not heroic."
+        ),
+        "description": (
+            "The Concord's eastern frontier — a green river-valley of yeoman "
+            "farms, kingsroads, and warden patrols, watched from Dalewatch "
+            "Keep at the heart of the Marches. Three crises meet here. East "
+            "at the Ford of Ashmere, Pact scouts are crossing in numbers "
+            "nobody can explain. South in the Blackwash Fens, the drifters "
+            "who fled the Censure three years ago have made common cause "
+            "with something older than the Concord. And along the cairn-"
+            "ridges and copper drifts under the keep, the country itself is "
+            "starting to misbehave. The Warden Corps rides the line so the "
+            "plough stays in the field — but the line is thinning, and you "
+            "ride it the morning you take the oath."
+        ),
+        "prompt": (
+            "wide establishing landscape, late-medieval Burgundian river "
+            "valley, stone keep on a low ridge above tilled fields, kingsroad "
+            "winding past mills, distant marsh on the eastern horizon, summer "
+            "dusk warm gold-hour light, painterly atmospheric, no figures, "
+            "no characters"
+        ),
+        "negative_prompt": (
+            "modern, futuristic, sci-fi, neon, anime, cyberpunk, "
+            "concept sheet, character portrait, figure, person, watermark, text"
+        ),
         "budget": {
             "quest_count_target": 50,
             "unique_mob_types": len(ALL_MOB_IDS),
@@ -1197,6 +1405,8 @@ def build_hub(hub: dict[str, Any]) -> dict[str, Any]:
         "zone": ZONE_ID,
         "name": hub["name"],
         "role": hub["role"],
+        "description": hub["description"],
+        "prompt": hub["prompt"],
         "amenities": hub["amenities"],
         "quest_givers": hub["quest_givers"],
         "offset_from_zone_origin": {
@@ -1208,17 +1418,22 @@ def build_hub(hub: dict[str, Any]) -> dict[str, Any]:
 
 
 def build_landmarks() -> dict[str, Any]:
+    out_landmarks: list[dict[str, Any]] = []
+    for lm in LANDMARKS:
+        entry: dict[str, Any] = {
+            "id": lm["id"],
+            "name": lm["name"],
+            "offset_from_zone_origin": {"x": lm["offset"][0], "z": lm["offset"][1]},
+        }
+        if lm.get("description"):
+            entry["description"] = lm["description"]
+        if lm.get("prompt"):
+            entry["prompt"] = lm["prompt"]
+        out_landmarks.append(entry)
     return {
         "id": f"landmarks__{ZONE_ID}",
         "zone": ZONE_ID,
-        "landmarks": [
-            {
-                "id": lm["id"],
-                "name": lm["name"],
-                "offset_from_zone_origin": {"x": lm["offset"][0], "z": lm["offset"][1]},
-            }
-            for lm in LANDMARKS
-        ],
+        "landmarks": out_landmarks,
     }
 
 

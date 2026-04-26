@@ -1,0 +1,16 @@
+{
+  "id": "019dc772-5e77-740f-9d38-c081a09b34e2",
+  "type": "text-to-image",
+  "ai_model": "nano-banana-pro",
+  "prompt": "wide establishing landscape, blasted ruin-line of broken stone and ash, leaning shattered tower, char-thistle in the cracks, sickly grey-green sky, painterly atmospheric, oppressive mood, no figures",
+  "status": "SUCCEEDED",
+  "progress": 100,
+  "created_at": 1777167654531,
+  "started_at": 1777167654566,
+  "finished_at": 1777167690689,
+  "expires_at": 1777426890689,
+  "image_urls": [
+    "https://assets.meshy.ai/2872987b-afbf-4fa0-95f0-231417dc567c/uploads/image_019dc772-5e77-740f-9d38-c081a09b34e2_0.png?Expires=1777426890&Signature=in1QJp9R22TD6yyxv6ZyUO~-DTqJBBP2heojTJiS7MLYQSOQHrBkKHpX~1sHMplJ01ZH144gufpu8WlobkFXHqEskuHpZgMhcHLHdRQMCyFTTfjiuLk318v5xEQ2WD5AHt2JE1IE8MEHeLy04boP9MoVldjJ9upZdopZqVv9jFbz1IcTqtkA~U6swx3326ul2fJCs0A2ON3nNQ-YJEnvY5waW-yjSoWPhPE-H~xKmi6y9GW2DYeNodZZXxzrz2Ipjs2MuREoeYuujdDdV1ijGJ6~xJWxwINi9InT9se9PUuXaD2n3xX0oTqcIvICQoHRjLpWV1YVeTLpjvo7uBvouQ__&Key-Pair-Id=K1VGYTHIYLM9UM"
+  ],
+  "consumed_credits": 9
+}

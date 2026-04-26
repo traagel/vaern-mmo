@@ -1,0 +1,16 @@
+{
+  "id": "019dc771-dbec-7bd8-ab05-a309cd3bd404",
+  "type": "text-to-image",
+  "ai_model": "nano-banana-pro",
+  "prompt": "wide establishing landscape, switchback mountain pass, sheer granite cliffs, narrow paved road with stone bridges, snow on upper switchbacks, overcast cold light, painterly atmospheric, late-medieval, no figures",
+  "status": "SUCCEEDED",
+  "progress": 100,
+  "created_at": 1777167621115,
+  "started_at": 1777167621768,
+  "finished_at": 1777167654896,
+  "expires_at": 1777426854896,
+  "image_urls": [
+    "https://assets.meshy.ai/2872987b-afbf-4fa0-95f0-231417dc567c/uploads/image_019dc771-dbec-7bd8-ab05-a309cd3bd404_0.png?Expires=1777426854&Signature=VqjXK-vu-YWN1fNm4jd-5WlC9GskD1WVmQt0JVjvgtoSoaZffwEJL38GOTUSY-3013pfaOSdPOWQaxyx31BF2VMuAmv7dUnySUcemA~l4nOVI730lK7ezcCTlacjs9VsZXEEBudQAnt1IT85EIv9v1ZGQjeU36WnsX-nrrEAEV6wgSyUMhutrYg5icInqeUQaEHEZMyuxzrAhMkTD0293I0M2Me-1S7QOlJ5wWg06NROZNTokqXiSdMu-CJ1EgizWtMYU9dXLiuF--R1qs8fdZf5vdcFp-RjqJ6DZd1beRrQLMyHzwg5F8wAGWc4v2mP1PMs9UU~qlnpmm1SvQmziw__&Key-Pair-Id=K1VGYTHIYLM9UM"
+  ],
+  "consumed_credits": 9
+}

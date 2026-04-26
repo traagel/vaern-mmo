@@ -1,0 +1,16 @@
+{
+  "id": "019dc76b-2704-72d6-beb2-327d472fbf75",
+  "type": "text-to-image",
+  "ai_model": "nano-banana-pro",
+  "prompt": "establishing shot, Skarn salt-watch tower on a basalt headland above the sea, single inn beside, salt-rust weathering on stone, cold dusk light, painterly atmospheric, late-medieval viking, no figures",
+  "status": "SUCCEEDED",
+  "progress": 100,
+  "created_at": 1777167181581,
+  "started_at": 1777167181591,
+  "finished_at": 1777167215288,
+  "expires_at": 1777426415288,
+  "image_urls": [
+    "https://assets.meshy.ai/2872987b-afbf-4fa0-95f0-231417dc567c/uploads/image_019dc76b-2704-72d6-beb2-327d472fbf75_0.png?Expires=1777426415&Signature=E02mCoV-QxsljEYmcZpL1MaY-k5BjAUzviauFECzsiwgjAhLvCjcvahLTIiLt0JUV66tMHZcI7Tdsus6H3No7~i8-4vGi3ylB8fvuiFZqywIsLwHKBi4uQTW~732gX2nfrvZAudvElwnpXJuoG3-UuN9-ZctdV7MMYKZ6s6OmDExY1h2HxQtvBzkAsrvkge4mkiZebUNBa6i0mBTreqrRWROypTa6X46d9moLaWU7jeM4vcua31g0TMbN5xL4t6JHpP1GuykW6oz-~~6ZIDpITbNjdxJt~4WQF2OP6d3Bi2KL7WznneWH8AbbBAutvVpICQoMmCfoGggefu3pxMb8w__&Key-Pair-Id=K1VGYTHIYLM9UM"
+  ],
+  "consumed_credits": 9
+}

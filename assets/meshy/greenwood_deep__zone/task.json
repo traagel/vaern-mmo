@@ -1,0 +1,16 @@
+{
+  "id": "019dc771-9562-7dfc-bc1e-11727f525108",
+  "type": "text-to-image",
+  "ai_model": "nano-banana-pro",
+  "prompt": "wide establishing landscape, deep ancient fir forest, mist between massive trunks, mossy boulders, dappled green light, painterly atmospheric, late-medieval fey, eerie mood, no figures",
+  "status": "SUCCEEDED",
+  "progress": 100,
+  "created_at": 1777167603057,
+  "started_at": 1777167603724,
+  "finished_at": 1777167642000,
+  "expires_at": 1777426842000,
+  "image_urls": [
+    "https://assets.meshy.ai/2872987b-afbf-4fa0-95f0-231417dc567c/uploads/image_019dc771-9562-7dfc-bc1e-11727f525108_0.png?Expires=1777426842&Signature=iR5GHiWjKaTcvCRWLYIbm5j13cZ1oSo6iR0YqkbU-95SLpHYZkToL12ATm~NjTx5UrruHsHsSc3~dxSbZjCsRXZPv9dBPHFwejGwCg9KeaW5SOiiQS5xTLyHgBfiIiIXJphPm~sGOEnDdCjlsF3pnoflWyjkmZlsAgOq4rb1eX7mKyFPXlrVIK4uXeswi-Sk26N9s1SbNDK44oqhYi48Jm7mjNEU9QQ-1tVe1WU0wAoAWg94wQWrs3~46S0j9EbT3jAF56FhnGuQIRi4S3EepcI0ttCGrg3XEhXoa7MvKI2~TiX~nOWpUHQudFaB~kjakEqe2qvdj8Z7U0mmhMEo-Q__&Key-Pair-Id=K1VGYTHIYLM9UM"
+  ],
+  "consumed_credits": 9
+}

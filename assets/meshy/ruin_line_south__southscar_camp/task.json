@@ -1,0 +1,16 @@
+{
+  "id": "019dc76a-5271-7d23-be15-e5b2d47f8668",
+  "type": "text-to-image",
+  "ai_model": "nano-banana-pro",
+  "prompt": "establishing shot, contested way-station camp on a blasted scarland road, two-flag bunkhouses around a shared bell-post, leaden grey-amber light, painterly atmospheric, late-medieval, no figures",
+  "status": "SUCCEEDED",
+  "progress": 100,
+  "created_at": 1777167127162,
+  "started_at": 1777167127692,
+  "finished_at": 1777167147575,
+  "expires_at": 1777426347575,
+  "image_urls": [
+    "https://assets.meshy.ai/2872987b-afbf-4fa0-95f0-231417dc567c/uploads/image_019dc76a-5271-7d23-be15-e5b2d47f8668_0.png?Expires=1777426347&Signature=YMidRTekc6jvVUzudvQXVCIgV0dyz7G4r8aKlBg5ug9NFTVpodtXOYE6zCFWXB3YGtyPWyJIFrEB-kUOf-RJYuGSxbb2nU2VL~sRw2v7iFino5iktJkYOGaz7x3Ll8VDr08RKG293YSdbjcQEc0QuEEc9iA9E4Uw~xAMLBHzWXArRaRztyB31AlNR6362n2bmhH0ztHmcEKEolyLcC3L8WUoSOkdrcB79QV719QiGJLQsubV0XUZ-rcGM8Xhdv4KZmbmu7GASS7RLXzneVEkknxxtw4P5l0hxfyPcY2jHpOi4gSYNCTSqM~XtFXezBkbReWrOmeLhugP9hTcZyldow__&Key-Pair-Id=K1VGYTHIYLM9UM"
+  ],
+  "consumed_credits": 9
+}

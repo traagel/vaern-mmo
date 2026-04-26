@@ -1,0 +1,57 @@
+zone:
+  vibe: Skarn war-camp country — fjord scrub, raid-staging, prison-coast.
+  description: 'The Skarn war-camp belt north of Skarnreach — basalt scrub, raid-staging fields,
+    the salt-watch prison cut into a headland and run by chieftains who lost a feud. The Skarn
+    use it for both: training the young and forgetting the old. New arrivals get put on watchtower
+    rotation; the watchtower rotation is how you find out who you really are.'
+  prompt: wide establishing landscape, harsh basalt scrubland above a cold fjord, watchtower
+    garrisons in the middle distance, longships at staging anchor, leaden sky, painterly atmospheric,
+    late-medieval viking, no figures
+hubs:
+  ravenmeet:
+    description: The Skarn mid-capital — a longhall on a basalt wedge where two raid-coastlines
+      meet. Chieftain-Auntie Eira keeps the war-rolls and the marriage-rolls in the same ledger,
+      with annotations that explain why both matter to the same political question.
+    prompt: establishing shot, Skarn longhall on a basalt headland between two cold fjord
+      arms, longships drawn up below, smoke from braziers, leaden afternoon light, painterly
+      atmospheric, late-medieval viking, no figures
+  war_stake:
+    description: A staging camp for the Skarn raid-fleets — earthwork ditch, wooden palisade,
+      a raid-master who gets the drinking finished before sunset and the ships off the stone
+      before dawn. New arrivals learn how to clean salt off iron without scrubbing through
+      to bone.
+    prompt: establishing shot, Skarn raid-staging camp on a basalt shoreline, timber palisade
+      and earthwork, longships at low-tide stocks, dim leaden light, painterly atmospheric,
+      late-medieval viking, no figures
+  salt_watch:
+    description: The salt-watch waypoint above the prison — a stone watch-house and a single
+      inn, run by a former chieftain named Veska who lost a feud and keeps her dignity by
+      running the watch better than she ran her hold.
+    prompt: establishing shot, Skarn salt-watch tower on a basalt headland above the sea,
+      single inn beside, salt-rust weathering on stone, cold dusk light, painterly atmospheric,
+      late-medieval viking, no figures
+landmarks:
+  widow_landing:
+    description: A weed-grown stone landing where Skarn widows traditionally wait for ships
+      that never come back. The waiting is formal and respected; the ships are still tracked
+      in the rolls.
+    prompt: establishing shot, weed-grown stone landing on a basalt shoreline above a cold
+      fjord, salt-rust on the stones, leaden cold afternoon light, painterly atmospheric,
+      late-medieval viking, no figures
+  warstake_circle:
+    description: A ring of driven war-stakes around a turf clearing where raid-captains formally
+      challenge each other. The stakes are replaced as they rot; the names on them aren't.
+    prompt: establishing shot, ring of driven war-stakes in a turf clearing on a basalt rise,
+      names carved into each stake, leaden cold light, painterly atmospheric, late-medieval
+      viking, no figures
+  seabird_cliff:
+    description: A cliff used by every coast-bird in the wastes for nesting. The Skarn climb
+      it once a year for eggs. The climbing is ritualised and partly suicidal.
+    prompt: establishing shot, sheer black basalt sea cliff full of nesting seabirds, salt-spray,
+      leaden cold light, painterly atmospheric, late-medieval, no figures
+  burnt_longhall:
+    description: A burnt-out Skarn longhall from a feud forty years back. The hall was left
+      as a warning. The warning has weathered into a kind of memorial.
+    prompt: establishing shot, burnt-out Skarn timber longhall on a windswept basalt slope,
+      blackened beams, leaden cold light, painterly atmospheric, late-medieval viking, oppressive
+      mood, no figures

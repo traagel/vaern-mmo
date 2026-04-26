@@ -1,0 +1,56 @@
+zone:
+  vibe: Hearthkin under-halls — orderly, bell-disciplined, smoke and stone.
+  description: The Hearthkin starter under the western shoulder of the Iron Mountains. Lantern-lit
+    hall-roads, bell-shifts in the deep forges, hot iron and cold stone in equal measure.
+    The rockworms moved up from the abandoned levels last winter and Anvilgate is short-handed;
+    new recruits get rope-and-pick the morning they swear in. Concord by treaty since the
+    Third Concord; Hearthkin in temperament forever.
+  prompt: wide establishing landscape, mountain-skirt fortress town carved into a granite
+    shoulder, banded smokestacks, lantern-lit switchbacks, late-afternoon overcast cool light,
+    painterly atmospheric, late-medieval, no figures, no characters
+hubs:
+  stoneguard_halls:
+    description: The Hearthkin under-capital — a great vaulted hall-city carved into living
+      granite, lit by suspended forge-lamps and ventilated by shafts that whistle in winter.
+      Anvil-Mother Brytta keeps the rolls and the temper of the place in equal measure. The
+      lower halls are sealed pending a rockworm count that nobody wants to actually conduct.
+    prompt: establishing shot, vast Hearthkin underground hall carved into granite, suspended
+      forge-lamps, basalt columns, busy anvil-yards, warm forge glow, painterly atmospheric,
+      late-medieval dwarven, no figures
+  anvilgate:
+    description: Forward outpost at the rim of the iron mountains, where the hall-roads meet
+      daylight. Stone gatehouse, shift-bell, a handful of pickaxe veterans who came up from
+      the lower halls and don't intend to go back. Captain Drun has been short two patrols
+      since the rockworms moved up; new sworn bring their own rope.
+    prompt: establishing shot, mountain-rim Hearthkin outpost at the mouth of an under-hall,
+      stone gatehouse, banked forge braziers, snow on the upper slopes, painterly atmospheric,
+      late-medieval dwarven, no figures
+landmarks:
+  forge_chimney_ridge:
+    description: A ridge venting permanent forge-smoke from the deeper halls below. The Hearthkin
+      keep the chimneys clear by rota; the rota has been short-handed since the rockworms
+      moved up.
+    prompt: establishing shot, mountain ridge venting steady forge smoke from carved stone
+      chimneys, snow on the slopes, leaden afternoon light, painterly atmospheric, late-medieval
+      dwarven, no figures
+  collapsed_lower_stair:
+    description: A grand stair down to the abandoned lower halls, blocked at the third landing
+      by a controlled collapse. The Hearthkin sealed it after the rockworms; somebody has
+      reopened the seal twice.
+    prompt: establishing shot, vast carved stone stair descending into darkness, broken at
+      a landing by a deliberate rockfall, dim warm lamp glow, painterly atmospheric, late-medieval
+      dwarven, no figures
+  granite_pillar_grove:
+    description: A natural cavern outside the city's gates where forty-three basalt pillars
+      stand in a rough circle. The Hearthkin say the pillars predate them; the carvings on
+      them say otherwise.
+    prompt: establishing shot, cathedral-sized natural cavern with forty tall basalt pillars
+      in a rough circle, lantern light at the base, painterly atmospheric, late-medieval,
+      no figures
+  rockworm_breach:
+    description: A jagged tunnel mouth where the rockworms came up last winter. Sealed twice,
+      breached three times. The Hearthkin patrol the edge of it on rotation; they don't go
+      inside.
+    prompt: establishing shot, jagged tunnel breach in a mountainside, scattered Hearthkin
+      pickaxes and broken seal-stones, dim warm light from inside, painterly atmospheric,
+      no figures

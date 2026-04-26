@@ -1,0 +1,16 @@
+{
+  "id": "019dc76c-a218-72fd-bd8c-ee55e32fb9d0",
+  "type": "text-to-image",
+  "ai_model": "nano-banana-pro",
+  "prompt": "establishing shot, deep black-water pool in a marsh, Black-Eel clan markers on the bank, sickly green-grey twilight, painterly atmospheric, oppressive mood, no figures",
+  "status": "SUCCEEDED",
+  "progress": 100,
+  "created_at": 1777167278626,
+  "started_at": 1777167278823,
+  "finished_at": 1777167335123,
+  "expires_at": 1777426535123,
+  "image_urls": [
+    "https://assets.meshy.ai/2872987b-afbf-4fa0-95f0-231417dc567c/uploads/image_019dc76c-a218-72fd-bd8c-ee55e32fb9d0_0.png?Expires=1777426535&Signature=SAmivV2r9lUZk4SzhsnZql0c5glG3onPzIvMFpjCg2YTkY4Nex1SM654~dYLsOvp-xhrbNpV2qzLn~8~ffFYo5eFQ69XbqjYcnGKnZQ2uuXC6JbJuUmt4HfFMD69JZ0dH6iQTMqv1dEPF8~sC-iXifFNknpzq~r41ZTbv3ZCOvRCEE25pXcnQjmjxxTwSvvCj6SourcdbV4XwqEnsFRYfEHgZi-Mee1~5yWh~9OnC23wxr-MgC4Vl~KgXOJB37fiLAj42xLZhybgMJBYVgt80oByqYqd7Sz7R4ZlId-9bGNagQoZzE66orHFWk3w7fvjgWg~jUpK6GpprW8SAfekfw__&Key-Pair-Id=K1VGYTHIYLM9UM"
+  ],
+  "consumed_credits": 9
+}

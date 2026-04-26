@@ -1,0 +1,54 @@
+zone:
+  vibe: Northern cliff coast — wreckers, raid-landings, the Old Lighthouse blind.
+  description: The contested cliffs of the northern shore — sheer black rock above wreck-strewn
+    shingle, watched (badly) by the Old Lighthouse, raided (frequently) by Skarn ships running
+    down the long western coast. The Strand is officially Concord and practically nobody's;
+    the wreckers below the cliffs aren't political, they're just hungry.
+  prompt: wide establishing landscape, sheer dark sea cliffs, wreck-strewn shingle below,
+    ruined lighthouse on the headland, low storm-grey light, painterly atmospheric, no figures
+hubs:
+  wreckshore:
+    description: A wrecker-village under the cliffs — wrecks salvaged in season, fish smoked
+      out of season, and a half-honest captain named Veld who keeps the village's only church
+      bell rung on a schedule of his own invention. The Concord is welcome to visit at low
+      tide; the Skarn at high.
+    prompt: establishing shot, wrecker fishing village on a wreck-strewn shingle beach beneath
+      sheer dark cliffs, smoke from drying-houses, leaden cold light, painterly atmospheric,
+      late-medieval, no figures
+  strand_redoubt:
+    description: A cliff-top redoubt the Concord built and the Skarn have twice taken back
+      — currently Concord by garrison, by trade contested. Captain Marl runs the watch and
+      a private export business that the Concord knows about and doesn't comment on.
+    prompt: establishing shot, square stone redoubt on a sheer cliff-top above a grey sea,
+      gun-port loopholes, Concord banner snapping in salt wind, painterly atmospheric, late-medieval,
+      no figures
+  old_lighthouse:
+    description: The strand's oldest watchtower, dark since the Coming and overrun in living
+      memory by a Skarn raider crew who have made it home. Shipmaster Vrekk runs it. The Concord
+      doesn't talk about it; the Pact doesn't claim it. Wreckers below the cliff appreciate
+      the dark.
+    prompt: establishing shot, ruined cliff-top lighthouse, leaning tower with broken lamp-room,
+      raider-banners on the parapet, leaden storm light, painterly atmospheric, no figures
+landmarks:
+  salt_pillar_row:
+    description: A row of salt-pillars formed where the spring tides crystallise year on year.
+      Locals carve names into the soft surface; the next year's tide reads the names back
+      into the sea.
+    prompt: establishing shot, row of weathered salt pillars on a shingle beach beneath sea
+      cliffs, names carved into the surfaces, leaden cold light, painterly atmospheric, no
+      figures
+  wreckers_chapel:
+    description: A small clifftop chapel the wreckers below the cliff maintain by tradition.
+      The bell rings only on storm nights. The roof leaks.
+    prompt: establishing shot, small clifftop stone chapel above a shipwreck-strewn beach,
+      leaning bell-tower, leaden storm light, painterly atmospheric, late-medieval, no figures
+  cliff_cairn:
+    description: A cairn marking where a Skarn raid party fell to a particularly bad storm
+      landing. The Skarn maintain the cairn from their own boats; the Concord don't interfere.
+    prompt: establishing shot, weathered stone cairn on a sheer cliff edge above a grey sea,
+      salt-stained stones, leaden cold light, painterly atmospheric, late-medieval, no figures
+  kelp_field:
+    description: A bed of kelp that is unusually dense at the strand's far south. Local fishers
+      say the kelp answers to the moon. The moon does not answer to the fishers.
+    prompt: establishing shot, dense kelp bed on a shingle shoreline below sea cliffs, low
+      tide, leaden cold afternoon light, painterly atmospheric, no figures

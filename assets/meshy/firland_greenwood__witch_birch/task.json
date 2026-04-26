@@ -1,0 +1,16 @@
+{
+  "id": "019dc76d-0690-7b1f-9eba-d7393f7a8ef1",
+  "type": "text-to-image",
+  "ai_model": "nano-banana-pro",
+  "prompt": "establishing shot, single immense silver birch tree in a deep fir forest, scarred runic carvings on its trunk, dim green light, painterly atmospheric, late-medieval fey, no figures",
+  "status": "SUCCEEDED",
+  "progress": 100,
+  "created_at": 1777167304357,
+  "started_at": 1777167304372,
+  "finished_at": 1777167351206,
+  "expires_at": 1777426551206,
+  "image_urls": [
+    "https://assets.meshy.ai/2872987b-afbf-4fa0-95f0-231417dc567c/uploads/image_019dc76d-0690-7b1f-9eba-d7393f7a8ef1_0.png?Expires=1777426551&Signature=Ly6Es3X5ZL1lKAAmzavMSk5bk6sorQyD8qU3-7vJsEaer-qpbr9VIGXd-DEn~N2TTut86a7fDCBrnDcpUFvgZc6bOswaORfCFjoRogpXbqEjItwLRF26AvoRqnQIw2IrRZwKTYxeZcU7ZD0WSqtxQor0YyA-vHfGEpyx6UwIczsBgEJ4EG-JFXziJgFSC~ivWFLaKVd4T-XpGRyhkz79fS-n1GPSAUV2HhEtb5L7H1pE93AWe3V~81quiE4KZDDUPDhN3wpzMT2-kNa5EXjgOavQ5Qtg~k0QkQ0k5o6RDIgxDGSs886NBZPit-KACR67XAFmKghLBnyKE99ZIC8AFA__&Key-Pair-Id=K1VGYTHIYLM9UM"
+  ],
+  "consumed_credits": 9
+}

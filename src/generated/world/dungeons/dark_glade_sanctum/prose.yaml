@@ -1,0 +1,65 @@
+dungeon:
+  description: |
+    The inner sanctum of a Hraun shadow-cult that has been operating
+    out of the Shadegrove for the better part of two decades. The
+    civic council of the Shadegrove Reach has issued seven separate
+    statements in the last five years denying any official endorsement
+    of the cult, three of them after the cult was already on the
+    ledger as receiving Reach grain. The sanctum proper is dug into a
+    glade where the trees lean inward and the daylight does not.
+  prompt: >-
+    establishing shot, dungeon interior, dark cult sanctum, ringed
+    altar of black stone, hooded standing-figures of carved wood,
+    purple shadow-mist, hanging silver braziers, painterly atmospheric,
+    oppressive mood, no figures
+bosses:
+  shadow_initiate:
+    description: |
+      A senior initiate who teaches the cult's first three rites; the
+      two other bosses in the sanctum learned their craft from her.
+      As long as she is alive she channels a slow heal into the
+      others, and the party that doesn't recognize her function will
+      kill the trash three times over. Her name in the cult ledger is
+      Sister Yelv; her name on the Reach grain-roster is different.
+    prompt: >-
+      portrait, single subject, robed shadow-cult initiate, dark grey
+      ritual robes, ink-marked palms, calm instructor's expression,
+      shadow-tendril at each shoulder, painterly atmospheric,
+      oppressive mood, isolated subject, no other figures
+    negative_prompt: >-
+      multiple figures, party, group, modern, futuristic, sci-fi, anime,
+      cyberpunk, watermark, text
+  pact_speaker:
+    description: |
+      The sanctum's diplomat — the one who handles letters to the
+      Reach council and is allowed to write them. Fights by life-tap-
+      summoning a chain of shadow-bound adds, each summon costing her
+      a sliver of health, but each summon also ramping the damage of
+      the next. A long fight feeds her. The party that lets her
+      stabilize in the middle phase finds out what she meant by
+      "ramping."
+    prompt: >-
+      portrait, single subject, regal cult speaker, mantled black robes
+      with silver edge, opened palm bleeding shadow, ledger-book
+      chained at her hip, painterly atmospheric, oppressive mood,
+      isolated subject, no other figures
+    negative_prompt: >-
+      multiple figures, party, group, modern, futuristic, sci-fi, anime,
+      cyberpunk, watermark, text
+  sanctum_witch:
+    description: |
+      The cult's matron, who has held the sanctum since before the
+      Reach council formally existed. Curses her tank in stacks; each
+      stack takes a different elemental flavor (cold, shadow, blood,
+      ash) cycled through orbs that orbit her on a fixed pattern.
+      Cleanse-rotation matters; reading the orbs matters more. Her
+      name is on no roster — that is itself the marker she has been
+      protected.
+    prompt: >-
+      portrait, single subject, ancient cult matron, layered black-and-
+      silver robes, four orbiting elemental orbs, hooded face mostly
+      hidden, gnarled curse-fingers, painterly atmospheric, oppressive
+      mood, isolated subject, no other figures
+    negative_prompt: >-
+      multiple figures, party, group, modern, futuristic, sci-fi, anime,
+      cyberpunk, watermark, text

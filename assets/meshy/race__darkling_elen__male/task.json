@@ -1,0 +1,16 @@
+{
+  "id": "019dc77c-0ba0-7d52-9313-5e2c75630e53",
+  "type": "text-to-image",
+  "ai_model": "nano-banana-pro",
+  "prompt": "Portrait of a male Darkling Elen, single figure, isolated subject, three-quarter view from waist up. tall dark elf, ash-grey skin, white hair, long pointed ears, layered black robes with silver embroidery. dark elf with face fully visible and uncovered, long pointed elven ears clearly showing, ash-grey or blue-black skin, pale silver or blood-red eyes, hollow angular cheekbones, shadow-vein markings on skin, no hood covering face. tall slender elven build like their Sunward kin but gaunter and sharper, 5'10\"\u20136'4\", predator grace, head-low stance. ash-grey to blue-black skin, stark white or raven-black hair, pale silver or blood-red eyes, hollowed angular cheekbones, long pointed ears pierced with iron rings, ageless but haunted, faint shadow-veins visible under skin. hair: long straight hair or shaven sides with a single long braid, spider-silk ornaments, a few with iron circlet or bound hood. attire: dark layered robes and leather, silver-black embroidery, shadow-bind rune-stitching on hem and cuffs, hooded mantle, ceremonial pact-iron at the throat. posture: tall slender elongated like Sunward but head-low predator stance, hollow-eyed, sharper angles. painterly atmospheric character portrait, late-medieval fantasy aesthetic, soft directional lighting, neutral dim background, oil-painting feel, no other characters, no text, no watermark.",
+  "status": "SUCCEEDED",
+  "progress": 100,
+  "created_at": 1777168288730,
+  "started_at": 1777168289068,
+  "finished_at": 1777168386691,
+  "expires_at": 1777427586691,
+  "image_urls": [
+    "https://assets.meshy.ai/2872987b-afbf-4fa0-95f0-231417dc567c/uploads/image_019dc77c-0ba0-7d52-9313-5e2c75630e53_0.png?Expires=1777427586&Signature=Lp8Xp0p~xTmdXEPm6LzH7zwi3JgL-WuMNsKJdPIa1C8v~t2LXh01tdxGnCWnDYYKvg7ZdWTs4h7V43BcDknYK-D7xJM4Gdgrgc7oYBrw8CHj-JZF9WNwyKnrVtMJqvni4fBJmPhzXyTTDuvoMgdM3s~00pKRzEVpAhHFx4Qcsyf8Hpk65lQGM3RnVbNVbafaGqJFyximyURbz4DhnaqPQaHj6V8xLAQ8BKQK4tu57EGBKK-EbiYlGBLMw0m7EY4YmkkUsSsWXTw1~dn57tyIL5J52G9NQsdYWoPNEZsRJ2jitOrsY2hM7nlEW7XOghsR8FqQBSiedH9uQuFsHsa~lQ__&Key-Pair-Id=K1VGYTHIYLM9UM"
+  ],
+  "consumed_credits": 9
+}

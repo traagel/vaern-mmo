@@ -1,0 +1,16 @@
+{
+  "id": "019dc76c-25bd-72ec-aca3-af79b5e614f1",
+  "type": "text-to-image",
+  "ai_model": "nano-banana-pro",
+  "prompt": "establishing shot, three weathered salt pillars on a windswept clifftop, crystallised salt-rime, leaden cold afternoon light, painterly atmospheric, late-medieval, no figures",
+  "status": "SUCCEEDED",
+  "progress": 100,
+  "created_at": 1777167246791,
+  "started_at": 1777167247096,
+  "finished_at": 1777167281276,
+  "expires_at": 1777426481276,
+  "image_urls": [
+    "https://assets.meshy.ai/2872987b-afbf-4fa0-95f0-231417dc567c/uploads/image_019dc76c-25bd-72ec-aca3-af79b5e614f1_0.png?Expires=1777426481&Signature=Lx525A9apr2Ilj~P222WU3cepCXKJRlR8IkQx7P8yS~stOsQl6SfQzqdRfQvlbr0SZo8UqXJT-NbO66smZUKaXDKDwsL3uuyRjfXeAtaGBUQJ3ozlUeqDqKiyqSE3A0g6cBDThRRKF9gzB4AFT~zeY4fK9X5IOqg399cEws75mJGiyoB1-v9qaBjsdmAF0iCVKRjJe6aRHOYjKoXpWztzyScMGHjSE0dl-GxMfxuaDZ13KPzbpo-d7K18~uBVXBzBes4P5VdVw0P-ImRmKtCFN-tjZ4-3GF6M8bTk3MjszZRZZQTuwg2hd0~-Ypa-oVKh4judzEkA4Z4kSxt17pMPQ__&Key-Pair-Id=K1VGYTHIYLM9UM"
+  ],
+  "consumed_credits": 9
+}

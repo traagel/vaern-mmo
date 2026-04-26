@@ -1,0 +1,16 @@
+{
+  "id": "019dc771-cd44-7747-bdcb-2d4f419bc92f",
+  "type": "text-to-image",
+  "ai_model": "nano-banana-pro",
+  "prompt": "wide establishing landscape, sheer dark sea cliffs, wreck-strewn shingle below, ruined lighthouse on the headland, low storm-grey light, painterly atmospheric, no figures",
+  "status": "SUCCEEDED",
+  "progress": 100,
+  "created_at": 1777167617359,
+  "started_at": 1777167617509,
+  "finished_at": 1777167646099,
+  "expires_at": 1777426846099,
+  "image_urls": [
+    "https://assets.meshy.ai/2872987b-afbf-4fa0-95f0-231417dc567c/uploads/image_019dc771-cd44-7747-bdcb-2d4f419bc92f_0.png?Expires=1777426846&Signature=SbTMPs5Fu0YgsaBYiDtWKiqL1ND8eNnLlTgh040rlLe~BE6V5AMOjsLUUmbrT3kn~mxTvQQP3rMrLvaPex2JSHkZgw-A~-LkujUSkwLOODbjDj3NUTLXEfzm8Htm2yueOCB-tpw1KQRoD6vTsXr8UdjRz9-C~78~kyLulIGtT5KCWdK8TNLSc~ZiSZqqhVPmH5dSZAuZp~RE6Eb98wFm4A8M44OYMV2u9IFxBMICHE4KUE-I0t5xYeavwB8eUst0HTMmsHse5BYYY9vhPZjL~s6F6ruNgdy~7FI6fHIK~8j9FzHzNe3AuFPgGvyU-pUw52dj4QvFy5e~gRvzmGlzdg__&Key-Pair-Id=K1VGYTHIYLM9UM"
+  ],
+  "consumed_credits": 9
+}

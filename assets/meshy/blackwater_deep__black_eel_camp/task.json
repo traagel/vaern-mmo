@@ -1,0 +1,16 @@
+{
+  "id": "019dc769-f0cf-766f-9ef9-e0893700fcdd",
+  "type": "text-to-image",
+  "ai_model": "nano-banana-pro",
+  "prompt": "establishing shot, exile camp on a marsh knoll, scrap-built shelters and plank walkways, drying eel-racks, sickly green-grey twilight, painterly atmospheric, no figures",
+  "status": "SUCCEEDED",
+  "progress": 100,
+  "created_at": 1777167102294,
+  "started_at": 1777167102329,
+  "finished_at": 1777167120494,
+  "expires_at": 1777426320494,
+  "image_urls": [
+    "https://assets.meshy.ai/2872987b-afbf-4fa0-95f0-231417dc567c/uploads/image_019dc769-f0cf-766f-9ef9-e0893700fcdd_0.png?Expires=1777426320&Signature=pRN-jMUv1cZfgWfGjLU9y0GuUB-xkAQUpNU5girrtg70aLqY5A3hCFheUJI9l2A0S2bc57QEW-14BAccNQ19sQj0D5nd6-CRILniQAANcESPvdYmtWiUemST8ir8RRLo2kNKXcVHaZ97ilPJ0-qBL8woQ6zHJ4vVvxCa4jRiLFALOwumimfzS3CDw7gJClC~FjdYGJ-2FoMyM3ZCVPq34HBMrg6ajMskeHi~cPPUDOVav8rLpD-vH7g2g7nua8dAItTgR43rPSdnz-wlspuS3C1tjTLJXMYpKD8zSpMF9K6kbphXzjAdgbybUKQWSvT58Gv8APHo7Q08~pvI73Dk6w__&Key-Pair-Id=K1VGYTHIYLM9UM"
+  ],
+  "consumed_credits": 9
+}

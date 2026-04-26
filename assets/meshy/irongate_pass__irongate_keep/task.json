@@ -1,0 +1,16 @@
+{
+  "id": "019dc76a-407a-72ba-b6a6-d220b1853316",
+  "type": "text-to-image",
+  "ai_model": "nano-banana-pro",
+  "prompt": "establishing shot, mountain pass keep at a switchback, stone curtain wall and customs hall, snow on the upper slopes, banners of two factions side by side, painterly atmospheric, late-medieval, no figures",
+  "status": "SUCCEEDED",
+  "progress": 100,
+  "created_at": 1777167122566,
+  "started_at": 1777167123298,
+  "finished_at": 1777167144802,
+  "expires_at": 1777426344802,
+  "image_urls": [
+    "https://assets.meshy.ai/2872987b-afbf-4fa0-95f0-231417dc567c/uploads/image_019dc76a-407a-72ba-b6a6-d220b1853316_0.png?Expires=1777426344&Signature=P9KUh6sBXVfXge7ZcbOxzGFAKN5IcksHp~MdD9JYMAaMl4da-XkG2fPKvem8YfxOM2tm3w~sexRCsTk6ktxV-MdW0SddUOqvck8lSAPXisDFDWsU0b9HXlnJExGDIDT98FQIU-hFHed5IEPgVZBJHP2Qxt7MBFiCHj9tOUb9l2qaIiQQ04EXc7HgI~y79KEv1PTfGtehT4Ea8-YO3EOcUfEeNn4G8pB-Zpi-SgDOvhEySi0yA1sDh8KlSxDG6RQoHN10dsUjdK6pv8RnBqWsrPuSkyRIRuv7PNfXRY5e-LX7I-hh3ROzKV3~F3eIX8zmMF5E2QjMmmjH6CfL8nujZQ__&Key-Pair-Id=K1VGYTHIYLM9UM"
+  ],
+  "consumed_credits": 9
+}

@@ -1,0 +1,16 @@
+{
+  "id": "019dc76d-8308-7b2b-b769-db7009e2b4ab",
+  "type": "text-to-image",
+  "ai_model": "nano-banana-pro",
+  "prompt": "establishing shot, immense ancient oak in deep fir forest, soft green twilight, weathered standing stones at its roots, painterly atmospheric, late-medieval fey, no figures",
+  "status": "SUCCEEDED",
+  "progress": 100,
+  "created_at": 1777167336216,
+  "started_at": 1777167337086,
+  "finished_at": 1777167378154,
+  "expires_at": 1777426578154,
+  "image_urls": [
+    "https://assets.meshy.ai/2872987b-afbf-4fa0-95f0-231417dc567c/uploads/image_019dc76d-8308-7b2b-b769-db7009e2b4ab_0.png?Expires=1777426578&Signature=VTyVIFLAhu6tSrPTB1Rs~D45QtFBUhCg5PeVBrfE8iYS0HEmPi4S4TCnBNk60HAgeeTTvGdBIk7eRA3OUCrhFAtytAjuHdovRJaYY9EKQK-9QMxDXHTK7FAibSZn-nJjWaCsKFZnWdDNaNP~HlUJRSvNTBb2lnaOWvqa05IkvQCaePIGxiZfK4hG0hssr9f~cDaz0zxM~4trSSbjLEcUprDh93aUwxChaWcdA0ge5kYq7YKPBnTW0PDw8oTfrXPhDWyTUMiQREL2Z6nm5i9JobKzCwzbLzwyK2JAsVgzQhhjINjljhNoH7THRlv-8qui4E~jp92qTugfd3HIiWI-4w__&Key-Pair-Id=K1VGYTHIYLM9UM"
+  ],
+  "consumed_credits": 9
+}

@@ -1,5 +1,15 @@
 id: coastal_cliff
 name: Rocky Cliff Coast
+description: |
+  Salt-wind country. Sheer black-rock cliffs drop straight to a
+  storm-battered sea, and the only flat ground is the wreck-strewn
+  shingle below the line. Cliff-wyrms nest in the cracks; raiders make
+  landfall here when nothing else is watching. Both factions claim it,
+  neither holds it cleanly.
+prompt: >-
+  wide establishing landscape, sheer dark sea cliffs above a
+  storm-battered shingle beach, salt-spray, low grey sky, distant
+  storm front, painterly atmospheric, no figures, no characters
 climate: cold, salt-wind, storm-battered
 hazards:
 - cliff-fall

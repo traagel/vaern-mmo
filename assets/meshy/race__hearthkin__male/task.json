@@ -1,0 +1,16 @@
+{
+  "id": "019dc77c-0b9b-7fb6-9b18-b6212b6ef681",
+  "type": "text-to-image",
+  "ai_model": "nano-banana-pro",
+  "prompt": "Portrait of a male Hearthkin, single figure, isolated subject, three-quarter view from waist up. short stocky four-foot dwarf, barrel-chested, iron-bead braided hair, forge apron over layered mail. short stocky dwarf, waist-and-chest-high to a human, barrel-chested and broad, long braided beard woven with iron and brass beads, weathered ruddy face fully visible, forge-scarred calloused hands. short stocky dwarven build, 4'0\"\u20134'6\", barrel chest, broad shoulders, thick limbs, heavy grip, low center of gravity. weathered ruddy skin, thick dark or iron-grey hair, heavy brow ridge, broad nose, deep-set brown-grey-hazel eyes, ageing marked by rings of oath-tattoos at the wrists. hair: long braided beards woven with iron and brass oath-beads, crown-plaited hair, topknots, braids with clan-charms. attire: layered leather and riveted mail, fur-trimmed cloak, belted forge-apron or tool-sash, soot-touched and forge-scarred. posture: low heavy gravity, squared shoulders, weight-forward solid-rooted stance. painterly atmospheric character portrait, late-medieval fantasy aesthetic, soft directional lighting, neutral dim background, oil-painting feel, no other characters, no text, no watermark.",
+  "status": "SUCCEEDED",
+  "progress": 100,
+  "created_at": 1777168288683,
+  "started_at": 1777168288878,
+  "finished_at": 1777168376613,
+  "expires_at": 1777427576613,
+  "image_urls": [
+    "https://assets.meshy.ai/2872987b-afbf-4fa0-95f0-231417dc567c/uploads/image_019dc77c-0b9b-7fb6-9b18-b6212b6ef681_0.png?Expires=1777427576&Signature=ahqrc~QrUDe9r27JRH-kmb~tUv2SS9tvdpZ3c1dKO-6QPf20W15OUi6tykDlauPPN9WaHz0ZdNIPmllSi19Kh0dl17QENWHs5SJpOrMR1425OUupaebaIF2F2mnYescxfi3zdCuoL3hv46Jqyz1gbeNC1DuzDuyfzNs5upHUDKJoCSwHJCb2JQFpdlNQ-faLrSGD1XnO7NFR0L~TpxmF8Dx09P5Jl2XSWGUpUNolIZt2qfmL32MdfcsPkxixlyurMwolcFliay~szu0fDdqyt1-XkIq8mMIKO75XC4bbCF-WAlluKi75KwfLAlFGVwehUoKByiLLFYjB0HIIbRl9eQ__&Key-Pair-Id=K1VGYTHIYLM9UM"
+  ],
+  "consumed_credits": 9
+}

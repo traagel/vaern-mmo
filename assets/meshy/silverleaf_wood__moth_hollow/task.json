@@ -1,0 +1,16 @@
+{
+  "id": "019dc76b-03bc-7afe-9407-75200298c2bd",
+  "type": "text-to-image",
+  "ai_model": "nano-banana-pro",
+  "prompt": "establishing shot, twilight forest clearing with thatched lodges, a sky full of slow-flying pale moths, lantern lights in the trees, painterly atmospheric, late-medieval high-elf, no figures",
+  "status": "SUCCEEDED",
+  "progress": 100,
+  "created_at": 1777167172557,
+  "started_at": 1777167173160,
+  "finished_at": 1777167212677,
+  "expires_at": 1777426412677,
+  "image_urls": [
+    "https://assets.meshy.ai/2872987b-afbf-4fa0-95f0-231417dc567c/uploads/image_019dc76b-03bc-7afe-9407-75200298c2bd_0.png?Expires=1777426412&Signature=RP-jlOjpGrQdXOeM2MzEhqDL5mhzT5cj0wjb~kw~jAjJvO3-ZzQHJSIyrXQ2WsKfk~fz4KoFY5FgvgRBn8~48VL0iMymfLlfwrGbeOWxnhN5k64QbRDQ0PS5aLE4443eqVPil3Lv85QlKrTU2AwVmX0CNopMG9KJHSLzVNdQfeMag87cZSpGHpLLcBlFkNtRQVAtEGfFvqeqp9fkYkgEQi40ZCN03LJONOz4mTtXzR495gzDb9dOk6~n7hfr9EiemMWeHU2uApImqKRIO4CbRE70w6S-k5EXvWc1-zsIInSF~pvrFCjLl9vztN37k9NPrA0~13WrNdKlOdvYY0hA0Q__&Key-Pair-Id=K1VGYTHIYLM9UM"
+  ],
+  "consumed_credits": 9
+}

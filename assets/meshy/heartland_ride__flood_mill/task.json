@@ -1,0 +1,16 @@
+{
+  "id": "019dc769-f539-7d03-800e-f9642533064a",
+  "type": "text-to-image",
+  "ai_model": "nano-banana-pro",
+  "prompt": "establishing shot, river-mill village with half-submerged lower buildings, working waterwheel, packed timber steadings, late afternoon warm grey light, painterly atmospheric, late-medieval, no figures",
+  "status": "SUCCEEDED",
+  "progress": 100,
+  "created_at": 1777167103306,
+  "started_at": 1777167103438,
+  "finished_at": 1777167120656,
+  "expires_at": 1777426320656,
+  "image_urls": [
+    "https://assets.meshy.ai/2872987b-afbf-4fa0-95f0-231417dc567c/uploads/image_019dc769-f539-7d03-800e-f9642533064a_0.png?Expires=1777426320&Signature=doBztqjGzEFb1qMg0n3a3Si2t8lz5FNmlnb1SfuQAJG0ecgYae-ZhWSjjJkmJ4IuG7ZN~i85vgZWmU3jdJdnoh-jeDb9KdPU0YeSz3TpCzl3oY~TttFQrSCVP~PCBR92BWzkyVUuDaegehBTGOp3YocJIVYEhnJvXfs8lssuTbBpghwPZ96XWgfkcMklehB2SF2QZziTy~KntIxWxgkPBLd2cCHh1PevVDie4RmGjbyTmW~EsHTCMdJoG1dD4NQEG-7MGkkZnefNNETxcglqERL2evCbKFGW4Co1vRMqmvtpMrIU5QLVqJ08HIuI06DGD0D8Ao2DbeUsQ0FkJAASMA__&Key-Pair-Id=K1VGYTHIYLM9UM"
+  ],
+  "consumed_credits": 9
+}

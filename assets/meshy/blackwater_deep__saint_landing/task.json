@@ -1,0 +1,16 @@
+{
+  "id": "019dc76c-a1be-7d5c-9f8e-f1ad592a4b2a",
+  "type": "text-to-image",
+  "ai_model": "nano-banana-pro",
+  "prompt": "establishing shot, weathered stone landing on a black-water marsh, single worn footprint preserved in the stone, sickly green twilight, painterly atmospheric, oppressive mood, no figures",
+  "status": "SUCCEEDED",
+  "progress": 100,
+  "created_at": 1777167278537,
+  "started_at": 1777167278820,
+  "finished_at": 1777167426829,
+  "expires_at": 1777426626829,
+  "image_urls": [
+    "https://assets.meshy.ai/2872987b-afbf-4fa0-95f0-231417dc567c/uploads/image_019dc76c-a1be-7d5c-9f8e-f1ad592a4b2a_0.png?Expires=1777426626&Signature=FZsZpY2Bz2pfXsObwHdlzQKEjaX7vQ~HN6p~2vxK5s-fKBW5vOYq4uSo9LWbojJD5NEYK8DjZoOaFOSabInd15eR0W52vOLzFoCfcr9BHR-UCzR8WaNjHK4DsGznh8aV6YLfrIo7rfakBmf-yVJB2P7F0M2QIwP68Mw1AxTK3E6L2~NRAKsj9x1SUQDI0ITaPPwXL33DoCG6QdelUN62taAEu27TN3YBsAERiUlmplAneM-3IEUaiFNB1O6-MesITulHFGvDaKyUN7~8HEy5Ru8fsQ5TXXA7efAvCzxoPI4WdxTwDAsfJu-XkhvIHNo4xoov3~NUqQaigJeYdLns7A__&Key-Pair-Id=K1VGYTHIYLM9UM"
+  ],
+  "consumed_credits": 9
+}

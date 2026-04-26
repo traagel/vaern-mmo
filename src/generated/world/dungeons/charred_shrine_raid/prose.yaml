@@ -1,0 +1,78 @@
+dungeon:
+  description: |
+    Beneath the small shrine where the Twin Saints died together, there
+    is another shrine, and beneath that, a fire. The First Flame was
+    burning before either faction had a name to be loyal to, and the
+    failed prayer of the Twin Saints still echoes off its walls in two
+    languages that don't recognize each other. Pilgrims from both
+    faiths come this far down and turn back. The few who go further do
+    not return as themselves. Ten-man raid country. Bring water.
+  prompt: >-
+    establishing shot, dungeon interior, ash-choked underground
+    sanctuary, twin altars facing each other across a fire-pit, soot-
+    blackened murals, embers drifting upward, painterly atmospheric,
+    oppressive mood, no figures
+bosses:
+  ember_high_priest:
+    description: |
+      A Concord cleric who was forty years a saint's-man before the
+      Censure and is now whatever the First Flame leaves of a man who
+      has prayed to it long enough. He raises the heat of the chamber
+      with every cast and the raid breathes ash for a verse and a half
+      before he draws the next breath. His censer has not been refilled
+      since 1187. He no longer needs it to.
+    prompt: >-
+      portrait, single subject, ash-cloaked Concord priest, censer
+      glowing hollow at his hand, scorched vestments, eyes lit from
+      within, painterly atmospheric, oppressive mood, isolated subject,
+      no other figures
+    negative_prompt: >-
+      multiple figures, party, group, modern, futuristic, sci-fi,
+      anime, cyberpunk, watermark, text
+  pact_saint:
+    description: |
+      Whatever the Pact left behind when their saint died here — not
+      the saint herself, not what the Concord remembers, but the oath
+      she swore at the moment of dying. The oath is still active and
+      it binds three of you in turn, by name, in a tongue you cannot
+      hear properly but you can feel the weight of. Refuse the oath
+      and you die clean. Accept it and you die for someone else.
+    prompt: >-
+      portrait, single subject, draped Pact saint figure shrouded in
+      ash and oath-cord, faceless under cowl, hand extended in
+      binding, painterly atmospheric, oppressive mood, isolated
+      subject, no other figures
+    negative_prompt: >-
+      multiple figures, party, group, modern, futuristic, sci-fi,
+      anime, cyberpunk, watermark, text
+  twin_saints_raid:
+    description: |
+      The Twin Saints Ascended — the Concord saint and the Rend saint,
+      back-to-back in the chancel, finally agreeing on something. They
+      strike together and they suffer together: the same bar, the same
+      death. The raid splits across the chamber to mirror them. It is
+      the closest the two faiths have ever come to a single rite, and
+      it has taken being dead to manage it.
+    prompt: >-
+      portrait, two saints back to back in scorched mirrored
+      vestments, one Concord one Rend, halos burning together, eyes
+      shut in shared prayer, painterly atmospheric, oppressive mood
+    negative_prompt: >-
+      multiple figures, party, group, modern, futuristic, sci-fi,
+      anime, cyberpunk, watermark, text
+  first_flame:
+    description: |
+      What was burning before either faction had a name. It does not
+      have a face. The chamber is the boss — a wheel of fire that
+      moves on a beat older than music, and the raid steps with it or
+      the raid burns. The Twin Saints prayed to it and it answered, in
+      its way. Their prayer is the fight you are in. The fight has
+      always been here. The fight does not finish; you finish.
+    prompt: >-
+      establishing shot, vast pillar of white-hot flame in cavernous
+      sanctuary, soot-rimmed stone ringed in ancient sigils, ember
+      vortex rising, painterly atmospheric, oppressive mood, no
+      figures
+    negative_prompt: >-
+      multiple figures, party, group, modern, futuristic, sci-fi,
+      anime, cyberpunk, watermark, text

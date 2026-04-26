@@ -1,0 +1,16 @@
+{
+  "id": "019dc771-26b1-73d4-ba83-4d97d52cd739",
+  "type": "text-to-image",
+  "ai_model": "nano-banana-pro",
+  "prompt": "wide establishing landscape, vast black-water marsh, half-submerged stone keep at the centre, distant ruined abbey rising from the water, leaden cold sky, painterly atmospheric, oppressive mood, no figures",
+  "status": "SUCCEEDED",
+  "progress": 100,
+  "created_at": 1777167574753,
+  "started_at": 1777167575099,
+  "finished_at": 1777167623440,
+  "expires_at": 1777426823440,
+  "image_urls": [
+    "https://assets.meshy.ai/2872987b-afbf-4fa0-95f0-231417dc567c/uploads/image_019dc771-26b1-73d4-ba83-4d97d52cd739_0.png?Expires=1777426823&Signature=UiOzy7uhOfDZSxsLIA42MXuCamoCa~edbSR1uPBS3DgHxUWCrdLDxzfvYqxnwvXvs6M~WrUC8dFp~w3dz5a9ZKsiYpQZI~4bFBBlyAZibk7IO6C3nVkjDWldqbUYOZH2~K0eKj7FBwiiBTUqtdCTvXUAAVF5ED4WvWbJI3gXifTweKGKRHLBgKLolDghwODmG3k24tYhKC4dNyI-tUzGgujEPgZfBMmFWCf4Lyp~CFNscwIGksLdQi1vg-MHZ3~FqlZweEuNVW91Fk4cRIivDR10ma0~ls-LhjFWdLqrbwSwjcUn39uh7F5nZ8e-SWvAAkE7nWZt33P~TbR7aPHskA__&Key-Pair-Id=K1VGYTHIYLM9UM"
+  ],
+  "consumed_credits": 9
+}

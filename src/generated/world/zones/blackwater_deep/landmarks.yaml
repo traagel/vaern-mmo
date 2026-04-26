@@ -1,0 +1,43 @@
+id: landmarks__blackwater_deep
+zone: blackwater_deep
+landmarks:
+- id: saint_landing
+  name: The Saint's Landing
+  offset_from_zone_origin:
+    x: 200.0
+    z: 90.0
+  description: A worn stone landing where the Drowned Abbey's last celebrant came ashore the
+    night before the abbey sank. The footprints in the stone are real and unexplained.
+  prompt: establishing shot, weathered stone landing on a black-water marsh, single worn footprint
+    preserved in the stone, sickly green twilight, painterly atmospheric, oppressive mood,
+    no figures
+- id: eelsong_pool
+  name: The Eelsong Pool
+  offset_from_zone_origin:
+    x: -180.0
+    z: 80.0
+  description: A pool where the Black-Eel clan's sorcerers sing to the eels. The eels respond.
+    The Black-Eels treat this as a trade secret and have killed for it.
+  prompt: establishing shot, deep black-water pool in a marsh, Black-Eel clan markers on the
+    bank, sickly green-grey twilight, painterly atmospheric, oppressive mood, no figures
+- id: warlords_garden
+  name: The Warlord's Garden
+  offset_from_zone_origin:
+    x: 90.0
+    z: -250.0
+  description: A walled garden Warlord Kessen maintains on a higher knoll, stocked with surface
+    flowers from a flag that doesn't fly anywhere any more.
+  prompt: establishing shot, walled garden on a marsh knoll with neat rows of pre-war flowers,
+    single chair under a leaning trellis, leaden cold light, painterly atmospheric, late-medieval,
+    no figures
+- id: sunken_pillar_circle
+  name: The Sunken Pillar Circle
+  offset_from_zone_origin:
+    x: -90.0
+    z: -180.0
+  description: Six standing stones half-submerged in a shallow black-water cove. The arrangement
+    is older than any local memory. The stones are more or less in the same places year on
+    year.
+  prompt: establishing shot, six half-submerged ancient standing stones in a circle in shallow
+    black water, mist on the surface, sickly green-grey light, painterly atmospheric, late-medieval,
+    no figures

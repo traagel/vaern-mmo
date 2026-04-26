@@ -1,0 +1,16 @@
+{
+  "id": "019dc76c-0a92-76ba-8d3d-94ff67b666e3",
+  "type": "text-to-image",
+  "ai_model": "nano-banana-pro",
+  "prompt": "establishing shot, black still-water pool in a charred forest, faint steam rising from the surface, sickly amber twilight, painterly atmospheric, no figures",
+  "status": "SUCCEEDED",
+  "progress": 100,
+  "created_at": 1777167239836,
+  "started_at": 1777167239904,
+  "finished_at": 1777167284188,
+  "expires_at": 1777426484188,
+  "image_urls": [
+    "https://assets.meshy.ai/2872987b-afbf-4fa0-95f0-231417dc567c/uploads/image_019dc76c-0a92-76ba-8d3d-94ff67b666e3_0.png?Expires=1777426484&Signature=hnHThLp7N6wDmeJyTr77VvqUhbmRGfJyIXgIvLdAM4am91qp8T8dAjsiIuFZ3E6sPSF7leeCN2GzOZ1IWY8susBIxyIOH63jwAseP0HEjDDun7DkHCz~JPca3z2jk6YngKNkfCgoOoWarOwBfENOXqFjw7BzCtcU8NsPL4ykGQkbIRslppMWO6ZXys0lRhdn7MoayEQhQe2xZAxAfU1YBkKHu1vS6jVNqdhmK7pXo2SEsOVF5BPrcbdqRCsKcTVNGXqao6qkIBWKr~YsEtMVaZNbNDNecI6ynj7bHO-SAcAEPZAgXPE7FvBqdWjk560p53gtZ2CavoxKsz9ioGO1qA__&Key-Pair-Id=K1VGYTHIYLM9UM"
+  ],
+  "consumed_credits": 9
+}

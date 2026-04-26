@@ -1,0 +1,57 @@
+zone:
+  vibe: Endgame deep marsh — pre-Concord drowned country, exile warlord, abbey-saint.
+  description: The deep marsh in the heart of the ruin-line — black water, no roads, a sunken
+    pre-Concord keep at its centre still flying a banner that hasn't been on any flag-pole
+    in fifty years. Warlord Kessen runs Deepwater out of the keep and says he's holding it
+    for whoever comes back to claim it. The Drowned Abbey under the western reaches has started
+    ringing again.
+  prompt: wide establishing landscape, vast black-water marsh, half-submerged stone keep at
+    the centre, distant ruined abbey rising from the water, leaden cold sky, painterly atmospheric,
+    oppressive mood, no figures
+hubs:
+  deepwater_redoubt:
+    description: A surface waypoint on the marsh-edge — three watch-platforms, a flag-pole
+      nobody flies, and a single stone bunkhouse for adventurers between dives into the black
+      water. The redoubt-keeper has a list. The list is of people who didn't come back.
+    prompt: establishing shot, weathered stone bunkhouse on a marsh edge, three timber watch-platforms
+      above black water, leaden cold afternoon light, painterly atmospheric, oppressive mood,
+      no figures
+  black_eel_camp:
+    description: An exile camp on a half-submerged knoll — the Black-Eel clan's surface presence,
+      a small market in dried marsh-fish and stranger goods. Clanhead Sleth does not personally
+      visit; her hands here run a surface war that does not appear in the Concord ledger.
+    prompt: establishing shot, exile camp on a marsh knoll, scrap-built shelters and plank
+      walkways, drying eel-racks, sickly green-grey twilight, painterly atmospheric, no figures
+  drowned_abbey:
+    description: The pre-Concord river-fortress that gave its name to the drowned-abbey raid
+      — half-submerged keep, banner of a house that doesn't exist, and Warlord Kessen claiming
+      the whole thing in the name of a return that nobody expects. He has held the keep eleven
+      years. Nobody presses.
+    prompt: establishing shot, half-submerged pre-Concord stone keep in deep marsh, ancient
+      banner over the gate, leaden grey water, painterly atmospheric, oppressive mood, late-medieval,
+      no figures
+landmarks:
+  saint_landing:
+    description: A worn stone landing where the Drowned Abbey's last celebrant came ashore
+      the night before the abbey sank. The footprints in the stone are real and unexplained.
+    prompt: establishing shot, weathered stone landing on a black-water marsh, single worn
+      footprint preserved in the stone, sickly green twilight, painterly atmospheric, oppressive
+      mood, no figures
+  eelsong_pool:
+    description: A pool where the Black-Eel clan's sorcerers sing to the eels. The eels respond.
+      The Black-Eels treat this as a trade secret and have killed for it.
+    prompt: establishing shot, deep black-water pool in a marsh, Black-Eel clan markers on
+      the bank, sickly green-grey twilight, painterly atmospheric, oppressive mood, no figures
+  warlords_garden:
+    description: A walled garden Warlord Kessen maintains on a higher knoll, stocked with
+      surface flowers from a flag that doesn't fly anywhere any more.
+    prompt: establishing shot, walled garden on a marsh knoll with neat rows of pre-war flowers,
+      single chair under a leaning trellis, leaden cold light, painterly atmospheric, late-medieval,
+      no figures
+  sunken_pillar_circle:
+    description: Six standing stones half-submerged in a shallow black-water cove. The arrangement
+      is older than any local memory. The stones are more or less in the same places year
+      on year.
+    prompt: establishing shot, six half-submerged ancient standing stones in a circle in shallow
+      black water, mist on the surface, sickly green-grey light, painterly atmospheric, late-medieval,
+      no figures

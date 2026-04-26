@@ -1,0 +1,54 @@
+dungeon:
+  description: |
+    A drowned hollow at the bottom of the Wyrd Tarn, the fey-lake the
+    Firland forbid their children to drink from. The deer drink anyway
+    and come back wrong. Below the surface the water keeps its own season
+    — frost in summer, blood-warm in winter — and something old lairs
+    under the silt. Three chambers: the reed-line, the serpent-coil,
+    and the warden's cold ring.
+  prompt: >-
+    establishing shot, dungeon interior, submerged fey-lake hollow, pale
+    light through deep water, drowned reeds, frost-rimed stone, painterly
+    atmospheric, oppressive mood, no figures
+bosses:
+  drowned_huntress:
+    description: |
+      A Firland ranger named Sela Reedwatch who walked into the Tarn
+      forty years ago chasing a stag that wasn't a stag. She still
+      hunts. Her bow is bog-oak and her arrows fly in straight bright
+      lines you can see coming from across the chamber — which is the
+      problem, because she fires three at once and the lines do not
+      always lead where she's aiming.
+    prompt: >-
+      portrait, single subject, drowned Firland huntress, pale waterlogged
+      skin, bog-oak longbow, arrows trailing lake-light, painterly
+      atmospheric, oppressive mood, isolated subject, no other figures
+    negative_prompt: >-
+      multiple figures, party, group, modern, futuristic, sci-fi, anime, cyberpunk, watermark, text
+  tarn_serpent:
+    description: |
+      Older than the Firland's memory of the Tarn, which is saying
+      something. A coil of black water with teeth that argues physics
+      by spinning the chamber into a vortex around itself. The collision
+      will kill anyone caught against the wall when the spin tightens.
+      The Firland call it the Long Drink and do not name it twice.
+    prompt: >-
+      portrait, single subject, vast black water-serpent, scaled coils,
+      pale teeth, vortex churning around it, painterly atmospheric,
+      oppressive mood, isolated subject, no other figures
+    negative_prompt: >-
+      multiple figures, party, group, modern, futuristic, sci-fi, anime, cyberpunk, watermark, text
+  wyrd_warden:
+    description: |
+      Whatever the Tarn made when the first Firland tried to bind it.
+      Half antlered fey-thing, half ice-sheet given a face. Phases
+      between green-growth and killing-frost on a forty-second cycle;
+      bringing the wrong resist into the wrong phase ends a tank in one
+      cast. Older parties watch the antlers — they bud in nature phase,
+      rime over in frost.
+    prompt: >-
+      portrait, single subject, antlered fey-warden, half bark half
+      hoarfrost, glowing green eyes, ice-rimed crown, painterly
+      atmospheric, oppressive mood, isolated subject, no other figures
+    negative_prompt: >-
+      multiple figures, party, group, modern, futuristic, sci-fi, anime, cyberpunk, watermark, text

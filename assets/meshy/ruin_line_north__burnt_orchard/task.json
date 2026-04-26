@@ -1,0 +1,16 @@
+{
+  "id": "019dc76e-9813-7d92-9df3-431ad82dfe9d",
+  "type": "text-to-image",
+  "ai_model": "nano-banana-pro",
+  "prompt": "establishing shot, burnt orchard regrowing with grey-leafed trees on a windswept ridge, sickly grey-green light, painterly atmospheric, late-medieval, no figures",
+  "status": "SUCCEEDED",
+  "progress": 100,
+  "created_at": 1777167407134,
+  "started_at": 1777167407163,
+  "finished_at": 1777167438334,
+  "expires_at": 1777426638334,
+  "image_urls": [
+    "https://assets.meshy.ai/2872987b-afbf-4fa0-95f0-231417dc567c/uploads/image_019dc76e-9813-7d92-9df3-431ad82dfe9d_0.png?Expires=1777426638&Signature=JXvmsof-sA13PEzkA9HalNAGrBw2xsyiGnVjgetrTnfIvfTDeRrB-8YUaSfe0sUWmrrl9pX9P5JgEVpqGFkoIdGkbtsI1TrmpwzsvkSAkLL-6rVecvPmZxXRv~~OMlYyiEDvcsjlnuK-mnlBc6kIY7t7DHK-Y4I9OerqlD1NGbsKiwp52ECdLBsLkB9jr6BMc5KYJUjM0DpF6Eb-xPJWa1~o8zQ~6-eF4HOlALJ3zQ29kXoBA7j20OkrvCynNsmRtdYcEQnmlot0RbSLvcGVq9rgqfLd-rVdcp8oTGMe1GB~8pegL09eqTyG9ttqwsHKST4cCCX0GxN6a0xi~0XGfA__&Key-Pair-Id=K1VGYTHIYLM9UM"
+  ],
+  "consumed_credits": 9
+}

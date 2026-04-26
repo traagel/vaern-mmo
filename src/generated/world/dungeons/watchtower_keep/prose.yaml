@@ -1,0 +1,63 @@
+dungeon:
+  description: |
+    A Dalewatch-era highway keep on the Heartland Ride, built three
+    generations ago to tax wool-traffic and fallen out of Concord
+    register fifteen years back when the road was rerouted around it.
+    Captain Byrn took it without a fight and now runs the bandit-
+    watchtower hub from the upper hall. The cellars are full of
+    travellers he is keeping for ransom or has stopped keeping. The
+    Reeve at Hollowfield has a writ ready for whoever brings him in.
+  prompt: >-
+    establishing shot, dungeon interior, ruined stone keep hall, broken
+    arrow-slits, scattered ledgers, hanging banners scorched, smoke
+    from upper levels, painterly atmospheric, oppressive mood, no
+    figures
+bosses:
+  lieutenant_marl:
+    description: |
+      Byrn's second, a broken Concord crossbowman called Marl who
+      deserted after the Censure and brought four men with him. Drills
+      his rank to volley on a count, which is the fight: a line-aoe
+      crossbow salvo on a slow telegraph. He is the discipline holding
+      the bandit-band together; the warrant lists him by his old
+      regimental number, 14th Pikes-and-Quivers.
+    prompt: >-
+      portrait, single subject, hard-faced bandit lieutenant, salvaged
+      Concord brigandine, heavy crossbow shouldered, regimental tattoo
+      on forearm, painterly atmospheric, oppressive mood, isolated
+      subject, no other figures
+    negative_prompt: >-
+      multiple figures, party, group, modern, futuristic, sci-fi, anime,
+      cyberpunk, watermark, text
+  cellar_torturer:
+    description: |
+      A man Byrn pays to keep prisoners alive long enough to be worth
+      ransoming. Calls himself Hooks; nobody asks for more name. Emits
+      a fear-aura that pushes weak-willed party members back, and the
+      fight has a hostage-mechanic — a captive chained to the wall
+      takes damage every tick the torturer is alive, so the party
+      fights on the timer of someone else's life.
+    prompt: >-
+      portrait, single subject, heavyset bandit jailer, leather apron
+      stained dark, hooked irons at belt, dim lantern, scarred knuckles,
+      painterly atmospheric, oppressive mood, isolated subject, no
+      other figures
+    negative_prompt: >-
+      multiple figures, party, group, modern, futuristic, sci-fi, anime,
+      cyberpunk, watermark, text
+  captain_byrn:
+    description: |
+      Captain Byrn the Two-Sworded, formerly a Concord road-warden,
+      now the warlord of the Heartland Ride. Dual-wields a Concord
+      saber and a captured Skarn axe, enrages on a slow ramp, and at
+      forty percent blows a horn that calls the watchtower's last
+      reserve down the stairwell. Carries his old commission folded in
+      his belt; nobody knows whether out of pride or to keep tinder.
+    prompt: >-
+      portrait, single subject, weathered bandit captain, mixed Concord
+      and Skarn arms-and-armor, saber and viking axe, scarred jawline,
+      horn at hip, painterly atmospheric, oppressive mood, isolated
+      subject, no other figures
+    negative_prompt: >-
+      multiple figures, party, group, modern, futuristic, sci-fi, anime,
+      cyberpunk, watermark, text

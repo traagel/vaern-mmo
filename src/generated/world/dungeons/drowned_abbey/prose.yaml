@@ -1,0 +1,78 @@
+dungeon:
+  description: |
+    The Abbey of the Weeping Saint did not sink alone — it brought a
+    saint down with it, and the saint did not die. The bell still rings
+    on the right wind, audible from the shore on still mornings, and
+    fishermen in three villages will not eat catch hauled in those
+    hours. The Abbess Silken attempted, in the last days, to become the
+    Saint herself. She did not succeed. What she became instead is what
+    you go down to fight. Ten-man raid, and you will lose people.
+  prompt: >-
+    establishing shot, dungeon interior, sunken cathedral nave under
+    green water, broken stained glass haloed in light from above,
+    drifting silt, drowned pews, painterly atmospheric, oppressive
+    mood, no figures
+bosses:
+  sunken_champion:
+    description: |
+      The Abbey's champion in life, a Concord knight who took vows late
+      and drowned with the tower. He fights in three feet of rising
+      water and the water rises while he fights — a tank-swap as the
+      flood deepens, because the man on point cannot keep his footing
+      past chest-height. His tabard is the Abbey's, but the device
+      under it is older, and nobody at the chapter house will name it.
+    prompt: >-
+      portrait, single subject, drowned Concord champion in algae-
+      crusted plate, sodden tabard, slow water dripping from his
+      gauntlets, helm under one arm, painterly atmospheric, oppressive
+      mood, isolated subject, no other figures
+    negative_prompt: >-
+      multiple figures, party, group, modern, futuristic, sci-fi,
+      anime, cyberpunk, watermark, text
+  choir_of_the_drowned:
+    description: |
+      Six choristers, all that remained of the Abbey's evening choir
+      when the tower fell. They sing the same vespers they sang the
+      night they died, and the chant interrupts itself at predictable
+      intervals — that is the only mercy in the room. Break the
+      cadence and the whole choir gutters; let it run unbroken three
+      verses and the floor opens. They do not know they are dead.
+    prompt: >-
+      portrait, six robed choristers in waterlogged habits, mouths open
+      in silent chant, eyes pale and unseeing, candles guttering at
+      their feet, painterly atmospheric, oppressive mood
+    negative_prompt: >-
+      multiple figures, party, group, modern, futuristic, sci-fi,
+      anime, cyberpunk, watermark, text
+  abbot_silken:
+    description: |
+      Abbot Silken — the only man who saw what the Abbess attempted and
+      survived to write it down, and what he wrote down is what you
+      have to dispel off your party in priority order. His blessings
+      twisted with him. He greets you at the chapter house door in the
+      formal manner, asks after your health, and then puts holy fire on
+      whoever looks the most tired. He apologizes between casts.
+    prompt: >-
+      portrait, single subject, drowned abbot in waterlogged ceremonial
+      robes, censer trailing pale smoke, kindly weary face gone wrong,
+      candle at one hand, painterly atmospheric, oppressive mood,
+      isolated subject, no other figures
+    negative_prompt: >-
+      multiple figures, party, group, modern, futuristic, sci-fi,
+      anime, cyberpunk, watermark, text
+  weeping_saint:
+    description: |
+      What the Abbess became when the rite did not work. The Weeping
+      Saint stands in the chancel where the altar used to be, and the
+      light around her is both holy and not — the raid will be moved
+      across the nave between the two, again and again, by the cadence
+      of her grief. She does not remember her name. She remembers the
+      prayer, and the prayer never finishes, and the bell never stops.
+    prompt: >-
+      portrait, single subject, towering drowned saint in ragged
+      vestments, halo split between gold and shadow, tears running
+      from blind eyes, hands open in prayer, painterly atmospheric,
+      oppressive mood, isolated subject, no other figures
+    negative_prompt: >-
+      multiple figures, party, group, modern, futuristic, sci-fi,
+      anime, cyberpunk, watermark, text

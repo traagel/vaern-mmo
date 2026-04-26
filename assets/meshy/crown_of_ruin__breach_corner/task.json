@@ -1,0 +1,16 @@
+{
+  "id": "019dc76c-bf67-76c8-8ab2-8826c0b46deb",
+  "type": "text-to-image",
+  "ai_model": "nano-banana-pro",
+  "prompt": "establishing shot, fortress curtain wall corner with repeatedly-rebuilt masonry breach, broken weapons in the rubble, oppressive grey-amber sky, painterly atmospheric, late-medieval, no figures",
+  "status": "SUCCEEDED",
+  "progress": 100,
+  "created_at": 1777167286129,
+  "started_at": 1777167286261,
+  "finished_at": 1777167334043,
+  "expires_at": 1777426534043,
+  "image_urls": [
+    "https://assets.meshy.ai/2872987b-afbf-4fa0-95f0-231417dc567c/uploads/image_019dc76c-bf67-76c8-8ab2-8826c0b46deb_0.png?Expires=1777426534&Signature=KX60jyHWcS~Bm4WpDQum4AL4MqZc5FkP2wROv1twtxlS4144V~ciotCuCVKSwT1FB7mOdknN3kzwU2Mj3054anxZdgafDvurXkrrVp~KH4OGtauiVCYHQtwN8DeOoDGPYTeR6BHPvkilZ-cyVJ4qDyUvB7lwv6c6~XG6P7BiA2M04Pv7gM6l9C65VBYC9JEQVHRFokupaMIRfPuL57-6SWtlTvOy97meCP0xo43GNiEPSuDcSOaU~QDaf~sAXjFJidZhGh6d81GXSw6EK2faVyEfabUIxOGZhASomece2Sgi6EX8EiEbkvBzHEsnvzb2kpQUrtt0LU5xaiovTgXpPw__&Key-Pair-Id=K1VGYTHIYLM9UM"
+  ],
+  "consumed_credits": 9
+}

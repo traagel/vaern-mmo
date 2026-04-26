@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Vaern — A hardcore co-op MMO</title>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{height:100%;overflow:hidden;background:#08090c;color:#e8e2d4;
+    font-family:'Cinzel','Trajan Pro','Times New Roman',serif}
+  body{display:flex;align-items:center;justify-content:center;text-align:center;
+    background:radial-gradient(ellipse at 50% 100%,#1a1410 0%,#08090c 60%,#02030a 100%)}
+
+  /* Drifting fog layers — warm hearth on the left, cold steel on the right (Concord vs Rend) */
+  .fog,.fog2{position:fixed;inset:-25%;pointer-events:none;
+    background:
+      radial-gradient(ellipse 50% 30% at 25% 55%,rgba(200,150,80,.10),transparent 60%),
+      radial-gradient(ellipse 55% 35% at 75% 65%,rgba(80,120,200,.10),transparent 60%),
+      radial-gradient(ellipse 40% 25% at 50% 40%,rgba(210,180,120,.05),transparent 60%);
+    filter:blur(40px);animation:fog-drift 70s ease-in-out infinite alternate}
+  .fog2{animation:fog-drift 100s ease-in-out infinite alternate-reverse;opacity:.55;
+    background:
+      radial-gradient(ellipse 65% 40% at 15% 80%,rgba(110,75,35,.07),transparent 60%),
+      radial-gradient(ellipse 55% 35% at 85% 25%,rgba(60,90,170,.08),transparent 60%)}
+  @keyframes fog-drift{
+    from{transform:translate3d(-30px,10px,0)}
+    to{transform:translate3d(40px,-20px,0)}
+  }
+
+  /* Rising embers */
+  .embers{position:fixed;inset:0;pointer-events:none;
+    background-image:
+      radial-gradient(1.5px 1.5px at 12% 100%,#f5b54a,transparent 60%),
+      radial-gradient(1px 1px at 28% 100%,#ffce6e,transparent 60%),
+      radial-gradient(2px 2px at 47% 100%,#f5b54a,transparent 60%),
+      radial-gradient(1px 1px at 63% 100%,#ffd980,transparent 60%),
+      radial-gradient(1.5px 1.5px at 81% 100%,#e89c2a,transparent 60%),
+      radial-gradient(1px 1px at 94% 100%,#f5b54a,transparent 60%);
+    background-size:340px 800px;background-repeat:repeat-x;
+    animation:rise 14s linear infinite;opacity:.7;mix-blend-mode:screen}
+  .embers.delay{animation-delay:-7s;background-position:170px 0;opacity:.45}
+  @keyframes rise{
+    from{transform:translateY(10vh);opacity:.7}
+    to{transform:translateY(-110vh);opacity:0}
+  }
+
+  /* Horizontal rift between the factions */
+  .rift{position:fixed;left:0;right:0;top:50%;height:1px;pointer-events:none;
+    background:linear-gradient(90deg,transparent 0%,rgba(245,181,74,.55) 30%,
+      rgba(140,180,255,.55) 70%,transparent 100%);
+    box-shadow:0 0 28px rgba(245,181,74,.18),0 0 60px rgba(94,135,200,.18);
+    animation:rift-pulse 7s ease-in-out infinite alternate}
+  @keyframes rift-pulse{from{opacity:.35}to{opacity:.85}}
+
+  .content{position:relative;z-index:10;padding:2rem;max-width:92vw}
+
+  h1{font-size:clamp(3.5rem,13vw,9rem);letter-spacing:.42em;font-weight:400;
+    background:linear-gradient(90deg,#f5b54a 0%,#e8c89d 38%,#a8bce4 62%,#5e87c8 100%);
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+    filter:drop-shadow(0 0 24px rgba(0,0,0,.7));
+    animation:title-glow 6s ease-in-out infinite alternate;
+    margin-right:-.42em}
+  @keyframes title-glow{
+    from{filter:drop-shadow(0 0 18px rgba(245,181,74,.28)) drop-shadow(0 0 4px rgba(0,0,0,.8))}
+    to{filter:drop-shadow(0 0 34px rgba(94,135,200,.42)) drop-shadow(0 0 4px rgba(0,0,0,.8))}
+  }
+
+  .tagline{margin-top:1.6rem;font-size:clamp(.85rem,1.9vw,1.2rem);
+    letter-spacing:.4em;color:#cdc1a9;text-transform:uppercase;
+    opacity:0;animation:fade 1.5s ease-out .8s forwards}
+
+  .pillars{margin-top:3rem;font-size:clamp(.7rem,1.4vw,.95rem);
+    letter-spacing:.55em;color:#9a907a;text-transform:uppercase;
+    opacity:0;animation:fade 1.5s ease-out 1.6s forwards}
+  .pillars span{margin:0 .9em}
+  .pillars .sep{color:#4a4538}
+
+  .footer{position:fixed;bottom:2rem;left:0;right:0;text-align:center;
+    font-size:.72rem;letter-spacing:.45em;color:#5a5346;text-transform:uppercase;
+    opacity:0;animation:fade 2s ease-out 2.4s forwards}
+
+  @keyframes fade{to{opacity:1}}
+
+  @media (max-width:480px){
+    h1{letter-spacing:.3em;margin-right:-.3em}
+    .pillars{letter-spacing:.35em}
+    .pillars span{margin:0 .4em}
+  }
+</style>
+</head>
+<body>
+  <div class="fog"></div>
+  <div class="fog2"></div>
+  <div class="embers"></div>
+  <div class="embers delay"></div>
+  <div class="rift"></div>
+  <main class="content">
+    <h1>VAERN</h1>
+    <p class="tagline">Two factions. One island.</p>
+    <p class="pillars">
+      <span>Might</span><span class="sep">·</span>
+      <span>Finesse</span><span class="sep">·</span>
+      <span>Arcana</span>
+    </p>
+  </main>
+  <p class="footer">Pre-alpha · 2026</p>
+</body>
+</html>

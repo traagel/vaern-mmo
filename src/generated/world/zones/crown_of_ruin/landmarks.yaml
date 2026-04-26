@@ -1,0 +1,47 @@
+id: landmarks__crown_of_ruin
+zone: crown_of_ruin
+landmarks:
+- id: siege_camp_concord
+  name: Concord Siege-Lines
+  offset_from_zone_origin:
+    x: 220.0
+    z: -140.0
+  description: The Concord besieging army's main camp on the Crown's western slope. Tents
+    in disciplined rows, heavy mangonels, the smell of trench-fires that have not been cold
+    in three years.
+  prompt: establishing shot, disciplined Concord siege camp on a rocky slope, rows of tents
+    and heavy siege engines, smoke from trench fires, oppressive grey-amber light, painterly
+    atmospheric, late-medieval, no figures
+- id: siege_camp_pact
+  name: Pact Siege-Lines
+  offset_from_zone_origin:
+    x: -220.0
+    z: 140.0
+  description: The Pact besieging army's main camp on the Crown's eastern slope. Yurts and
+    longhouses in rough circles, a row of oath-pillars hammered into the ground, smoke columns
+    directly opposing the Concord's.
+  prompt: establishing shot, Pact siege camp on a rocky slope, yurts and longhouses in circles,
+    oath-pillars driven into the ground, smoke columns, oppressive grey-amber light, painterly
+    atmospheric, late-medieval, no figures
+- id: breach_corner
+  name: The Breach Corner
+  offset_from_zone_origin:
+    x: 90.0
+    z: 220.0
+  description: The point in the Crown's curtain wall where both armies have repeatedly broken
+    through, briefly held the breach, and been pushed back. The masonry has been re-laid four
+    times.
+  prompt: establishing shot, fortress curtain wall corner with repeatedly-rebuilt masonry
+    breach, broken weapons in the rubble, oppressive grey-amber sky, painterly atmospheric,
+    late-medieval, no figures
+- id: neutral_well
+  name: The Neutral Well
+  offset_from_zone_origin:
+    x: -90.0
+    z: -240.0
+  description: A well below both siege-camps that both armies use under tacit agreement. The
+    well is patrolled by a single non-affiliated watchman who answers to neither and gets
+    paid by both.
+  prompt: establishing shot, single stone well-head on a rocky slope between two distant siege-camps,
+    lone watchman's lean-to, oppressive grey-amber light, painterly atmospheric, late-medieval,
+    no figures

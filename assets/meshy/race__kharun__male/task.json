@@ -1,0 +1,16 @@
+{
+  "id": "019dc77c-7a52-7fda-9d5c-00dee33d123b",
+  "type": "text-to-image",
+  "ai_model": "nano-banana-pro",
+  "prompt": "Portrait of a male Kharun, single figure, isolated subject, three-quarter view from waist up. tall pact-marked human, glowing ember-red eyes, small temple horn-nubs, dark high-collar pact-robes, pact medallion at throat. face fully visible and uncovered, glowing ember-red or amber eyes, fine shadow-veins traced along the neck and temples, small hard horn-nubs at the temples, soot-dark fingertips, pact-sigil at throat, no hood covering face. tall lean human build, 5'10\"\u20136'4\", predator grace, angular features, long fingers, poised duellist carriage. pale ashen or warm-grey human skin streaked with fine shadow-veins along the neck and temples, black or dark-red hair, ember-glow eyes in red or amber, small hard horn-nubs at the temples (optional, clan-dependent), soot-dark fingertips from pact-residue. hair: long straight hair bound at the nape, or raven-black half-shaven with trailing braid, ember-dyed streaks. attire: fitted dark high-collar pact-robes, open-faced no hood, layered black leather, silver-black pact-sigil embroidery on collar and cuffs, ember-dyed trim, heavy pact-iron medallion at the throat. posture: upright slim human with subtle shadow-veined glow, poised duellist bearing, hand often resting on pact-sigil at chest. painterly atmospheric character portrait, late-medieval fantasy aesthetic, soft directional lighting, neutral dim background, oil-painting feel, no other characters, no text, no watermark.",
+  "status": "SUCCEEDED",
+  "progress": 100,
+  "created_at": 1777168317019,
+  "started_at": 1777168317541,
+  "finished_at": 1777168358543,
+  "expires_at": 1777427558543,
+  "image_urls": [
+    "https://assets.meshy.ai/2872987b-afbf-4fa0-95f0-231417dc567c/uploads/image_019dc77c-7a52-7fda-9d5c-00dee33d123b_0.png?Expires=1777427558&Signature=RvbV3ryJHQ4ZvzHmpMzFKoRf7bReKk2~G-gef5Brmcx1ZU36XR9MRYSpwZVq0xc7Z0Blplusno7dxTqGMY6DwdVDZ~OMSbhnhAZpuithGZjCyXTIe-lCPNK7xiwKGj79q~2H~rRSIbAKjuxliFz68~n~x2M5Vx7pnNwvPrQQrT~RA8HNLDMKekvw86yLhKwz2XdmFTSB4lpOE6TFgwG7U5vrk7i9doRFyWtqtlZsWnBRKBEjuFGfsw5NBA4v5Nx7O5M8lzJ0TNXo~qby65w5y56WB1NZMEISvyvcWlB57S0H6BxEqEEQId~EUWzokqk5ifwmXHgGco8XEY4XsObp8g__&Key-Pair-Id=K1VGYTHIYLM9UM"
+  ],
+  "consumed_credits": 9
+}

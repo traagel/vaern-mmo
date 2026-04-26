@@ -1,0 +1,16 @@
+{
+  "id": "019dc77d-2f31-7d6e-98f7-3803ca4fab50",
+  "type": "text-to-image",
+  "ai_model": "nano-banana-pro",
+  "prompt": "Portrait of a female Skarn, single figure, isolated subject, three-quarter view from waist up. muscular raider, ashen grey-brown skin, short lower tusks, iron-bead braids, blackened mail over dark hide. half-orc-lineage raider, ashen grey-brown or slate-olive skin not green, prominent lower tusks jutting from jaw clearly visible, heavy human warrior build, braided hair with iron clan-beads, oath-scars on face. powerful mixed-heritage human build, 6'0\"\u20136'8\", broad shouldered, heavy-muscled, thick-necked but upright human posture not hunched, hands and forearms oversized. ashen grey-brown or slate-olive skin, coarse black or iron-grey hair, heavy brow, short lower tusks or prominent canines (not protruding fangs), amber or steel-grey eyes, broad nose, weather-scarred. hair: long braids with iron clan-beads, shaved sides, topknots, oath-scars marking the scalp. attire: layered dark hide and riveted blackened mail, bracers of scarred leather, trophy-belt of oath-iron, fur-lined cloak, ash-smeared face-paint on ritual days. posture: upright heavy raider, one shoulder lower from the sword-carry, weight-forward but not bestial. painterly atmospheric character portrait, late-medieval fantasy aesthetic, soft directional lighting, neutral dim background, oil-painting feel, no other characters, no text, no watermark.",
+  "status": "SUCCEEDED",
+  "progress": 100,
+  "created_at": 1777168363328,
+  "started_at": 1777168363464,
+  "finished_at": 1777168386267,
+  "expires_at": 1777427586267,
+  "image_urls": [
+    "https://assets.meshy.ai/2872987b-afbf-4fa0-95f0-231417dc567c/uploads/image_019dc77d-2f31-7d6e-98f7-3803ca4fab50_0.png?Expires=1777427586&Signature=YHEchR1SGJpBZJSR2rHYRB0ZOx3A~qEyWugSMz1VOYPJfKa0JiwfB1dCEK3IXVuHMFn1pr1bp~Ny7MYE4wLRCl~06Fes4Z7jFq-zV0MTQ68vHN0SFrBfqDUTjdR85hxwdcVCbe9isLk1CZwixDjFbjNmz-FDocEVne9WIgRORK-lacYJZJXBjwx9i8I1bfRFUYXKDqHxaqw-o6oDRr43drouskUP1I5oTss-hUoAQ98N2Oprl4dcYbwq6MsZP8gfCmtQP0Fp4JHPmPzIvwv6k71EePO3g3d1X0w4YCmeTR~pzBedVoJQguKfXUZSmUtEubkNAROZSxPR3p8l~a3-AQ__&Key-Pair-Id=K1VGYTHIYLM9UM"
+  ],
+  "consumed_credits": 9
+}

@@ -1,0 +1,16 @@
+{
+  "id": "019dc76b-a723-7b06-83e3-402e9405c473",
+  "type": "text-to-image",
+  "ai_model": "nano-banana-pro",
+  "prompt": "establishing shot, deep mine gallery waypoint, stone bunkhouse cut into the wall, lantern-lit corridor, scaffold timbers, dim warm-cold light, painterly atmospheric, no figures",
+  "status": "SUCCEEDED",
+  "progress": 100,
+  "created_at": 1777167214386,
+  "started_at": 1777167214408,
+  "finished_at": 1777167247033,
+  "expires_at": 1777426447033,
+  "image_urls": [
+    "https://assets.meshy.ai/2872987b-afbf-4fa0-95f0-231417dc567c/uploads/image_019dc76b-a723-7b06-83e3-402e9405c473_0.png?Expires=1777426447&Signature=LFW6cE4vqyT~QXJ9HK8FVrjvJurbrGwZ8ty2~2Um9OfDxi9gEpqCt-ZmmHUZH-FiYvcQWkJlD-pufddU9xEtOIXJlU6hsos9tltUIVgIWWOsWN5kVejB2HeAkepQks5A3N-Q0TPgX9dUVbsneR0czML42QRPpG6zaP9CxGeGeT658KPKpFHJrIdi-LiMGzRSFQDV7DZilwjB2Pe2ZwG22I41Jg9jOrGE6U93XDQJdiYOlnT7lx834nP5zfqDQjD14LD8BzwsXppZwVEEdYxEvrIz1c8L53rFQQ5ad2n1lp~y1dtkpeA1eYCgX36UKj8e~E6UsfkpapTmTINDY-7BYg__&Key-Pair-Id=K1VGYTHIYLM9UM"
+  ],
+  "consumed_credits": 9
+}

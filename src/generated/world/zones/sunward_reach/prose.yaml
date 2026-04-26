@@ -1,0 +1,57 @@
+zone:
+  vibe: Sunward Elen highlands — bright, formal, edged with old stonework.
+  description: 'The Sunward Elen starter on the south shoulder of the central highlands. Pale-stone
+    temple-towers, terraced sun-orchards, a sky kept ritually clear by a school of dawn-priests
+    who think the rain is a personal slight. The Reach is calm and the Reach is busy: half
+    its veterans have gone east to support the Concord lines, leaving the dawn-rites to younger
+    hands.'
+  prompt: wide establishing landscape, sunlit highland terrace, pale stone temple-tower above
+    tiered orchards, golden hour, distant blue ridges, painterly atmospheric, late-medieval,
+    high-elf aesthetic, no figures
+hubs:
+  sunward_spire:
+    description: The Sunward Elen capital — a pale-stone temple-spire rising from a tiered
+      orchard terrace, so consistently sunlit that the dawn-priests treat overcast days as
+      a kind of polite national emergency. Speaker Ilren keeps the inner rolls; the outer
+      rolls are kept by anyone willing to learn the formal salutations. Half the trained sun-rite
+      veterans are on the Concord lines.
+    prompt: establishing shot, pale stone Sunward Elen temple-spire above tiered sunlit orchards,
+      golden hour, distant blue ridges, painterly atmospheric, late-medieval high-elf, no
+      figures
+  dawnleaf_glade:
+    description: A glade-outpost on the Reach's eastern slope, where the orchard terraces
+      give way to the wood. Lantern-paths, a single inn run by a retired dawn-rite priest,
+      and a trading post that quietly does business with the Firland next door in spite of
+      three centuries of formal coolness.
+    prompt: establishing shot, sunlit forest glade with stone path and small temple inn, hanging
+      lanterns, dappled morning gold light, painterly atmospheric, late-medieval high-elf,
+      no figures
+landmarks:
+  dawn_terrace:
+    description: An orchard-terrace built specifically to catch the first light of midsummer
+      dawn. The dawn-priests perform a sun-rite here at the solstice; the apples are unusually
+      sweet.
+    prompt: establishing shot, sunlit hilltop terrace orchard at dawn, neat rows of apple
+      trees, distant temple-spire, golden light, painterly atmospheric, late-medieval high-elf,
+      no figures
+  falling_stone_grove:
+    description: A grove where a single weathered standing stone has been falling, very slowly,
+      for two centuries. The dawn-priests measure its angle annually. It is now twelve degrees
+      off vertical and accelerating.
+    prompt: establishing shot, sunlit forest grove with a leaning ancient standing stone,
+      scribed marks on its base, dappled morning light, painterly atmospheric, late-medieval
+      high-elf, no figures
+  orchard_ruin:
+    description: A pre-Veyr orchard whose trees have outlived the founder's ruin around them.
+      The fruit is small, wild, and reportedly still sweet. Pickers are warned to leave the
+      third row alone.
+    prompt: establishing shot, ruined sunlit orchard among broken stone walls, gnarled apple
+      trees in disorderly rows, golden warm light, painterly atmospheric, late-medieval high-elf,
+      no figures
+  sun_dial_field:
+    description: A flat hill-meadow on which a sun-dial of standing stones marks the working
+      hours of a school of dawn-priests now five centuries dead. The dial still keeps time.
+      The stones have not moved.
+    prompt: establishing shot, hill-meadow with a great stone sun-dial of standing stones
+      casting a long shadow, sunlit highland, painterly atmospheric, late-medieval high-elf,
+      no figures

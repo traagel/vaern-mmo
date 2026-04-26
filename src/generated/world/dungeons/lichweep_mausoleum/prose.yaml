@@ -1,0 +1,64 @@
+dungeon:
+  description: |
+    A Gravewrought necropolis in the Gravewatch Fields where, three
+    years ago this autumn, the ancestor-rite went wrong mid-ceremony
+    and has been looping the same eight minutes ever since. Speaker-
+    Auntie Mevra at Watch-Crypt witnessed the original break and will
+    not speak the names of the four Speakers who were inside when it
+    went. The mausoleum bells ring on the loop's count; you can set
+    your watch by them, and people in the village do.
+  prompt: >-
+    establishing shot, dungeon interior, vast Gravewrought necropolis,
+    rows of grave-iron coffins, hanging ritual bells, slow grey mist,
+    looping candlelight, painterly atmospheric, oppressive mood, no
+    figures
+bosses:
+  bone_catechist:
+    description: |
+      One of the four Speakers caught in the original break, now
+      reciting the failed liturgy on perpetual repeat. The fight is the
+      liturgy: at each stanza-end he opens a coffin in the wall and
+      another shell-add steps out. Mevra has the original rite-book at
+      the Watch-Crypt and can read along; she does not, because the
+      catechist used to teach her his cadence.
+    prompt: >-
+      portrait, single subject, ancestor-shell catechist, ash-grey
+      Gravewrought robes, open rite-book in one hand, grave-iron
+      pectoral, mouth fixed in recitation, painterly atmospheric,
+      oppressive mood, isolated subject, no other figures
+    negative_prompt: >-
+      multiple figures, party, group, modern, futuristic, sci-fi, anime,
+      cyberpunk, watermark, text
+  weeping_shade:
+    description: |
+      The second Speaker — the youngest in the original four, called
+      Nesh in life — fixed in the moment she realized the rite had
+      slipped. She does not move; she weeps, and her tears pool on the
+      floor as a creeping aoe that doesn't dissipate. The fight is a
+      positioning puzzle around an ever-shrinking safe-floor. Mevra
+      writes her a letter every year on the anniversary; nobody knows
+      where she sends it.
+    prompt: >-
+      portrait, single subject, kneeling Gravewrought shade, weeping
+      pale tears that pool at her knees, mourning veil, grave-iron
+      bracelets, fixed sorrowful expression, painterly atmospheric,
+      oppressive mood, isolated subject, no other figures
+    negative_prompt: >-
+      multiple figures, party, group, modern, futuristic, sci-fi, anime,
+      cyberpunk, watermark, text
+  mausoleum_keeper:
+    description: |
+      The senior Speaker who was leading the rite when it broke. The
+      loop has taught him to body-swap with any shell-add in the
+      chamber on a slow tick, and he uses it ruthlessly — players must
+      track which vessel actually holds him, marked by a faint
+      grave-iron sigil that fades and reignites with each swap. Mevra
+      will not say his name, but the rite-book has it.
+    prompt: >-
+      portrait, single subject, senior Gravewrought Speaker shade,
+      heavy ritual robes, grave-iron sigil glowing faintly on his
+      chest, hollow stare, raised conducting hand, painterly
+      atmospheric, oppressive mood, isolated subject, no other figures
+    negative_prompt: >-
+      multiple figures, party, group, modern, futuristic, sci-fi, anime,
+      cyberpunk, watermark, text

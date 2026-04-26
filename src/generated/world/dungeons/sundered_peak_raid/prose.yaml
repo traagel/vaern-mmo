@@ -1,0 +1,81 @@
+dungeon:
+  description: |
+    A pre-Coming observatory cut into the highest peak of the Spine,
+    sealed by Hearthkin masons four centuries ago because they did not
+    like what was inside. The Concord broke the seal nine years back
+    looking for old maps. They found old maps. They also woke what the
+    Hearthkin had carefully been trying not to. The Peak-Thing
+    remembers the ones who sealed it, and it remembers the ones who
+    let it out. Ten-man raid. Long climb. Long fall.
+  prompt: >-
+    establishing shot, dungeon interior, broken stone observatory at
+    altitude, shattered orrery, sky open through a torn dome, snow
+    drifting through the chamber, painterly atmospheric, oppressive
+    mood, no figures
+bosses:
+  sentinel_pair:
+    description: |
+      Two sentinels carved from the same block of dark stone, set on
+      either side of the observatory's main stair. They share a single
+      pool of life — what one suffers the other answers, and the raid
+      splits to keep their damage even because letting one fall too
+      far ahead makes its twin grieve, and a grieving sentinel hits
+      the room like weather. They were old when the seal was new.
+    prompt: >-
+      portrait, two carved stone sentinels flanking a broken stair,
+      identical featureless masks, hands resting on long blades, faint
+      runes glowing on their plating, painterly atmospheric, oppressive
+      mood
+    negative_prompt: >-
+      multiple figures, party, group, modern, futuristic, sci-fi,
+      anime, cyberpunk, watermark, text
+  brood_mother_ice:
+    description: |
+      The Ice Brood-Mother — a wyrm-thing that nested in the
+      observatory's broken dome after the seal cracked, and has been
+      laying since. Her young hatch hot, cool to ice on contact with
+      the air, and come at the raid in numbers that do not stop. The
+      raid does not kill the brood. The raid kills the mother and the
+      brood freezes mid-step, where it stands, holding her last
+      breath.
+    prompt: >-
+      portrait, single subject, immense ice-scaled brood mother coiled
+      around a clutch of frosted eggs, breath crystallizing the air,
+      pale wings folded, painterly atmospheric, oppressive mood,
+      isolated subject, no other figures
+    negative_prompt: >-
+      multiple figures, party, group, modern, futuristic, sci-fi,
+      anime, cyberpunk, watermark, text
+  storm_herald:
+    description: |
+      The Peak-Thing's voice — a herald of arcs and chains, who walks
+      the upper terrace and pulls lightning down between members of
+      the raid. The arc is the mechanic and the spacing is the
+      answer; cluster and you all die together, scatter and only the
+      slowest do. The Hearthkin records call it 'the throat' because
+      whatever it says, the Peak-Thing is saying through it.
+    prompt: >-
+      portrait, single subject, gaunt storm-herald wreathed in white
+      lightning, robe trailing static, mouth open silent, eyes
+      hollowed by light, painterly atmospheric, oppressive mood,
+      isolated subject, no other figures
+    negative_prompt: >-
+      multiple figures, party, group, modern, futuristic, sci-fi,
+      anime, cyberpunk, watermark, text
+  peak_thing:
+    description: |
+      The Peak-Thing. Three phases — sky, wind, void — in that order,
+      because that is the order the Hearthkin sealed against, and the
+      seal is what the fight reverses. Sky drops the dome on you.
+      Wind clears the chamber of anyone not braced. Void is the bit
+      the Hearthkin would not write down. The encounter is forty
+      minutes and the last six are silent. Even the herald goes
+      quiet.
+    prompt: >-
+      portrait, single subject, vast stormcloud entity wearing the
+      observatory like a crown, lightning-bones visible inside its
+      mass, blackness at its center, painterly atmospheric, oppressive
+      mood, isolated subject, no other figures
+    negative_prompt: >-
+      multiple figures, party, group, modern, futuristic, sci-fi,
+      anime, cyberpunk, watermark, text

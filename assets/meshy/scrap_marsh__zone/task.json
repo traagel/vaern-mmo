@@ -1,0 +1,16 @@
+{
+  "id": "019dc772-aece-7417-8757-3df5db60f936",
+  "type": "text-to-image",
+  "ai_model": "nano-banana-pro",
+  "prompt": "wide establishing landscape, rusted scrap-mire, half-sunken plank walkways between mounds of broken metal, sickly green alchemical mist, low pale light, painterly atmospheric, no figures",
+  "status": "SUCCEEDED",
+  "progress": 100,
+  "created_at": 1777167675096,
+  "started_at": 1777167675668,
+  "finished_at": 1777167721936,
+  "expires_at": 1777426921936,
+  "image_urls": [
+    "https://assets.meshy.ai/2872987b-afbf-4fa0-95f0-231417dc567c/uploads/image_019dc772-aece-7417-8757-3df5db60f936_0.png?Expires=1777426921&Signature=eN8spx1ypp0WyBn8Ig3ABi1N~l9c0pJBQ0o55qnCB37EPEARLs4X0a6v2GhCGpghJBGU10mOZ5GbdOTBIsvr-y6qHZzYO9ZOWmSBZCLWrB0uU9wzIW4EsJ1LH91OqiiSHwjYOmEhVZJ631x13OKK2KPujhbVwWDdzLYrMhhQ1~rQdUQtmpWesYA36icqwmBvJwx2cdg~t571MtKSk76LMiUplTxqNkD8YyXJTlvinx6g8rqHlvuyFYzUceOMsIrtXrLctwXQ2tab2yf0FaPdkorclHg17YdHrt~y6bxCizIYfGX~4QlZo6irbZnX5fMrHUdbPOAYJEvYD8ZICL99oQ__&Key-Pair-Id=K1VGYTHIYLM9UM"
+  ],
+  "consumed_credits": 9
+}

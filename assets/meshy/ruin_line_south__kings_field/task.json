@@ -1,0 +1,16 @@
+{
+  "id": "019dc76e-ce2d-7d9c-8210-5a02f683cf6e",
+  "type": "text-to-image",
+  "ai_model": "nano-banana-pro",
+  "prompt": "establishing shot, windswept flat field on a ruin-line ridge, half-buried banners and broken weapons in the grass, oppressive grey-amber sky, painterly atmospheric, late-medieval, no figures",
+  "status": "SUCCEEDED",
+  "progress": 100,
+  "created_at": 1777167420984,
+  "started_at": 1777167421095,
+  "finished_at": 1777167456429,
+  "expires_at": 1777426656429,
+  "image_urls": [
+    "https://assets.meshy.ai/2872987b-afbf-4fa0-95f0-231417dc567c/uploads/image_019dc76e-ce2d-7d9c-8210-5a02f683cf6e_0.png?Expires=1777426656&Signature=P27p9BkMorQzAJOyGOQAYptF6cLB6N~XZr1jbe78bqDcoUJgpQMezXXcu4qjZp-RNdd2VVH3Zl6veYOUSqTYid2wU~kTDPq3blDyGWSuwTJ7khsfWT5mw5orpapAys3x3C6DuRb7mZSln5soixwbgRvgu9viCRxH2Mi3-p~tH3q5tXH5laRG-3i7Fr-CpU2vteMrJXt-RK7MOkDNVrtjfpsGBZLkBpJ8FZyBY~q8aMxUr9FYK7~u7NYLFURJtlEQOtAYrGLQ1ZqCz7YiXgUzuiDZeWg8pEn-ha7pTCA4phBbaQBJzU43B7MHd8H9EI8wTvS6AUzRb0HYWPV703-uRQ__&Key-Pair-Id=K1VGYTHIYLM9UM"
+  ],
+  "consumed_credits": 9
+}

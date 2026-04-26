@@ -1,0 +1,16 @@
+{
+  "id": "019dc76b-032a-7697-a9c2-bbfda9ba3621",
+  "type": "text-to-image",
+  "ai_model": "nano-banana-pro",
+  "prompt": "establishing shot, ancient Sunward Elen lodge built into three silver birch trunks, glowing horn-glass windows, twilight forest, painterly atmospheric, late-medieval high-elf, no figures",
+  "status": "SUCCEEDED",
+  "progress": 100,
+  "created_at": 1777167172403,
+  "started_at": 1777167173152,
+  "finished_at": 1777167220472,
+  "expires_at": 1777426420472,
+  "image_urls": [
+    "https://assets.meshy.ai/2872987b-afbf-4fa0-95f0-231417dc567c/uploads/image_019dc76b-032a-7697-a9c2-bbfda9ba3621_0.png?Expires=1777426420&Signature=dwNNGbY7HNxDXyhJdojJodBZjynduJo5hM24nAjspV9hOePeH98wfZJfi3l-V-Mc3trRWg5jqw0Ct8xKgAx4aBchFuw5dNTbSsHJT9XRwO73zjhfabsWxGhEEZksNKXC82x2zwj4GRoRxGDwdUFDB7kUFpYwbGbbY7j9J-92gNvLTxGFnELGQjJ2uUZOVJxlYaj264ei6A-5hJuuAq8wfx7dalPcw2RngCe7yGjIsmaEKDpFk8ADAtHX4R2vglQQ7EPoLPEz46B1xM2GM~nPKhwep3FKRHd9WyBzPfn4J3FOGJYxsLGHyTx6ty0cG352-i8bSMsR2CSmMrSN9YzA0Q__&Key-Pair-Id=K1VGYTHIYLM9UM"
+  ],
+  "consumed_credits": 9
+}

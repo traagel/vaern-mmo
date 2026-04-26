@@ -1,0 +1,58 @@
+dungeon:
+  description: |
+    A cliffside Concord beacon-tower whose lamp went dark on the third
+    night of the Coming and never relit. A Rend raider crew under
+    Shipmaster Vrekk uses it as a landfall now — the lamp-room is their
+    map-table and the keepers' quarters are their bunks. Something in
+    the lamp itself has not been a lamp for a long time. Three chambers
+    up the spiral: gunroom, keeper's loft, lamp-room.
+  prompt: >-
+    establishing shot, dungeon interior, ruined cliffside lighthouse,
+    cracked lamp-housing, sea wind through broken windows, raider charts
+    on table, painterly atmospheric, oppressive mood, no figures
+bosses:
+  raider_shipmaster:
+    description: |
+      Vrekk Six-Boats, who lost five of those boats and named himself
+      after the one he kept. Cleaves in a wide front arc and at every
+      twenty percent calls a raid-wave from the gunroom door — four
+      adds, ten seconds to break them before the next cleave lands. He
+      fights from the centre of the room and considers cover beneath
+      his attention.
+    prompt: >-
+      portrait, single subject, Skarn raider shipmaster, salt-stained
+      furs, twin axes, scarred bare chest, sea wind in his hair,
+      painterly atmospheric, oppressive mood, isolated subject, no other
+      figures
+    negative_prompt: >-
+      multiple figures, party, group, modern, futuristic, sci-fi, anime, cyberpunk, watermark, text
+  lantern_keeper:
+    description: |
+      The Concord keeper who was on shift when the lamp went dark.
+      Aelric of Marrowford, sixty-one years dead and still on duty.
+      Phases between light and dark every fifteen seconds — light
+      phase he heals from holy, dark phase he heals from shadow. The
+      room itself shifts brightness with him and standing in the wrong
+      half during a transition kills.
+    prompt: >-
+      portrait, single subject, ghostly Concord lighthouse keeper,
+      faded keeper's coat, brass-rimmed lantern, eyes alternating bright
+      and shadowed, painterly atmospheric, oppressive mood, isolated
+      subject, no other figures
+    negative_prompt: >-
+      multiple figures, party, group, modern, futuristic, sci-fi, anime, cyberpunk, watermark, text
+  storm_thing:
+    description: |
+      The Storm-Thing Bound. Whatever Aelric saw climb up the cliff
+      face the night the lamp went dark — the keeper's last journal
+      entry calls it "the wind that wanted in." Lightning-arcs chain
+      between any two players within six paces. Every forty seconds
+      the wind reverses and knocks the party towards the broken window
+      that drops three hundred feet to the rocks.
+    prompt: >-
+      portrait, single subject, vast bound storm-elemental, lightning
+      coiled within roiling cloud-form, faint humanoid shape inside,
+      painterly atmospheric, oppressive mood, isolated subject, no other
+      figures
+    negative_prompt: >-
+      multiple figures, party, group, modern, futuristic, sci-fi, anime, cyberpunk, watermark, text

@@ -1,0 +1,16 @@
+{
+  "id": "019dc76b-affb-76ae-81dd-091a97a8c09d",
+  "type": "text-to-image",
+  "ai_model": "nano-banana-pro",
+  "prompt": "establishing shot, vast unlit deep mining gallery, abandoned scaffolds and ore wagons, faint distant phosphorescence, oppressive dark mood, painterly atmospheric, no figures",
+  "status": "SUCCEEDED",
+  "progress": 100,
+  "created_at": 1777167216645,
+  "started_at": 1777167216929,
+  "finished_at": 1777167276864,
+  "expires_at": 1777426476864,
+  "image_urls": [
+    "https://assets.meshy.ai/2872987b-afbf-4fa0-95f0-231417dc567c/uploads/image_019dc76b-affb-76ae-81dd-091a97a8c09d_0.png?Expires=1777426476&Signature=XJ8RTKPLdWtBPQ81PEQJ1NHqVmtjn3l9KLwuda6dHINsaY7e0BHM8Yq~FDExz7r~nc-wTxUZrNDwqJvC9IPUjzkJqz9ZlTCSN2SJOBteK3WJ3hQ-0lKVwlNC1o1szRtWeK09EtCHh6c1J43L02dsLYzCyAdnKLibD6BbUPi-4vhcqIGfrFr8WnEdFkIuuTsD5UOLd790xwc~mj5MKEJlvu4awITXS4VztmGtOkAfmubBhM2tA-iBUKOBNi-GfEKs3GmWY9ayyBpqirdDczdwQVT0MTmw-2w2fDqrqFQ2MEy6gBkG3j-aG9M5tckeuMOOHZqOWZVduzkxqPyOgfdXyA__&Key-Pair-Id=K1VGYTHIYLM9UM"
+  ],
+  "consumed_credits": 9
+}

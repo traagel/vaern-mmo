@@ -1,0 +1,16 @@
+{
+  "id": "019dc76f-1820-7dbb-af89-7b1912520d43",
+  "type": "text-to-image",
+  "ai_model": "nano-banana-pro",
+  "prompt": "establishing shot, marshy field full of rusted broken Hearthkin wagons stacked in disorderly piles, sickly green-amber light, painterly atmospheric, no figures",
+  "status": "SUCCEEDED",
+  "progress": 100,
+  "created_at": 1777167439916,
+  "started_at": 1777167439938,
+  "finished_at": 1777167480486,
+  "expires_at": 1777426680486,
+  "image_urls": [
+    "https://assets.meshy.ai/2872987b-afbf-4fa0-95f0-231417dc567c/uploads/image_019dc76f-1820-7dbb-af89-7b1912520d43_0.png?Expires=1777426680&Signature=CbAxxqaulTT8zm0Tj4rZSKRcUYdwIrBwpPVo9cUKcHGCNrL3-cIRREn3f4RYIXIZ~lecbr08CbDAmPvUOCYsr7ape3IjTI8KQmLWYDaPrwXZUx-u2tLAcQKwTJYnCCT8~vvNABMpmHYdzXrE64w4nnGCcJg6aWVTFjpoJ77te30pMBUBvSNsIJaEKVf3vEGLPeyhDDjVcfTKLj3FT9YofRL~MBhMrlYLOFmy7gWuLyVGU9cyTNeyYEJ3UwE4oa62h1PUuHfiHUy8w~ZmLcdUdnoGQd7WEUTBkBRPVroxo4y9-m9trQSJtzVCmVebSBpdRqFk4kvUsP2f81RI9iG~Rw__&Key-Pair-Id=K1VGYTHIYLM9UM"
+  ],
+  "consumed_credits": 9
+}

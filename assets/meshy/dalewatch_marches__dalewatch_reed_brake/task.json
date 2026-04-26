@@ -1,0 +1,16 @@
+{
+  "id": "019dc72f-aca9-771b-b222-afb6e2795a94",
+  "type": "text-to-image",
+  "ai_model": "nano-banana-pro",
+  "prompt": "establishing shot, shallow reed marsh on a slow river bend, mist rising from black water, abandoned thatch fisher hut on stilts, dawn cool light, painterly atmospheric, no figures",
+  "status": "SUCCEEDED",
+  "progress": 100,
+  "created_at": 1777163283642,
+  "started_at": 1777163284015,
+  "finished_at": 1777163301386,
+  "expires_at": 1777422501386,
+  "image_urls": [
+    "https://assets.meshy.ai/2872987b-afbf-4fa0-95f0-231417dc567c/uploads/image_019dc72f-aca9-771b-b222-afb6e2795a94_0.png?Expires=1777422501&Signature=gK8SN6ymRF5mSsiZqGZPzHjhNg9JYU-kpwtv0KR8VCWkSO9D1QkxfHcThK6XQzC8BWpbjAQJZ-QPQkrWZ8TYwxyB1rLPg4lUbxh6RMj~l3awiF7DTdvFrfPOGXo9QJ~wSJiAZZJOB5f6vWZp9dXLmGn6B-vXuxFSWFAi6VWR7W3jUt1wmS9ydJFzs3V3BxzF2e33AoR8UPep6ayus7wvRsOY1t59pDJAyQB5YuYdzcj49qzSK0IFwT7Dq2EcylMCU-tLSo~Hs0M8mfkiF2gZEdrUEHYw47U7qLNGl0Kd0V7-EXkfag3nxoUCsEV5Hdsh4p9QBO5Tc~u7nr33vIhPyQ__&Key-Pair-Id=K1VGYTHIYLM9UM"
+  ],
+  "consumed_credits": 9
+}

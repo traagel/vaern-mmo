@@ -1,0 +1,53 @@
+zone:
+  vibe: Wyrling smallholds — burrow-villages, market-day cheer, hidden bite.
+  description: The Wyrling starter in the western dales — burrow-villages tucked under hawthorn
+    hedgerows, market-day cheer over a thousand turnips, and the unspoken understanding that
+    everything in the Downs is smaller and sharper than it looks. The Mannin call them the
+    loyal opposition. The Wyrlings call themselves the practical opposition. Wolves from the
+    bracken keep both definitions honest.
+  prompt: wide establishing landscape, rolling green downs with hedgerow lanes, half-buried
+    thatched burrow-cottages, hawthorn in bloom, late summer warm light, painterly atmospheric,
+    late-medieval pastoral, no figures
+hubs:
+  market_town:
+    description: The Wyrling capital — a half-buried town of round-doored burrow-cottages
+      and a market-square that runs every day regardless of what the season says. Mayor Tibb
+      keeps the rolls in a pantry and the Council in line by feeding them. The rolls are accurate.
+      The pantry is locked.
+    prompt: establishing shot, Wyrling market-town of half-buried round-doored cottages, busy
+      stone market square, hawthorn hedgerows, late afternoon warm light, painterly atmospheric,
+      late-medieval pastoral, no figures
+  brackenhollow:
+    description: A bracken-hollow outpost at the wood-margin where Mannin courier roads meet
+      Wyrling burrow-paths. Sturdy communal-hall above-ground, half-dozen burrow-cottages
+      below, a deputy who used to be a Warden cadet and a tracker who used to be a poacher.
+      Both pretend their former careers are forgotten.
+    prompt: establishing shot, woodland-edge Wyrling outpost, communal timber hall above half-buried
+      cottages, bracken and oak, overcast cool afternoon light, painterly atmospheric, late-medieval,
+      no figures
+landmarks:
+  hawthorn_circle:
+    description: A ring of ancient hawthorns the Wyrlings will not trim. The ring is older
+      than the burrows. The Wyrlings know which branches to leave alone and don't tell strangers
+      why.
+    prompt: establishing shot, circle of ancient gnarled hawthorn trees in a meadow, late-summer
+      afternoon golden light, painterly atmospheric, late-medieval pastoral, no figures
+  turnip_giant_field:
+    description: A field where, by local agreement, exactly one giant turnip is grown each
+      year and ceremonially consumed at harvest. Nobody admits to caring about this. Everybody
+      attends.
+    prompt: establishing shot, harvested green field with one comically large turnip standing,
+      nearby half-buried Wyrling cottages, late afternoon warm light, painterly atmospheric,
+      late-medieval pastoral, no figures
+  wolf_ridge:
+    description: A bracken-covered ridge where the local wolf packs den. The Wyrlings tolerate
+      the wolves because the wolves discourage worse things from the deeper wood. An understanding,
+      not a treaty.
+    prompt: establishing shot, bracken-covered ridge above a wide green valley, dense undergrowth,
+      evening pewter light, painterly atmospheric, late-medieval, no figures
+  rabbit_warren_road:
+    description: A green lane between two rows of hedgerow that local rabbits use as much
+      as travellers do. The Wyrling road-wardens consider both populations citizens for tax
+      purposes.
+    prompt: establishing shot, green sunlit hedgerow lane through rolling downs, late afternoon,
+      painterly atmospheric, late-medieval pastoral, no figures

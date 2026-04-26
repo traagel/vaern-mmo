@@ -1,0 +1,58 @@
+zone:
+  vibe: Sunward Elen heart-wood — silver birches, moth-hollows, old courtesy.
+  description: The Sunward Elen heart-wood — silver birch under a lattice of moth-flight,
+    ancestral lodges built into living trunks, the kind of place where outsiders are watched
+    politely for an unreasonable length of time before anyone offers them tea. The Elder Grove
+    ruin at the wood's edge has started speaking again, which the lodge-elders refuse to discuss.
+  prompt: wide establishing landscape, silver birch forest at twilight, moths on slow wing
+    through pale shafts of light, mossy lodge in the trees, painterly atmospheric, late-medieval
+    high-elf, no figures
+hubs:
+  silverleaf_lodge:
+    description: The Sunward Elen heart-lodge — a long ancestral building grown half into
+      the trunks of three silver birches, windows shuttered with horn-glass, the moot-fire
+      lit by the same spark since the lodge's founding. Lodge-Mother Iselle is older than
+      anyone is willing to estimate aloud.
+    prompt: establishing shot, ancient Sunward Elen lodge built into three silver birch trunks,
+      glowing horn-glass windows, twilight forest, painterly atmospheric, late-medieval high-elf,
+      no figures
+  moth_hollow:
+    description: A clearing-village in the wood's east — moth-flight every twilight, a small
+      market of silk and dye, a quiet alchemist's house run by a Sunward Elen who refuses
+      on principle to take a Mannin honorific. The hollow's lower passages are off-limits
+      and the reasons are off the record.
+    prompt: establishing shot, twilight forest clearing with thatched lodges, a sky full of
+      slow-flying pale moths, lantern lights in the trees, painterly atmospheric, late-medieval
+      high-elf, no figures
+  elder_grove:
+    description: A pre-Veyr ruin at the wood's northern edge — moss-buried stone, a single
+      standing column, and a way-station built against it by Sunward Elen scholars who say
+      the column is still in use. The Elder Grove ruin proper begins where the moss thickens.
+    prompt: establishing shot, mossy pre-Veyr ruin pillar at the edge of a silver birch forest,
+      small scholar way-station built against it, dappled light, painterly atmospheric, late-medieval,
+      no figures
+landmarks:
+  moth_pillar:
+    description: A standing stone the Sunward Elen carved long enough ago that the carvings
+      have weathered into pure pattern. The moths of the wood spend their twilights circling
+      it.
+    prompt: establishing shot, ancient mossy standing stone in twilight forest, surrounded
+      by slow circling pale moths, painterly atmospheric, late-medieval high-elf fey, no figures
+  silverleaf_falls:
+    description: A waterfall where the silver birch litter catches the spray and silvers further.
+      The Sunward Elen don't drink the spray downstream; the deer do.
+    prompt: establishing shot, woodland waterfall in silver birch forest, silvered leaf-litter
+      in the spray, dappled twilight, painterly atmospheric, late-medieval fey, no figures
+  hollowtree_house:
+    description: A vast birch hollow that a Sunward Elen scholar made into a single-room library
+      two centuries ago. The scholar is gone. The library, by some accounts, is not.
+    prompt: establishing shot, hollow inside an enormous silver birch trunk, shelves of weathered
+      scrolls and a single chair, dim warm lantern light, painterly atmospheric, late-medieval
+      high-elf, no figures
+  first_grove_stone:
+    description: The earliest carved Sunward Elen stone in the wood — older than the lodge,
+      older than the Concord, possibly older than the fact of the wood itself. Visitors are
+      asked not to touch.
+    prompt: establishing shot, weathered ancient carved standing stone in a clearing of silver
+      birch, moss in the carvings, dappled twilight, painterly atmospheric, late-medieval,
+      no figures

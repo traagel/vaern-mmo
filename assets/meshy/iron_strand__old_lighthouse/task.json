@@ -1,0 +1,16 @@
+{
+  "id": "019dc76a-3cba-767f-b113-35564b25f5b5",
+  "type": "text-to-image",
+  "ai_model": "nano-banana-pro",
+  "prompt": "establishing shot, ruined cliff-top lighthouse, leaning tower with broken lamp-room, raider-banners on the parapet, leaden storm light, painterly atmospheric, no figures",
+  "status": "SUCCEEDED",
+  "progress": 100,
+  "created_at": 1777167121605,
+  "started_at": 1777167122216,
+  "finished_at": 1777167142624,
+  "expires_at": 1777426342624,
+  "image_urls": [
+    "https://assets.meshy.ai/2872987b-afbf-4fa0-95f0-231417dc567c/uploads/image_019dc76a-3cba-767f-b113-35564b25f5b5_0.png?Expires=1777426342&Signature=i5DGE94qQfGk-bx9rAszwVZ1goWM7prB1xl5DvlJAuAQedXFsD~AdDbvMFB6IPh0YTQLVL3tIVbnOLb~HUfZaWQknd-kkotinPj4IQPZ2ZjVLzz28d4eiPNi7B4nL19pXe885NA1T-aPHmavg30dhyDSi8rlPHJ3iH~SIHmHk6tO7-ZN-KgeXE2xzl9RndLcftrrozKqln8TSx~XYwYQePxdT7dV7AaknDg6Lf3pzLT9es6B2E0b8xL8Y~cBgJmOG16G~LrUD~-rCGam9HZPtYTRdf-tcwTQ0q6CUF-FAvraiQFugBzpAjUf-qmo3L-8JJMwO~HAf8WbnG2p7ddaAw__&Key-Pair-Id=K1VGYTHIYLM9UM"
+  ],
+  "consumed_credits": 9
+}

@@ -1,0 +1,41 @@
+id: landmarks__ashweald
+zone: ashweald
+landmarks:
+- id: twin_oak_grave
+  name: The Twin-Oak Grave
+  offset_from_zone_origin:
+    x: 200.0
+    z: 100.0
+  description: Two oaks grown from the same root at the spot where the Twin Saints of the
+    Charred Shrine fell. Pilgrims from both factions tie ribbons to the lower branches.
+  prompt: establishing shot, two ancient oaks grown from the same root in a charred forest
+    clearing, ribbons of two faction colours tied to the branches, dim amber dusk, painterly
+    atmospheric, late-medieval, no figures
+- id: ember_pool
+  name: The Ember Pool
+  offset_from_zone_origin:
+    x: -180.0
+    z: 90.0
+  description: A black-water pool that gives off faint heat year-round. The locals call it
+    ember-water; alchemists from both factions have come to investigate and arrived at incompatible
+    explanations.
+  prompt: establishing shot, black still-water pool in a charred forest, faint steam rising
+    from the surface, sickly amber twilight, painterly atmospheric, no figures
+- id: leaning_pyre_stone
+  name: The Leaning Pyre-Stone
+  offset_from_zone_origin:
+    x: 90.0
+    z: -240.0
+  description: A pre-war pyre-stone that has tilted three degrees per year since the Coming.
+    Calculations vary on what year it will fall. The locals are placing bets.
+  prompt: establishing shot, leaning ancient pyre-stone in a charred forest clearing, scorched
+    soil at its base, sickly amber-grey light, painterly atmospheric, late-medieval, no figures
+- id: silver_fern_field
+  name: The Silver Fern Field
+  offset_from_zone_origin:
+    x: -90.0
+    z: -180.0
+  description: A field where the ferns came back after the Coming as silver — a colour-shift
+    the local botanists from both factions cannot agree on the cause of.
+  prompt: establishing shot, field of pale silver ferns in a charred wood, dim amber-grey
+    afternoon light, painterly atmospheric, no figures

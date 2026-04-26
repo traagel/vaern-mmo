@@ -2,6 +2,17 @@ id: miller_crossing
 zone: dalewatch_marches
 name: Miller's Crossing
 role: outpost
+description: |
+  A stone bridge across the Ash, a working grain mill, and ten or so
+  steadings packed close to the water. Bread and grain, suspicion of
+  strangers, short coin. Old Brenn's flock grazes a half-day upriver,
+  and the miller's daughter has been losing sacks to someone the
+  deputies can't catch.
+prompt: >-
+  establishing shot, low stone arch bridge over a slow river, working
+  timber grain mill with waterwheel, packed thatched steadings,
+  late-afternoon golden light, painterly atmospheric, late-medieval
+  Burgundian, no figures
 amenities:
 - innkeeper
 - flight_master

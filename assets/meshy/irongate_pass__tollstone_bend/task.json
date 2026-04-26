@@ -1,0 +1,16 @@
+{
+  "id": "019dc76d-dca8-7b2f-a32d-672629eb373d",
+  "type": "text-to-image",
+  "ai_model": "nano-banana-pro",
+  "prompt": "establishing shot, mountain road switchback with a carved stone tollstone, valley view below, snow on upper slopes, painterly atmospheric, late-medieval, no figures",
+  "status": "SUCCEEDED",
+  "progress": 100,
+  "created_at": 1777167359158,
+  "started_at": 1777167359359,
+  "finished_at": 1777167456058,
+  "expires_at": 1777426656058,
+  "image_urls": [
+    "https://assets.meshy.ai/2872987b-afbf-4fa0-95f0-231417dc567c/uploads/image_019dc76d-dca8-7b2f-a32d-672629eb373d_0.png?Expires=1777426656&Signature=BPRYmHl3DEJHGrOKFZqororS5PIuvCMV~Q3GMTuLzu8PgvjwABN1MPyI~s889Tvj5C5ZL4Yj~BkrehdIdrIxddQbiXQOsQfkE22-ksQduoLhnPwMaQyqItVLSNrXoITcdTdhPMRufbQQraH6ZFSQUdDi-qkrmvm4BNQ04F9EyE0GpxbX3wFfloPkTnApS8yqDpZqnS2QUEh30xK-KKOZR~f-r3we0UUL3XqNlJoPQnwIkzVdGh54TWYrjCkrYzwd0ALVTbNVq~tlIHMdB6mRVTvcyetvebVr53bTQCiAciNWP3gOm6-3~xyq4r4uRxBfgOrfyPgzIyclEi-kXZbwDg__&Key-Pair-Id=K1VGYTHIYLM9UM"
+  ],
+  "consumed_credits": 9
+}

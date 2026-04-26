@@ -1,0 +1,16 @@
+{
+  "id": "019dc76f-2228-7370-aa67-1a76a05a28d0",
+  "type": "text-to-image",
+  "ai_model": "nano-banana-pro",
+  "prompt": "establishing shot, dark green-yellow acid pool in a marsh, warning sticks driven into the mud at the edges, sickly amber dusk, painterly atmospheric, no figures",
+  "status": "SUCCEEDED",
+  "progress": 100,
+  "created_at": 1777167442482,
+  "started_at": 1777167443078,
+  "finished_at": 1777167477233,
+  "expires_at": 1777426677233,
+  "image_urls": [
+    "https://assets.meshy.ai/2872987b-afbf-4fa0-95f0-231417dc567c/uploads/image_019dc76f-2228-7370-aa67-1a76a05a28d0_0.png?Expires=1777426677&Signature=RZf-Baji4gOdUyLjJsitHC6TP6K8SJrcbJ6rj4MAIfLwS0uZ7Sb7hUjhtykfB7I0EuJBas2Gfz45ttSOfVVhv5Ob7qh8z3pkIC9EzadQ4dq4i~nO~Kisi1rOby3Mui6ihfcRo8dpNSWpAjPYSUyhk~O4t7mCif-Z3S29eEzEgx6Om1cROvhLLBpWZZgl2v7kxWmV6gn-rKJpzy1cOS1EH~~VyfH6xDjDOSFSyPy3eFvBML~Gh~wT3tR67KqIq1C36SCK47VkSjqKj1~EPDV3H9HhtnY2z-RmvO8BWKwIsnmrg-BTblp2MYt4u9YuqDv~vI2B3EmZIt4v9z8eIQPQxg__&Key-Pair-Id=K1VGYTHIYLM9UM"
+  ],
+  "consumed_credits": 9
+}

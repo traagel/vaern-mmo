@@ -1,0 +1,16 @@
+{
+  "id": "019dc772-4d8a-740f-9691-95504567b351",
+  "type": "text-to-image",
+  "ai_model": "nano-banana-pro",
+  "prompt": "wide establishing landscape, vast windswept highland steppe, ancient standing oath-stones in a circle, distant fortress on a low hill, overcast cool light, painterly atmospheric, late-medieval steppe culture, no figures",
+  "status": "SUCCEEDED",
+  "progress": 100,
+  "created_at": 1777167650213,
+  "started_at": 1777167650304,
+  "finished_at": 1777167674037,
+  "expires_at": 1777426874037,
+  "image_urls": [
+    "https://assets.meshy.ai/2872987b-afbf-4fa0-95f0-231417dc567c/uploads/image_019dc772-4d8a-740f-9691-95504567b351_0.png?Expires=1777426874&Signature=EyJh7~GLiWHmF37-VptinfaDWnZC5b-z182KcLrcYO-jXpqA1nTKvyvZgvXu2dHZxOah5SfraBEtJQx2KrLQz-gA79xhtZ2lFb2R4Lv9xc4sOpMPezhB5gJ16vC96Re~X5WBC0Rsje67kVRuQ4DJhuE4PXQ2mNOcnZuVHAFeB8oOfk7YyZMJP9FvuhsQSKOkJt9efEV0qBjIsb1WFdeIgPXSZDRsR3iamoHI1MERbDa-YC8YPbeIuzilDnoYHKCCST7q7mX2KLQZ2dPuEgljaGRuYIEd~pKam05RvYIoINSq0eYYbaqBZeUoybWCLGI7VqMSM3Tfx-Q~Twah0HZKzA__&Key-Pair-Id=K1VGYTHIYLM9UM"
+  ],
+  "consumed_credits": 9
+}

@@ -1,0 +1,58 @@
+zone:
+  vibe: Northern Scar — burned-out frontier, open grave-pits, wind that smells wrong.
+  description: The northern half of the contested ruin-line — a hundred-league strip of burned
+    ground between the Concord lowlands and the Pact steppes. Ploughs don't go in; the wind
+    smells of old smoke and something older. The Burned Abbey at the scar's heart used to
+    be the Concord's spiritual seat for this country, and walking through what's left of it
+    is its own kind of pilgrimage.
+  prompt: wide establishing landscape, blasted ruin-line of broken stone and ash, leaning
+    shattered tower, char-thistle in the cracks, sickly grey-green sky, painterly atmospheric,
+    oppressive mood, no figures
+hubs:
+  scarhold:
+    description: A way-fort on the northern edge of the scar — Concord by treaty, contested
+      in fact, garrisoned by Wardens and Pact-Speakers in alternating shifts that don't overlap
+      by more than an hour. The hold's well still works; the bell-tower has not rung since
+      the Coming.
+    prompt: establishing shot, contested stone way-fort at the edge of a blasted ruin-line,
+      two faction banners flying side by side, broken bell-tower, sickly grey-green sky, painterly
+      atmospheric, late-medieval, no figures
+  no_man_ridge:
+    description: An outpost on the ridge between the Concord and Pact trenches — a single
+      watch-house, a stocked rope-bridge in either direction, and a deal between the two captains
+      that is honoured because neither of them would survive having to break it.
+    prompt: establishing shot, lone stone watch-house on a windswept ridge between two distant
+      trench-camps, rope-bridge to either side, sickly amber-green sky, painterly atmospheric,
+      late-medieval, no figures
+  burned_abbey:
+    description: What's left of the Concord's spiritual seat for the northern frontier — burned,
+      sealed, but still drawing pilgrims from both sides who know perfectly well it is no
+      longer holy and pretend otherwise. The abbess is still inside, by report. Officially.
+    prompt: establishing shot, ruined Concord stone abbey blackened by fire, half-collapsed
+      cloister, char-thistle in the courtyard, oppressive grey-green sky, painterly atmospheric,
+      no figures
+landmarks:
+  burnt_orchard:
+    description: A pre-war Concord orchard burned in the Coming. The trees came back; the
+      apples are smoky-tasting and grey. Both factions agree not to harvest.
+    prompt: establishing shot, burnt orchard regrowing with grey-leafed trees on a windswept
+      ridge, sickly grey-green light, painterly atmospheric, late-medieval, no figures
+  trench_line:
+    description: A line of pre-war trenches where the first Concord-Pact engagement of the
+      Coming happened. The trenches are preserved by both factions, by separate agreement.
+    prompt: establishing shot, weathered preserved pre-war trench line on a windswept ridge,
+      broken weapons in the bottom, oppressive grey-amber light, painterly atmospheric, late-medieval,
+      no figures
+  crow_field:
+    description: A field where the local crow population has settled permanently since the
+      Coming. The crows behave oddly here. They do not flock when disturbed.
+    prompt: establishing shot, windswept ruin-line field full of crows standing on the ground
+      rather than flying, sickly grey-green light, painterly atmospheric, oppressive mood,
+      no figures
+  memorial_arch:
+    description: A stone arch raised by both factions after the Coming, carrying both their
+      inscriptions. The arch is a rare shared monument; both factions agree it has nothing
+      to do with reconciliation.
+    prompt: establishing shot, weathered stone memorial arch on a blasted ruin-line ridge,
+      dual inscriptions in two scripts, oppressive grey-amber light, painterly atmospheric,
+      late-medieval, no figures

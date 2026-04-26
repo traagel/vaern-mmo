@@ -1,0 +1,16 @@
+{
+  "id": "019dc765-97d7-71e5-bc2c-24de9f6d3e02",
+  "type": "text-to-image",
+  "ai_model": "nano-banana-pro",
+  "prompt": "establishing shot, small timber patrol cabin beside a paved kingsroad at dusk, single hanging lantern, courier post sign, autumn rain in the distance, painterly atmospheric, late-medieval Burgundian, no figures",
+  "status": "SUCCEEDED",
+  "progress": 100,
+  "created_at": 1777166817278,
+  "started_at": 1777166817814,
+  "finished_at": 1777166837611,
+  "expires_at": 1777426037611,
+  "image_urls": [
+    "https://assets.meshy.ai/2872987b-afbf-4fa0-95f0-231417dc567c/uploads/image_019dc765-97d7-71e5-bc2c-24de9f6d3e02_0.png?Expires=1777426037&Signature=nVd6dmbDmT7-7cyXkrgxT6nb1dub540guUqdPrCSpIpErsnwilF5tUIYV0IRm9okJbzZ00xsqfGVerQbItATP-G8zpfMEym5S323oxk~ne55upRv7rmltlCVcIhF-LXo6IZhR11TjHIRN9CEZGPlUktts9lo8bKTL2B809eTaI5qCmM3wn63J5JymkPyP~vWN2Jq3dhMJo9elaO89F0YlOo3~adbJgmrxb7~7FLHoCRDphbchs5guuJJxObEwqN3SqwjOzSH1OuLZP41-NvqvS1yGWuGN2bPwtIAJBe1Nv3~Rel-bzQcSAJ9wXhxCYVcxneMTDuAS909X157JvjRYA__&Key-Pair-Id=K1VGYTHIYLM9UM"
+  ],
+  "consumed_credits": 9
+}

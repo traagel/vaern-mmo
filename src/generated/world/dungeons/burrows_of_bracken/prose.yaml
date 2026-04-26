@@ -1,0 +1,61 @@
+dungeon:
+  description: |
+    A warren-system dug under the Wyrling Downs by a beast-clan of giant
+    digger-rats and the half-feral handlers who whistle them to work. The
+    Downreeve at Hollowfield has filed three reports about livestock gone
+    overnight; the warren keeps widening. Tunnels twist on themselves so
+    a five-man party can be split by a collapse. Smell of wet fur, old
+    grain, and tallow torches the handlers leave guttering at every fork.
+  prompt: >-
+    establishing shot, dungeon interior, low earthen tunnel network, root
+    ceiling, tallow torches in iron sconces, scattered grain sacks,
+    painterly atmospheric, oppressive mood, no figures
+bosses:
+  bracken_matron:
+    description: |
+      A handler called Old Bracken-Mab by the Wyrling who remember her
+      from before she went under. She breeds the burrow-rats herself,
+      feeding them stolen milk, and she calls a swarm by clattering a tin
+      cup against a tooth she lost in '47. Fights from a nest-pit, the
+      pack rolling over the party in waves while she hangs back and
+      whistles corrections.
+    prompt: >-
+      portrait, single subject, gaunt elderly Wyrling beast-handler,
+      stained leather apron, tin cup at her belt, missing front tooth,
+      rat at her shoulder, painterly atmospheric, oppressive mood,
+      isolated subject, no other figures
+    negative_prompt: >-
+      multiple figures, party, group, modern, futuristic, sci-fi, anime,
+      cyberpunk, watermark, text
+  mad_molecatcher:
+    description: |
+      Was a sanctioned molecatcher for three Concord parishes before he
+      stopped sending in his tally and went down to live with the things
+      he used to kill. Lays trip-wire snares and falling-weight traps in
+      every approach, then drops out of a ceiling-hole with a hooked
+      pole. The Downreeve still has his last pay-stub, unsigned, in a
+      drawer at Hollowfield.
+    prompt: >-
+      portrait, single subject, wiry middle-aged trapper, mud-caked oiled
+      coat, hook-pole over shoulder, snare-wire coiled at hip, lantern
+      shuttered, painterly atmospheric, oppressive mood, isolated
+      subject, no other figures
+    negative_prompt: >-
+      multiple figures, party, group, modern, futuristic, sci-fi, anime,
+      cyberpunk, watermark, text
+  king_gnarlroot:
+    description: |
+      The largest digger-rat any handler has ever bred — easily eighty
+      stone, with a half-rotted iron collar still locked to its neck
+      from when someone tried to claim it. Charges from a standstill,
+      bites through chain, and at half-health it burrows straight down
+      and resurfaces somewhere the healer doesn't want it. Has a name
+      because the handlers gave it one.
+    prompt: >-
+      portrait, single subject, monstrous oversized digger-rat, scarred
+      hide, broken iron collar, yellow tusk-fangs, dirt clinging to fur,
+      painterly atmospheric, oppressive mood, isolated subject, no other
+      figures
+    negative_prompt: >-
+      multiple figures, party, group, modern, futuristic, sci-fi, anime,
+      cyberpunk, watermark, text

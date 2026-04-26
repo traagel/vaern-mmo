@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vaern — Compendium</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=EB+Garamond:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- animated backdrop -->
+<div class="fog"></div>
+<div class="fog2"></div>
+<div class="embers"></div>
+<div class="embers delay"></div>
+<div class="rift"></div>
+
+<header>
+  <a href="index.html" class="brand-link">
+    <h1>VAERN</h1>
+    <div class="tagline">Compendium · Two factions · One island</div>
+  </a>
+  <div class="stats" id="stats">loading…</div>
+</header>
+
+<nav id="tabs">
+  <button data-tab="overview" class="active">Overview</button>
+  <button data-tab="factions">Factions</button>
+  <button data-tab="races">Races</button>
+  <button data-tab="zones">Zones</button>
+  <button data-tab="biomes">Biomes</button>
+  <button data-tab="dungeons">Dungeons</button>
+  <button data-tab="institutions">Institutions</button>
+  <button data-tab="classes">Archetypes</button>
+  <button data-tab="schools">Schools</button>
+  <button data-tab="spells">Spellbook</button>
+</nav>
+
+<main>
+
+  <section id="overview-tab" class="tab active">
+    <div class="overview-hero">
+      <h2 id="overview-title">VAERN</h2>
+      <p class="lede" id="overview-lede"></p>
+      <div class="overview-pillars">
+        <span>Might</span><span class="sep">·</span>
+        <span>Finesse</span><span class="sep">·</span>
+        <span>Arcana</span>
+      </div>
+    </div>
+    <div id="overview-body"></div>
+  </section>
+
+  <section id="factions-tab" class="tab">
+    <div class="grid" id="faction-grid"></div>
+  </section>
+
+  <section id="races-tab" class="tab">
+    <div class="grid" id="race-grid"></div>
+  </section>
+
+  <section id="zones-tab" class="tab">
+    <div class="filters" id="zone-filters">
+      <input type="search" id="zone-search" placeholder="search zone name or notes…">
+      <select id="zone-faction"><option value="">all factions</option></select>
+      <select id="zone-tier"><option value="">all tiers</option></select>
+      <select id="zone-biome"><option value="">all biomes</option></select>
+      <span class="filter-count" id="zone-count"></span>
+    </div>
+    <div class="grid" id="zone-grid"></div>
+  </section>
+
+  <section id="biomes-tab" class="tab">
+    <div class="grid" id="biome-grid"></div>
+  </section>
+
+  <section id="dungeons-tab" class="tab">
+    <div class="filters" id="dungeon-filters">
+      <input type="search" id="dungeon-search" placeholder="search dungeon name or theme…">
+      <select id="dungeon-band"><option value="">all level bands</option></select>
+      <select id="dungeon-size"><option value="">all group sizes</option></select>
+      <select id="dungeon-kind"><option value="">all kinds</option></select>
+      <span class="filter-count" id="dungeon-count"></span>
+    </div>
+    <div class="grid" id="dungeon-grid"></div>
+  </section>
+
+  <section id="institutions-tab" class="tab">
+    <div class="grid" id="institution-grid"></div>
+  </section>
+
+  <section id="classes-tab" class="tab">
+    <div class="grid" id="class-grid"></div>
+  </section>
+
+  <section id="schools-tab" class="tab">
+    <div class="grid" id="school-grid"></div>
+  </section>
+
+  <section id="spells-tab" class="tab">
+    <div class="filters" id="spell-filters">
+      <input type="search" id="spell-search" placeholder="search name or description…">
+      <select id="spell-pillar"><option value="">all pillars</option></select>
+      <select id="spell-category"><option value="">all categories</option></select>
+      <select id="spell-school"><option value="">all schools</option></select>
+      <select id="spell-tier"><option value="">all tiers</option></select>
+      <select id="spell-morality"><option value="">all moralities</option></select>
+      <label><input type="checkbox" id="spell-hasicon"> has icon only</label>
+      <span class="filter-count" id="spell-count"></span>
+    </div>
+    <div class="grid" id="spell-grid"></div>
+  </section>
+
+  <section id="page" class="hidden">
+    <a id="page-back" href="#">← back</a>
+    <div id="page-body"></div>
+  </section>
+</main>
+
+<div id="detail-overlay" class="hidden">
+  <div id="detail-card">
+    <button id="detail-close">×</button>
+    <div id="detail-body"></div>
+  </div>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>

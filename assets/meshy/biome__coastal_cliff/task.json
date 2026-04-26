@@ -1,0 +1,16 @@
+{
+  "id": "019dc714-904f-7b67-b480-af35759d9e81",
+  "type": "text-to-image",
+  "ai_model": "nano-banana-pro",
+  "prompt": "wide establishing landscape, sheer dark sea cliffs above a storm-battered shingle beach, salt-spray, low grey sky, distant storm front, painterly atmospheric, no figures, no characters",
+  "status": "SUCCEEDED",
+  "progress": 100,
+  "created_at": 1777161506915,
+  "started_at": 1777161507705,
+  "finished_at": 1777161549993,
+  "expires_at": 1777420749993,
+  "image_urls": [
+    "https://assets.meshy.ai/2872987b-afbf-4fa0-95f0-231417dc567c/uploads/image_019dc714-904f-7b67-b480-af35759d9e81_0.png?Expires=1777420749&Signature=WFJHW2eDx~TQraApeBJk8zs0fBpu37JSP0vOHBjlY-t4zSDsylYbvvCrxek7LPprojVGyBBjSjGyG68LrurNwu0rpRAgDC-QxgTymk1bWWIihH4ztUYqMUP63RAs7mjI3KhuK1HOHpccRXV2vaocvVHspQ6fWUiBw3l-tkuaoYU6qU2DvSKrmb6HYBRtOI-aHO5a7HeAYNObPoWZu0IW5ByU7V1zvfxL8YzKDhTPszwqvjmg0BWX1AtuBTnIfwT2j1C1lQe91fIUQCvAqCgKUwV76fkfQcv5viCrlHhqnO7~vhspdEvfxhzJfat6wT8w5IdHmgXGi0T-J5HBJBx3kg__&Key-Pair-Id=K1VGYTHIYLM9UM"
+  ],
+  "consumed_credits": 9
+}

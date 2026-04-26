@@ -1,0 +1,16 @@
+{
+  "id": "019dc76c-38f9-72ed-a46a-7b6f86ee1dc1",
+  "type": "text-to-image",
+  "ai_model": "nano-banana-pro",
+  "prompt": "establishing shot, small open-air stone chapel on a sea-cliff edge, salt-wind streaming through the standing stones, leaden cold light, painterly atmospheric, late-medieval, no figures",
+  "status": "SUCCEEDED",
+  "progress": 100,
+  "created_at": 1777167251717,
+  "started_at": 1777167252400,
+  "finished_at": 1777167304361,
+  "expires_at": 1777426504361,
+  "image_urls": [
+    "https://assets.meshy.ai/2872987b-afbf-4fa0-95f0-231417dc567c/uploads/image_019dc76c-38f9-72ed-a46a-7b6f86ee1dc1_0.png?Expires=1777426504&Signature=Z~WRv8Y3UYHMi5hjuFvePv06BJbPkkh4c79Vc9mriZNRY3q5WSMxIoBE5oXtgFQa5VZ6MO-8Z25jRTtaqhJPRI1I7Wa3R8UozIyGg16b~0zew2CJ1ZbttXT~MSvSRj-TxiwujAw6rJRbJGrZVLopOJFzshVXDALwrX7JZt4a8VCIsBgP~SZKvbxL0vgXCAfWUERryI83PYG2YVLFJrnaNVrUeJ3QHLfyweFgAtlkBZ1JkJQx3~8iHp8ws8zIm9eh1rKWDf33WE9mk9JQTB4QxZrMDbXLU7qQ3mNbQ3QQNYKskIQYcNJ8HkNuKtWktHdcBywqZ~9M0Z~LCeKSGPOPHQ__&Key-Pair-Id=K1VGYTHIYLM9UM"
+  ],
+  "consumed_credits": 9
+}

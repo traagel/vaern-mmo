@@ -1,0 +1,46 @@
+id: landmarks__sunward_reach
+zone: sunward_reach
+landmarks:
+- id: dawn_terrace
+  name: The Dawn Terrace
+  offset_from_zone_origin:
+    x: 150.0
+    z: -180.0
+  description: An orchard-terrace built specifically to catch the first light of midsummer
+    dawn. The dawn-priests perform a sun-rite here at the solstice; the apples are unusually
+    sweet.
+  prompt: establishing shot, sunlit hilltop terrace orchard at dawn, neat rows of apple trees,
+    distant temple-spire, golden light, painterly atmospheric, late-medieval high-elf, no
+    figures
+- id: falling_stone_grove
+  name: The Falling-Stone Grove
+  offset_from_zone_origin:
+    x: -200.0
+    z: 60.0
+  description: A grove where a single weathered standing stone has been falling, very slowly,
+    for two centuries. The dawn-priests measure its angle annually. It is now twelve degrees
+    off vertical and accelerating.
+  prompt: establishing shot, sunlit forest grove with a leaning ancient standing stone, scribed
+    marks on its base, dappled morning light, painterly atmospheric, late-medieval high-elf,
+    no figures
+- id: orchard_ruin
+  name: The Orchard Ruin
+  offset_from_zone_origin:
+    x: 60.0
+    z: 220.0
+  description: A pre-Veyr orchard whose trees have outlived the founder's ruin around them.
+    The fruit is small, wild, and reportedly still sweet. Pickers are warned to leave the
+    third row alone.
+  prompt: establishing shot, ruined sunlit orchard among broken stone walls, gnarled apple
+    trees in disorderly rows, golden warm light, painterly atmospheric, late-medieval high-elf,
+    no figures
+- id: sun_dial_field
+  name: The Sun-Dial Field
+  offset_from_zone_origin:
+    x: -90.0
+    z: -250.0
+  description: A flat hill-meadow on which a sun-dial of standing stones marks the working
+    hours of a school of dawn-priests now five centuries dead. The dial still keeps time.
+    The stones have not moved.
+  prompt: establishing shot, hill-meadow with a great stone sun-dial of standing stones casting
+    a long shadow, sunlit highland, painterly atmospheric, late-medieval high-elf, no figures

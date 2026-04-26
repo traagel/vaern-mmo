@@ -1,0 +1,16 @@
+{
+  "id": "019dc6f9-69c1-712a-b4f5-3b64dc10fcba",
+  "type": "text-to-image",
+  "ai_model": "nano-banana-pro",
+  "prompt": "establishing shot, small wooden roadside chapel with bell tower, modest hostel beside it, upland scrub and dark pines, overcast afternoon, lantern by the door, painterly atmospheric, late-medieval Burgundian, no figures",
+  "status": "SUCCEEDED",
+  "progress": 100,
+  "created_at": 1777159727566,
+  "started_at": 1777159727693,
+  "finished_at": 1777159824039,
+  "expires_at": 1777419024039,
+  "image_urls": [
+    "https://assets.meshy.ai/2872987b-afbf-4fa0-95f0-231417dc567c/uploads/image_019dc6f9-69c1-712a-b4f5-3b64dc10fcba_0.png?Expires=1777419024&Signature=bD9eP2UZK12PtAIHRROwypI-HoetOQltCLN8L4-LkWS-64p0qdKsVemlFSGniU-2Onf-2qh2fpEkGEfuFAlVguc~4b2bz7bm-kMQiTqQRAiL-fc7sqbYOiX9gIJEeLwYLTPaqKS0Kp11S7WKMKWKZiq--OMmenR3ffU901xJeliRLy0N-ZTOlYtbuWHbALoMMbD5hrJ8Uk6cQKaNQbP-L77J1D5D9NI6ri3p~NCmJYrlJtT3IqsQPeD-QnofbpUfDCSwMgpkR6EZS8~0HxAEHF~grchnpf6pZTk8bq7WxsXo9D3U8ALF3eh37gbnQJOQrqPkRRqxXl3S3YlVYCCbDw__&Key-Pair-Id=K1VGYTHIYLM9UM"
+  ],
+  "consumed_credits": 9
+}

@@ -1,0 +1,57 @@
+zone:
+  vibe: Concord trade hub — caravanserai, river-port, civic noise.
+  description: Where the southern shore meets the river road — a fortified freeport of warehouse
+    compounds, river-quays, six competing currencies and one shared language of complaint.
+    Concord-controlled but Hraun-tolerant; the silver caravan houses pay both flags and answer
+    to neither. The old river watch upstream has been overrun by smugglers who pay everyone
+    except the Concord.
+  prompt: wide establishing landscape, late-medieval river-port freeport, stone quay, warehouse
+    compounds, busy river barges, golden afternoon light, painterly atmospheric, no figures
+hubs:
+  crossing_freeport:
+    description: A fortified river-port and free-trade port — six currencies, three flags
+      flying with grudging permission, a customs hall that everyone bribes and nobody outsmarts.
+      Provost Wynna runs the place on the principle that everyone is lying and that's fine
+      if they're consistent.
+    prompt: establishing shot, late-medieval fortified river freeport, stone quays and warehouses,
+      busy river barges, banners of multiple factions, golden afternoon light, painterly atmospheric,
+      no figures
+  silver_caravanserai:
+    description: The largest of the trade-houses outside the Freeport wall — a Hraun-funded
+      compound of stables, warehouses and a tea-house that is the polite front for at least
+      three intelligence services. Caravan-Master Thessa considers herself neutral; the Freeport
+      considers her useful.
+    prompt: establishing shot, walled trade caravanserai compound, stables and warehouses
+      around an open court, banners and drying spices, dusty late afternoon light, painterly
+      atmospheric, late-medieval, no figures
+  old_river_watch:
+    description: Pre-Concord river-fort upstream of the Freeport, formally garrisoned and
+      informally run by a smuggling ring that pays everyone except the Concord. The garrison-on-paper
+      exists. The garrison in fact has sailed.
+    prompt: establishing shot, pre-Concord stone river fortress on a bend of a slow river,
+      half-overgrown walls, smugglers' boats moored below, twilight grey-amber light, painterly
+      atmospheric, late-medieval, no figures
+landmarks:
+  river_island_market:
+    description: An island market that runs three days a week on a sand-bar in the river.
+      Six languages, three currencies, no formal taxes. The Freeport tolerates it because
+      the Freeport profits from it.
+    prompt: establishing shot, busy market on a river sand-bar island, stalls and barges drawn
+      up to the banks, golden afternoon light, painterly atmospheric, late-medieval, no figures
+  smuggler_cove:
+    description: A reed-fringed bend of the river where the smugglers unload after dark. The
+      Freeport's customs hall pretends not to know. The cove's mooring posts are very new.
+    prompt: establishing shot, reed-fringed river cove with mooring posts and dark barges,
+      low twilight, painterly atmospheric, late-medieval, no figures
+  pre_concord_pillar:
+    description: A standing stone carved with a script even the Sunward Elen scholars cannot
+      quite parse. The stone is on Freeport land by treaty; nobody removes it because no faction
+      will risk it.
+    prompt: establishing shot, weathered standing stone on the bank of a slow river, unreadable
+      carvings, late afternoon warm light, painterly atmospheric, late-medieval, no figures
+  warehouse_burnt_row:
+    description: A row of warehouses that burned in last spring's fire. The owners cleared
+      the rubble; the foundations are still ashy. Three of the owners did not survive the
+      fire.
+    prompt: establishing shot, row of burnt-out warehouse foundations on a river quay, blackened
+      stone, low afternoon light, painterly atmospheric, late-medieval, no figures

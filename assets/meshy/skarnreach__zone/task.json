@@ -1,0 +1,16 @@
+{
+  "id": "019dc772-f0b6-7e39-b687-36f1ee82f718",
+  "type": "text-to-image",
+  "ai_model": "nano-banana-pro",
+  "prompt": "wide establishing landscape, narrow cold fjord, basalt headland with timber longhall, longships moored below, low pewter sky, painterly atmospheric, late-medieval viking aesthetic, no figures",
+  "status": "SUCCEEDED",
+  "progress": 100,
+  "created_at": 1777167691969,
+  "started_at": 1777167692609,
+  "finished_at": 1777167721480,
+  "expires_at": 1777426921480,
+  "image_urls": [
+    "https://assets.meshy.ai/2872987b-afbf-4fa0-95f0-231417dc567c/uploads/image_019dc772-f0b6-7e39-b687-36f1ee82f718_0.png?Expires=1777426921&Signature=XZJ6gkE74~BJIExaidj-SQZnM2tofkfGB2C8unxTn64Hyicim1J~c8Buu3M6JrxCDLm-BVpR8keOml9voeZ3qb3U8HiWbRgXkUrWthnFc2J~C4YckGo5RpcIXr5vehc7jN0UBwkoFxVGfRvY48njLGWveR9~jYxZqmetNg937C0RYDh5z3P6etI7JKj7FECmaF0cJoxoCrOcFfcN3LlyHCZvrh9skjDyVv~3A~xJ5ae6GCKTUl0Densd8wpCuPYtsVvz5XwRjVjPwWfRMIkRSM0yPuaF106Hq9SNL702rXBM1MsLnOXw5fOojZ5ZXGxVzGOLD3uBKJlG1NJwmy1wzQ__&Key-Pair-Id=K1VGYTHIYLM9UM"
+  ],
+  "consumed_credits": 9
+}

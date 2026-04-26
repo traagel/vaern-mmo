@@ -1,0 +1,16 @@
+{
+  "id": "019dc77d-8c6a-701f-974c-6a7cfc5d092f",
+  "type": "text-to-image",
+  "ai_model": "nano-banana-pro",
+  "prompt": "Portrait of a female Wyrling, single figure, isolated subject, three-quarter view from waist up. three-foot halfling, curly warm-brown hair, many-pocketed leather jerkin over linen, alert expression. very small three-foot halfling, waist-high to a human, compact adult-proportioned child-sized body, curly warm-brown hair, bright alert face fully visible, cheery clever expression. small nimble build, 3'0\"\u20133'10\", proportionally larger head and eyes, quick-fingered, light on the feet. varied warm skin tones, curly or tousled hair in warm browns, auburn, and honey tones, bright alert brown or green eyes, button nose, expressive eyebrows, clean-shaven with soft cheek-fuzz, impish half-smile. hair: loose curls, braided pigtails, tied-back queue. attire: many-pocketed leather jerkin over bright-dyed linen, long coat, buckled boots, bandoliers of trinkets and keys, guild sash. posture: compact alert low-centered, ready-to-run or ready-to-steal posture, balanced on the toes. painterly atmospheric character portrait, late-medieval fantasy aesthetic, soft directional lighting, neutral dim background, oil-painting feel, no other characters, no text, no watermark.",
+  "status": "SUCCEEDED",
+  "progress": 100,
+  "created_at": 1777168387188,
+  "started_at": 1777168387346,
+  "finished_at": 1777168439283,
+  "expires_at": 1777427639283,
+  "image_urls": [
+    "https://assets.meshy.ai/2872987b-afbf-4fa0-95f0-231417dc567c/uploads/image_019dc77d-8c6a-701f-974c-6a7cfc5d092f_0.png?Expires=1777427639&Signature=D15S2tNpJURIN26T6POGjHLh3p5j9S4UZr-KcewfRHaNZFoX4bUk19sjTcPgrghtW8ejklKd7E1luPLBMipr10fumIw1dv9yY4hz~GtZGMG7aPTQ20SN9aVP73LegZ2sncE1dEgqoxfDDOn6r-ZuJko1V6XoZO~eGmWesXWHeHKEblcL~zq5r-Cby5TbWFln7vf2z2waXfnkxawuDK9S2S6CJ~~IaoQki8H3RrfppWpkFs0J1aFj~Q~y2z7dqKcjzqEVsdmFC9yeEbRUNEElsiK~eURNVsF41E-nNgnbhL~kxdO25eSge6cxMzq6e4Soy2JEkvrB6odcxr9kYrJNaA__&Key-Pair-Id=K1VGYTHIYLM9UM"
+  ],
+  "consumed_credits": 9
+}

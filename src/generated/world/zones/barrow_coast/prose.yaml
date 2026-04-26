@@ -1,0 +1,53 @@
+zone:
+  vibe: Gravewrought ancestor-shore — wind-cut barrows, salt, the dead listening.
+  description: The Gravewrought starter on the Pact's southern shore — low turf-covered barrows
+    along a salt-wind cliff, the iron hub-fortress dug into the largest of them. The Gravewrought
+    make a virtue of consulting their dead, and the dead, on this coast, are unusually willing
+    to be consulted. The First Barrow has begun answering questions nobody asked it.
+  prompt: wide establishing landscape, salt-wind cliff above a grey sea, low turf-covered
+    barrow mounds along the headland, iron-fortress in the largest barrow, overcast cold light,
+    painterly atmospheric, late-medieval, no figures
+hubs:
+  iron_barrow:
+    description: The Gravewrought capital — an iron-banded barrow-hold dug into the largest
+      mound on the salt-cliff. The ancestor-rolls go back further than any Concord record.
+      Speaker-Mother Dheka inherited the Hold from her own great-grandmother by formal consultation,
+      which is the Gravewrought way of saying she asked and got an answer.
+    prompt: establishing shot, iron-banded fortress dug into a great turf-covered barrow above
+      grey sea cliffs, salt-wind, low cold light, painterly atmospheric, late-medieval, no
+      figures
+  silent_harbor:
+    description: A working harbour on the cove south of the Iron-Barrow — Gravewrought-flagged,
+      Skarn-trading, watched by a salt-wind chapel that hosts a service nobody is supposed
+      to attend. Harbour-Master Brun runs the docks with the patience of a man who has been
+      told at least twice he has nothing to fear from death.
+    prompt: establishing shot, working stone harbour cove under salt-wind cliffs, longships
+      and fishing boats, small wind-cut chapel on the headland, leaden cold light, painterly
+      atmospheric, late-medieval, no figures
+landmarks:
+  salt_pillars:
+    description: Three pillars of crystallised sea-salt formed by ancient tide-action. The
+      Gravewrought treat them as ancestor-markers and consult them before the hard funerals.
+    prompt: establishing shot, three weathered salt pillars on a windswept clifftop, crystallised
+      salt-rime, leaden cold afternoon light, painterly atmospheric, late-medieval, no figures
+  shipwreck_field:
+    description: A stretch of shingle below the cliffs littered with the skeletons of shipwrecks
+      from a particularly bad winter twelve years ago. The locals salvage what they can; the
+      rest remains.
+    prompt: establishing shot, shingle beach below grey sea cliffs strewn with broken hulls
+      of wrecked ships, salt-spray, leaden grey light, painterly atmospheric, late-medieval,
+      no figures
+  wind_chapel:
+    description: A small open-air chapel on the cliff edge where the wind performs a recognisable
+      variant of the funeral rite, all seasons. The Gravewrought consider this evidence of
+      approval.
+    prompt: establishing shot, small open-air stone chapel on a sea-cliff edge, salt-wind
+      streaming through the standing stones, leaden cold light, painterly atmospheric, late-medieval,
+      no figures
+  tide_carved_step:
+    description: A natural staircase carved into the cliff by long tidal action. The Gravewrought
+      maintain it for ritual descents to the shingle below. Outsiders are advised to use the
+      path.
+    prompt: establishing shot, narrow natural staircase carved into a sea cliff by tide action,
+      weathered stone steps, salt-spray, cold afternoon grey light, painterly atmospheric,
+      late-medieval, no figures

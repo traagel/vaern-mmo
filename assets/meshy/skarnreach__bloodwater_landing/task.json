@@ -1,0 +1,16 @@
+{
+  "id": "019dc76b-2f95-769c-9398-f4d79ccb29b1",
+  "type": "text-to-image",
+  "ai_model": "nano-banana-pro",
+  "prompt": "establishing shot, working Skarn shipwright quay at the foot of basalt cliffs, half-built longships on stocks, smoke from forge fires, cold afternoon pewter light, painterly atmospheric, late-medieval viking, no figures",
+  "status": "SUCCEEDED",
+  "progress": 100,
+  "created_at": 1777167183781,
+  "started_at": 1777167183801,
+  "finished_at": 1777167214609,
+  "expires_at": 1777426414609,
+  "image_urls": [
+    "https://assets.meshy.ai/2872987b-afbf-4fa0-95f0-231417dc567c/uploads/image_019dc76b-2f95-769c-9398-f4d79ccb29b1_0.png?Expires=1777426414&Signature=QURH39qwO-hSdb5a5J2zK6VIrsX7uQhP5kpZD0mr7OD~3oRsFnrUXG9YnqcvkOKe4E0Ex5H9BrJTPIr9JPMwont3RyeKOQyjNls1AHRAyFTe~jWzdRSTfE9ZQngcIfWfXWzznqhv9CQUHQMHxurDMDkl~AQisOhDDfV6iwlM5DtAY4ZFjEDxYLW37SD~c0t4-UoagTuUzdEhCWk~~typJEyXAlhIIVz3FJH14lauD6jq953Tt32agy7cOMp3uZznFt7yeiSuM8VAKBXMElzsJN5bAibRla8ZCauoU0xSDtQfnAsEt4ldfT3M8Y0krUBKIv7IXGdE7TZVKSwoqvoJrA__&Key-Pair-Id=K1VGYTHIYLM9UM"
+  ],
+  "consumed_credits": 9
+}

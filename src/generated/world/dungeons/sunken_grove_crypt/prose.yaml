@@ -1,0 +1,61 @@
+dungeon:
+  description: |
+    A Darkling Elen ancestral crypt cut into a hollow under the Ashen
+    Holt, abandoned during the Coming when the surface house was burned
+    and never reoccupied. The shadow-rot the Elen used in their burial
+    sealings has gone untended for forty years and is now seeping
+    upward into the rootmat; the trees above the crypt die in a perfect
+    circle each spring. An exiled matriarch has made it her seat.
+  prompt: >-
+    establishing shot, dungeon interior, sunken elven crypt, black-stone
+    sarcophagi, rotted silk drapes, shadow-mist pooling on steps, dim
+    blue witch-light, painterly atmospheric, oppressive mood, no figures
+bosses:
+  rot_cultist:
+    description: |
+      A Darkling acolyte who stayed when the house was burned and has
+      had four decades to learn things she was never meant to learn
+      alone. Fights with a hooked ritual blade; her shadow-DoT lands
+      heavy on whoever is highest threat, dispellable by anyone with
+      the cleanse-rite or a steady cleric's hand. She speaks the old
+      house-dialect, which only the scholars at Silverleaf still read.
+    prompt: >-
+      portrait, single subject, gaunt Darkling Elen acolyte, hooded
+      black robe, ritual blade, shadow-rot streaks on forearms, pale
+      eyes, painterly atmospheric, oppressive mood, isolated subject,
+      no other figures
+    negative_prompt: >-
+      multiple figures, party, group, modern, futuristic, sci-fi, anime,
+      cyberpunk, watermark, text
+  grove_revenant:
+    description: |
+      A house-guard interred with sealing-rite incomplete, woken by
+      the rot-seep. Anchors a life-drain beam to one party member and
+      pulls health steadily across the tether; line-of-sight breaks the
+      beam, but the room is small and the pillars are not where you
+      want them. House-cipher on his pauldron identifies him as
+      Veshen-of-the-Quiet, killed at twenty-three.
+    prompt: >-
+      portrait, single subject, undead Darkling house-guard, tarnished
+      black plate, shadow-tether trailing from one hand, sunken cheeks,
+      house-cipher pauldron, painterly atmospheric, oppressive mood,
+      isolated subject, no other figures
+    negative_prompt: >-
+      multiple figures, party, group, modern, futuristic, sci-fi, anime,
+      cyberpunk, watermark, text
+  exile_matriarch:
+    description: |
+      Lady Arvenne of the burned house, who walked east after the
+      Coming and learned shadow-step from teachers the Concord would
+      have hung. Fights as a duelist — short blade, fast steps, two
+      mirror-images at fifty percent that copy her timings perfectly.
+      A Sunward Elen genealogy at Silverleaf still lists her as
+      missing; the exiled cousin who maintains it knows otherwise.
+    prompt: >-
+      portrait, single subject, elegant Darkling Elen matriarch, dark
+      duellist's coat, twin short blades, shadow trailing from her
+      shoulders, cold composed expression, painterly atmospheric,
+      oppressive mood, isolated subject, no other figures
+    negative_prompt: >-
+      multiple figures, party, group, modern, futuristic, sci-fi, anime,
+      cyberpunk, watermark, text

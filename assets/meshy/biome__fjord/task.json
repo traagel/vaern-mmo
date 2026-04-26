@@ -1,0 +1,16 @@
+{
+  "id": "019dc715-4548-774b-9c56-cabd77710d66",
+  "type": "text-to-image",
+  "ai_model": "nano-banana-pro",
+  "prompt": "wide establishing landscape, narrow cold fjord between dark pine cliffs, longship at anchor in the foreground, dawn mist on black water, painterly atmospheric, late-medieval, no figures",
+  "status": "SUCCEEDED",
+  "progress": 100,
+  "created_at": 1777161553235,
+  "started_at": 1777161553610,
+  "finished_at": 1777161579754,
+  "expires_at": 1777420779754,
+  "image_urls": [
+    "https://assets.meshy.ai/2872987b-afbf-4fa0-95f0-231417dc567c/uploads/image_019dc715-4548-774b-9c56-cabd77710d66_0.png?Expires=1777420779&Signature=oV3nvJ17CBH1ZfF7M7blwPXZLeDsWqDeNpojOrBy~ngGW5OQJ4IyyQWsWmjqICsZtwHdY5atSHQ-DVKeE8fJc6pXgQIcuXmrEeH6pgZlmHifUzdRHtXHmDrxkwTfOBfJLNNdFYLX7SjavrJ~6G63WOU997JEZnYHLZWShHDuD5wxsDxJpsjwBE9Jj9tLrJOT2e4-x9BytL-2GqxTccJFypc6Wy1SP3Jtkkuf6-efeybah6cP~FyOJsW29R8bKSReQExUkoHyBAAriYTQRcnhsxlbpmXdnEMdR4odvLIZovZnkqtA0y8MMw6dzeJ45zY~Gll4Vfo1RyOIaY4Km06KDA__&Key-Pair-Id=K1VGYTHIYLM9UM"
+  ],
+  "consumed_credits": 9
+}

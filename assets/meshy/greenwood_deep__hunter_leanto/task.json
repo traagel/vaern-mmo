@@ -1,0 +1,16 @@
+{
+  "id": "019dc769-f52c-7670-bf50-f7476dbb586d",
+  "type": "text-to-image",
+  "ai_model": "nano-banana-pro",
+  "prompt": "establishing shot, woodland trapper's lean-to under giant fir trees, smoke-rack, weathered notice board, dappled twilight, painterly atmospheric, late-medieval, no figures",
+  "status": "SUCCEEDED",
+  "progress": 100,
+  "created_at": 1777167103285,
+  "started_at": 1777167103415,
+  "finished_at": 1777167122120,
+  "expires_at": 1777426322120,
+  "image_urls": [
+    "https://assets.meshy.ai/2872987b-afbf-4fa0-95f0-231417dc567c/uploads/image_019dc769-f52c-7670-bf50-f7476dbb586d_0.png?Expires=1777426322&Signature=Fg-XRctnyJ1o-ryX9mIKLYEPkf0oT7n-CqTnxZ1NBMj6poEbOU8ut4HXM2KjS1SXOMMYwtDHSy40VkhWVszu~z443TXqgaUZ8PwuSQhHJ5v3z69ugR5mweOqvm9-j~~qd18S3GIy2xJsz0ulmtbFYKC83YDAFNRCL5hqOQJcq1lnAFfIKaJxPNbq-~hdrWVEsECf2I0mjlk~fDp0yEcPR1fNZ63zCIHwWBivefKs2cQW3ZJD2fN3kIQIj3tzXsavAH1O1csoeVIzD1wjYmqj6eE6lzhmXfMEqSfgrfgehjs0k8WsGNhHRfJ9nS-232yRZ94X4W6ILjctK5D6U3KxTQ__&Key-Pair-Id=K1VGYTHIYLM9UM"
+  ],
+  "consumed_credits": 9
+}

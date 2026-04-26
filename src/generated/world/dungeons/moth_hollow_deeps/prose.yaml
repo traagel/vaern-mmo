@@ -1,0 +1,57 @@
+dungeon:
+  description: |
+    The lower chambers of Moth-Hollow, beneath the Silverleaf canopy.
+    The Sunward Elen will tell you the moths are wild stock; the older
+    Sunward Elen will not say so. There is a registry from the year
+    eighty-seven of the Concord that records the breeding programme by
+    matriline, and the registry is missing its last six pages. Three
+    chambers: the silk-hall, the brood-shelf, the night-roost.
+  prompt: >-
+    establishing shot, dungeon interior, vast silk-draped underground
+    hollow, pale luminous fungus, fluttering shadows, drifting moth
+    dust, painterly atmospheric, oppressive mood, no figures
+bosses:
+  matriarch_moth:
+    description: |
+      The matriline-elder of the silk-hall, by Sunward Elen records a
+      direct descendant of the line they no longer admit they bred.
+      Wing-dust pulse blinds the party for six seconds on a thirty-five
+      second cooldown — anyone facing her at the pulse stays blinded
+      twice as long. The fight is about facing rotation and the healer
+      has to call it.
+    prompt: >-
+      portrait, single subject, vast pale matriarch moth, silver-furred
+      thorax, dust drifting from wings, faceted eyes, painterly
+      atmospheric, oppressive mood, isolated subject, no other figures
+    negative_prompt: >-
+      multiple figures, party, group, modern, futuristic, sci-fi, anime, cyberpunk, watermark, text
+  silk_sorcerer:
+    description: |
+      A Sunward Elen named Iesil who came down to study the brood and
+      decided to stay, in a sense the Concord registry would not endorse.
+      Casts web-walls across the chamber every twenty seconds — the walls
+      are pathing-blocking and damaging on contact. By minute three the
+      room is a maze and the party has to fight him through narrowing
+      lanes.
+    prompt: >-
+      portrait, single subject, hollow-eyed Sunward Elen sorcerer,
+      silk-wrapped robes, hands trailing pale web-strands, drifting
+      cocoons behind him, painterly atmospheric, oppressive mood,
+      isolated subject, no other figures
+    negative_prompt: >-
+      multiple figures, party, group, modern, futuristic, sci-fi, anime, cyberpunk, watermark, text
+  nightwing_alpha:
+    description: |
+      The largest moth in the Hollow records, called Nightwing because
+      its wing-fur eats lamp-light. Phases into a fly-cycle at eighty,
+      sixty, forty, and twenty percent — during fly-phase it bombs
+      three marked tiles in sequence, two-second telegraph each. The
+      tiles are large; the punishment for standing in them is total.
+      The party that learns the bombing pattern wins by minute four.
+    prompt: >-
+      portrait, single subject, vast night-black alpha moth, light-
+      absorbing wing-fur, faintly luminous antennae, mid-flight pose,
+      painterly atmospheric, oppressive mood, isolated subject, no other
+      figures
+    negative_prompt: >-
+      multiple figures, party, group, modern, futuristic, sci-fi, anime, cyberpunk, watermark, text

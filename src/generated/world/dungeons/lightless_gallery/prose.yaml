@@ -1,0 +1,71 @@
+dungeon:
+  description: |
+    The deepest shaft of the Sundering Mines, a Hearthkin gallery
+    abandoned in the year of the Coming after the seventh shift went
+    down and the eighth refused to follow. No light reaches bottom.
+    What the Hearthkin call the Carver-Mother and her brood have worked
+    the seam ever since, cutting a black architecture out of the iron-
+    veined rock. Four chambers descending into pure dark.
+  prompt: >-
+    establishing shot, dungeon interior, lightless mine gallery, vast
+    iron-veined rock, abandoned Hearthkin scaffolding, near-total
+    darkness with single torch, painterly atmospheric, oppressive mood,
+    no figures
+bosses:
+  pit_stalker:
+    description: |
+      A long-limbed predator the brood sends ahead of itself. Stealth-
+      ambushes from outside the party's torch-radius; the only counter
+      is to set down the four oil-lanterns the Hearthkin left in the
+      first gallery. Without lanterns the stalker opens with a back-
+      stab that crits any non-tank for full health. With them it is
+      almost a normal pull.
+    prompt: >-
+      portrait, single subject, long-limbed pale cave-predator, eyeless,
+      hooked claws, crouched at edge of torchlight, painterly
+      atmospheric, oppressive mood, isolated subject, no other figures
+    negative_prompt: >-
+      multiple figures, party, group, modern, futuristic, sci-fi, anime, cyberpunk, watermark, text
+  deep_carver:
+    description: |
+      One of the brood's quarrymen — vast, blind, and patient. Tunnels
+      beneath the floor every twenty seconds and emerges under a fixed
+      party member, throwing them straight up into the gallery roof.
+      The targeted player has the cycle to relocate to the marked safe
+      tile; missing it is the whole party's problem because the impact
+      cracks the floor.
+    prompt: >-
+      portrait, single subject, vast blind cave-carver, chitinous plates,
+      stone-cracking forelimbs, half-emerged from tunnel, painterly
+      atmospheric, oppressive mood, isolated subject, no other figures
+    negative_prompt: >-
+      multiple figures, party, group, modern, futuristic, sci-fi, anime, cyberpunk, watermark, text
+  dark_forgemaster:
+    description: |
+      The brood's smith, working a forge that does not need fire. Crafts
+      adds mid-fight — three iron-and-bone constructs over the encounter,
+      each one harder than the last. Interrupting the forge-cast skips
+      a construct; missing the interrupt by half a second still spawns
+      it, just smaller. The pattern is twenty-second cadence with a
+      false tell at minute two.
+    prompt: >-
+      portrait, single subject, dark Hearthkin-shaped forgemaster, iron
+      half-mask, hammer of black metal, cold forge behind him, painterly
+      atmospheric, oppressive mood, isolated subject, no other figures
+    negative_prompt: >-
+      multiple figures, party, group, modern, futuristic, sci-fi, anime, cyberpunk, watermark, text
+  the_carver_mother:
+    description: |
+      The Carver-Mother. The Hearthkin who survived the seventh shift
+      drew her once on a slate and the slate is still in the Sundering
+      records under "do not seek." Her phase-two snuffs every light in
+      the chamber — the fight goes blind, sound-cued only, with three
+      cleave tells the party has to learn by their footfall. Forty
+      seconds in the dark before any light returns.
+    prompt: >-
+      portrait, single subject, vast pale matriarch cave-creature,
+      eyeless brood-queen, layered chitin, brood-eggs at her feet,
+      painterly atmospheric, oppressive mood, isolated subject, no other
+      figures
+    negative_prompt: >-
+      multiple figures, party, group, modern, futuristic, sci-fi, anime, cyberpunk, watermark, text

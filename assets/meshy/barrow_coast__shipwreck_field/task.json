@@ -1,0 +1,16 @@
+{
+  "id": "019dc76c-38b3-7d56-afcb-5a27dce2121a",
+  "type": "text-to-image",
+  "ai_model": "nano-banana-pro",
+  "prompt": "establishing shot, shingle beach below grey sea cliffs strewn with broken hulls of wrecked ships, salt-spray, leaden grey light, painterly atmospheric, late-medieval, no figures",
+  "status": "SUCCEEDED",
+  "progress": 100,
+  "created_at": 1777167251647,
+  "started_at": 1777167252396,
+  "finished_at": 1777167355916,
+  "expires_at": 1777426555916,
+  "image_urls": [
+    "https://assets.meshy.ai/2872987b-afbf-4fa0-95f0-231417dc567c/uploads/image_019dc76c-38b3-7d56-afcb-5a27dce2121a_0.png?Expires=1777426555&Signature=DdcT1aBMUuOZe31kssaKq3mJ0VOU9A7dVsLDhOFMxEV0tFB3ZNYnX~tNiifbnbTo1NC6E4ZQxulhoWBsooduh1ZHUkOAUzB2PyBa8NZ7V6zM8QpH1KFCGkZbi6xfa3RpQMVUriSvcVSS9qgF-uSiV6V0nd2O4ZZT4rIMyBbkVjNZYEpQMZMV0msdB9pGck9XTYALQN~6yPEagS9Es~XNWM71-VDbsdEv080pvRqEo4S44velGRRhbsSzQ3I7iLCJsAHzCPb0pD6xCZ2~W357kJQS0bbO6C0tr2FzEmBViKOYFk4hlNmkC0Z71d-Txy0NqaG5cmYNY1kggIZbeofynQ__&Key-Pair-Id=K1VGYTHIYLM9UM"
+  ],
+  "consumed_credits": 9
+}

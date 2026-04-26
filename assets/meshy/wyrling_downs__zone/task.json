@@ -1,0 +1,16 @@
+{
+  "id": "019dc773-70ed-7788-b9c2-01ce6e943933",
+  "type": "text-to-image",
+  "ai_model": "nano-banana-pro",
+  "prompt": "wide establishing landscape, rolling green downs with hedgerow lanes, half-buried thatched burrow-cottages, hawthorn in bloom, late summer warm light, painterly atmospheric, late-medieval pastoral, no figures",
+  "status": "SUCCEEDED",
+  "progress": 100,
+  "created_at": 1777167724790,
+  "started_at": 1777167725431,
+  "finished_at": 1777167766251,
+  "expires_at": 1777426966251,
+  "image_urls": [
+    "https://assets.meshy.ai/2872987b-afbf-4fa0-95f0-231417dc567c/uploads/image_019dc773-70ed-7788-b9c2-01ce6e943933_0.png?Expires=1777426966&Signature=qDPUbAExW0FpF69cPO-ZdbXuB3Qn8ySrcgNn5gD57r2BiJ5WgpzIG~~93jHx2kInQYQ2FlppEA6L24AsYAB~Ifi7T-mJWJ7WTNGWi4zsI3kdmIFUH-uc8yOdtcby6q3AxCU6Q0xgPVyddXzONwbYL9HZWGq4hOhIL~oWxveXRBHoPE4EzVXnJi-M2Le6z0tqSUpM4PguIjoPpaHoaze7gJwFphl2gcbPIH5q7mRthiVCr8I3bZNt-sNGPQEYmllq06SdhWvs9Uf-FT91gxf37MoSAw8KW~z6ZDxMmvbqJC0uRiVmIBVUU33ceu5cBEUudZFIQxJRK8eGUNwieV2PuQ__&Key-Pair-Id=K1VGYTHIYLM9UM"
+  ],
+  "consumed_credits": 9
+}

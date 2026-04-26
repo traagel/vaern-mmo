@@ -1,0 +1,16 @@
+{
+  "id": "019dc72f-acb0-704f-9114-55e1c0b4b209",
+  "type": "text-to-image",
+  "ai_model": "nano-banana-pro",
+  "prompt": "establishing shot, ancient oak grove around a black standing stone and a cold spring, small fire under the central tree, dappled overcast light, painterly atmospheric, no figures",
+  "status": "SUCCEEDED",
+  "progress": 100,
+  "created_at": 1777163283652,
+  "started_at": 1777163284022,
+  "finished_at": 1777163375957,
+  "expires_at": 1777422575957,
+  "image_urls": [
+    "https://assets.meshy.ai/2872987b-afbf-4fa0-95f0-231417dc567c/uploads/image_019dc72f-acb0-704f-9114-55e1c0b4b209_0.png?Expires=1777422575&Signature=O2Gk2qiaUdC0NjrdSqaQFWTkXihQXB5IJVSXd-QuL0h24w2wr2JZH6nhDDGR2DHqpQzL-bR8zsqDZxPpxdN0bOjaW-BAuv~dFBjupoVTdjyPohrAppp6L1TXW-BpkYhr-mJ6raKoId9SNAXmrDH9QKGd3yW3hFZcg723ELpkTDgcdBN~i0p2mdpozjPWRFoZId1x4IBEkw-r8tjEBkh4fdkbPLe6j7jNutPFawWdntzRm77bqX5IjQjqhJJUxKyKQ4It1MECK8ppu3b6eXFkQjvsCWHPhcmaMeu4F48KbdbhH7pag21F031Fso1vlOnmBN79I6nyfaEVVNFWiLM-bA__&Key-Pair-Id=K1VGYTHIYLM9UM"
+  ],
+  "consumed_credits": 9
+}

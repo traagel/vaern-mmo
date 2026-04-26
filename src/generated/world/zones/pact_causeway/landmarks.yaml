@@ -1,0 +1,41 @@
+id: landmarks__pact_causeway
+zone: pact_causeway
+landmarks:
+- id: oath_grove
+  name: The Oath Grove
+  offset_from_zone_origin:
+    x: 200.0
+    z: 100.0
+  description: A grove of stunted steppe-junipers planted by the founding Speaker, each one
+    carrying a single bound oath. The trees are pruned annually by Hold scribes.
+  prompt: establishing shot, grove of stunted juniper trees on a windswept causeway side,
+    small tags hanging from each, overcast cold light, painterly atmospheric, late-medieval
+    steppe, no figures
+- id: scribe_cave
+  name: The Scribe's Cave
+  offset_from_zone_origin:
+    x: -180.0
+    z: 60.0
+  description: A cave below the causeway where a scribe kept the original oath-rolls during
+    the winter of the Coming. The rolls are now in the Hold; the cave is preserved.
+  prompt: establishing shot, small cave entrance below a stone causeway ridge, weathered scribal
+    markings on the walls, lantern-lit interior, painterly atmospheric, late-medieval steppe,
+    no figures
+- id: standing_horse_stones
+  name: The Standing-Horse Stones
+  offset_from_zone_origin:
+    x: 90.0
+    z: -240.0
+  description: Three stones carved into rough horse-shape, said by the Kharun to mark a foundational
+    herd-vow. The stones are old enough that the carving has weathered into suggestion.
+  prompt: establishing shot, three weathered horse-shaped standing stones on a windswept steppe
+    slope, leaden afternoon light, painterly atmospheric, late-medieval steppe, no figures
+- id: fallen_pillar_field
+  name: The Fallen-Pillar Field
+  offset_from_zone_origin:
+    x: -90.0
+    z: -180.0
+  description: A field where seven oath-pillars have fallen over the centuries. The Speaker
+    visits the field annually. The fallen pillars are not raised again.
+  prompt: establishing shot, windswept field with seven fallen carved oath-pillars in a rough
+    line, overcast cold light, painterly atmospheric, late-medieval steppe, no figures

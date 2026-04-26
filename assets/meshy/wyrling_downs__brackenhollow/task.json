@@ -1,0 +1,16 @@
+{
+  "id": "019dc76b-c977-7d51-800f-6bf63c275cea",
+  "type": "text-to-image",
+  "ai_model": "nano-banana-pro",
+  "prompt": "establishing shot, woodland-edge Wyrling outpost, communal timber hall above half-buried cottages, bracken and oak, overcast cool afternoon light, painterly atmospheric, late-medieval, no figures",
+  "status": "SUCCEEDED",
+  "progress": 100,
+  "created_at": 1777167223171,
+  "started_at": 1777167223568,
+  "finished_at": 1777167317008,
+  "expires_at": 1777426517008,
+  "image_urls": [
+    "https://assets.meshy.ai/2872987b-afbf-4fa0-95f0-231417dc567c/uploads/image_019dc76b-c977-7d51-800f-6bf63c275cea_0.png?Expires=1777426517&Signature=O8aoGkVlMLDazmhoQzjVZkuNhbYhsEYVyw~cZvPWmmbwAK5ibgAk3DMqcdzFWrMLcryVB50pjy8QL6AgidDuakhopyhnJCsonroMM8qAJNUOqGeZp4ykVJXYv8UuxtvZaQnXXG3uKZRYz9Bpw2lnJJnAPTfuG8U4CkBesDc75J2rE5g8gyFZ~O-pVU2YE5SJfvdLwdr30smA6SvU9YQ5LXnvQfADmVvLoeI5gnizRIWdXJQR6HxKxczsiG5~xa88Tzrs-5AIroaMFSUnNTyON30OeEEchnaa9AWr4NNoE4IzN97flYirhZimFr-G36vYkxoXf8BKg5F6fllmrkVlrA__&Key-Pair-Id=K1VGYTHIYLM9UM"
+  ],
+  "consumed_credits": 9
+}

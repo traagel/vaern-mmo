@@ -1,0 +1,43 @@
+id: landmarks__heartland_ride
+zone: heartland_ride
+landmarks:
+- id: flood_meadow
+  name: The Flood-Meadow
+  offset_from_zone_origin:
+    x: -200.0
+    z: 110.0
+  description: A low meadow that floods most springs, fertilising the next season's hay. The
+    Heartland's farmers fight over its margins every year and reach the same compromise every
+    year.
+  prompt: establishing shot, wide meadow on a slow river bend, partly flooded with shining
+    water, distant farmhouses, late afternoon warm light, painterly atmospheric, late-medieval,
+    no figures
+- id: gallows_oak
+  name: The Gallows-Oak
+  offset_from_zone_origin:
+    x: 220.0
+    z: -180.0
+  description: A roadside oak the Wardens used as a gallows in the bandit war eight years
+    back. The oak still stands, the rope-marks still showing in the highest branch. Nobody
+    has been hanged from it since.
+  prompt: establishing shot, ancient lone oak by a country roadside, low afternoon light,
+    marked branch, painterly atmospheric, late-medieval, oppressive mood, no figures
+- id: courier_relay_ruin
+  name: The Courier-Relay Ruin
+  offset_from_zone_origin:
+    x: 60.0
+    z: 240.0
+  description: A burnt-out relay station from the early Concord, never rebuilt. The chimney
+    still standing, the foundations still marked by stone. Couriers ride past it without slowing.
+  prompt: establishing shot, burnt-out stone post-station ruin beside a country road, single
+    chimney still standing, weeds in the foundations, dim afternoon light, painterly atmospheric,
+    no figures
+- id: cattle_ford_pillar
+  name: The Cattle-Ford Pillar
+  offset_from_zone_origin:
+    x: -90.0
+    z: -270.0
+  description: A stone pillar marking a working cattle-ford on the Ash. The carving says 1417
+    in old script. Nobody locally is sure what calendar the date refers to.
+  prompt: establishing shot, stone pillar beside a wide shallow river ford, cattle tracks
+    in the mud, late afternoon warm light, painterly atmospheric, late-medieval, no figures

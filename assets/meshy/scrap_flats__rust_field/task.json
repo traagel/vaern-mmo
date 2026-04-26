@@ -1,0 +1,16 @@
+{
+  "id": "019dc76f-0f9f-7b76-bf40-6bf907d8a5e3",
+  "type": "text-to-image",
+  "ai_model": "nano-banana-pro",
+  "prompt": "establishing shot, vast field of rusted salvaged iron pieces in disorderly piles, sickly amber-green dusk, painterly atmospheric, no figures",
+  "status": "SUCCEEDED",
+  "progress": 100,
+  "created_at": 1777167437743,
+  "started_at": 1777167437785,
+  "finished_at": 1777167467305,
+  "expires_at": 1777426667305,
+  "image_urls": [
+    "https://assets.meshy.ai/2872987b-afbf-4fa0-95f0-231417dc567c/uploads/image_019dc76f-0f9f-7b76-bf40-6bf907d8a5e3_0.png?Expires=1777426667&Signature=kJPQUbwQeLeYxwfESkb9Q4oym1XHrIVivs4SMeG4BRDR-iTW2rY8VLG4UxZAPhhVi6O0nPLVzahip-CoyzigHA4mEdfW45Xu9JUiS1cyzLwJbwgio1gIRWIImIyUfY6bBorFfU7YBTCDe2wXJ0J-HNXZ9leMe7h3zK-UYBqOxw6NbPpD13-nJKEGvaB~ovw5kYF7QDVnrUCpGcNgYZmsIuNKd64FARevUKj0gZPN7gb6ktrOVl2rMFM1e~gpw5peUJT7H1XuS9hVCo2Obbhhg9OHTvVtEU1KYu-L0Ie5vw3m~~-Ucc0f7cf~ypwktMLktF3Jthpx7EnU8~BJ4ipy8Q__&Key-Pair-Id=K1VGYTHIYLM9UM"
+  ],
+  "consumed_credits": 9
+}

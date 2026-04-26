@@ -1,0 +1,16 @@
+{
+  "id": "019dc769-f0c2-7669-8933-8c3263797d8c",
+  "type": "text-to-image",
+  "ai_model": "nano-banana-pro",
+  "prompt": "establishing shot, iron-banded fortress dug into a great turf-covered barrow above grey sea cliffs, salt-wind, low cold light, painterly atmospheric, late-medieval, no figures",
+  "status": "SUCCEEDED",
+  "progress": 100,
+  "created_at": 1777167102197,
+  "started_at": 1777167102213,
+  "finished_at": 1777167120496,
+  "expires_at": 1777426320496,
+  "image_urls": [
+    "https://assets.meshy.ai/2872987b-afbf-4fa0-95f0-231417dc567c/uploads/image_019dc769-f0c2-7669-8933-8c3263797d8c_0.png?Expires=1777426320&Signature=dTFyIlgLBZHFtfwtasXdLWBntf71bGmOHIyOWMUG2uyk4z1eJYA-c8meiCdYKzBSYc7ifNtvu3DkBq7mLvz24cmIIkmSPdcsk6INFsHO2h8mYFd1fWUHdunSITqBlI4zdc30DLKXu8TD-Lqxd6hIuMFpsGH2KhSYjJsM~B~kZQ-rfMp71xJ96jn845WXsg8~CmWX1ZEMmOtHu0m8muWbts4QprDPmx1mpthV6D9Gvs3970YuvSsA8srwsj~yxQHOE~DuDmevcD4ibk72mqjoZyqByyUlvzbpVAEvbSDof2-K0qT97AVceCH9cNN-d0AXxi56Jl9-LdXNzHXMSMzsKQ__&Key-Pair-Id=K1VGYTHIYLM9UM"
+  ],
+  "consumed_credits": 9
+}

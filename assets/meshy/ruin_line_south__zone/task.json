@@ -1,0 +1,16 @@
+{
+  "id": "019dc772-7038-7762-a49e-221d77d75a4a",
+  "type": "text-to-image",
+  "ai_model": "nano-banana-pro",
+  "prompt": "wide establishing landscape, half-submerged ruin-line fortifications in a salt-marsh, leaning broken arcane spire half in the water, low sickly light, painterly atmospheric, oppressive mood, no figures",
+  "status": "SUCCEEDED",
+  "progress": 100,
+  "created_at": 1777167659087,
+  "started_at": 1777167659843,
+  "finished_at": 1777167687651,
+  "expires_at": 1777426887651,
+  "image_urls": [
+    "https://assets.meshy.ai/2872987b-afbf-4fa0-95f0-231417dc567c/uploads/image_019dc772-7038-7762-a49e-221d77d75a4a_0.png?Expires=1777426887&Signature=apf5NrzMIznpMv1i4k6-TwyCEAaLidb~sO1JeQ73VtYCKnMKy-~pgdvOgAkgrvxsPBsUcz6s6lypUzbJyqzxAYEbtE5uXNJTO~DOvF832ZHK1rx5v4vKt1vr5LXJBvfZ9GBWJ1QkF7gKsQXiYYFFKaEOP~h8s91OIM30GZ8wdu4MowkMKFJ9403EoJvNiQiA-DTR~f8UWLPDHZvK9eAXkN7Odu-T~LQOsywF6k3g9M0OaPZAWKyXX3EVn45tbsT6S5XDC6pVINpbtw4z-c02ltT~XiKwz6~XF5gAu7VU8q7ChWGqhtdGlsiXSOuFM0b6aVORhcENWuLsn2Kdbk-uew__&Key-Pair-Id=K1VGYTHIYLM9UM"
+  ],
+  "consumed_credits": 9
+}

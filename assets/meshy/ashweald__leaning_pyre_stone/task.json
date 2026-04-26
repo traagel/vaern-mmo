@@ -1,0 +1,16 @@
+{
+  "id": "019dc76c-0b61-7d54-ab3f-6850870b18e8",
+  "type": "text-to-image",
+  "ai_model": "nano-banana-pro",
+  "prompt": "establishing shot, leaning ancient pyre-stone in a charred forest clearing, scorched soil at its base, sickly amber-grey light, painterly atmospheric, late-medieval, no figures",
+  "status": "SUCCEEDED",
+  "progress": 100,
+  "created_at": 1777167240044,
+  "started_at": 1777167240754,
+  "finished_at": 1777167299900,
+  "expires_at": 1777426499900,
+  "image_urls": [
+    "https://assets.meshy.ai/2872987b-afbf-4fa0-95f0-231417dc567c/uploads/image_019dc76c-0b61-7d54-ab3f-6850870b18e8_0.png?Expires=1777426499&Signature=bsdhmq5yL81cK0MI2fUBZis-f2YffsI1Caq6GZsE1Z6~m26lVLUPFCbjBFULt6KBmcIFkpWNLk7zIwMPwEl5b~9M4tqIGKetXQRqJa0RQgclBenhSfRpTT4dd3cpxg9efjjGR0RD82qiwLSyWNkPTpPJ~FjHfJzZuzcP8LFLAyK5AqJuZAROPVCJpMSDcImSVjshZSTomJ81PfMeg0IItfcAW3ZfWzXRkqivLQ~cpGYnRxCJLILQkyoFydQHWwIE2beLd6IVcMUr7Ze6GzHg8rDSD~4N43A8b7baI5RvBXHrqwePjGgIAEg2gsrBal73yvvPPBlZZC7MIXyrOKGaKA__&Key-Pair-Id=K1VGYTHIYLM9UM"
+  ],
+  "consumed_credits": 9
+}

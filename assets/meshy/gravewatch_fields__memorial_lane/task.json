@@ -1,0 +1,16 @@
+{
+  "id": "019dc76d-5daa-7b2a-aa2d-1ac5ec71a7da",
+  "type": "text-to-image",
+  "ai_model": "nano-banana-pro",
+  "prompt": "establishing shot, long stone road lined with low memorial stones on both sides, windswept turf, leaden cold light, painterly atmospheric, late-medieval, no figures",
+  "status": "SUCCEEDED",
+  "progress": 100,
+  "created_at": 1777167326660,
+  "started_at": 1777167327542,
+  "finished_at": 1777167352526,
+  "expires_at": 1777426552526,
+  "image_urls": [
+    "https://assets.meshy.ai/2872987b-afbf-4fa0-95f0-231417dc567c/uploads/image_019dc76d-5daa-7b2a-aa2d-1ac5ec71a7da_0.png?Expires=1777426552&Signature=m3UpHTLd2oeI9-YLgnjd9x16Kza3ZAjPYyzrT~O-D6HRaSDuZryIC5rtiy2wu0--NQ1tdBCypC0mtVMxZb4-KJbRdjM4tWbMMttZ3rsBUru4PPCI0f9pHEKHsJyQ-7TsZxy6RBaPv6TlrnpZjSiLDbfsOY4AS5BaAYh3uyeMhP1xHDB~K~qoVxwuqqB9TFnkns4TGdDBFlg5L8qF0Vna0njADy3H9vmKJQCuvpXs~ArZIwIinwrcRGiHNobemPllSndhDjD-vw4mnm7-R4djj7vzzz1c5-~DBPrscaNCmEKgM0UTTNZFXG5nGLE5v938vjMdydKPwN1LsFpO0C5HOQ__&Key-Pair-Id=K1VGYTHIYLM9UM"
+  ],
+  "consumed_credits": 9
+}

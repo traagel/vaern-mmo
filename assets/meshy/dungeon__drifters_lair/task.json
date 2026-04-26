@@ -1,0 +1,16 @@
+{
+  "id": "019dc72f-aca6-704f-9d63-523fc4e5ae13",
+  "type": "text-to-image",
+  "ai_model": "nano-banana-pro",
+  "prompt": "establishing shot, dungeon interior, low-vaulted carved stone chamber lit by a single ritual brazier, Drifter wards painted on the walls, mist seeping from the floor, painterly atmospheric, oppressive mood, no figures",
+  "status": "SUCCEEDED",
+  "progress": 100,
+  "created_at": 1777163283667,
+  "started_at": 1777163284028,
+  "finished_at": 1777163302555,
+  "expires_at": 1777422502555,
+  "image_urls": [
+    "https://assets.meshy.ai/2872987b-afbf-4fa0-95f0-231417dc567c/uploads/image_019dc72f-aca6-704f-9d63-523fc4e5ae13_0.png?Expires=1777422502&Signature=QyQHaR5Wltbez-QUpEr5rZU200rpTjrYkJHc38b5v8oI7tdExw616U23kKSUGM67oh31Yox5PwRNDbgHEax~a3vAqfQB6112J8zkeCJfJBECsxbi0kvL8NDWT5Y7HxsvvFKBeLz4CFH2YIivU97q~zS9qvFTMC~oP9SOs6mFHPsUqKP1xHVg~5eBEqC18sCMXwWGbwjoPaGo~eY6UkRXfjEYXKXPOpFRR2DpEV1I~wYJnvRnHFmemh0Eok0DK1tteyRU3ZLC3v~dayI3g6FBrxLP51dIwVjziyZ4jArnrM9pgzNtudvk~KZaoPPEsS8zPnVNnwSMlW8pXnlxZwwWYw__&Key-Pair-Id=K1VGYTHIYLM9UM"
+  ],
+  "consumed_credits": 9
+}

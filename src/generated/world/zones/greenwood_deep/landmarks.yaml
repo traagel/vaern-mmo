@@ -1,0 +1,39 @@
+id: landmarks__greenwood_deep
+zone: greenwood_deep
+landmarks:
+- id: deer_grave
+  name: The Deer-Grave
+  offset_from_zone_origin:
+    x: 90.0
+    z: 250.0
+  description: A small cairn over a deer the Firland buried with formal rites. The deer was
+    killed in error; the rites are a form of apology. The cairn is tended.
+  prompt: establishing shot, small mossy stone cairn in deep fir forest, antlers laid against
+    it, dim green-grey light, painterly atmospheric, late-medieval fey, no figures
+- id: tarnstone_path
+  name: The Tarnstone Path
+  offset_from_zone_origin:
+    x: -180.0
+    z: 130.0
+  description: A series of mossy stones marking a walking-path the Firland use without explaining.
+    The path arrives at a different place each season.
+  prompt: establishing shot, line of mossy stones leading through deep ancient fir forest,
+    dim filtered green light, painterly atmospheric, late-medieval fey, no figures
+- id: speakers_grave_oak
+  name: The Speakers' Grave-Oak
+  offset_from_zone_origin:
+    x: 60.0
+    z: -260.0
+  description: An immense oak that grew over the burial of three Firland Speakers. The Firland
+    visit it once a generation. Outsiders are asked not to lean on the trunk.
+  prompt: establishing shot, immense ancient oak in deep fir forest, soft green twilight,
+    weathered standing stones at its roots, painterly atmospheric, late-medieval fey, no figures
+- id: wolfless_glade
+  name: The Wolfless Glade
+  offset_from_zone_origin:
+    x: -90.0
+    z: -220.0
+  description: A clearing where wolves do not enter, by some unspoken consensus. The Firland
+    use the glade for night-camp without ever explicitly explaining the privilege.
+  prompt: establishing shot, peaceful forest glade with mossy fallen log, soft green light,
+    painterly atmospheric, late-medieval fey, no figures

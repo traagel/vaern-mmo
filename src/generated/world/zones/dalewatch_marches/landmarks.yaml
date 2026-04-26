@@ -6,33 +6,100 @@ landmarks:
   offset_from_zone_origin:
     x: -240.0
     z: 120.0
+  description: |
+    A single farmhouse and three weather-worn barns set against the
+    western ridge. Brenn keeps sheep and the occasional cow; the dogs are
+    the best part of the local economy. Wolf packs come down from the
+    ridge at night, and the croft has lost lambs four times this season.
+  prompt: >-
+    establishing shot, single weathered timber farmhouse with three small
+    barns, sheep grazing, low ridge in the background, late afternoon
+    overcast light, painterly atmospheric, late-medieval, no figures
 - id: dalewatch_reed_brake
   name: The Reed-Brake
   offset_from_zone_origin:
     x: -150.0
     z: 200.0
+  description: |
+    A shallow marsh on a slow river bend, threaded with reed-cutter paths
+    and the occasional half-rotten coracle. Mist comes off the water at
+    first light. Corlen's old drifter camp was hidden in an abandoned
+    fisherman's hut here — the burnt timbers and the symbol scratched
+    into the door are still readable in good weather.
+  prompt: >-
+    establishing shot, shallow reed marsh on a slow river bend, mist
+    rising from black water, abandoned thatch fisher hut on stilts, dawn
+    cool light, painterly atmospheric, no figures
 - id: thornroot_grove
   name: Thornroot Grove
   offset_from_zone_origin:
     x: 100.0
     z: 140.0
+  description: |
+    A ring of old-growth oak around a black standing stone and a cold
+    spring. The keeper — half druid, half forester, wholly suspicious of
+    outsiders — tends a small fire under the largest tree. The beasts
+    here get territorial when something's wrong with the grove, and
+    lately something is.
+  prompt: >-
+    establishing shot, ancient oak grove around a black standing stone
+    and a cold spring, small fire under the central tree, dappled
+    overcast light, painterly atmospheric, no figures
 - id: sidlow_cairn
   name: Sidlow Cairn
   offset_from_zone_origin:
     x: 180.0
     z: -180.0
+  description: |
+    Low turf-covered barrow-mounds on the ridge south-east of the Keep —
+    old Mannin grave-sites no one cuts hay near. Local lore says the
+    cairns "don't stay shut", and at least three of the slabs have been
+    moved recently in ways no badger could account for.
+  prompt: >-
+    establishing shot, low turf-covered barrow mounds on a windswept
+    ridge, weathered standing slabs, scattered crows, twilight cold
+    light, oppressive mood, painterly atmospheric, no figures
 - id: copperstep_mine
   name: Copperstep Mine
   offset_from_zone_origin:
     x: 150.0
     z: -260.0
+  description: |
+    A copper vein that played out a decade ago, and that the company
+    sealed when too many men stopped coming back. Drifter cultists have
+    pried open the upper shafts and dug deeper — not for ore but for
+    something at the bottom of the longest drift. The lift cage is gone;
+    you go down on rope.
+  prompt: >-
+    establishing shot, abandoned copper mine entrance cut into a
+    hillside, broken winch and rotted timber, scattered ore tailings,
+    overcast cold light, painterly atmospheric, late-medieval, no figures
 - id: blackwash_fens
   name: The Blackwash Fens
   offset_from_zone_origin:
     x: -50.0
     z: 280.0
+  description: |
+    The deep marsh beyond the Reed-Brake. Black water, no roads, the
+    wrong smells. Brine-shade aberrations rise from the channels at dusk
+    and don't go quietly. This is where the main chain ends, and where
+    the sealed confessions of three Drifters were found drifting in a
+    nailed-shut barrel.
+  prompt: >-
+    establishing shot, deep mist-bound black-water fen, broken sedge
+    islands, twisted dead trees, sickly green twilight, oppressive
+    atmosphere, painterly, no figures, no characters
 - id: drifters_lair
   name: The Drifter's Lair
   offset_from_zone_origin:
     x: 20.0
     z: 320.0
+  description: |
+    A cave entrance in the fen, edged with hand-cut stone and the remains
+    of a Drifter ward-circle. Inside: a tight encounter chamber where
+    Grand Drifter Valenn finished what the Censure couldn't bury. The
+    Wake's anchor sits at the back, still humming.
+  prompt: >-
+    establishing shot, cave entrance in a marsh edged with carved stone
+    and a broken ward-circle, lantern at the threshold, low fog over
+    black water, painterly atmospheric, oppressive mood, no figures

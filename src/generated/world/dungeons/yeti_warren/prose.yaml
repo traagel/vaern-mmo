@@ -1,0 +1,62 @@
+dungeon:
+  description: |
+    A network of ice-mammal galleries gnawed beneath the Spine's western
+    shoulder. The trapper Hesska keeps a tally-stick at her hut on the
+    surface — one notch for every party that doesn't come back, and she
+    has stopped pretending the count is for anyone but herself. The
+    warren stinks of wet fur and old blood. Five-man country. The cold
+    here is the kind that kills the careless before any beast does.
+  prompt: >-
+    establishing shot, dungeon interior, vast ice cavern strewn with
+    bone piles and frozen carcasses, blue glacial light, mammoth tusks
+    embedded in the walls, painterly atmospheric, oppressive mood, no
+    figures
+bosses:
+  alpha_yeti:
+    description: |
+      The pack-father. Old enough that one shoulder has gone silver and
+      the other still drips from a wound the trappers gave him last
+      winter. He doesn't claw — he grips, lifts, and throws across the
+      gallery into whatever wall is nearest. Hesska's tally lists nine
+      men he's killed that way, and she's stopped writing the names down
+      because she keeps running out of room.
+    prompt: >-
+      portrait, single subject, hulking ice-furred yeti alpha, silver
+      shoulder scarred from spear wounds, blood-matted claws, breath
+      steaming, painterly atmospheric, oppressive mood, isolated
+      subject, no other figures
+    negative_prompt: >-
+      multiple figures, party, group, modern, futuristic, sci-fi,
+      anime, cyberpunk, watermark, text
+  mammoth_brute:
+    description: |
+      A mammoth bull driven half-mad by living too long underground. He
+      paces the pillared chamber and charges anything that doesn't get
+      behind a column in time, and the columns are load-bearing — bring
+      enough of them down and the ceiling answers. Hesska says he was
+      part of a herd once. She does not say what happened to the rest,
+      only that the warren ate them slowly.
+    prompt: >-
+      portrait, single subject, massive subterranean mammoth bull,
+      tusks splintered from charges, ice-crusted hide, eyes pale and
+      furious, painterly atmospheric, oppressive mood, isolated
+      subject, no other figures
+    negative_prompt: >-
+      multiple figures, party, group, modern, futuristic, sci-fi,
+      anime, cyberpunk, watermark, text
+  frozen_shaman:
+    description: |
+      The yeti the others bring meat to. He sits in the deep gallery
+      ringed by frost-bound ancestor poles, and when the fight goes
+      against him he calls his dead pack back as cold-shrouded shades —
+      claws still working, hunger still on them. There is a phase, brief
+      and bad, where ordinary cold cannot touch him. The shaman knew the
+      Spine before the Coming did.
+    prompt: >-
+      portrait, single subject, hoary yeti shaman draped in frostbound
+      bones, ancestor totem at his back, pale spirit-light at his
+      claws, painterly atmospheric, oppressive mood, isolated subject,
+      no other figures
+    negative_prompt: >-
+      multiple figures, party, group, modern, futuristic, sci-fi,
+      anime, cyberpunk, watermark, text

@@ -1,0 +1,16 @@
+{
+  "id": "019dc76b-3813-7afe-b456-8db23ecc6284",
+  "type": "text-to-image",
+  "ai_model": "nano-banana-pro",
+  "prompt": "establishing shot, vast Hearthkin underground hall carved into granite, suspended forge-lamps, basalt columns, busy anvil-yards, warm forge glow, painterly atmospheric, late-medieval dwarven, no figures",
+  "status": "SUCCEEDED",
+  "progress": 100,
+  "created_at": 1777167185954,
+  "started_at": 1777167185966,
+  "finished_at": 1777167226541,
+  "expires_at": 1777426426541,
+  "image_urls": [
+    "https://assets.meshy.ai/2872987b-afbf-4fa0-95f0-231417dc567c/uploads/image_019dc76b-3813-7afe-b456-8db23ecc6284_0.png?Expires=1777426426&Signature=W4BT1t6BNRPJujmhpKq2Ymgk9nekmW9Lt2ssxaq8CMaHBSvNUDANre~ME8s1bk4Z-THUbjpvoVoT-t1jYTrqOULGIg~rgBgLHDs~TP1a2lCtfCuEYJ5u0~nn-Ytw676Qnpn1gfYJf4nt~234aYFiypEdQz5y5lSYvibbCA1TvRB8CuEdcD~v7yQ7jdcTIRp8aO20MP6eaCNd-PKfpguPCCN3ValGBs~nu5kpfDSEpdSgoeyumDbH1LLF~uo3eRLJpatwdCruxevUfZMCam2RlSA-cWuz7p8qUrBS~Rp~83FzESj-ua8A1TK0Gff99Kye0N2ZGm1bNTJwwCCWuPh7lg__&Key-Pair-Id=K1VGYTHIYLM9UM"
+  ],
+  "consumed_credits": 9
+}

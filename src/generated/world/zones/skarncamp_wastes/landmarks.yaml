@@ -1,0 +1,43 @@
+id: landmarks__skarncamp_wastes
+zone: skarncamp_wastes
+landmarks:
+- id: widow_landing
+  name: The Widow's Landing
+  offset_from_zone_origin:
+    x: 200.0
+    z: -100.0
+  description: A weed-grown stone landing where Skarn widows traditionally wait for ships
+    that never come back. The waiting is formal and respected; the ships are still tracked
+    in the rolls.
+  prompt: establishing shot, weed-grown stone landing on a basalt shoreline above a cold fjord,
+    salt-rust on the stones, leaden cold afternoon light, painterly atmospheric, late-medieval
+    viking, no figures
+- id: warstake_circle
+  name: The War-Stake Circle
+  offset_from_zone_origin:
+    x: -160.0
+    z: 120.0
+  description: A ring of driven war-stakes around a turf clearing where raid-captains formally
+    challenge each other. The stakes are replaced as they rot; the names on them aren't.
+  prompt: establishing shot, ring of driven war-stakes in a turf clearing on a basalt rise,
+    names carved into each stake, leaden cold light, painterly atmospheric, late-medieval
+    viking, no figures
+- id: seabird_cliff
+  name: The Seabird Cliff
+  offset_from_zone_origin:
+    x: 90.0
+    z: 220.0
+  description: A cliff used by every coast-bird in the wastes for nesting. The Skarn climb
+    it once a year for eggs. The climbing is ritualised and partly suicidal.
+  prompt: establishing shot, sheer black basalt sea cliff full of nesting seabirds, salt-spray,
+    leaden cold light, painterly atmospheric, late-medieval, no figures
+- id: burnt_longhall
+  name: The Burnt Longhall
+  offset_from_zone_origin:
+    x: -90.0
+    z: -260.0
+  description: A burnt-out Skarn longhall from a feud forty years back. The hall was left
+    as a warning. The warning has weathered into a kind of memorial.
+  prompt: establishing shot, burnt-out Skarn timber longhall on a windswept basalt slope,
+    blackened beams, leaden cold light, painterly atmospheric, late-medieval viking, oppressive
+    mood, no figures

@@ -2,6 +2,17 @@ id: harriers_rest
 zone: dalewatch_marches
 name: Harrier's Rest
 role: outpost
+description: |
+  A wooden chapel to a minor road-saint, with a one-pot hostel tucked
+  behind the bell. Pilgrims and travelling smiths stop here before the
+  bridge. Brother Fennick keeps the place — translator and letter-writer
+  when he isn't tending the lamp. Sheltered from the fens by the upland
+  scrub.
+prompt: >-
+  establishing shot, small wooden roadside chapel with bell tower, modest
+  hostel beside it, upland scrub and dark pines, overcast afternoon,
+  lantern by the door, painterly atmospheric, late-medieval Burgundian,
+  no figures
 amenities:
 - innkeeper
 quest_givers: 2

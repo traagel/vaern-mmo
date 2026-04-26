@@ -1,0 +1,59 @@
+zone:
+  vibe: Kharun stone-roads — buried oaths, traveling scribes, formal violence.
+  description: A long Kharun stone-causeway through the central pact steppes, lined with oath-pillars
+    older than any reigning house. The Pact-Speaker's scribes still road-walk it monthly,
+    reading the carvings and reporting any new ones to the Hold. The buried Oath-Pillar Vault
+    holds reliquary secrets the Speaker would prefer remained buried, which naturally is exactly
+    why someone is digging it up.
+  prompt: wide establishing landscape, long stone causeway across windswept highland steppe,
+    lines of carved oath-pillars on either side, distant storm front, cool grey light, painterly
+    atmospheric, late-medieval, no figures
+hubs:
+  causeway_hold:
+    description: The Causeway capital — a hold built into a mile-long stone causeway along
+      the steppe ridge, a road that is also a fortress and also an archive. Hold-Master Karul
+      keeps three different archives in three different languages and considers the difference
+      between them his life's work.
+    prompt: establishing shot, long stone causeway-hold along a steppe ridge, fortified gateways
+      at intervals, banners and oath-pillars on each, overcast cool afternoon light, painterly
+      atmospheric, late-medieval, no figures
+  stone_reader:
+    description: A scribal outpost halfway down the Causeway — three stone-reader scribes
+      who are formally not allowed to argue and informally do nothing else. Their job is to
+      transcribe new oath-pillar carvings and forward them to the Hold. The job's hidden purpose
+      is to find out who's adding to the carvings without authority.
+    prompt: establishing shot, Kharun scribal outpost beside a row of carved oath-pillars
+      on a stone causeway, three small yurts, ink stones and weighted scrolls, overcast cool
+      light, painterly atmospheric, late-medieval steppe, no figures
+  oath_pillar:
+    description: A pillar-shrine where the Causeway's oldest standing oath-stone meets a buried
+      reliquary. The reliquary was sealed by the founding Speaker for a reason. Someone has
+      been digging at the seal and leaving — the scribes insist — no tracks at all.
+    prompt: establishing shot, ancient Kharun oath-pillar shrine on a high steppe ridge, half-uncovered
+      buried reliquary stones, wind-driven cloud shadows, leaden cold light, painterly atmospheric,
+      late-medieval, no figures
+landmarks:
+  oath_grove:
+    description: A grove of stunted steppe-junipers planted by the founding Speaker, each
+      one carrying a single bound oath. The trees are pruned annually by Hold scribes.
+    prompt: establishing shot, grove of stunted juniper trees on a windswept causeway side,
+      small tags hanging from each, overcast cold light, painterly atmospheric, late-medieval
+      steppe, no figures
+  scribe_cave:
+    description: A cave below the causeway where a scribe kept the original oath-rolls during
+      the winter of the Coming. The rolls are now in the Hold; the cave is preserved.
+    prompt: establishing shot, small cave entrance below a stone causeway ridge, weathered
+      scribal markings on the walls, lantern-lit interior, painterly atmospheric, late-medieval
+      steppe, no figures
+  standing_horse_stones:
+    description: Three stones carved into rough horse-shape, said by the Kharun to mark a
+      foundational herd-vow. The stones are old enough that the carving has weathered into
+      suggestion.
+    prompt: establishing shot, three weathered horse-shaped standing stones on a windswept
+      steppe slope, leaden afternoon light, painterly atmospheric, late-medieval steppe, no
+      figures
+  fallen_pillar_field:
+    description: A field where seven oath-pillars have fallen over the centuries. The Speaker
+      visits the field annually. The fallen pillars are not raised again.
+    prompt: establishing shot, windswept field with seven fallen carved oath-pillars in a
+      rough line, overcast cold light, painterly atmospheric, late-medieval steppe, no figures

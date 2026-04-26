@@ -1,0 +1,16 @@
+{
+  "id": "019dc76d-e88a-76e1-af13-39035597d7c0",
+  "type": "text-to-image",
+  "ai_model": "nano-banana-pro",
+  "prompt": "establishing shot, mountain road corner with broken wagon frames in a snow-fall scar, leaden cold light, painterly atmospheric, late-medieval, oppressive mood, no figures",
+  "status": "SUCCEEDED",
+  "progress": 100,
+  "created_at": 1777167362198,
+  "started_at": 1777167362529,
+  "finished_at": 1777167458598,
+  "expires_at": 1777426658598,
+  "image_urls": [
+    "https://assets.meshy.ai/2872987b-afbf-4fa0-95f0-231417dc567c/uploads/image_019dc76d-e88a-76e1-af13-39035597d7c0_0.png?Expires=1777426658&Signature=HcWypbE96vBUBTZZPdFeAFH1mfZCbOpfHB6hFmkpwSNOgzW~Dn9ysekI0b3G3ANrLbgcAXtAv1s6bvbna1CQNY5wmn0sNGGPPM-1sGxIVu7F5723nwRTmTxnaFKy7P2isxmgssNg0sPaVM9Bvh7dMZy5Rq4CUkx7m6S7Ta2coVf5EvXM2CNQMnRHeTLlFmqFmxl4J907ZPZ7cRkYdnoj3OGyCE9X3Ci5AYZvaTuOtw9AT9hwP56Vjupt6litbzQDzwQxz7T-MMXNwBbDO9F7zAFblDLmS-Wx47L4JRA2gmK0sK8Q-JdEhb7mS2BoB7CraGjppuf2olH7U-DpJ1Fl8Q__&Key-Pair-Id=K1VGYTHIYLM9UM"
+  ],
+  "consumed_credits": 9
+}

@@ -1,0 +1,16 @@
+{
+  "id": "019dc71a-107e-780a-87a0-70ce007e94e5",
+  "type": "text-to-image",
+  "ai_model": "nano-banana-pro",
+  "prompt": "wide establishing landscape, deep oak and hazel forest in summer, dappled gold-hour shafts of light, fern undergrowth, deer trail winding between trunks, painterly atmospheric, no figures",
+  "status": "SUCCEEDED",
+  "progress": 100,
+  "created_at": 1777161867402,
+  "started_at": 1777161867599,
+  "finished_at": 1777161925228,
+  "expires_at": 1777421125228,
+  "image_urls": [
+    "https://assets.meshy.ai/2872987b-afbf-4fa0-95f0-231417dc567c/uploads/image_019dc71a-107e-780a-87a0-70ce007e94e5_0.png?Expires=1777421125&Signature=a2lP4wFMlD3ASurXCZKeJ28vqCHxqctK6VhCirOvk-~KmiNkBOH5QN4ejjD4NDcpqN2U6ydbiDSVoeUyNedP8aBcfNBDoFwaRa9Lg47nENOjAbNuK4lJH1vKGLIaHPrF8nKP61dSEvr3ngkPunO1JMmJ1sjv7xT~y1h8YRYDf0J3M-jE18bHoMce~-ZhBXTxN~k-ji-lVFC7OvKiK5dd9LBZdMq5OjmV0yRWap1QoRpwXJMr7OMsD9~EgCSOUMwZnrf2Z~ZVgur6lpvmrw7QB-w5Huhk6G8wgoprW4arYwy-FzqqfB~xWpGaoZlzCEvLTJoJLL0NjXPcg6vBnKCl1g__&Key-Pair-Id=K1VGYTHIYLM9UM"
+  ],
+  "consumed_credits": 9
+}

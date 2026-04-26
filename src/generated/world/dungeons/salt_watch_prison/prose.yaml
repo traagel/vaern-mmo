@@ -1,0 +1,56 @@
+dungeon:
+  description: |
+    Salt-Watch is a Skarn war-camp prison cut sideways into a headland
+    above the grey sea, run by the chieftains who lost the Hraevsdal
+    feud and were given the work as a kindness instead of an exile. The
+    cells are open to the wind. The wardens fight the inmates more often
+    than they fight outsiders, and at this point the inmates run half
+    the place anyway.
+  prompt: >-
+    establishing shot, dungeon interior, headland prison cut from sea
+    cliff, salt-rimed iron bars, grey sea wind, low torches, painterly
+    atmospheric, oppressive mood, no figures
+bosses:
+  executioner:
+    description: |
+      Hraem the Quiet, who has held the headsman's axe at Salt-Watch for
+      nineteen years and hasn't spoken since the third. Marks the tank
+      with a black-rune brand at thirty percent and at twenty percent
+      and at ten — each brand executes if the tank drops below it. The
+      heal team learns to keep one bar's distance between thresholds or
+      they don't learn at all.
+    prompt: >-
+      portrait, single subject, hooded Skarn executioner, two-handed
+      headsman axe, salt-stained hood, rune-branded leather, painterly
+      atmospheric, oppressive mood, isolated subject, no other figures
+    negative_prompt: >-
+      multiple figures, party, group, modern, futuristic, sci-fi, anime, cyberpunk, watermark, text
+  freed_champion:
+    description: |
+      A Kharun named Vetra who's been in Salt-Watch nine years for a
+      killing she will tell you about if you ask. Joins the party on
+      the pull as an NPC ally — fights well, calls targets, takes a
+      cleave for the healer once. At thirty percent her old chain-oath
+      reasserts itself and she turns. The fight gets harder fast and
+      she remembers everyone's name.
+    prompt: >-
+      portrait, single subject, Kharun warrior woman, prison-cropped
+      hair, broken iron collar, scavenged shortsword, scarred knuckles,
+      painterly atmospheric, oppressive mood, isolated subject, no other
+      figures
+    negative_prompt: >-
+      multiple figures, party, group, modern, futuristic, sci-fi, anime, cyberpunk, watermark, text
+  warden_skorrn:
+    description: |
+      Skorrn Iron-Chain, last of the Hraevsdal losers and the warden
+      who took the post by killing the previous warden in the yard. His
+      chain-whip pulls one player a turn into the cell-circle, where
+      three prisoner-waves spawn on a count he calls aloud in old Skarn.
+      Knowing the count by the second pull is the difference between a
+      kill and a wipe.
+    prompt: >-
+      portrait, single subject, Skarn warden, heavy iron chain-whip,
+      braided beard, scarred face, fur-lined warcoat, painterly
+      atmospheric, oppressive mood, isolated subject, no other figures
+    negative_prompt: >-
+      multiple figures, party, group, modern, futuristic, sci-fi, anime, cyberpunk, watermark, text

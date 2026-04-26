@@ -1,0 +1,44 @@
+id: landmarks__barrow_coast
+zone: barrow_coast
+landmarks:
+- id: salt_pillars
+  name: The Salt-Pillars
+  offset_from_zone_origin:
+    x: 180.0
+    z: 90.0
+  description: Three pillars of crystallised sea-salt formed by ancient tide-action. The Gravewrought
+    treat them as ancestor-markers and consult them before the hard funerals.
+  prompt: establishing shot, three weathered salt pillars on a windswept clifftop, crystallised
+    salt-rime, leaden cold afternoon light, painterly atmospheric, late-medieval, no figures
+- id: shipwreck_field
+  name: The Shipwreck Field
+  offset_from_zone_origin:
+    x: -180.0
+    z: -90.0
+  description: A stretch of shingle below the cliffs littered with the skeletons of shipwrecks
+    from a particularly bad winter twelve years ago. The locals salvage what they can; the
+    rest remains.
+  prompt: establishing shot, shingle beach below grey sea cliffs strewn with broken hulls
+    of wrecked ships, salt-spray, leaden grey light, painterly atmospheric, late-medieval,
+    no figures
+- id: wind_chapel
+  name: The Wind-Chapel
+  offset_from_zone_origin:
+    x: 90.0
+    z: -240.0
+  description: A small open-air chapel on the cliff edge where the wind performs a recognisable
+    variant of the funeral rite, all seasons. The Gravewrought consider this evidence of approval.
+  prompt: establishing shot, small open-air stone chapel on a sea-cliff edge, salt-wind streaming
+    through the standing stones, leaden cold light, painterly atmospheric, late-medieval,
+    no figures
+- id: tide_carved_step
+  name: The Tide-Carved Step
+  offset_from_zone_origin:
+    x: -90.0
+    z: 240.0
+  description: A natural staircase carved into the cliff by long tidal action. The Gravewrought
+    maintain it for ritual descents to the shingle below. Outsiders are advised to use the
+    path.
+  prompt: establishing shot, narrow natural staircase carved into a sea cliff by tide action,
+    weathered stone steps, salt-spray, cold afternoon grey light, painterly atmospheric, late-medieval,
+    no figures

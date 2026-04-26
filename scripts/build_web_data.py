@@ -21,6 +21,7 @@ OUT = REPO / "web" / "data.json"
 ICONS_DIR = REPO / "icons"
 CHAR_DIR = REPO / "characters"
 EMBLEMS_DIR = REPO / "emblems"
+MESHY_DIR = REPO / "assets" / "meshy"
 
 
 def load_yaml(p: Path):
@@ -55,6 +56,73 @@ def existing_stems(d: Path) -> set[str]:
     if not d.exists():
         return set()
     return {p.stem for p in d.glob("*.png")}
+
+
+def overlay_prose_zone(d: dict, hubs: list[dict], landmarks: list[dict],
+                       prose_path: Path) -> None:
+    """If prose.yaml exists next to a zone's core.yaml, overlay its
+    description / prompt / vibe onto the zone, hubs and landmarks. Existing
+    fields on the entity (e.g. Dalewatch's in-core descriptions) win — the
+    overlay only fills gaps."""
+    if not prose_path.exists():
+        return
+    p = load_yaml(prose_path) or {}
+    z_prose = p.get("zone") or {}
+    for k in ("description", "prompt", "negative_prompt", "vibe"):
+        if z_prose.get(k) and not d.get(k):
+            d[k] = z_prose[k]
+    hub_prose = p.get("hubs") or {}
+    for hd in hubs:
+        hp = hub_prose.get(hd.get("id"))
+        if not hp:
+            continue
+        for k in ("description", "prompt", "negative_prompt"):
+            if hp.get(k) and not hd.get(k):
+                hd[k] = hp[k]
+    lm_prose = p.get("landmarks") or {}
+    for lm in landmarks:
+        lp = lm_prose.get(lm.get("id"))
+        if not lp:
+            continue
+        for k in ("description", "prompt", "negative_prompt"):
+            if lp.get(k) and not lm.get(k):
+                lm[k] = lp[k]
+
+
+def overlay_prose_dungeon(d: dict, bosses: list[dict], prose_path: Path) -> None:
+    if not prose_path.exists():
+        return
+    p = load_yaml(prose_path) or {}
+    d_prose = p.get("dungeon") or {}
+    for k in ("description", "prompt", "negative_prompt"):
+        if d_prose.get(k) and not d.get(k):
+            d[k] = d_prose[k]
+    boss_prose = p.get("bosses") or {}
+    for b in bosses:
+        bp = boss_prose.get(b.get("id"))
+        if not bp:
+            continue
+        for k in ("description", "prompt", "negative_prompt"):
+            if bp.get(k) and not b.get(k):
+                b[k] = bp[k]
+
+
+def meshy_images_for(slug: str) -> list[str]:
+    """Return repo-relative paths to image_*.png|jpg|jpeg|webp for a slug,
+    sorted by numeric index. Empty if the dir doesn't exist."""
+    d = MESHY_DIR / slug
+    if not d.exists():
+        return []
+    candidates: list[Path] = []
+    for ext in (".png", ".jpg", ".jpeg", ".webp"):
+        candidates.extend(d.glob(f"image_*{ext}"))
+    def idx(p: Path) -> int:
+        try:
+            return int(p.stem.split("_", 1)[1])
+        except (IndexError, ValueError):
+            return 9999
+    candidates.sort(key=idx)
+    return [str(p.relative_to(REPO)) for p in candidates]
 
 
 def build_spells(icons_set: set[str]) -> list[dict]:
@@ -162,6 +230,10 @@ def build_classes(portraits: set[str]) -> list[dict]:
 
 
 def build_races(portraits: set[str]) -> list[dict]:
+    """Race portraits prefer Meshy (assets/meshy/race__<id>__<gender>/image_1.*)
+    over the legacy SDXL portraits in characters/. The `portraits` map now
+    holds repo-relative paths (or None) instead of booleans — app.js reads
+    paths directly."""
     out: list[dict] = []
     rdir = GENERATED / "races"
     if not rdir.exists():
@@ -174,10 +246,19 @@ def build_races(portraits: set[str]) -> list[dict]:
             continue
         d["_file"] = str((entity / "core.yaml").relative_to(REPO))
         rid = d.get("id", entity.name)
+
+        def pick(gender_key: str, legacy_stem: str) -> str | None:
+            meshy = meshy_images_for(f"race__{rid}__{gender_key}")
+            if meshy:
+                return meshy[0]
+            if legacy_stem in portraits:
+                return f"characters/{legacy_stem}.png"
+            return None
+
         d["portraits"] = {
-            "male": f"{rid}.male" in portraits,
-            "female": f"{rid}.female" in portraits,
-            "neutral": rid in portraits,
+            "male":    pick("male",    f"{rid}.male"),
+            "female":  pick("female",  f"{rid}.female"),
+            "neutral": pick("neutral", rid),
         }
         d["has_portrait"] = any(d["portraits"].values())
         out.append(d)
@@ -245,6 +326,134 @@ def build_factions(emblems: set[str]) -> list[dict]:
     return out
 
 
+def build_world() -> dict | None:
+    p = GENERATED / "world" / "world.yaml"
+    if not p.exists():
+        return None
+    d = load_yaml(p) or {}
+    d["_file"] = str(p.relative_to(REPO))
+    return d
+
+
+def build_continents() -> list[dict]:
+    out: list[dict] = []
+    cdir = GENERATED / "world" / "continents"
+    if not cdir.exists():
+        return out
+    for p in sorted(cdir.glob("*.yaml")):
+        if p.stem.startswith("_"):
+            continue
+        d = load_yaml(p)
+        if d is None:
+            continue
+        d["_file"] = str(p.relative_to(REPO))
+        out.append(d)
+    return out
+
+
+def build_biomes() -> list[dict]:
+    out: list[dict] = []
+    bdir = GENERATED / "world" / "biomes"
+    if not bdir.exists():
+        return out
+    for p in sorted(bdir.glob("*.yaml")):
+        if p.stem.startswith("_"):
+            continue
+        d = load_yaml(p)
+        if d is None:
+            continue
+        d["_file"] = str(p.relative_to(REPO))
+        d["images"] = meshy_images_for(f"biome__{d.get('id', p.stem)}")
+        out.append(d)
+    return out
+
+
+def build_zones() -> list[dict]:
+    """Each zone dir: core.yaml + hubs/*.yaml + landmarks.yaml. Returns
+    flattened cards with hubs nested as a list."""
+    out: list[dict] = []
+    zdir = GENERATED / "world" / "zones"
+    if not zdir.exists():
+        return out
+    for entity in sorted(zdir.iterdir()):
+        if not entity.is_dir() or entity.name.startswith("_"):
+            continue
+        core = entity / "core.yaml"
+        if not core.exists():
+            continue
+        d = load_yaml(core) or {}
+        d["_file"] = str(core.relative_to(REPO))
+        zone_id = d.get("id", entity.name)
+        # zone-level images live under assets/meshy/<zone_id>__zone/
+        d["images"] = meshy_images_for(f"{zone_id}__zone")
+        # hubs
+        hubs: list[dict] = []
+        hubs_dir = entity / "hubs"
+        if hubs_dir.exists():
+            for hp in sorted(hubs_dir.glob("*.yaml")):
+                hd = load_yaml(hp) or {}
+                # strip the giant props list — keep counts only
+                if "props" in hd:
+                    hd["prop_count"] = len(hd["props"])
+                    del hd["props"]
+                hub_id = hd.get("id", hp.stem)
+                hd["images"] = meshy_images_for(f"{zone_id}__{hub_id}")
+                hubs.append(hd)
+        d["hubs"] = hubs
+        # landmarks
+        landmarks_path = entity / "landmarks.yaml"
+        if landmarks_path.exists():
+            ld = load_yaml(landmarks_path) or {}
+            lms = ld.get("landmarks", []) or []
+            for lm in lms:
+                lm_id = lm.get("id", "")
+                lm["images"] = meshy_images_for(f"{zone_id}__{lm_id}")
+            d["landmarks"] = lms
+        else:
+            d["landmarks"] = []
+        # strip the verbose scatter rules — keep a category count for the card
+        if "scatter" in d and isinstance(d["scatter"], list):
+            d["scatter_categories"] = sorted({s.get("category") for s in d["scatter"] if s.get("category")})
+            del d["scatter"]
+        # overlay prose.yaml (description/prompt/vibe) — fills gaps without
+        # clobbering anything in core.yaml
+        overlay_prose_zone(d, hubs, d["landmarks"], entity / "prose.yaml")
+        out.append(d)
+    return out
+
+
+def build_dungeons() -> list[dict]:
+    out: list[dict] = []
+    ddir = GENERATED / "world" / "dungeons"
+    if not ddir.exists():
+        return out
+    for entity in sorted(ddir.iterdir()):
+        if not entity.is_dir() or entity.name.startswith("_"):
+            continue
+        core = entity / "core.yaml"
+        if not core.exists():
+            continue
+        d = load_yaml(core) or {}
+        d["_file"] = str(core.relative_to(REPO))
+        d["images"] = meshy_images_for(f"dungeon__{d.get('id', entity.name)}")
+        bosses_path = entity / "bosses.yaml"
+        if bosses_path.exists():
+            bd = load_yaml(bosses_path) or {}
+            bosses = bd.get("bosses", []) or []
+            for b in bosses:
+                b["images"] = meshy_images_for(f"boss__{b.get('id', '')}")
+            d["bosses"] = bosses
+        else:
+            d["bosses"] = []
+        loot_path = entity / "loot.yaml"
+        if loot_path.exists():
+            d["loot"] = load_yaml(loot_path) or {}
+        # overlay prose.yaml (dungeon + boss description/prompt)
+        overlay_prose_dungeon(d, d["bosses"], entity / "prose.yaml")
+        out.append(d)
+    return out
+
+
 def build_institutions(emblems: set[str]) -> list[dict]:
     out: list[dict] = []
     idir = GENERATED / "institutions"
@@ -300,6 +509,11 @@ def main() -> None:
         "combos": build_combos(portrait_set),
         "orders": build_orders(portrait_set),
         "institutions": build_institutions(emblem_set),
+        "world": build_world(),
+        "continents": build_continents(),
+        "biomes": build_biomes(),
+        "zones": build_zones(),
+        "dungeons": build_dungeons(),
     }
     OUT.parent.mkdir(exist_ok=True)
     with open(OUT, "w") as f:
@@ -314,6 +528,10 @@ def main() -> None:
     print(f"  combos: {len(data['combos'])}")
     print(f"  orders: {len(data['orders'])}")
     print(f"  institutions: {len(data['institutions'])}")
+    print(f"  continents: {len(data['continents'])}")
+    print(f"  biomes: {len(data['biomes'])}")
+    print(f"  zones: {len(data['zones'])}")
+    print(f"  dungeons: {len(data['dungeons'])}")
 
 
 if __name__ == "__main__":

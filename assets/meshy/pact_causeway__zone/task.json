@@ -1,0 +1,16 @@
+{
+  "id": "019dc772-38a7-7761-a684-0f94f34748fd",
+  "type": "text-to-image",
+  "ai_model": "nano-banana-pro",
+  "prompt": "wide establishing landscape, long stone causeway across windswept highland steppe, lines of carved oath-pillars on either side, distant storm front, cool grey light, painterly atmospheric, late-medieval, no figures",
+  "status": "SUCCEEDED",
+  "progress": 100,
+  "created_at": 1777167644850,
+  "started_at": 1777167645021,
+  "finished_at": 1777167794703,
+  "expires_at": 1777426994703,
+  "image_urls": [
+    "https://assets.meshy.ai/2872987b-afbf-4fa0-95f0-231417dc567c/uploads/image_019dc772-38a7-7761-a684-0f94f34748fd_0.png?Expires=1777426994&Signature=lIDWNoEgOd8djcPkHTlPvmyZBpgdzCB9vTB5EQ1MwsIqMvaMwlAERA48jgYYRXmsIl0Mleku34e4MGd3XLG5RzDlxY27cFh0Tey2w-1Bsv8kIXjXg2SbIQRD6H1ZKmZRvLyqpURNBItxeeeFFn-qX8zhd8qGzlYEqqFVLBlt8gQj7BPNV01ecAz8KM5sjnIfZEyJRusioeygvkP~vDvXyyzRE3jriHjCKK7XQK8LqxBS2ZnvegNkh-xPPMNdGu4aHGr5hkXaFo8n8fjTyPSKFP1j7-N6tEzE4QRf1Xp8dBVZKDwFdY7NNsYcLQYBYjuEHM-TvsOLFI1HiFHFVRzhfQ__&Key-Pair-Id=K1VGYTHIYLM9UM"
+  ],
+  "consumed_credits": 9
+}

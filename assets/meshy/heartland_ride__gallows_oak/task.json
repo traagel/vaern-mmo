@@ -1,0 +1,16 @@
+{
+  "id": "019dc76d-8bf4-7d83-b2e0-b5118327f3fa",
+  "type": "text-to-image",
+  "ai_model": "nano-banana-pro",
+  "prompt": "establishing shot, ancient lone oak by a country roadside, low afternoon light, marked branch, painterly atmospheric, late-medieval, oppressive mood, no figures",
+  "status": "SUCCEEDED",
+  "progress": 100,
+  "created_at": 1777167338494,
+  "started_at": 1777167339205,
+  "finished_at": 1777167382952,
+  "expires_at": 1777426582952,
+  "image_urls": [
+    "https://assets.meshy.ai/2872987b-afbf-4fa0-95f0-231417dc567c/uploads/image_019dc76d-8bf4-7d83-b2e0-b5118327f3fa_0.png?Expires=1777426582&Signature=Z9TGmV1bAmyplzj1fmdEunCN6aZqMSIKiqCK2l-6KV4xJSsqS~68kUs1Z7VWpUOxrFoiopm0jeTU2cuQtM2RAquNHIu9gtUgOWdVAno3Qk5k0R0r-jSn0SD-QEXBFmHQGYN6e97K1xVGr5zJ04R6TzXOJ5JQKjafmqbho8-CeGcb7j~ua2Jevt1S0ermJNnVn1fiTnqbSMcGGyG9jahuMEw0q-3yzZP3GwIsecKmZQdtbLWBC4JK0YsvwWSR11i4gHy4UVeqJbqYWOBFpehC7WOcuLfClPqVMsZRPowVLUOP8P00nwS15UEM805Hp9zvN56K~wG7yqmGIY6-QSIluA__&Key-Pair-Id=K1VGYTHIYLM9UM"
+  ],
+  "consumed_credits": 9
+}

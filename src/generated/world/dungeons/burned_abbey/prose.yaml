@@ -1,0 +1,71 @@
+dungeon:
+  description: |
+    A pre-war Concord abbey along the northern ruin-line, torched in the
+    fourth year of the Coming. Abbess Mira tried a last rite to save
+    the cloister — the rite did not take and did not fail cleanly either.
+    The pilgrims still come; some of them stop coming back. Four bosses
+    across the nave, the cloister, the scriptorium, and the choir, where
+    the last celebrant still tries to finish what Mira started.
+  prompt: >-
+    establishing shot, dungeon interior, burned abbey nave, scorched
+    stone columns, broken stained glass, candle stubs in pooled wax,
+    painterly atmospheric, oppressive mood, no figures
+bosses:
+  abbess_ember:
+    description: |
+      Abbess Mira herself, or what the failed rite left of her. Burns
+      in a slow steady ember-light and switches between holy and shadow
+      phase every twenty seconds — heals from one, takes double from
+      the other. The phase tell is the colour of the flame at her
+      forehead; learn it by the second cycle or the healer's mana goes
+      first.
+    prompt: >-
+      portrait, single subject, burned Concord abbess, scorched white
+      robes, ember-lit eyes, brass censer chain, painterly atmospheric,
+      oppressive mood, isolated subject, no other figures
+    negative_prompt: >-
+      multiple figures, party, group, modern, futuristic, sci-fi, anime, cyberpunk, watermark, text
+  cloister_champion:
+    description: |
+      Brother Aldric, who held the cloister door for two days during
+      the Coming and did not survive the third. Fights with a tower
+      shield that gives him a stacking damage-reduction buff each time
+      he raises it; interrupts strip a stack. Three uninterrupted blocks
+      and physical damage stops mattering. The cloister is narrow and
+      he knows it.
+    prompt: >-
+      portrait, single subject, ghostly Concord knight, scorched tabard,
+      tower shield raised, sallet helm, ember light through eyeslit,
+      painterly atmospheric, oppressive mood, isolated subject, no other
+      figures
+    negative_prompt: >-
+      multiple figures, party, group, modern, futuristic, sci-fi, anime, cyberpunk, watermark, text
+  scriptorium_wraith:
+    description: |
+      A scribe whose name is in none of the abbey's surviving rolls.
+      Throws a cursed-page debuff that spreads to anyone within four
+      paces of the carrier; the debuff ticks shadow damage and stacks.
+      The scriptorium has narrow aisles between the desks and the party
+      has to spread without leaving the heal range. It is a fight about
+      footwork.
+    prompt: >-
+      portrait, single subject, hooded scribe wraith, ink-blackened
+      fingers, floating burned page, ember-light from beneath cowl,
+      painterly atmospheric, oppressive mood, isolated subject, no other
+      figures
+    negative_prompt: >-
+      multiple figures, party, group, modern, futuristic, sci-fi, anime, cyberpunk, watermark, text
+  last_celebrant:
+    description: |
+      Brother Tev, who was an acolyte when Mira tried the rite and is
+      still trying to finish it sixty years later. Casts the seven-stage
+      rite over the fight; reaching stage seven wipes the party. Each
+      stage has an interrupt window of three seconds. Five of the seven
+      stages are silent; you learn the cues by dying to them.
+    prompt: >-
+      portrait, single subject, ancient Concord celebrant, threadbare
+      vestments, brass ritual chalice, slow ember-light at his hands,
+      painterly atmospheric, oppressive mood, isolated subject, no other
+      figures
+    negative_prompt: >-
+      multiple figures, party, group, modern, futuristic, sci-fi, anime, cyberpunk, watermark, text

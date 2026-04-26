@@ -1,0 +1,16 @@
+{
+  "id": "019dc76d-5aba-76d9-9cd6-38f7f17c7f28",
+  "type": "text-to-image",
+  "ai_model": "nano-banana-pro",
+  "prompt": "establishing shot, pile of weathered massive yeti skulls on an alpine slope, snow on the lower bones, cold blue afternoon light, oppressive mood, painterly atmospheric, no figures",
+  "status": "SUCCEEDED",
+  "progress": 100,
+  "created_at": 1777167325893,
+  "started_at": 1777167326483,
+  "finished_at": 1777167364060,
+  "expires_at": 1777426564060,
+  "image_urls": [
+    "https://assets.meshy.ai/2872987b-afbf-4fa0-95f0-231417dc567c/uploads/image_019dc76d-5aba-76d9-9cd6-38f7f17c7f28_0.png?Expires=1777426564&Signature=hWoCww7OkhZxj4h4TTO1G8WyqlbLNowK4O0vAAsl75rcVvrvUjuIlcyOjJiTy-Qz2zuUXv-Ni2aMX0yMmVDlpOxWNaKmfYsaAKNjp-6VU6Bbzucrl3DjoxVeUhRIrOEyfochltPWmj51eiQf4PTmCQUQuJaoQzrlS9oUCWWdnmIS0nbYwZ1I9aTTzLg8jSKy9p04mw3tlyHgL3P4a6YCA7h25AfW12DPv23FqCHZIGANeIO5b0Pv0Pw9rd5b5y~XNfYbWCf590TasdGmKwwuewmWx-H1lxZDxF33XWbqTx~8KiFDt5VD9UTe-ycrxqeviRhcASvmaUMKgZyAjUzuJg__&Key-Pair-Id=K1VGYTHIYLM9UM"
+  ],
+  "consumed_credits": 9
+}

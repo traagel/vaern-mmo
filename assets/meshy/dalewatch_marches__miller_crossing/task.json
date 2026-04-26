@@ -1,0 +1,16 @@
+{
+  "id": "019dc6fb-ca12-71df-8b47-5aef60d5894a",
+  "type": "text-to-image",
+  "ai_model": "nano-banana-pro",
+  "prompt": "establishing shot, low stone arch bridge over a slow river, working timber grain mill with waterwheel, packed thatched steadings, late-afternoon golden light, painterly atmospheric, late-medieval Burgundian, no figures",
+  "status": "SUCCEEDED",
+  "progress": 100,
+  "created_at": 1777159883294,
+  "started_at": 1777159883302,
+  "finished_at": 1777159984995,
+  "expires_at": 1777419184995,
+  "image_urls": [
+    "https://assets.meshy.ai/2872987b-afbf-4fa0-95f0-231417dc567c/uploads/image_019dc6fb-ca12-71df-8b47-5aef60d5894a_0.png?Expires=1777419184&Signature=AaGE51opvEUL5yEsZFgO29B20pcl~F9V1eLb-kVUeNOjCq3-25lQqXAaDePBREJzIf2NtVN4mIDKNdYjdQJZ7MZJyMgPrn5SNDqvs8KeVk9Fwhxk07MjrSFT2rSziRYSIacmwKqV7Gyv9AxMKvoAE0EFwiFTQJz9y9XJpz4Amhs6~uVzCix1TehkByrhIHjbDSFnthtI7EJjzlEQATg0MKkW4dChu9n2SyS4xmFXGRQuH7FG0SK-hJIRqB7f2KFMoHPuSyYdCp83rtfyUd4KobKP1kGlsvp1WAvfhFrHksNZa7AAfeldeHxAfnypA~req0Cgc94oLO5P97YupRSheA__&Key-Pair-Id=K1VGYTHIYLM9UM"
+  ],
+  "consumed_credits": 9
+}

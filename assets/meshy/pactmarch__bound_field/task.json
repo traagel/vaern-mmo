@@ -1,0 +1,16 @@
+{
+  "id": "019dc76e-5b69-7b44-b14d-8a61ad96ec8e",
+  "type": "text-to-image",
+  "ai_model": "nano-banana-pro",
+  "prompt": "establishing shot, flat steppe meadow with central standing pactstone, ring of slightly different grass colour around it, wide horizon, overcast cool light, painterly atmospheric, late-medieval steppe, no figures",
+  "status": "SUCCEEDED",
+  "progress": 100,
+  "created_at": 1777167391612,
+  "started_at": 1777167392173,
+  "finished_at": 1777167437749,
+  "expires_at": 1777426637749,
+  "image_urls": [
+    "https://assets.meshy.ai/2872987b-afbf-4fa0-95f0-231417dc567c/uploads/image_019dc76e-5b69-7b44-b14d-8a61ad96ec8e_0.png?Expires=1777426637&Signature=JDJyvGe1YaULD0vz41bw1zAdSyFV4BaH5qJprI2SxrF0JJcBmCZBNweblZRgAXyBUHY5olVw~NAF11uFcDNSE3Q2rXCSFOHbRGX2DdsrlgvbAm8TaGdYtHI0rHOmQOkmnC79MBaD2qT3uprcW0AgwwqzjwqvQKnzPD~MYtN2D~-XWc0VnFfvSjm6D2cHdxihsv-6E77IEiLmp6d3vOIZUmUgaouFsCiaNWnSxKqENoqrGpidKognzRJ~YS02FaoUDFTG8SYJ8HdqtRLoqjRLBixhKlPQf1Qa41yLD-KxsWLqo1k5moBnK~7dyVG9cl1RvNduQ3gmTnFv3Kg4t9GUKg__&Key-Pair-Id=K1VGYTHIYLM9UM"
+  ],
+  "consumed_credits": 9
+}

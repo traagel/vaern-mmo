@@ -1,0 +1,43 @@
+id: landmarks__shadegrove
+zone: shadegrove
+landmarks:
+- id: witch_cinder_pyre
+  name: The Witch-Cinder Pyre
+  offset_from_zone_origin:
+    x: 200.0
+    z: -90.0
+  description: A pyre-pit the Reach maintains for ritual cremations of matters they prefer
+    cremated. The pit is never cold and never explained.
+  prompt: establishing shot, deep stone pyre-pit on volcanic soil, embers always burning,
+    ash drifts, sickly amber-red light, painterly atmospheric, late-medieval dark elf, oppressive
+    mood, no figures
+- id: silver_bone_cairn
+  name: The Silver-Bone Cairn
+  offset_from_zone_origin:
+    x: -180.0
+    z: 110.0
+  description: A cairn of weathered animal bones bleached to silver. The Reach scholars insist
+    they are not human. The Reach scholars have a very specific definition of human.
+  prompt: establishing shot, mossy stone cairn topped with weathered silver-bleached animal
+    bones, ashen forest around it, dim amber-grey light, painterly atmospheric, late-medieval
+    dark elf, no figures
+- id: hidden_glade
+  name: The Hidden Glade
+  offset_from_zone_origin:
+    x: 90.0
+    z: 230.0
+  description: A glade nobody official will admit to using. The fire-ring is fresh; the offerings
+    are not. Reach patrols visit regularly and report finding nothing of note.
+  prompt: establishing shot, secluded ash-forest glade with fresh fire-ring and broken offerings,
+    sickly amber dusk, oppressive mood, painterly atmospheric, late-medieval dark elf, no
+    figures
+- id: black_iron_gate
+  name: The Black-Iron Gate
+  offset_from_zone_origin:
+    x: -90.0
+    z: -210.0
+  description: A free-standing iron gate set in the middle of a clearing with no wall on either
+    side. The gate is locked. The lock is ancient and untouched and somehow not rusted.
+  prompt: establishing shot, black wrought-iron gate standing free in an ash-forest clearing
+    with no walls, ancient unrusted lock, oppressive amber-red dusk, painterly atmospheric,
+    late-medieval dark elf, no figures

@@ -1,0 +1,56 @@
+dungeon:
+  description: |
+    The submerged warrens of the Black-Eel clan, a Darkling Elen
+    splinter-house that took to the deep water four generations ago and
+    has not come up since. Clanhead Sleth runs the bottom chamber by a
+    succession-rite that involves drowning the previous clanhead
+    politely. Three flooded galleries: the harrier-run, the dry-priest's
+    chapel, and Sleth's tether-hall.
+  prompt: >-
+    establishing shot, dungeon interior, flooded Darkling Elen warren,
+    black water at chest height, eel-bone chandeliers, pale phosphor
+    light, painterly atmospheric, oppressive mood, no figures
+bosses:
+  eel_harrier:
+    description: |
+      A Black-Eel duellist called Vren, the clan's first-blood scout.
+      Hits and runs along the wall-channels — every twelve seconds she
+      vanishes into the wall water and re-emerges at a flanking tile,
+      opening with a positional strike that crits from behind. The
+      tank can't hold her conventionally; the party reads the channel-
+      ripple to predict her exit and faces accordingly.
+    prompt: >-
+      portrait, single subject, lean Darkling Elen duellist, eel-skin
+      armour, twin curved blades, water beading off pale skin, painterly
+      atmospheric, oppressive mood, isolated subject, no other figures
+    negative_prompt: >-
+      multiple figures, party, group, modern, futuristic, sci-fi, anime, cyberpunk, watermark, text
+  waterless_priest:
+    description: |
+      Brother-Drier Hael, who is the only Black-Eel to live entirely
+      out of the water — his chapel is the one dry chamber and the
+      clan despises him for it. Pulses a drain-aura that converts
+      incoming heals to damage for six seconds on a twenty-five second
+      cycle. The healer has to time the cast bar to the gap, not the
+      tick. Hael himself is brittle once the aura is read.
+    prompt: >-
+      portrait, single subject, gaunt Darkling Elen dry-priest, parched
+      grey robes, salt-cracked skin, bone-staff, painterly atmospheric,
+      oppressive mood, isolated subject, no other figures
+    negative_prompt: >-
+      multiple figures, party, group, modern, futuristic, sci-fi, anime, cyberpunk, watermark, text
+  clanhead_sleth:
+    description: |
+      Clanhead Sleth, who drowned the last three clanheads in the rite-
+      pool behind her. Fights with paired eel-bound blades — every
+      thirty seconds she throws one blade into a party member, tethering
+      them by a black-water cord that ticks damage and pulls them
+      toward her on a four-second count. Two tethers active at once
+      and the party loses spacing; three and the run is over.
+    prompt: >-
+      portrait, single subject, Darkling Elen clanhead, dual eel-bound
+      blades, black water tether trailing from one hand, dark coral
+      crown, painterly atmospheric, oppressive mood, isolated subject,
+      no other figures
+    negative_prompt: >-
+      multiple figures, party, group, modern, futuristic, sci-fi, anime, cyberpunk, watermark, text

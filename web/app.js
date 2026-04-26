@@ -1,75 +1,185 @@
 'use strict';
 
+/* ─── Vaern Compendium ────────────────────────────────────────────────────
+   Glossary-style data browser for src/generated/. Renders ten tabs and
+   hash-routed detail pages. Visual language follows the warm-cold faction
+   gradient established by the splash page (../index.html).
+*/
+
 const state = {
   data: null,
-  filters: { search: '', pillar: '', category: '', school: '', tier: '', morality: '', hasIcon: false },
+  currentTab: 'overview',
+  filters: {
+    spell:   { search: '', pillar: '', category: '', school: '', tier: '', morality: '', hasIcon: false },
+    zone:    { search: '', faction: '', tier: '', biome: '' },
+    dungeon: { search: '', band: '', size: '', kind: '' },
+  },
 };
 
-const $ = (sel) => document.querySelector(sel);
-const $$ = (sel) => document.querySelectorAll(sel);
+const $  = (sel, root = document) => root.querySelector(sel);
+const $$ = (sel, root = document) => Array.from(root.querySelectorAll(sel));
 
+// ─── helpers ────────────────────────────────────────────────────────────
+function el(tag, attrs, ...kids) {
+  const e = document.createElement(tag);
+  if (attrs) {
+    for (const [k, v] of Object.entries(attrs)) {
+      if (v == null || v === false) continue;
+      if (k === 'class') e.className = v;
+      else if (k === 'html') e.innerHTML = v;
+      else if (k === 'on') { for (const [ev, fn] of Object.entries(v)) e.addEventListener(ev, fn); }
+      else e.setAttribute(k, v);
+    }
+  }
+  for (const k of kids.flat()) {
+    if (k == null || k === false) continue;
+    e.appendChild(typeof k === 'string' ? document.createTextNode(k) : k);
+  }
+  return e;
+}
+
+function pretty(s) {
+  if (s == null) return '';
+  return String(s).replace(/_/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase());
+}
+
+function factionClass(f) {
+  if (f === 'faction_a') return 'faction-a';
+  if (f === 'faction_b') return 'faction-b';
+  if (f === 'contested') return 'faction-contested';
+  return '';
+}
+function factionLabel(f) {
+  if (f === 'faction_a') return 'Concord';
+  if (f === 'faction_b') return 'Rend';
+  if (f === 'contested') return 'Contested';
+  return f ? pretty(f) : '';
+}
+
+function chip(text, extra) { return el('span', { class: 'chip' + (extra ? ' ' + extra : '') }, text); }
+
+function uniqueSorted(arr) { return Array.from(new Set(arr)).sort((a, b) => String(a).localeCompare(String(b))); }
+
+function fillSelect(sel, values, labeler = (v) => pretty(v)) {
+  const first = sel.firstElementChild;
+  sel.innerHTML = '';
+  if (first) sel.appendChild(first);
+  for (const v of values) sel.appendChild(el('option', { value: v }, labeler(v)));
+}
+
+function clearChildren(node) { while (node.firstChild) node.removeChild(node.firstChild); }
+
+function heroImage(paths) {
+  // featured image + small clickable variant strip (if more than 1)
+  if (!paths?.length) return null;
+  const featured = el('img', { class: 'hero-img', src: ''+paths[0], alt: '' });
+  const wrap = el('div', { class: 'hero-image-wrap' }, featured);
+  if (paths.length > 1) {
+    const strip = el('div', { class: 'hero-variants' });
+    paths.forEach((p, i) => {
+      const t = el('img', {
+        class: 'hero-variant' + (i === 0 ? ' active' : ''),
+        src: ''+p, alt: '',
+      });
+      t.addEventListener('click', () => {
+        featured.src = ''+p;
+        strip.querySelectorAll('.hero-variant').forEach((x) => x.classList.remove('active'));
+        t.classList.add('active');
+      });
+      strip.appendChild(t);
+    });
+    wrap.appendChild(strip);
+  }
+  return wrap;
+}
+
+function hubThumb(paths, alt) {
+  if (!paths?.length) return null;
+  return el('div', { class: 'mc-thumb' },
+    el('img', { src: ''+paths[0], alt: alt || '' }),
+  );
+}
+
+function promptBlock(label, prompt, negative) {
+  const onCopy = (text, btn) => {
+    const reset = btn.textContent;
+    navigator.clipboard.writeText(text).then(() => {
+      btn.textContent = 'copied';
+      setTimeout(() => { btn.textContent = reset; }, 1200);
+    }).catch(() => { btn.textContent = 'copy failed'; });
+  };
+  const copyBtn = el('button', { class: 'prompt-copy', type: 'button' }, 'copy');
+  copyBtn.addEventListener('click', (e) => { e.stopPropagation(); onCopy(prompt, copyBtn); });
+  const header = el('div', { class: 'prompt-head' },
+    el('span', { class: 'prompt-label' }, label),
+    copyBtn,
+  );
+  const children = [header, el('div', { class: 'prompt-body' }, prompt)];
+  if (negative) {
+    const negCopy = el('button', { class: 'prompt-copy', type: 'button' }, 'copy');
+    negCopy.addEventListener('click', (e) => { e.stopPropagation(); onCopy(negative, negCopy); });
+    children.push(
+      el('div', { class: 'prompt-head prompt-head-neg' },
+        el('span', { class: 'prompt-label' }, 'negative'),
+        negCopy,
+      ),
+      el('div', { class: 'prompt-body prompt-neg' }, negative),
+    );
+  }
+  return el('div', { class: 'prompt-block' }, ...children);
+}
+
+// ─── boot ───────────────────────────────────────────────────────────────
 async function load() {
   const r = await fetch('data.json');
   state.data = await r.json();
   renderStats();
+  renderOverview();
+  renderFactions();
+  renderRaces();
+  renderZones();
+  renderBiomes();
+  renderDungeons();
+  renderInstitutions();
+  renderClasses();
+  renderSchools();
   populateSpellFilters();
-  wireFilters();
+  wireSpellFilters();
+  renderSpells();
   wireTabs();
   wireOverlay();
-  renderSpells();
-  renderSchools();
-  renderClasses();
-  renderRaces();
-  renderInstitutions();
-  renderFactions();
   window.addEventListener('hashchange', route);
   route();
 }
+
+function renderStats() {
+  const d = state.data;
+  const c = d.counts || {};
+  $('#stats').textContent =
+    `${d.zones?.length ?? 0} zones · ${d.dungeons?.length ?? 0} dungeons · ${d.races?.length ?? 0} races · ` +
+    `${c.spells_total ?? 0} spells`;
+}
+
+// ─── routing ────────────────────────────────────────────────────────────
+const ENTITY_ROUTES = ['race', 'class', 'order', 'institution', 'zone', 'hub', 'landmark', 'biome', 'dungeon', 'faction', 'school'];
+const TAB_ROUTES = ['overview', 'factions', 'races', 'zones', 'biomes', 'dungeons', 'institutions', 'classes', 'schools', 'spells'];
 
 function route() {
   const hash = window.location.hash.replace(/^#/, '');
   const [kind, id] = hash.split('/');
   const pageEl = $('#page');
-  if (kind === 'race' && id) {
+
+  if (ENTITY_ROUTES.includes(kind) && id) {
     document.body.classList.add('page-mode');
     pageEl.classList.remove('hidden');
-    renderRacePage(id);
-    window.scrollTo(0, 0);
-    return;
-  }
-  if (kind === 'combo' && id) {
-    document.body.classList.add('page-mode');
-    pageEl.classList.remove('hidden');
-    renderComboPage(id);
-    window.scrollTo(0, 0);
-    return;
-  }
-  if (kind === 'class' && id) {
-    document.body.classList.add('page-mode');
-    pageEl.classList.remove('hidden');
-    renderClassPage(parseInt(id, 10));
-    window.scrollTo(0, 0);
-    return;
-  }
-  if (kind === 'order' && id) {
-    document.body.classList.add('page-mode');
-    pageEl.classList.remove('hidden');
-    renderOrderPage(id);
-    window.scrollTo(0, 0);
-    return;
-  }
-  if (kind === 'institution' && id) {
-    document.body.classList.add('page-mode');
-    pageEl.classList.remove('hidden');
-    renderInstitutionPage(id);
+    const renderer = ENTITY_PAGES[kind];
+    if (renderer) renderer(id);
     window.scrollTo(0, 0);
     return;
   }
   document.body.classList.remove('page-mode');
   pageEl.classList.add('hidden');
-  // restore the correct tab based on hash
-  const tabHashes = ['spells', 'schools', 'classes', 'races', 'institutions', 'factions'];
-  const wanted = tabHashes.includes(kind) ? kind : (state.currentTab || 'spells');
+  const wanted = TAB_ROUTES.includes(kind) ? kind : 'overview';
   activateTab(wanted);
 }
 
@@ -79,1348 +189,1178 @@ function activateTab(name) {
   state.currentTab = name;
 }
 
-function renderStats() {
-  const c = state.data.counts;
-  $('#stats').textContent =
-    `${c.spells_total} spells · ${c.spells_with_icon} icons · ` +
-    `${state.data.races.length} races · ${state.data.classes.length} archetypes · ` +
-    `${(state.data.orders || []).length} orders · ` +
-    `${(state.data.institutions || []).length} institutions · ` +
-    `${state.data.schools.length} schools · ${c.portraits} portraits · ${c.emblems} emblems · ` +
-    `data ${state.data.generated_at}`;
-}
-
 function wireTabs() {
   $$('nav#tabs button').forEach((b) => {
-    b.addEventListener('click', () => {
-      window.location.hash = b.dataset.tab;
-    });
+    b.addEventListener('click', () => { window.location.hash = b.dataset.tab; });
   });
 }
 
 function wireOverlay() {
-  $('#detail-close').addEventListener('click', () => $('#detail-overlay').classList.add('hidden'));
-  $('#detail-overlay').addEventListener('click', (e) => {
-    if (e.target.id === 'detail-overlay') $('#detail-overlay').classList.add('hidden');
-  });
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') $('#detail-overlay').classList.add('hidden');
-  });
+  $('#detail-close').addEventListener('click', closeOverlay);
+  $('#detail-overlay').addEventListener('click', (e) => { if (e.target.id === 'detail-overlay') closeOverlay(); });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeOverlay(); });
 }
-
-function showDetail(title, meta, fields, imgUrl) {
+function openOverlay(node) {
   const body = $('#detail-body');
-  body.innerHTML = '';
-  const h = document.createElement('h2');
-  h.textContent = title;
-  body.appendChild(h);
-  if (meta) {
-    const m = document.createElement('div');
-    m.className = 'meta';
-    m.textContent = meta;
-    body.appendChild(m);
-  }
-  if (imgUrl) {
-    const img = document.createElement('img');
-    img.className = 'detail-img';
-    img.src = imgUrl;
-    body.appendChild(img);
-  }
-  const dl = document.createElement('dl');
-  for (const [k, v] of fields) {
-    if (v == null || v === '') continue;
-    const dt = document.createElement('dt');
-    dt.textContent = k;
-    const dd = document.createElement('dd');
-    if (typeof v === 'object') {
-      dd.innerHTML = `<pre style="margin:0;white-space:pre-wrap;font:11px ui-monospace,monospace;color:var(--text-dim)">${escape(JSON.stringify(v, null, 2))}</pre>`;
-    } else {
-      dd.textContent = String(v);
-    }
-    dl.appendChild(dt);
-    dl.appendChild(dd);
-  }
-  body.appendChild(dl);
+  clearChildren(body); body.appendChild(node);
   $('#detail-overlay').classList.remove('hidden');
 }
+function closeOverlay() { $('#detail-overlay').classList.add('hidden'); }
 
-function escape(s) {
-  return String(s).replace(/[&<>]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' }[c]));
-}
+// ─── OVERVIEW ───────────────────────────────────────────────────────────
+function renderOverview() {
+  const d = state.data;
+  const w = d.world || {};
+  $('#overview-title').textContent = (w.setting_name || 'VAERN').toUpperCase();
+  $('#overview-lede').textContent = w.design_reference
+    ? w.design_reference
+    : 'A hardcore co-op MMO. Two factions. One island.';
 
-function archetypeChip(cls, extraText) {
-  const link = document.createElement('a');
-  link.href = `#class/${cls.class_id}`;
-  const doms = cls.dominant_pillar || [];
-  const color = (p) => `var(--${p})`;
-  let border;
-  if (doms.length === 1) {
-    border = `3px solid ${color(doms[0])}`;
-  } else if (doms.length >= 2) {
-    // stacked indicators for hybrid — double left-border via box-shadow
-    link.style.boxShadow = `-3px 0 0 ${color(doms[0])}, -6px 0 0 ${color(doms[1])}`;
-    link.style.marginLeft = '6px';
-    border = '0';
-  } else {
-    border = '3px solid var(--text-dim)';
+  const body = $('#overview-body');
+  clearChildren(body);
+
+  if (w.faction_split) {
+    const fs = w.faction_split;
+    body.appendChild(el('div', { class: 'page-section' },
+      el('h3', null, 'Faction Split'),
+      el('dl', null,
+        ...Object.entries(fs).flatMap(([k, v]) => [
+          el('dt', null, factionLabel(k)),
+          el('dd', null, v),
+        ]),
+      ),
+    ));
   }
-  const pos = cls.position;
-  const text = extraText || `${cls.internal_label} (${pos.might}/${pos.arcana}/${pos.finesse})`;
-  link.textContent = text;
-  link.style.cssText +=
-    `;text-decoration:none;cursor:pointer;padding:4px 10px 4px 8px;font-size:12px;` +
-    `background:var(--surface);border:1px solid var(--border);border-radius:4px;` +
-    `color:var(--text);display:inline-block;` +
-    (border !== '0' ? `border-left:${border};` : '');
-  return link;
+
+  const facts = [];
+  if (w.max_level) facts.push(['Max level', String(w.max_level)]);
+  if (w.target_time_to_cap) {
+    const t = w.target_time_to_cap;
+    facts.push(['Target time to cap',
+      `${t.played_hours_min ?? '?'}–${t.played_hours_max ?? '?'} h · ${t.days_active ?? ''}`]);
+    if (t.basis) facts.push(['Basis', t.basis]);
+  }
+  if (facts.length) {
+    body.appendChild(el('div', { class: 'page-section' },
+      el('h3', null, 'World'),
+      el('dl', null, ...facts.flatMap(([k, v]) => [el('dt', null, k), el('dd', null, v)])),
+    ));
+  }
+
+  if (w.design_principles?.length) {
+    body.appendChild(el('div', { class: 'page-section' },
+      el('h3', null, 'Design Principles'),
+      el('ul', null, ...w.design_principles.map((p) => el('li', null, p))),
+    ));
+  }
+
+  if (d.continents?.length) {
+    const cont = d.continents[0];
+    body.appendChild(el('div', { class: 'page-section cold' },
+      el('h3', null, `Continent — ${cont.name || pretty(cont.id)}`),
+      el('dl', null,
+        el('dt', null, 'Type'),    el('dd', null, cont.type || '—'),
+        el('dt', null, 'Scale'),   el('dd', null, cont.scale || '—'),
+        el('dt', null, 'Climate'), el('dd', null, cont.climate || '—'),
+      ),
+      cont.regions?.length ? el('div', { class: 'subgrid', style: 'margin-top:14px' },
+        ...cont.regions.map((r) => el('div', { class: 'minicard ' + factionClass(r.faction) },
+          el('div', { class: 'mc-tag' }, factionLabel(r.faction)),
+          el('div', { class: 'mc-title' }, pretty(r.id)),
+          el('div', { class: 'mc-meta' }, (r.biomes || []).map(pretty).join(' · ')),
+        )),
+      ) : null,
+    ));
+  }
+
+  body.appendChild(el('div', { class: 'page-section' },
+    el('h3', null, 'Browse'),
+    el('div', { class: 'subgrid' }, ...[
+      ['#factions',     'Factions',     `${d.factions?.length || 0} powers`],
+      ['#races',        'Races',        `${d.races?.length || 0} peoples`],
+      ['#zones',        'Zones',        `${d.zones?.length || 0} regions`],
+      ['#biomes',       'Biomes',       `${d.biomes?.length || 0} biomes`],
+      ['#dungeons',     'Dungeons',     `${d.dungeons?.length || 0} instances`],
+      ['#institutions', 'Institutions', `${d.institutions?.length || 0} chartered`],
+      ['#classes',      'Archetypes',   `${d.classes?.length || 0} core classes`],
+      ['#schools',      'Schools',      `${d.schools?.length || 0} traditions`],
+      ['#spells',       'Spellbook',    `${d.counts?.spells_total || 0} abilities`],
+    ].map(([href, title, sub]) => el('a', { href, class: 'minicard', style: 'text-decoration:none' },
+      el('div', { class: 'mc-tag' }, sub),
+      el('div', { class: 'mc-title' }, title),
+    ))),
+  ));
 }
 
-// --- spells ---
-
-function populateSpellFilters() {
-  const s = state.data.spells;
-  const uniq = (key) => [...new Set(s.map((x) => x[key]))].sort((a, b) => String(a).localeCompare(String(b)));
-  fill('#spell-pillar', uniq('pillar'));
-  fill('#spell-category', uniq('category'));
-  fill('#spell-school', uniq('school'));
-  fill('#spell-tier', uniq('tier'));
-  fill('#spell-morality', uniq('morality').filter(Boolean));
-}
-
-function fill(sel, values) {
-  const el = $(sel);
-  for (const v of values) {
-    const opt = document.createElement('option');
-    opt.value = v;
-    opt.textContent = v;
-    el.appendChild(opt);
+// ─── FACTIONS ───────────────────────────────────────────────────────────
+function renderFactions() {
+  const grid = $('#faction-grid');
+  clearChildren(grid);
+  for (const f of state.data.factions || []) {
+    const card = el('div', { class: 'card ' + factionClass(f.id) },
+      f.has_emblem ? el('div', { class: 'emblem' }, el('img', { src: `emblems/${f.id}.png`, alt: '' })) : null,
+      el('div', { class: 'card-title' }, factionLabel(f.id)),
+      el('div', { class: 'card-subtitle' }, pretty(f.morality_alignment || '')),
+      el('div', { class: 'card-desc' }, f.visual?.pitch || ''),
+      el('div', { class: 'card-meta' },
+        chip(`${(f.allowed_school_moralities || []).length} moralities`),
+        chip(`${flattenSchools(f.allowed_schools).length} schools`),
+      ),
+    );
+    card.addEventListener('click', () => { window.location.hash = `faction/${f.id}`; });
+    grid.appendChild(card);
   }
 }
 
-function wireFilters() {
-  const map = {
-    '#spell-search': 'search',
-    '#spell-pillar': 'pillar',
-    '#spell-category': 'category',
-    '#spell-school': 'school',
-    '#spell-tier': 'tier',
-    '#spell-morality': 'morality',
-  };
-  for (const [sel, key] of Object.entries(map)) {
-    $(sel).addEventListener('input', (e) => {
-      state.filters[key] = e.target.value;
-      renderSpells();
-    });
-  }
-  $('#spell-hasicon').addEventListener('change', (e) => {
-    state.filters.hasIcon = e.target.checked;
-    renderSpells();
-  });
+function flattenSchools(map) {
+  if (!map) return [];
+  return Object.values(map).flat();
 }
 
-function filteredSpells() {
-  const f = state.filters;
-  return state.data.spells.filter((s) => {
-    if (f.pillar && s.pillar !== f.pillar) return false;
-    if (f.category && s.category !== f.category) return false;
-    if (f.school && s.school !== f.school) return false;
-    if (f.tier && String(s.tier) !== String(f.tier)) return false;
-    if (f.morality && s.morality !== f.morality) return false;
-    if (f.hasIcon && !s.has_icon) return false;
+function renderFactionPage(id) {
+  const f = (state.data.factions || []).find((x) => x.id === id);
+  const body = $('#page-body'); clearChildren(body);
+  if (!f) { body.appendChild(el('div', null, 'Faction not found.')); return; }
+  $('#page-back').href = '#factions';
+  const cls = factionClass(f.id);
+  body.appendChild(el('div', { class: 'page-hero' },
+    f.has_emblem ? el('div', { class: 'portrait-slot', style: 'aspect-ratio:1/1; width:200px' },
+      el('img', { src: `emblems/${f.id}.png`, alt: '' })) : null,
+    el('div', { class: 'hero-text' },
+      el('h1', { class: 'page-title ' + cls }, factionLabel(f.id)),
+      el('div', { class: 'page-subtitle' }, pretty(f.morality_alignment || '')),
+      el('p', { class: 'page-lede' }, f.visual?.pitch || ''),
+    ),
+  ));
+
+  if (f.visual) {
+    body.appendChild(el('div', { class: 'page-section' + (cls === 'faction-b' ? ' cold' : '') },
+      el('h3', null, 'Visual Identity'),
+      el('dl', null,
+        ...Object.entries(f.visual)
+          .filter(([k]) => k !== 'pitch' && k !== 'negative_tags')
+          .flatMap(([k, v]) => [el('dt', null, pretty(k)), el('dd', null, String(v))]),
+      ),
+    ));
+  }
+
+  if (f.allowed_schools) {
+    body.appendChild(el('div', { class: 'page-section' + (cls === 'faction-b' ? ' cold' : '') },
+      el('h3', null, 'Allowed Schools'),
+      el('dl', null,
+        ...Object.entries(f.allowed_schools).flatMap(([pillar, schools]) => [
+          el('dt', null, pretty(pillar)),
+          el('dd', null, schools.map(pretty).join(' · ')),
+        ]),
+      ),
+    ));
+  }
+  if (f.forbidden_schools && Object.keys(f.forbidden_schools).length) {
+    body.appendChild(el('div', { class: 'page-section' + (cls === 'faction-b' ? ' cold' : '') },
+      el('h3', null, 'Forbidden Schools'),
+      el('dl', null,
+        ...Object.entries(f.forbidden_schools).flatMap(([pillar, schools]) => [
+          el('dt', null, pretty(pillar)),
+          el('dd', { class: 'morality-evil' }, schools.map(pretty).join(' · ')),
+        ]),
+      ),
+    ));
+  }
+}
+
+// ─── RACES ──────────────────────────────────────────────────────────────
+function renderRaces() {
+  const grid = $('#race-grid');
+  grid.className = 'vstack';
+  clearChildren(grid);
+  for (const r of state.data.races || []) {
+    const portraitSrc = pickRacePortrait(r);
+    const stats = [
+      pretty(r.creature_type || 'humanoid'),
+      pretty(r.size_class || 'medium'),
+      r.archetype ? pretty(r.archetype) : null,
+    ].filter(Boolean).join(' · ');
+    const row = el('div', { class: 'vrow race-row ' + factionClass(r.faction) },
+      el('div', { class: 'vrow-thumb' },
+        portraitSrc ? el('img', { src: portraitSrc, alt: '' }) : 'no portrait'),
+      el('div', { class: 'vrow-text' },
+        el('div', { class: 'vrow-tag' }, factionLabel(r.faction)),
+        el('div', { class: 'vrow-title' }, r.id ? pretty(r.id) : '?'),
+        el('div', { class: 'vrow-desc' }, r.lore_hook || r.cultural_traits || ''),
+        stats ? el('div', { class: 'vrow-stats' }, stats) : null,
+      ),
+    );
+    row.addEventListener('click', () => { window.location.hash = `race/${r.id}`; });
+    grid.appendChild(row);
+  }
+}
+
+function pickRacePortrait(r) {
+  const p = r.portraits || {};
+  // portraits values are now repo-relative paths (or null) — preferred
+  // order: male, female, neutral
+  return p.male || p.female || p.neutral
+    ? ''+(p.male || p.female || p.neutral)
+    : null;
+}
+
+function renderRacePage(id) {
+  const r = (state.data.races || []).find((x) => x.id === id);
+  const body = $('#page-body'); clearChildren(body);
+  if (!r) { body.appendChild(el('div', null, 'Race not found.')); return; }
+  $('#page-back').href = '#races';
+  const cls = factionClass(r.faction);
+
+  const portraits = [];
+  if (r.portraits?.male)    portraits.push(['Male',    ''+r.portraits.male]);
+  if (r.portraits?.female)  portraits.push(['Female',  ''+r.portraits.female]);
+  if (r.portraits?.neutral) portraits.push(['',        ''+r.portraits.neutral]);
+
+  const heroPortrait = portraits.length
+    ? el('div', { class: 'portrait-slot' },
+        el('img', { src: portraits[0][1], alt: '' }),
+        portraits[0][0] ? el('div', { class: 'label' }, portraits[0][0]) : null)
+    : el('div', { class: 'portrait-slot' }, 'no portrait');
+
+  body.appendChild(el('div', { class: 'page-hero' },
+    heroPortrait,
+    el('div', { class: 'hero-text' },
+      el('h1', { class: 'page-title ' + cls }, pretty(r.id)),
+      el('div', { class: 'page-subtitle' },
+        `${factionLabel(r.faction)} · ${pretty(r.archetype || 'human')} · ${pretty(r.size_class || '')}`),
+      r.lore_hook ? el('p', { class: 'page-lede' }, r.lore_hook) : null,
+      r.cultural_traits ? el('p', { class: 'page-lede' }, r.cultural_traits) : null,
+    ),
+  ));
+
+  if (portraits.length > 1) {
+    body.appendChild(el('div', { class: 'page-section' + (cls === 'faction-b' ? ' cold' : '') },
+      el('h3', null, 'Variants'),
+      el('div', { class: 'subgrid' },
+        ...portraits.map(([lbl, src]) => el('div', { class: 'minicard' },
+          el('div', { class: 'portrait' }, el('img', { src, alt: '' })),
+          lbl ? el('div', { class: 'mc-tag', style: 'margin-top:6px' }, lbl) : null,
+        )),
+      ),
+    ));
+  }
+
+  if (r.affinity) {
+    body.appendChild(el('div', { class: 'page-section' + (cls === 'faction-b' ? ' cold' : '') },
+      el('h3', null, 'Pillar Affinity'),
+      el('dl', null,
+        el('dt', null, 'Might'),   el('dd', null, String(r.affinity.might   ?? '—')),
+        el('dt', null, 'Arcana'),  el('dd', null, String(r.affinity.arcana  ?? '—')),
+        el('dt', null, 'Finesse'), el('dd', null, String(r.affinity.finesse ?? '—')),
+        r.affinity.notes ? el('dt', null, 'Notes') : null,
+        r.affinity.notes ? el('dd', null, r.affinity.notes) : null,
+      ),
+    ));
+  }
+
+  const mech = [];
+  if (r.creature_type) mech.push(['Creature type', pretty(r.creature_type)]);
+  if (r.size_class)    mech.push(['Size class',    pretty(r.size_class)]);
+  if (r.hp_modifier != null) mech.push(['HP modifier', `×${r.hp_modifier}`]);
+  if (r.favored_class) mech.push(['Favored class',  pretty(r.favored_class)]);
+  if (mech.length) {
+    body.appendChild(el('div', { class: 'page-section' + (cls === 'faction-b' ? ' cold' : '') },
+      el('h3', null, 'Mechanics'),
+      el('dl', null, ...mech.flatMap(([k, v]) => [el('dt', null, k), el('dd', null, v)])),
+    ));
+  }
+
+  if (r.visual) {
+    body.appendChild(el('div', { class: 'page-section' + (cls === 'faction-b' ? ' cold' : '') },
+      el('h3', null, 'Appearance'),
+      el('dl', null,
+        ...Object.entries(r.visual)
+          .filter(([k]) => k !== 'tags' && k !== 'negative_tags')
+          .flatMap(([k, v]) => [el('dt', null, pretty(k)), el('dd', null, String(v))]),
+      ),
+    ));
+  }
+}
+
+// ─── ZONES ──────────────────────────────────────────────────────────────
+function renderZones() {
+  const z = state.data.zones || [];
+  fillSelect($('#zone-faction'), uniqueSorted(z.map((x) => x.faction_control).filter(Boolean)), factionLabel);
+  fillSelect($('#zone-tier'),    uniqueSorted(z.map((x) => x.tier).filter(Boolean)));
+  fillSelect($('#zone-biome'),   uniqueSorted(z.map((x) => x.biome).filter(Boolean)));
+
+  const f = state.filters.zone;
+  $('#zone-search').addEventListener('input',  (e) => { f.search  = e.target.value.toLowerCase(); paintZones(); });
+  $('#zone-faction').addEventListener('change', (e) => { f.faction = e.target.value; paintZones(); });
+  $('#zone-tier').addEventListener('change',    (e) => { f.tier    = e.target.value; paintZones(); });
+  $('#zone-biome').addEventListener('change',   (e) => { f.biome   = e.target.value; paintZones(); });
+  paintZones();
+}
+
+function paintZones() {
+  const grid = $('#zone-grid');
+  grid.className = 'vstack';
+  clearChildren(grid);
+  const f = state.filters.zone;
+  let count = 0;
+  for (const z of state.data.zones || []) {
+    if (f.faction && z.faction_control !== f.faction) continue;
+    if (f.tier && z.tier !== f.tier) continue;
+    if (f.biome && z.biome !== f.biome) continue;
     if (f.search) {
-      const q = f.search.toLowerCase();
-      if (!s.display_name.toLowerCase().includes(q) &&
-          !s.description.toLowerCase().includes(q) &&
-          !s.id.toLowerCase().includes(q)) return false;
+      const s = ((z.name || '') + ' ' + (z.notes || '') + ' ' + (z.id || '')).toLowerCase();
+      if (!s.includes(f.search)) continue;
     }
-    return true;
-  });
+    count++;
+    const stats = [
+      z.tier ? pretty(z.tier) : null,
+      z.level_range ? `Lv ${z.level_range.min}-${z.level_range.max}` : null,
+      z.hub_count ? `${z.hub_count} hubs` : null,
+    ].filter(Boolean).join(' · ');
+    const row = el('div', { class: 'vrow ' + factionClass(z.faction_control) },
+      el('div', { class: 'vrow-thumb' },
+        z.images?.length ? el('img', { src: ''+z.images[0], alt: '' }) : 'no image'),
+      el('div', { class: 'vrow-text' },
+        el('div', { class: 'vrow-tag' },
+          `${factionLabel(z.faction_control)} · ${pretty(z.biome || '—')}`),
+        el('div', { class: 'vrow-title' }, z.name || pretty(z.id)),
+        el('div', { class: 'vrow-desc' }, z.description || z.notes || ''),
+        stats ? el('div', { class: 'vrow-stats' }, stats) : null,
+      ),
+    );
+    row.addEventListener('click', () => { window.location.hash = `zone/${z.id}`; });
+    grid.appendChild(row);
+  }
+  $('#zone-count').textContent = `${count} of ${(state.data.zones || []).length}`;
+}
+
+function renderZonePage(id) {
+  const z = (state.data.zones || []).find((x) => x.id === id);
+  const body = $('#page-body'); clearChildren(body);
+  if (!z) { body.appendChild(el('div', null, 'Zone not found.')); return; }
+  $('#page-back').href = '#zones';
+  const cls = factionClass(z.faction_control);
+
+  body.appendChild(el('div', { class: 'page-hero' },
+    z.images?.length ? heroImage(z.images) : null,
+    el('div', { class: 'hero-text' },
+      el('h1', { class: 'page-title ' + cls }, z.name || pretty(z.id)),
+      el('div', { class: 'page-subtitle' },
+        `${factionLabel(z.faction_control)} · ${pretty(z.biome || '')} · ${pretty(z.region || '')}`),
+      z.vibe ? el('div', { class: 'page-vibe' }, z.vibe) : null,
+      z.description ? el('p', { class: 'page-lede' }, z.description) : null,
+      z.notes && z.notes !== z.description ? el('p', { class: 'page-notes' }, z.notes) : null,
+      z.prompt ? promptBlock('SDXL prompt', z.prompt, z.negative_prompt) : null,
+    ),
+  ));
+
+  const facts = [];
+  if (z.tier) facts.push(['Tier', pretty(z.tier)]);
+  if (z.level_range) facts.push(['Level range', `${z.level_range.min} – ${z.level_range.max}`]);
+  if (z.starter_race) facts.push(['Starter race', pretty(z.starter_race)]);
+  if (z.hub_count) facts.push(['Hubs', String(z.hub_count)]);
+  if (z.budget) {
+    if (z.budget.quest_count_target)     facts.push(['Quests (target)', String(z.budget.quest_count_target)]);
+    if (z.budget.unique_mob_types)       facts.push(['Unique mobs',     String(z.budget.unique_mob_types)]);
+    if (z.budget.mob_kills_to_complete)  facts.push(['Kills to complete', String(z.budget.mob_kills_to_complete)]);
+    if (z.budget.estimated_hours_to_complete) {
+      const h = z.budget.estimated_hours_to_complete;
+      facts.push(['Estimated hours', `solo ${h.solo} · duo ${h.duo}`]);
+    }
+  }
+  if (facts.length) {
+    body.appendChild(el('div', { class: 'page-section' + (cls === 'faction-b' ? ' cold' : '') },
+      el('h3', null, 'Overview'),
+      el('dl', null, ...facts.flatMap(([k, v]) => [el('dt', null, k), el('dd', null, v)])),
+    ));
+  }
+
+  if (z.hubs?.length) {
+    body.appendChild(el('div', { class: 'page-section' + (cls === 'faction-b' ? ' cold' : '') },
+      el('h3', null, `Hubs (${z.hubs.length})`),
+      el('div', { class: 'vstack' },
+        ...z.hubs.map((h) => {
+          const stats = (h.amenities || []).map(pretty).join(' · ')
+            + (h.quest_givers ? ` · ${h.quest_givers} qg` : '')
+            + (h.prop_count ? ` · ${h.prop_count} props` : '');
+          const row = el('a', { class: 'vrow', href: `#hub/${h.id}` },
+            el('div', { class: 'vrow-thumb' },
+              h.images?.length ? el('img', { src: ''+h.images[0], alt: '' }) : 'no image',
+            ),
+            el('div', { class: 'vrow-text' },
+              el('div', { class: 'vrow-tag' }, pretty(h.role || h.biome || 'hub')),
+              el('div', { class: 'vrow-title' }, h.name || pretty(h.id)),
+              h.description ? el('div', { class: 'vrow-desc' }, h.description) : null,
+              stats ? el('div', { class: 'vrow-stats' }, stats) : null,
+            ),
+          );
+          return row;
+        }),
+      ),
+    ));
+  }
+
+  if (z.landmarks?.length) {
+    body.appendChild(el('div', { class: 'page-section' + (cls === 'faction-b' ? ' cold' : '') },
+      el('h3', null, `Landmarks (${z.landmarks.length})`),
+      el('div', { class: 'vstack' },
+        ...z.landmarks.map((lm) => {
+          const off = lm.offset_from_zone_origin;
+          const coord = off ? `(${off.x ?? 0}, ${off.z ?? 0})` : '';
+          return el('a', { class: 'vrow', href: `#landmark/${lm.id}` },
+            el('div', { class: 'vrow-thumb' },
+              lm.images?.length ? el('img', { src: ''+lm.images[0], alt: '' }) : 'no image',
+            ),
+            el('div', { class: 'vrow-text' },
+              el('div', { class: 'vrow-tag' }, 'landmark'),
+              el('div', { class: 'vrow-title' }, lm.name || pretty(lm.id)),
+              lm.description ? el('div', { class: 'vrow-desc' }, lm.description) : null,
+              coord ? el('div', { class: 'vrow-stats' }, coord) : null,
+            ),
+          );
+        }),
+      ),
+    ));
+  }
+
+  if (z.scatter_categories?.length) {
+    body.appendChild(el('div', { class: 'page-section' + (cls === 'faction-b' ? ' cold' : '') },
+      el('h3', null, 'World-dressing'),
+      el('dl', null,
+        el('dt', null, 'Scatter categories'),
+        el('dd', null, z.scatter_categories.map(pretty).join(' · ')),
+      ),
+    ));
+  }
+
+  const dungs = (state.data.dungeons || []).filter((d) => d.zone === z.id);
+  if (dungs.length) {
+    body.appendChild(el('div', { class: 'page-section' + (cls === 'faction-b' ? ' cold' : '') },
+      el('h3', null, `Dungeons (${dungs.length})`),
+      el('div', { class: 'vstack' },
+        ...dungs.map((d) => el('a', { class: 'vrow', href: `#dungeon/${d.id}` },
+          el('div', { class: 'vrow-thumb' },
+            d.images?.length ? el('img', { src: ''+d.images[0], alt: '' }) : 'no image',
+          ),
+          el('div', { class: 'vrow-text' },
+            el('div', { class: 'vrow-tag' }, `${pretty(d.kind || 'dungeon')} · ${d.group_size || '?'}p · Lv ${d.level_range?.min}-${d.level_range?.max}`),
+            el('div', { class: 'vrow-title' }, d.name || pretty(d.id)),
+            d.theme ? el('div', { class: 'vrow-desc' }, d.theme) : null,
+            el('div', { class: 'vrow-stats' },
+              `${d.boss_count || 0} bosses · ~${d.estimated_clear_minutes || '?'} min`
+              + (d.loot_tier ? ` · loot: ${d.loot_tier}` : '')
+              + (d.tier ? ` · ${pretty(d.tier)}` : '')
+            ),
+          ),
+        )),
+      ),
+    ));
+  }
+}
+
+// ─── HUB DETAIL ─────────────────────────────────────────────────────────
+function findHubById(id) {
+  for (const z of state.data.zones || []) {
+    const h = (z.hubs || []).find((x) => x.id === id);
+    if (h) return { hub: h, zone: z };
+  }
+  return null;
+}
+
+function renderHubPage(id) {
+  const hit = findHubById(id);
+  const body = $('#page-body'); clearChildren(body);
+  if (!hit) { body.appendChild(el('div', null, 'Hub not found.')); return; }
+  const { hub: h, zone: z } = hit;
+  $('#page-back').href = `#zone/${z.id}`;
+  const cls = factionClass(z.faction_control);
+
+  body.appendChild(el('div', { class: 'page-hero' },
+    h.images?.length ? heroImage(h.images) : null,
+    el('div', { class: 'hero-text' },
+      el('h1', { class: 'page-title ' + cls }, h.name || pretty(h.id)),
+      el('div', { class: 'page-subtitle' },
+        `${pretty(h.role || 'hub')} · ${z.name || pretty(z.id)} · ${factionLabel(z.faction_control)}`),
+      h.description ? el('p', { class: 'page-lede' }, h.description) : null,
+      h.prompt ? promptBlock('SDXL prompt', h.prompt, h.negative_prompt) : null,
+    ),
+  ));
+
+  const facts = [];
+  if (h.amenities?.length) facts.push(['Amenities', h.amenities.map(pretty).join(' · ')]);
+  if (h.quest_givers != null) facts.push(['Quest givers', String(h.quest_givers)]);
+  if (h.prop_count != null) facts.push(['Authored props', String(h.prop_count)]);
+  if (h.biome) facts.push(['Local biome', pretty(h.biome)]);
+  if (h.offset_from_zone_origin) {
+    const o = h.offset_from_zone_origin;
+    facts.push(['Offset from zone origin', `(${o.x ?? 0}, ${o.z ?? 0})`]);
+  }
+  if (facts.length) {
+    body.appendChild(el('div', { class: 'page-section' + (cls === 'faction-b' ? ' cold' : '') },
+      el('h3', null, 'Overview'),
+      el('dl', null, ...facts.flatMap(([k, v]) => [el('dt', null, k), el('dd', null, v)])),
+    ));
+  }
+
+  // Sibling hubs in the same zone
+  const siblings = (z.hubs || []).filter((x) => x.id !== h.id);
+  if (siblings.length) {
+    body.appendChild(el('div', { class: 'page-section' + (cls === 'faction-b' ? ' cold' : '') },
+      el('h3', null, `Other hubs in ${z.name || pretty(z.id)}`),
+      el('div', { class: 'subgrid' },
+        ...siblings.map((s) => el('a', { class: 'minicard', href: `#hub/${s.id}`, style: 'text-decoration:none' },
+          s.images?.length ? hubThumb(s.images, s.name) : null,
+          el('div', { class: 'mc-tag' }, pretty(s.role || 'hub')),
+          el('div', { class: 'mc-title' }, s.name || pretty(s.id)),
+        )),
+      ),
+    ));
+  }
+}
+
+// ─── LANDMARK DETAIL ────────────────────────────────────────────────────
+function findLandmarkById(id) {
+  for (const z of state.data.zones || []) {
+    const lm = (z.landmarks || []).find((x) => x.id === id);
+    if (lm) return { landmark: lm, zone: z };
+  }
+  return null;
+}
+
+function renderLandmarkPage(id) {
+  const hit = findLandmarkById(id);
+  const body = $('#page-body'); clearChildren(body);
+  if (!hit) { body.appendChild(el('div', null, 'Landmark not found.')); return; }
+  const { landmark: lm, zone: z } = hit;
+  $('#page-back').href = `#zone/${z.id}`;
+  const cls = factionClass(z.faction_control);
+
+  body.appendChild(el('div', { class: 'page-hero' },
+    lm.images?.length ? heroImage(lm.images) : null,
+    el('div', { class: 'hero-text' },
+      el('h1', { class: 'page-title ' + cls }, lm.name || pretty(lm.id)),
+      el('div', { class: 'page-subtitle' },
+        `Landmark · ${z.name || pretty(z.id)} · ${factionLabel(z.faction_control)}`),
+      lm.description ? el('p', { class: 'page-lede' }, lm.description) : null,
+      lm.prompt ? promptBlock('SDXL prompt', lm.prompt, lm.negative_prompt) : null,
+    ),
+  ));
+
+  const facts = [];
+  if (lm.offset_from_zone_origin) {
+    const o = lm.offset_from_zone_origin;
+    facts.push(['Offset from zone origin', `(${o.x ?? 0}, ${o.z ?? 0})`]);
+  }
+  if (lm.biome) facts.push(['Local biome', pretty(lm.biome)]);
+  if (lm.level_range) facts.push(['Level range', `${lm.level_range.min} – ${lm.level_range.max}`]);
+  if (facts.length) {
+    body.appendChild(el('div', { class: 'page-section' + (cls === 'faction-b' ? ' cold' : '') },
+      el('h3', null, 'Overview'),
+      el('dl', null, ...facts.flatMap(([k, v]) => [el('dt', null, k), el('dd', null, v)])),
+    ));
+  } else {
+    body.appendChild(el('div', { class: 'page-section' + (cls === 'faction-b' ? ' cold' : '') },
+      el('h3', null, 'Notes'),
+      el('p', { style: 'color:var(--parchment-dim); font-style:italic' },
+        'No description or prompt authored yet — landmarks accept the same '
+        + '`description:` and `prompt:` fields as zones and hubs.'),
+    ));
+  }
+}
+
+// ─── BIOMES ─────────────────────────────────────────────────────────────
+function renderBiomes() {
+  const grid = $('#biome-grid');
+  clearChildren(grid);
+  // switch this tab from a grid to a vertical stack
+  grid.className = 'vstack';
+  const zones = state.data.zones || [];
+  for (const b of state.data.biomes || []) {
+    const inBiome = zones.filter((z) => z.biome === b.id);
+    const factionTag = (factionLabel(b.faction_affinity) || 'neutral')
+      + (b.climate ? ` · ${b.climate}` : '');
+    const stats = (b.hazards || []).map(pretty).join(' · ');
+
+    let zonesBlock = null;
+    if (inBiome.length) {
+      const tiles = inBiome.map((z) => {
+        const tile = el('a', {
+          class: 'vrow-zone-tile ' + factionClass(z.faction_control),
+          href: `#zone/${z.id}`,
+        },
+          el('div', { class: 'vrow-zone-tile-thumb' },
+            z.images?.length
+              ? el('img', { src: ''+z.images[0], alt: '' })
+              : null,
+          ),
+          el('div', { class: 'vrow-zone-tile-name' }, z.name || pretty(z.id)),
+        );
+        tile.addEventListener('click', (e) => e.stopPropagation());
+        return tile;
+      });
+      zonesBlock = el('div', { class: 'vrow-zones' },
+        el('div', { class: 'vrow-zones-label' },
+          `Includes ${inBiome.length} zone${inBiome.length === 1 ? '' : 's'}`),
+        el('div', { class: 'vrow-zone-tiles' }, ...tiles),
+      );
+    } else {
+      zonesBlock = el('div', { class: 'vrow-zones vrow-zones-empty' }, 'Not used by any zone yet');
+    }
+
+    const row = el('div', { class: 'vrow ' + factionClass(b.faction_affinity) },
+      el('div', { class: 'vrow-thumb' },
+        b.images?.length ? el('img', { src: ''+b.images[0], alt: '' }) : 'no image',
+      ),
+      el('div', { class: 'vrow-text' },
+        el('div', { class: 'vrow-tag' }, factionTag),
+        el('div', { class: 'vrow-title' }, b.name || pretty(b.id)),
+        b.description ? el('div', { class: 'vrow-desc' }, b.description) : null,
+        zonesBlock,
+        stats ? el('div', { class: 'vrow-stats' }, stats) : null,
+      ),
+    );
+    row.addEventListener('click', () => { window.location.hash = `biome/${b.id}`; });
+    grid.appendChild(row);
+  }
+}
+
+function renderBiomePage(id) {
+  const b = (state.data.biomes || []).find((x) => x.id === id);
+  const body = $('#page-body'); clearChildren(body);
+  if (!b) { body.appendChild(el('div', null, 'Biome not found.')); return; }
+  $('#page-back').href = '#biomes';
+  const cls = factionClass(b.faction_affinity);
+
+  body.appendChild(el('div', { class: 'page-hero' },
+    b.images?.length ? heroImage(b.images) : null,
+    el('div', { class: 'hero-text' },
+      el('h1', { class: 'page-title ' + cls }, b.name || pretty(b.id)),
+      el('div', { class: 'page-subtitle' },
+        `${factionLabel(b.faction_affinity) || 'neutral'} · ${b.climate || ''}`),
+      b.description ? el('p', { class: 'page-lede' }, b.description) : null,
+      b.prompt ? promptBlock('SDXL prompt', b.prompt, b.negative_prompt) : null,
+    ),
+  ));
+
+  if (b.hazards?.length) {
+    body.appendChild(el('div', { class: 'page-section' + (cls === 'faction-b' ? ' cold' : '') },
+      el('h3', null, 'Hazards'),
+      el('ul', null, ...b.hazards.map((h) => el('li', null, h))),
+    ));
+  }
+  if (b.typical_flora?.length) {
+    body.appendChild(el('div', { class: 'page-section' + (cls === 'faction-b' ? ' cold' : '') },
+      el('h3', null, 'Typical Flora'),
+      el('div', null, b.typical_flora.map(pretty).join(' · ')),
+    ));
+  }
+  if (b.typical_fauna?.length) {
+    body.appendChild(el('div', { class: 'page-section' + (cls === 'faction-b' ? ' cold' : '') },
+      el('h3', null, 'Typical Fauna'),
+      el('div', null, b.typical_fauna.map(pretty).join(' · ')),
+    ));
+  }
+
+  const zones = (state.data.zones || []).filter((z) => z.biome === b.id);
+  if (zones.length) {
+    body.appendChild(el('div', { class: 'page-section' + (cls === 'faction-b' ? ' cold' : '') },
+      el('h3', null, `Zones (${zones.length})`),
+      el('div', { class: 'subgrid' },
+        ...zones.map((z) => el('a', {
+          class: 'minicard ' + factionClass(z.faction_control),
+          href: `#zone/${z.id}`, style: 'text-decoration:none',
+        },
+          el('div', { class: 'mc-tag' }, factionLabel(z.faction_control)),
+          el('div', { class: 'mc-title' }, z.name || pretty(z.id)),
+          el('div', { class: 'mc-meta' }, z.level_range ? `Lv ${z.level_range.min}-${z.level_range.max}` : ''),
+        )),
+      ),
+    ));
+  }
+}
+
+// ─── DUNGEONS ───────────────────────────────────────────────────────────
+function renderDungeons() {
+  const d = state.data.dungeons || [];
+  fillSelect($('#dungeon-band'), uniqueSorted(d.map((x) => x.level_band).filter(Boolean)));
+  fillSelect($('#dungeon-size'), uniqueSorted(d.map((x) => x.group_size).filter((v) => v != null)),
+    (v) => `${v}-player`);
+  fillSelect($('#dungeon-kind'), uniqueSorted(d.map((x) => x.kind).filter(Boolean)));
+
+  const f = state.filters.dungeon;
+  $('#dungeon-search').addEventListener('input',  (e) => { f.search = e.target.value.toLowerCase(); paintDungeons(); });
+  $('#dungeon-band').addEventListener('change',   (e) => { f.band   = e.target.value; paintDungeons(); });
+  $('#dungeon-size').addEventListener('change',   (e) => { f.size   = e.target.value; paintDungeons(); });
+  $('#dungeon-kind').addEventListener('change',   (e) => { f.kind   = e.target.value; paintDungeons(); });
+  paintDungeons();
+}
+
+function paintDungeons() {
+  const grid = $('#dungeon-grid');
+  grid.className = 'vstack';
+  clearChildren(grid);
+  const f = state.filters.dungeon;
+  let count = 0;
+  for (const d of state.data.dungeons || []) {
+    if (f.band && d.level_band !== f.band) continue;
+    if (f.size && String(d.group_size) !== f.size) continue;
+    if (f.kind && d.kind !== f.kind) continue;
+    if (f.search) {
+      const s = ((d.name || '') + ' ' + (d.theme || '') + ' ' + (d.id || '')).toLowerCase();
+      if (!s.includes(f.search)) continue;
+    }
+    count++;
+    const tier = d.tier === 'endgame' ? 'pillar-arcana' :
+                 d.tier === 'midgame' ? 'pillar-finesse' :
+                 d.tier === 'leveling' ? 'pillar-might' : '';
+    const stats = [
+      d.boss_count ? `${d.boss_count} bosses` : null,
+      d.estimated_clear_minutes ? `~${d.estimated_clear_minutes} min` : null,
+      d.loot_tier ? `loot: ${d.loot_tier}` : null,
+    ].filter(Boolean).join(' · ');
+    const row = el('div', { class: 'vrow ' + tier },
+      el('div', { class: 'vrow-thumb' },
+        d.images?.length ? el('img', { src: ''+d.images[0], alt: '' }) : 'no image'),
+      el('div', { class: 'vrow-text' },
+        el('div', { class: 'vrow-tag' },
+          `${pretty(d.kind || 'dungeon')} · ${d.group_size || '?'}-player · Lv ${d.level_range?.min}-${d.level_range?.max}`
+          + (d.tier ? ` · ${pretty(d.tier)}` : '')),
+        el('div', { class: 'vrow-title' }, d.name || pretty(d.id)),
+        el('div', { class: 'vrow-desc' }, d.description || d.theme || ''),
+        stats ? el('div', { class: 'vrow-stats' }, stats) : null,
+      ),
+    );
+    row.addEventListener('click', () => { window.location.hash = `dungeon/${d.id}`; });
+    grid.appendChild(row);
+  }
+  $('#dungeon-count').textContent = `${count} of ${(state.data.dungeons || []).length}`;
+}
+
+function renderDungeonPage(id) {
+  const d = (state.data.dungeons || []).find((x) => x.id === id);
+  const body = $('#page-body'); clearChildren(body);
+  if (!d) { body.appendChild(el('div', null, 'Dungeon not found.')); return; }
+  $('#page-back').href = '#dungeons';
+
+  body.appendChild(el('div', { class: 'page-hero' },
+    d.images?.length ? heroImage(d.images) : null,
+    el('div', { class: 'hero-text' },
+      el('h1', { class: 'page-title' }, d.name || pretty(d.id)),
+      el('div', { class: 'page-subtitle' },
+        `${pretty(d.kind || 'dungeon')} · ${d.group_size || '?'}-player · Lv ${d.level_range?.min}-${d.level_range?.max} · ${pretty(d.tier || '')}`),
+      d.description ? el('p', { class: 'page-lede' }, d.description) : null,
+      d.theme && d.theme !== d.description ? el('p', { class: 'page-notes' }, d.theme) : null,
+      d.prompt ? promptBlock('SDXL prompt', d.prompt, d.negative_prompt) : null,
+    ),
+  ));
+
+  const facts = [];
+  const zoneEntry = (state.data.zones || []).find((z) => z.id === d.zone);
+  if (d.zone) facts.push(['Zone', zoneEntry?.name || pretty(d.zone)]);
+  if (d.entrance_hub) facts.push(['Entrance hub', pretty(d.entrance_hub)]);
+  if (d.level_band) facts.push(['Level band', d.level_band]);
+  if (d.boss_count != null) facts.push(['Boss count', String(d.boss_count)]);
+  if (d.estimated_clear_minutes != null) facts.push(['Estimated clear', `${d.estimated_clear_minutes} min`]);
+  if (d.loot_tier) facts.push(['Loot tier', pretty(d.loot_tier)]);
+  if (d.lockout) facts.push(['Lockout', d.lockout]);
+  if (d.coop_notes) facts.push(['Co-op notes', d.coop_notes]);
+  if (facts.length) {
+    body.appendChild(el('div', { class: 'page-section' },
+      el('h3', null, 'Overview'),
+      el('dl', null, ...facts.flatMap(([k, v]) => [el('dt', null, k), el('dd', null, v)])),
+    ));
+  }
+
+  if (d.bosses?.length) {
+    body.appendChild(el('div', { class: 'page-section' },
+      el('h3', null, `Bosses (${d.bosses.length})`),
+      el('div', { class: 'vstack' },
+        ...d.bosses.map((b) => el('div', { class: 'vrow' },
+          el('div', { class: 'vrow-thumb' },
+            b.images?.length ? el('img', { src: ''+b.images[0], alt: '' }) : 'no portrait',
+          ),
+          el('div', { class: 'vrow-text' },
+            el('div', { class: 'vrow-tag' },
+              `${pretty(b.role_tag || 'boss')} · Lv ${b.level || '?'} · ${pretty(b.hp_tier || '')}`),
+            el('div', { class: 'vrow-title' }, b.name || pretty(b.id)),
+            b.description ? el('div', { class: 'vrow-desc' }, b.description) : null,
+            b.mechanic ? el('div', { class: 'vrow-stats' }, `Mechanic: ${b.mechanic}`) : null,
+          ),
+        )),
+      ),
+    ));
+  }
+
+  if (d.loot && Object.keys(d.loot).length) {
+    body.appendChild(el('div', { class: 'page-section' },
+      el('h3', null, 'Loot'),
+      el('pre', {
+        style: 'background:rgba(20,20,26,.6); border:1px solid var(--line); padding:12px; border-radius:2px; font-size:12px; line-height:1.5; color:var(--parchment-dim); overflow:auto;',
+      }, JSON.stringify(d.loot, null, 2)),
+    ));
+  }
+}
+
+// ─── INSTITUTIONS ───────────────────────────────────────────────────────
+function renderInstitutions() {
+  const grid = $('#institution-grid');
+  clearChildren(grid);
+  for (const i of state.data.institutions || []) {
+    const card = el('div', { class: 'card ' + factionClass(i.faction) },
+      i.has_emblem ? el('div', { class: 'emblem' },
+        el('img', { src: `emblems/institution_${i.id}.png`, alt: '' })) : null,
+      el('div', { class: 'card-title' }, i.name || pretty(i.id)),
+      el('div', { class: 'card-subtitle' },
+        `${factionLabel(i.faction)} · ${(i.pillars || []).map(pretty).join(' / ') || ''}`),
+      el('div', { class: 'card-desc' }, i.tradition || i.lore?.description || ''),
+      el('div', { class: 'card-meta' },
+        i.chapters?.length ? chip(`${i.chapters.length} chapters`) : null,
+        i.orders_produced?.length ? chip(`${i.orders_produced.length} orders`) : null,
+      ),
+    );
+    card.addEventListener('click', () => { window.location.hash = `institution/${i.id}`; });
+    grid.appendChild(card);
+  }
+}
+
+function renderInstitutionPage(id) {
+  const i = (state.data.institutions || []).find((x) => x.id === id);
+  const body = $('#page-body'); clearChildren(body);
+  if (!i) { body.appendChild(el('div', null, 'Institution not found.')); return; }
+  $('#page-back').href = '#institutions';
+  const cls = factionClass(i.faction);
+
+  body.appendChild(el('div', { class: 'page-hero' },
+    i.has_emblem ? el('div', { class: 'portrait-slot', style: 'aspect-ratio:1/1; width:200px' },
+      el('img', { src: `emblems/institution_${i.id}.png`, alt: '' })) : null,
+    el('div', { class: 'hero-text' },
+      el('h1', { class: 'page-title ' + cls }, i.name || pretty(i.id)),
+      el('div', { class: 'page-subtitle' },
+        `${factionLabel(i.faction)} · ${(i.pillars || []).map(pretty).join(' / ')}`),
+      i.lore?.description ? el('p', { class: 'page-lede' }, i.lore.description) : null,
+    ),
+  ));
+
+  if (i.tradition || i.lore?.doctrine || i.lore?.home || i.lore?.patron) {
+    body.appendChild(el('div', { class: 'page-section' + (cls === 'faction-b' ? ' cold' : '') },
+      el('h3', null, 'Doctrine'),
+      el('dl', null,
+        i.tradition ? el('dt', null, 'Tradition') : null,
+        i.tradition ? el('dd', null, i.tradition) : null,
+        i.lore?.doctrine ? el('dt', null, 'Doctrine') : null,
+        i.lore?.doctrine ? el('dd', null, i.lore.doctrine) : null,
+        i.lore?.home ? el('dt', null, 'Home') : null,
+        i.lore?.home ? el('dd', null, i.lore.home) : null,
+        i.lore?.patron ? el('dt', null, 'Patron') : null,
+        i.lore?.patron ? el('dd', null, i.lore.patron) : null,
+        i.lore?.founded ? el('dt', null, 'Founded') : null,
+        i.lore?.founded ? el('dd', null, i.lore.founded) : null,
+        i.lore?.recruitment ? el('dt', null, 'Recruitment') : null,
+        i.lore?.recruitment ? el('dd', null, i.lore.recruitment) : null,
+      ),
+    ));
+  }
+
+  if (i.curriculum) {
+    const rows = [];
+    for (const [tier, byPillar] of Object.entries(i.curriculum)) {
+      for (const [pillar, schools] of Object.entries(byPillar || {})) {
+        rows.push([`${pretty(tier)} · ${pretty(pillar)}`, (schools || []).map(pretty).join(' · ')]);
+      }
+    }
+    if (rows.length) {
+      body.appendChild(el('div', { class: 'page-section' + (cls === 'faction-b' ? ' cold' : '') },
+        el('h3', null, 'Curriculum'),
+        el('dl', null, ...rows.flatMap(([k, v]) => [el('dt', null, k), el('dd', null, v)])),
+      ));
+    }
+  }
+
+  if (i.aesthetic) {
+    body.appendChild(el('div', { class: 'page-section' + (cls === 'faction-b' ? ' cold' : '') },
+      el('h3', null, 'Aesthetic'),
+      el('dl', null,
+        ...Object.entries(i.aesthetic).flatMap(([k, v]) => [el('dt', null, pretty(k)), el('dd', null, String(v))]),
+      ),
+    ));
+  }
+
+  if (i.orders_produced?.length) {
+    const ordersById = new Map((state.data.orders || []).map((o) => [o.id, o]));
+    body.appendChild(el('div', { class: 'page-section' + (cls === 'faction-b' ? ' cold' : '') },
+      el('h3', null, `Orders Produced (${i.orders_produced.length})`),
+      el('div', { class: 'subgrid' },
+        ...i.orders_produced.map((oid) => {
+          const o = ordersById.get(oid);
+          return el('a', {
+            class: 'minicard', href: `#order/${oid}`, style: 'text-decoration:none',
+          },
+            el('div', { class: 'mc-tag' }, o ? `class ${o.class_id ?? '?'}` : 'order'),
+            el('div', { class: 'mc-title' }, o?.name || pretty(oid)),
+            o?.flavor ? el('div', { class: 'mc-meta' }, o.flavor) : null,
+          );
+        }),
+      ),
+    ));
+  }
+}
+
+// ─── CLASSES (archetypes) ───────────────────────────────────────────────
+function renderClasses() {
+  const grid = $('#class-grid');
+  clearChildren(grid);
+  for (const c of state.data.classes || []) {
+    const dom = (c.dominant_pillar || [])[0] || '';
+    const card = el('div', { class: 'card class-card pillar-' + (dom || 'arcana') },
+      el('div', { class: 'card-title' }, c.abstract_name || pretty(c.internal_label || '')),
+      el('div', { class: 'card-subtitle' },
+        `${pretty(c.pillar_classification || '')} · ${(c.dominant_pillar || []).map(pretty).join(' / ')}`),
+      el('div', { class: 'card-desc' }, c.note || c.edge || ''),
+      el('div', { class: 'card-meta' },
+        ...(c.primary_roles || []).map((r) => chip(pretty(r))),
+      ),
+    );
+    card.addEventListener('click', () => { window.location.hash = `class/${c.class_id}`; });
+    grid.appendChild(card);
+  }
+}
+
+function renderClassPage(id) {
+  const c = (state.data.classes || []).find((x) => x.class_id === Number(id) || String(x.class_id) === id);
+  const body = $('#page-body'); clearChildren(body);
+  if (!c) { body.appendChild(el('div', null, 'Class not found.')); return; }
+  $('#page-back').href = '#classes';
+
+  body.appendChild(el('div', { class: 'page-hero' },
+    el('div', { class: 'hero-text' },
+      el('h1', { class: 'page-title' }, c.abstract_name || pretty(c.internal_label || '')),
+      el('div', { class: 'page-subtitle' },
+        `Class ${c.class_id} · ${pretty(c.pillar_classification || '')} · ${(c.dominant_pillar || []).map(pretty).join(' / ')}`),
+      c.note ? el('p', { class: 'page-lede' }, c.note) : null,
+    ),
+  ));
+
+  if (c.position) {
+    body.appendChild(el('div', { class: 'page-section' },
+      el('h3', null, 'Pillar Position'),
+      el('dl', null,
+        el('dt', null, 'Might'),   el('dd', null, String(c.position.might   ?? 0)),
+        el('dt', null, 'Arcana'),  el('dd', null, String(c.position.arcana  ?? 0)),
+        el('dt', null, 'Finesse'), el('dd', null, String(c.position.finesse ?? 0)),
+        c.edge ? el('dt', null, 'Edge') : null,
+        c.edge ? el('dd', null, c.edge) : null,
+      ),
+    ));
+  }
+
+  if (c.capabilities) {
+    const rows = [];
+    for (const [pillar, caps] of Object.entries(c.capabilities)) {
+      if (!caps?.length) continue;
+      rows.push([pretty(pillar), caps]);
+    }
+    if (rows.length) {
+      body.appendChild(el('div', { class: 'page-section' },
+        el('h3', null, 'Capabilities'),
+        ...rows.map(([k, list]) => el('div', null,
+          el('div', { style: 'font-family:Cinzel,serif; letter-spacing:.2em; text-transform:uppercase; color:var(--parchment-faint); font-size:.7rem; margin-top:6px' }, k),
+          el('ul', null, ...list.map((x) => el('li', null, x))),
+        )),
+      ));
+    }
+  }
+
+  if (c.references) {
+    body.appendChild(el('div', { class: 'page-section' },
+      el('h3', null, 'Reference Portraits'),
+      el('div', { class: 'subgrid' },
+        ...Object.entries(c.references).map(([fac, ref]) => el('div', { class: 'minicard ' + factionClass(fac) },
+          el('div', { class: 'mc-tag' }, `${factionLabel(fac)} · ${pretty(ref.race)}`),
+          el('div', { class: 'portrait-pair', style: 'margin-top:6px' },
+            ref.male ? el('div', { class: 'p' }, el('img', { src: `characters/${ref.stem}.male.png`, alt: '' })) : null,
+            ref.female ? el('div', { class: 'p' }, el('img', { src: `characters/${ref.stem}.female.png`, alt: '' })) : null,
+          ),
+        )),
+      ),
+    ));
+  }
+}
+
+function renderOrderPage(id) {
+  const o = (state.data.orders || []).find((x) => x.id === id);
+  const body = $('#page-body'); clearChildren(body);
+  if (!o) { body.appendChild(el('div', null, 'Order not found.')); return; }
+  $('#page-back').href = '#institutions';
+
+  body.appendChild(el('div', { class: 'page-hero' },
+    el('div', { class: 'hero-text' },
+      el('h1', { class: 'page-title' }, o.name || pretty(o.id)),
+      el('div', { class: 'page-subtitle' }, `Order · class ${o.class_id ?? '?'}`),
+      o.flavor ? el('p', { class: 'page-lede' }, o.flavor) : null,
+    ),
+  ));
+
+  const skip = new Set(['id', 'name', 'flavor', '_file', 'portraits', 'class_id', 'specs']);
+  const entries = Object.entries(o).filter(([k]) => !skip.has(k));
+  if (entries.length) {
+    body.appendChild(el('div', { class: 'page-section' },
+      el('h3', null, 'Details'),
+      el('dl', null,
+        ...entries.flatMap(([k, v]) => [
+          el('dt', null, pretty(k)),
+          el('dd', null, typeof v === 'object' ? JSON.stringify(v, null, 2) : String(v)),
+        ]),
+      ),
+    ));
+  }
+
+  if (o.specs?.length) {
+    body.appendChild(el('div', { class: 'page-section' },
+      el('h3', null, `Specs (${o.specs.length})`),
+      el('div', { class: 'subgrid' },
+        ...o.specs.map((s) => el('div', { class: 'minicard' },
+          el('div', { class: 'mc-title' }, s.name || pretty(s.id || '')),
+          s.description ? el('div', { class: 'mc-meta' }, s.description) : null,
+        )),
+      ),
+    ));
+  }
+}
+
+// ─── SCHOOLS ────────────────────────────────────────────────────────────
+function renderSchools() {
+  const grid = $('#school-grid');
+  clearChildren(grid);
+  for (const s of state.data.schools || []) {
+    const card = el('div', { class: 'card pillar-' + (s.pillar || 'arcana') + (s.morality ? ' morality-' + s.morality : '') },
+      s.has_emblem ? el('div', { class: 'emblem' },
+        el('img', { src: `emblems/school_${s.name}.png`, alt: '' })) : null,
+      el('div', { class: 'card-title' }, pretty(s.name)),
+      el('div', { class: 'card-subtitle' }, `${pretty(s.pillar || '')} · ${pretty(s.morality || '')}`),
+      el('div', { class: 'card-desc' }, s.tag || s.icon_style?.motif || ''),
+      el('div', { class: 'card-meta' },
+        s.damage_type ? chip(pretty(s.damage_type)) : null,
+        s.family ? chip(pretty(s.family)) : null,
+      ),
+    );
+    card.addEventListener('click', () => openSchoolDetail(s));
+    grid.appendChild(card);
+  }
+}
+
+function openSchoolDetail(s) {
+  const node = el('div', null,
+    el('h2', null, pretty(s.name)),
+    el('div', { class: 'meta' }, `${pretty(s.pillar || '')} · ${pretty(s.morality || '')}`),
+    s.has_emblem ? el('img', { class: 'detail-img', src: `emblems/school_${s.name}.png`, alt: '' }) : null,
+    el('dl', null,
+      s.family ? el('dt', null, 'Family') : null,
+      s.family ? el('dd', null, pretty(s.family)) : null,
+      s.tag ? el('dt', null, 'Tag') : null,
+      s.tag ? el('dd', null, s.tag) : null,
+      s.damage_type ? el('dt', null, 'Damage type') : null,
+      s.damage_type ? el('dd', null, pretty(s.damage_type)) : null,
+      s.applies_to_categories?.length ? el('dt', null, 'Applies to') : null,
+      s.applies_to_categories?.length ? el('dd', null, s.applies_to_categories.map(pretty).join(' · ')) : null,
+      s.icon_style?.palette ? el('dt', null, 'Palette') : null,
+      s.icon_style?.palette ? el('dd', null, s.icon_style.palette) : null,
+      s.icon_style?.motif ? el('dt', null, 'Motif') : null,
+      s.icon_style?.motif ? el('dd', null, s.icon_style.motif) : null,
+    ),
+  );
+  openOverlay(node);
+}
+
+// ─── SPELLS ─────────────────────────────────────────────────────────────
+function populateSpellFilters() {
+  const sp = state.data.spells || [];
+  fillSelect($('#spell-pillar'),   uniqueSorted(sp.map((s) => s.pillar)));
+  fillSelect($('#spell-category'), uniqueSorted(sp.map((s) => s.category)));
+  fillSelect($('#spell-school'),   uniqueSorted(sp.map((s) => s.school)));
+  fillSelect($('#spell-tier'),     uniqueSorted(sp.map((s) => s.tier)).map(String));
+  fillSelect($('#spell-morality'), uniqueSorted(sp.map((s) => s.morality).filter(Boolean)));
+}
+
+function wireSpellFilters() {
+  const f = state.filters.spell;
+  $('#spell-search').addEventListener('input',  (e) => { f.search   = e.target.value.toLowerCase(); renderSpells(); });
+  $('#spell-pillar').addEventListener('change', (e) => { f.pillar   = e.target.value; renderSpells(); });
+  $('#spell-category').addEventListener('change', (e) => { f.category = e.target.value; renderSpells(); });
+  $('#spell-school').addEventListener('change', (e) => { f.school   = e.target.value; renderSpells(); });
+  $('#spell-tier').addEventListener('change',   (e) => { f.tier     = e.target.value; renderSpells(); });
+  $('#spell-morality').addEventListener('change', (e) => { f.morality = e.target.value; renderSpells(); });
+  $('#spell-hasicon').addEventListener('change',(e) => { f.hasIcon  = e.target.checked; renderSpells(); });
 }
 
 function renderSpells() {
-  const list = filteredSpells();
-  $('#spell-count').textContent = `${list.length} / ${state.data.spells.length}`;
-  const g = $('#spell-grid');
-  g.innerHTML = '';
-  for (const s of list.slice(0, 300)) {
-    g.appendChild(spellCard(s));
+  const grid = $('#spell-grid'); clearChildren(grid);
+  const f = state.filters.spell;
+  let count = 0;
+  let rendered = 0;
+  for (const s of state.data.spells || []) {
+    if (f.pillar && s.pillar !== f.pillar) continue;
+    if (f.category && s.category !== f.category) continue;
+    if (f.school && s.school !== f.school) continue;
+    if (f.tier && String(s.tier) !== f.tier) continue;
+    if (f.morality && s.morality !== f.morality) continue;
+    if (f.hasIcon && !s.has_icon) continue;
+    if (f.search) {
+      const q = ((s.display_name || '') + ' ' + (s.description || '')).toLowerCase();
+      if (!q.includes(f.search)) continue;
+    }
+    count++;
+    if (rendered >= 600) continue; // hard cap to keep the grid responsive
+    rendered++;
+    const card = el('div', { class: 'card spell-card pillar-' + s.pillar + (s.morality ? ' morality-' + s.morality : '') },
+      el('div', { class: 'icon' },
+        s.has_icon ? el('img', { src: `icons/${s.id}.png`, alt: '' }) : 'no icon'),
+      el('div', { class: 'card-title' }, s.display_name),
+      el('div', { class: 'card-subtitle' }, `${pretty(s.pillar)} · ${pretty(s.school)}`),
+      el('div', { class: 'card-desc' }, s.description || ''),
+      el('div', { class: 'card-meta' },
+        el('span', { class: `tier-badge tier-${s.tier}` }, `T${s.tier}`),
+        chip(pretty(s.category)),
+        s.damage_type ? chip(pretty(s.damage_type)) : null,
+      ),
+    );
+    card.addEventListener('click', () => openSpellDetail(s));
+    grid.appendChild(card);
   }
-  if (list.length > 300) {
-    const note = document.createElement('div');
-    note.style.cssText = 'grid-column: 1/-1; color: var(--text-faint); padding: 12px; text-align: center; font-size: 12px';
-    note.textContent = `showing first 300 of ${list.length} — narrow filters to see more`;
-    g.appendChild(note);
-  }
+  $('#spell-count').textContent = `${count} of ${(state.data.spells || []).length}` +
+    (count > rendered ? ` (showing first ${rendered})` : '');
 }
 
-function spellCard(s) {
-  const c = document.createElement('div');
-  c.className = `card spell-card pillar-${s.pillar}`;
-  const icon = document.createElement('div');
-  icon.className = 'icon';
-  if (s.has_icon) {
-    const img = document.createElement('img');
-    img.src = `../icons/${s.id}.png`;
-    img.loading = 'lazy';
-    icon.appendChild(img);
-  } else {
-    icon.textContent = 'no icon';
-  }
-  c.appendChild(icon);
-
-  const title = document.createElement('div');
-  title.className = 'card-title';
-  title.textContent = s.display_name;
-  c.appendChild(title);
-
-  const desc = document.createElement('div');
-  desc.className = 'card-desc';
-  desc.textContent = s.description;
-  c.appendChild(desc);
-
-  const meta = document.createElement('div');
-  meta.className = 'card-meta';
-  meta.innerHTML =
-    `<span class="tier-badge tier-${s.tier}">T${s.tier}</span>` +
-    `<span class="chip">${s.school}</span>` +
-    `<span class="chip">${s.category}</span>` +
-    (s.morality ? `<span class="chip morality-${s.morality}">${s.morality}</span>` : '') +
-    (s.damage_type ? `<span class="chip">${s.damage_type}</span>` : '');
-  c.appendChild(meta);
-
-  c.addEventListener('click', () =>
-    showDetail(
-      s.display_name,
-      s.id,
-      [
-        ['pillar', s.pillar],
-        ['category', s.category],
-        ['school', s.school],
-        ['tier', s.tier],
-        ['morality', s.morality],
-        ['damage type', s.damage_type],
-        ['description', s.description],
-      ],
-      s.has_icon ? `../icons/${s.id}.png` : null,
+function openSpellDetail(s) {
+  const node = el('div', null,
+    el('h2', null, s.display_name),
+    el('div', { class: 'meta' }, `${pretty(s.pillar)} · ${pretty(s.category)} · ${pretty(s.school)} · T${s.tier}`),
+    s.has_icon ? el('img', { class: 'detail-img', src: `icons/${s.id}.png`, alt: '' }) : null,
+    el('dl', null,
+      el('dt', null, 'Description'),
+      el('dd', null, s.description || '—'),
+      s.damage_type ? el('dt', null, 'Damage type') : null,
+      s.damage_type ? el('dd', null, pretty(s.damage_type)) : null,
+      s.morality ? el('dt', null, 'Morality') : null,
+      s.morality ? el('dd', { class: `morality-${s.morality}` }, pretty(s.morality)) : null,
+      el('dt', null, 'Internal id'),
+      el('dd', { style: 'font-family:ui-monospace,monospace; font-size:11px; color:var(--parchment-faint)' }, s.id),
     ),
   );
-  return c;
+  openOverlay(node);
 }
 
-// --- schools ---
-
-function renderSchools() {
-  const g = $('#school-grid');
-  g.innerHTML = '';
-  for (const s of state.data.schools) {
-    const c = document.createElement('div');
-    c.className = `card pillar-${s.pillar}`;
-    if (s.has_emblem) {
-      const emb = document.createElement('div');
-      emb.className = 'emblem';
-      const img = document.createElement('img');
-      img.src = `../emblems/school_${s.name}.png`;
-      img.loading = 'lazy';
-      emb.appendChild(img);
-      c.appendChild(emb);
-    }
-    const body = document.createElement('div');
-    body.innerHTML =
-      `<div class="card-title">${s.name}</div>` +
-      `<div class="card-desc">${s.tag || ''} · ${s.family || ''}</div>` +
-      `<div class="card-meta">` +
-      `<span class="chip">${s.pillar}</span>` +
-      `<span class="chip morality-${s.morality}">${s.morality}</span>` +
-      (s.damage_type ? `<span class="chip">${s.damage_type}</span>` : '') +
-      `</div>`;
-    c.appendChild(body);
-    if (s.icon_style) {
-      const sty = document.createElement('div');
-      sty.style.cssText = 'font-size:11px;color:var(--text-faint);line-height:1.4';
-      sty.textContent = s.icon_style.motif || '';
-      c.appendChild(sty);
-    }
-    c.addEventListener('click', () =>
-      showDetail(
-        s.name,
-        `${s.pillar} · ${s.morality}`,
-        [
-          ['family', s.family],
-          ['tag', s.tag],
-          ['damage type', s.damage_type],
-          ['applies to', (s.applies_to_categories || []).join(', ')],
-          ['icon palette', s.icon_style?.palette],
-          ['icon motif', s.icon_style?.motif],
-          ['icon silhouette', s.icon_style?.silhouette],
-          ['icon material', s.icon_style?.material],
-          ['file', s._file],
-        ],
-        s.has_emblem ? `../emblems/school_${s.name}.png` : null,
-      ),
-    );
-    g.appendChild(c);
-  }
-}
-
-// --- classes ---
-
-function classPortraitUrl(cls, gender, faction) {
-  faction = faction || 'faction_a';
-  const ref = cls.references?.[faction];
-  if (!ref || !ref[gender]) return null;
-  return `../characters/${ref.stem}.${gender}.png`;
-}
-
-function classAnyPortrait(cls) {
-  for (const f of ['faction_a', 'faction_b']) {
-    for (const g of ['male', 'female']) {
-      const u = classPortraitUrl(cls, g, f);
-      if (u) return u;
-    }
-  }
-  return null;
-}
-
-function renderClasses() {
-  const g = $('#class-grid');
-  g.innerHTML = '';
-  for (const cls of state.data.classes) {
-    const c = document.createElement('div');
-    const dominant = (cls.dominant_pillar || [])[0] || 'arcana';
-    c.className = `card class-card pillar-${dominant}`;
-    const pos = cls.position;
-
-    // portrait thumb — Concord + Rend side-by-side
-    const portraits = document.createElement('div');
-    portraits.className = 'portrait-pair';
-    for (const faction of ['faction_a', 'faction_b']) {
-      const p = document.createElement('div');
-      p.className = 'p';
-      const url = classPortraitUrl(cls, 'male', faction) || classPortraitUrl(cls, 'female', faction);
-      if (url) {
-        const img = document.createElement('img');
-        img.src = url;
-        img.loading = 'lazy';
-        p.appendChild(img);
-      } else {
-        p.textContent = faction === 'faction_a' ? 'A' : 'B';
-      }
-      portraits.appendChild(p);
-    }
-    c.appendChild(portraits);
-
-    const body = document.createElement('div');
-    body.innerHTML =
-      `<div class="card-title">${cls.abstract_name || cls.internal_label}` +
-        (cls.abstract_name ? ` <span style="color:var(--text-faint);font-weight:400;font-size:12px">(${cls.internal_label})</span>` : '') +
-      `</div>` +
-      `<div class="card-desc">${cls.note || ''}</div>` +
-      `<div class="pos">` +
-      barRow('Mig', pos.might, '--might') +
-      barRow('Arc', pos.arcana, '--arcana') +
-      barRow('Fin', pos.finesse, '--finesse') +
-      `</div>` +
-      `<div class="card-meta">` +
-      (cls.primary_roles || []).map((r) => `<span class="chip">${r}</span>`).join('') +
-      (cls.portraits?.male ? '<span class="chip">♂</span>' : '') +
-      (cls.portraits?.female ? '<span class="chip">♀</span>' : '') +
-      `</div>`;
-    c.appendChild(body);
-
-    c.addEventListener('click', () => { window.location.hash = `class/${cls.class_id}`; });
-    g.appendChild(c);
-  }
-}
-
-function renderClassPage(classId) {
-  const cls = state.data.classes.find((k) => k.class_id === classId);
-  const body = $('#page-body');
-  body.innerHTML = '';
-  if (!cls) {
-    body.textContent = `class ${classId} not found`;
-    return;
-  }
-  $('#page-back').href = '#classes';
-
-  const title = document.createElement('h1');
-  title.className = 'page-title';
-  title.textContent = cls.abstract_name || cls.internal_label;
-  body.appendChild(title);
-
-  const pos = cls.position;
-  const sub = document.createElement('div');
-  sub.className = 'page-subtitle';
-  const labelBit = cls.abstract_name ? `flagship class: ${cls.internal_label} · ` : '';
-  sub.textContent = `${labelBit}position M${pos.might} / A${pos.arcana} / F${pos.finesse} · ${cls.pillar_classification} · ${(cls.primary_roles || []).join(', ')}`;
-  body.appendChild(sub);
-
-  const hero = document.createElement('div');
-  hero.className = 'page-hero';
-  for (const faction of ['faction_a', 'faction_b']) {
-    for (const gender of ['male', 'female']) {
-      const slot = document.createElement('div');
-      slot.className = 'portrait-slot';
-      const url = classPortraitUrl(cls, gender, faction);
-      if (url) {
-        const img = document.createElement('img');
-        img.src = url;
-        slot.appendChild(img);
-      } else {
-        slot.textContent = `no ${gender} · ${faction}`;
-      }
-      const lbl = document.createElement('div');
-      lbl.className = 'label';
-      const race = cls.references?.[faction]?.race || '?';
-      const factionShort = faction === 'faction_a' ? 'Concord' : 'Rend';
-      lbl.textContent = `${gender} · ${race} / ${factionShort}`;
-      slot.appendChild(lbl);
-      hero.appendChild(slot);
-    }
-  }
-  body.appendChild(hero);
-
-  body.appendChild(sectionDl('Kit', [
-    ['pitch', cls.visual?.pitch],
-    ['armor', cls.visual?.armor],
-    ['weapon', cls.visual?.weapon],
-    ['pose', cls.visual?.pose],
-    ['negative tags', cls.visual?.negative_tags],
-  ]));
-  body.appendChild(sectionDl('Position', [
-    ['edge', cls.edge],
-    ['dominant pillar', (cls.dominant_pillar || []).join(', ')],
-    ['primary roles', (cls.primary_roles || []).join(', ')],
-    ['note', cls.note],
-  ]));
-  body.appendChild(sectionDl('Capabilities', [
-    ['might', (cls.capabilities?.might || []).join(' · ')],
-    ['arcana', (cls.capabilities?.arcana || []).join(' · ')],
-    ['finesse', (cls.capabilities?.finesse || []).join(' · ')],
-  ]));
-
-  // Orders at this archetype — Concord + Rend
-  const archOrders = (state.data.orders || []).filter((o) => o.archetype_id === classId);
-  if (archOrders.length) {
-    archOrders.sort((a, b) => a.faction.localeCompare(b.faction));
-    const sec = document.createElement('div');
-    sec.className = 'page-section';
-    const h = document.createElement('h3');
-    h.textContent = 'Orders at this Archetype';
-    sec.appendChild(h);
-    const note = document.createElement('div');
-    note.style.cssText = 'color:var(--text-dim);font-size:12px;margin-bottom:10px';
-    note.textContent = `${archOrders.length} Order${archOrders.length === 1 ? '' : 's'} sit at this position`;
-    sec.appendChild(note);
-    const grid = document.createElement('div');
-    grid.style.cssText = 'display:grid;grid-template-columns:repeat(auto-fill, minmax(240px, 1fr));gap:12px';
-    for (const o of archOrders) {
-      const card = document.createElement('a');
-      card.href = `#order/${o.id}`;
-      card.style.cssText =
-        'text-decoration:none;color:var(--text);background:var(--surface);' +
-        'border:1px solid var(--border);border-radius:6px;overflow:hidden;' +
-        'display:flex;flex-direction:column;gap:6px;padding:8px;transition:border-color 0.1s';
-      card.addEventListener('mouseenter', () => (card.style.borderColor = 'var(--arcana)'));
-      card.addEventListener('mouseleave', () => (card.style.borderColor = 'var(--border)'));
-      const pair = document.createElement('div');
-      pair.className = 'portrait-pair';
-      for (const gender of ['male', 'female']) {
-        const p = document.createElement('div');
-        p.className = 'p';
-        if (o.portraits?.[gender]) {
-          const img = document.createElement('img');
-          img.src = `../characters/${o.id}.${gender}.png`;
-          img.loading = 'lazy';
-          p.appendChild(img);
-        } else {
-          p.textContent = gender[0];
-        }
-        pair.appendChild(p);
-      }
-      card.appendChild(pair);
-      const label = document.createElement('div');
-      label.style.cssText = 'font-size:13px;font-weight:600';
-      const factionShort = o.faction === 'faction_a' ? 'Concord' : 'Rend';
-      label.textContent = `${o.player_facing?.class_name || o.id} · ${factionShort}`;
-      card.appendChild(label);
-      if (o.aesthetic?.pitch) {
-        const desc = document.createElement('div');
-        desc.style.cssText = 'font-size:11px;color:var(--text-dim);line-height:1.4';
-        desc.textContent = o.aesthetic.pitch;
-        card.appendChild(desc);
-      }
-      grid.appendChild(card);
-    }
-    sec.appendChild(grid);
-    body.appendChild(sec);
-  }
-
-  body.appendChild(sectionDl('Metadata', [
-    ['file', cls._file],
-  ]));
-}
-
-function barRow(label, pct, varname) {
-  return `<div><span style="display:inline-block;width:28px;color:var(--text-faint)">${label}</span>` +
-    `<span class="bar" style="width:${pct}px;background:var(${varname});opacity:${pct === 0 ? 0.15 : 1}"></span>` +
-    `<span style="margin-left:6px">${pct}</span></div>`;
-}
-
-// --- races ---
-
-function racePortraitUrl(r, gender) {
-  const p = r.portraits || {};
-  if (gender === 'male' && p.male) return `../characters/${r.id}.male.png`;
-  if (gender === 'female' && p.female) return `../characters/${r.id}.female.png`;
-  if (p.male) return `../characters/${r.id}.male.png`;
-  if (p.female) return `../characters/${r.id}.female.png`;
-  if (p.neutral) return `../characters/${r.id}.png`;
-  return null;
-}
-
-function renderRaces() {
-  const g = $('#race-grid');
-  g.innerHTML = '';
-  for (const r of state.data.races) {
-    const c = document.createElement('div');
-    c.className = `card race-card ${r.faction}`;
-    const portrait = document.createElement('div');
-    portrait.className = 'portrait';
-    const url = racePortraitUrl(r, 'male');
-    if (url) {
-      const img = document.createElement('img');
-      img.src = url;
-      img.loading = 'lazy';
-      portrait.appendChild(img);
-    } else {
-      portrait.textContent = 'no portrait';
-    }
-    c.appendChild(portrait);
-    const title = document.createElement('div');
-    title.className = 'card-title';
-    title.textContent = r.id.replace(/_/g, ' ');
-    c.appendChild(title);
-    const desc = document.createElement('div');
-    desc.className = 'card-desc';
-    desc.textContent = r.archetype || '';
-    c.appendChild(desc);
-    const meta = document.createElement('div');
-    meta.className = 'card-meta';
-    meta.innerHTML =
-      `<span class="chip">${r.faction}</span>` +
-      `<span class="chip">${r.favored_class || ''}</span>` +
-      (r.portraits?.male ? '<span class="chip">♂</span>' : '') +
-      (r.portraits?.female ? '<span class="chip">♀</span>' : '');
-    c.appendChild(meta);
-    c.addEventListener('click', () => { window.location.hash = `race/${r.id}`; });
-    g.appendChild(c);
-  }
-}
-
-function renderCombos() {
-  const g = $('#combo-grid');
-  if (!g) return;
-  g.innerHTML = '';
-  for (const c of state.data.combos || []) {
-    const card = document.createElement('div');
-    const cls = state.data.classes.find((k) => k.class_id === c.class_id);
-    const dominant = cls?.dominant_pillar?.[0] || 'arcana';
-    card.className = `card combo-card ${c.faction} pillar-${dominant}`;
-    const pair = document.createElement('div');
-    pair.className = 'portrait-pair';
-    for (const gender of ['male', 'female']) {
-      const slot = document.createElement('div');
-      slot.className = 'p';
-      if (c.portraits?.[gender]) {
-        const img = document.createElement('img');
-        img.src = `../characters/${c._stem}.${gender}.png`;
-        img.loading = 'lazy';
-        slot.appendChild(img);
-      } else {
-        slot.textContent = gender[0];
-      }
-      pair.appendChild(slot);
-    }
-    card.appendChild(pair);
-
-    const title = document.createElement('div');
-    title.className = 'card-title';
-    title.textContent = `${c.race.replace(/_/g, ' ')} · ${c.class_label}`;
-    card.appendChild(title);
-
-    const desc = document.createElement('div');
-    desc.className = 'card-desc';
-    desc.textContent = c.notes || '';
-    card.appendChild(desc);
-
-    const meta = document.createElement('div');
-    meta.className = 'card-meta';
-    meta.innerHTML =
-      `<span class="chip">${c.faction}</span>` +
-      `<span class="tier-badge">class ${c.class_id}</span>`;
-    card.appendChild(meta);
-
-    card.addEventListener('click', () => { window.location.hash = `combo/${c.id}`; });
-    g.appendChild(card);
-  }
-}
-
-function renderRacePage(raceId) {
-  const r = state.data.races.find((x) => x.id === raceId);
-  const body = $('#page-body');
-  body.innerHTML = '';
-  if (!r) {
-    body.textContent = `race ${raceId} not found`;
-    return;
-  }
-  $('#page-back').href = '#races';
-
-  // hero — title + portraits
-  const title = document.createElement('h1');
-  title.className = 'page-title';
-  title.textContent = r.id.replace(/_/g, ' ');
-  body.appendChild(title);
-
-  const sub = document.createElement('div');
-  sub.className = 'page-subtitle';
-  sub.textContent = `${r.archetype || ''} · ${r.faction}`;
-  body.appendChild(sub);
-
-  const hero = document.createElement('div');
-  hero.className = 'page-hero';
-  for (const gender of ['male', 'female']) {
-    const slot = document.createElement('div');
-    slot.className = 'portrait-slot';
-    if (r.portraits?.[gender]) {
-      const img = document.createElement('img');
-      img.src = `../characters/${r.id}.${gender}.png`;
-      slot.appendChild(img);
-    } else {
-      slot.textContent = `no ${gender} portrait`;
-    }
-    const lbl = document.createElement('div');
-    lbl.className = 'label';
-    lbl.textContent = gender;
-    slot.appendChild(lbl);
-    hero.appendChild(slot);
-  }
-  body.appendChild(hero);
-
-  // sections
-  body.appendChild(sectionDl('Overview', [
-    ['favored class', r.favored_class],
-    ['cultural traits', r.cultural_traits],
-  ]));
-
-  // Affinity + reachable archetypes
-  const aff = r.affinity;
-  if (aff) {
-    const sec = document.createElement('div');
-    sec.className = 'page-section';
-    const h = document.createElement('h3');
-    h.textContent = 'Affinity & Reachable Archetypes';
-    sec.appendChild(h);
-    const affLine = document.createElement('div');
-    affLine.style.cssText = 'font-size:13px;margin-bottom:10px';
-    affLine.innerHTML =
-      `<span style="color:var(--might)">Might ${aff.might}</span> · ` +
-      `<span style="color:var(--arcana)">Arcana ${aff.arcana}</span> · ` +
-      `<span style="color:var(--finesse)">Finesse ${aff.finesse}</span>` +
-      (aff.notes ? `<div style="color:var(--text-dim);margin-top:4px;font-size:12px">${aff.notes}</div>` : '');
-    sec.appendChild(affLine);
-    const reachable = state.data.classes.filter((c) =>
-      c.position.might <= aff.might &&
-      c.position.arcana <= aff.arcana &&
-      c.position.finesse <= aff.finesse,
-    );
-    const reachList = document.createElement('div');
-    reachList.style.cssText = 'display:flex;flex-wrap:wrap;gap:8px;margin-top:8px';
-    for (const c of reachable) reachList.appendChild(archetypeChip(c));
-    const count = document.createElement('div');
-    count.style.cssText = 'color:var(--text-dim);font-size:12px;margin-top:10px';
-    count.textContent = `${reachable.length} of ${state.data.classes.length} archetypes reachable`;
-    sec.appendChild(reachList);
-    sec.appendChild(count);
-    body.appendChild(sec);
-
-    // Orders this race could join: same faction + archetype reachable
-    const reachableIds = new Set(reachable.map((c) => c.class_id));
-    const orders = (state.data.orders || []).filter(
-      (o) => o.faction === r.faction && reachableIds.has(o.archetype_id),
-    );
-    if (orders.length) {
-      const osec = document.createElement('div');
-      osec.className = 'page-section';
-      const oh = document.createElement('h3');
-      oh.textContent = 'Orders This Race Could Join';
-      osec.appendChild(oh);
-      const note = document.createElement('div');
-      note.style.cssText = 'color:var(--text-dim);font-size:12px;margin-bottom:10px';
-      note.textContent = `${orders.length} Order${orders.length === 1 ? '' : 's'} available — same faction, archetype within affinity caps`;
-      osec.appendChild(note);
-      const grid = document.createElement('div');
-      grid.style.cssText = 'display:grid;grid-template-columns:repeat(auto-fill, minmax(200px, 1fr));gap:8px';
-      for (const o of orders) {
-        const cls = state.data.classes.find((c) => c.class_id === o.archetype_id);
-        const a = document.createElement('a');
-        a.href = `#order/${o.id}`;
-        a.style.cssText =
-          'text-decoration:none;background:var(--surface);border:1px solid var(--border);' +
-          'padding:8px 10px;border-radius:4px;display:block;color:var(--text);font-size:13px;' +
-          'transition:border-color 0.1s';
-        a.addEventListener('mouseenter', () => (a.style.borderColor = 'var(--arcana)'));
-        a.addEventListener('mouseleave', () => (a.style.borderColor = 'var(--border)'));
-        a.innerHTML =
-          `<div style="font-weight:600">${o.player_facing?.class_name || o.id}</div>` +
-          `<div style="color:var(--text-dim);font-size:11px;margin-top:2px">${cls?.internal_label || 'archetype ' + o.archetype_id}</div>`;
-        grid.appendChild(a);
-      }
-      osec.appendChild(grid);
-      body.appendChild(osec);
-    }
-  }
-
-  // Flagship combos for this race
-  const flagships = (state.data.combos || []).filter((c) => c.race === r.id);
-  if (flagships.length) {
-    const sec = document.createElement('div');
-    sec.className = 'page-section';
-    const h = document.createElement('h3');
-    h.textContent = 'Flagship Build' + (flagships.length > 1 ? 's' : '');
-    sec.appendChild(h);
-    const grid = document.createElement('div');
-    grid.style.cssText = 'display:grid;grid-template-columns:repeat(auto-fill, minmax(260px, 1fr));gap:12px';
-    for (const c of flagships) {
-      const cls = state.data.classes.find((k) => k.class_id === c.class_id);
-      const card = document.createElement('a');
-      card.href = `#combo/${c.id}`;
-      card.style.cssText =
-        'text-decoration:none;color:var(--text);background:var(--surface);' +
-        'border:1px solid var(--border);border-radius:6px;overflow:hidden;' +
-        'display:flex;flex-direction:column;gap:6px;padding:8px;transition:border-color 0.1s';
-      card.addEventListener('mouseenter', () => (card.style.borderColor = 'var(--arcana)'));
-      card.addEventListener('mouseleave', () => (card.style.borderColor = 'var(--border)'));
-      const pair = document.createElement('div');
-      pair.className = 'portrait-pair';
-      for (const gender of ['male', 'female']) {
-        const p = document.createElement('div');
-        p.className = 'p';
-        if (c.portraits?.[gender]) {
-          const img = document.createElement('img');
-          img.src = `../characters/${c._stem}.${gender}.png`;
-          img.loading = 'lazy';
-          p.appendChild(img);
-        } else {
-          p.textContent = gender[0];
-        }
-        pair.appendChild(p);
-      }
-      card.appendChild(pair);
-      const label = document.createElement('div');
-      label.style.cssText = 'font-size:13px;font-weight:600';
-      label.textContent = `${c.race.replace(/_/g, ' ')} · ${c.class_label}`;
-      card.appendChild(label);
-      if (c.notes) {
-        const notes = document.createElement('div');
-        notes.style.cssText = 'font-size:11px;color:var(--text-dim);line-height:1.4';
-        notes.textContent = c.notes;
-        card.appendChild(notes);
-      }
-      grid.appendChild(card);
-    }
-    sec.appendChild(grid);
-    body.appendChild(sec);
-  }
-
-  body.appendChild(sectionDl('Prompt Anchors', [
-    ['pitch', r.visual?.pitch],
-    ['signature', r.visual?.signature],
-    ['tags', r.visual?.tags],
-    ['negative tags', r.visual?.negative_tags],
-  ]));
-  body.appendChild(sectionDl('Visual Detail', [
-    ['body', r.visual?.body],
-    ['features', r.visual?.features],
-    ['hair', r.visual?.hair_style],
-    ['silhouette', r.visual?.silhouette],
-    ['attire', r.visual?.attire_baseline],
-    ['distinguishing marks', r.visual?.distinguishing_marks],
-  ]));
-  body.appendChild(sectionDl('Metadata', [
-    ['file', r._file],
-  ]));
-}
-
-function renderComboPage(comboId) {
-  const c = (state.data.combos || []).find((x) => x.id === comboId);
-  const body = $('#page-body');
-  body.innerHTML = '';
-  if (!c) {
-    body.textContent = `combo ${comboId} not found`;
-    return;
-  }
-  $('#page-back').href = '#combos';
-
-  const race = state.data.races.find((r) => r.id === c.race);
-  const cls = state.data.classes.find((k) => k.class_id === c.class_id);
-  const faction = state.data.factions.find((f) => f.id === c.faction);
-
-  const title = document.createElement('h1');
-  title.className = 'page-title';
-  title.textContent = `${c.race.replace(/_/g, ' ')} · ${c.class_label}`;
-  body.appendChild(title);
-
-  const sub = document.createElement('div');
-  sub.className = 'page-subtitle';
-  sub.textContent = `${c.faction} · ${c.notes || ''}`;
-  body.appendChild(sub);
-
-  const hero = document.createElement('div');
-  hero.className = 'page-hero';
-  for (const gender of ['male', 'female']) {
-    const slot = document.createElement('div');
-    slot.className = 'portrait-slot';
-    if (c.portraits?.[gender]) {
-      const img = document.createElement('img');
-      img.src = `../characters/${c._stem}.${gender}.png`;
-      slot.appendChild(img);
-    } else {
-      slot.textContent = `no ${gender} portrait`;
-    }
-    const lbl = document.createElement('div');
-    lbl.className = 'label';
-    lbl.textContent = gender;
-    slot.appendChild(lbl);
-    hero.appendChild(slot);
-  }
-  body.appendChild(hero);
-
-  body.appendChild(sectionDl('Race — ' + c.race, [
-    ['pitch', race?.visual?.pitch],
-    ['archetype', race?.archetype],
-    ['cultural traits', race?.cultural_traits],
-  ]));
-  body.appendChild(sectionDl(`Class — ${cls?.internal_label || 'class ' + c.class_id}`, [
-    ['pitch', cls?.visual?.pitch],
-    ['armor', cls?.visual?.armor],
-    ['weapon', cls?.visual?.weapon],
-    ['pose', cls?.visual?.pose],
-    ['primary roles', (cls?.primary_roles || []).join(', ')],
-    ['position', cls ? `M${cls.position.might} / A${cls.position.arcana} / F${cls.position.finesse}` : null],
-  ]));
-  body.appendChild(sectionDl(`Faction — ${c.faction}`, [
-    ['pitch', faction?.visual?.pitch],
-    ['palette', faction?.visual?.palette],
-    ['heraldry', faction?.visual?.heraldry],
-    ['garment style', faction?.visual?.garment_style],
-  ]));
-}
-
-function sectionDl(title, fields) {
-  const sec = document.createElement('div');
-  sec.className = 'page-section';
-  const h = document.createElement('h3');
-  h.textContent = title;
-  sec.appendChild(h);
-  const dl = document.createElement('dl');
-  for (const [k, v] of fields) {
-    if (v == null || v === '') continue;
-    const dt = document.createElement('dt');
-    dt.textContent = k;
-    const dd = document.createElement('dd');
-    dd.textContent = String(v);
-    dl.appendChild(dt);
-    dl.appendChild(dd);
-  }
-  sec.appendChild(dl);
-  return sec;
-}
-
-function showRaceDetail(r) {
-  const body = $('#detail-body');
-  body.innerHTML = '';
-  const h = document.createElement('h2');
-  h.textContent = r.id.replace(/_/g, ' ');
-  body.appendChild(h);
-  const m = document.createElement('div');
-  m.className = 'meta';
-  m.textContent = `${r.archetype} · ${r.faction}`;
-  body.appendChild(m);
-
-  // portraits row
-  const row = document.createElement('div');
-  row.style.cssText = 'display:flex;gap:12px;margin-bottom:16px;flex-wrap:wrap';
-  for (const gender of ['male', 'female']) {
-    if (!r.portraits?.[gender]) continue;
-    const wrap = document.createElement('div');
-    wrap.style.cssText = 'flex:1;min-width:200px;max-width:280px';
-    const img = document.createElement('img');
-    img.src = racePortraitUrl(r, gender);
-    img.style.cssText = 'width:100%;border-radius:6px;display:block';
-    wrap.appendChild(img);
-    const cap = document.createElement('div');
-    cap.style.cssText = 'text-align:center;font-size:11px;color:var(--text-dim);margin-top:4px';
-    cap.textContent = gender;
-    wrap.appendChild(cap);
-    row.appendChild(wrap);
-  }
-  body.appendChild(row);
-
-  const dl = document.createElement('dl');
-  const fields = [
-    ['favored class', r.favored_class],
-    ['cultural traits', r.cultural_traits],
-    ['pitch', r.visual?.pitch],
-    ['signature', r.visual?.signature],
-    ['body', r.visual?.body],
-    ['features', r.visual?.features],
-    ['hair', r.visual?.hair_style],
-    ['silhouette', r.visual?.silhouette],
-    ['attire', r.visual?.attire_baseline],
-    ['distinguishing marks', r.visual?.distinguishing_marks],
-    ['tags', r.visual?.tags],
-    ['negative tags', r.visual?.negative_tags],
-    ['file', r._file],
-  ];
-  for (const [k, v] of fields) {
-    if (v == null || v === '') continue;
-    const dt = document.createElement('dt');
-    dt.textContent = k;
-    const dd = document.createElement('dd');
-    dd.textContent = String(v);
-    dl.appendChild(dt);
-    dl.appendChild(dd);
-  }
-  body.appendChild(dl);
-  $('#detail-overlay').classList.remove('hidden');
-}
-
-// --- orders ---
-
-function renderOrders() {
-  const g = $('#order-grid');
-  if (!g) return;
-  g.innerHTML = '';
-  for (const o of state.data.orders || []) {
-    const card = document.createElement('div');
-    const cls = state.data.classes.find((c) => c.class_id === o.archetype_id);
-    const dominant = cls?.dominant_pillar?.[0] || 'arcana';
-    card.className = `card combo-card ${o.faction} pillar-${dominant}`;
-
-    const pair = document.createElement('div');
-    pair.className = 'portrait-pair';
-    for (const gender of ['male', 'female']) {
-      const slot = document.createElement('div');
-      slot.className = 'p';
-      if (o.portraits?.[gender]) {
-        const img = document.createElement('img');
-        img.src = `../characters/${o.id}.${gender}.png`;
-        img.loading = 'lazy';
-        slot.appendChild(img);
-      } else {
-        slot.textContent = gender[0];
-      }
-      pair.appendChild(slot);
-    }
-    card.appendChild(pair);
-
-    const title = document.createElement('div');
-    title.className = 'card-title';
-    title.textContent = o.player_facing?.class_name || o.id;
-    card.appendChild(title);
-
-    const desc = document.createElement('div');
-    desc.className = 'card-desc';
-    desc.textContent = o.aesthetic?.pitch || '';
-    card.appendChild(desc);
-
-    const meta = document.createElement('div');
-    meta.className = 'card-meta';
-    meta.innerHTML =
-      `<span class="chip">${o.faction === 'faction_a' ? 'Concord' : 'Rend'}</span>` +
-      `<span class="chip">${cls?.internal_label || 'archetype ' + o.archetype_id}</span>`;
-    card.appendChild(meta);
-
-    card.addEventListener('click', () => { window.location.hash = `order/${o.id}`; });
-    g.appendChild(card);
-  }
-}
-
-function renderOrderPage(orderId) {
-  const o = (state.data.orders || []).find((x) => x.id === orderId);
-  const body = $('#page-body');
-  body.innerHTML = '';
-  if (!o) {
-    body.textContent = `order ${orderId} not found`;
-    return;
-  }
-  $('#page-back').href = '#orders';
-
-  const cls = state.data.classes.find((c) => c.class_id === o.archetype_id);
-
-  const title = document.createElement('h1');
-  title.className = 'page-title';
-  title.textContent = o.player_facing?.class_name || o.id;
-  body.appendChild(title);
-
-  const sub = document.createElement('div');
-  sub.className = 'page-subtitle';
-  sub.textContent = `${o.faction === 'faction_a' ? 'Concord' : 'Rend'} · ${cls?.internal_label || 'archetype'} (M${o.archetype_position.might}/A${o.archetype_position.arcana}/F${o.archetype_position.finesse})`;
-  body.appendChild(sub);
-
-  // portrait hero row
-  const hero = document.createElement('div');
-  hero.className = 'page-hero';
-  for (const gender of ['male', 'female']) {
-    const slot = document.createElement('div');
-    slot.className = 'portrait-slot';
-    if (o.portraits?.[gender]) {
-      const img = document.createElement('img');
-      img.src = `../characters/${o.id}.${gender}.png`;
-      slot.appendChild(img);
-    } else {
-      slot.textContent = `no ${gender} portrait`;
-    }
-    const lbl = document.createElement('div');
-    lbl.className = 'label';
-    lbl.textContent = gender;
-    slot.appendChild(lbl);
-    hero.appendChild(slot);
-  }
-  body.appendChild(hero);
-
-  body.appendChild(sectionDl('Player-Facing', [
-    ['class name', o.player_facing?.class_name],
-    ['title singular', o.player_facing?.title_singular],
-    ['title plural', o.player_facing?.title_plural],
-  ]));
-  body.appendChild(sectionDl('Aesthetic', [
-    ['pitch', o.aesthetic?.pitch],
-    ['palette shift', o.aesthetic?.palette_shift],
-    ['motif', o.aesthetic?.motif],
-  ]));
-  const s = o.schools_taught || {};
-  body.appendChild(sectionDl('Schools Taught', [
-    ['arcana', (s.arcana || []).join(', ')],
-    ['might', (s.might || []).join(', ')],
-    ['finesse', (s.finesse || []).join(', ')],
-  ]));
-  // Specs
-  if ((o.specs || []).length) {
-    const sec = document.createElement('div');
-    sec.className = 'page-section';
-    const h = document.createElement('h3');
-    h.textContent = 'Specs';
-    sec.appendChild(h);
-    const note = document.createElement('div');
-    note.style.cssText = 'color:var(--text-dim);font-size:12px;margin-bottom:10px';
-    note.textContent = 'Role emphases within this Class — same schools, different priorities';
-    sec.appendChild(note);
-    const grid = document.createElement('div');
-    grid.style.cssText = 'display:grid;grid-template-columns:repeat(auto-fill, minmax(240px, 1fr));gap:8px';
-    for (const sp of o.specs) {
-      const card = document.createElement('div');
-      card.style.cssText =
-        'background:var(--surface);border:1px solid var(--border);' +
-        'border-radius:4px;padding:10px;display:flex;flex-direction:column;gap:4px';
-      card.innerHTML =
-        `<div style="font-weight:600;font-size:13px">${sp.name}</div>` +
-        `<div><span class="chip">${sp.emphasis}</span></div>` +
-        (sp.description ? `<div style="color:var(--text-dim);font-size:11px;line-height:1.4">${sp.description}</div>` : '') +
-        ((sp.schools_focus || []).length
-          ? `<div style="font-size:11px;color:var(--text-faint);margin-top:2px">focus: ${sp.schools_focus.join(', ')}</div>`
-          : '');
-      grid.appendChild(card);
-    }
-    sec.appendChild(grid);
-    body.appendChild(sec);
-  }
-
-  body.appendChild(sectionDl('Lore', [
-    ['founded', o.lore?.founded],
-    ['home', o.lore?.home],
-    ['oath', o.lore?.oath],
-    ['patron', o.lore?.patron],
-    ['recruitment', o.lore?.recruitment],
-    ['doctrine', o.lore?.doctrine],
-  ]));
-
-  // Institutional home: primary / secondary / tertiary as chips
-  const insts = o.institutions || {};
-  if (insts.primary) {
-    const isec = document.createElement('div');
-    isec.className = 'page-section';
-    const h = document.createElement('h3');
-    h.textContent = 'Institutions';
-    isec.appendChild(h);
-    const note = document.createElement('div');
-    note.style.cssText = 'color:var(--text-dim);font-size:12px;margin-bottom:10px';
-    note.textContent = 'Home institution (primary) + training affiliations';
-    isec.appendChild(note);
-    const row = document.createElement('div');
-    row.style.cssText = 'display:flex;flex-wrap:wrap;gap:8px';
-    const slots = [
-      ['primary', insts.primary],
-      ['secondary', insts.secondary],
-      ['tertiary', insts.tertiary],
-    ];
-    for (const [slot, iid] of slots) {
-      if (!iid) continue;
-      const inst = state.data.institutions?.find((i) => i.id === iid);
-      if (!inst) continue;
-      const a = document.createElement('a');
-      a.href = `#institution/${iid}`;
-      a.style.cssText =
-        'text-decoration:none;background:var(--surface);border:1px solid var(--border);' +
-        'padding:6px 10px;border-radius:4px;color:var(--text);font-size:12px;' +
-        'display:flex;flex-direction:column;gap:2px';
-      a.innerHTML =
-        `<span style="color:var(--text-faint);font-size:10px;text-transform:uppercase;letter-spacing:0.08em">${slot}</span>` +
-        `<span style="font-weight:600">${inst.name}</span>` +
-        `<span style="color:var(--text-dim);font-size:11px">${inst.tradition || ''}</span>`;
-      row.appendChild(a);
-    }
-    isec.appendChild(row);
-    if (o.chapter) {
-      const c = document.createElement('div');
-      c.style.cssText = 'color:var(--text-faint);font-size:11px;margin-top:8px';
-      c.textContent = `chapter: ${o.chapter}`;
-      isec.appendChild(c);
-    }
-    body.appendChild(isec);
-  }
-
-  // Archetype link
-  if (cls) {
-    const linkSec = document.createElement('div');
-    linkSec.className = 'page-section';
-    const h = document.createElement('h3');
-    h.textContent = 'Underlying Archetype';
-    linkSec.appendChild(h);
-    linkSec.appendChild(archetypeChip(cls));
-    body.appendChild(linkSec);
-  }
-
-  body.appendChild(sectionDl('Metadata', [
-    ['id', o.id],
-    ['file', o._file],
-  ]));
-}
-
-// --- institutions ---
-
-function renderInstitutions() {
-  const g = $('#institution-grid');
-  if (!g) return;
-  g.innerHTML = '';
-  for (const inst of state.data.institutions || []) {
-    const card = document.createElement('div');
-    card.className = `card ${inst.faction}`;
-    if (inst.has_emblem) {
-      const emb = document.createElement('div');
-      emb.className = 'emblem';
-      const img = document.createElement('img');
-      img.src = `../emblems/institution_${inst.id}.png`;
-      img.loading = 'lazy';
-      emb.appendChild(img);
-      card.appendChild(emb);
-    }
-    const body = document.createElement('div');
-    const majors = flattenCurriculum(inst.curriculum?.major);
-    const majorsText = majors.length ? majors.join(', ') : '—';
-    body.innerHTML =
-      `<div class="card-title">${inst.name}</div>` +
-      `<div class="card-desc" style="color:var(--text-dim);font-style:italic">${inst.tradition || ''}</div>` +
-      `<div style="font-size:11px;color:var(--text-faint);margin-top:4px">major: ${majorsText}</div>` +
-      `<div class="card-meta" style="margin-top:6px">` +
-      `<span class="chip">${inst.faction === 'faction_a' ? 'Concord' : 'Rend'}</span>` +
-      `<span class="chip">${(inst.chapters || []).length} chapters</span>` +
-      `</div>`;
-    card.appendChild(body);
-    card.addEventListener('click', () => { window.location.hash = `institution/${inst.id}`; });
-    g.appendChild(card);
-  }
-}
-
-function flattenCurriculum(pillarDict) {
-  if (!pillarDict) return [];
-  const out = [];
-  for (const pillar of ['arcana', 'might', 'finesse']) {
-    for (const s of (pillarDict[pillar] || [])) out.push(s);
-  }
-  return out;
-}
-
-function renderInstitutionPage(instId) {
-  const inst = (state.data.institutions || []).find((i) => i.id === instId);
-  const body = $('#page-body');
-  body.innerHTML = '';
-  if (!inst) {
-    body.textContent = `institution ${instId} not found`;
-    return;
-  }
-  $('#page-back').href = '#institutions';
-
-  const title = document.createElement('h1');
-  title.className = 'page-title';
-  title.textContent = inst.name;
-  body.appendChild(title);
-
-  const sub = document.createElement('div');
-  sub.className = 'page-subtitle';
-  sub.textContent = `${inst.tradition || 'Tradition'} · ${inst.faction === 'faction_a' ? 'Concord' : 'Rend'}`;
-  body.appendChild(sub);
-
-  // Curriculum section
-  const curSec = document.createElement('div');
-  curSec.className = 'page-section';
-  const ch = document.createElement('h3');
-  ch.textContent = 'Curriculum';
-  curSec.appendChild(ch);
-  const cur = inst.curriculum || {};
-  const curTable = document.createElement('dl');
-  const curRows = [
-    ['major schools', describePillars(cur.major)],
-    ['secondary schools', describePillars(cur.secondary)],
-  ];
-  for (const [k, v] of curRows) {
-    if (!v) continue;
-    const dt = document.createElement('dt');
-    dt.textContent = k;
-    const dd = document.createElement('dd');
-    dd.innerHTML = v;
-    curTable.appendChild(dt);
-    curTable.appendChild(dd);
-  }
-  curSec.appendChild(curTable);
-  body.appendChild(curSec);
-
-  // Chapters
-  const chapterIds = inst.chapters || [];
-  if (chapterIds.length) {
-    const chSec = document.createElement('div');
-    chSec.className = 'page-section';
-    const hh = document.createElement('h3');
-    hh.textContent = `Chapters (${chapterIds.length})`;
-    chSec.appendChild(hh);
-    const note = document.createElement('div');
-    note.style.cssText = 'color:var(--text-dim);font-size:12px;margin-bottom:10px';
-    note.textContent = 'Player-facing classes that call this institution home';
-    chSec.appendChild(note);
-    const grid = document.createElement('div');
-    grid.style.cssText = 'display:grid;grid-template-columns:repeat(auto-fill, minmax(240px, 1fr));gap:10px';
-    // Join chapters with the orders they produce
-    const orders = state.data.orders || [];
-    for (const oId of (inst.orders_produced || [])) {
-      const o = orders.find((x) => x.id === oId);
-      if (!o) continue;
-      const cls = state.data.classes.find((c) => c.class_id === o.archetype_id);
-      const card = document.createElement('a');
-      card.href = `#order/${o.id}`;
-      card.style.cssText =
-        'text-decoration:none;color:var(--text);background:var(--surface);' +
-        'border:1px solid var(--border);border-radius:6px;padding:10px;' +
-        'display:flex;flex-direction:column;gap:4px;transition:border-color 0.1s';
-      card.addEventListener('mouseenter', () => (card.style.borderColor = 'var(--arcana)'));
-      card.addEventListener('mouseleave', () => (card.style.borderColor = 'var(--border)'));
-      card.innerHTML =
-        `<div style="font-weight:600;font-size:13px">${o.player_facing?.class_name || o.id}</div>` +
-        `<div style="color:var(--text-dim);font-size:11px">${cls?.abstract_name || cls?.internal_label || 'archetype'}` +
-        (cls ? ` · M${cls.position.might}/A${cls.position.arcana}/F${cls.position.finesse}` : '') +
-        `</div>` +
-        (o.aesthetic?.pitch ? `<div style="color:var(--text-faint);font-size:11px;line-height:1.4;margin-top:4px">${escape(o.aesthetic.pitch.slice(0, 120))}${o.aesthetic.pitch.length > 120 ? '…' : ''}</div>` : '');
-      grid.appendChild(card);
-    }
-    chSec.appendChild(grid);
-    body.appendChild(chSec);
-  }
-
-  body.appendChild(sectionDl('Lore', [
-    ['description', inst.lore?.description],
-    ['founded', inst.lore?.founded],
-    ['home', inst.lore?.home],
-    ['doctrine', inst.lore?.doctrine],
-    ['patron', inst.lore?.patron],
-    ['recruitment', inst.lore?.recruitment],
-  ]));
-
-  body.appendChild(sectionDl('Aesthetic', [
-    ['pitch', inst.aesthetic?.pitch],
-    ['palette', inst.aesthetic?.palette],
-    ['motif', inst.aesthetic?.motif],
-  ]));
-
-  body.appendChild(sectionDl('Metadata', [
-    ['id', inst.id],
-    ['file', inst._file],
-  ]));
-}
-
-function describePillars(pillarDict) {
-  if (!pillarDict) return null;
-  const parts = [];
-  for (const pillar of ['arcana', 'might', 'finesse']) {
-    const schools = pillarDict[pillar] || [];
-    if (!schools.length) continue;
-    const color = `var(--${pillar})`;
-    parts.push(
-      `<span style="color:${color};text-transform:uppercase;font-size:11px;letter-spacing:0.05em">${pillar}:</span> ` +
-      schools.join(', '),
-    );
-  }
-  return parts.join('<br>');
-}
-
-// --- factions ---
-
-function renderFactions() {
-  const g = $('#faction-grid');
-  g.innerHTML = '';
-  for (const f of state.data.factions) {
-    const c = document.createElement('div');
-    c.className = `card ${f.id}`;
-    if (f.has_emblem) {
-      const emb = document.createElement('div');
-      emb.className = 'emblem';
-      const img = document.createElement('img');
-      img.src = `../emblems/${f.id}.png`;
-      img.loading = 'lazy';
-      emb.appendChild(img);
-      c.appendChild(emb);
-    }
-    const body = document.createElement('div');
-    body.innerHTML =
-      `<div class="card-title">${f.id}</div>` +
-      `<div class="card-desc">morality: <span class="morality-${f.morality_alignment}">${f.morality_alignment}</span></div>` +
-      `<div class="card-meta">` +
-      (f.allowed_school_moralities || []).map((m) => `<span class="chip morality-${m}">${m}</span>`).join('') +
-      `</div>`;
-    c.appendChild(body);
-    c.addEventListener('click', () =>
-      showDetail(
-        f.id,
-        `morality ${f.morality_alignment}`,
-        [
-          ['pitch', f.visual?.pitch],
-          ['palette', f.visual?.palette],
-          ['heraldry', f.visual?.heraldry],
-          ['architecture', f.visual?.architecture],
-          ['garment style', f.visual?.garment_style],
-          ['damage patina', f.visual?.damage_patina],
-          ['material accents', f.visual?.material_accents],
-          ['allowed school moralities', (f.allowed_school_moralities || []).join(', ')],
-          ['forbidden school moralities', (f.forbidden_school_moralities || []).join(', ')],
-          ['allowed arcana schools', (f.allowed_schools?.arcana || []).join(', ')],
-          ['allowed might schools', (f.allowed_schools?.might || []).join(', ')],
-          ['allowed finesse schools', (f.allowed_schools?.finesse || []).join(', ')],
-          ['forbidden schools', JSON.stringify(f.forbidden_schools)],
-          ['file', f._file],
-        ],
-        f.has_emblem ? `../emblems/${f.id}.png` : null,
-      ),
-    );
-    g.appendChild(c);
-  }
-}
-
-load();
+// ─── route table ────────────────────────────────────────────────────────
+const ENTITY_PAGES = {
+  race:        renderRacePage,
+  class:       renderClassPage,
+  order:       renderOrderPage,
+  institution: renderInstitutionPage,
+  zone:        renderZonePage,
+  hub:         renderHubPage,
+  landmark:    renderLandmarkPage,
+  biome:       renderBiomePage,
+  dungeon:     renderDungeonPage,
+  faction:     renderFactionPage,
+};
+
+document.addEventListener('DOMContentLoaded', load);

@@ -1,5 +1,15 @@
 id: ruin
 name: The Ruin Line
+description: |
+  The scar between the factions. A strip of broken country where some
+  old conflict was settled badly: ash, charnel pits, the bones of a road
+  that runs nowhere now. Char-thistle pushes through the cracks; the
+  wind smells wrong on the right night. Whatever happened here hasn't
+  finished.
+prompt: >-
+  wide establishing landscape, blasted ruin-line of broken stone and
+  ash, leaning shattered watchtower, char-thistle in the cracks, sickly
+  green-grey sky, oppressive mood, painterly atmospheric, no figures
 climate: "scar-land \u2014 ash, broken earth, charnel pits"
 hazards:
 - unstable-ground

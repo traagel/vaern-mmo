@@ -1,0 +1,16 @@
+{
+  "id": "019dc765-97e7-758a-a7cf-2cb2abc33f51",
+  "type": "text-to-image",
+  "ai_model": "nano-banana-pro",
+  "prompt": "establishing shot, forward earthwork camp at a wide shallow river ford, picket fences and timber palisade, distant mist on the far bank, dusk overcast cool light, watchfires, painterly atmospheric, late-medieval Burgundian, no figures",
+  "status": "SUCCEEDED",
+  "progress": 100,
+  "created_at": 1777166817300,
+  "started_at": 1777166817866,
+  "finished_at": 1777166836574,
+  "expires_at": 1777426036574,
+  "image_urls": [
+    "https://assets.meshy.ai/2872987b-afbf-4fa0-95f0-231417dc567c/uploads/image_019dc765-97e7-758a-a7cf-2cb2abc33f51_0.png?Expires=1777426036&Signature=QOsxYUeqe8Uq9-sgTmFA9jR0~zB~R8Le1FcEU6bp2ZO~aFCJhaIhzdxE0HGHcU-CFt7Bb5s98PMkOv0oN-Q3e2gKy6loT5saVnWSogAHrZ~mdfUZTao0lAFqEY9ZJZRZsDRY3maBPwBO~UyoyT17rj~13YjuM8P5iILSvR~B615F1pRddB1ZCTN~wq25gccNW-eqcndjAUyNUUUcGfYQlgr7MF4aONpS4WbeFKP~mKzTZKwhaOVyBeXk8zbAgzD4cbkH4W6glAFwr1LYA1XncUPcWZLqn0Gvu1A9Gk6ngn9TvvW1gGPQZi6jhhOZqfDBUODoE45WA1qhYD1dejvYtQ__&Key-Pair-Id=K1VGYTHIYLM9UM"
+  ],
+  "consumed_credits": 9
+}

@@ -1,0 +1,16 @@
+{
+  "id": "019dc76a-525b-7d22-aa0a-5bb633e65ffd",
+  "type": "text-to-image",
+  "ai_model": "nano-banana-pro",
+  "prompt": "establishing shot, ruined Concord stone abbey blackened by fire, half-collapsed cloister, char-thistle in the courtyard, oppressive grey-green sky, painterly atmospheric, no figures",
+  "status": "SUCCEEDED",
+  "progress": 100,
+  "created_at": 1777167127142,
+  "started_at": 1777167127667,
+  "finished_at": 1777167170837,
+  "expires_at": 1777426370837,
+  "image_urls": [
+    "https://assets.meshy.ai/2872987b-afbf-4fa0-95f0-231417dc567c/uploads/image_019dc76a-525b-7d22-aa0a-5bb633e65ffd_0.png?Expires=1777426370&Signature=mhxAN94oWHIPkCNNTTvAqe5tnu8hiImF44dH7CtwoipkojyXhxUtjK2s4YOJ1L6vceapxLVNEjP-W66wJwE05cdeFYLVaDOodDz6PatNx0~v-Tq~-Ue1qfjxA29aHyLD0f2ns9jkNKvgq1HcW5nChIPZFx5bgsMCARwU2AaP2IXUW-j-yozt9keulFUZ7wZjUM43KityYRTt5BnSkJPtcIyuA~aBI4GYlgdBg5mI8YN6nCDOVu43sOuazRaOW2yWgmKB3n7VdciHjtCD1N1UpiiAbMD6xHeAZLDoGIGkod2a9KDp1GMPBfF2kUotsxmZP9Ulpej882mArLd8o~y1fw__&Key-Pair-Id=K1VGYTHIYLM9UM"
+  ],
+  "consumed_credits": 9
+}

@@ -1,0 +1,64 @@
+dungeon:
+  description: |
+    A buried Kharun reliquary at the head of the Pact Causeway,
+    sealed by oath-stone four generations ago and uncovered last
+    summer by causeway-works the Speaker did not authorize and would
+    prefer were not discussed in council. The vault holds the broken
+    oath-pillars of three founder-clans, and the binding-rite that
+    held them quiet has worn thin. Pact-Scribe Indelible, who copied
+    the original sealing, is somewhere inside.
+  prompt: >-
+    establishing shot, dungeon interior, deep Kharun oath-vault, three
+    cracked oath-pillars in a circle, brazier-light low and gold,
+    inscribed flagstones, hanging chain-banners, painterly atmospheric,
+    oppressive mood, no figures
+bosses:
+  oath_keeper:
+    description: |
+      A Kharun warrior bound to the vault's first pillar by his own
+      oath, four generations ago, and never released. The fight runs
+      on a vow-mechanic: he names a promise (do not move, do not
+      heal, do not strike from behind) and any player who breaks it
+      takes oath-damage on the next tick. Reads the room — the vow
+      he picks targets the comp the party is running.
+    prompt: >-
+      portrait, single subject, ancient Kharun oath-bound warrior,
+      lacquered scale armor faded to bronze, oath-chain wrapped from
+      wrist to throat, scarred steppe-features, painterly atmospheric,
+      oppressive mood, isolated subject, no other figures
+    negative_prompt: >-
+      multiple figures, party, group, modern, futuristic, sci-fi, anime,
+      cyberpunk, watermark, text
+  bound_thing:
+    description: |
+      Whatever was bound to the second pillar — the Speaker's office
+      will not name it, and the Scribe's notes refer to it only as
+      "the thing held here." Anchored by four chain-tethers to ring-
+      stones at the chamber corners; breaking each tether moves the
+      boss into the next ring of the room and tightens the safe-arc.
+      Last tether breaks and the thing comes free in the open.
+    prompt: >-
+      portrait, single subject, hulking shrouded entity, four iron
+      chain-tethers trailing into the floor, faceless wrapped head,
+      misshapen silhouette, painterly atmospheric, oppressive mood,
+      isolated subject, no other figures
+    negative_prompt: >-
+      multiple figures, party, group, modern, futuristic, sci-fi, anime,
+      cyberpunk, watermark, text
+  pact_scribe:
+    description: |
+      Pact-Scribe Indelible, who copied the sealing-rite four
+      generations ago and oath-bound himself to the vault's third
+      pillar so the work would not be lost. Writes a personal curse
+      onto each player on a slow tick, in the old script of his
+      office; the curses can only be cleansed by killing specific
+      script-adds that bear that player's mark. The Speaker's office
+      would still rather he be left alone.
+    prompt: >-
+      portrait, single subject, ancient Kharun scribe, ink-stained
+      robes, oath-quill clipped to chest, ledger-book open mid-air
+      before him, faded clan-tattoos, painterly atmospheric, oppressive
+      mood, isolated subject, no other figures
+    negative_prompt: >-
+      multiple figures, party, group, modern, futuristic, sci-fi, anime,
+      cyberpunk, watermark, text

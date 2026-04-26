@@ -1,0 +1,16 @@
+{
+  "id": "019dc769-f513-7670-833d-12fcba3b272d",
+  "type": "text-to-image",
+  "ai_model": "nano-banana-pro",
+  "prompt": "establishing shot, sprawling Gravewrought necropolis on a windswept turf field, leaning carved markers, low banked ritual fires that never go out, oppressive grey-green light, painterly atmospheric, late-medieval, no figures",
+  "status": "SUCCEEDED",
+  "progress": 100,
+  "created_at": 1777167103261,
+  "started_at": 1777167103383,
+  "finished_at": 1777167122580,
+  "expires_at": 1777426322580,
+  "image_urls": [
+    "https://assets.meshy.ai/2872987b-afbf-4fa0-95f0-231417dc567c/uploads/image_019dc769-f513-7670-833d-12fcba3b272d_0.png?Expires=1777426322&Signature=pN~mm~BWDBCrxgT4~xS9DaQPmaw4YUjx9O8WMxLbcEOjKtNaSSkP52fw2zhR9Kjpn5uXeaiKg7Ow2sfmC3hpjGOCm5-cW5ZWIH9-17X8lPpgMPodoazhG~-iZxhgfCUETX4YhWl1F48FxMu2~~hVOlflOwkGREFvvu-dfv-aNlcaxhNJr-ANg8yJ19gf3-V2HpQTF-nhVci1xI7w6145-6BiBXalpba9iI~FOP8bJwlTfQJQcWEV7Rz-NEqb5GyGf3OHGUWSWrlGO7hHSlI2XL3l8h7iyD5y-0FcshqXP0iTRqHeKOe7y3kUPgPzpuVmDeueTUQfFpuYluoGkk1FLQ__&Key-Pair-Id=K1VGYTHIYLM9UM"
+  ],
+  "consumed_credits": 9
+}

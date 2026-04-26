@@ -1,5 +1,14 @@
 id: marshland
 name: Marshland
+description: |
+  Slow black water under a permanent mist, sedge islands joined by
+  half-rotten plank-walks, the air thick enough to taste. People who
+  live here learn the safe paths and never share them. Rot-fever is
+  endemic; the gnats are worse.
+prompt: >-
+  wide establishing landscape, mist-bound marshland of sedge and black
+  water, half-submerged plank walkway, dead trees, low pale dawn light,
+  painterly atmospheric, no figures
 climate: humid, fog-bound, disease-prone
 hazards:
 - sinking-mire

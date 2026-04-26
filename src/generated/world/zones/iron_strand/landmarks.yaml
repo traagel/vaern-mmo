@@ -1,0 +1,40 @@
+id: landmarks__iron_strand
+zone: iron_strand
+landmarks:
+- id: salt_pillar_row
+  name: The Salt-Pillar Row
+  offset_from_zone_origin:
+    x: 200.0
+    z: -90.0
+  description: A row of salt-pillars formed where the spring tides crystallise year on year.
+    Locals carve names into the soft surface; the next year's tide reads the names back into
+    the sea.
+  prompt: establishing shot, row of weathered salt pillars on a shingle beach beneath sea
+    cliffs, names carved into the surfaces, leaden cold light, painterly atmospheric, no figures
+- id: wreckers_chapel
+  name: Wreckers' Chapel
+  offset_from_zone_origin:
+    x: -180.0
+    z: 60.0
+  description: A small clifftop chapel the wreckers below the cliff maintain by tradition.
+    The bell rings only on storm nights. The roof leaks.
+  prompt: establishing shot, small clifftop stone chapel above a shipwreck-strewn beach, leaning
+    bell-tower, leaden storm light, painterly atmospheric, late-medieval, no figures
+- id: cliff_cairn
+  name: The Cliff Cairn
+  offset_from_zone_origin:
+    x: 90.0
+    z: 220.0
+  description: A cairn marking where a Skarn raid party fell to a particularly bad storm landing.
+    The Skarn maintain the cairn from their own boats; the Concord don't interfere.
+  prompt: establishing shot, weathered stone cairn on a sheer cliff edge above a grey sea,
+    salt-stained stones, leaden cold light, painterly atmospheric, late-medieval, no figures
+- id: kelp_field
+  name: The Kelp Field
+  offset_from_zone_origin:
+    x: -90.0
+    z: -240.0
+  description: A bed of kelp that is unusually dense at the strand's far south. Local fishers
+    say the kelp answers to the moon. The moon does not answer to the fishers.
+  prompt: establishing shot, dense kelp bed on a shingle shoreline below sea cliffs, low tide,
+    leaden cold afternoon light, painterly atmospheric, no figures

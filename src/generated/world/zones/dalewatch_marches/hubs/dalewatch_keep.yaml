@@ -2,6 +2,16 @@ id: dalewatch_keep
 zone: dalewatch_marches
 name: Dalewatch Keep
 role: capital
+description: |
+  Stone curtain wall, packed muster yard, the smell of horse and forge.
+  Banners of the Warden Corps hang over the gate. The county seat —
+  trainers, taxmen, and the chapel where you take the Oath. Nothing inside
+  the walls is hostile yet, though half the experienced riders have
+  already been pulled east to the Ford.
+prompt: >-
+  establishing shot, late-medieval Burgundian curtain wall and gatehouse,
+  heraldic banners over the gate, packed muster yard, stone forge smoke,
+  dawn warm gold light, painterly atmospheric, no figures, no characters
 amenities:
 - innkeeper
 - class_trainers

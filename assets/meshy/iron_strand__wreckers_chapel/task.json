@@ -1,0 +1,16 @@
+{
+  "id": "019dc76d-cd95-7329-9bbd-be5e5d3f4e57",
+  "type": "text-to-image",
+  "ai_model": "nano-banana-pro",
+  "prompt": "establishing shot, small clifftop stone chapel above a shipwreck-strewn beach, leaning bell-tower, leaden storm light, painterly atmospheric, late-medieval, no figures",
+  "status": "SUCCEEDED",
+  "progress": 100,
+  "created_at": 1777167355294,
+  "started_at": 1777167356179,
+  "finished_at": 1777167394625,
+  "expires_at": 1777426594625,
+  "image_urls": [
+    "https://assets.meshy.ai/2872987b-afbf-4fa0-95f0-231417dc567c/uploads/image_019dc76d-cd95-7329-9bbd-be5e5d3f4e57_0.png?Expires=1777426594&Signature=VfyvEhY0mPMBsB7dVdeUoBK6ebuAAon3FNuPaGhBvgrODLG4Pd47hVq-MbWeKUtWi7LvL28tPF-VrZgJ-n5XQhegZUqxcf8bXUXbuDsrHmF6W2foTJY2uyfyGklQntxdyXQxNT2yBKuyXNHXxAK9YrgBG8e7QA088zMVW0U4x3lQR~H~ySzizecVPoLR1Bwp34wJtfgIqsho8eozhFKGw4byfLJLJFBSVY57snsxFEkamQrnIhEcj-G0vMLiKTIq8xLzRII7Ww7HVkdrI1KpHOlpWC7wEvXQygTFuhABARBsYFzUCxyVLqrgYl9kZnEdAhfjKzo433KEl8ohNckpRA__&Key-Pair-Id=K1VGYTHIYLM9UM"
+  ],
+  "consumed_credits": 9
+}

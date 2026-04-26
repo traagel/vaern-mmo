@@ -1,0 +1,16 @@
+{
+  "id": "019dc76d-e3d5-7d86-a328-6920f41fc31e",
+  "type": "text-to-image",
+  "ai_model": "nano-banana-pro",
+  "prompt": "establishing shot, small Hearthkin road shrine carved into a granite cliffside, banked offering coins, lantern, dim warm light, painterly atmospheric, late-medieval dwarven, no figures",
+  "status": "SUCCEEDED",
+  "progress": 100,
+  "created_at": 1777167360991,
+  "started_at": 1777167361467,
+  "finished_at": 1777167403852,
+  "expires_at": 1777426603852,
+  "image_urls": [
+    "https://assets.meshy.ai/2872987b-afbf-4fa0-95f0-231417dc567c/uploads/image_019dc76d-e3d5-7d86-a328-6920f41fc31e_0.png?Expires=1777426603&Signature=BnIZohT9MZZKkMVSH0bm19ZCX8Cg5~TVdkg2ZQRR2PEc7Z3H-PL9r~qcgO8u1ZaT6GNakAg37TPxMqFB-4ou6iZnxDaU5WJoDhpgJ7L4l0WXvM7OP~1W4G08zSv8Q8fstd9h0M--krXPyRhcOFHQKBYeEGuYaVyTXPAME8Dls~MpTcyavUI-hOBhgPoHsXOnVJLu-iKh6ddG28bPJV0RlOyzEEI~Wk3ihR8PKzDkEBrrCmg4A1KGXbpYJB4cwjc6CovzD7dznEArbYu5XNYg8uGNttc00je-jHn5s62mOv5SVk-DwcQXXKgyhRueEvMGfvbvV36Pndef4Bfre~P~LA__&Key-Pair-Id=K1VGYTHIYLM9UM"
+  ],
+  "consumed_credits": 9
+}

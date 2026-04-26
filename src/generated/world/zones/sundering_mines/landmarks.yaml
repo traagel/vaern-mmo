@@ -1,0 +1,41 @@
+id: landmarks__sundering_mines
+zone: sundering_mines
+landmarks:
+- id: dark_chimney
+  name: The Dark Chimney
+  offset_from_zone_origin:
+    x: 200.0
+    z: 90.0
+  description: A vertical mine-shaft so deep that the Hearthkin who surveyed it never found
+    the bottom. Outsiders are welcome to lower ropes; the ropes do not return alone.
+  prompt: establishing shot, vast vertical mine-shaft entrance carved into a mountain wall,
+    dark below, abandoned scaffolds at the rim, leaden cold light, painterly atmospheric,
+    oppressive mood, no figures
+- id: scaffold_grave
+  name: The Scaffold Grave
+  offset_from_zone_origin:
+    x: -180.0
+    z: 60.0
+  description: A cluster of pickaxe-handles driven into the rock as a memorial to Hearthkin
+    lost in a single bad shift. There are sixty-two handles. The dead were forty-seven.
+  prompt: establishing shot, cluster of weathered Hearthkin pickaxe handles driven into a
+    mountain wall as memorials, leaden cold light, painterly atmospheric, late-medieval dwarven,
+    oppressive mood, no figures
+- id: phosphor_pool
+  name: The Phosphor Pool
+  offset_from_zone_origin:
+    x: 90.0
+    z: -240.0
+  description: A subterranean pool the Skrel scavengers have started harvesting for phosphor-fungus.
+    The Hearthkin disapprove; the phosphor doesn't know the difference.
+  prompt: establishing shot, glowing green underground phosphor pool in a mining gallery,
+    fungal growth on the walls, sickly green-blue light, painterly atmospheric, no figures
+- id: carver_signs
+  name: The Carver Signs
+  offset_from_zone_origin:
+    x: -90.0
+    z: -180.0
+  description: A series of carvings down a shaft wall, made by something that was clearly
+    not a Hearthkin. The Hearthkin have stopped trying to translate them.
+  prompt: establishing shot, deep mine shaft wall covered in alien carvings, lantern-lit,
+    oppressive cold mood, painterly atmospheric, no figures

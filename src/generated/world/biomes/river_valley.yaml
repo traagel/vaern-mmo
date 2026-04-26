@@ -1,5 +1,15 @@
 id: river_valley
 name: River Valley & Farmland
+description: |
+  The Concord's bread country: warm summers, slow rivers, ploughed
+  strips between hedgerows, stone bridges, sleepy mill-towns. Bandit
+  roads run between the hubs after dark; the spring flood takes a few
+  barns most years. The most stable biome on the island, and the one
+  everyone wants.
+prompt: >-
+  wide establishing landscape, late-medieval Burgundian river valley
+  with hedgerow fields, stone bridge over a slow river, distant church
+  steeple, summer golden hour, painterly atmospheric, no figures
 climate: warm, fertile, long summer
 hazards:
 - flood-season

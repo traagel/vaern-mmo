@@ -1,5 +1,14 @@
 id: fjord
 name: Fjord Coast
+description: |
+  Cold sea cut deep into the land. Black water in narrow channels,
+  pine-walled islands, mooring stones cut by Rend longshipwrights
+  generations back. The deep water means raids land where you weren't
+  looking. Ice floes break free in spring and orcas trail them in.
+prompt: >-
+  wide establishing landscape, narrow cold fjord between dark pine
+  cliffs, longship at anchor in the foreground, dawn mist on black
+  water, painterly atmospheric, late-medieval, no figures
 climate: cold, deep-water harbors, island-strewn
 hazards:
 - ice-floe

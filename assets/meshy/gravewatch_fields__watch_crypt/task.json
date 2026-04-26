@@ -1,0 +1,16 @@
+{
+  "id": "019dc769-f0c1-7668-908e-3e8fb16432e4",
+  "type": "text-to-image",
+  "ai_model": "nano-banana-pro",
+  "prompt": "establishing shot, Gravewrought necropolis-town, low barrow halls with thatched buildings on top, working harvest fields beside, salt wind, overcast cold light, painterly atmospheric, late-medieval, no figures",
+  "status": "SUCCEEDED",
+  "progress": 100,
+  "created_at": 1777167102241,
+  "started_at": 1777167102269,
+  "finished_at": 1777167121146,
+  "expires_at": 1777426321146,
+  "image_urls": [
+    "https://assets.meshy.ai/2872987b-afbf-4fa0-95f0-231417dc567c/uploads/image_019dc769-f0c1-7668-908e-3e8fb16432e4_0.png?Expires=1777426321&Signature=JxIH4Qv89PDStDhzlPJH5M9ThXKFgMzhN1W7uYtl3Pqw4-esdTXX7euGbLRvRK6poF64riQAXwbnv8eM0teijjh9tq7jJlUe~38OkwZADxxsa0EjzTsOxB21zvfuxA3PHdrlRTYQfu5mdudfqNKNpRIRlyaO8KA-uLIOYtp355IE~pbwyAsjn9E60nKSSVuklEOyO~V~v-IDL5ySC9AI5W3FMd50Fzt2ultyXKgyAk-kqlDGT5IUqxl68J3Teil5kMMJmF5~Y7fqhfUxQIDdy0EsE5A4LcQCfrXG~CUPWAnIP4phPfjnwshTQs~2mHX9-nrI3iJ2DW9yq~yCSYKSaA__&Key-Pair-Id=K1VGYTHIYLM9UM"
+  ],
+  "consumed_credits": 9
+}

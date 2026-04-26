@@ -1,0 +1,16 @@
+{
+  "id": "019dc76b-db74-76ba-bd3d-1d17e7e1adde",
+  "type": "text-to-image",
+  "ai_model": "nano-banana-pro",
+  "prompt": "establishing shot, single black basalt pillar in an ashen forest, crows on every branch and the pillar's cap, dim amber-red light, painterly atmospheric, late-medieval, no figures",
+  "status": "SUCCEEDED",
+  "progress": 100,
+  "created_at": 1777167227773,
+  "started_at": 1777167228038,
+  "finished_at": 1777167273509,
+  "expires_at": 1777426473509,
+  "image_urls": [
+    "https://assets.meshy.ai/2872987b-afbf-4fa0-95f0-231417dc567c/uploads/image_019dc76b-db74-76ba-bd3d-1d17e7e1adde_0.png?Expires=1777426473&Signature=S~-VykR70QdxXlweDRrnfMcHwT1XRQwHOG4Ah2ElPUrmFtL5MmaGgxP515DOgOrVPt3fWbJFzyetCnJLWzIVxPww0qkXxzgXu4acLYDVtFPrFEs-R~deG-rY8iYWUG3xhsdjEbqcStU0-wPe~haDSN4uNJtcG5HjXTz76cAsWJbMd5U8C50l0qI9xBQaX4iivPe~qd4PHV~vjHmP0Ydu9MBvRyZAXxz16Ahbmt8D1lbZA5ztJ3SbeVL5IpCdKtaMQRJE-FMlDwJ25EI0VQjtEr4COZ6GmnFVso90QA3-modrBs63ZYnLnPktK60vA4ncux2qx5nehN9Eo4qbO1m0uQ__&Key-Pair-Id=K1VGYTHIYLM9UM"
+  ],
+  "consumed_credits": 9
+}

@@ -1,0 +1,49 @@
+zone:
+  vibe: Skrel scavenger-mire — rust, alchemy, traps for the unwary.
+  description: The Skrel starter at the southern edge of the Ashen March — a swamp of rusted
+    scrap-piles, half-rotten plank-walks, and alchemical sumps that smell different every
+    hour. The Skrel are scavengers, alchemists, and unparalleled at getting more out of broken
+    things than was ever put in. The Junk-Warren beneath their main town is a minor folk wonder.
+    The traps are not.
+  prompt: wide establishing landscape, rusted scrap-mire, half-sunken plank walkways between
+    mounds of broken metal, sickly green alchemical mist, low pale light, painterly atmospheric,
+    no figures
+hubs:
+  junk_warren:
+    description: The Skrel starter capital — a labyrinth of alchemical scrap-warrens dug into
+      and through and under a hill of rusted metal. Boss-of-Bosses Skrenn runs it on a principle
+      of constructive bribery. The plank-walks outside the warren are mapped by colour; the
+      warren itself is mapped by smell.
+    prompt: establishing shot, sprawling Skrel scrap-mound town, warren entrances dug into
+      rusted metal hill, plank walkways, sickly green alchemical smoke, low pale light, painterly
+      atmospheric, no figures
+  trap_post:
+    description: A Skrel outpost on the road in — three trap-fields, a watch-warren, and a
+      single welcoming-house run by a tinker who lost half a hand to a previous welcome. The
+      traps are explicit because the explicit traps protect the implicit ones.
+    prompt: establishing shot, Skrel trap-post on a marsh road, warren entrance, scrap-built
+      watchtower, half-rotten plank walkways, sickly amber dusk, painterly atmospheric, no
+      figures
+landmarks:
+  rusted_wagon_field:
+    description: A flat sump where Skrel scavengers stack salvaged Hearthkin wagons until
+      somebody decides what to do with them. The stacks have been growing for six years.
+    prompt: establishing shot, marshy field full of rusted broken Hearthkin wagons stacked
+      in disorderly piles, sickly green-amber light, painterly atmospheric, no figures
+  acid_pool:
+    description: A deep pool of by-product alchemy that the Skrel have weighed for hazard
+      and pronounced acceptable. Outsiders are advised to circle widely. Wildlife near the
+      pool is unusual.
+    prompt: establishing shot, dark green-yellow acid pool in a marsh, warning sticks driven
+      into the mud at the edges, sickly amber dusk, painterly atmospheric, no figures
+  warren_smoke_vent:
+    description: A vent where the Skrel under-warrens release alchemical smoke. The smoke
+      is colour-coded by chemistry, and the Skrel watch the colour from a kilometre away.
+    prompt: establishing shot, marsh ground vent leaking sickly yellow-green smoke, scrap-built
+      ring of stones around it, sickly amber-green light, painterly atmospheric, no figures
+  sunken_skrel_shrine:
+    description: A half-submerged shrine to the patron of opportunistic salvage, dedicated
+      by an unnamed Skrel scholar who never claimed credit. Offerings are by tradition broken-but-valuable.
+    prompt: establishing shot, half-submerged scrap-built shrine in a marsh, broken pieces
+      of salvaged metal hung as offerings, sickly green twilight, painterly atmospheric, no
+      figures

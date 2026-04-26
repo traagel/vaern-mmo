@@ -1,0 +1,16 @@
+{
+  "id": "019dc76a-4db1-767f-b855-dde9c5796b6e",
+  "type": "text-to-image",
+  "ai_model": "nano-banana-pro",
+  "prompt": "establishing shot, scar of a collapsed Hearthkin forge in a mountainside, broken stone gateway venting smoke, abandoned scaffolds, leaden cold light, painterly atmospheric, late-medieval, no figures",
+  "status": "SUCCEEDED",
+  "progress": 100,
+  "created_at": 1777167125947,
+  "started_at": 1777167126502,
+  "finished_at": 1777167275628,
+  "expires_at": 1777426475628,
+  "image_urls": [
+    "https://assets.meshy.ai/2872987b-afbf-4fa0-95f0-231417dc567c/uploads/image_019dc76a-4db1-767f-b855-dde9c5796b6e_0.png?Expires=1777426475&Signature=B2bt4djuuXbzNiWah7FvVwzCZasxAZSmcu7htatHJD-L70qm7VPJ7rYswWQ2EIRxhQjEpTfktzR75z-b5F1x2FfqoWFJtpfLtMwaFjY38M2eH6IFSOLDTI7f4BnzZLCCGlWH1s1sSXEOtGiZMPZV1FPWl0-O~vT6w236NwpTx5SWHLqYwatpj4X3Ak4xb-NfyEdLandLwuHFHpkGiNHK5qHgmLtwXNZYQCez~1nHi5Mr5LoNB0QZ3v~e18aXXzNbv785NsHY4vIBYGDWs1bezvVxUWsHBUv~8oOsknbPLZXpZCueAp~t6an5wymq93hKL2~GJeI2DH95KZrnQrdxsg__&Key-Pair-Id=K1VGYTHIYLM9UM"
+  ],
+  "consumed_credits": 9
+}

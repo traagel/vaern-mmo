@@ -1,0 +1,63 @@
+dungeon:
+  description: |
+    A pre-Veyr ruin under the Silverleaf Wood, dated by the Sunward
+    Elen scholars at Quill-and-Branch to roughly nine hundred years
+    before the founding of Mannin. The wards laid into its root-pillars
+    have decayed; nature-pact creatures from deeper in the wood have
+    moved in and gone feral on the leakage. Two scholar-expeditions
+    have come back with notes; a third went in last spring under
+    Lector Olen and has not.
+  prompt: >-
+    establishing shot, dungeon interior, ancient overgrown elven ruin,
+    moss-clad root-pillars, broken star-glass shards, sunbeams through
+    canopy-cracks, ivy on stairs, painterly atmospheric, oppressive
+    mood, no figures
+bosses:
+  thornheart_druid:
+    description: |
+      A nature-pact ascetic who took shelter in the ruin a decade back
+      and has fed on the leakage since. Roots her targets in place with
+      a slow-tick DoT and summons treant-adds from the wall-carvings
+      when she's pressured. The Sunward Elen scholars do not classify
+      her as native; they classify her as a problem they would like
+      removed without further damage to the carvings.
+    prompt: >-
+      portrait, single subject, gaunt nature-pact druid, bark-fused
+      forearms, robe of woven roots, thorn-crown, hollow green eyes,
+      painterly atmospheric, oppressive mood, isolated subject, no
+      other figures
+    negative_prompt: >-
+      multiple figures, party, group, modern, futuristic, sci-fi, anime,
+      cyberpunk, watermark, text
+  silver_stag:
+    description: |
+      A great stag, white-coated and silver-antlered, that the scholars
+      can find no record of in any pre-Veyr bestiary and refuse to
+      speculate about in writing. Charges in straight lines across the
+      grove-chamber, hits hard, retreats into a corridor of standing
+      stones, and emerges from a different one. Lector Olen's last
+      field-note ends mid-sentence about its eyes.
+    prompt: >-
+      portrait, single subject, immense silver-antlered white stag,
+      luminous coat, ancient scarred flanks, calm pale eyes, breath
+      misting cold, painterly atmospheric, oppressive mood, isolated
+      subject, no other figures
+    negative_prompt: >-
+      multiple figures, party, group, modern, futuristic, sci-fi, anime,
+      cyberpunk, watermark, text
+  grove_elder:
+    description: |
+      The elder treant at the ruin's heart, rooted in what was the
+      central council-floor nine centuries ago and has been there ever
+      since. Cycles through four seasonal phases — spring (root-grasp),
+      summer (sun-burn aoe), autumn (leaf-storm projectiles), winter
+      (frost-immobilize) — on a metronome the scholars suspect was the
+      ruin's original chronometric ward, repurposed.
+    prompt: >-
+      portrait, single subject, towering ancient treant elder, bark
+      etched with elven script, mossy shoulders, slow-burning amber
+      knot for an eye, painterly atmospheric, oppressive mood,
+      isolated subject, no other figures
+    negative_prompt: >-
+      multiple figures, party, group, modern, futuristic, sci-fi, anime,
+      cyberpunk, watermark, text

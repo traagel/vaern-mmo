@@ -1,0 +1,80 @@
+dungeon:
+  description: |
+    Below the Lightless Gallery the mines stop being mines. Carver-
+    Mother's kin breed in the lower vents and the air smells of the
+    metal that comes off them — sour, bright, wrong. Hearthkin scouts
+    map this far and then turn back without writing it down. The
+    Deeper Thing is the reason the Coming reached as far as it did,
+    though no historian alive will put that sentence in ink. Ten-man
+    raid; the longest pull in the game ends here.
+  prompt: >-
+    establishing shot, dungeon interior, vast lightless cavern,
+    forge-glow seeping from a chasm below, alien hive-architecture
+    fused with broken mining shafts, painterly atmospheric, oppressive
+    mood, no figures
+bosses:
+  pit_lords_three:
+    description: |
+      Three pit-lords who guard the descent and were, in the long-ago,
+      one creature. The split happened during the Coming and they have
+      not forgiven each other. They must die within ten seconds of one
+      another or the survivors call the dead back angrier — the raid
+      brings them down together, the way executioners do, three blades
+      falling on one beat. Their roar is the same roar from three
+      throats.
+    prompt: >-
+      portrait, three colossal pit lords in molten armor, ridged
+      crowns, weapons hewn from forge-stone, glowing chasm at their
+      feet, painterly atmospheric, oppressive mood
+    negative_prompt: >-
+      multiple figures, party, group, modern, futuristic, sci-fi,
+      anime, cyberpunk, watermark, text
+  deep_forge_primus:
+    description: |
+      The first of the deep forges still working, and the thing that
+      tends it. It pulls iron out of the rock and shapes it into more
+      of itself, and the adds it summons cool from red to grey in the
+      span of a pull. The Hearthkin would call this 'making' if it
+      weren't being done by something they refuse to recognize as
+      family. The Primus does not speak. Its hammer keeps the time.
+    prompt: >-
+      portrait, single subject, hulking forge-construct of fused
+      stone and metal, hammer at one fist, anvil-chest glowing red,
+      sparks falling, painterly atmospheric, oppressive mood, isolated
+      subject, no other figures
+    negative_prompt: >-
+      multiple figures, party, group, modern, futuristic, sci-fi,
+      anime, cyberpunk, watermark, text
+  carver_prime:
+    description: |
+      Carver-Prime — a Carver-Mother grown to her true size. The 5-man
+      Carver-Mother is the daughter; this is the dam. Her chitin is
+      the dull purple of old bruises and her brood-sac is the size of
+      a Hearthkin chapel. She breeds without pause, even bleeding out,
+      and the raid clears her young between her contractions. Six
+      generations have hunted her. None have killed her yet.
+    prompt: >-
+      portrait, single subject, towering chitinous brood-mother,
+      bruise-dark plating, swollen brood-sac at her abdomen, mandibles
+      open, fluid dripping, painterly atmospheric, oppressive mood,
+      isolated subject, no other figures
+    negative_prompt: >-
+      multiple figures, party, group, modern, futuristic, sci-fi,
+      anime, cyberpunk, watermark, text
+  the_deeper_thing:
+    description: |
+      The Deeper Thing. It is the reason the Coming reached as far as
+      it did — a wound in the stone that something speaks through, on
+      a generation's slow rhythm, and the speaking moves armies. It
+      has four faces of mechanic and the raid rotates through all of
+      them in turn, and each face is one of the Deeper Thing's old
+      names. The fight is forty-five minutes if you do it correctly.
+      Almost nobody does it correctly the first time.
+    prompt: >-
+      portrait, single subject, vast many-faced abyssal entity rising
+      from a stone wound, four shifting expressions, alien light from
+      within, ash falling around it, painterly atmospheric, oppressive
+      mood, isolated subject, no other figures
+    negative_prompt: >-
+      multiple figures, party, group, modern, futuristic, sci-fi,
+      anime, cyberpunk, watermark, text

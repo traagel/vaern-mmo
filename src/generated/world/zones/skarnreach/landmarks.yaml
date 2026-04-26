@@ -1,0 +1,42 @@
+id: landmarks__skarnreach
+zone: skarnreach
+landmarks:
+- id: raid_stone
+  name: The Raid-Stone
+  offset_from_zone_origin:
+    x: 200.0
+    z: 90.0
+  description: A standing stone above the longhall on which every successful raid is carved.
+    The Skarn add lines themselves; the Concord would like a copy and have been politely refused
+    for three generations.
+  prompt: establishing shot, standing stone on a basalt headland above a fjord, dense carved
+    lines covering every face, leaden cold light, painterly atmospheric, late-medieval viking,
+    no figures
+- id: widow_cliff
+  name: Widow's Cliff
+  offset_from_zone_origin:
+    x: -180.0
+    z: 60.0
+  description: A cliff edge where Skarn widows traditionally throw the broken weapons of dead
+    warriors into the sea. Locals know which corner the tide returns the iron to.
+  prompt: establishing shot, sheer basalt cliff above a cold fjord, rusted weapons in cracks
+    of the rock at the edge, leaden cold light, painterly atmospheric, late-medieval, no figures
+- id: seal_rocks
+  name: The Seal Rocks
+  offset_from_zone_origin:
+    x: 90.0
+    z: -240.0
+  description: A flat shelf of rocks at the foot of the fjord where seals haul out every spring.
+    The Skarn hunt them by formal agreement, and the seals seem to accept the arrangement.
+  prompt: establishing shot, flat sea-rocks at the foot of a fjord, seals hauled out, salt-spray,
+    cold afternoon pewter light, painterly atmospheric, late-medieval, no figures
+- id: burial_ship_mound
+  name: The Burial-Ship Mound
+  offset_from_zone_origin:
+    x: -90.0
+    z: -200.0
+  description: A turfed mound where the Skarn have buried at least one longship, possibly
+    three. The Skarn insist the count is personal. The mound is taller than any nearby hill.
+  prompt: establishing shot, vast turf-covered burial ship mound on a windswept basalt slope,
+    weathered standing stones at its base, leaden cold light, painterly atmospheric, late-medieval
+    viking, no figures

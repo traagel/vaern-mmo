@@ -1,0 +1,16 @@
+{
+  "id": "019dc769-f0bc-7d01-bbe2-d5d3487b9944",
+  "type": "text-to-image",
+  "ai_model": "nano-banana-pro",
+  "prompt": "establishing shot, charred-forest crossroads with single inn and small chapel beside a traveller's well, banked embers in fire-rings, dim amber afternoon light, painterly atmospheric, late-medieval, no figures",
+  "status": "SUCCEEDED",
+  "progress": 100,
+  "created_at": 1777167102158,
+  "started_at": 1777167102183,
+  "finished_at": 1777167121515,
+  "expires_at": 1777426321515,
+  "image_urls": [
+    "https://assets.meshy.ai/2872987b-afbf-4fa0-95f0-231417dc567c/uploads/image_019dc769-f0bc-7d01-bbe2-d5d3487b9944_0.png?Expires=1777426321&Signature=ZiaXScMbX8KtZqU9iwBBeDyY5AWdbMXq7LnBWhBgRWG0A4jW7eH0kdODwe6l7O4tmxWnhSEHNJOpqDoP7RjKvtvVcndi00c-u2lE65rYKXtqi3saBeSAv9wVJIV-yZ5jPBQuOR~j7bFep2nBFYqtkMl-BgfRuQHDcod0W-eCjF9t63YbFPb2R0m6oWQvyypFfjaaz5~lPmkBxb7a-PUEEhwxZNagzNWbF3pBG~IOimDhC1ojxMlY5dvYmAEGexoMNBLZ5k2kKS7yAB59zJUlCK7tkzpFU3z1q2X6201PzcTOo2UZihGjl53TKEGgjdhjnofTX4FmBK4F8GKhBle3EA__&Key-Pair-Id=K1VGYTHIYLM9UM"
+  ],
+  "consumed_credits": 9
+}

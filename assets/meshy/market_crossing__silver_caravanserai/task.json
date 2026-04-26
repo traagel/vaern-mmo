@@ -1,0 +1,16 @@
+{
+  "id": "019dc76a-4e2c-72bb-9ec0-ef9b5b029897",
+  "type": "text-to-image",
+  "ai_model": "nano-banana-pro",
+  "prompt": "establishing shot, walled trade caravanserai compound, stables and warehouses around an open court, banners and drying spices, dusty late afternoon light, painterly atmospheric, late-medieval, no figures",
+  "status": "SUCCEEDED",
+  "progress": 100,
+  "created_at": 1777167126072,
+  "started_at": 1777167126526,
+  "finished_at": 1777167168267,
+  "expires_at": 1777426368267,
+  "image_urls": [
+    "https://assets.meshy.ai/2872987b-afbf-4fa0-95f0-231417dc567c/uploads/image_019dc76a-4e2c-72bb-9ec0-ef9b5b029897_0.png?Expires=1777426368&Signature=UEAq~uvQMwu0Baasxlu4Z61nRlWg0gf-QmyMWurGK83-Foh1zQ31r04Jtfkzfff3Uz~mEn2aCT5parlH1ui1F7pW92zsO5zLEPYLI29vnkQKy~vtzrZPN8pK5Cl9YobVzJUB9NflEnIok2uiZSNTgUbE2CrrrMoInxmq50Y1ilVrTo1SF-jGAMQLxpgvGMGdD-ikd0iNb5zBTTa0V3UdGD8fbiTdnv2boem-hM0-NQIhz2xNLSbRSfVm0GdKCAP6~2kr5xZWsRNS5Butfucxo0khmA9yGpEEXEZbORdcEoCGzyg4nsYdzTdZPP3h3ZnELj68iXL~Eg0Za6RvLrNmmw__&Key-Pair-Id=K1VGYTHIYLM9UM"
+  ],
+  "consumed_credits": 9
+}

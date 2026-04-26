@@ -1,0 +1,16 @@
+{
+  "id": "019dc76d-6312-7325-84b1-c90d256c18ba",
+  "type": "text-to-image",
+  "ai_model": "nano-banana-pro",
+  "prompt": "establishing shot, windswept turf field with low burial markers in irregular rows, distant funerary fires, oppressive twilight, painterly atmospheric, late-medieval, no figures",
+  "status": "SUCCEEDED",
+  "progress": 100,
+  "created_at": 1777167328031,
+  "started_at": 1777167328615,
+  "finished_at": 1777167351043,
+  "expires_at": 1777426551043,
+  "image_urls": [
+    "https://assets.meshy.ai/2872987b-afbf-4fa0-95f0-231417dc567c/uploads/image_019dc76d-6312-7325-84b1-c90d256c18ba_0.png?Expires=1777426551&Signature=T27g2Sa0DQLsFejnE3fwbiYxZgUQdejDJq~oVo4nQrGB3rqiS1tsrJROZ47ywFqwTEGDthkwYBFY6Dx2iqBzDtSHunvcTbGL~7ojilThTolpkJFYM5v3ZczwagyEHEdmndJM-ZQBRuVgEGcJZBZK96-KQGJVlBgd8AZ0t5ViSTBQ6sCyRy8~N2UlasT~B8W3RGkbRPp7KhPeDKF2Ynp9fcDlNm~0WlA20uUDwI5zI1OOI52h8Dl7-1mt1DsChe-8Zu7Bs17RJPzMDjrNmC1otJ79MOqhdXjg72b82S4m-0HB6WVYGVK615sbgu0F9p2803NSXYoRXHM5fkgGHy8Yyg__&Key-Pair-Id=K1VGYTHIYLM9UM"
+  ],
+  "consumed_credits": 9
+}

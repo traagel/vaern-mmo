@@ -1,0 +1,16 @@
+{
+  "id": "019dc76b-1d8e-7d3f-9c57-28d1a85feb8a",
+  "type": "text-to-image",
+  "ai_model": "nano-banana-pro",
+  "prompt": "establishing shot, Skarn raid-staging camp on a basalt shoreline, timber palisade and earthwork, longships at low-tide stocks, dim leaden light, painterly atmospheric, late-medieval viking, no figures",
+  "status": "SUCCEEDED",
+  "progress": 100,
+  "created_at": 1777167179162,
+  "started_at": 1777167179471,
+  "finished_at": 1777167218923,
+  "expires_at": 1777426418923,
+  "image_urls": [
+    "https://assets.meshy.ai/2872987b-afbf-4fa0-95f0-231417dc567c/uploads/image_019dc76b-1d8e-7d3f-9c57-28d1a85feb8a_0.png?Expires=1777426418&Signature=WRaRSBZAPdX6oeuR4WDl-Ozr5YlmjK4CIq3Iy2jDyKCfvLcuY-6toXzSFoMjJ4WALrm-JptN--0VSS7vy5KUP1GdzaNBYWNoMV02TinDyzTWkSZNUgybyc89NszQ6LxkUP7UVHXbWM5HsaQBAZUgRHrtebTwNwKJFTrHAGNK00t1ZD0ltjoT39AwgUt7L6NMKYlAv-tg2CdddcUM6ll-YUVhO-WmJYzzNdksyTTAErNCfBsOSVq5i2XyiugIdd1jFAXdifrmbRGd~55~GROmEjfcevWoqLgplYXZa87zGtuRYkaVRf9CarUD9MeamylTkBtV5T0W-mKS-i1hTaxmJg__&Key-Pair-Id=K1VGYTHIYLM9UM"
+  ],
+  "consumed_credits": 9
+}

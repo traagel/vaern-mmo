@@ -18,13 +18,6 @@
 //! SDF voxel world streamed around the camera, replacing the legacy
 //! tessellated grass plane.
 //!
-//! [`hub_regions`] (Voronoi biome floor patches + wiggly roads) was
-//! the original overlay on top of the flat ground plane. It's fully
-//! superseded by `crate::voxel_biomes` + `crate::voxel_demo`, which
-//! bake biome materials directly onto voxel chunks via per-biome
-//! `StandardMaterial` + world-XZ UVs. The file is kept as source-level
-//! reference for the Catmull-Rom road work (not yet ported).
-//!
 //! External consumers of scene-internal types use `crate::scene::*`.
 //! Only [`CameraController`], [`CameraSet`] and [`CastFiredLocal`] leak
 //! outside the module — everything else is intra-scene plumbing.
@@ -32,8 +25,6 @@
 mod animation;
 mod camera;
 mod dressing;
-#[allow(dead_code)]
-mod hub_regions;
 mod render;
 mod setup;
 

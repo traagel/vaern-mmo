@@ -1,0 +1,16 @@
+{
+  "id": "019dc769-f51a-7670-9613-07ecfa512072",
+  "type": "text-to-image",
+  "ai_model": "nano-banana-pro",
+  "prompt": "establishing shot, ancient Firland moot-hall built into a circle of massive fir trunks, deep green twilight, central hearth, painterly atmospheric, late-medieval fey, eerie mood, no figures",
+  "status": "SUCCEEDED",
+  "progress": 100,
+  "created_at": 1777167103267,
+  "started_at": 1777167103398,
+  "finished_at": 1777167121443,
+  "expires_at": 1777426321443,
+  "image_urls": [
+    "https://assets.meshy.ai/2872987b-afbf-4fa0-95f0-231417dc567c/uploads/image_019dc769-f51a-7670-9613-07ecfa512072_0.png?Expires=1777426321&Signature=a1J65~8mJeW9wTioqpMTqya4QozvDhNnt9bqkoC8E~oAc6BOAaygF9p9AROfzGcQbUwTdvxRDWEMMyl605h4lsewIQuj6mkf0AqAO0buMF~libHX40v~aULx-eL~6Ti5LSzcI1z2OdQkz3WBMpepUdLQCjkav26KzJ5lPtG32dMrgqIxhzGzKkYyfCDIa8EYJf~VDlaeOeZPzmi1OD7pU7s~x00Xp7JX8IEO32YEVMrMx9B4Iz~yHF3LDltm7lS054HapgOjOaPv0sylFU9Y~07MjzFfQsxI736XRr20~deJOcFsX~YkmoHUIymDcNBRaNuVGX9NgxtQYuiSpf8s3A__&Key-Pair-Id=K1VGYTHIYLM9UM"
+  ],
+  "consumed_credits": 9
+}

@@ -1,0 +1,16 @@
+{
+  "id": "019dc77d-2f4d-7ffc-a24e-9d3f19b6c155",
+  "type": "text-to-image",
+  "ai_model": "nano-banana-pro",
+  "prompt": "Portrait of a male Skrel, single figure, isolated subject, three-quarter view from waist up. three-foot Pathfinder goblin humanoid, green mottled skin, long pointed ears, hooked nose, patchwork scrap-armor. small humanoid goblin-kin raider, three-foot-tall humanoid person, adult face with human-shaped features not feral, waist-high to a human, scrap-armored humanoid scavenger, clearly a small humanoid not a beast not a creature, thin pointed ears, mottled grey skin, wiry humanoid figure. small wiry build, 3'2\"\u20134'0\", long-limbed for the size, knuckle-close arms, wide-splayed clever hands, crouching ready-to-spring posture. mottled grey-brown or dusk-purple skin in blotchy uneven patches, wiry black or rust-red hair, large forward-pointing ears, wide yellow or red eyes for low-light, sharp small teeth, flat snub nose, scar-pocked skin from brawls. hair: ragged uneven hair, dirt-matted topknot, beaded with teeth or bits of scavenged wire. attire: patchwork scrap-hide and salvaged mail, mismatched pauldrons from larger kin, bandoliers of scavenged tools and hook-traps, soot-smeared face, bone-and-wire fetishes. posture: compact crouching predator, low-slung head, long arms close to the ground, one hand usually gripping something scavenged. painterly atmospheric character portrait, late-medieval fantasy aesthetic, soft directional lighting, neutral dim background, oil-painting feel, no other characters, no text, no watermark.",
+  "status": "SUCCEEDED",
+  "progress": 100,
+  "created_at": 1777168363353,
+  "started_at": 1777168363517,
+  "finished_at": 1777168467713,
+  "expires_at": 1777427667713,
+  "image_urls": [
+    "https://assets.meshy.ai/2872987b-afbf-4fa0-95f0-231417dc567c/uploads/image_019dc77d-2f4d-7ffc-a24e-9d3f19b6c155_0.png?Expires=1777427667&Signature=KCOWke59nhCuQWyrnahC3ihnq8UcDCk0DXMK~9rgznAjkjekMQ1MQsLnTc5J-xvB9DvmLIFFkOfs~O5mYpvlpPPh-Eph7c7kGBvXl0U3r4Bj7msCVn9~k~l7zzHpGC7xqU68~uRqt-T~Wgm~4vU29os8E34yL2pNyeMNzwRk7WrxF6uiEjQghoI9pUQjdYKrbNaetCIuf5XmOkW3THFDkqX9K3k~G1zppGtQ8DSCjFGmgcWW3-KkDbqA~Pu96eCHyPtvPeji6Q7ws~~OGagPDfyksVur4U5M~FHzUu4uU~0CwEep9aCi7L7EpcAQEehOilSWRcVjRpOq1iM5KQOGjg__&Key-Pair-Id=K1VGYTHIYLM9UM"
+  ],
+  "consumed_credits": 9
+}

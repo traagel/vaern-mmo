@@ -1,0 +1,16 @@
+{
+  "id": "019dc773-3152-7e4c-9a23-e6652d9f057c",
+  "type": "text-to-image",
+  "ai_model": "nano-banana-pro",
+  "prompt": "wide establishing landscape, rugged mining mountain range above the ruin line, scaffolds and abandoned shaft entrances, leaden sky, oppressive mood, painterly atmospheric, no figures",
+  "status": "SUCCEEDED",
+  "progress": 100,
+  "created_at": 1777167708519,
+  "started_at": 1777167708529,
+  "finished_at": 1777167800148,
+  "expires_at": 1777427000148,
+  "image_urls": [
+    "https://assets.meshy.ai/2872987b-afbf-4fa0-95f0-231417dc567c/uploads/image_019dc773-3152-7e4c-9a23-e6652d9f057c_0.png?Expires=1777427000&Signature=TMYkLHqdhehvYcG~TRVHzHl8gLv3t~haEcv-xi8ArPQUJwcfRO-ujrk6j~Vat~N572uAP6N~YXQTGqAcSAujYGZ1L1CP6xoBGOgO8ndPinrfEJ5DoQj9xFA9nPf9bhlpr19GAYD4clseX~jI88~2P02fnOHAck8Ru4wMrzR56~HlldBBmBdUQ9ulbLr7~5XoBd1gYcB8zYf~hFHTj9RoU1gcn6-PSRDO02wseUC~OIfrXPjm8O895irWgoOosVRc9CbhqUjfScNapYuNb570V7UkuzgjiuzpKNhaHywKllq-uXTXiHGPjlzKZVPMFQw6lkege3Z5WI2S0Z2qZjExpA__&Key-Pair-Id=K1VGYTHIYLM9UM"
+  ],
+  "consumed_credits": 9
+}

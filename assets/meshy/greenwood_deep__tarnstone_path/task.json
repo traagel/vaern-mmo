@@ -1,0 +1,16 @@
+{
+  "id": "019dc76d-7ba9-7d83-9384-55a26e2f0c37",
+  "type": "text-to-image",
+  "ai_model": "nano-banana-pro",
+  "prompt": "establishing shot, line of mossy stones leading through deep ancient fir forest, dim filtered green light, painterly atmospheric, late-medieval fey, no figures",
+  "status": "SUCCEEDED",
+  "progress": 100,
+  "created_at": 1777167334323,
+  "started_at": 1777167334958,
+  "finished_at": 1777167371926,
+  "expires_at": 1777426571926,
+  "image_urls": [
+    "https://assets.meshy.ai/2872987b-afbf-4fa0-95f0-231417dc567c/uploads/image_019dc76d-7ba9-7d83-9384-55a26e2f0c37_0.png?Expires=1777426571&Signature=S9RoIDBmndemBOxVPL-72iGy5QpyUPdS9MJ0irkYU-2m6wFKUCsyW3SDLICZL0RAHxYvlitLQnXA7cg1aUfA5dI2LbyO7SVmT-63Aju3Xoom~CQ8T4T0zsCsOq095nGtMjRCoth1v~NQpxJyJGaOypCIfIgnRm~d1uPZM0hXDhVeQwvy-Vslezr6yAaQfxHxI8dgWqFsCb65GPPlg-QU0EsjTVrgqX042FUsoRJjK56xbYhhLitlKhXUFDFeCgqgSTo7wJvpxA6wMxmUMjEM9nmzZnH45krC7RaNpGtM9tXmU~XzjtMRX-CNKTjRWe5MeUcnm6Yg6IDtyWd~k0p6Pw__&Key-Pair-Id=K1VGYTHIYLM9UM"
+  ],
+  "consumed_credits": 9
+}

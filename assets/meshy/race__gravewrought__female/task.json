@@ -1,0 +1,16 @@
+{
+  "id": "019dc77c-0b9a-7fb4-b266-84c447643d18",
+  "type": "text-to-image",
+  "ai_model": "nano-banana-pro",
+  "prompt": "Portrait of a female Gravewrought, single figure, isolated subject, three-quarter view from waist up. animate iron-and-bone plate-armor construct, ember-glowing helm slits, empty faceplate, tattered clan banner at hip. animate empty suit of funeral-armor, no living face, dark ceremonial iron plate helm with narrow horizontal eye-slits glowing cold ember red-violet, hollow interior visible through slits, exposed iron helm not a hood, bound ancestor-soul construct. tall heavy humanoid shell, 6'6\"\u20137'2\", plate-and-bone construction worn over wrapped grave-silk core, deliberate slow-heavy movement, joints bound with sinew-rope and iron rivets. no living flesh \u2014 armored faceplate with narrow eye-slits from which a cold ember glows in red or violet, the chest-seal sigil is the binding-anchor with faint ember-light bleeding through seams, helm shaped like a ceremonial funeral-mask, no hair. hair: none \u2014 grave-silk streamers or ceremonial fetish-tokens hang from the back of the helm. attire: heavy blackened iron plate layered over grave-silk wrappings, bone reinforcements at joints, chest-seal sigil etched with binding-runes, tattered clan-banner cloth, iron oath-rings on wrist and sternum. posture: towering upright animate tomb-armor, squared shoulders, heavy deliberate stance, weight-forward but grounded. painterly atmospheric character portrait, late-medieval fantasy aesthetic, soft directional lighting, neutral dim background, oil-painting feel, no other characters, no text, no watermark.",
+  "status": "SUCCEEDED",
+  "progress": 100,
+  "created_at": 1777168288677,
+  "started_at": 1777168288826,
+  "finished_at": 1777168319875,
+  "expires_at": 1777427519875,
+  "image_urls": [
+    "https://assets.meshy.ai/2872987b-afbf-4fa0-95f0-231417dc567c/uploads/image_019dc77c-0b9a-7fb4-b266-84c447643d18_0.png?Expires=1777427519&Signature=YLvCIKkT5YCG5P6uffswe6KpfiUoM-JvHwrkYQ2bh~woFz0~CTXJ27-Euz0Fv9Ld-6z7PdUG1kB1sYCf0~n1RJC0DUYsm7dcEwD2AGaAOh8ODm827WFVidNMXQt4jYODav8XQef0FBml8D2BzFqpr9SkGQOeGxcB0HRSl1UZ~ZJ0BoX1az0DJEuKnZWx0eIF5TgBCHmXUy1b~KJ7o9WbBKS3y2god4jCNRzYO9rMAZOFabjkiJQyaJIp49fz3qaukhwp~-XrGjlSZCt5dlxR2bP6uCm4UNDLJY0ixTNqzAEhV~z9KC88s~pQvniL9jTsC6eeIdfIFeFx24G3JBVsOA__&Key-Pair-Id=K1VGYTHIYLM9UM"
+  ],
+  "consumed_credits": 9
+}

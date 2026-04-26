@@ -1,0 +1,16 @@
+{
+  "id": "019dc769-f0ca-766b-af9f-38f83c4e7ead",
+  "type": "text-to-image",
+  "ai_model": "nano-banana-pro",
+  "prompt": "establishing shot, sealed pre-Coming stone observatory at the icy summit of an alpine spine, blizzard haze, dim blue light, oppressive cold mood, painterly atmospheric, no figures",
+  "status": "SUCCEEDED",
+  "progress": 100,
+  "created_at": 1777167102234,
+  "started_at": 1777167102260,
+  "finished_at": 1777167121448,
+  "expires_at": 1777426321448,
+  "image_urls": [
+    "https://assets.meshy.ai/2872987b-afbf-4fa0-95f0-231417dc567c/uploads/image_019dc769-f0ca-766b-af9f-38f83c4e7ead_0.png?Expires=1777426321&Signature=mlUp2C2XY8allsyZb5cCxA2DgwYte-~4TD8So2-uoNwm9XvKPhCtFSWLvK~OvSWCjbLZfS-x911FUd84O~qAr7T-~LQDFJ5~jjqs-bHt4RE54rR7XAYtSqJmyvjfwyev2kPRSKl4W~e4M38ACgAgsP-keDMuqqbzGhpY6JZfJBYBnDFkO9ll-dEBzPi6O4iF1M4wokQhgmQT3cqXhJZ0ER05CfXLl4CmsknJaJ12Imx5e2JnjioQqLAuK9dLGhZOO55yTtg7XFje2ulKJB3WvObasoKXo2aYdE2JyeO7Gl~45yM4cvcbpCM4BX~QKOMVAPEV1zTQX5A9YWY11Q89gA__&Key-Pair-Id=K1VGYTHIYLM9UM"
+  ],
+  "consumed_credits": 9
+}

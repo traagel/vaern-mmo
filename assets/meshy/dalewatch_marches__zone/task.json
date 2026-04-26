@@ -1,0 +1,16 @@
+{
+  "id": "019dc765-97e8-71e5-be96-9a48be306c8f",
+  "type": "text-to-image",
+  "ai_model": "nano-banana-pro",
+  "prompt": "wide establishing landscape, late-medieval Burgundian river valley, stone keep on a low ridge above tilled fields, kingsroad winding past mills, distant marsh on the eastern horizon, summer dusk warm gold-hour light, painterly atmospheric, no figures, no characters",
+  "status": "SUCCEEDED",
+  "progress": 100,
+  "created_at": 1777166817305,
+  "started_at": 1777166817869,
+  "finished_at": 1777166838308,
+  "expires_at": 1777426038308,
+  "image_urls": [
+    "https://assets.meshy.ai/2872987b-afbf-4fa0-95f0-231417dc567c/uploads/image_019dc765-97e8-71e5-be96-9a48be306c8f_0.png?Expires=1777426038&Signature=qFD7kHPy-dvzjpPQj8ffIj5-EieJXLbm7xZQsZOCDWgW8Eam7-~mbB5JaGbcaBHTB0yiZVn4KcwcTi5AvtEX9omxJ6ncoZ3fDWDq6TaFMbxb4jFrLXEGxvhJHdz~uXoDo-m0qyKSO~1P20U3Qcj4QdqSZ-y5XdxfiZOtF1TxadD7Y1szj4~F71EoElYWx7Os5xZSSF4xr0CkyfudVPlCZbN7--yoqZAkVo5box6QV0dS0KQNaUEnBYU7APE4nNVZytpcF51QQ8GBnZrwkjErY6ebzkyCIxzegtV~YedbRKrufO2mWy-lj9M3pV9ciFX63nDLBTp7pXEe39CR8gDHxA__&Key-Pair-Id=K1VGYTHIYLM9UM"
+  ],
+  "consumed_credits": 9
+}

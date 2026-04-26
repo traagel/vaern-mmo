@@ -1,0 +1,16 @@
+{
+  "id": "019dc76b-55fb-7d45-832a-97009747b640",
+  "type": "text-to-image",
+  "ai_model": "nano-banana-pro",
+  "prompt": "establishing shot, mountain-rim Hearthkin outpost at the mouth of an under-hall, stone gatehouse, banked forge braziers, snow on the upper slopes, painterly atmospheric, late-medieval dwarven, no figures",
+  "status": "SUCCEEDED",
+  "progress": 100,
+  "created_at": 1777167193617,
+  "started_at": 1777167194289,
+  "finished_at": 1777167248503,
+  "expires_at": 1777426448503,
+  "image_urls": [
+    "https://assets.meshy.ai/2872987b-afbf-4fa0-95f0-231417dc567c/uploads/image_019dc76b-55fb-7d45-832a-97009747b640_0.png?Expires=1777426448&Signature=IH8Np0886dYgasioAXGnY8EbKedm5BADlzE8WAUkAdE73PJWbw3iuiKmxgZukPOjTehnwvrlp7vIe6kLVCv5AmCZL18jqWvXpECAzMoiAD9geeECbLRhM2wXxj6gdCxM~LObJH67bUa0lSEbPBnKCG4AhkcJJQL44Fmx-xPZBJGEmPB3S1n4XYLJuTIY8MiM54e9t006QHk9oCtXfqKsnFlXFdDJA0K9CJF-ma2N7Jf4pKDaTLD1kFhhaGy18scffxFQwd7pu8KQQqY2DHTEaxgvGCL-dkSBZHZDZngWt6ZLfP59QqCMeuYTpGA8~m5dDri-5TYMArR4gqAymx9FTA__&Key-Pair-Id=K1VGYTHIYLM9UM"
+  ],
+  "consumed_credits": 9
+}

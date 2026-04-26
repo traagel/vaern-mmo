@@ -1,0 +1,43 @@
+id: landmarks__silverleaf_wood
+zone: silverleaf_wood
+landmarks:
+- id: moth_pillar
+  name: The Moth-Pillar
+  offset_from_zone_origin:
+    x: 180.0
+    z: 110.0
+  description: A standing stone the Sunward Elen carved long enough ago that the carvings
+    have weathered into pure pattern. The moths of the wood spend their twilights circling
+    it.
+  prompt: establishing shot, ancient mossy standing stone in twilight forest, surrounded by
+    slow circling pale moths, painterly atmospheric, late-medieval high-elf fey, no figures
+- id: silverleaf_falls
+  name: Silverleaf Falls
+  offset_from_zone_origin:
+    x: -200.0
+    z: 90.0
+  description: A waterfall where the silver birch litter catches the spray and silvers further.
+    The Sunward Elen don't drink the spray downstream; the deer do.
+  prompt: establishing shot, woodland waterfall in silver birch forest, silvered leaf-litter
+    in the spray, dappled twilight, painterly atmospheric, late-medieval fey, no figures
+- id: hollowtree_house
+  name: The Hollow-Tree House
+  offset_from_zone_origin:
+    x: 60.0
+    z: -240.0
+  description: A vast birch hollow that a Sunward Elen scholar made into a single-room library
+    two centuries ago. The scholar is gone. The library, by some accounts, is not.
+  prompt: establishing shot, hollow inside an enormous silver birch trunk, shelves of weathered
+    scrolls and a single chair, dim warm lantern light, painterly atmospheric, late-medieval
+    high-elf, no figures
+- id: first_grove_stone
+  name: The First Grove-Stone
+  offset_from_zone_origin:
+    x: -100.0
+    z: -220.0
+  description: The earliest carved Sunward Elen stone in the wood — older than the lodge,
+    older than the Concord, possibly older than the fact of the wood itself. Visitors are
+    asked not to touch.
+  prompt: establishing shot, weathered ancient carved standing stone in a clearing of silver
+    birch, moss in the carvings, dappled twilight, painterly atmospheric, late-medieval, no
+    figures

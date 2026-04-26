@@ -1,0 +1,67 @@
+dungeon:
+  description: |
+    The oldest thing on the Spine and older than both flags below it.
+    The Elder Wyrm has slept since the second Concord and the snow
+    above her lair has not melted in any of those years; the
+    Hearthkin scout-charts mark the spot with a single careful glyph
+    that means 'do not go here.' Crown of Ruin business has woken her
+    — she felt the seal break at Sundered Peak, and she felt the
+    contested title go unsettled, and she will not sleep through
+    that. Twenty-man raid. The longest fight in the world.
+  prompt: >-
+    establishing shot, ruined exterior, immense glacier-cave entrance,
+    ice-fanged maw of a mountainside lair, frost dragon scale-marks
+    in the rock, low blue light, painterly atmospheric, oppressive
+    mood, no figures
+bosses:
+  wyrm_broodlings_pack:
+    description: |
+      Twelve broodlings of the Elder Wyrm, none older than a
+      generation, each large enough to take a horse in one bite. They
+      come in a single rolling wave down the lair's entrance ramp and
+      the raid melee-line is the only thing between them and the
+      back ranks. They cleave wide and they don't break formation.
+      Their mother taught them by example, and they have not yet had
+      reason to question her.
+    prompt: >-
+      portrait, twelve juvenile ice wyrms in formation in a glacier
+      hall, frost-mantled scales, breath fogging together, claws
+      hooked on the ice floor, painterly atmospheric, oppressive
+      mood
+    negative_prompt: >-
+      multiple figures, party, group, modern, futuristic, sci-fi,
+      anime, cyberpunk, watermark, text
+  ice_wyrm_scout:
+    description: |
+      The scout — the eldest of the broodlings, the one the Elder
+      Wyrm sends to look. She fights in the air, above a chamber
+      whose ceiling is the open sky and whose floor is a frozen
+      river, and the raid handles her at range while she handles
+      them at altitude. Bring her down to the ice and she fights
+      worse, but not by much. She has her mother's eye for the
+      slowest member of any pack.
+    prompt: >-
+      portrait, single subject, sleek ice wyrm in flight above a
+      frozen river, wings half-furled, breath trailing pale, eyes
+      fixed forward, painterly atmospheric, oppressive mood, isolated
+      subject, no other figures
+    negative_prompt: >-
+      multiple figures, party, group, modern, futuristic, sci-fi,
+      anime, cyberpunk, watermark, text
+  the_elder_wyrm:
+    description: |
+      The Elder Wyrm. Six phases — breath, claw, fly, landing, tail,
+      final-frenzy — in that order, because that is the order she
+      fought in the second Concord and she has not seen reason to
+      change a sequence that worked. The fight runs an hour at the
+      record pace. She remembers the Hearthkin who tried first. She
+      remembers the names. She will give them back to you across the
+      phases, one per phase, until the raid stops asking.
+    prompt: >-
+      portrait, single subject, colossal ancient ice wyrm uncoiling
+      from a glacier throne, scarred snout, frost-rimed wings half-
+      spread, ancient sorrow in pale eyes, painterly atmospheric,
+      oppressive mood, isolated subject, no other figures
+    negative_prompt: >-
+      multiple figures, party, group, modern, futuristic, sci-fi,
+      anime, cyberpunk, watermark, text

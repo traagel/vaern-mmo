@@ -1,0 +1,16 @@
+{
+  "id": "019dc76a-4eed-7ae8-8455-eea15b525660",
+  "type": "text-to-image",
+  "ai_model": "nano-banana-pro",
+  "prompt": "establishing shot, Kharun scribal camp on a windswept steppe slope, three yurts and a stone reading table, ink stones and weighted scroll-cases, overcast afternoon light, painterly atmospheric, late-medieval steppe, no figures",
+  "status": "SUCCEEDED",
+  "progress": 100,
+  "created_at": 1777167126269,
+  "started_at": 1777167126606,
+  "finished_at": 1777167236514,
+  "expires_at": 1777426436514,
+  "image_urls": [
+    "https://assets.meshy.ai/2872987b-afbf-4fa0-95f0-231417dc567c/uploads/image_019dc76a-4eed-7ae8-8455-eea15b525660_0.png?Expires=1777426436&Signature=Sim44deU9YvvNuGASFfboKAvZcoph~nJcp6uJmopxWAGv7HGNOLPWIw8t9k~LP1-oghyYQwQNJgDR59NFoKpVVc8GJckr6KSv9iCWzr66KdpCtDRsheAZkOMVAz3K4QHnuT3vf2MbIFu2-xgZFbugVcpMY6GD10eGLKzCWoBmY1BYI7dDvsTu-hq4YsX4nZwmJRe7rodmnkVNLbW-OCYJ74eYRatWGrcx6ACAZEVmqdSn09l1tsQ2BtG4vHUDdKnj7LSdsmsShlJ4GfVtWGiUFAj8bzEow64CRDhd031jLUvhMuHmqG~01~Tz24dI0M4nFrpOIKwiRGR8KFiqRtXPQ__&Key-Pair-Id=K1VGYTHIYLM9UM"
+  ],
+  "consumed_credits": 9
+}

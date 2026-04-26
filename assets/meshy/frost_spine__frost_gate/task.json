@@ -1,0 +1,16 @@
+{
+  "id": "019dc769-f0bf-7d01-9915-05c59e176f77",
+  "type": "text-to-image",
+  "ai_model": "nano-banana-pro",
+  "prompt": "establishing shot, alpine pass fortress at the lower edge of an iced mountain spine, stone curtain wall, snow on the upper crags, banners of the Concord, painterly atmospheric, late-medieval, no figures",
+  "status": "SUCCEEDED",
+  "progress": 100,
+  "created_at": 1777167102166,
+  "started_at": 1777167102191,
+  "finished_at": 1777167119753,
+  "expires_at": 1777426319753,
+  "image_urls": [
+    "https://assets.meshy.ai/2872987b-afbf-4fa0-95f0-231417dc567c/uploads/image_019dc769-f0bf-7d01-9915-05c59e176f77_0.png?Expires=1777426319&Signature=dTV6z5amzL8y12N2Jgwy~rVbcUQYYqzgw4~XUcUH9-GJXr6F4xKsI4F6KeBZlCiym682pHRXDBgr-jwkhkdHc51jeYkZFb8MvSKbBbZEmE5dhzwYmRdmoV0pXP77RiZGZFWOzgJzjhvtCUbNttn2R2yZD42i3pRDIgjK6DRNkYBeY6Ndr39EXWA7BKn5~HKG1oviD-UMdc3KiM3rOyRYkqZGUFd5oQf7f3~17o9TyauvAfk6nFuFXtA7JbRCylBITI2uZdbU97GxZxDSmTFctyOoRt-dHKp87qgt4cV5xhybq6esrhHJCA6a4-GM1pz1RNwaKfSaJZ~MVUEjqITE5A__&Key-Pair-Id=K1VGYTHIYLM9UM"
+  ],
+  "consumed_credits": 9
+}

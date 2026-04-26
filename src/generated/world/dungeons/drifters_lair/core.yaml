@@ -1,5 +1,16 @@
 id: drifters_lair
 name: The Drifter's Lair
+description: |
+  The cave the Drifter cultists made their anchor. Two-room pseudo-
+  dungeon: an outer chamber where Master Drifter Halen runs his rite,
+  and an inner sanctum where Grand Drifter Valenn binds the Brine-Shade
+  Primarch at half-health. The walls breathe between bosses. Tight-coop
+  friendly — duo or trio can clear it under-level if they're careful.
+prompt: >-
+  establishing shot, dungeon interior, low-vaulted carved stone chamber
+  lit by a single ritual brazier, Drifter wards painted on the walls,
+  mist seeping from the floor, painterly atmospheric, oppressive mood,
+  no figures
 kind: dungeon
 group_size: 5
 zone: dalewatch_marches

@@ -1,0 +1,62 @@
+zone:
+  vibe: Firland depths — older than the Concord, quieter than the grave.
+  description: The Firland heart-forest, deeper than the Greenwood and a great deal stranger.
+    The trees here remember things older than the Concord oath; the deer that drink from the
+    Wyrd Tarn don't always come back the same animal. The Firland send their elders here to
+    die; what they don't talk about is who comes back instead.
+  prompt: wide establishing landscape, deep ancient fir forest, mist between massive trunks,
+    mossy boulders, dappled green light, painterly atmospheric, late-medieval fey, eerie mood,
+    no figures
+hubs:
+  deep_moot:
+    description: The Firland deep-moot — a more secret cousin of the Greenmoot, hidden a day's
+      walk further into the wood. The Speakers' chamber here is older; the rolls are older;
+      the silence is much, much older. Outsiders are received only by formal invitation and
+      are watched without being addressed for the first day.
+    prompt: establishing shot, ancient Firland moot-hall built into a circle of massive fir
+      trunks, deep green twilight, central hearth, painterly atmospheric, late-medieval fey,
+      eerie mood, no figures
+  moss_cairn:
+    description: A Firland outpost beside a cairn that nobody now alive remembers building.
+      The cairn is tended; the cairn is watched; the cairn occasionally moves in the manner
+      of a person who has shifted their weight. Outpost-Mother Hael has stopped commenting
+      on it.
+    prompt: establishing shot, Firland forest outpost beside an ancient mossy stone cairn,
+      weathered timber lodges, dim green light, painterly atmospheric, late-medieval fey,
+      eerie mood, no figures
+  hunter_leanto:
+    description: A trapper's lean-to at the edge of the deepest wood — a single shelter, a
+      smoke-house, and a notice-board pinned with bounty bonds and missing-person notices
+      in roughly equal measure. The deeper bounties pay in Firland silver, which most outsiders
+      aren't allowed to keep.
+    prompt: establishing shot, woodland trapper's lean-to under giant fir trees, smoke-rack,
+      weathered notice board, dappled twilight, painterly atmospheric, late-medieval, no figures
+  wyrd_tarn:
+    description: A black-water tarn at the wood's heart, ringed by older stones than the Greenmoot
+      remembers. The Firland do not drink from it; the deer do, sometimes. The tarn-wardens
+      keep a count of who goes in.
+    prompt: establishing shot, black still-water tarn ringed by ancient stones in deep forest,
+      mist on the water, eerie green-grey light, painterly atmospheric, late-medieval fey,
+      no figures
+landmarks:
+  deer_grave:
+    description: A small cairn over a deer the Firland buried with formal rites. The deer
+      was killed in error; the rites are a form of apology. The cairn is tended.
+    prompt: establishing shot, small mossy stone cairn in deep fir forest, antlers laid against
+      it, dim green-grey light, painterly atmospheric, late-medieval fey, no figures
+  tarnstone_path:
+    description: A series of mossy stones marking a walking-path the Firland use without explaining.
+      The path arrives at a different place each season.
+    prompt: establishing shot, line of mossy stones leading through deep ancient fir forest,
+      dim filtered green light, painterly atmospheric, late-medieval fey, no figures
+  speakers_grave_oak:
+    description: An immense oak that grew over the burial of three Firland Speakers. The Firland
+      visit it once a generation. Outsiders are asked not to lean on the trunk.
+    prompt: establishing shot, immense ancient oak in deep fir forest, soft green twilight,
+      weathered standing stones at its roots, painterly atmospheric, late-medieval fey, no
+      figures
+  wolfless_glade:
+    description: A clearing where wolves do not enter, by some unspoken consensus. The Firland
+      use the glade for night-camp without ever explicitly explaining the privilege.
+    prompt: establishing shot, peaceful forest glade with mossy fallen log, soft green light,
+      painterly atmospheric, late-medieval fey, no figures

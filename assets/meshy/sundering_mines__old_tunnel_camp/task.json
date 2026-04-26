@@ -1,0 +1,16 @@
+{
+  "id": "019dc76b-a6ab-76ae-9421-e65131419d73",
+  "type": "text-to-image",
+  "ai_model": "nano-banana-pro",
+  "prompt": "establishing shot, surface mining camp at the mouth of abandoned mountain tunnels, scaffolded shafts and stone chapel, leaden afternoon cold light, painterly atmospheric, late-medieval, no figures",
+  "status": "SUCCEEDED",
+  "progress": 100,
+  "created_at": 1777167214261,
+  "started_at": 1777167214321,
+  "finished_at": 1777167274451,
+  "expires_at": 1777426474451,
+  "image_urls": [
+    "https://assets.meshy.ai/2872987b-afbf-4fa0-95f0-231417dc567c/uploads/image_019dc76b-a6ab-76ae-9421-e65131419d73_0.png?Expires=1777426474&Signature=igD7B7j4yV82jJTGDSF82XMEdfWb7taVCGHGA1LvpAt4Qodrz~JevnnR3J8r1KsMjw8wmgad2vineNaLv-rnxNu3kY4DXo9x-5SAozY9sGQAbCiWrXWqKEgECpcI7Gr3KtpqSIkP5vNcQ8Kn0QSUuQyvxLzl3XRZ5bH5umng~MF439xphD4npKgL9NHeoIY-f5RhaSk4fGO7Zjw3Lq76RcvsKPAJuMnzTlpwfMcqZ8RdmDryMqMO1930GU1Z6WvuJC8x9~nEMQG1t-zk-XqsKd8SIEhkeZlwp9knKyfC1Gucvh--l3OZG-o9tMXD06wxhs6vmQ4gD1Mzygy7QGZWXA__&Key-Pair-Id=K1VGYTHIYLM9UM"
+  ],
+  "consumed_credits": 9
+}

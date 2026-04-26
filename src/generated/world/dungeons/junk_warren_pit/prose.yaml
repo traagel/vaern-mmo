@@ -1,0 +1,62 @@
+dungeon:
+  description: |
+    The inner warren of a Skrel scrap-lord called Boss Skorr, dug
+    through three layers of bog into a buried Coming-era supply cache
+    he claims by right of finding-it-first. Floors are rusted plate
+    laid over pit-traps, walls are bolted-on tin, and every chamber
+    reeks of stolen alchemy boiling on stoves that were never meant
+    for it. Scrap Marsh wardens have a standing bounty on Skorr; nobody
+    has yet been paid out.
+  prompt: >-
+    establishing shot, dungeon interior, junk-warren pit, riveted tin
+    walls, rusted floor-plates, alchemy stills bubbling green, hanging
+    scrap-chains, painterly atmospheric, oppressive mood, no figures
+bosses:
+  trap_tinker:
+    description: |
+      A Skrel mechanic named Pit who never goes by anything longer.
+      Lays the warren's traps personally and is offended when they fail.
+      Fights from a chair on a raised platform, springing room-wide
+      pressure-plate fields and bolt-launchers. A skilled disarm-check
+      lets a party walk through her opening salvo; a failed one teaches
+      everyone what she meant by the chair being on a platform.
+    prompt: >-
+      portrait, single subject, wiry Skrel trap-mechanic, oil-stained
+      coveralls, brass goggles pushed up, lever-bank in lap, sparking
+      cable, painterly atmospheric, oppressive mood, isolated subject,
+      no other figures
+    negative_prompt: >-
+      multiple figures, party, group, modern, futuristic, sci-fi, anime,
+      cyberpunk, watermark, text
+  scrap_champion:
+    description: |
+      Skorr's enforcer — a Skrel three times the size he ought to be,
+      welded into cobbled-plate armor that absorbs the first dozen
+      hits and has to be cracked open piece by piece. The armor is
+      stitched together from at least nine victims' kit; the Concord
+      guard-tabard piece is from a patrol that never came home from the
+      marsh in '52.
+    prompt: >-
+      portrait, single subject, hulking Skrel brute, mismatched plate
+      armor riveted on, salvaged tabard scraps, jagged scrap-cleaver,
+      welded helm-slit, painterly atmospheric, oppressive mood,
+      isolated subject, no other figures
+    negative_prompt: >-
+      multiple figures, party, group, modern, futuristic, sci-fi, anime,
+      cyberpunk, watermark, text
+  boss_skorr:
+    description: |
+      Boss Skorr the Many-Eyed, self-styled scrap-lord of the marsh,
+      eight stolen alchemical implants riveted into his face and
+      shoulders. Fights in three potion-phases — fire-belch, poison-
+      cloud, smoke-and-stealth — drinking each off a bandolier of
+      pilfered Concord field-vials. Pact and Concord both want him;
+      neither will admit publicly that they want him alive.
+    prompt: >-
+      portrait, single subject, grotesque Skrel scrap-lord, eight
+      mismatched alchemical eye-implants, vial-bandolier, leering
+      grin, smoke leaking from one shoulder, painterly atmospheric,
+      oppressive mood, isolated subject, no other figures
+    negative_prompt: >-
+      multiple figures, party, group, modern, futuristic, sci-fi, anime,
+      cyberpunk, watermark, text

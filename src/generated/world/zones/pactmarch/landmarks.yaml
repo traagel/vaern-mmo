@@ -1,0 +1,46 @@
+id: landmarks__pactmarch
+zone: pactmarch
+landmarks:
+- id: bound_field
+  name: The Bound Field
+  offset_from_zone_origin:
+    x: 200.0
+    z: 110.0
+  description: A flat steppe-meadow where Kharun oath-bindings are formally performed. The
+    grass grows differently here in a circle around the central pactstone; nobody is sure
+    why.
+  prompt: establishing shot, flat steppe meadow with central standing pactstone, ring of slightly
+    different grass colour around it, wide horizon, overcast cool light, painterly atmospheric,
+    late-medieval steppe, no figures
+- id: herd_stone
+  name: The Herd-Stone
+  offset_from_zone_origin:
+    x: -180.0
+    z: 60.0
+  description: A great stone the Kharun herd-clans rotate around in their annual passage.
+    The stone marks a covenant the Hold remembers in writing; the herd-clans remember it in
+    routine.
+  prompt: establishing shot, great rounded standing stone on a windswept steppe ridge, herd
+    tracks worn around its base, overcast afternoon light, painterly atmospheric, late-medieval
+    steppe, no figures
+- id: yurt_shrine
+  name: The Yurt-Shrine
+  offset_from_zone_origin:
+    x: 60.0
+    z: -220.0
+  description: A permanent yurt set up by a single Kharun ascetic who has kept watch on a
+    particular oath-stone for forty years. He no longer takes visitors. He does still take
+    supplies.
+  prompt: establishing shot, single weathered Kharun yurt on a windswept steppe slope, beside
+    a tall oath-stone, overcast cold light, painterly atmospheric, late-medieval steppe, no
+    figures
+- id: broken_pillar
+  name: The Broken Pillar
+  offset_from_zone_origin:
+    x: -90.0
+    z: -180.0
+  description: A Kharun oath-pillar broken in half — by what nobody is willing to say out
+    loud. The Hold has not removed the fragments. The fragments have not weathered.
+  prompt: establishing shot, fallen broken oath-pillar in two pieces on a windswept steppe,
+    carvings still sharp, oppressive overcast sky, painterly atmospheric, late-medieval, no
+    figures

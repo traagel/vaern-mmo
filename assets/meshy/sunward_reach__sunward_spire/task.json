@@ -1,0 +1,16 @@
+{
+  "id": "019dc76b-b8b0-7d51-9f9f-8041924c3204",
+  "type": "text-to-image",
+  "ai_model": "nano-banana-pro",
+  "prompt": "establishing shot, pale stone Sunward Elen temple-spire above tiered sunlit orchards, golden hour, distant blue ridges, painterly atmospheric, late-medieval high-elf, no figures",
+  "status": "SUCCEEDED",
+  "progress": 100,
+  "created_at": 1777167218878,
+  "started_at": 1777167219141,
+  "finished_at": 1777167332625,
+  "expires_at": 1777426532625,
+  "image_urls": [
+    "https://assets.meshy.ai/2872987b-afbf-4fa0-95f0-231417dc567c/uploads/image_019dc76b-b8b0-7d51-9f9f-8041924c3204_0.png?Expires=1777426532&Signature=IHpkgg8H6B5ZUTDC2yh62mUT86oxvHS1sZe27V3VICip3gKiOm7Y4pKVh65Ow4vEdJiXZdoxYzZ0vlfkdgTFxMT-6rF8nEK91RKVVOEaMNIO2qb~NuizUw27Ei4wgnbYpSlCmLifOhVaii6drgebYWFij1ZS2NDJ3IMXyXhGNuG~szxApRnBIGRtH63AizmBFVNsqpxto~UFAyRY8n-Q1g76iixyDqDaDR1DhWqmQL~wNwD1~GcN-omZ51dq3Iy4DxhQUe500FgCg0~f8tg2AkNonNeBFpHZLuxsqRRymbY~6J77svQaSTPPeEg33gkf1G1ePbOZBu0lYVeSsQd5fg__&Key-Pair-Id=K1VGYTHIYLM9UM"
+  ],
+  "consumed_credits": 9
+}

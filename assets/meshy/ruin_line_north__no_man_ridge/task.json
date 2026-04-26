@@ -1,0 +1,16 @@
+{
+  "id": "019dc76a-525c-7d23-8999-6cd4e6cc3e02",
+  "type": "text-to-image",
+  "ai_model": "nano-banana-pro",
+  "prompt": "establishing shot, lone stone watch-house on a windswept ridge between two distant trench-camps, rope-bridge to either side, sickly amber-green sky, painterly atmospheric, late-medieval, no figures",
+  "status": "SUCCEEDED",
+  "progress": 100,
+  "created_at": 1777167127155,
+  "started_at": 1777167127682,
+  "finished_at": 1777167148266,
+  "expires_at": 1777426348266,
+  "image_urls": [
+    "https://assets.meshy.ai/2872987b-afbf-4fa0-95f0-231417dc567c/uploads/image_019dc76a-525c-7d23-8999-6cd4e6cc3e02_0.png?Expires=1777426348&Signature=Kt2bT6mX0KeI435OGBTzjmW9Jr9GdeaowOLel1UNyQEFjHxRc69L6~wYzeKzFobVXpCC7NaoDMU7RgGIcknPMZHVaF4CLeW8M1zvCqSlqGEcv3yKKPQRejHoBfbWsItvguM1nyePar9M7eb-otudRgXeERz4wk0~ZtxmzmRsdhZ8El6bkuiSnHlU7hmOk171kkIT5rsQAnBMBVSCfnsPB2atg65sXD-5STVwpInzNZIr3NAz39WmZoB-t4b6sOShjcCnxQp6WQam-0Hx4zIwy3gC1rn~I1Hj1VtdwG~M8c-0fCrhNUhoqp4s~QMmaPxHr2I1BWGFAunsT2jjEJ2eyw__&Key-Pair-Id=K1VGYTHIYLM9UM"
+  ],
+  "consumed_credits": 9
+}

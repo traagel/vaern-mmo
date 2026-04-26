@@ -1,0 +1,55 @@
+zone:
+  vibe: Kharun oath-steppe — long horizons, bound stones, blood-formal manners.
+  description: 'The Kharun starter on the western Pact steppes — long windswept grasslands
+    punctuated by oath-stones, herd-ways, and the great Pactstone Hold at their meeting. The
+    Kharun are oath-bound to a degree that mystifies outsiders: they consider a broken word
+    a worse crime than murder. Every scholar in the Hold can name the day a vow was first
+    carried east.'
+  prompt: wide establishing landscape, vast windswept highland steppe, ancient standing oath-stones
+    in a circle, distant fortress on a low hill, overcast cool light, painterly atmospheric,
+    late-medieval steppe culture, no figures
+hubs:
+  pactstone_hold:
+    description: The Kharun starter capital — a low-walled stone hold at the meeting of two
+      oath-roads, with the great Pactstone of the Hold's founding still standing in the central
+      court. Hold-Master Tehkur signed his oath here in his fifteenth year and has not violated
+      it since, which is less impressive when you understand he literally cannot.
+    prompt: establishing shot, Kharun stone hold on a steppe ridge, low curtain wall around
+      a central pactstone monument, windswept grasslands, overcast cool light, painterly atmospheric,
+      late-medieval steppe, no figures
+  scholar_camp:
+    description: A scribal camp on the Hold's eastern slope — three yurts, a flat-stone reading
+      table that holds the wind, and the Hold's archive copies for road-walking review. Scribe
+      Velm has been reading the same oath-pillar inscription for five years, getting different
+      things from it, and writing them all down.
+    prompt: establishing shot, Kharun scribal camp on a windswept steppe slope, three yurts
+      and a stone reading table, ink stones and weighted scroll-cases, overcast afternoon
+      light, painterly atmospheric, late-medieval steppe, no figures
+landmarks:
+  bound_field:
+    description: A flat steppe-meadow where Kharun oath-bindings are formally performed. The
+      grass grows differently here in a circle around the central pactstone; nobody is sure
+      why.
+    prompt: establishing shot, flat steppe meadow with central standing pactstone, ring of
+      slightly different grass colour around it, wide horizon, overcast cool light, painterly
+      atmospheric, late-medieval steppe, no figures
+  herd_stone:
+    description: A great stone the Kharun herd-clans rotate around in their annual passage.
+      The stone marks a covenant the Hold remembers in writing; the herd-clans remember it
+      in routine.
+    prompt: establishing shot, great rounded standing stone on a windswept steppe ridge, herd
+      tracks worn around its base, overcast afternoon light, painterly atmospheric, late-medieval
+      steppe, no figures
+  yurt_shrine:
+    description: A permanent yurt set up by a single Kharun ascetic who has kept watch on
+      a particular oath-stone for forty years. He no longer takes visitors. He does still
+      take supplies.
+    prompt: establishing shot, single weathered Kharun yurt on a windswept steppe slope, beside
+      a tall oath-stone, overcast cold light, painterly atmospheric, late-medieval steppe,
+      no figures
+  broken_pillar:
+    description: A Kharun oath-pillar broken in half — by what nobody is willing to say out
+      loud. The Hold has not removed the fragments. The fragments have not weathered.
+    prompt: establishing shot, fallen broken oath-pillar in two pieces on a windswept steppe,
+      carvings still sharp, oppressive overcast sky, painterly atmospheric, late-medieval,
+      no figures

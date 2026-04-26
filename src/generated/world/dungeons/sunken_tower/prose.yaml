@@ -1,0 +1,72 @@
+dungeon:
+  description: |
+    A Sunward Elen arcane spire half-drowned in the salt-marsh that
+    swallowed the southern scar after the Coming. Three voices argue
+    inside the tower at all times — apprentice, librarian, archmage —
+    and a fourth voice, the broken golem, only speaks in numbers. Four
+    floors in roughly increasing order of how badly the tower wants you
+    out, ending in the sundered archmage's reading-room.
+  prompt: >-
+    establishing shot, dungeon interior, half-submerged elven spire,
+    pale arcane light, brackish water at floor level, floating tomes,
+    painterly atmospheric, oppressive mood, no figures
+bosses:
+  tower_apprentice:
+    description: |
+      A Sunward Elen named Aerenthal who was apprenticed to the
+      archmage on the day the Coming reached the tower. He has been
+      twenty-three years old for sixty years now and he is still
+      practicing his mirror-image cant. Spawns three copies a cycle;
+      one is real. The tell is in the shadow under the boots and the
+      copies do not cast the slow.
+    prompt: >-
+      portrait, single subject, young Sunward Elen apprentice, pale
+      robes, silver circlet, three faint mirror-images behind him,
+      painterly atmospheric, oppressive mood, isolated subject, no other
+      figures
+    negative_prompt: >-
+      multiple figures, party, group, modern, futuristic, sci-fi, anime, cyberpunk, watermark, text
+  broken_golem:
+    description: |
+      The tower's house-golem, called Number-Eleven by the records and
+      nothing by anyone else. Reconstructs at fifty percent — the
+      pieces float back together in twelve seconds and the fight resets
+      its damage-reduction. The tank's job is to drag it onto the rune-
+      circle on the floor, which prevents the reconstruct. The circle
+      is hard to see in the half-flooded room.
+    prompt: >-
+      portrait, single subject, broken stone-and-arcanite golem, runic
+      seams glowing pale blue, one arm reattaching mid-air, painterly
+      atmospheric, oppressive mood, isolated subject, no other figures
+    negative_prompt: >-
+      multiple figures, party, group, modern, futuristic, sci-fi, anime, cyberpunk, watermark, text
+  tower_librarian:
+    description: |
+      Elder Iselen, who has been librarian of the tower for two hundred
+      and forty years and considers the apprentice an upstart. Summons
+      animated spellbooks across the fight — small ones tick damage,
+      one large one channels a cast that wipes the party at twelve
+      seconds. The big book is unmistakable. Interrupting it is the
+      whole fight.
+    prompt: >-
+      portrait, single subject, ancient Sunward Elen librarian, half-
+      moon spectacles, layered scholar robes, animated spellbooks
+      orbiting her, painterly atmospheric, oppressive mood, isolated
+      subject, no other figures
+    negative_prompt: >-
+      multiple figures, party, group, modern, futuristic, sci-fi, anime, cyberpunk, watermark, text
+  sundered_archmage:
+    description: |
+      Archmage Saeryndel the Sundered, whose name the apprentice will
+      not say aloud. Polymorphs one party member per phase — cat, frog,
+      sheep, in a fixed rotation — and pulses a four-second silence on
+      a forty-second clock. The polymorph eats the silence-break, so the
+      fight is about who gets turned into what and when. He is sorry
+      about all of it.
+    prompt: >-
+      portrait, single subject, ancient sundered Sunward Elen archmage,
+      cracked silver staff, robes of layered runic silk, sorrowful
+      expression, painterly atmospheric, oppressive mood, isolated
+      subject, no other figures
+    negative_prompt: >-
+      multiple figures, party, group, modern, futuristic, sci-fi, anime, cyberpunk, watermark, text

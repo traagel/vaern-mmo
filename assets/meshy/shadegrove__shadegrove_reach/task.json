@@ -1,0 +1,16 @@
+{
+  "id": "019dc76a-af88-7d33-87d8-477470d35837",
+  "type": "text-to-image",
+  "ai_model": "nano-banana-pro",
+  "prompt": "establishing shot, black-iron Darkling Elen fortress on a sheer crag above silver-ash forest, obsidian banners, sickly amber-red dusk, painterly atmospheric, late-medieval dark elf, no figures",
+  "status": "SUCCEEDED",
+  "progress": 100,
+  "created_at": 1777167150995,
+  "started_at": 1777167151005,
+  "finished_at": 1777167182435,
+  "expires_at": 1777426382435,
+  "image_urls": [
+    "https://assets.meshy.ai/2872987b-afbf-4fa0-95f0-231417dc567c/uploads/image_019dc76a-af88-7d33-87d8-477470d35837_0.png?Expires=1777426382&Signature=aEfAXHZyecc6BJ-v0J1ZPh1iT3pyzVJ08-etajeTo7cy3E8-~b4WOXrd9sR2BL41URWgOiiWct-r9dca4H-~SSf7vPx48Ia3vyEs0K4iIV31LUPNrujgYTIrC9knA3iwLjxpzSL1sq0OHI0X8Znpfdz7gwzAHiELJWfxyQKGF~3DGNuSHl5P3QVLLdKKcxFhbeHyRnOjPFKhRpBOAmD2tOCMPr10h6tc8detUasx7FDW1puLmtKZjjO-uDnvzHuR~HAxYoV0qZVQNIlPWQ54ndKoXTdiUAyoBEuqnwqnTNEut081YgFTKVYDM~KC5IfPop4NtMG8-h-WQ1tSNxIqbA__&Key-Pair-Id=K1VGYTHIYLM9UM"
+  ],
+  "consumed_credits": 9
+}

@@ -4,9 +4,11 @@ Forward-looking slice list. For the full current state see `README.md`; for desi
 
 ---
 
-## Where we are today (2026-04-25)
+## Where we are today (2026-04-26)
 
 Pre-alpha-shaped scaffold. Menu → login/register against the server-side SQLite account store → char create → **PBR-dressed Dalewatch** with scattered trees / rocks / shrubs + ~55 authored hub props → side-quest givers populated → mob level bands by hub → walk to NPC, F-press, **read authored turn-in dialogue + click contextual button** (talk/deliver) or F-press a cyan `?` waypoint marker (investigate) → kill mobs (XP scales by mob-vs-killer level: greys=0, +5 reds=1.5×; multi-kill objectives track `2/3` in the tracker) → level up (centered banner + screen flash + +1 pillar point auto-granted) → die → 25% HP at home, walk back to corpse for full restore → /wave at your friend → ride east of Ford of Ashmere to **Drifter's Lair** (zone-local 470, 80) → 4-mob pulls of L8-L10 drifters → kill **Halen** mini-boss (L9) and **Valenn** capstone boss (L10) → if grouped, vote Need/Greed/Pass on the mithril/dragonscale/shadowsilk + exceptional drops in a centered modal → repeat. Server bounce mid-session: client auto-reconnects with exponential backoff, replays cached credentials, resumes the session without a re-prompt. Multi-client, server-authoritative, zone-AoI replicated, **374 tests green** (4 pre-existing combat-test failures unchanged). Slice 6 is **code-complete + tests green; 2-client playtest pending.**
+
+**Post-Slice-6 polish (2026-04-26):** retired legacy `scene/hub_regions.rs` (file deleted, mod dropped); animation pipeline grew motion-direction-aware locomotion (back-pedal via reversed `Walk_Loop` / `Jog_Fwd_Loop` since UAL has no `Walk_Bwd_Loop`), generic `Idle_Shield_Loop` block stance replacing sword-specific `Sword_Block`, sword combo rotation on physical attacks (`Sword_Attack` / `Regular_A` / `_B` / `_C`), `Spell_Simple_Shoot` magic resolve, and `Hit_Knockback` for damage ≥ 35 — all wired through a new `AnimContext` resource populated by `enrich_anim_context_from_cast_fired`. Camera `follow_camera` now ground-clamps via `vaern_voxel::query::ground_y` so steep-tilt angles can't push the camera through terrain or into a server-carved crater. Sideways strafe gap remains — UAL ships no `Walk_Left/Right` clips.
 
 The pre-alpha goal hierarchy plan at `~/.claude/plans/set-and-prioritze-goals-delightful-mochi.md` decomposes into ~8 slices. **Status as of 2026-04-25**:
 

@@ -1,0 +1,56 @@
+dungeon:
+  description: |
+    A full Skrel alchemy-works built into a quarry pit, run by Site-Boss
+    Glub on a permit no one ever signed. Conveyor-iron and copper steam-
+    pipe everywhere; the floor is acid-pitted in eleven places the crew
+    has learned around. Two of the senior brewers are mostly fume now.
+    Glub keeps three mechanical servitors he calls his sons and their
+    shutdown order is written on a slate only he can read.
+  prompt: >-
+    establishing shot, dungeon interior, Skrel alchemy works, copper
+    steam pipes, acid-pitted stone floor, conveyor belt, sickly green
+    fume light, painterly atmospheric, oppressive mood, no figures
+bosses:
+  assembly_overseer:
+    description: |
+      A Skrel foreman named Krett who runs the conveyor floor and has
+      not slept since the shipment got rejected. Spawns adds off the
+      belt on a fixed cadence — six per cycle, each one a half-finished
+      brew-imp that explodes if it reaches the brewer's vat. The fight
+      is a count-and-cleave puzzle and Krett himself is almost an
+      afterthought until the last ten percent.
+    prompt: >-
+      portrait, single subject, sleepless Skrel foreman, leather apron,
+      goggles pushed up, brass clipboard, conveyor belt behind him,
+      painterly atmospheric, oppressive mood, isolated subject, no other
+      figures
+    negative_prompt: >-
+      multiple figures, party, group, modern, futuristic, sci-fi, anime, cyberpunk, watermark, text
+  acid_brewer:
+    description: |
+      Senior Brewer Vix, whose left hand has been replaced by a copper
+      armature with three glass beakers welded to the knuckles. She
+      throws the beakers — every impact leaves a green pool the size of
+      a wagon for the rest of the fight. By the second minute the floor
+      is more acid than stone and the party is dancing on what's left.
+    prompt: >-
+      portrait, single subject, Skrel brewer woman, copper-and-glass
+      hand armature, fume-stained leather, acid pools at her feet,
+      painterly atmospheric, oppressive mood, isolated subject, no other
+      figures
+    negative_prompt: >-
+      multiple figures, party, group, modern, futuristic, sci-fi, anime, cyberpunk, watermark, text
+  master_tinker_glub:
+    description: |
+      Site-Boss Glub, four-foot-six and the most dangerous Skrel within
+      a hundred miles. Brings three servitors he calls Eldest, Middle,
+      and Smallest. The kill order is Smallest, Middle, Eldest — any
+      other order and the survivors rebuild the previous one in twelve
+      seconds. Glub will tell you this if you ask. He'll be lying about
+      one of them.
+    prompt: >-
+      portrait, single subject, Skrel tinker boss, brass goggles, leather
+      tool harness, three mechanical servitors flanking him, painterly
+      atmospheric, oppressive mood, isolated subject, no other figures
+    negative_prompt: >-
+      multiple figures, party, group, modern, futuristic, sci-fi, anime, cyberpunk, watermark, text

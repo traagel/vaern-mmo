@@ -1,0 +1,60 @@
+zone:
+  vibe: Southern Scar — sunken fortifications, drowned arcana, two-king history.
+  description: The southern half of the ruin-line — lower country, wetter, sunken fortifications
+    half-eaten by salt-marsh since the Coming. The Sunken Tower was a Sunward Elen arcane
+    spire before the war ended its function; it still leaks the kind of magic that argues
+    with itself. Every second campsite around the Field of Two Kings has a story about hearing
+    footsteps with no one walking.
+  prompt: wide establishing landscape, half-submerged ruin-line fortifications in a salt-marsh,
+    leaning broken arcane spire half in the water, low sickly light, painterly atmospheric,
+    oppressive mood, no figures
+hubs:
+  two_kings_field:
+    description: A field outpost above what locals call the Field of Two Kings — turf earthworks,
+      a single inn, a chapel that answers to neither faction's calendar. The two Kings fell
+      here. Nobody remembers exactly which two.
+    prompt: establishing shot, turf earthwork outpost above an old battle field, half-buried
+      banners and broken weapons in the grass, lone roadside chapel, oppressive grey light,
+      painterly atmospheric, late-medieval, no figures
+  southscar_camp:
+    description: A way-station camp on the southern scar's main road — a shared post by treaty,
+      four bunkhouses, one inn, and a single bell that rings only when both faction captains
+      agree, which means almost never. Captain Halvern of the Concord watch and Speaker-Hand
+      Yruk of the Pact watch are not friends. They are professionals.
+    prompt: establishing shot, contested way-station camp on a blasted scarland road, two-flag
+      bunkhouses around a shared bell-post, leaden grey-amber light, painterly atmospheric,
+      late-medieval, no figures
+  sunken_tower:
+    description: A Sunward Elen arcane spire half-submerged in the salt marsh that grew over
+      the southern scar. The tower still argues with itself in three voices, none of which
+      match any record. Outsiders are warned to stand at the marsh-edge and not enter the
+      water. Locals do not require warning.
+    prompt: establishing shot, half-submerged Sunward Elen arcane spire in a salt marsh, leaning
+      broken pinnacle, sickly blue-green glow at the water level, oppressive twilight, painterly
+      atmospheric, late-medieval, no figures
+landmarks:
+  kings_field:
+    description: A flat field where the locals say two kings died. The broken weapons in the
+      grass haven't been removed since the Coming. Pilgrims from both sides walk it.
+    prompt: establishing shot, windswept flat field on a ruin-line ridge, half-buried banners
+      and broken weapons in the grass, oppressive grey-amber sky, painterly atmospheric, late-medieval,
+      no figures
+  salt_marsh_chapel:
+    description: A small stone chapel half-submerged in the salt marsh that ate the southern
+      scar. The bell still rings on a wind from the right direction. The bell-ringer is, by
+      record, dead.
+    prompt: establishing shot, half-submerged small stone chapel in a salt marsh, leaning
+      bell-tower, sickly amber-green twilight, painterly atmospheric, oppressive mood, no
+      figures
+  watch_grave:
+    description: A single grave on a knoll above the marsh — Captain Erren of the Concord
+      and Speaker-Hand Vekel of the Pact buried side by side, by joint agreement, in a year
+      that nobody publishes.
+    prompt: establishing shot, single double-grave on a knoll above a salt marsh, two leaning
+      standing stones, oppressive grey light, painterly atmospheric, late-medieval, no figures
+  standing_blade:
+    description: A pre-war Sunward Elen sword driven into a stone outcrop and never removed,
+      despite both factions claiming the right. The blade is rust-free.
+    prompt: establishing shot, ancient Sunward Elen sword driven into a stone outcrop on a
+      salt-marsh ridge, blade still bright, oppressive grey-amber light, painterly atmospheric,
+      no figures

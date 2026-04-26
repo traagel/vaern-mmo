@@ -2,6 +2,18 @@ id: ford_of_ashmere
 zone: dalewatch_marches
 name: Ford of Ashmere
 role: outpost
+description: |
+  A forward Warden camp at the strategic river crossing, east of
+  everything safe. Earthworks, pickets, and skirmish scouts trading
+  rumours over cold tea. Pact pressure is no longer hypothetical here —
+  patrol parties have started crossing the shallows in numbers nobody at
+  the Keep can explain. Veterans arrive from Dalewatch faster than
+  recruits can replace them.
+prompt: >-
+  establishing shot, forward earthwork camp at a wide shallow river ford,
+  picket fences and timber palisade, distant mist on the far bank, dusk
+  overcast cool light, watchfires, painterly atmospheric, late-medieval
+  Burgundian, no figures
 amenities:
 - repair
 - flight_master

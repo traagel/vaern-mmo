@@ -10,10 +10,10 @@ What works end-to-end:
 - **Main menu** with character create/select (egui). Race + **body** (Male / Female — cosmetic, client-local) + **pillar** pickers (Might / Finesse / Arcana — characters commit to a pillar only at creation; archetype / Order unlocks are deferred to an evolution path). Saved characters persist to `~/.config/vaern/characters.json`.
 - **10 starter zones** (1 per race) populated on startup on a 2800u ring; each player spawns in their race's zone. **Dalewatch Marches** (Mannin starter) was redesigned to Classic-Elwynn scope: 4 hubs, 12 sub-zones / landmarks, 10-step main chain, 2 side chains, 20 side quests, 24 mob types in a 1200×1200u playable box. Other 9 zones still ~15 mobs, 2 hubs, 1 main chain, 5 resource nodes.
 - **Server-authoritative biome voxel ground + atmospheric sky.** The world's ground is the `vaern-voxel` crate: a hand-rolled Surface Nets extractor (no external `fast-surface-nets` / `ndshape` / `glam` deps) over a sparse `HashMap<ChunkCoord, VoxelChunk>` store with 32³-content + 1-padding chunks (34³ f32 samples, ~157 KB), streamed around every active player on **both** server and client. 8 editable algorithm layers behind traits: `SdfField`, `VertexPlacement`, `NormalStrategy`, `QuadSplitter`, `IsoSurfaceExtractor`, `MeshSink`, `WorldGenerator`, `Brush`. Server uses `HeightfieldGenerator` to seed 5×3×5 chunks around each player; client streams 11×3×11 around the camera and adds world-XZ UVs + MikkTSpace tangents + a per-chunk `StandardMaterial` from a cached 9-biome CC0 ambientCG PBR table resolved via nearest-hub Voronoi (`vaern-client/src/voxel_biomes.rs`). **F10 crater flow is fully server-authoritative**: client sends `ServerEditStroke` → server validates (range ≤ 12u, distance ≤ 40u from requesting player) → applies `EditStroke::new(SphereBrush { mode: Subtract, .. })` → broadcasts up to 8 `VoxelChunkDelta`/tick to every client. Reconnecting clients are caught up via a per-link `PendingReconnectSnapshots` queue (4 chunks/tick/client) seeded from the server's `EditedChunks` set. Server player + NPC Y-snap and client predicted-player Y-snap all query `vaern_voxel::query::ground_y(store, x, z, top_y, descent)` (with `terrain::height` fallback for unseeded chunks), so craters affect physics the same way they affect visuals. Two load-bearing voxel crate fixes landed this slice: `ChunkShape::MESH_MIN = PADDING - 1` to close static chunk seams, and `chunks_containing_voxel` enumeration extended from `{-1, 0}` to `{-1, 0, +1}` to propagate halo writes correctly across chunk boundaries (without the latter, a textured "cap" floats over every carved crater). Sky is Bevy 0.18's `AtmospherePlugin` (procedural scattering) paired with `DistanceFog` (exp-squared, 1500u visibility), `Bloom::NATURAL`, `Tonemapping::TonyMcMapface`, `Exposure::SUNLIGHT`, `Hdr`. 46/46 voxel unit + e2e tests pass.
-- **Voronoi hub biomes baked into the voxel ground.** Each hub YAML still declares a `biome: <key>` from the 9-biome palette (grass / grass_lush / mossy / dirt / snow / stone / scorched / marsh / rocky; all CC0 PBR from ambientCG). On client startup, `voxel_biomes::BiomeResolver` loads the world YAML and builds a nearest-hub table with a 900u influence radius per hub. At chunk seed time (both the camera streamer and the delta-receive path), the chunk's footprint center is resolved to a `BiomeKey`, cached in `ChunkBiomeMap`, and the material-attach system pulls the matching `StandardMaterial` from the lazy per-biome cache. Transitions are chunk-aligned (32u tiles) — smooth per-fragment blending would need a custom triplanar shader with per-vertex biome weights. The legacy `scene/hub_regions.rs` overlay-mesh plugin (with its 1024 floor patches + 7 road ribbons per zone) is retired and unregistered; the file stays as source-level reference for porting roads (which are NOT yet represented in the voxel ground — that's a follow-up).
+- **Voronoi hub biomes baked into the voxel ground.** Each hub YAML still declares a `biome: <key>` from the 9-biome palette (grass / grass_lush / mossy / dirt / snow / stone / scorched / marsh / rocky; all CC0 PBR from ambientCG). On client startup, `voxel_biomes::BiomeResolver` loads the world YAML and builds a nearest-hub table with a 900u influence radius per hub. At chunk seed time (both the camera streamer and the delta-receive path), the chunk's footprint center is resolved to a `BiomeKey`, cached in `ChunkBiomeMap`, and the material-attach system pulls the matching `StandardMaterial` from the lazy per-biome cache. Transitions are chunk-aligned (32u tiles) — smooth per-fragment blending would need a custom triplanar shader with per-vertex biome weights. The legacy `scene/hub_regions.rs` overlay-mesh plugin (with its 1024 floor patches + 7 road ribbons per zone) is **deleted** — file removed, `mod` declaration dropped from `scene/mod.rs`. Catmull-Rom road code is recoverable from `git log -- crates/vaern-client/src/scene/hub_regions.rs` if road bake-in ever revives.
 - **PBR world dressing on top of the voxel ground.** 57-asset Poly Haven CC0 pack at `assets/polyhaven/`, downloaded via `scripts/download_polyhaven.py` (see `memory/reference_polyhaven_pipeline.md` for API gotchas — UA blocking + texture URL rewrite). `PolyHavenCatalog` resource in `vaern-assets` keys slug → category. Zone YAML carries `scatter:` rules (biome + density + min spacing + slope cap + hub exclusion + seed salt) and hub YAML carries `props:` lists (slug + offset + rotation + scale). `crates/vaern-client/src/scene/dressing.rs` runs a deterministic seeded Poisson-disk scatter inside each zone's 1200×1200u footprint, snaps Y to the voxel ground via `vaern_core::terrain::height`, and culls beyond 250u. `MAX_SCATTER_PER_ZONE=1500` is a safety cap. Dalewatch is dressed: ~55 authored hub props (castle door, iron gates, weapon rack, banners, well, fire pit, market barrels) + 5 scatter rules covering trees / rocks / dead wood / shrubs / ground cover. **Trees are saplings only** — Poly Haven's hero-tree photoscans are 100MB-905MB each and excluded from the scatter pack. **No collision on dressing props yet** (deferred). See `memory/project_world_dressing.md`.
 - **Top-left unit frame** — race portrait, character name, level, HP / mana / stamina bars (amber while blocking), `BLOCKING` / `PARRY` tags when active, XP bar. Populated by server-pushed `PlayerStateSnapshot` (not replication — see architecture).
-- **Mouse-look camera** — cursor locked + hidden in-game; mouse drives camera yaw/pitch; scroll for zoom. Hold **LeftAlt** to free the cursor for UI clicks. Cursor auto-frees whenever an egui panel is open.
+- **Mouse-look camera** — cursor locked + hidden in-game; mouse drives camera yaw/pitch; scroll for zoom. Hold **LeftAlt** to free the cursor for UI clicks. Cursor auto-frees whenever an egui panel is open. Orbit position is **ground-clamped** — `follow_camera` queries `vaern_voxel::query::ground_y` at the camera's XZ (with `terrain::height` fallback for chunks beyond the streaming radius) and raises the camera Y to `ground + 0.6` if a steep tilt would otherwise push it underground or into a crater.
 - **Target lock (Tab-cycle)** — **Tab cycles** through combat NPCs within 40u, preferring those in the camera's front cone (falls back to nearest overall when none in front). QuestGivers are excluded. **Esc clears**. While locked, the player continuously turns toward the target (kinematic motion controller).
 - **Combat shapes** (tuned per-ability in flavored YAML): `target`, `aoe_on_target`, `aoe_on_self`, `cone`, `line`, `projectile`. Friendly fire on — AoE hits party. Channeled cones/lines/projectiles snapshot their `range` onto `Casting`, so heavy attack (cast-time cone) doesn't sweep to infinity.
 - **Hotbar (6 key-bound + 2 mouse-bound)** — keys 1-6 fire class kit; **LMB** = light auto-attack; **RMB** = heavy auto-attack. No GCD.
@@ -31,7 +31,16 @@ What works end-to-end:
 - **Gear-driven outfit.** `outfit_from_equipped(OwnEquipped, ContentRegistry)` maps each primary armor slot's `ArmorType` to a Quaternius outfit family + color variant: cloth→Wizard, gambeson→Peasant V2, leather→Ranger, mail→KnightCloth V3, plate→Knight V2. **Unequipped = Peasant BaseColor** — the reserved "naked rags" identity, never used by any equipped armor. Mail vs plate differ by body mesh (KnightCloth vs Knight) AND color (V3 vs V2).
 - **Respawn on change.** A `sync_own_player_visual` system watches `OwnEquipped`; on any change that alters the resolved `QuaterniusOutfit` it despawns the old mesh and spawns a new one. Equipping a ring or trinket is a no-op visually.
 - **UAL animation pipeline.** `MeshtintAnimationCatalog::scan` at startup loads both UAL GLBs (86 Quaternius clips). `install_character_animation_player` (per scene) wires an `AnimationPlayer` on every Quaternius child (body, legs, arms, feet, head piece, Superhero head split, hair, beard) pointing at a shared `AnimationGraph`. UAL is authored on the UE Mannequin skeleton — same as Quaternius — so no retargeting.
-- **AnimState → UAL clip driver.** `drive_own_player_animation` walks the Quaternius subtree every frame, reads the own player's `AnimState` + snapshot's `cast_school` + mainhand weapon school, and picks a clip: `Idle_Loop` (unarmed) / `Sword_Idle` (armed) / `Walk_Loop` / `Jog_Fwd_Loop` / `Sword_Attack` (Attacking flash) / `Sword_Block` (Blocking) / `Hit_Chest` (Hit flinch) / `Death01` / `Spell_Simple_Idle_Loop` (magic cast) or `Sword_Idle` (physical windup). **Transient clips (Attacking, Hit) play one-shot and hold until `ActiveAnimation::is_finished()` — even after the server-side 250ms `AnimOverride` has already reverted to Idle** — so the full swing reads on-screen.
+- **AnimState → UAL clip driver.** Three sibling drivers (`drive_own_player_animation`, `drive_remote_player_animation`, `drive_npc_humanoid_animation`) walk each character's Quaternius subtree every frame, read its `AnimState` + (own-only) snapshot `cast_school` + mainhand weapon school, and pick a clip + playback speed:
+  - **Idle** — `Idle_Loop` (unarmed) / `Sword_Idle` (armed).
+  - **Walking / Running** — `Walk_Loop` / `Jog_Fwd_Loop` at `speed = +1.0` when the entity moves with its facing, `speed = -1.0` (reverse playback) when motion opposes facing — fakes a back-pedal because the UAL ships no `Walk_Bwd_Loop`. Lateral / strafe motion stays forward-played; the UAL has no `Walk_Left/Right` clips. Per-driver `Local<MotionTracker>` stores last-tick position to compute the body-relative direction.
+  - **Casting** — `Sword_Idle` for physical windup, `Spell_Simple_Idle_Loop` for magic.
+  - **Blocking** — `Idle_Shield_Loop`, a generic shield-up defensive pose. (The previous `Sword_Block` clip read as a sword-cross-body and looked wrong for unarmed / staff / bow wielders; the shield idle is weapon-agnostic.)
+  - **Attacking** — picked from an `AnimContext` resource populated by `enrich_anim_context_from_cast_fired`, which reads `CastFiredLocal` and writes per-caster overrides. Physical schools rotate `Sword_Attack` → `Sword_Regular_A` → `_B` → `_C` via a round-robin counter so back-to-back light attacks don't all play the same swing; non-physical schools resolve to `Spell_Simple_Shoot`. Default fallback `Sword_Attack` covers the rare tick where AnimState arrives before its CastFired.
+  - **Hit** — `Hit_Chest` for damage < 35, `Hit_Knockback` for ≥ 35 (heavy-hit threshold). Same `AnimContext` flow: enricher reads CastFired's damage + target, drivers consume the override.
+  - **Dead** — `Death01`.
+  
+  **Transient clips (Attacking, Hit) play one-shot and hold until `ActiveAnimation::is_finished()` — even after the server-side 250ms `AnimOverride` has already reverted to Idle** — so the full swing reads on-screen. `AnimSlot` tracks the active node + transient flag + quantized `speed_centi`; `retarget_subtree_in_place` distinguishes Play (crossfade to new node) / AdjustSpeed (same node, in-place `set_speed` for forward↔reverse flips so the body unwinds smoothly) / Hold (already correct or transient still mid-flight).
 
 **Combat depth:**
 - **Timed status effects** — `StatusEffects(Vec<StatusEffect>)` component on any combat-capable entity. Variants: `Dot`, `Stance`, `Slow`, `StatMods { damage_mult_add, resist_adds[12] }`. `compute_damage` reads StatMods on both caster (offensive mult bonus) and target (per-channel resist add); consumables push StatMods as timed buffs. Refresh-on-reapply semantics; auto-removes when empty.
@@ -574,14 +583,14 @@ python3 scripts/seed_items.py
 - [x] **Client streaming + F10 stomp** — voxels stream around the camera, F10 issues a server-authoritative edit stroke.
 - [x] **Server-authoritative edits** — `ValidatedEditStroke` pipeline on server: `validate_edit_requests` gates by radius + range + live-player, `apply_validated_edits` runs `EditStroke<SphereBrush>` against the authoritative `ChunkStore` and marks `EditedChunks`.
 - [x] **`ChunkDelta` replication** — `VoxelChunkDelta(ChunkDelta)` (S→C) ships up to 8 chunks/tick live, plus per-client reconnect catch-up at 4 chunks/tick via `PendingReconnectSnapshots`.
-- [x] **Retire the legacy ground plane** — 8000u grass plane deleted; `scene/hub_regions.rs` overlay unregistered. Voxels are the only ground.
+- [x] **Retire the legacy ground plane** — 8000u grass plane deleted; `scene/hub_regions.rs` overlay deleted (file removed + `mod` declaration dropped). Voxels are the only ground.
 - [x] **Server Y-snap via voxel query** — server `movement` + `npc::ai` and client `predicted_player_movement` all call `vaern_voxel::query::ground_y` with `terrain::height` fallback for unseeded chunks.
 - [x] **Biome-aware voxel materials** — `BiomeResolver` + per-biome cached `StandardMaterial`s with world-XZ UVs + MikkTSpace tangents. 9 CC0 ambientCG sets, chunk-aligned transitions.
 - [x] **Seam closure** — `ChunkShape::MESH_MIN = PADDING - 1` closes static +side chunk seams; `chunks_containing_voxel` enumeration `{-1, 0, +1}` closes dynamic seams after edits (no more textured cap over carved craters).
 - [ ] **Chunk eviction** — earlier per-frame distance evictor made the whole 3D scene go dark when enabled (unknown render-pipeline interaction). Disabled. Memory grows monotonically on both server and client until this is root-caused.
 - [ ] **Zone-scoped delta broadcast** — today every `VoxelChunkDelta` goes to every client; wiring lightyear Room scope by chunk zone would reduce bandwidth with multi-zone concurrent play.
 - [ ] **Sparse delta encoding** — broadcast uses `ChunkDelta::full_snapshot` (~150 KB/chunk). `encode_delta(old, new, writes)` exists in the crate but needs per-sample write tracking through `EditStroke`.
-- [ ] **Roads on voxel ground** — the `hub_regions.rs` Catmull-Rom + wiggle helper isn't ported yet. A "dirt-road" biome override along each road path would bake roads into the same biome pipeline.
+- [ ] **Roads on voxel ground** — the deleted `hub_regions.rs` had a Catmull-Rom + wiggle helper for road ribbons; if revived, the path goes through git history (`git log -- crates/vaern-client/src/scene/hub_regions.rs`) and ports as a "dirt-road" biome override along each road path that bakes into the same biome pipeline.
 - [ ] **Teardown** — chunk entities don't carry `GameWorld`, so they persist across logout into the next in-game session.
 - [ ] **F10 bandwidth / re-mesh lag** — a few-tick visual delay between stomp and the textured cap despawning. Not a bug, just network RTT + `MESHING_BUDGET=64/frame` chunks draining. Raise the budget (or async mesher) if this becomes annoying.
 
@@ -620,6 +629,125 @@ python3 scripts/seed_items.py
 ## World & lore
 
 `src/world_theory.yaml` contains the original design: Vaern island-continent geography, Concord (Veyr, defenders) vs Rend (Hraun, arrivals), race list, 4-layer mystery-revelation system, hardcore death design. **Deprecated sections** in that file: `classes`, `multiclass_system`, `build_totals` — superseded by the class position system above.
+
+## Compendium (static web browser)
+
+Standalone static site at `web/` that browses the entire design corpus —
+**10 races · 28 zones (with hubs + landmarks) · 9 biomes · 33 dungeons (with
+all 107 bosses) · 15 institutions (with 89 orders) · 27 schools · 436 spells**
+— with hash-routed detail pages, faction-tinted vertical row layouts, and
+generated atmospheric images per zone / hub / landmark / dungeon / boss / race.
+
+### Data flow
+
+```
+src/generated/{races,factions,biomes,zones,dungeons,...}/**/*.yaml
+        +
+src/generated/world/{zones,dungeons}/<id>/prose.yaml          ← description + prompt overlay
+        +
+assets/meshy/<slug>/image_*.png                                ← generated landscape / portrait shots
+        ↓  scripts/build_web_data.py
+web/data.json                                                  ← single ~860 KB blob the SPA fetches
+        ↓  fetch + render in browser
+web/{index.html, compendium.html, app.js, styles.css}
+```
+
+`build_web_data.py` overlays `prose.yaml` (description / prompt / vibe) onto
+the canonical `core.yaml` for each entity, attaches matching `assets/meshy/`
+image paths, and emits `web/data.json`. Re-run after any YAML edit to refresh
+the page.
+
+### Image generation (Meshy.ai)
+
+`scripts/generate_meshy.py` orchestrates Meshy's text-to-image API
+(`nano-banana-pro` at 1:1; `gpt-image-2` would unlock 3:2 / 2:3 but is
+account-gated). Slug convention is part of the API:
+
+```
+biome__<id>           biome establishing shot
+<zone>__zone          zone establishing shot
+<zone>__<hub_id>      hub establishing shot
+<zone>__<landmark_id> landmark establishing shot
+dungeon__<id>         dungeon interior shot
+boss__<id>            boss portrait
+race__<id>__<gender>  race portrait
+```
+
+Bulk flags scope by `--zone` / `--dungeon` when set, otherwise cover everything:
+
+```bash
+# auth check (free)
+python3 scripts/generate_meshy.py --ping
+
+# full world pass — 320+ jobs, ~2900 credits, idempotent (skips done slugs)
+python3 scripts/generate_meshy.py --all --workers 8
+
+# scoped runs
+python3 scripts/generate_meshy.py --zone dalewatch_marches --all-hubs --all-landmarks
+python3 scripts/generate_meshy.py --all-bosses --workers 8
+
+# one-shot race portraits via dedicated script
+python3 scripts/regen_race_portraits.py
+```
+
+Each job writes a PNG, an API-response `task.json`, and the literal
+`prompt.txt` to `assets/meshy/<slug>/`. `_log.csv` aggregates all runs.
+Reruns auto-skip slugs that already have an image (override with
+`--no-skip-existing`). 8 parallel workers cap at 1–3 minutes per Meshy job;
+images flow to disk as soon as each one finishes.
+
+### Local viewing
+
+```bash
+# from the repo root, serving web/ as the doc root
+python3 -m http.server -d web 8080
+# → http://localhost:8080
+```
+
+Symlinks under `web/` (`icons → ../icons`, etc.) make the relative asset paths
+resolve regardless of whether the doc-root is `web/` or the repo root.
+
+### Production image (Docker)
+
+Two-stage build: **Bun** validates `data.json`, minifies `app.js`, and
+transcodes every PNG/JPG asset (1089 files, ~1.7 GB) to WebP via `cwebp` at
+per-tree max-side dimensions (icons 256, emblems 384, characters 768, meshy
+shots 1024, all q82). The `.png` references in app.js + data.json get
+`sed`-rewritten to `.webp`. **nginx:alpine** serves the result with gzip on
+text + 30-day immutable cache on images.
+
+| | Source | Final | |
+|---|---:|---:|---:|
+| Bundle on disk | 1.7 GB | 32 MB | **57× smaller** |
+| Image (uncompressed) | — | 92.5 MB | |
+| Image (registry compressed) | — | **53 MB** | |
+
+Two variants ship from the same Dockerfile via `--build-arg`:
+
+| Variant | Image | URL prefix | Wordmark |
+|---|---|---|---|
+| `vaern` (default) | `traagel/vaern-mmo-web:latest` | `/` | `VAERN` |
+| `lexi` (parody) | `traagel/vaern-mmo-web-lexi:latest` | `/lexi-returns/` | `NEW WORLD 2: LEXI RETURNS` |
+
+```bash
+# build + push (multi-arch via buildx by default)
+docker login -u traagel
+./scripts/push-web.sh                          # vaern · :latest
+./scripts/push-web.sh v0.1.0                   # vaern · :v0.1.0 + :latest
+./scripts/push-web.sh --variant lexi           # lexi · :latest
+./scripts/push-web.sh --no-push                # local build only, single-arch
+
+# run locally (either variant)
+docker run -d --rm -p 8080:80 traagel/vaern-mmo-web:latest
+docker run -d --rm -p 8081:80 traagel/vaern-mmo-web-lexi:latest
+# lexi root path 302-redirects to /lexi-returns/
+```
+
+The lexi variant is fed identity overrides (`SITE_TITLE`, `SITE_PRETTY`,
+`SITE_TAGLINE_SPLASH`, `BASE_PATH=/lexi-returns/`) via Dockerfile ARGs and
+`build.ts` substitutes them into HTML + adds `<base href="/lexi-returns/">`
++ rewrites `world.setting_name` in `data.json` so the runtime overview
+heading also reads the new name. Same content, different deployment skin.
 
 ## Memory
 

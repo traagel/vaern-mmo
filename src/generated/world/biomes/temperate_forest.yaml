@@ -1,5 +1,15 @@
 id: temperate_forest
 name: Temperate Forest
+description: |
+  Mild, deep-canopy forest country. Oak and hazel, fern under the
+  leaf-mast, deer trails worn into the floor. Easy to travel by day,
+  easy to be ambushed in by night — the canopy hides movement in either
+  direction. Wolves and bears keep their distances unless winter has
+  been hard.
+prompt: >-
+  wide establishing landscape, deep oak and hazel forest in summer,
+  dappled gold-hour shafts of light, fern undergrowth, deer trail
+  winding between trunks, painterly atmospheric, no figures
 climate: mild, seasonal, deep leaf-canopy
 hazards:
 - ambush-from-cover

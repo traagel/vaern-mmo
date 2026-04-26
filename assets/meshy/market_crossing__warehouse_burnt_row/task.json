@@ -1,0 +1,16 @@
+{
+  "id": "019dc76e-1f12-734e-b535-780bfa52822f",
+  "type": "text-to-image",
+  "ai_model": "nano-banana-pro",
+  "prompt": "establishing shot, row of burnt-out warehouse foundations on a river quay, blackened stone, low afternoon light, painterly atmospheric, late-medieval, no figures",
+  "status": "SUCCEEDED",
+  "progress": 100,
+  "created_at": 1777167376156,
+  "started_at": 1777167376305,
+  "finished_at": 1777167423619,
+  "expires_at": 1777426623619,
+  "image_urls": [
+    "https://assets.meshy.ai/2872987b-afbf-4fa0-95f0-231417dc567c/uploads/image_019dc76e-1f12-734e-b535-780bfa52822f_0.png?Expires=1777426623&Signature=cCcnYwoa2EZ-8FWxuo28A8aaxa8Y3K3g~-4SIy4GhtgXDjUZIcY7eMiP8uit8PEKpRe3UxG-VzagHoAqY~uGiEX4QwctMjda6giYbsNARkIk6Eiijmlrbef1ghzhbu2NNwbx5F0GWDowc793kjMd59A5JHcItCNp~Zv96Vy-R12Eo2f7r5P6yIgbmmuP345flig-WQT3e4YhygKlvh6rNLCwLClGcKJJjnZvTvmxuVM49IYyyfodQqb81Npj9GUjucVHQOZi5CieE7s1qs0NQeoKNOs9vrQ27oTWeIQyQNSgBj6CHJEAGJcAw0pDh7uPNp4l5j6bTQvjRsLZYqVyiw__&Key-Pair-Id=K1VGYTHIYLM9UM"
+  ],
+  "consumed_credits": 9
+}

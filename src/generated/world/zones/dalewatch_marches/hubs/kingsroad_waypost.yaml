@@ -2,6 +2,16 @@ id: kingsroad_waypost
 zone: dalewatch_marches
 name: Kingsroad Waypost
 role: outpost
+description: |
+  A prefab patrol cabin on the kingsroad, halfway between the Keep and
+  Miller's Crossing. Two bored deputies, a stove, a boot rack, and the
+  courier relay for the eastern run. Roadside bandit work stages from
+  here, and most of the Marches' couriers pass under its lantern at some
+  hour of the night.
+prompt: >-
+  establishing shot, small timber patrol cabin beside a paved kingsroad
+  at dusk, single hanging lantern, courier post sign, autumn rain in the
+  distance, painterly atmospheric, late-medieval Burgundian, no figures
 amenities:
 - repair
 quest_givers: 2

@@ -1,0 +1,42 @@
+id: landmarks__ruin_line_south
+zone: ruin_line_south
+landmarks:
+- id: kings_field
+  name: The Kings' Field
+  offset_from_zone_origin:
+    x: 200.0
+    z: 90.0
+  description: A flat field where the locals say two kings died. The broken weapons in the
+    grass haven't been removed since the Coming. Pilgrims from both sides walk it.
+  prompt: establishing shot, windswept flat field on a ruin-line ridge, half-buried banners
+    and broken weapons in the grass, oppressive grey-amber sky, painterly atmospheric, late-medieval,
+    no figures
+- id: salt_marsh_chapel
+  name: The Salt-Marsh Chapel
+  offset_from_zone_origin:
+    x: -180.0
+    z: 100.0
+  description: A small stone chapel half-submerged in the salt marsh that ate the southern
+    scar. The bell still rings on a wind from the right direction. The bell-ringer is, by
+    record, dead.
+  prompt: establishing shot, half-submerged small stone chapel in a salt marsh, leaning bell-tower,
+    sickly amber-green twilight, painterly atmospheric, oppressive mood, no figures
+- id: watch_grave
+  name: The Watch Grave
+  offset_from_zone_origin:
+    x: 90.0
+    z: -240.0
+  description: A single grave on a knoll above the marsh — Captain Erren of the Concord and
+    Speaker-Hand Vekel of the Pact buried side by side, by joint agreement, in a year that
+    nobody publishes.
+  prompt: establishing shot, single double-grave on a knoll above a salt marsh, two leaning
+    standing stones, oppressive grey light, painterly atmospheric, late-medieval, no figures
+- id: standing_blade
+  name: The Standing Blade
+  offset_from_zone_origin:
+    x: -90.0
+    z: -180.0
+  description: A pre-war Sunward Elen sword driven into a stone outcrop and never removed,
+    despite both factions claiming the right. The blade is rust-free.
+  prompt: establishing shot, ancient Sunward Elen sword driven into a stone outcrop on a salt-marsh
+    ridge, blade still bright, oppressive grey-amber light, painterly atmospheric, no figures

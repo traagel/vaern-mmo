@@ -1,0 +1,16 @@
+{
+  "id": "019dc77c-8c0f-78be-a3bb-4d73a05540a2",
+  "type": "text-to-image",
+  "ai_model": "nano-banana-pro",
+  "prompt": "Portrait of a male Mannin, single figure, isolated subject, three-quarter view from waist up. human adult, medium athletic build, layered leather arming doublet over linen, heraldic sash. average human adult, face fully visible and uncovered, naturalistic proportions, no distinguishing nonhuman features, grounded civic-soldier bearing. human medium build, naturalistic proportions, 5'6\"\u20136'2\", balanced athletic frame. varied skin tones from pale to tanned, varied hair brown-black-blonde-auburn, varied eyes brown-blue-green-hazel, regular human facial structure, strong jaw, grounded bearing. hair: practical braids, warrior queue, close-cut, or loose shoulder-length; beards short or clean-shaven. attire: layered wool and linen under leather, heraldic tabard or oath-sash, riveted brigandine, belted arming doublet. posture: grounded upright capable, confident civilian-to-soldier posture. painterly atmospheric character portrait, late-medieval fantasy aesthetic, soft directional lighting, neutral dim background, oil-painting feel, no other characters, no text, no watermark.",
+  "status": "SUCCEEDED",
+  "progress": 100,
+  "created_at": 1777168321562,
+  "started_at": 1777168321825,
+  "finished_at": 1777168365571,
+  "expires_at": 1777427565571,
+  "image_urls": [
+    "https://assets.meshy.ai/2872987b-afbf-4fa0-95f0-231417dc567c/uploads/image_019dc77c-8c0f-78be-a3bb-4d73a05540a2_0.png?Expires=1777427565&Signature=DHQKeONoN02x2qBAW9I0XrUwnAEqFIp4UH3cx9JDzqnLAShHDbUaWm5nmFG39c08RNT6USXFnhpm9a6zHFdxQzdYTY5gGwf2HKj3FcJPPikKMFMlEL8N0oG22556Cb7bX0L3EHcKTd8ildCS7MT4Wm0NH2OwyEhdA4qhT50~wWMeA~HaYU2OgHpYVYSKyfOGSzE~Fdw4A2N55CCgBIaF0J40tST2EEatNk3WZ7ZJfBt~XAzFv-xMeiU0LLLm9EBNw7~g5zfJBiDwBBY8yyZ77OXhWGhi4q2R0qcGn1yVSPBaT9Z5Uco7iiEF4ee0-6ax39geO3G7Gf5EeWo52i~vYA__&Key-Pair-Id=K1VGYTHIYLM9UM"
+  ],
+  "consumed_credits": 9
+}

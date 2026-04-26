@@ -1,0 +1,16 @@
+{
+  "id": "019dc6f8-577b-70f2-af83-72849d6b88a5",
+  "type": "text-to-image",
+  "ai_model": "nano-banana-pro",
+  "prompt": "establishing shot, late-medieval Burgundian curtain wall and gatehouse, heraldic banners over the gate, packed muster yard, stone forge smoke, dawn warm gold light, painterly atmospheric, no figures, no characters",
+  "status": "SUCCEEDED",
+  "progress": 100,
+  "created_at": 1777159657350,
+  "started_at": 1777159657365,
+  "finished_at": 1777159683680,
+  "expires_at": 1777418883680,
+  "image_urls": [
+    "https://assets.meshy.ai/2872987b-afbf-4fa0-95f0-231417dc567c/uploads/image_019dc6f8-577b-70f2-af83-72849d6b88a5_0.png?Expires=1777418883&Signature=C4KAGpqYTerimiHlBO7kj6ZDhYUVTux2wVufDp7j1Zp47Tyae9HldQOR1SftXgKL~zDFSgJOqfIXZQ2JyQWOSBNot0DZwfan2tMLeAPCKrunM6G1NPfJJ6betzUlvIkUIF~CkO~dauem~O4OkYmzqAWdu-Y1gJ3MNM5l1mpduHFgRkZNqeR9mrn-JF0Xv~BaXaW~0dAuMjINSJGHsiWOI~taIpWQ3nc-6H0G1OOdseq8WoKrzcmYfS-ycJTMuI5D3RmE5vFziyaVvoyFlr5lliBHsbSGl29fo396P-81~cycIXnIQ3Xr3teYMjOzqrr1fAvum25MXFleVxryg~RMIQ__&Key-Pair-Id=K1VGYTHIYLM9UM"
+  ],
+  "consumed_credits": 9
+}

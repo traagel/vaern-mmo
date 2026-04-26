@@ -1,0 +1,16 @@
+{
+  "id": "019dc76a-4e77-767f-90ce-aeb51531f46d",
+  "type": "text-to-image",
+  "ai_model": "nano-banana-pro",
+  "prompt": "establishing shot, Kharun stone hold on a steppe ridge, low curtain wall around a central pactstone monument, windswept grasslands, overcast cool light, painterly atmospheric, late-medieval steppe, no figures",
+  "status": "SUCCEEDED",
+  "progress": 100,
+  "created_at": 1777167126146,
+  "started_at": 1777167126586,
+  "finished_at": 1777167179077,
+  "expires_at": 1777426379077,
+  "image_urls": [
+    "https://assets.meshy.ai/2872987b-afbf-4fa0-95f0-231417dc567c/uploads/image_019dc76a-4e77-767f-90ce-aeb51531f46d_0.png?Expires=1777426379&Signature=nAaNAXTWREQlB-brBTF-uzbrPw1T1bYxk9feLt-t6F9zufgbuF9aYtFShfchftI8sqSEiDHxlrIjd9olbFvnnQlrH9RkjMfQ69wapDjkmBdejzF4eX506FEmBKQflkKgjyr-~rLoci14R4fRIBxjL9ij7SOeNwAFeYg-ebWOEzk0w1XsQgLTQ62EY85QnNkzGVDSZxp0j0FFQVeTytHJrK~oNKO9ZnKyHjqZH97rzN8AlgOhLxXFGxriVT-HtSorME6S7XKFni7RKzKskbuK5cUsIsSRxFwsfIIsgXB-AD0nuMXTtbk-bDnA-jz6cPObeybyXtdZZyVYEdNmIv0HHA__&Key-Pair-Id=K1VGYTHIYLM9UM"
+  ],
+  "consumed_credits": 9
+}

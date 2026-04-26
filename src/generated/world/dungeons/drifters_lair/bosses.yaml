@@ -7,10 +7,40 @@ bosses:
   level: 9
   mechanic: fire ranged caster + cult adds; flanks via ritual smoke
   hp_tier: elite
+  description: |
+    A field commander of the Drifter cult — the kind of man who used to
+    teach blood-working at a quiet hedge-school before the Censure ran
+    him east. Wears whatever robes he could salvage and a bone medallion
+    he didn't earn. Fights from the outer chamber, throwing fire and
+    smoke; the cult adds buy him time, and he tries to flank when the
+    smoke is thick enough to hide a man.
+  prompt: >-
+    portrait, single subject, late-medieval Drifter mage, scarred
+    middle-aged man, salvaged dark robes, bone medallion at his neck,
+    fire conjured at one hand, smoke trailing past his shoulders,
+    painterly atmospheric, oppressive mood, isolated subject, no other
+    figures
+  negative_prompt: >-
+    multiple figures, party, group, modern, futuristic, sci-fi, anime,
+    cyberpunk, watermark, text
 - id: grand_drifter_valenn
   name: Grand Drifter Valenn
   role_tag: final
   level: 10
-  mechanic: arcane caster + Brine-Shade Primarch summon at 50%; phase shift on death
-    of Primarch
+  mechanic: arcane caster + Brine-Shade Primarch summon at 50%; phase shift on death of Primarch
   hp_tier: heroic
+  description: |
+    The architect of the Lair and the Wake's anchor. Once a respected
+    Academician, expelled in the Censure for insisting the Wake could be
+    bound rather than purged. Fights from a ritual circle, summoning the
+    Brine-Shade Primarch at half-health and shifting phase the moment the
+    Primarch falls. Calm, articulate, and convinced he's saving everyone.
+  prompt: >-
+    portrait, single subject, late-medieval Drifter archmage, gaunt
+    figure in ceremonial robes with a brine-stained hood, runic ritual
+    circle on the floor at his feet, dim ritual brazier behind him,
+    painterly atmospheric, oppressive mood, isolated subject, no other
+    figures
+  negative_prompt: >-
+    multiple figures, party, group, modern, futuristic, sci-fi, anime,
+    cyberpunk, watermark, text

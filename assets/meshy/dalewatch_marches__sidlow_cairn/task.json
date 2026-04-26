@@ -1,0 +1,16 @@
+{
+  "id": "019dc72f-acb5-771b-a745-a4b6b91d6879",
+  "type": "text-to-image",
+  "ai_model": "nano-banana-pro",
+  "prompt": "establishing shot, low turf-covered barrow mounds on a windswept ridge, weathered standing slabs, scattered crows, twilight cold light, oppressive mood, painterly atmospheric, no figures",
+  "status": "SUCCEEDED",
+  "progress": 100,
+  "created_at": 1777163283658,
+  "started_at": 1777163284025,
+  "finished_at": 1777163303847,
+  "expires_at": 1777422503847,
+  "image_urls": [
+    "https://assets.meshy.ai/2872987b-afbf-4fa0-95f0-231417dc567c/uploads/image_019dc72f-acb5-771b-a745-a4b6b91d6879_0.png?Expires=1777422503&Signature=P4yJK5pAtkVH1VSI8IsS7vj3IKJkARlvpj9bfhYegc4TtRAqBWMCq-Jjho2pkzbT7trguDhLFzUHH~M-XPHRVrA557Sd63IBTlbNEb9IFynJ0WcYb9wobzMZDFVbUeYp~DE1Ch8H953ur3WcG8oOMnZFdL3kZIgZevXeESjakJAjIB7NijLQmQb4g2QY3sRevGWR2o1JjnLL3vkAMLyCgEniLfyJqDSTlucM-xAgKezyVFer~30R2SkpMRrcOZK74LBDcDhS~f2TjpJKgnEHFvBk98ujMHVJlP8aWrreO3U-E8yih4MTYQLwWbAqdAsbfvNqR0nXQxKQYhbB7FGCGA__&Key-Pair-Id=K1VGYTHIYLM9UM"
+  ],
+  "consumed_credits": 9
+}

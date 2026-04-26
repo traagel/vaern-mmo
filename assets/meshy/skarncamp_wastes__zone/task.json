@@ -1,0 +1,16 @@
+{
+  "id": "019dc772-f08a-7c07-8070-d034d8f1a703",
+  "type": "text-to-image",
+  "ai_model": "nano-banana-pro",
+  "prompt": "wide establishing landscape, harsh basalt scrubland above a cold fjord, watchtower garrisons in the middle distance, longships at staging anchor, leaden sky, painterly atmospheric, late-medieval viking, no figures",
+  "status": "SUCCEEDED",
+  "progress": 100,
+  "created_at": 1777167691930,
+  "started_at": 1777167692598,
+  "finished_at": 1777167726109,
+  "expires_at": 1777426926109,
+  "image_urls": [
+    "https://assets.meshy.ai/2872987b-afbf-4fa0-95f0-231417dc567c/uploads/image_019dc772-f08a-7c07-8070-d034d8f1a703_0.png?Expires=1777426926&Signature=I2ERx2tB9Lwj7v8WoihQN6UlK0JxejUBB7vJyHggbuRcm3fXZ3cKf0YIxw0OVEcSPeX7ypUoM4iMlFK77Pwk1~aDHse0j2xixlkhZMgH1itumyVn5qth9sm5~bDaqDJ9vIaZr8cnNsVzhFYl9GMoKwT7GtETUTSVzOYwmtwcjhzSB3ByTz4WhNgHab7anKup0d6XXBCOVR1YGkWZCkEVy1ZmM0ymlWkA5pn5ijwmCwbQPQK6RzDCRH0~zr3NYoHZQjrvQ-4hwj3rEV671FegOlAS4EARQVdyB1zi0sopSj7B8kIaHnP988VgSPW6ejxVz4DeLkEbjFI-g5GSjlCYag__&Key-Pair-Id=K1VGYTHIYLM9UM"
+  ],
+  "consumed_credits": 9
+}

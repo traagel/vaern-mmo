@@ -1,0 +1,16 @@
+{
+  "id": "019dc769-f0cf-7670-9637-5aba26828278",
+  "type": "text-to-image",
+  "ai_model": "nano-banana-pro",
+  "prompt": "establishing shot, neutral stone hostel at the foot of a ruined fortress crown, lone candle in a window, low siege-camps in the distance, oppressive grey-amber twilight, painterly atmospheric, no figures",
+  "status": "SUCCEEDED",
+  "progress": 100,
+  "created_at": 1777167102215,
+  "started_at": 1777167102245,
+  "finished_at": 1777167121260,
+  "expires_at": 1777426321260,
+  "image_urls": [
+    "https://assets.meshy.ai/2872987b-afbf-4fa0-95f0-231417dc567c/uploads/image_019dc769-f0cf-7670-9637-5aba26828278_0.png?Expires=1777426321&Signature=DXMcFUD8dZAKR-Bq-iNp1h2sQgpE-PqDF-ektree4hA626qv9je6PdtfsxChmg79nQZZVZxyk~ZYhIxnZlB3-7prFvEuEM6bZcKyI0vshydyuhT9dT5BpooGkebrpAi8s5rHWsxaCQVtwDRIM0JFJ1GUg5qlbQ0RZKu0pM7Mk7ke~Mc6-ILaWVV0W0NkOAkCtF8s8zopXuA77GPSqjcDsXl~CNlHqc2cZDiX9rBC9xKhdJEAU6En5bktKu-KzurgI94iBOS5DDBURpsLJVEPFMRnvamgo1byoT8IWZauNnsQZVH8V7n3JNytzTO-UsA1oecIF1~c6JolmRPRaiFN5Q__&Key-Pair-Id=K1VGYTHIYLM9UM"
+  ],
+  "consumed_credits": 9
+}

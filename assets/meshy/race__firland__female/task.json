@@ -1,0 +1,16 @@
+{
+  "id": "019dc77c-0b9e-7d52-b1b8-5b9c9b4f7ed4",
+  "type": "text-to-image",
+  "ai_model": "nano-banana-pro",
+  "prompt": "Portrait of a female Firland, single figure, isolated subject, three-quarter view from waist up. eight-foot towering forest giant, moss-green or bark-brown skin, leaf-woven hair, rough earth-tone wool robes, druidic staff. towering eight-foot gentle giant, massive oversized scale, head-and-shoulders above a human, broad-barreled figure with oversized open hands, towering forest-keeper. tall heavy build, 7'0\"\u20138'0\", broad-shouldered and thick-limbed but with gentle rounded musculature not brutish, heavy tread but soft-footed, oversized hands. warm earth-toned skin in mossy green-grey, bark-brown, or pale birch tones, long coarse hair in moss-green or russet often braided with leaves and twigs, soft heavy-lidded eyes in amber or deep-forest-green, broad flat nose, small bovine ears, beardless, gentle expression. hair: long loose hair woven with leaves, moss, small flowers, bound in a thick nape-braid, sometimes a crown of antler-velvet fibers. attire: layered rough-woven earth-tone wool and leather, fern-pattern embroidery, staff or druidic focus in hand, mantle of oak leaves or wolf-fur on ceremonial days. posture: towering but stooped-shoulder gentle giant, head slightly forward in a listening posture, hands open and empty by default. painterly atmospheric character portrait, late-medieval fantasy aesthetic, soft directional lighting, neutral dim background, oil-painting feel, no other characters, no text, no watermark.",
+  "status": "SUCCEEDED",
+  "progress": 100,
+  "created_at": 1777168288713,
+  "started_at": 1777168289057,
+  "finished_at": 1777168396355,
+  "expires_at": 1777427596355,
+  "image_urls": [
+    "https://assets.meshy.ai/2872987b-afbf-4fa0-95f0-231417dc567c/uploads/image_019dc77c-0b9e-7d52-b1b8-5b9c9b4f7ed4_0.png?Expires=1777427596&Signature=TCqmqCFuW0KOOqS48ebYZZmpSrx5ss9BV6tT8iWZWGSjFCGP8zFjv68kisanY6H0oimq1N7dWFhhJe5AekveXeqOnaT7tembBbyMfMEfzE8QrxNnjhJQX5d7xY4WgWjR71igKSSJy-hBpMhHAO6WzrZ5VnqVGLarEv-whblKLhOXJXYqf7gf8CfCAImADXzwrSADPgUjyd~xfluqzjl5xuABdjIaA-f3biYojeiB2jXFC248zC85od0yfmRbw4BTjrpHvEo5qeskSqxoGMI2DFmf3DI~z85z2z6NEpXtHUPi96PcWihC~F9h1e~QfcpvmP10Hp-myRQPtE1uI8MK7Q__&Key-Pair-Id=K1VGYTHIYLM9UM"
+  ],
+  "consumed_credits": 9
+}

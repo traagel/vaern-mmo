@@ -1,0 +1,16 @@
+{
+  "id": "019dc771-26b2-7df0-b531-3a7edb6d010c",
+  "type": "text-to-image",
+  "ai_model": "nano-banana-pro",
+  "prompt": "wide establishing landscape, ruined fortress crown atop a rocky height, two distant siege-camps from opposing flags, smoke columns and trench works, oppressive grey-amber sky, painterly atmospheric, late-medieval, no figures",
+  "status": "SUCCEEDED",
+  "progress": 100,
+  "created_at": 1777167574759,
+  "started_at": 1777167575230,
+  "finished_at": 1777167611301,
+  "expires_at": 1777426811301,
+  "image_urls": [
+    "https://assets.meshy.ai/2872987b-afbf-4fa0-95f0-231417dc567c/uploads/image_019dc771-26b2-7df0-b531-3a7edb6d010c_0.png?Expires=1777426811&Signature=az02M3M7e3bcLyz~tHk60CgGfAzXbXllpmB9Qe0HIUA1-KRMVtOrXPuUtsbHOY1-ZbNo5uyCEx8-HbksuU2it5FiDu0Z5-sg0r~X3pTmgYXdbnWr4qFn29vNrxm2XAMO-MCmnpGnMV~nRKsNN4EHPUX8Xsmh7f5P3H11-oYY-qK6WazK9HMWzp5SU2xbbxklrGTJReZuwUTeFTiZ3RcqIc4jMujYRX5KPgy0konwCUq0DqiyXmPwX2E1iC6Dt6p2QxzAuLLfT7V5krRUZNHnARc5BttzJMZI5PBLmwN36FiLDVtzr~G6~pwmNsEoSR4vv9sW2ULGIV~vKjpN2lHo2g__&Key-Pair-Id=K1VGYTHIYLM9UM"
+  ],
+  "consumed_credits": 9
+}

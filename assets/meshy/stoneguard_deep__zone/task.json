@@ -1,0 +1,16 @@
+{
+  "id": "019dc773-1d5f-7e49-9a33-126ebe48ef9f",
+  "type": "text-to-image",
+  "ai_model": "nano-banana-pro",
+  "prompt": "wide establishing landscape, mountain-skirt fortress town carved into a granite shoulder, banded smokestacks, lantern-lit switchbacks, late-afternoon overcast cool light, painterly atmospheric, late-medieval, no figures, no characters",
+  "status": "SUCCEEDED",
+  "progress": 100,
+  "created_at": 1777167703402,
+  "started_at": 1777167704266,
+  "finished_at": 1777167734782,
+  "expires_at": 1777426934782,
+  "image_urls": [
+    "https://assets.meshy.ai/2872987b-afbf-4fa0-95f0-231417dc567c/uploads/image_019dc773-1d5f-7e49-9a33-126ebe48ef9f_0.png?Expires=1777426934&Signature=T8I8KAmiHPiOaTHlYq1iYuQmyY7NI8esv9cUKtMPYDU0OIh5UXda-YNFB~gPqRL~Vea7hM5z7e7roGv4QKhxzl-ybq5Ricm6vjb3HTK4u0Kq5wisb28abXgWk-6a9Cjsmh~VeZuYpjiispdjtdif3GdFtJBxEEOw8TA4kZ3z-NP4s04VNPxhlcHMLlDjvt8Fbp30LFdOjA62qeU~~P3Ain5cgCOG2cwgsCfdcFY80ynvDfVIXbCvGCAzIoe8-0Mz8L-GKl0fkSiUy4iBK3nto~Sq~bJI-AKngB~bFd5JuCtnczv1ZRBFuL3NTYqNVeJQoUFrURskCUzNINJ4YmCKbw__&Key-Pair-Id=K1VGYTHIYLM9UM"
+  ],
+  "consumed_credits": 9
+}

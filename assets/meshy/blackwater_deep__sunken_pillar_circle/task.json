@@ -1,0 +1,16 @@
+{
+  "id": "019dc76c-a95b-76c3-9d7c-3c39c53535ff",
+  "type": "text-to-image",
+  "ai_model": "nano-banana-pro",
+  "prompt": "establishing shot, six half-submerged ancient standing stones in a circle in shallow black water, mist on the surface, sickly green-grey light, painterly atmospheric, late-medieval, no figures",
+  "status": "SUCCEEDED",
+  "progress": 100,
+  "created_at": 1777167280485,
+  "started_at": 1777167280971,
+  "finished_at": 1777167323101,
+  "expires_at": 1777426523101,
+  "image_urls": [
+    "https://assets.meshy.ai/2872987b-afbf-4fa0-95f0-231417dc567c/uploads/image_019dc76c-a95b-76c3-9d7c-3c39c53535ff_0.png?Expires=1777426523&Signature=hEpg29dy1ARlmYcKYoVR7BBkbiA9M53o1pVLmWXJQwbmuuFKLxaBWeVxAknzbEcM1Fn7CSiJdIOm3ks26m-XBfhREkciYYztk-gJeWzqH-1MBLojr11qBguKJ5pUCdC8M98ru6ILZF4z6eeEP97O~aWI3~U9jf3Q-2dPHnM288Yki4MMVfsg7MG-SHjw5sLwPdt3rGjRiYBSY~9A8V~fe~Wa2uWO6InfCqYpzg9i~Jg840nukKTHKtoliPrhO2uKSXBicaWxAmnhx2G0d4RKJZltSHjzlPAotAnYl4olmrfQ6DAobQa4wAjuB2VyNYCkE-39FYYxH2B-hkm~Hihk6Q__&Key-Pair-Id=K1VGYTHIYLM9UM"
+  ],
+  "consumed_credits": 9
+}

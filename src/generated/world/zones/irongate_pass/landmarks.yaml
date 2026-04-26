@@ -1,0 +1,40 @@
+id: landmarks__irongate_pass
+zone: irongate_pass
+landmarks:
+- id: tollstone_bend
+  name: The Tollstone Bend
+  offset_from_zone_origin:
+    x: -150.0
+    z: 100.0
+  description: A switchback corner where a Concord tollstone marks the boundary of the chartered
+    trade-road. The stone is chipped from carriage wheels; the toll-master keeps a fresh chisel.
+  prompt: establishing shot, mountain road switchback with a carved stone tollstone, valley
+    view below, snow on upper slopes, painterly atmospheric, late-medieval, no figures
+- id: hearthkin_shrine
+  name: The Hearthkin Roadside Shrine
+  offset_from_zone_origin:
+    x: 200.0
+    z: -90.0
+  description: A small under-rock shrine set into the cliff at the road's halfway point. Hearthkin
+    travellers leave a coin and a spoken name. The names accumulate in carving.
+  prompt: establishing shot, small Hearthkin road shrine carved into a granite cliffside,
+    banked offering coins, lantern, dim warm light, painterly atmospheric, late-medieval dwarven,
+    no figures
+- id: wreck_of_the_seven
+  name: Wreck of the Seven
+  offset_from_zone_origin:
+    x: 60.0
+    z: 220.0
+  description: A pile of broken wagon-frames at a known avalanche corner. Seven wagons in
+    one slide. The drivers were buried where they fell; the wagons stayed where they stopped.
+  prompt: establishing shot, mountain road corner with broken wagon frames in a snow-fall
+    scar, leaden cold light, painterly atmospheric, late-medieval, oppressive mood, no figures
+- id: ice_face_cliff
+  name: The Ice-Face Cliff
+  offset_from_zone_origin:
+    x: -90.0
+    z: -250.0
+  description: An overhang where seasonal melt-water freezes into a sheer ice face every winter
+    and thaws into a ten-metre fall every spring. The road below is permanently sand-bagged.
+  prompt: establishing shot, sheer mountain ice-face cliff above a narrow road, sand-bag berms
+    below, cold blue light, painterly atmospheric, late-medieval, no figures

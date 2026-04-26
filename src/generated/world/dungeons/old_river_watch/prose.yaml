@@ -1,0 +1,55 @@
+dungeon:
+  description: |
+    A pre-Concord river fortress at the Market Crossing bend, built when
+    the river was the border. The Concord garrison left it sixty years
+    ago and the Rend smuggling ring known as the Seven Coins moved in
+    quietly enough that the local reeve still files clean reports. They
+    pay everyone they need to pay. The dungeon runs from the watergate
+    up through the counting-rooms to the Patron's solar.
+  prompt: >-
+    establishing shot, dungeon interior, river fortress watergate, low
+    torchlight, ledger-strewn counting room, damp stone, painterly
+    atmospheric, oppressive mood, no figures
+bosses:
+  smuggler_boss:
+    description: |
+      A man called Dren Two-Hand who runs the watergate crew. Used to be
+      a Concord river-marshal before the Censure cost him his cousin and
+      his pension in the same week. Fights by killing the lights and
+      using the dock pillars — opens from stealth on whoever's reading
+      the ledger. He has done this for eleven years and he is good at it.
+    prompt: >-
+      portrait, single subject, scarred middle-aged smuggler captain,
+      dark oilskin coat, twin daggers, river-mist behind him, painterly
+      atmospheric, oppressive mood, isolated subject, no other figures
+    negative_prompt: >-
+      multiple figures, party, group, modern, futuristic, sci-fi, anime, cyberpunk, watermark, text
+  caravan_sorcerer:
+    description: |
+      A Kharun road-mage named Idreth who hires out to the Seven Coins
+      caravan-by-caravan and never signs an oath he means to keep. Her
+      whole repertoire is crowd-control: roots, a sleep, a fear that
+      lasts six seconds. Interrupts matter — every cast she finishes
+      removes one party member from the fight long enough for the adds
+      to reach the healer.
+    prompt: >-
+      portrait, single subject, Kharun road-sorceress, layered steppe
+      coat, bound braids, hands wreathed in binding-light, painterly
+      atmospheric, oppressive mood, isolated subject, no other figures
+    negative_prompt: >-
+      multiple figures, party, group, modern, futuristic, sci-fi, anime, cyberpunk, watermark, text
+  patron_merchant:
+    description: |
+      The Patron — no one in the ring knows his given name and the two
+      who did are in the river. Soft-spoken, fat, dressed Concord-civil.
+      His money-phase scatters real coin on the floor; the adds drink
+      from it and enrage. He will offer a negotiation check before the
+      pull and the offer is real. Taking it ends the run early and
+      poorly.
+    prompt: >-
+      portrait, single subject, fat civic-dressed merchant patron, fur
+      collar, signet rings, ledger open beside him, gold scattered at
+      feet, painterly atmospheric, oppressive mood, isolated subject,
+      no other figures
+    negative_prompt: >-
+      multiple figures, party, group, modern, futuristic, sci-fi, anime, cyberpunk, watermark, text

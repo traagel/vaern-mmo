@@ -1,0 +1,16 @@
+{
+  "id": "019dc76a-87b9-7684-a55e-8310289bd511",
+  "type": "text-to-image",
+  "ai_model": "nano-banana-pro",
+  "prompt": "establishing shot, half-submerged Sunward Elen arcane spire in a salt marsh, leaning broken pinnacle, sickly blue-green glow at the water level, oppressive twilight, painterly atmospheric, late-medieval, no figures",
+  "status": "SUCCEEDED",
+  "progress": 100,
+  "created_at": 1777167140805,
+  "started_at": 1777167141426,
+  "finished_at": 1777167174942,
+  "expires_at": 1777426374942,
+  "image_urls": [
+    "https://assets.meshy.ai/2872987b-afbf-4fa0-95f0-231417dc567c/uploads/image_019dc76a-87b9-7684-a55e-8310289bd511_0.png?Expires=1777426374&Signature=oMe45J67D-PoWByvhhjqb3oAcoItaYbYTQJ-pLaSQwsn8z0S152hZI3GE3v4ue4W67~zRqSBT~kABuE6ZiAYyIGrXH9GRpzjDLN6DPzRc6w0~Ko2XqWs68BdtWWNBN1bfhK6BtpJz~g9Zxr--AHtqANh3rBcc1MxJ1IBhPSYSoxjcKjXeDiD9mVjG802ns3bJL6SFdWfo16lrGjdez~BcM5MotG1c0BjaYGc4~AsmsvUfSz1~DQylSXY9YLYa~d8BTJcnJGsIB0bUxw9XzoQLPXddJ-XdXr5BT1ijVjW4NVuv3eAmNBUHh8e9O8UmT2xYzVdmRn7rzTAlTCJi6uZyA__&Key-Pair-Id=K1VGYTHIYLM9UM"
+  ],
+  "consumed_credits": 9
+}

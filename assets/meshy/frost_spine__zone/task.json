@@ -1,0 +1,16 @@
+{
+  "id": "019dc771-26af-7bc1-94c4-1a56f2b84f9d",
+  "type": "text-to-image",
+  "ai_model": "nano-banana-pro",
+  "prompt": "wide establishing landscape, snow-capped alpine spine, sheer ice ridges, ancient stone observatory at the highest peak, blizzard haze, cold blue cast, painterly atmospheric, oppressive mood, no figures",
+  "status": "SUCCEEDED",
+  "progress": 100,
+  "created_at": 1777167574758,
+  "started_at": 1777167575153,
+  "finished_at": 1777167686537,
+  "expires_at": 1777426886537,
+  "image_urls": [
+    "https://assets.meshy.ai/2872987b-afbf-4fa0-95f0-231417dc567c/uploads/image_019dc771-26af-7bc1-94c4-1a56f2b84f9d_0.png?Expires=1777426886&Signature=j-7vhiiz~IHjFWlVeJx6noWNq-nqN4-deqTvm5hkyI1vv33pIy--SfkgeL8EYVsGDuchAO-6aGUx19l2yLdRchHlIGD7s5jUkP59OaOK~L7Sd5SHt3QfTJjTpno8DkFYLTSmTbEy4vxB2B-YG01cozsMELEwZzCME3zOFgmOXV1XpfnE~FMhvEuleOA5AUQui-jfI4PRdjZXHV-IdQdpM40omukMNRqLMXwnKikwPKBcO6UZEEwKJUBzJFIubqV5Tv6tDrBU27-3k1e92GWgk-bnS0~eynKHaYqpMkkNSeayjqxOalsgRrR5kSPhrIg54MuKXlSzLwpOCtgddmP~Kw__&Key-Pair-Id=K1VGYTHIYLM9UM"
+  ],
+  "consumed_credits": 9
+}

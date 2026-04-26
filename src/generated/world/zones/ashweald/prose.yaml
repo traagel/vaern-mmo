@@ -1,0 +1,55 @@
+zone:
+  vibe: Charred wildwood — burned but growing back, twin-saint history, old prayers.
+  description: The contested ashland that grew back the wrong colour. Charcoal birch and silver
+    fern through fields that were burned in the Coming and have not stopped smouldering since.
+    The Charred Shrine still gets pilgrims from both sides, which is the only thing the Concord
+    and the Pact have ever been able to agree on. The shrine remembers; the shrine is patient.
+  prompt: wide establishing landscape, burned-then-regrown ashland forest, charcoal-black
+    birch with pale silver leaves, ruined shrine in a clearing, banked embers, low amber light,
+    painterly atmospheric, no figures
+hubs:
+  pyre_camp:
+    description: A pilgrim-camp on the Ashweald's northern edge — five tents per side and
+      a shared central fire that pilgrims from both factions sit around without speaking.
+      The fire was the third Speaker's idea. It has been burning fifty years.
+    prompt: establishing shot, pilgrim shelter camp at the edge of a charred forest, tents
+      in two colour-tones around a central permanent fire, sickly amber dusk, painterly atmospheric,
+      late-medieval, no figures
+  ember_crossing:
+    description: A crossroads waypoint inside the Ashweald — single inn, single chapel, traveller's
+      well that is technically neutral ground. The innkeeper is Concord; the chaplain is Pact.
+      They pretend to argue and split the takings.
+    prompt: establishing shot, charred-forest crossroads with single inn and small chapel
+      beside a traveller's well, banked embers in fire-rings, dim amber afternoon light, painterly
+      atmospheric, late-medieval, no figures
+  charred_shrine:
+    description: The shared pre-war shrine at the wood's heart — burned in the Coming, never
+      rededicated, still drawing pilgrims from both faiths who walk past each other without
+      comment. The shrine remembers the prayer that was lost. Locals say the shrine is patient.
+    prompt: establishing shot, ruined pre-war stone shrine in a charred forest clearing, broken
+      altar, banked embers in the courtyard, twilight oppressive amber light, painterly atmospheric,
+      no figures
+landmarks:
+  twin_oak_grave:
+    description: Two oaks grown from the same root at the spot where the Twin Saints of the
+      Charred Shrine fell. Pilgrims from both factions tie ribbons to the lower branches.
+    prompt: establishing shot, two ancient oaks grown from the same root in a charred forest
+      clearing, ribbons of two faction colours tied to the branches, dim amber dusk, painterly
+      atmospheric, late-medieval, no figures
+  ember_pool:
+    description: A black-water pool that gives off faint heat year-round. The locals call
+      it ember-water; alchemists from both factions have come to investigate and arrived at
+      incompatible explanations.
+    prompt: establishing shot, black still-water pool in a charred forest, faint steam rising
+      from the surface, sickly amber twilight, painterly atmospheric, no figures
+  leaning_pyre_stone:
+    description: A pre-war pyre-stone that has tilted three degrees per year since the Coming.
+      Calculations vary on what year it will fall. The locals are placing bets.
+    prompt: establishing shot, leaning ancient pyre-stone in a charred forest clearing, scorched
+      soil at its base, sickly amber-grey light, painterly atmospheric, late-medieval, no
+      figures
+  silver_fern_field:
+    description: A field where the ferns came back after the Coming as silver — a colour-shift
+      the local botanists from both factions cannot agree on the cause of.
+    prompt: establishing shot, field of pale silver ferns in a charred wood, dim amber-grey
+      afternoon light, painterly atmospheric, no figures

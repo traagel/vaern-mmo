@@ -1,0 +1,16 @@
+{
+  "id": "019dc76b-ce76-7d52-b691-6ef1726daf0d",
+  "type": "text-to-image",
+  "ai_model": "nano-banana-pro",
+  "prompt": "establishing shot, ruined burned-out arbour of pale stone in an ashen forest, scorch marks on broken pillars, sickly amber twilight, painterly atmospheric, late-medieval dark elf, no figures",
+  "status": "SUCCEEDED",
+  "progress": 100,
+  "created_at": 1777167224449,
+  "started_at": 1777167224752,
+  "finished_at": 1777167322767,
+  "expires_at": 1777426522767,
+  "image_urls": [
+    "https://assets.meshy.ai/2872987b-afbf-4fa0-95f0-231417dc567c/uploads/image_019dc76b-ce76-7d52-b691-6ef1726daf0d_0.png?Expires=1777426522&Signature=Beay-ujXQz8oMMOm3LYgNx1JCOYuCe703kypB9-LNsPifWkEoJ~nbc~XdSjkkvSvYuOc9Cl2RP-wpm5-6cxOXTGJ-HuZVXcMeIl8rd3EUFpkzEjV10wp3aWhHsmPtr7HL4pF6iATPVRR7T1yp9el8idYBqm8Zgq5l5y4AJITvdpw24gWEqF~1yywkvranYv8ArCTVGkki0lbg1SOJac0oOhJXj0OVWJPc6yJHx89lrX8aOlY4olynRJ47aw7vg2vfPhLvkKeArU5HigBpHN5bjGGnsTMr9RnJWJwl05fBNe1MT38cZPBABY-CnpcRRlvTbvT-~GimcFcuQt5vq0AWg__&Key-Pair-Id=K1VGYTHIYLM9UM"
+  ],
+  "consumed_credits": 9
+}

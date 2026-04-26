@@ -1,0 +1,57 @@
+zone:
+  vibe: Gravewrought heartland — funerary fields, working necropolis, ancestor-rite gone wrong.
+  description: The Gravewrought interior — open turf, wind-cut burial lines, working funerary
+    villages where the dead participate in the harvest. The Lich-Weep necropolis was a routine
+    ancestor-rite center until it wasn't, and the rite has been self-correcting for three
+    years now. The Watch-Crypt sends fresh hands to investigate and most of them come back.
+  prompt: wide establishing landscape, windswept turf fields above sea cliffs, long lines
+    of low burial markers, working funerary village in the middle distance, overcast cold
+    light, painterly atmospheric, no figures
+hubs:
+  watch_crypt:
+    description: The Gravewrought regional capital — a working necropolis with a town built
+      across its surface. Speaker-Auntie Mevra keeps both the funerary records and the harvest
+      counts; she finds the difference unimportant. The lower crypts are sealed pending the
+      resolution of the Lich-Weep matter, which has been pending for three years now.
+    prompt: establishing shot, Gravewrought necropolis-town, low barrow halls with thatched
+      buildings on top, working harvest fields beside, salt wind, overcast cold light, painterly
+      atmospheric, late-medieval, no figures
+  mourner_camp:
+    description: A Gravewrought outpost on the western funerary fields — permanent black-cloth
+      shelters where the active mourning is performed for ancestor-rite candidates. Mourn-Captain
+      Jeska has been at the post fourteen years and has only once asked for transfer. She
+      has not been transferred.
+    prompt: establishing shot, Gravewrought field outpost of black cloth shelters, lines of
+      low burial markers, banked memorial fires, leaden cold afternoon light, painterly atmospheric,
+      late-medieval, no figures
+  lich_weep:
+    description: A failed-rite necropolis at the field's western edge — the rite set itself
+      to looping three years ago and has not stopped. The Watch-Crypt sends investigators
+      on rotation. Most come back. The site is a hub by convention; nobody actually settles
+      here.
+    prompt: establishing shot, sprawling Gravewrought necropolis on a windswept turf field,
+      leaning carved markers, low banked ritual fires that never go out, oppressive grey-green
+      light, painterly atmospheric, late-medieval, no figures
+landmarks:
+  memorial_lane:
+    description: A long road lined on both sides by low memorial stones. Each stone has a
+      name. The Gravewrought walk the road in ritual procession at the funerary moon.
+    prompt: establishing shot, long stone road lined with low memorial stones on both sides,
+      windswept turf, leaden cold light, painterly atmospheric, late-medieval, no figures
+  hollow_chapel:
+    description: A chapel whose roof was removed by lightning during a particularly bad summer.
+      The Gravewrought have not rebuilt the roof. The services continue regardless.
+    prompt: establishing shot, ruined open-air stone chapel on windswept fields, no roof,
+      leaning altar, oppressive grey-amber light, painterly atmospheric, late-medieval, no
+      figures
+  ancestor_field:
+    description: A field reserved for ancestor-rite manifestations. The Gravewrought ask outsiders
+      not to walk through it after dark. Most outsiders comply.
+    prompt: establishing shot, windswept turf field with low burial markers in irregular rows,
+      distant funerary fires, oppressive twilight, painterly atmospheric, late-medieval, no
+      figures
+  salt_well:
+    description: A working well dug into the cliff that brings up faintly salt water. The
+      water is used in the funerary rites and in no other context.
+    prompt: establishing shot, weathered stone well-head on a wind-cut cliff edge, ritual
+      buckets and ladles, leaden cold light, painterly atmospheric, late-medieval, no figures

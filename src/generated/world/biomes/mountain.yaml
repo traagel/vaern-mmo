@@ -1,5 +1,14 @@
 id: mountain
 name: Mountain Interior
+description: |
+  High stone country: thin air, brutal weather, the bones of older
+  empires showing through the snowline. Rockfall and exposure kill more
+  often than monsters do — but monsters are not absent. Both factions
+  station outposts here; both routinely lose them.
+prompt: >-
+  wide establishing landscape, snow-capped alpine peaks, glacier
+  valley, ancient collapsed stone watchtower in the foreground,
+  blizzard-haze, cold blue light, painterly atmospheric, no figures
 climate: alpine, thin air, blizzard-season
 hazards:
 - rockfall

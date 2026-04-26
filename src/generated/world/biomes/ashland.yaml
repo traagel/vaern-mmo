@@ -1,5 +1,15 @@
 id: ashland
 name: Ashen Wasteland
+description: |
+  A scorched volcanic shelf where the wind never settles. Black soot
+  streaks the roads, ash-storms close visibility to a few paces, and
+  pit-vents leak heat through the broken ground. Ashroot and scorched
+  pine are the only things that hold soil. The Rend treats it as good
+  country; Concord engineers refuse to map it.
+prompt: >-
+  wide establishing landscape, volcanic ash plain, soot-streaked rock,
+  scorched dead pines, distant smoking pit-vents, low orange sky,
+  painterly atmospheric, dim mood, no figures, no characters
 climate: dry, volcanic-ash soil, low visibility
 hazards:
 - ash-storm

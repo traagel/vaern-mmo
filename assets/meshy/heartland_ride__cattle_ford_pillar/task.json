@@ -1,0 +1,16 @@
+{
+  "id": "019dc76d-bff1-7b2d-ab60-b5ac4854a08f",
+  "type": "text-to-image",
+  "ai_model": "nano-banana-pro",
+  "prompt": "establishing shot, stone pillar beside a wide shallow river ford, cattle tracks in the mud, late afternoon warm light, painterly atmospheric, late-medieval, no figures",
+  "status": "SUCCEEDED",
+  "progress": 100,
+  "created_at": 1777167351808,
+  "started_at": 1777167351938,
+  "finished_at": 1777167403280,
+  "expires_at": 1777426603280,
+  "image_urls": [
+    "https://assets.meshy.ai/2872987b-afbf-4fa0-95f0-231417dc567c/uploads/image_019dc76d-bff1-7b2d-ab60-b5ac4854a08f_0.png?Expires=1777426603&Signature=CWvdo~nOohHEay9s7u8oKp4-gLHhO-MfeD6tOfuI4vtfRQOpMSvhe6ZugweSB-0nmXX-b-j~FKXjZaOdkpYA3Vzvmyjck0kMP0Lja9fUL08TOU1nk3kNF7THhGWBmOOu5hDW5mvomQrivAFGmRaJdWuJDHP6Fnyxqb8iw5Q0yEYh~f0-P4x1oa3vCdsZ8teD8BXGRSvERslL-tlLsZscHHwvh-m6af~8hGUtmkB1g5JaaC-3yg236o5vvsU8tMHbMBXDGX8Vx0yQV5poG8pd4AOSZblncpd8yNPhSUYlzjih9csv4F25OdDLzPOsnrGD3dIAR5jaO3BZ3fn4SmTuQQ__&Key-Pair-Id=K1VGYTHIYLM9UM"
+  ],
+  "consumed_credits": 9
+}

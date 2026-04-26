@@ -1,0 +1,65 @@
+dungeon:
+  description: |
+    A Hearthkin production forge in Irongate Pass that collapsed during
+    the spring shift two years ago and never stopped burning. The
+    coal-bed under the floor took fire when the bellows-shaft came
+    down and has been venting heat through the rubble since. Reeve
+    Marn lists nineteen workers as still inside; Captain Vellan's
+    patrols hear the hammer-rhythm on quiet nights and have stopped
+    sending recruits to investigate alone.
+  prompt: >-
+    establishing shot, dungeon interior, collapsed dwarven forge,
+    burning coal-bed visible through fractured floor, fallen support-
+    beams, smoke-haze, ember-glow on stone, painterly atmospheric,
+    oppressive mood, no figures
+bosses:
+  shift_foreman:
+    description: |
+      Old Garrek the Shift, who refused the evacuation order on
+      principle — said his shift wasn't done yet — and has been
+      keeping it going. Carries a leather whip he never used on
+      workers in life and uses now to keep his crew at the anvils.
+      Cleaves in a wide arc; rallies adds with a yell that buffs them
+      to dangerous swing-speeds. His name is on the muster roll Reeve
+      Marn keeps current.
+    prompt: >-
+      portrait, single subject, grim Hearthkin shift-foreman, soot-
+      blackened apron, ember-cracked skin, coiled leather whip,
+      tarnished foreman's badge, painterly atmospheric, oppressive
+      mood, isolated subject, no other figures
+    negative_prompt: >-
+      multiple figures, party, group, modern, futuristic, sci-fi, anime,
+      cyberpunk, watermark, text
+  molten_worker:
+    description: |
+      A pour-shift worker caught under a crucible-spill; what came back
+      out of the slag was mostly heat. Self-immolates on a fixed
+      cadence, dropping a radial fire-aoe wide enough that the party
+      has to kite him in arcs around the chamber's intact pillars. The
+      pillars are themselves cracked from the original collapse and
+      will not stand a full fight; pick the right ones.
+    prompt: >-
+      portrait, single subject, molten Hearthkin worker, glowing seams
+      through stone-fused skin, half-melted leather kit, dripping
+      ember-light, painterly atmospheric, oppressive mood, isolated
+      subject, no other figures
+    negative_prompt: >-
+      multiple figures, party, group, modern, futuristic, sci-fi, anime,
+      cyberpunk, watermark, text
+  forge_lord:
+    description: |
+      The forge-lord of the lower works, master-smith Druin Hammer-Set,
+      whose name is on the cornerstone outside. He fights in three
+      phases tied to his trade — anvil (heavy hammer-strikes), forge
+      (fire-aoe lanes from the floor-vents), and quench (a brief
+      vulnerability window when he plunges his work into a slag-pool
+      and the chamber goes dark). Vellan's standing order is to
+      recover the cornerstone, not Druin.
+    prompt: >-
+      portrait, single subject, towering Hearthkin forge-lord, ember-
+      veined armor, two-handed forge-hammer, stone-and-iron crown
+      welded to his brow, painterly atmospheric, oppressive mood,
+      isolated subject, no other figures
+    negative_prompt: >-
+      multiple figures, party, group, modern, futuristic, sci-fi, anime,
+      cyberpunk, watermark, text

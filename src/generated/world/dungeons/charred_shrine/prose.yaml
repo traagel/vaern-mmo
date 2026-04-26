@@ -1,0 +1,57 @@
+dungeon:
+  description: |
+    The shrine where the Twin Saints died together — Saint Iorvenn of
+    the Concord and Saint Hraem of the Rend — in the last week of the
+    Coming, holding the line for a refugee column that did get through.
+    The shrine burned with them and has not stopped burning. Pilgrims
+    from both faiths still come; some of them have been here longer
+    than they realise. Three chambers: the porch, the nave, the altar.
+  prompt: >-
+    establishing shot, dungeon interior, burned twin-faith shrine, two
+    altars side by side, slow embers in stone cracks, scorched icons,
+    painterly atmospheric, oppressive mood, no figures
+bosses:
+  ember_priest:
+    description: |
+      Father Calden, who came on pilgrimage for the twentieth-anniversary
+      vigil and stayed. Stacks a fire-dot on the party in a fixed
+      rotation — three targets per cycle, six second tick, dispels off
+      the same global as heals. The dispel rotation has to run on a
+      tighter clock than the heals or the healer falls behind by the
+      third minute.
+    prompt: >-
+      portrait, single subject, ember-burned Concord priest, scorched
+      grey vestments, brass censer, smoking palms, painterly atmospheric,
+      oppressive mood, isolated subject, no other figures
+    negative_prompt: >-
+      multiple figures, party, group, modern, futuristic, sci-fi, anime, cyberpunk, watermark, text
+  charcoal_champion:
+    description: |
+      A Rend pilgrim named Vet, who was here when the saints died and
+      did not leave. Burns at a constant rate — every percent of his
+      health he loses, his armour rating goes up by half a point. By
+      ten percent he is taking single digits per swing. The fight is
+      about controlled burn: the dps that keeps him at sixty for thirty
+      seconds is the dps that finishes him. Rushing kills the run.
+    prompt: >-
+      portrait, single subject, charcoal-skinned Rend pilgrim warrior,
+      burned hide armour fused to skin, two-handed sword, ember cracks
+      across face, painterly atmospheric, oppressive mood, isolated
+      subject, no other figures
+    negative_prompt: >-
+      multiple figures, party, group, modern, futuristic, sci-fi, anime, cyberpunk, watermark, text
+  twin_saints:
+    description: |
+      Saint Iorvenn and Saint Hraem, the Twin Saints Weeping. They
+      fight back-to-back and resurrect each other within five seconds
+      of either dying — the only kill is to drop both inside that
+      window. Iorvenn heals, Hraem cleaves; their combined aura prevents
+      the usual tank-swap. The shrine remembers them and the floor
+      itself works against the party.
+    prompt: >-
+      portrait, single subject, twin saints weeping, one Concord one
+      Rend, back-to-back, ember tears tracking down both faces, paired
+      relic weapons, painterly atmospheric, oppressive mood, isolated
+      subject, no other figures
+    negative_prompt: >-
+      multiple figures, party, group, modern, futuristic, sci-fi, anime, cyberpunk, watermark, text

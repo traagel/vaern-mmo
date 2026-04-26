@@ -1,0 +1,16 @@
+{
+  "id": "019dc76e-4955-76e6-8985-fd30365af5c3",
+  "type": "text-to-image",
+  "ai_model": "nano-banana-pro",
+  "prompt": "establishing shot, windswept field with seven fallen carved oath-pillars in a rough line, overcast cold light, painterly atmospheric, late-medieval steppe, no figures",
+  "status": "SUCCEEDED",
+  "progress": 100,
+  "created_at": 1777167386975,
+  "started_at": 1777167387125,
+  "finished_at": 1777167435087,
+  "expires_at": 1777426635087,
+  "image_urls": [
+    "https://assets.meshy.ai/2872987b-afbf-4fa0-95f0-231417dc567c/uploads/image_019dc76e-4955-76e6-8985-fd30365af5c3_0.png?Expires=1777426635&Signature=DKv99fKgcoHobD9zotHlGPtNvJOi2CAzMYu5y8DgZpmYOXWwQO7BsaL8ZNKI57SV70845qiA6FBbuUdYiRmuSJIwF14BBQgmfSPWc8rcIzS0vlhS~BePISJoWbi7NsY~HarSc3RbiE7eK07Vy2fItU~6Y-0kA-20uDKDIXREfKKeazwKkUXWPsN-XQBqBZ3cmMauY6ARFIjJqKu~ZJVi9IaBpjf9~vUPDunIAp5SZHoT1wVObPeGDRuYspcEu0Ge1kz~b-0yrg1yh5GC8n--d3g8DBEi8Gw9Kv2h2Rz8VHuYMDxhHNaQgW21983jmAY8zYaPIHUTPBwvqpxemZzKKQ__&Key-Pair-Id=K1VGYTHIYLM9UM"
+  ],
+  "consumed_credits": 9
+}

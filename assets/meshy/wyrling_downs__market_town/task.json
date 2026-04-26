@@ -1,0 +1,16 @@
+{
+  "id": "019dc76b-c8ab-7d51-a2a8-6e44d8aa118f",
+  "type": "text-to-image",
+  "ai_model": "nano-banana-pro",
+  "prompt": "establishing shot, Wyrling market-town of half-buried round-doored cottages, busy stone market square, hawthorn hedgerows, late afternoon warm light, painterly atmospheric, late-medieval pastoral, no figures",
+  "status": "SUCCEEDED",
+  "progress": 100,
+  "created_at": 1777167222965,
+  "started_at": 1777167223510,
+  "finished_at": 1777167326003,
+  "expires_at": 1777426526003,
+  "image_urls": [
+    "https://assets.meshy.ai/2872987b-afbf-4fa0-95f0-231417dc567c/uploads/image_019dc76b-c8ab-7d51-a2a8-6e44d8aa118f_0.png?Expires=1777426526&Signature=IuHfldQzf3B7j9HsQgOpfyHlkpP3yDMhnsAKt0GZOesr7qF7BaE6SRMt4pRS~zDKZ8NmMhJy8ir5CHuVz7xMX37Fpreg9~QeiLkhZtzWVzxPn2yFW-NtTNiatbSsccGl6nc-Hb~s2wJBppCrxnrwqxBuprLHfiQWlTacoO8h6yazO6WW94b6R2Ock5YTZwCL2L4Kls2CZaYder-Q-ucIEdMng0r1oE4OebeCTnRYVYI1AVZlixJVI6oUlPgxlJSAY--MC6MXAo-6K-BYbIbNMQRh9lID0M1TqaiSduA9~VU0nei8XWh61k1~AJ3dY~9CZZ~~5vsBPf9j8yTdkZk8dA__&Key-Pair-Id=K1VGYTHIYLM9UM"
+  ],
+  "consumed_credits": 9
+}

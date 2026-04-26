@@ -1,0 +1,62 @@
+dungeon:
+  description: |
+    A pre-Coming watchgate cut into the Spine's highest pass, built by a
+    treaty older than either flag below it. The gatekeeper's family has
+    held the post three generations and Uthar is the last of them — his
+    sons died on the wall, his wife went down the mountain and didn't
+    come back. The ice has come into the gatehouse. So has something
+    else. Five-man country, and the wind alone will kill the slow.
+  prompt: >-
+    establishing shot, dungeon interior, ancient stone watchgate
+    interior, ice-sheathed murder-holes, snow blowing through arrow
+    slits, frozen iron portcullis, painterly atmospheric, oppressive
+    mood, no figures
+bosses:
+  ice_captain:
+    description: |
+      A captain of Uthar's old garrison, frost-bound and still walking
+      the wall as if his shift hadn't ended in 1186. He calls a frost-
+      nova when he's pressed and stuns whoever's nearest, and the only
+      reliable answer is to keep him moving along the rampart so he
+      can't set his feet. He still wears the gate's livery. The garnet
+      pin at his throat is older than the keep below.
+    prompt: >-
+      portrait, single subject, frost-armored watchgate captain,
+      ice-rimed plate, garnet pin at throat, breath crystallizing,
+      halberd grounded, painterly atmospheric, oppressive mood,
+      isolated subject, no other figures
+    negative_prompt: >-
+      multiple figures, party, group, modern, futuristic, sci-fi,
+      anime, cyberpunk, watermark, text
+  wyrm_broodling:
+    description: |
+      One of the Elder Wyrm's get, no bigger than a draft horse and
+      already dangerous. It nests in the gatehouse's collapsed bell
+      tower and breathes its mother's breath in narrowing cones across
+      the stair. The Hearthkin in the records called these creatures
+      'walking weather.' They were not being poetic. The pass-wind goes
+      cold around it the way light goes around a wound.
+    prompt: >-
+      portrait, single subject, juvenile ice wyrm coiled on broken
+      stone, frost mantling its scales, breath fogging the air, eyes
+      pale and watching, painterly atmospheric, oppressive mood,
+      isolated subject, no other figures
+    negative_prompt: >-
+      multiple figures, party, group, modern, futuristic, sci-fi,
+      anime, cyberpunk, watermark, text
+  gatekeeper_uthar:
+    description: |
+      The last gatekeeper, frozen at his post with his ledger still
+      open. He is courteous when you arrive and asks for your names. He
+      will write them in the book. As the fight wears on he calls his
+      kin back as shades — his grandfather, his father, his sons — and
+      they fight as they fought, with the same wounds that killed them.
+      He apologizes for the trouble. Then he closes the ledger.
+    prompt: >-
+      portrait, single subject, ancient gatekeeper in ice-stiffened
+      uniform, open ledger at his belt, hoarfrost beard, sad lined
+      eyes, lantern at his hand, painterly atmospheric, oppressive
+      mood, isolated subject, no other figures
+    negative_prompt: >-
+      multiple figures, party, group, modern, futuristic, sci-fi,
+      anime, cyberpunk, watermark, text

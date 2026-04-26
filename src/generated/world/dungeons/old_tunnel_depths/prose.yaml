@@ -1,0 +1,64 @@
+dungeon:
+  description: |
+    Tunnels beneath the Sundering Mines that predate the Hearthkin and
+    everything the Hearthkin remember. The carvings on the walls are
+    not Hearthkin work. The Hearthkin tried for two centuries to
+    translate them, then quietly stopped trying, and the chief
+    archivist at Anvilhold has had the relevant shelves walled off. The
+    air down here moves on a count that isn't ours. Five-man country
+    and not for the unbalanced.
+  prompt: >-
+    establishing shot, dungeon interior, alien spiral carvings on
+    natural stone, deep tunnel descending, phosphorescent fungi pale
+    light, dust drifting upward against gravity, painterly atmospheric,
+    oppressive mood, no figures
+bosses:
+  tunneler_primarch:
+    description: |
+      The largest of whatever lives in the high galleries — armored,
+      blind, and patient. It works the rock like a craftsman on
+      pension. When pressed it stamps a cadence into the floor that
+      shakes the cavern, and any caster mid-spell loses the thread.
+      Hearthkin records call this beast a 'first-tunneler' and use the
+      word 'first' the way you'd use it about your eldest brother.
+    prompt: >-
+      portrait, single subject, massive armored subterranean creature,
+      blind ridged head, calcified plates, dust falling from its
+      shoulders, painterly atmospheric, oppressive mood, isolated
+      subject, no other figures
+    negative_prompt: >-
+      multiple figures, party, group, modern, futuristic, sci-fi,
+      anime, cyberpunk, watermark, text
+  hollow_drake:
+    description: |
+      A drake with no fire in it — only the cold dust of the deep
+      gallery and a long, slow tail. It nests in a chamber whose floor
+      is paved with the bones of every creature it has eaten down here,
+      and the pile is taller than a man. It breathes a grey choking
+      cone and follows it with the tail. The carvings say it has been
+      eating since before there was anyone to be eaten.
+    prompt: >-
+      portrait, single subject, gaunt subterranean drake, ash-grey
+      hide, hollow ribs visible, long whip tail, dust pluming from
+      nostrils, painterly atmospheric, oppressive mood, isolated
+      subject, no other figures
+    negative_prompt: >-
+      multiple figures, party, group, modern, futuristic, sci-fi,
+      anime, cyberpunk, watermark, text
+  old_thing:
+    description: |
+      The Old Thing Beneath. The Hearthkin are very careful about the
+      pronoun and the archivists at Anvilhold won't write it down at
+      all. It is mostly tentacle, mostly stone, mostly older than
+      stone, and the chamber it lives in is laid out for a fight
+      between something three times your size and something three
+      times its own. Stand on the wrong tile and the room rearranges.
+      Stand on the right one and you live another minute.
+    prompt: >-
+      portrait, single subject, vast tentacled stone-fused horror in
+      ritual chamber, eye-pits glowing dim, alien sigils on its hide,
+      painterly atmospheric, oppressive mood, isolated subject, no
+      other figures
+    negative_prompt: >-
+      multiple figures, party, group, modern, futuristic, sci-fi,
+      anime, cyberpunk, watermark, text

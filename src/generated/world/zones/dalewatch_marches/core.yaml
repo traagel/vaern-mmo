@@ -9,6 +9,26 @@ level_range:
   max: 10
 starter_race: mannin
 hub_count: 5
+vibe: Late-medieval river-valley frontier; civic, practical, not heroic.
+description: |
+  The Concord's eastern frontier — a green river-valley of yeoman farms,
+  kingsroads, and warden patrols, watched from Dalewatch Keep at the heart
+  of the Marches. Three crises meet here. East at the Ford of Ashmere,
+  Pact scouts are crossing in numbers nobody can explain. South in the
+  Blackwash Fens, the drifters who fled the Censure three years ago have
+  made common cause with something older than the Concord. And along the
+  cairn-ridges and copper drifts under the keep, the country itself is
+  starting to misbehave. The Warden Corps rides the line so the plough
+  stays in the field — but the line is thinning, and you ride it the
+  morning you take the oath.
+prompt: >-
+  wide establishing landscape, late-medieval Burgundian river valley, stone
+  keep on a low ridge above tilled fields, kingsroad winding past mills,
+  distant marsh on the eastern horizon, summer dusk warm gold-hour light,
+  painterly atmospheric, no figures, no characters
+negative_prompt: >-
+  modern, futuristic, sci-fi, neon, anime, cyberpunk, concept sheet,
+  character portrait, figure, person, watermark, text
 budget:
   quest_count_target: 50
   unique_mob_types: 24

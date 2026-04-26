@@ -1,0 +1,16 @@
+{
+  "id": "019dc76c-c63f-7d5d-9a4e-28e9a6c995f2",
+  "type": "text-to-image",
+  "ai_model": "nano-banana-pro",
+  "prompt": "establishing shot, single stone well-head on a rocky slope between two distant siege-camps, lone watchman's lean-to, oppressive grey-amber light, painterly atmospheric, late-medieval, no figures",
+  "status": "SUCCEEDED",
+  "progress": 100,
+  "created_at": 1777167287883,
+  "started_at": 1777167288370,
+  "finished_at": 1777167330864,
+  "expires_at": 1777426530864,
+  "image_urls": [
+    "https://assets.meshy.ai/2872987b-afbf-4fa0-95f0-231417dc567c/uploads/image_019dc76c-c63f-7d5d-9a4e-28e9a6c995f2_0.png?Expires=1777426530&Signature=VHSDHPRjOcmNmVy1ngJgEY7tOa0GB0RKiOpTV3nydFkKhfC-z1E162SqBXbCMjgJ6~CtoBucFSSRvv5FyyUlNa4pjkvKCP9dJhxf-yXxKbJiih3IxSMsTWiPc8DhKZdrW9q8nx80odu9WdZCDzyZ2x5bhK3RMSA7qy1pQtJNGPBFx~-s25cZUQS7mbt1Y2Re3ZkAhXRpMXXnQnHZQ0aP8LtQEE4UPe3kfsT0GYSEKyHql6wqeosB0JOw1PH3b5ndUt-rg7mly20YUN0t0DDHVYXR~2uf8nfORyvYa-9lfEVcqfi0IWycePuUoosk-o4BFleFVEPhRMDf6T5Sr4hmNQ__&Key-Pair-Id=K1VGYTHIYLM9UM"
+  ],
+  "consumed_credits": 9
+}

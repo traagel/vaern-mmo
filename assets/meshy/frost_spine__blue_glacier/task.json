@@ -1,0 +1,16 @@
+{
+  "id": "019dc76d-51f0-76d8-b524-66b0538e1e3a",
+  "type": "text-to-image",
+  "ai_model": "nano-banana-pro",
+  "prompt": "establishing shot, immense pale blue alpine glacier in a narrow valley, snow-covered ridges, cold blue afternoon light, oppressive cold mood, painterly atmospheric, no figures",
+  "status": "SUCCEEDED",
+  "progress": 100,
+  "created_at": 1777167323643,
+  "started_at": 1777167324364,
+  "finished_at": 1777167361673,
+  "expires_at": 1777426561673,
+  "image_urls": [
+    "https://assets.meshy.ai/2872987b-afbf-4fa0-95f0-231417dc567c/uploads/image_019dc76d-51f0-76d8-b524-66b0538e1e3a_0.png?Expires=1777426561&Signature=maMS8OK2bNxFO4pLz6gjny3-210wGNaF50Oh0KNy0UXXpzmUMRoPWJw~r-eObfo~-ZY8OYGC2keyZcufn0Br~-hWQ1BM4Ew9nIUM0qHKTZLeqtuO~Ev9PdkRGp-mXXEbX678PsDzzzq7jJw3ClmbMuElf3UA5sl4G05gZ7vvFuwiNVYkBDa2s65VjqFT7NrDZm3XSE8BEPuz~--4FDwzELMdjpyjVbBpKHj033o5HiN79Eo~1Wjchyj629aJmvoGFgJ24U9crtNL9anPZKPPLKbIZcyDTkeeyI2D-5hYKhZ9oyCkfk5VRpr7IG63zKn7fGMSK0SMVYeK~8UCKWVc7w__&Key-Pair-Id=K1VGYTHIYLM9UM"
+  ],
+  "consumed_credits": 9
+}

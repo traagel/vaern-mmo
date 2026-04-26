@@ -1,0 +1,41 @@
+id: landmarks__market_crossing
+zone: market_crossing
+landmarks:
+- id: river_island_market
+  name: The River-Island Market
+  offset_from_zone_origin:
+    x: 90.0
+    z: 180.0
+  description: An island market that runs three days a week on a sand-bar in the river. Six
+    languages, three currencies, no formal taxes. The Freeport tolerates it because the Freeport
+    profits from it.
+  prompt: establishing shot, busy market on a river sand-bar island, stalls and barges drawn
+    up to the banks, golden afternoon light, painterly atmospheric, late-medieval, no figures
+- id: smuggler_cove
+  name: The Smuggler's Cove
+  offset_from_zone_origin:
+    x: -180.0
+    z: -140.0
+  description: A reed-fringed bend of the river where the smugglers unload after dark. The
+    Freeport's customs hall pretends not to know. The cove's mooring posts are very new.
+  prompt: establishing shot, reed-fringed river cove with mooring posts and dark barges, low
+    twilight, painterly atmospheric, late-medieval, no figures
+- id: pre_concord_pillar
+  name: Pre-Concord Pillar
+  offset_from_zone_origin:
+    x: -80.0
+    z: 250.0
+  description: A standing stone carved with a script even the Sunward Elen scholars cannot
+    quite parse. The stone is on Freeport land by treaty; nobody removes it because no faction
+    will risk it.
+  prompt: establishing shot, weathered standing stone on the bank of a slow river, unreadable
+    carvings, late afternoon warm light, painterly atmospheric, late-medieval, no figures
+- id: warehouse_burnt_row
+  name: The Burnt Row
+  offset_from_zone_origin:
+    x: 240.0
+    z: -90.0
+  description: A row of warehouses that burned in last spring's fire. The owners cleared the
+    rubble; the foundations are still ashy. Three of the owners did not survive the fire.
+  prompt: establishing shot, row of burnt-out warehouse foundations on a river quay, blackened
+    stone, low afternoon light, painterly atmospheric, late-medieval, no figures

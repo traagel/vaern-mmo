@@ -1,0 +1,16 @@
+{
+  "id": "019dc76a-e015-72d3-a86d-7d86ab0587e3",
+  "type": "text-to-image",
+  "ai_model": "nano-banana-pro",
+  "prompt": "establishing shot, ash-forest glade with a half-buried shadow-shrine, banked obsidian fire, hanging silver leaves, sickly amber dusk, painterly atmospheric, oppressive mood, no figures",
+  "status": "SUCCEEDED",
+  "progress": 100,
+  "created_at": 1777167163424,
+  "started_at": 1777167163635,
+  "finished_at": 1777167212483,
+  "expires_at": 1777426412483,
+  "image_urls": [
+    "https://assets.meshy.ai/2872987b-afbf-4fa0-95f0-231417dc567c/uploads/image_019dc76a-e015-72d3-a86d-7d86ab0587e3_0.png?Expires=1777426412&Signature=KQfgNi1liqZdGlhr7mc2pBl~a5XpLXqCUifce-k9uEQGcYhQpM93g7k~ZbpOzHrCRjTohuxnuExcftOdQb1aXbip166McF2bZ~dllZbZcfdXHsTKSSaqGN6E8gpnj4hgIA3c1e9r28pYOGdbsReOn1JQsFtXp0YvtcvuPUsRrWDIP7730cqN2NMVJWAmm9TfXUr0vi8AtHmUMJ6AcFa3EHHjVJRsWIfod0MHWpTUW5UlTGv2e6wTJmROtqmSaNGuXfp1chY1HfIMEL2wbsblxVdqwDanmAtNu-3aajgrEkLJwQxEwEyif8sQT9Lxad78mOnWTL~6PLuyl-SKDpwkSA__&Key-Pair-Id=K1VGYTHIYLM9UM"
+  ],
+  "consumed_credits": 9
+}

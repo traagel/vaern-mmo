@@ -1,5 +1,14 @@
 id: highland
 name: Forested Highlands
+description: |
+  Cool, windswept upland country: pine and heather, sudden grey fog,
+  sheep on the long slopes. Concord tax-collectors learn to ride it;
+  Rend skirmishers learn to vanish in it. The fog rolls in faster than
+  men can react and the cliff-edges are unkind.
+prompt: >-
+  wide establishing landscape, forested highlands of pine and heather,
+  rolling grey fog over a windswept ridge, distant crags, overcast
+  afternoon light, painterly atmospheric, no figures
 climate: cool, windswept, fog-prone
 hazards:
 - cliff-fall

@@ -1,0 +1,16 @@
+{
+  "id": "019dc76a-4e48-72bb-a6d4-e30338f0e9f1",
+  "type": "text-to-image",
+  "ai_model": "nano-banana-pro",
+  "prompt": "establishing shot, ancient Kharun oath-pillar shrine on a high steppe ridge, half-uncovered buried reliquary stones, wind-driven cloud shadows, leaden cold light, painterly atmospheric, late-medieval, no figures",
+  "status": "SUCCEEDED",
+  "progress": 100,
+  "created_at": 1777167126113,
+  "started_at": 1777167126577,
+  "finished_at": 1777167160491,
+  "expires_at": 1777426360491,
+  "image_urls": [
+    "https://assets.meshy.ai/2872987b-afbf-4fa0-95f0-231417dc567c/uploads/image_019dc76a-4e48-72bb-a6d4-e30338f0e9f1_0.png?Expires=1777426360&Signature=pA-cy1NzPckbFKMPsCjjeIzAVqkhmCH8i4UY1XamB-2pchgzKOjKW2PVzj4X~qIrvWXUKOjEekasT8-4UgFO8CyoZI28SyqVJSgiRSi6nrtVOfdvN0qQGUJao3rpTtKr8I1WUAiKLUeyhWCXGbowGzd-nYRzclI9oTpg1wguKxDLw7q2XWczOYw6XF7mJUDzT~XnExyr0gYapzsuznISIy9YLE9OzSJuL4wTxvfdDa20HqUBSlBRMHWEcw48slrV-PNZjipb7BJu1qkkJltAnUsqGKTWtILuXit01ZIcQ5NxAr-fqHDWJjNU9WytI-oR3~g~sFamHjL3NHgKZLRGXQ__&Key-Pair-Id=K1VGYTHIYLM9UM"
+  ],
+  "consumed_credits": 9
+}

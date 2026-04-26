@@ -1,0 +1,42 @@
+id: landmarks__wyrling_downs
+zone: wyrling_downs
+landmarks:
+- id: hawthorn_circle
+  name: The Hawthorn Circle
+  offset_from_zone_origin:
+    x: 180.0
+    z: -90.0
+  description: A ring of ancient hawthorns the Wyrlings will not trim. The ring is older than
+    the burrows. The Wyrlings know which branches to leave alone and don't tell strangers
+    why.
+  prompt: establishing shot, circle of ancient gnarled hawthorn trees in a meadow, late-summer
+    afternoon golden light, painterly atmospheric, late-medieval pastoral, no figures
+- id: turnip_giant_field
+  name: The Turnip-Giant's Field
+  offset_from_zone_origin:
+    x: -160.0
+    z: 200.0
+  description: A field where, by local agreement, exactly one giant turnip is grown each year
+    and ceremonially consumed at harvest. Nobody admits to caring about this. Everybody attends.
+  prompt: establishing shot, harvested green field with one comically large turnip standing,
+    nearby half-buried Wyrling cottages, late afternoon warm light, painterly atmospheric,
+    late-medieval pastoral, no figures
+- id: wolf_ridge
+  name: Wolf-Ridge
+  offset_from_zone_origin:
+    x: 90.0
+    z: 280.0
+  description: A bracken-covered ridge where the local wolf packs den. The Wyrlings tolerate
+    the wolves because the wolves discourage worse things from the deeper wood. An understanding,
+    not a treaty.
+  prompt: establishing shot, bracken-covered ridge above a wide green valley, dense undergrowth,
+    evening pewter light, painterly atmospheric, late-medieval, no figures
+- id: rabbit_warren_road
+  name: The Rabbit-Warren Road
+  offset_from_zone_origin:
+    x: -240.0
+    z: -50.0
+  description: A green lane between two rows of hedgerow that local rabbits use as much as
+    travellers do. The Wyrling road-wardens consider both populations citizens for tax purposes.
+  prompt: establishing shot, green sunlit hedgerow lane through rolling downs, late afternoon,
+    painterly atmospheric, late-medieval pastoral, no figures

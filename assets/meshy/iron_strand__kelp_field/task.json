@@ -1,0 +1,16 @@
+{
+  "id": "019dc76d-daae-732e-b38a-6eaa49b77de0",
+  "type": "text-to-image",
+  "ai_model": "nano-banana-pro",
+  "prompt": "establishing shot, dense kelp bed on a shingle shoreline below sea cliffs, low tide, leaden cold afternoon light, painterly atmospheric, no figures",
+  "status": "SUCCEEDED",
+  "progress": 100,
+  "created_at": 1777167358650,
+  "started_at": 1777167359353,
+  "finished_at": 1777167383416,
+  "expires_at": 1777426583416,
+  "image_urls": [
+    "https://assets.meshy.ai/2872987b-afbf-4fa0-95f0-231417dc567c/uploads/image_019dc76d-daae-732e-b38a-6eaa49b77de0_0.png?Expires=1777426583&Signature=REiYwPaqhpVknFR3LigSjrNIhIFTiGvt~NfFvvNWR0Ym~e7TpHqO2cjlftnXivyNihj6qwi5uMjK3zITAxPpU1PNu5hsF9z2Bs3H9lgqMWZ9N3yqa1EFy5zSVIoOrelktgJsY21nHcStDtlaYhC6I1cbTKWROKlgypUHj16LvyTKFjly6TGGrSXNR60Q8g4uLPMlpbdUUJ-sfEOOGqoAY9HVkWqBZ-B37sro~90aj9r7XVyOnB7AdV0eSy9oYzaTjRAVlNR1hfX-DSJ7PL2bebCWKc8PSVlh8tS7WezRDydQPYYhPPIM3lywrKMreGXz6Pm2SB2OY-iKBsdxWDP8Xg__&Key-Pair-Id=K1VGYTHIYLM9UM"
+  ],
+  "consumed_credits": 9
+}

@@ -1,0 +1,16 @@
+{
+  "id": "019dc737-c76e-7899-9609-9d86d13c45c4",
+  "type": "text-to-image",
+  "ai_model": "nano-banana-pro",
+  "prompt": "portrait, single subject, late-medieval Drifter mage, scarred middle-aged man, salvaged dark robes, bone medallion at his neck, fire conjured at one hand, smoke trailing past his shoulders, painterly atmospheric, oppressive mood, isolated subject, no other figures",
+  "status": "SUCCEEDED",
+  "progress": 100,
+  "created_at": 1777163814796,
+  "started_at": 1777163815626,
+  "finished_at": 1777163869360,
+  "expires_at": 1777423069360,
+  "image_urls": [
+    "https://assets.meshy.ai/2872987b-afbf-4fa0-95f0-231417dc567c/uploads/image_019dc737-c76e-7899-9609-9d86d13c45c4_0.png?Expires=1777423069&Signature=NkhdWsYLR~-rUiy2u8h2Q9V~lLgePfofHOAIqryc4WfxvmefEEyT7cGxD5JlFKZBKmAl4ZtUmb6JlFlNcjHpXE3tREtKj-rSETLaqo6NMt5~O9bdj48wz-5pdhjy6JJNSlMUgftCBEjbGzhJ6YlEv1RyzHBfEIIlWM26G7Hex4wXy2qaukE15SOSzk6qlGeG5~ETlR-HH42gzx~DfXx4Uvbz~poEGwFJCgUODLLZX6MagKBBbI5VMxYAF82is5Kj8tk2rigZs3ezWXyCGp6I8YkFjGQhUriBhKjm1pxK7C6bIm-Yp7weo0jDCiMTNvhq94vXbbh86K~AjB5ObQqwLA__&Key-Pair-Id=K1VGYTHIYLM9UM"
+  ],
+  "consumed_credits": 9
+}

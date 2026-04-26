@@ -1,0 +1,16 @@
+{
+  "id": "019dc76a-4dc6-767f-82d6-40ace9be7833",
+  "type": "text-to-image",
+  "ai_model": "nano-banana-pro",
+  "prompt": "establishing shot, late-medieval fortified river freeport, stone quays and warehouses, busy river barges, banners of multiple factions, golden afternoon light, painterly atmospheric, no figures",
+  "status": "SUCCEEDED",
+  "progress": 100,
+  "created_at": 1777167125967,
+  "started_at": 1777167126507,
+  "finished_at": 1777167225403,
+  "expires_at": 1777426425403,
+  "image_urls": [
+    "https://assets.meshy.ai/2872987b-afbf-4fa0-95f0-231417dc567c/uploads/image_019dc76a-4dc6-767f-82d6-40ace9be7833_0.png?Expires=1777426425&Signature=hqtjCdMFZWwNEyQFlNhJX3bSOgDDq4pvdCOqnu9TrZiGncRKn7OgpuNbno3il7J2C0LzDUZoS89MIjV-~Lwj4gSg0BwGquvm48PAb5f2BVqUxGIQVFga~agcEH9gsfw0if7THV-ZU26jixm7mgVEbH1Lr6GFeq1EpQQUq~BmDNA-WngpMzGQqjATcmlR-OMrop2t93lpOL3nZqG3vTsWYD90Hpb5dhQl4HVfEoCc-jDQXo4Ic5DF7~6ksw8YPwH64-q9XQjW4K5bBqh8p180ZPsdPb7D8qcZghp94pAVBMfKk45FCbcR2-dWredeM7bVhz8YSVaVxF42s3H6aGpv6A__&Key-Pair-Id=K1VGYTHIYLM9UM"
+  ],
+  "consumed_credits": 9
+}

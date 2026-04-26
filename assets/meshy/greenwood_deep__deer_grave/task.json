@@ -1,0 +1,16 @@
+{
+  "id": "019dc76d-74cc-76da-990a-3a1285ae1d74",
+  "type": "text-to-image",
+  "ai_model": "nano-banana-pro",
+  "prompt": "establishing shot, small mossy stone cairn in deep fir forest, antlers laid against it, dim green-grey light, painterly atmospheric, late-medieval fey, no figures",
+  "status": "SUCCEEDED",
+  "progress": 100,
+  "created_at": 1777167332568,
+  "started_at": 1777167332845,
+  "finished_at": 1777167372850,
+  "expires_at": 1777426572850,
+  "image_urls": [
+    "https://assets.meshy.ai/2872987b-afbf-4fa0-95f0-231417dc567c/uploads/image_019dc76d-74cc-76da-990a-3a1285ae1d74_0.png?Expires=1777426572&Signature=fbixmLhN~1NSSGLJKfBruxIvxgQAImE3wgvfEyJd5ZxQdXnhgbkoZEH0IMi3z8eHJRZ2bx~YbR6LpQmTuoaNZ8Gy6SIYRcru-sTU9fpdILcp7Jk06jEulC8tViKzrlXs8UePW3NX8A1x9Fvaa~nJWKvvDTu0sH~Ta0rw-PhYPzTS2xgHgIl~WTpT35M7VJW2NxLycl8M3B5Kal2b6CKLosaEu89GvciKVctzicMU2W2SIRn1na5Hvg5D5G6sq8INPrtwPDEBMD5fcGNC8aWiyeKcFvLv6mZI0Lazn4EcahpckOx7KbuSG8XcBcY-ie6TctQIC8~CnYhwTT9FuKmQIA__&Key-Pair-Id=K1VGYTHIYLM9UM"
+  ],
+  "consumed_credits": 9
+}

@@ -1,0 +1,16 @@
+{
+  "id": "019dc718-02cb-728b-bab1-d37f43ad1bf1",
+  "type": "text-to-image",
+  "ai_model": "nano-banana-pro",
+  "prompt": "wide establishing landscape, snow-capped alpine peaks, glacier valley, ancient collapsed stone watchtower in the foreground, blizzard-haze, cold blue light, painterly atmospheric, no figures",
+  "status": "SUCCEEDED",
+  "progress": 100,
+  "created_at": 1777161732822,
+  "started_at": 1777161732829,
+  "finished_at": 1777161759304,
+  "expires_at": 1777420959304,
+  "image_urls": [
+    "https://assets.meshy.ai/2872987b-afbf-4fa0-95f0-231417dc567c/uploads/image_019dc718-02cb-728b-bab1-d37f43ad1bf1_0.png?Expires=1777420959&Signature=ZBwkKC0bQIw~xCniUVBEJMLTPGJRCfyZQ25WVCugfta9dJH41YwcttmgHCZ9IFSfKSdjlDQYyhYtWonTFsiabNkm83gLQegl6RpQECFbyxs~WsUGcXQke0eFf7BtllzHLwk4yz3xBC3-3zGQmeUBz7YLSF3N7vOs0aGU913SaGYPU4xO8~tm1RizTlg22~JIK1IrqE4qU0SlUv73Pc6eE0kMBgRPpwVw6Eocg2-18svECoXycygZuhPPz2oJHpNMzM~6LqyBtJsNNnKDIIkbC24N6jQM6ceMVvK17Xgd-JxqPrGV9NZGhIegpi4huiN9nT80ul9TjuQXt576mZKRdQ__&Key-Pair-Id=K1VGYTHIYLM9UM"
+  ],
+  "consumed_credits": 9
+}

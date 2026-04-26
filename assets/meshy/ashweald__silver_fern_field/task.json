@@ -1,0 +1,16 @@
+{
+  "id": "019dc76c-100f-72eb-8217-cebdef3ffd75",
+  "type": "text-to-image",
+  "ai_model": "nano-banana-pro",
+  "prompt": "establishing shot, field of pale silver ferns in a charred wood, dim amber-grey afternoon light, painterly atmospheric, no figures",
+  "status": "SUCCEEDED",
+  "progress": 100,
+  "created_at": 1777167241242,
+  "started_at": 1777167241824,
+  "finished_at": 1777167282297,
+  "expires_at": 1777426482297,
+  "image_urls": [
+    "https://assets.meshy.ai/2872987b-afbf-4fa0-95f0-231417dc567c/uploads/image_019dc76c-100f-72eb-8217-cebdef3ffd75_0.png?Expires=1777426482&Signature=Khi5ctc2EtYLHnqEji5~s7-TGJZcKJxk1oCl38u5HoZLT7cOw0vrw5nCOdTxL7zadXqkUJ3BcVBF03lEkgHe4vlLyJaAPV9HGmkzUNx0LoLnA9YsoORPdvZ9f3ZOeHfhYm-N3ETSIzkTTNBgxiAbRS4Bm8-Zk~2NgCj2Vqw6-xwY8G4TEgaWqpwWRhTalYdNT-embNFhudHsE-MTurbu2ozKbXE1Fv2MLnJVEXLmD9zXkkan~bFFAEyY8DVfGQYmUfRPDJGEyHiZogreqbBwDkmUlS8LVteAilAc-oxngXt7bXJL3bpjQHqH7lQZZjk8Fk9cEeYU6gV5tp82gXo9rA__&Key-Pair-Id=K1VGYTHIYLM9UM"
+  ],
+  "consumed_credits": 9
+}

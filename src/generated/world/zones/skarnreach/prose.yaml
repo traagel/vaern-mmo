@@ -1,0 +1,51 @@
+zone:
+  vibe: Skarn fjord-home — longhalls, skin-boats, salt and iron.
+  description: The Skarn starter, hard against the eastern fjords. The Longhall sits on a
+    basalt headland over Bloodwater Landing; the Skarn measure status by what you've raided
+    and how honestly you talk about it. Pact-allied by treaty, but the old chieftains still
+    sail past Concord cliffs at night and come back with stories nobody wrote down.
+  prompt: wide establishing landscape, narrow cold fjord, basalt headland with timber longhall,
+    longships moored below, low pewter sky, painterly atmospheric, late-medieval viking aesthetic,
+    no figures
+hubs:
+  skarn_longhall:
+    description: The Skarn capital — a great turf-roofed longhall on a basalt headland over
+      the Bloodwater fjord. Chieftain Halvor's mead-bench is the only seat that everyone stands
+      when he stands. He doesn't stand often. The raid-rolls go back further than the Concord
+      oath, and Halvor is content to let outsiders read them, as a kind of warning.
+    prompt: establishing shot, Skarn timber longhall with turf roof on a basalt headland above
+      a fjord, longships moored below, salt mist, low pewter light, painterly atmospheric,
+      late-medieval viking, no figures
+  bloodwater_landing:
+    description: The Skarn's working dock — a stone quay and shipwright's yard at the foot
+      of the Longhall basalt. Three half-built longships at any time, two crews drinking,
+      one fight that is settled by the time the tide comes in. The name is literal; the quay-stone
+      was worked by Skarn who didn't all survive the working.
+    prompt: establishing shot, working Skarn shipwright quay at the foot of basalt cliffs,
+      half-built longships on stocks, smoke from forge fires, cold afternoon pewter light,
+      painterly atmospheric, late-medieval viking, no figures
+landmarks:
+  raid_stone:
+    description: A standing stone above the longhall on which every successful raid is carved.
+      The Skarn add lines themselves; the Concord would like a copy and have been politely
+      refused for three generations.
+    prompt: establishing shot, standing stone on a basalt headland above a fjord, dense carved
+      lines covering every face, leaden cold light, painterly atmospheric, late-medieval viking,
+      no figures
+  widow_cliff:
+    description: A cliff edge where Skarn widows traditionally throw the broken weapons of
+      dead warriors into the sea. Locals know which corner the tide returns the iron to.
+    prompt: establishing shot, sheer basalt cliff above a cold fjord, rusted weapons in cracks
+      of the rock at the edge, leaden cold light, painterly atmospheric, late-medieval, no
+      figures
+  seal_rocks:
+    description: A flat shelf of rocks at the foot of the fjord where seals haul out every
+      spring. The Skarn hunt them by formal agreement, and the seals seem to accept the arrangement.
+    prompt: establishing shot, flat sea-rocks at the foot of a fjord, seals hauled out, salt-spray,
+      cold afternoon pewter light, painterly atmospheric, late-medieval, no figures
+  burial_ship_mound:
+    description: A turfed mound where the Skarn have buried at least one longship, possibly
+      three. The Skarn insist the count is personal. The mound is taller than any nearby hill.
+    prompt: establishing shot, vast turf-covered burial ship mound on a windswept basalt slope,
+      weathered standing stones at its base, leaden cold light, painterly atmospheric, late-medieval
+      viking, no figures

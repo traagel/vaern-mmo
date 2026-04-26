@@ -1,3 +1,13 @@
 /target
 /assets/extracted/
 /assets/zips/
+
+# secrets — API keys etc. NEVER commit
+.env
+.env.*
+!.env.example
+
+# Python bytecode
+__pycache__/
+*.pyc
+*.pyo

@@ -1,0 +1,16 @@
+{
+  "id": "019dc76b-0818-72d5-846c-d36d8be7508e",
+  "type": "text-to-image",
+  "ai_model": "nano-banana-pro",
+  "prompt": "establishing shot, mossy pre-Veyr ruin pillar at the edge of a silver birch forest, small scholar way-station built against it, dappled light, painterly atmospheric, late-medieval, no figures",
+  "status": "SUCCEEDED",
+  "progress": 100,
+  "created_at": 1777167173668,
+  "started_at": 1777167174211,
+  "finished_at": 1777167322163,
+  "expires_at": 1777426522163,
+  "image_urls": [
+    "https://assets.meshy.ai/2872987b-afbf-4fa0-95f0-231417dc567c/uploads/image_019dc76b-0818-72d5-846c-d36d8be7508e_0.png?Expires=1777426522&Signature=BFcUSx7LzxgjvikJYOgeXw4foog2MWUXj6O6ZKEpMuOiDutR7K~eaGY0SuRO5sT1d7S3RZ0NfwyqkXnhLp78saXj-GLfSAo5BMJc5l5hwSE-kTZLfJz3dy8QfOIFHHdWssT8zHwmcqm8va-Vi8bPmLDGcXP~86GPNgJ3yrKK2r3UNsMRly2CKLVcbn4Xdy0wg1B0v9EgNGM1WxAk9HGeROdbhdxLKpH4L31vlYOIkCKWXHAZuJ5-Vq9Z~7V~d1y6IbEMpqE4PoJeHv9DqWplF-qRRreY9ToCeQ8IC3NPKM9kVx4yZIOjKLPQJtNNUTk62NLEWyVwndBHTouy8hvH4w__&Key-Pair-Id=K1VGYTHIYLM9UM"
+  ],
+  "consumed_credits": 9
+}

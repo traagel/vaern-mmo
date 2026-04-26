@@ -1,0 +1,16 @@
+{
+  "id": "019dc77d-7057-78e4-9239-27e24238d42d",
+  "type": "text-to-image",
+  "ai_model": "nano-banana-pro",
+  "prompt": "Portrait of a female Sunward Elen, single figure, isolated subject, three-quarter view from waist up. tall high elf, long pointed ears, silver or pale-gold hair, pale luminous skin, silver-embroidered long robes. high elf with face fully visible and uncovered, long pointed elven ears clearly showing, silver or pale-gold hair, violet or gold luminous eyes, ageless fair skin with faint golden undertone, no hood. tall slender elven build, 5'10\"\u20136'4\", long limbs, elegant elongated proportions, graceful precise movement. fair skin with faint golden undertone, straight silver or pale-gold hair, violet or gold eyes, angular high cheekbones, long pointed ears, ageless smooth features, faintly luminous skin. hair: long straight hair often bound in a silver circlet, rune-ringed braid at the temples, sometimes a high crown-braid. attire: long layered robes of fine silk and silver-thread embroidery, rune-stitched hems, high collars, jeweled circlets, ceremonial spell-scroll at the belt. posture: tall upright elongated, straight-spined arcane-scholar posture, measured carriage. painterly atmospheric character portrait, late-medieval fantasy aesthetic, soft directional lighting, neutral dim background, oil-painting feel, no other characters, no text, no watermark.",
+  "status": "SUCCEEDED",
+  "progress": 100,
+  "created_at": 1777168380002,
+  "started_at": 1777168380021,
+  "finished_at": 1777168491463,
+  "expires_at": 1777427691463,
+  "image_urls": [
+    "https://assets.meshy.ai/2872987b-afbf-4fa0-95f0-231417dc567c/uploads/image_019dc77d-7057-78e4-9239-27e24238d42d_0.png?Expires=1777427691&Signature=B7nt5ikdfSIqL2ZP0R3d9nnXucoXGfD1vV3aNEylY6e4fmZq0HvDwBeo6lediLieFulCrg09nw44lYQAoQlmVZ9BchwaeymaqnsrWdfYHJWEuzXx7zu0BVP5kcdWzYd~-OsepbwGNY38eeNf~Lh1SFmLry5Xhqo0AKQpxjt~giNSmNi728BugRdL2-1H6wzwkcwnG2DCNWYTcXd7Yicb49aJzWMMCRAVsGuRQ8YlHqrNi1IKfOtvEyjhhmCXphd9Rl65lvcZX-HC4ElLwUk9iGbLFLfvqq0z~uVeuu7qwJnhD07JeXUBsurf2eS~PvvM63zDup1H~VYgDEuubs2NNg__&Key-Pair-Id=K1VGYTHIYLM9UM"
+  ],
+  "consumed_credits": 9
+}

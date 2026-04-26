@@ -1,0 +1,16 @@
+{
+  "id": "019dc76a-9d7a-7af2-9367-b05cabaaadc4",
+  "type": "text-to-image",
+  "ai_model": "nano-banana-pro",
+  "prompt": "establishing shot, Skrel scavenger mound camp on a marsh flat, salvaged metal sheds and tarps, vat-tanks of acid, low pale light, painterly atmospheric, no figures",
+  "status": "SUCCEEDED",
+  "progress": 100,
+  "created_at": 1777167146377,
+  "started_at": 1777167146731,
+  "finished_at": 1777167177316,
+  "expires_at": 1777426377316,
+  "image_urls": [
+    "https://assets.meshy.ai/2872987b-afbf-4fa0-95f0-231417dc567c/uploads/image_019dc76a-9d7a-7af2-9367-b05cabaaadc4_0.png?Expires=1777426377&Signature=mV8opQaDXMqKI4tnhoSlhSCnpBfZArIcodupr0fWglRcdiZ08hPssB~np7Duc-EfjRUwa~I30xfHnUoYTu2utMQmg0yvBlToY3MKF0h~XsR7TQb6MsMZXT96bXICsgPEA8ODV6VwOdlxN70X0Og3ThzK0jE-qeSgDs6nEDrDAp0vqsg64gZ3U9X3uxVIxt1bLHD25vENK-dKpjiqUCGHdcLMPziEFAjjxSyuxWY-fCdYNnGwhV9ji3Yh31z1f0F9j4Va8RiI-42b8R-aJf5kYwaLHq6N7BinE6me7Jwk4S9aHJi~qlgN73yaYS9un1WPGoXm49EILnNmwgGWCDBnEw__&Key-Pair-Id=K1VGYTHIYLM9UM"
+  ],
+  "consumed_credits": 9
+}

@@ -1,0 +1,16 @@
+{
+  "id": "019dc717-9405-77a9-8905-c2ea9772c00d",
+  "type": "text-to-image",
+  "ai_model": "nano-banana-pro",
+  "prompt": "wide establishing landscape, mist-bound marshland of sedge and black water, half-submerged plank walkway, dead trees, low pale dawn light, painterly atmospheric, no figures",
+  "status": "SUCCEEDED",
+  "progress": 100,
+  "created_at": 1777161704464,
+  "started_at": 1777161704565,
+  "finished_at": 1777161728272,
+  "expires_at": 1777420928272,
+  "image_urls": [
+    "https://assets.meshy.ai/2872987b-afbf-4fa0-95f0-231417dc567c/uploads/image_019dc717-9405-77a9-8905-c2ea9772c00d_0.png?Expires=1777420928&Signature=frZVONthdv69EfJt1vuzwoaYjC~Y~T4eR0nZnlSYIXB0Mtxv~OSM-xbE02aLAWy3n2vzYphyvyrJ0b1PWAzt1xs5a7PnnEtyZxw5eR5c4RMr6xQcoq0n~-Si5IuKMCBJJUnyUwCaIB3nz9hFC1W2sbZTAFUnMbu8hI0GzZKpKZwJZuj1gJ10zS904O4hCkxa3AnPF~svQJT3P1l~jrYuF4r26guZYml6DOF3Dmi2EDKHzCvQ3cfkclGx9Yij07fo9dzHU7C6GdmlDtxq1YBGQJbuLIzYD5RR1mDq9jLZJ-q4KlEQ8VFTFuKuly-s71A~oSjQ2OaW3QIgflc8fXpvEA__&Key-Pair-Id=K1VGYTHIYLM9UM"
+  ],
+  "consumed_credits": 9
+}

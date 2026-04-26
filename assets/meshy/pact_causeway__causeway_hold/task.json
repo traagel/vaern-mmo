@@ -1,0 +1,16 @@
+{
+  "id": "019dc76a-4e3c-7ae8-b7fb-7fc63e9601d5",
+  "type": "text-to-image",
+  "ai_model": "nano-banana-pro",
+  "prompt": "establishing shot, long stone causeway-hold along a steppe ridge, fortified gateways at intervals, banners and oath-pillars on each, overcast cool afternoon light, painterly atmospheric, late-medieval, no figures",
+  "status": "SUCCEEDED",
+  "progress": 100,
+  "created_at": 1777167126092,
+  "started_at": 1777167126552,
+  "finished_at": 1777167238519,
+  "expires_at": 1777426438519,
+  "image_urls": [
+    "https://assets.meshy.ai/2872987b-afbf-4fa0-95f0-231417dc567c/uploads/image_019dc76a-4e3c-7ae8-b7fb-7fc63e9601d5_0.png?Expires=1777426438&Signature=H23lJYK59Ivdr32SBc1sdIbA8eia58Q94QqBGopj1LbK1YRs4AmJ8Wf4mtrYEQlOmn8ijaIeRNZ0Y4i5FamYxA8bGQQcE7tmCsiWbHug-BOZJ6WlPIh0IsD5GiNPYYvG2fQT001En84emeF2QBJZyu2G5UeaRfgsCAt-4UJ0xR4n~0BCG1Op30YFt7yl5oXPmHN7580~0Y4RYVUJshfytlQkQMhCJEu9anrP2EwjvqEifBo~G3CUs7GpcbfTCCFU9FRti1LSjeVAmAgYtgk5X~Nctyf2k4hpqPNBfreZiYsuYXaZnaWVglnpvBdzSOp6c-A74RpQyxnLrUbZDA0K5g__&Key-Pair-Id=K1VGYTHIYLM9UM"
+  ],
+  "consumed_credits": 9
+}

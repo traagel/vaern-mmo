@@ -1,0 +1,16 @@
+{
+  "id": "019dc769-f521-7d03-8b67-1f4feb3e69d0",
+  "type": "text-to-image",
+  "ai_model": "nano-banana-pro",
+  "prompt": "establishing shot, Firland forest outpost beside an ancient mossy stone cairn, weathered timber lodges, dim green light, painterly atmospheric, late-medieval fey, eerie mood, no figures",
+  "status": "SUCCEEDED",
+  "progress": 100,
+  "created_at": 1777167103278,
+  "started_at": 1777167103404,
+  "finished_at": 1777167122809,
+  "expires_at": 1777426322809,
+  "image_urls": [
+    "https://assets.meshy.ai/2872987b-afbf-4fa0-95f0-231417dc567c/uploads/image_019dc769-f521-7d03-8b67-1f4feb3e69d0_0.png?Expires=1777426322&Signature=oRC9RDei7mTIpplIs2yfR2Qg50eyIW1zkZQ086d~fLUQWcjxgEowc2RNRpBeK25Fa3gWYKlPXFQnZuigx-1UvwpYkKHA8dTjskMn9O5HYBjyNL9~hiB6AqY-xcStkhyB2a~YWkIrH4oOWOsPsz1MzXEyglTAtNpy7TEIZ6I3bkSDzLQ-3aB-uXEEvGBMVg4jLaCi~55VD2Y4XrVTVo4zM6hs7FaZCr6GgHsufHc91Jc9j6dNjlaa97Xq4KthmwzqRa6fJRvrmKzDH9SR49QB-TcZnmokdMpp2ykNZaTyAUTwIbSndRNkLAcnGf5xZulUqYJpkoIqXpb3sOFunkeS3A__&Key-Pair-Id=K1VGYTHIYLM9UM"
+  ],
+  "consumed_credits": 9
+}

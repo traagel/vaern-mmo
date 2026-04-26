@@ -1,0 +1,53 @@
+zone:
+  vibe: Darkling Elen ash-forest — black bark, banked fires, old grudges.
+  description: The Darkling Elen starter at the western edge of the Ashen March. Charcoal-bark
+    trees that breathe out woodsmoke, banked fires kept against the wind in ringed earthworks,
+    the Spire watching everything from its black crag. The Darkling Elen took the Hraun oath
+    in the Coming and have not forgiven the Sunward branch for refusing. New recruits learn
+    that grudge first.
+  prompt: wide establishing landscape, ashen forest of charcoal-black bark and grey leaf-fall,
+    dim red banked fire-rings under trees, distant black spire on a crag, sickly amber sky,
+    painterly atmospheric, late-medieval dark elf, no figures
+hubs:
+  shadegrove_spire:
+    description: The Darkling Elen capital — a black basalt spire rising from an ash forest,
+      banded with iron rings cast in the Coming. Speaker-Black Ravael keeps the inner rolls
+      and a private list of grievances against the Sunward branch that runs to four volumes.
+      Outsiders are received in the lower hall, where the ceiling is low and the light is
+      deliberately bad.
+    prompt: establishing shot, black basalt Darkling Elen spire above an ashen forest, iron-banded
+      rings around the tower, dim amber-red light, painterly atmospheric, late-medieval dark
+      elf, no figures
+  blackleaf_bower:
+    description: A forward bower-outpost south of the Spire — woven shadow-branch over a banked
+      fire-ring, six lodge-cottages, a smith and a bowyer. Bower-Mother Sela is the Spire's
+      official liaison with the Skrel of the Scrap-Marsh, which means she wears a permanent
+      expression of constructive frustration.
+    prompt: establishing shot, Darkling Elen forest bower with woven shadow-branch canopy,
+      banked fire-ring, modest lodges in the gloom, dim sickly amber light, painterly atmospheric,
+      late-medieval dark elf, no figures
+landmarks:
+  burnt_arbor:
+    description: A pre-Coming Sunward Elen arbour the Darkling Elen burned publicly in the
+      second year of the Coming, and have never rebuilt or removed. A Reach scholar tends
+      the cooled scorch-marks.
+    prompt: establishing shot, ruined burned-out arbour of pale stone in an ashen forest,
+      scorch marks on broken pillars, sickly amber twilight, painterly atmospheric, late-medieval
+      dark elf, no figures
+  blackleaf_spring:
+    description: A spring whose water comes out faintly black and tastes faintly of iron.
+      The Darkling Elen consider it healthful; outsiders are advised to drink something else.
+    prompt: establishing shot, dark forest spring with faintly black water, mossy stones,
+      dim sickly amber-red light, painterly atmospheric, late-medieval dark elf, no figures
+  crow_pillar:
+    description: A black basalt pillar around which a colony of crows nest. The Darkling Elen
+      consider the crows registered citizens for augury purposes. The crows decline to comment.
+    prompt: establishing shot, single black basalt pillar in an ashen forest, crows on every
+      branch and the pillar's cap, dim amber-red light, painterly atmospheric, late-medieval,
+      no figures
+  ash_grave_circle:
+    description: A circle of low burial-mounds that the Darkling Elen tend by rota. The mounds
+      are older than the Coming. The names on the stones don't match the rolls.
+    prompt: establishing shot, circle of low ash-covered burial mounds in a dark forest clearing,
+      leaning weathered stones, sickly amber dusk, painterly atmospheric, late-medieval, no
+      figures

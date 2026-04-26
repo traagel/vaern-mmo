@@ -1,0 +1,57 @@
+zone:
+  vibe: Endgame deep-mine country — Lightless gallery, Carver-Mother kin, no daylight.
+  description: The mountain range under the ruin-line was mined long before either faction
+    existed; what came out of the deepest galleries is part of why the Coming happened. The
+    Lightless Gallery still answers to Hearthkin pickaxes when anyone is brave enough to swing
+    one. The deeper levels answer to the Carver-Mother's brood, which is a different kind
+    of answer.
+  prompt: wide establishing landscape, rugged mining mountain range above the ruin line, scaffolds
+    and abandoned shaft entrances, leaden sky, oppressive mood, painterly atmospheric, no
+    figures
+hubs:
+  old_tunnel_camp:
+    description: A surface camp at the mouth of the upper sundering tunnels — Hearthkin scaffolds,
+      two veteran patrol leaders, and a single stone-cut chapel for the miners who have stopped
+      coming back. The chapel is still consecrated, more or less, and nobody is sure who is
+      performing the upkeep.
+    prompt: establishing shot, surface mining camp at the mouth of abandoned mountain tunnels,
+      scaffolded shafts and stone chapel, leaden afternoon cold light, painterly atmospheric,
+      late-medieval, no figures
+  mineshaft_alpha:
+    description: A deeper waypoint inside the upper galleries — a single stone bunkhouse cut
+      into the wall, a watch-station, a list of provisions that everyone signs in and signs
+      out of. The list is not always complete in the same direction.
+    prompt: establishing shot, deep mine gallery waypoint, stone bunkhouse cut into the wall,
+      lantern-lit corridor, scaffold timbers, dim warm-cold light, painterly atmospheric,
+      no figures
+  lightless_gallery:
+    description: The deep gallery proper — a vast unlit hall that was mined to its current
+      shape and then abandoned. The Hearthkin say the original miners chose to abandon it.
+      The records say their captains chose for them. The deeper lights are not provided by
+      either.
+    prompt: establishing shot, vast unlit deep mining gallery, abandoned scaffolds and ore
+      wagons, faint distant phosphorescence, oppressive dark mood, painterly atmospheric,
+      no figures
+landmarks:
+  dark_chimney:
+    description: A vertical mine-shaft so deep that the Hearthkin who surveyed it never found
+      the bottom. Outsiders are welcome to lower ropes; the ropes do not return alone.
+    prompt: establishing shot, vast vertical mine-shaft entrance carved into a mountain wall,
+      dark below, abandoned scaffolds at the rim, leaden cold light, painterly atmospheric,
+      oppressive mood, no figures
+  scaffold_grave:
+    description: A cluster of pickaxe-handles driven into the rock as a memorial to Hearthkin
+      lost in a single bad shift. There are sixty-two handles. The dead were forty-seven.
+    prompt: establishing shot, cluster of weathered Hearthkin pickaxe handles driven into
+      a mountain wall as memorials, leaden cold light, painterly atmospheric, late-medieval
+      dwarven, oppressive mood, no figures
+  phosphor_pool:
+    description: A subterranean pool the Skrel scavengers have started harvesting for phosphor-fungus.
+      The Hearthkin disapprove; the phosphor doesn't know the difference.
+    prompt: establishing shot, glowing green underground phosphor pool in a mining gallery,
+      fungal growth on the walls, sickly green-blue light, painterly atmospheric, no figures
+  carver_signs:
+    description: A series of carvings down a shaft wall, made by something that was clearly
+      not a Hearthkin. The Hearthkin have stopped trying to translate them.
+    prompt: establishing shot, deep mine shaft wall covered in alien carvings, lantern-lit,
+      oppressive cold mood, painterly atmospheric, no figures

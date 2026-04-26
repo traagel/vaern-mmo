@@ -1,0 +1,16 @@
+{
+  "id": "019dc771-26b3-73d4-8559-ca1520f2c86c",
+  "type": "text-to-image",
+  "ai_model": "nano-banana-pro",
+  "prompt": "wide establishing landscape, burned-then-regrown ashland forest, charcoal-black birch with pale silver leaves, ruined shrine in a clearing, banked embers, low amber light, painterly atmospheric, no figures",
+  "status": "SUCCEEDED",
+  "progress": 100,
+  "created_at": 1777167574729,
+  "started_at": 1777167574919,
+  "finished_at": 1777167664744,
+  "expires_at": 1777426864744,
+  "image_urls": [
+    "https://assets.meshy.ai/2872987b-afbf-4fa0-95f0-231417dc567c/uploads/image_019dc771-26b3-73d4-8559-ca1520f2c86c_0.png?Expires=1777426864&Signature=BYrB1rsYdtTap6lnUnzpPwXOKrqdH78k5bYjcoP6OB5Mb19t1G3Hx9BMt8JzefaFYirwDcTQFAgilKJ4n06HvR4zs3J1XRSDyPB0klK0egTcKoHSRn34A8vjMJrKwjLUCXMHFdFzVZyC5lmc6lPaY2ekxn0Gjpo55d6cv5Pw8eXubfCFEW2FZdksvcABPt62AYI-lDUTZieG01QftuooJ-sqnXlcyl~F2MAEyJ2mkJ38F7iRaR88qw6uiLbjUpjsc6shU5B7oHrx9YArORyfgNEV-FVDlfPfPr4MBE0HoDgqtooJ1OWxM3Oh0a-ufrkWqswd0gZToDjoeXqD2uba1g__&Key-Pair-Id=K1VGYTHIYLM9UM"
+  ],
+  "consumed_credits": 9
+}

@@ -1,0 +1,42 @@
+id: landmarks__firland_greenwood
+zone: firland_greenwood
+landmarks:
+- id: speakers_silence
+  name: The Speakers' Silence
+  offset_from_zone_origin:
+    x: 100.0
+    z: 220.0
+  description: A clearing where the Greenmoot's Speakers go to perform the annual silence.
+    No outsider has ever been admitted; nobody is sure what the silence is for.
+  prompt: establishing shot, mossy forest clearing with six worn timber seats around a cold
+    central fire-ring, deep green twilight, painterly atmospheric, late-medieval fey, no figures
+- id: witch_birch
+  name: The Witch-Birch
+  offset_from_zone_origin:
+    x: -180.0
+    z: 80.0
+  description: A single silver birch in the wood's east, twice the size of the others around
+    it. The Firland do not name it. The bark has been carved on, by no one anyone admits to
+    knowing.
+  prompt: establishing shot, single immense silver birch tree in a deep fir forest, scarred
+    runic carvings on its trunk, dim green light, painterly atmospheric, late-medieval fey,
+    no figures
+- id: deer_path_pool
+  name: The Deer-Path Pool
+  offset_from_zone_origin:
+    x: 60.0
+    z: -200.0
+  description: A pool fed by an underground spring in the forest floor. The deer drink here.
+    The deer don't all come back the same. The tarn-wardens list the count.
+  prompt: establishing shot, woodland pool fed by a clear spring, deer trail leading to it,
+    mossy stones, soft green-blue light, painterly atmospheric, late-medieval fey, no figures
+- id: oldfir_remains
+  name: The Old-Fir Remains
+  offset_from_zone_origin:
+    x: -90.0
+    z: -260.0
+  description: The fallen trunk of a fir that the Firland insist was alive in the second Concord.
+    The trunk is hollow, large enough to shelter a horse, and warm to the touch in winter.
+  prompt: establishing shot, vast hollow fallen fir trunk on a moss forest floor, large enough
+    to walk into, soft warm light from inside, painterly atmospheric, late-medieval fey, no
+    figures

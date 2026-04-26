@@ -1,0 +1,45 @@
+id: landmarks__stoneguard_deep
+zone: stoneguard_deep
+landmarks:
+- id: forge_chimney_ridge
+  name: Forge-Chimney Ridge
+  offset_from_zone_origin:
+    x: -180.0
+    z: 90.0
+  description: A ridge venting permanent forge-smoke from the deeper halls below. The Hearthkin
+    keep the chimneys clear by rota; the rota has been short-handed since the rockworms moved
+    up.
+  prompt: establishing shot, mountain ridge venting steady forge smoke from carved stone chimneys,
+    snow on the slopes, leaden afternoon light, painterly atmospheric, late-medieval dwarven,
+    no figures
+- id: collapsed_lower_stair
+  name: The Collapsed Lower Stair
+  offset_from_zone_origin:
+    x: 60.0
+    z: -200.0
+  description: A grand stair down to the abandoned lower halls, blocked at the third landing
+    by a controlled collapse. The Hearthkin sealed it after the rockworms; somebody has reopened
+    the seal twice.
+  prompt: establishing shot, vast carved stone stair descending into darkness, broken at a
+    landing by a deliberate rockfall, dim warm lamp glow, painterly atmospheric, late-medieval
+    dwarven, no figures
+- id: granite_pillar_grove
+  name: The Granite Pillar Grove
+  offset_from_zone_origin:
+    x: 220.0
+    z: 130.0
+  description: A natural cavern outside the city's gates where forty-three basalt pillars
+    stand in a rough circle. The Hearthkin say the pillars predate them; the carvings on them
+    say otherwise.
+  prompt: establishing shot, cathedral-sized natural cavern with forty tall basalt pillars
+    in a rough circle, lantern light at the base, painterly atmospheric, late-medieval, no
+    figures
+- id: rockworm_breach
+  name: The Rockworm Breach
+  offset_from_zone_origin:
+    x: 300.0
+    z: -90.0
+  description: A jagged tunnel mouth where the rockworms came up last winter. Sealed twice,
+    breached three times. The Hearthkin patrol the edge of it on rotation; they don't go inside.
+  prompt: establishing shot, jagged tunnel breach in a mountainside, scattered Hearthkin pickaxes
+    and broken seal-stones, dim warm light from inside, painterly atmospheric, no figures

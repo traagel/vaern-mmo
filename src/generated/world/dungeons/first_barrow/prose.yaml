@@ -1,0 +1,62 @@
+dungeon:
+  description: |
+    The earliest of the Barrow Coast burial-shells, opened in the second
+    century of the Gravewrought reckoning and never properly sealed. The
+    ancestor-rite that should keep the shells settled has been slipping
+    here for a generation; the shells walk now, and they remember being
+    asked questions they don't want to answer again. Speaker-Auntie
+    Mevra has filed dispensation to clear it but won't go in herself.
+  prompt: >-
+    establishing shot, dungeon interior, ancient stone burial chamber,
+    lichen-streaked grave-iron sarcophagi, cold mist on flagstones,
+    guttering grease lamps, painterly atmospheric, oppressive mood, no
+    figures
+bosses:
+  hollow_keeper:
+    description: |
+      Was a junior Speaker assigned to keep the funeral-chant unbroken
+      through the night-watches; died at his post and kept chanting. The
+      chant is the boss-fight: a low repeating dirge that silences any
+      caster caught inside its arc. Players who knew the rite say the
+      keeper is two verses ahead of where the cycle should be, which is
+      why the shells will not lie down.
+    prompt: >-
+      portrait, single subject, robed Gravewrought ancestor-shell,
+      hollow-eyed, ash-grey skin, grave-iron pectoral, mouth open mid-
+      chant, painterly atmospheric, oppressive mood, isolated subject,
+      no other figures
+    negative_prompt: >-
+      multiple figures, party, group, modern, futuristic, sci-fi, anime,
+      cyberpunk, watermark, text
+  twin_shells:
+    description: |
+      Sister-shells of House Vraen, buried in matched sarcophagi after
+      they died on the same winter night in the year of the Coming.
+      Their rite was bound together — each draws breath from the other,
+      and either one alive will mend the other. Kill them within four
+      heartbeats of each other or the fight resets in slow, patient
+      stages.
+    prompt: >-
+      portrait, single subject, paired Gravewrought sister-shells, twin
+      grave-iron masks, matched burial robes, frost on shoulders, hands
+      reaching toward each other, painterly atmospheric, oppressive
+      mood, isolated subject, no other figures
+    negative_prompt: >-
+      multiple figures, party, group, modern, futuristic, sci-fi, anime,
+      cyberpunk, watermark, text
+  first_mother:
+    description: |
+      The shell at the bottom of the barrow — the woman the rite was
+      first written for, two hundred and forty years ago. She summons
+      grave-iron adds from the wall-niches; at thirty percent health
+      she steps sideways into a shadow-phase the rite was supposed to
+      forbid. Mevra's official position is that she is not who she
+      claims to be. Mevra's unofficial position is more careful.
+    prompt: >-
+      portrait, single subject, regal Gravewrought matriarch shell,
+      grave-iron crown, layered burial silks, two-hundred-year skin,
+      cold smile, painterly atmospheric, oppressive mood, isolated
+      subject, no other figures
+    negative_prompt: >-
+      multiple figures, party, group, modern, futuristic, sci-fi, anime,
+      cyberpunk, watermark, text

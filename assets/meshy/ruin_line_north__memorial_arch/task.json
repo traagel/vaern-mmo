@@ -1,0 +1,16 @@
+{
+  "id": "019dc76e-caeb-7369-bfec-a3f58393da83",
+  "type": "text-to-image",
+  "ai_model": "nano-banana-pro",
+  "prompt": "establishing shot, weathered stone memorial arch on a blasted ruin-line ridge, dual inscriptions in two scripts, oppressive grey-amber light, painterly atmospheric, late-medieval, no figures",
+  "status": "SUCCEEDED",
+  "progress": 100,
+  "created_at": 1777167420149,
+  "started_at": 1777167420805,
+  "finished_at": 1777167468996,
+  "expires_at": 1777426668996,
+  "image_urls": [
+    "https://assets.meshy.ai/2872987b-afbf-4fa0-95f0-231417dc567c/uploads/image_019dc76e-caeb-7369-bfec-a3f58393da83_0.png?Expires=1777426668&Signature=EZY4eAJsbebhUM~Z0mN5t45AIkRaKNMWzJmDMZfc2UIebSgzT25u7IqjwMrsf2gv8-oe-HbBDOaLiWP3WV-9mm0bA9ypJAHpJ0Pkj70WNvopcMXwt2n1~8z8DGGqfaa8XJvW2a22f4WmuX8LYusOyLssUSVCdHViYgmpjvpa7bEXL5mix1TNr5BRU3t0NAoXXdoLhxnQxydrfW9jVzkT7vwKPU2UjAvy3f25cMgCb19JvRbsl8IvEkE~sFW~gSKYZzGX-YmRcxnPnI4tlIZLUJc7MbZaDnWW9R2I0dQ6-7MLp9wpMxkG0-I8GHu7RBHv8krjNPR1PHTh8ujeQTkahg__&Key-Pair-Id=K1VGYTHIYLM9UM"
+  ],
+  "consumed_credits": 9
+}

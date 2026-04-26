@@ -1,0 +1,61 @@
+zone:
+  vibe: Concord heartland — kingsroads, mill-towns, long-distance courier traffic.
+  description: The Concord's interior, where the kingsroads from four starter zones meet the
+    long road east. Stone-arch bridges, watermills working a full shift, the courier relays
+    carrying Warden orders to the Ford. Bandit war-bands have moved into the wood-margins
+    since the line thinned, and the Ride Crossroads garrison is rotating tax-detail patrols
+    faster than they can train them.
+  prompt: wide establishing landscape, late-medieval Burgundian kingsroad through hedgerow
+    farmland, stone-arch bridge, distant watermill, summer late afternoon golden light, painterly
+    atmospheric, no figures
+hubs:
+  ride_crossroads:
+    description: Concord civic crossroads — four kingsroads meeting at a wedge of ploughed
+      land, the post-station and tax-house side by side, a stone tower for the courier captains
+      and a horse-yard always full of remounts. Captain-Provost Aelwyn runs the place by paperwork;
+      the bandits in the wood-margins to the north are her current arrears.
+    prompt: establishing shot, Concord crossroads with stone tower post-station, four kingsroads
+      meeting on a wedge of farmland, busy horse-yard, summer late afternoon golden light,
+      painterly atmospheric, late-medieval Burgundian, no figures
+  flood_mill:
+    description: A grist-and-fulling mill-village at the south fork of the Ash, half-flooded
+      most springs and entirely flooded occasionally. Miller Hadda's daughter has rebuilt
+      the wheel three times in five years; the bandits respect the mill less than the river
+      does.
+    prompt: establishing shot, river-mill village with half-submerged lower buildings, working
+      waterwheel, packed timber steadings, late afternoon warm grey light, painterly atmospheric,
+      late-medieval, no figures
+  bandit_watchtower:
+    description: A Concord-built watchtower seized last year by a bandit war-band and held
+      since by Captain Byrn, who runs it almost like a Warden post. The locals pay tribute
+      to him and tax to the Crossroads, and the difference is small enough that nobody is
+      going to complain on the record.
+    prompt: establishing shot, square Concord stone watchtower on a low ridge, bandit-banners
+      hung from the parapet, ditch and stockade earthwork around the base, overcast afternoon,
+      painterly atmospheric, late-medieval, no figures
+landmarks:
+  flood_meadow:
+    description: A low meadow that floods most springs, fertilising the next season's hay.
+      The Heartland's farmers fight over its margins every year and reach the same compromise
+      every year.
+    prompt: establishing shot, wide meadow on a slow river bend, partly flooded with shining
+      water, distant farmhouses, late afternoon warm light, painterly atmospheric, late-medieval,
+      no figures
+  gallows_oak:
+    description: A roadside oak the Wardens used as a gallows in the bandit war eight years
+      back. The oak still stands, the rope-marks still showing in the highest branch. Nobody
+      has been hanged from it since.
+    prompt: establishing shot, ancient lone oak by a country roadside, low afternoon light,
+      marked branch, painterly atmospheric, late-medieval, oppressive mood, no figures
+  courier_relay_ruin:
+    description: A burnt-out relay station from the early Concord, never rebuilt. The chimney
+      still standing, the foundations still marked by stone. Couriers ride past it without
+      slowing.
+    prompt: establishing shot, burnt-out stone post-station ruin beside a country road, single
+      chimney still standing, weeds in the foundations, dim afternoon light, painterly atmospheric,
+      no figures
+  cattle_ford_pillar:
+    description: A stone pillar marking a working cattle-ford on the Ash. The carving says
+      1417 in old script. Nobody locally is sure what calendar the date refers to.
+    prompt: establishing shot, stone pillar beside a wide shallow river ford, cattle tracks
+      in the mud, late afternoon warm light, painterly atmospheric, late-medieval, no figures

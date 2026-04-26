@@ -1,0 +1,62 @@
+dungeon:
+  description: |
+    A Concord river-keep on the Blackwater that nobody got around to
+    relieving. Warlord Kessen has held it eleven years for a flag the
+    civic federation retired six years ago, and his men have stopped
+    asking which war they're still fighting. The lower halls flood at
+    high water. The upper halls are kept clean. Five-man country —
+    Kessen still runs drills at dawn, and the bell still rings on time.
+  prompt: >-
+    establishing shot, dungeon interior, ruined river-keep great hall,
+    flooded flagstones, faded Concord banners, late-medieval Burgundian
+    stonework, cold lantern light, painterly atmospheric, oppressive
+    mood, no figures
+bosses:
+  exile_marshal:
+    description: |
+      Kessen's marshal — the man who carries the keep's banner and the
+      man who explains, in writing, every order Kessen gives. He fights
+      under the banner and the banner fights with him: while the cloth
+      flies the keep's dead stand a little straighter. Cut the pole and
+      he becomes only what he is, which is a tired captain who has not
+      slept properly in eleven years.
+    prompt: >-
+      portrait, single subject, weary Concord marshal in tarnished
+      plate, faded banner planted at his shoulder, sunken eyes, gloved
+      hand on sword grip, painterly atmospheric, oppressive mood,
+      isolated subject, no other figures
+    negative_prompt: >-
+      multiple figures, party, group, modern, futuristic, sci-fi,
+      anime, cyberpunk, watermark, text
+  drowned_honor_guard:
+    description: |
+      Three of Kessen's senior officers, drowned in the lower halls
+      during the second flood and pulled back into duty by whatever
+      Kessen has been doing in the keep's chapel. They rotate watch the
+      way they did in life — one steps forward, one steps back, one
+      reloads. They do not speak. The waterline on their tabards is
+      always wet, even when the hall is dry.
+    prompt: >-
+      portrait, three armored Concord officers waterlogged and pale,
+      tabards stained at the waterline, eyes clouded, weapons drawn in
+      formation, painterly atmospheric, oppressive mood, no other
+      figures
+    negative_prompt: >-
+      multiple figures, party, group, modern, futuristic, sci-fi,
+      anime, cyberpunk, watermark, text
+  warlord_kessen:
+    description: |
+      The warlord-in-exile, sixty-one this winter, still in the same
+      cuirass he wore at the relief of Hawthorne Ford. He fights the way
+      a man fights when he's already decided how it ends. Halfway
+      through, his honor guard turn — they've been your allies in three
+      different quest chains, and Kessen knows their names better than
+      yours. He apologizes before the killing blow. He always does.
+    prompt: >-
+      portrait, single subject, aged Concord warlord in dented cuirass,
+      grey beard, river-stained cloak, longsword reversed in salute,
+      stern grief, painterly atmospheric, oppressive mood, isolated
+      subject, no other figures
+    negative_prompt: >-
+      multiple figures, party, group, modern, futuristic, sci-fi,
+      anime, cyberpunk, watermark, text

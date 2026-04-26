@@ -1,0 +1,16 @@
+{
+  "id": "019dc76e-7100-76e8-88c8-149f9d9aecc2",
+  "type": "text-to-image",
+  "ai_model": "nano-banana-pro",
+  "prompt": "establishing shot, fallen broken oath-pillar in two pieces on a windswept steppe, carvings still sharp, oppressive overcast sky, painterly atmospheric, late-medieval, no figures",
+  "status": "SUCCEEDED",
+  "progress": 100,
+  "created_at": 1777167397131,
+  "started_at": 1777167397454,
+  "finished_at": 1777167418352,
+  "expires_at": 1777426618352,
+  "image_urls": [
+    "https://assets.meshy.ai/2872987b-afbf-4fa0-95f0-231417dc567c/uploads/image_019dc76e-7100-76e8-88c8-149f9d9aecc2_0.png?Expires=1777426618&Signature=HQodO0FdbZyHrOa~rP41~e7oMVXEfuHtBFkS28MR4yBIOFS~gcdZhG3higLRbtmFcrjHGkKpETM5-x3vx9l6AoJ4lZLzRbs0WNVuBWVGf9RGydFMByESWaIeUe30CigmtJP4i-7wsF3VXbiJM818D~dxENr3G8LUB~eG0xuixBuIJT-MtOJlFAg0KenGHVhH~XEcMSwMzHuNMG7CR3ZPVQ5AHwUVgNoBVJ8vDtrnM086BmUA3lvg3NIhehKVJM12ZZfJMw8Hq8cnE1UZZHmUOsXp3pZdQBnQQueCszTBomzj-blMNCv5zg3cLzX8gldR5kElMIXWOherdsh~hBLv6g__&Key-Pair-Id=K1VGYTHIYLM9UM"
+  ],
+  "consumed_credits": 9
+}

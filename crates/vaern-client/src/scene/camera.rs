@@ -5,6 +5,9 @@
 use bevy::input::mouse::{MouseMotion, MouseWheel};
 use bevy::prelude::*;
 use bevy::window::{CursorGrabMode, CursorOptions, PrimaryWindow};
+use vaern_core::terrain;
+use vaern_voxel::chunk::ChunkStore;
+use vaern_voxel::query::ground_y;
 
 use crate::menu::AppState;
 use crate::shared::{MainCamera, Player};
@@ -17,6 +20,19 @@ const CAMERA_MIN_PITCH: f32 = -1.2;
 const CAMERA_MAX_PITCH: f32 = 1.2;
 const CAMERA_MIN_DISTANCE: f32 = 3.0;
 const CAMERA_MAX_DISTANCE: f32 = 40.0;
+
+/// Vertical clearance held above the ground when the orbit position
+/// would otherwise sink the camera into terrain (player on a slope or
+/// inside a crater + camera angled low). Big enough to avoid the
+/// near-plane skimming the surface; small enough that the camera still
+/// hugs the ground when you tilt down.
+const CAMERA_GROUND_CLEARANCE: f32 = 0.6;
+/// Voxel-store probe parameters for the ground query at the camera's
+/// XZ. Mirrors `vaern-server::movement::resolve_ground_y` so server +
+/// client agree on what counts as "ground" — the camera can't sink
+/// into a crater the server has carved.
+const CAMERA_GROUND_PROBE_TOP: f32 = 64.0;
+const CAMERA_GROUND_PROBE_MAX_DESCENT: f32 = 96.0;
 
 // --- system set -------------------------------------------------------------
 
@@ -179,10 +195,18 @@ fn mouse_look_camera_input(
 /// Spherical orbit follow: place the camera at
 /// player+offset(yaw,pitch,distance) and point it at the player's chest
 /// height.
+///
+/// After computing the orbit position, raises the camera to at least
+/// [`CAMERA_GROUND_CLEARANCE`] above the voxel ground at its XZ
+/// footprint — keeps the camera from clipping into terrain when the
+/// player is on a slope or in a server-carved crater and the orbit
+/// angle is steep. The look-at re-aim runs *after* the clamp so the
+/// view direction follows the lifted position.
 fn follow_camera(
     players: Query<&Transform, (With<Player>, Without<MainCamera>)>,
     mut cams: Query<&mut Transform, With<MainCamera>>,
     controller: Res<CameraController>,
+    store: Res<ChunkStore>,
 ) {
     let Ok(player_tf) = players.single() else { return };
     let Ok(mut cam_tf) = cams.single_mut() else { return };
@@ -197,7 +221,23 @@ fn follow_camera(
         controller.distance * sin_pitch,
         controller.distance * cos_pitch * controller.yaw.cos(),
     );
-    cam_tf.translation = player_tf.translation + offset;
+    let mut pos = player_tf.translation + offset;
+
+    // Ground clamp. Mirrors the server's `resolve_ground_y`: query the
+    // voxel store first (catches edits the server has applied), fall
+    // back to the analytical heightmap for chunks not yet seeded
+    // around the camera. The camera's XZ can range up to
+    // `CAMERA_MAX_DISTANCE` from the player's feet, so it routinely
+    // peeks into terrain the player hasn't touched the chunk for.
+    let probe_top = pos.y.max(player_tf.translation.y) + CAMERA_GROUND_PROBE_TOP;
+    let ground = ground_y(&store, pos.x, pos.z, probe_top, CAMERA_GROUND_PROBE_MAX_DESCENT)
+        .unwrap_or_else(|| terrain::height(pos.x, pos.z));
+    let floor = ground + CAMERA_GROUND_CLEARANCE;
+    if pos.y < floor {
+        pos.y = floor;
+    }
+
+    cam_tf.translation = pos;
     // Aim at player's chest, not their feet — feels less "ground-camera".
     let look_at = player_tf.translation + Vec3::Y * 1.5;
     *cam_tf = cam_tf.looking_at(look_at, Vec3::Y);

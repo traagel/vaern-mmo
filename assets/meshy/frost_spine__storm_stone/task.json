@@ -1,0 +1,16 @@
+{
+  "id": "019dc76d-5a70-7d6f-9a4f-821ff98d78e0",
+  "type": "text-to-image",
+  "ai_model": "nano-banana-pro",
+  "prompt": "establishing shot, single ancient standing stone on an alpine ridge, lightning-scarred, blizzard haze, cold blue light, oppressive cold mood, painterly atmospheric, late-medieval, no figures",
+  "status": "SUCCEEDED",
+  "progress": 100,
+  "created_at": 1777167325822,
+  "started_at": 1777167326480,
+  "finished_at": 1777167355787,
+  "expires_at": 1777426555787,
+  "image_urls": [
+    "https://assets.meshy.ai/2872987b-afbf-4fa0-95f0-231417dc567c/uploads/image_019dc76d-5a70-7d6f-9a4f-821ff98d78e0_0.png?Expires=1777426555&Signature=JWZnzG7ABiD4hXw49Mn7E~fw3ovxfT1~2rKbW~VtNs7DR-2Ecf9EZfJesXmEg~dL6SLNgclr3g60mhwqDV22yHhmDLZs48QJNmAW8uifcnYqH7RWCGEjcp8BQ7dPCWaeI5bE88HNZQ9Tx7Zvx3kWwYTqdpL-PHnBvBsv3-aIlByMoJ7ipEnJcnQFwouLDFdwTLYXK~N4Mo~Fv689wllfAYPQWyjvnhCaFgtPP9ec6-8htVEN~ixMSEFrvWpKGUQ5Mk7bKGZPNJdJb-Pd~iryzKHyse~O41keYZNDN6c0vQcYZTFJKRFoiRQ2Htpv7EnXRBYJXdUMTuXp2T~z4vdz9w__&Key-Pair-Id=K1VGYTHIYLM9UM"
+  ],
+  "consumed_credits": 9
+}
