@@ -49,7 +49,7 @@ pub struct ChunkDigest(pub u64);
 impl ChunkDigest {
     pub fn compute(chunk: &VoxelChunk) -> Self {
         let mut h: u64 = 0xcbf29ce484222325;
-        for &s in chunk.samples.iter() {
+        for s in chunk.iter_samples() {
             // FNV-1a over the 4 bytes of the f32 bit pattern.
             let bits = s.to_bits();
             for b in bits.to_le_bytes() {

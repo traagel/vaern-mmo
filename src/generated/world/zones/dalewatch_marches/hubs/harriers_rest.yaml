@@ -2,13 +2,13 @@ id: harriers_rest
 zone: dalewatch_marches
 name: Harrier's Rest
 role: outpost
-description: "A wooden chapel to a minor road-saint, with a one-pot hostel tucked\n\
-  behind the bell. Pilgrims and travelling smiths stop here before the\nbridge. Brother\
-  \ Fennick keeps the place \u2014 translator and letter-writer\nwhen he isn't tending\
-  \ the lamp. Sheltered from the fens by the upland\nscrub.\n"
-prompt: establishing shot, small wooden roadside chapel with bell tower, modest hostel
-  beside it, upland scrub and dark pines, overcast afternoon, lantern by the door,
-  painterly atmospheric, late-medieval Burgundian, no figures
+description: |
+  A wooden chapel to a minor road-saint, with a one-pot hostel tucked
+  behind the bell. Pilgrims and travelling smiths stop here before the
+  bridge. Brother Fennick keeps the place — translator and letter-writer
+  when he isn't tending the lamp. Sheltered from the fens by the upland
+  scrub.
+prompt: establishing shot, small wooden roadside chapel with bell tower, modest hostel beside it, upland scrub and dark pines, overcast afternoon, lantern by the door, painterly atmospheric, late-medieval Burgundian, no figures
 amenities:
 - innkeeper
 quest_givers: 2
@@ -16,3 +16,29 @@ biome: snow
 offset_from_zone_origin:
   x: 60.0
   z: -100.0
+props:
+- slug: modular_fort_01__tower_round
+  offset:
+    x: 196.58294677734375
+    z: -77.5908203125
+  rotation_y_deg: 0.0
+  scale: 1.0
+- slug: modular_fort_01__tower_round
+  offset:
+    x: 130.8000030517578
+    z: -14.800000190734863
+  rotation_y_deg: 0.0
+  scale: 1.0
+  absolute_y: 33.29999923706055
+- slug: fir_sapling_medium
+  offset:
+    x: 119.51971435546875
+    z: 31.84375
+  rotation_y_deg: 0.0
+  scale: 1.0
+- slug: fir_sapling_medium
+  offset:
+    x: 95.44415283203125
+    z: 53.18603515625
+  rotation_y_deg: 0.0
+  scale: 1.0

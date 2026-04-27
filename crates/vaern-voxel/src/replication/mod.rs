@@ -52,13 +52,18 @@ pub enum ChunkDeltaBody {
 }
 
 impl ChunkDelta {
-    /// Build a full-snapshot delta from a chunk.
+    /// Build a full-snapshot delta from a chunk. For uniform chunks
+    /// this materializes a `Vec<f32>` of `CHUNK_TOTAL_SAMPLES` copies
+    /// of the uniform value — a wire-format inefficiency that would be
+    /// fixed by adding a `UniformSnapshot` body variant; not done here
+    /// because nothing currently round-trips uniform chunks over the
+    /// wire (they're seeded by the generator on the receiving end).
     pub fn full_snapshot(coord: IVec3, chunk: &VoxelChunk) -> Self {
         Self {
             coord: coord.to_array(),
             version: chunk.version,
             body: ChunkDeltaBody::FullSnapshot {
-                samples: chunk.samples.to_vec(),
+                samples: chunk.samples_to_vec(),
             },
         }
     }
@@ -74,26 +79,34 @@ impl ChunkDelta {
 
     /// Apply this delta to a chunk in-place. No-ops if the chunk's
     /// version is already >= the delta's (replay-safe).
+    ///
+    /// Promotes the chunk to `Dense` storage if it was `Uniform`; for
+    /// snapshots that turn out to be themselves uniform, calls
+    /// `try_compact` so we don't hold 157 KB longer than necessary.
     pub fn apply_to(&self, chunk: &mut VoxelChunk) {
         if chunk.version >= self.version {
             return;
         }
         match &self.body {
             ChunkDeltaBody::FullSnapshot { samples } => {
-                for (dst, &src) in chunk.samples.iter_mut().zip(samples.iter()) {
+                let dense = chunk.make_dense();
+                for (dst, &src) in dense.iter_mut().zip(samples.iter()) {
                     *dst = src;
                 }
             }
             ChunkDeltaBody::SparseWrites { writes } => {
+                let dense = chunk.make_dense();
+                let len = dense.len();
                 for &(idx, v) in writes {
                     let i = idx as usize;
-                    if i < chunk.samples.len() {
-                        chunk.samples[i] = v;
+                    if i < len {
+                        dense[i] = v;
                     }
                 }
             }
         }
         chunk.version = self.version;
+        chunk.try_compact();
     }
 }
 

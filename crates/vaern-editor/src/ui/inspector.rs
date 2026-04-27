@@ -7,13 +7,16 @@ use vaern_core::terrain;
 
 use crate::dressing::selection::SelectedProp;
 use crate::dressing::EditorDressingEntity;
-use crate::modes::biome_paint::{BiomePaintState, MAX_PAINT_RADIUS_CHUNKS};
+use crate::modes::biome_paint::{
+    BrushFalloff, BrushMode as PaintBrushMode, BrushShape, BrushState,
+};
 use crate::modes::voxel_brush::{
     BrushPresets, BrushTool, MirrorPlane, VoxelBrushState, MAX_BRUSH_RADIUS, MIN_BRUSH_RADIUS,
 };
 use crate::modes::{ActiveMode, EditorMode};
 use crate::state::EditorContext;
 use crate::ui::console::ConsoleLog;
+use crate::voxel::biome_blend::BlendDebugMode;
 use crate::voxel::biomes::BiomeKey;
 use crate::voxel::overrides::BiomeOverrideMap;
 use crate::world::ActiveZoneHubs;
@@ -29,7 +32,8 @@ pub fn draw_inspector(
     ctx: Res<EditorContext>,
     mut brush: ResMut<VoxelBrushState>,
     mut presets: ResMut<BrushPresets>,
-    mut paint: ResMut<BiomePaintState>,
+    mut paint: ResMut<BrushState>,
+    mut blend_debug: ResMut<BlendDebugMode>,
     overrides: Res<BiomeOverrideMap>,
     hubs: Res<ActiveZoneHubs>,
     mut props: Query<(&mut Transform, &mut EditorDressingEntity)>,
@@ -70,7 +74,7 @@ pub fn draw_inspector(
                     draw_brush_inspector(ui, &mut brush, &mut presets)
                 }
                 (None, EditorMode::BiomePaint) => {
-                    draw_biome_paint_inspector(ui, &mut paint, &overrides)
+                    draw_biome_paint_inspector(ui, &mut paint, &mut blend_debug, &overrides)
                 }
                 (None, mode) => {
                     ui.label(format!(
@@ -413,34 +417,78 @@ fn draw_stamp_panel(ui: &mut egui::Ui, brush: &mut VoxelBrushState) {
 
 fn draw_biome_paint_inspector(
     ui: &mut egui::Ui,
-    paint: &mut BiomePaintState,
+    brush: &mut BrushState,
+    blend_debug: &mut BlendDebugMode,
     overrides: &BiomeOverrideMap,
 ) {
-    ui.label("Biome paint — chunk-aligned texture stamping");
+    ui.label("Biome paint — sub-cell brush (8m resolution)");
     ui.separator();
 
     ui.label("Selected biome:");
     for chunk in BiomeKey::ALL.chunks(3) {
         ui.horizontal(|ui| {
             for biome in chunk {
-                let active = paint.selected == *biome;
+                let active = brush.selected == *biome;
                 if ui.selectable_label(active, biome.label()).clicked() {
-                    paint.selected = *biome;
+                    brush.selected = *biome;
                 }
             }
         });
     }
     ui.separator();
 
-    let footprint = paint.radius_chunks * 2 + 1;
-    let mut r = paint.radius_chunks as i32;
-    if ui.add(egui::Slider::new(&mut r, 0..=(MAX_PAINT_RADIUS_CHUNKS as i32)).text(format!("Radius (chunks) — {0}×{0}", footprint))).changed() {
-        paint.radius_chunks = r.max(0) as u32;
+    // Logarithmic radius slider so 1u..64u feels uniform on the bar.
+    ui.add(
+        egui::Slider::new(&mut brush.radius_world_u, 1.0..=64.0)
+            .text("Radius (world u)")
+            .logarithmic(true),
+    );
+
+    ui.horizontal(|ui| {
+        ui.label("Shape:");
+        ui.selectable_value(&mut brush.shape, BrushShape::Circle, "Circle");
+        ui.selectable_value(&mut brush.shape, BrushShape::Square, "Square");
+    });
+    ui.horizontal(|ui| {
+        ui.label("Falloff:");
+        ui.selectable_value(&mut brush.falloff, BrushFalloff::Hard, "Hard");
+        ui.selectable_value(&mut brush.falloff, BrushFalloff::Linear, "Linear");
+        ui.selectable_value(&mut brush.falloff, BrushFalloff::Smooth, "Smooth");
+    });
+    ui.small("(Hard = binary cell-in-or-out · Linear/Smooth = V2 weighted)");
+    ui.horizontal(|ui| {
+        ui.label("Mode:");
+        ui.selectable_value(&mut brush.mode, PaintBrushMode::Paint, "Paint");
+        ui.selectable_value(&mut brush.mode, PaintBrushMode::Erase, "Erase");
+    });
+
+    let eyedrop_label = if brush.eyedropper_armed {
+        "Eyedropper ARMED — click to sample"
+    } else {
+        "Eyedropper (next click samples biome)"
+    };
+    if ui.button(eyedrop_label).clicked() {
+        brush.eyedropper_armed = !brush.eyedropper_armed;
     }
+    ui.separator();
+    ui.small(format!(
+        "Override map: {} sub-cells painted",
+        overrides.by_sub.len()
+    ));
+    ui.small("LMB-drag to paint · [/] resize · B paint · E erase · I eyedropper.");
+    ui.small("Ctrl+S to save · loads automatically on next launch.");
 
     ui.separator();
-    ui.small(format!("Override map: {} columns painted", overrides.by_xz.len()));
-    ui.small("LMB to paint · Ctrl+S to save · paint is loaded automatically on next launch.");
+    ui.label(egui::RichText::new("Debug visualization").strong());
+    egui::ComboBox::from_label("blend mode")
+        .selected_text(blend_debug.label())
+        .show_ui(ui, |ui| {
+            for mode in BlendDebugMode::ALL {
+                ui.selectable_value(blend_debug, mode, mode.label());
+            }
+        });
+    ui.small("Normal = product look. Other modes bypass PBR to expose");
+    ui.small("the per-fragment blend math.");
 }
 
 fn draw_presets_panel(

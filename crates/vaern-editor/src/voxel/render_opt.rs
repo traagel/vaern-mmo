@@ -22,10 +22,14 @@
 //!    launch that confirms how many chunks have a `Visibility`
 //!    component. Useful for proving the ECS hooks actually fire.
 
+use bevy::camera::primitives::Aabb;
+use bevy::camera::visibility::ViewVisibility;
 use bevy::light::NotShadowCaster;
 use bevy::prelude::*;
 use std::collections::HashSet;
 use vaern_voxel::chunk::{ChunkCoord, DirtyChunks};
+use vaern_voxel::config::CHUNK_WORLD_SIZE;
+use vaern_voxel::perf::{SystemFrameTimes, SystemTimer};
 use vaern_voxel::plugin::{ChunkEntityMap, ChunkRenderTag};
 
 use crate::camera::FreeFlyCamera;
@@ -41,7 +45,9 @@ impl Plugin for ChunkRenderOptPlugin {
             Update,
             (
                 tag_new_chunks_no_shadow,
-                evict_chunks_outside_draw_distance,
+                ensure_chunk_aabb,
+                evict_chunks_outside_draw_distance
+                    .run_if(|t: Res<crate::voxel::PerfToggles>| !t.skip_eviction),
                 log_chunk_setup_once,
             )
                 .run_if(in_state(EditorAppState::Editing)),
@@ -100,7 +106,9 @@ pub fn evict_chunks_outside_draw_distance(
     mut last_summary: Local<f32>,
     mut state: Local<EvictionState>,
     time: Res<Time>,
+    mut perf: ResMut<SystemFrameTimes>,
 ) {
+    let _timer = SystemTimer::new(&mut perf, "editor::evict_chunks");
     let Ok(cam) = camera_q.single() else {
         return;
     };
@@ -159,13 +167,47 @@ pub fn evict_chunks_outside_draw_distance(
     }
 }
 
+/// Insert a chunk-sized [`Aabb`] on every newly-spawned chunk render
+/// entity that lacks one. Bevy's [`bevy::render::view::calculate_bounds`]
+/// will compute an AABB from the mesh asset *eventually*, but only after
+/// the mesh asset is loaded into the renderer — for procedurally-built
+/// meshes inserted via `Assets<Mesh>::add` this can lag a frame, and
+/// without an AABB the chunk is treated as unbounded and never frustum-
+/// culled. Hand-attaching a known chunk-sized box gives the renderer
+/// something to cull against immediately.
+///
+/// The AABB is in entity-local space. Chunk meshes are translated to
+/// `coord.world_origin()` and the meshing pass writes vertices in the
+/// `[-PADDING * VOXEL_SIZE, (CHUNK_DIM + PADDING) * VOXEL_SIZE]` range
+/// relative to that origin (see `build_bevy_mesh`'s `offset`). Round
+/// generously: `[-1.0, CHUNK_WORLD_SIZE + 1.0]` covers any vertex.
+pub fn ensure_chunk_aabb(
+    mut commands: Commands,
+    new_chunks: Query<Entity, (Added<ChunkRenderTag>, Without<Aabb>)>,
+) {
+    let half = (CHUNK_WORLD_SIZE + 2.0) * 0.5;
+    let center = Vec3::splat(CHUNK_WORLD_SIZE * 0.5 - 1.0);
+    let aabb = Aabb {
+        center: center.into(),
+        half_extents: Vec3::splat(half).into(),
+    };
+    for entity in &new_chunks {
+        commands.entity(entity).try_insert(aabb);
+    }
+}
+
 /// One-shot diagnostic ~5 seconds after launch: count chunks that
-/// have / lack a `Visibility` component. Confirms whether Bevy's
-/// `register_required_components::<Mesh3d, Visibility>` actually
-/// applied to vaern-voxel's chunk spawns.
+/// have / lack a `Visibility` component, plus how many are currently
+/// frustum-culled (`ViewVisibility::get() == false` despite being in
+/// draw range). The frustum-cull count proves the renderer is doing
+/// its job: at draw_distance=64 the streamer fills ~16k XZ chunks but
+/// a typical 60° camera FOV sees less than 1/4 of them — anything else
+/// would mean our AABBs aren't wired up correctly.
 pub fn log_chunk_setup_once(
     chunks_with_vis: Query<Entity, (With<ChunkRenderTag>, With<Visibility>)>,
     chunks_without_vis: Query<Entity, (With<ChunkRenderTag>, Without<Visibility>)>,
+    chunks_with_aabb: Query<Entity, (With<ChunkRenderTag>, With<Aabb>)>,
+    chunks_view_vis: Query<&ViewVisibility, With<ChunkRenderTag>>,
     mut log: ResMut<ConsoleLog>,
     mut done: Local<bool>,
     time: Res<Time>,
@@ -176,7 +218,11 @@ pub fn log_chunk_setup_once(
     *done = true;
     let with_v = chunks_with_vis.iter().count();
     let without_v = chunks_without_vis.iter().count();
+    let with_aabb = chunks_with_aabb.iter().count();
+    let total_view = chunks_view_vis.iter().count();
+    let visible = chunks_view_vis.iter().filter(|v| v.get()).count();
+    let culled = total_view.saturating_sub(visible);
     log.push(format!(
-        "chunk diagnostic: {with_v} chunks have Visibility, {without_v} lack it"
+        "chunk diagnostic: {with_v} have Visibility, {without_v} lack it, {with_aabb} have Aabb, {visible} visible after frustum cull (+{culled} culled)"
     ));
 }

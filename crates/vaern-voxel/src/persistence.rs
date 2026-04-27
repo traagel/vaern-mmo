@@ -70,9 +70,18 @@ pub fn diff_against_generator<G: WorldGenerator>(
         generator.seed_chunk(*coord, &mut baseline);
 
         let mut writes: Vec<(u32, f32)> = Vec::new();
+        // Uniform-vs-uniform fast path: if both stored and baseline are
+        // uniform with equal values, no writes diverge — skip the
+        // CHUNK_TOTAL_SAMPLES loop entirely. This is the common case
+        // for unedited stack chunks above/below the surface band.
+        if let (Some(stored_u), Some(base_u)) = (chunk.uniform_value(), baseline.uniform_value()) {
+            if (stored_u - base_u).abs() <= DIVERGENCE_EPSILON {
+                continue;
+            }
+        }
         for i in 0..CHUNK_TOTAL_SAMPLES {
-            let stored = chunk.samples[i];
-            let base = baseline.samples[i];
+            let stored = chunk.sample_at_stride(i);
+            let base = baseline.sample_at_stride(i);
             if (stored - base).abs() > DIVERGENCE_EPSILON {
                 writes.push((i as u32, stored));
             }

@@ -78,15 +78,24 @@ mod tests {
     /// Bevy app. Catches the "missing schedule / unregistered system
     /// param" class of bugs at `cargo test` time.
     ///
-    /// `StatesPlugin` is required because `EditorStatePlugin` uses
-    /// `init_state` and `MinimalPlugins` doesn't include it (Bevy
-    /// `DefaultPlugins` does, but DefaultPlugins requires a windowing
-    /// backend that is not available in the test harness).
+    /// Required headless plugins:
+    /// - `StatesPlugin` — `EditorStatePlugin` uses `init_state`.
+    /// - `AssetPlugin` + `MeshPlugin` + `ImagePlugin` — needed by
+    ///   `MaterialPlugin<BiomeBlendMaterial>` (registers asset types
+    ///   + mesh storage). Without these, the AssetServer resource
+    ///   isn't inserted and the BiomeBlendAssets startup system
+    ///   panics on `ResMut<Assets<Image>>`.
+    ///
+    /// `DefaultPlugins` would supply all of these but requires a
+    /// windowing backend that's not available in the test harness.
     #[test]
     fn editor_plugin_builds() {
         let mut app = App::new();
         app.add_plugins(MinimalPlugins);
         app.add_plugins(bevy::state::app::StatesPlugin);
+        app.add_plugins(bevy::asset::AssetPlugin::default());
+        app.add_plugins(bevy::image::ImagePlugin::default());
+        app.add_plugins(bevy::mesh::MeshPlugin);
         app.add_plugins(EditorPlugin);
     }
 }

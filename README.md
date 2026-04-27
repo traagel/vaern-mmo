@@ -10,7 +10,7 @@ Solo-developer hardcore two-faction persistent-coop RPG.
 
 ## Status
 
-Pre-alpha-shaped MMO that reads as a place. **374 workspace tests passing.**
+Pre-alpha-shaped MMO that reads as a place. **496 workspace tests passing.**
 
 ### TL;DR
 
@@ -236,14 +236,20 @@ cargo run -p vaern-editor -- --zone dalewatch_marches
 - **Voxel terrain sculpt** — Mode 3: LMB carves (Subtract), Shift+LMB raises (Union), inspector slider for radius (0.5–32u). Uses the same `EditStroke::apply` pipeline as the runtime F10 stomp.
 - **Asset placement** — Mode 2 + palette: pick a Poly Haven slug from the left panel, LMB on ground spawns a new prop into the nearest hub at hub-local offset.
 - **Selection + edit** — Mode 1: LMB picks a prop via scene-mesh AABB raycast (handles big stretched assets like castle doors). Inspector edits offset / rotation / scale / Y-override; Delete button or Delete key removes.
+- **Biome paint** (Mode 4) — sub-cell brush at 8m resolution (4×4 cells per chunk). LMB-drag continuous paint, `[`/`]` resize, `B` paint mode, `E` erase (revert to default Marsh), `I` arm eyedropper. Inspector picks shape (Circle/Square), falloff, biome. Brush footprint shown as immediate-mode gizmo on the terrain. 9-channel per-vertex weights blend in a custom `ExtendedMaterial<StandardMaterial, BiomeBlendExt>` shader — every chunk uses one shared material handle, no per-vertex flat-interp variance, no chunk-boundary color lines.
+- **Diagnostic panel** — left "Environment" panel exposes: live `ChunkStore` size + dirty queue + in-flight async tasks + render entities + drawn-after-frustum-cull count + FPS / frame time + per-system µs timings (rolling 1s window, sorted by mean) + isolation toggles (hide-chunks / skip-eviction / skip-streamer / disable-biome-blend / debug-viz mode).
+- **Performance** — chunk seed and attribute attach are rate-limited to keep frame time bounded during fill (256 seeds / 16 mesh tasks / unbounded attribute pass per frame). `VoxelChunk` is now sparse (`Uniform(f32)` vs `Dense(Box<[f32]>)`) — air/solid stack chunks shrink from 157 KB to 4 bytes. Async meshing runs on `AsyncComputeTaskPool`. Default draw distance is 16 chunks (~512m radius); slider goes to 64.
 - **Save** — toolbar button writes both:
-  - `src/generated/world/voxel_edits.bin` — bincode `Vec<ChunkDelta>` of every chunk that diverged from the heightfield baseline (sparse-vs-snapshot encoded by size).
+  - `src/generated/world/voxel_edits.bin` — bincode `Vec<ChunkDelta>` of every chunk that diverged from the heightfield baseline.
+  - `src/generated/world/biome_overrides.bin` — `OverridesFileV2`: sub-cell-keyed biome paint state with N=4 sub-cells per chunk. Legacy V1 (per-chunk-XZ) files auto-upscale on load.
   - `src/generated/world/zones/<zone>/hubs/<hub>.yaml` — the `props:` array spliced into each touched hub's YAML via `serde_yaml::Value` (preserves all other fields).
-- **Round-trip to runtime** — server reads `voxel_edits.bin` on Startup and registers every chunk in the existing `EditedChunks` set, so connecting clients receive the deltas through the established `queue_reconnect_snapshots` path. Hub YAML edits land via the existing client `OnEnter(InGame)` reader.
+- **Round-trip to runtime** — server reads `voxel_edits.bin` on Startup and registers every chunk in the existing `EditedChunks` set, so connecting clients receive the deltas through the established `queue_reconnect_snapshots` path. Hub YAML edits land via the existing client `OnEnter(InGame)` reader. Biome overrides are editor-only for now (runtime client still uses the legacy single-`StandardMaterial`-per-chunk path).
 
 **Bundle splitting** — `scripts/split_polyhaven_bundle.py` peels a multi-mesh Poly Haven glTF into one glTF per top-level node, sharing the original `.bin` + textures via relative URIs. Already run on `modular_fort_01` (22 piece slugs in the catalog: tower_round + thick/thin walls + walkways + stairs).
 
-**Stubbed** (slots reserved): biome paint, scatter preview, voxel undo recording, transform gizmo.
+**Open scars**: `voxel_edits.bin` can balloon (saw 1.3 GB in one session) because `diff_against_generator` walks every chunk in `ChunkStore` rather than only chunks that have actually been edited. Reset via `rm src/generated/world/{voxel_edits,biome_overrides}.bin`.
+
+**Stubbed** (slots reserved): scatter preview, voxel undo for biome paint (snapshot infra is in place), transform gizmo, splatmap upgrade for biome blend.
 
 ### Hostable build (Slice 8)
 
@@ -350,7 +356,7 @@ crates/
 
 #### `vaern-voxel` detail
 
-`sdf/` (Sphere/BoxSdf/Capsule/Plane + Union/Subtract/Intersect/SmoothUnion/SmoothSubtract) · `chunk/` (32³+1 padding = 34³ samples, sparse `HashMap` store, `DirtyChunks`) · `mesh/` (4 swappable algorithm layers: IsoSurfaceExtractor + VertexPlacement + NormalStrategy + QuadSplitter + MeshSink) · `edit/` (Brush + EditStroke with halo sync) · `generator/` (HeightfieldGenerator bridges `terrain::height`) · `query/` (ground_y + raycast) · `replication/` (ChunkDelta FullSnapshot | SparseWrites, version-numbered + replay-safe). **46 unit + e2e tests pass.**
+`sdf/` (Sphere/BoxSdf/Capsule/Plane + Union/Subtract/Intersect/SmoothUnion/SmoothSubtract) · `chunk/` (32³+1 padding = 34³ samples, sparse `HashMap` store, sparse `VoxelChunk` storage with `Uniform(f32)` / `Dense(Box<[f32]>)` enum, `DirtyChunks`) · `mesh/` (4 swappable algorithm layers: IsoSurfaceExtractor + VertexPlacement + NormalStrategy + QuadSplitter + MeshSink) · `edit/` (Brush + EditStroke with halo sync) · `generator/` (HeightfieldGenerator bridges `terrain::height`) · `query/` (ground_y + raycast) · `replication/` (ChunkDelta FullSnapshot | SparseWrites, version-numbered + replay-safe) · `perf/` (per-system frame-time profiler). Async meshing on `AsyncComputeTaskPool`. **87 tests pass.**
 
 Two load-bearing fixes: `ChunkShape::MESH_MIN = PADDING - 1` to close static chunk seams; `chunks_containing_voxel` enumeration extended from `{-1, 0}` to `{-1, 0, +1}` so halo writes propagate across chunk boundaries (without it, a textured "cap" floats over every carved crater).
 
@@ -597,7 +603,7 @@ Internal labels (Fighter, Paladin, Cleric, Druid, Wizard, Sorcerer, Warlock, Bar
 cargo test --workspace
 ```
 
-**374 tests pass.** Coverage: class position invariants, combat parity (GCD-aware), stats-aware damage pipeline, YAML loads, item composition, affix validation, loot drops, inventory stacking, equipment slot validation, economy / wallet, profession skills, NPC stat derivation, party split-XP, chat rate-limit + parser, persistence round-trip; plus the slice 1-9 additions (PolyHavenCatalog / dressing / scatter / side-quest givers / mob banding / level XP curve / emote parser / corpse-run / netcode-key / panic-handler / auto-reconnect / SQLite accounts / quest polish); plus Slice 6:
+**496 tests pass.** Coverage: class position invariants, combat parity (GCD-aware), stats-aware damage pipeline, YAML loads, item composition, affix validation, loot drops, inventory stacking, equipment slot validation, economy / wallet, profession skills, NPC stat derivation, party split-XP, chat rate-limit + parser, persistence round-trip; plus the slice 1-9 additions (PolyHavenCatalog / dressing / scatter / side-quest givers / mob banding / level XP curve / emote parser / corpse-run / netcode-key / panic-handler / auto-reconnect / SQLite accounts / quest polish); plus Slice 6:
 
 - **boss-drop loader** (3) — Valenn 12-piece, Halen 3-piece, unknown-mob = none
 - **`decide_roll_winner`** (6) — need beats greed, single-need auto-win, single-greed when no need, tied-need d100, tied-greed d100, all-pass = no winner, empty = no winner
@@ -676,7 +682,7 @@ python3 scripts/seed_items.py
 
 ### Voxel world
 
-- [x] **`vaern-voxel` crate landed** — 8 swappable algorithm layers, 46/46 tests.
+- [x] **`vaern-voxel` crate landed** — 8 swappable algorithm layers, sparse `VoxelChunk` storage, async meshing, 87/87 tests.
 - [x] **Client streaming + F10 stomp** — voxels stream around camera, F10 issues server-authoritative edit.
 - [x] **Server-authoritative edits** — `ValidatedEditStroke` pipeline.
 - [x] **`ChunkDelta` replication** — up to 8 chunks/tick live + 4/tick reconnect catch-up.

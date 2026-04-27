@@ -72,6 +72,14 @@ impl<P: VertexPlacement, N: NormalStrategy, Q: QuadSplitter> IsoSurfaceExtractor
     fn extract(&self, chunk: &VoxelChunk, sink: &mut dyn MeshSink) {
         sink.reset();
 
+        // Uniform fast path: every sample equals one scalar, so no
+        // cube can have mixed signs and there's nothing to mesh. Skip
+        // the 32,768-cube scan in O(1). This is the dominant win for
+        // air/solid stack chunks at large draw distance.
+        if chunk.uniform_value().is_some() {
+            return;
+        }
+
         // Allocate `stride_to_index` at the size of the padded sample
         // array so every cube's minimum-corner stride maps back to its
         // emitted vertex (if any). `NULL_VERTEX` = no vertex here.
@@ -90,7 +98,7 @@ impl<P: VertexPlacement, N: NormalStrategy, Q: QuadSplitter> IsoSurfaceExtractor
                     for (i, dist) in corner_dists.iter_mut().enumerate() {
                         let [cx, cy, cz] = CUBE_CORNERS[i];
                         let corner_stride = ChunkShape::linearize([x + cx, y + cy, z + cz]);
-                        let d = chunk.samples[corner_stride as usize];
+                        let d = chunk.sample_at_stride(corner_stride as usize);
                         *dist = d;
                         if d < 0.0 {
                             num_negative += 1;
@@ -195,8 +203,8 @@ fn maybe_emit_quad_for_edge<Q: QuadSplitter>(
     axis_b_stride: usize,
     axis_c_stride: usize,
 ) {
-    let d1 = chunk.samples[p1];
-    let d2 = chunk.samples[p2];
+    let d1 = chunk.sample_at_stride(p1);
+    let d2 = chunk.sample_at_stride(p2);
     let negative_face = match (d1 < 0.0, d2 < 0.0) {
         (true, false) => false,
         (false, true) => true,
