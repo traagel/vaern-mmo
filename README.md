@@ -247,7 +247,9 @@ cargo run -p vaern-editor -- --zone dalewatch_marches
 
 **Bundle splitting** — `scripts/split_polyhaven_bundle.py` peels a multi-mesh Poly Haven glTF into one glTF per top-level node, sharing the original `.bin` + textures via relative URIs. Already run on `modular_fort_01` (22 piece slugs in the catalog: tower_round + thick/thin walls + walkways + stairs).
 
-**Open scars**: `voxel_edits.bin` can balloon (saw 1.3 GB in one session) because `diff_against_generator` walks every chunk in `ChunkStore` rather than only chunks that have actually been edited. Reset via `rm src/generated/world/{voxel_edits,biome_overrides}.bin`.
+**Open scars**:
+- `voxel_edits.bin` can balloon (saw 1.3 GB in one session) because `diff_against_generator` walks every chunk in `ChunkStore` rather than only chunks that have actually been edited. Reset via `rm src/generated/world/{voxel_edits,biome_overrides}.bin`.
+- **Random crash** in current build — symptom unconfirmed (no stack trace captured yet). To repro: launch editor, load a saved world with edits, fly around / sculpt / paint — crash strikes intermittently. Diagnostic logs in the console (loader summary + streamer first-frame + `halo-synced N pairs`) capture the load path, but the actual fault path is still unknown.
 
 **Stubbed** (slots reserved): scatter preview, voxel undo for biome paint (snapshot infra is in place), transform gizmo, splatmap upgrade for biome blend.
 
