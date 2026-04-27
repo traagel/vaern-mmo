@@ -69,6 +69,7 @@ impl Plugin for VoxelMeshPlugin {
         app.insert_resource(MeshingBudget(self.meshes_per_frame))
             .init_resource::<ChunkEntityMap>()
             .init_resource::<PendingMeshes>()
+            .init_resource::<MeshLifecycleStats>()
             .add_systems(Update, (dispatch_mesh_tasks, collect_completed_meshes).chain());
     }
 }
@@ -129,6 +130,18 @@ pub struct ChunkRenderTag {
     pub coord: ChunkCoord,
 }
 
+/// Cumulative mesh-task counters for the load-path diagnostic. Updated
+/// by `dispatch_mesh_tasks` (dispatched_total) and
+/// `collect_completed_meshes` (completed_with_surface, completed_empty).
+/// Surfaced in the editor's diagnostic panel so the user can confirm
+/// the meshing pipeline is actually progressing past the initial load.
+#[derive(Resource, Default, Clone, Copy, Debug)]
+pub struct MeshLifecycleStats {
+    pub dispatched_total: u64,
+    pub completed_with_surface: u64,
+    pub completed_empty: u64,
+}
+
 // --- Systems -----------------------------------------------------------
 
 /// Drain up to `budget - in_flight` coords off the dirty queue and
@@ -149,6 +162,7 @@ pub fn dispatch_mesh_tasks(
     mut pending: ResMut<PendingMeshes>,
     mut commands: Commands,
     mut entity_map: ResMut<ChunkEntityMap>,
+    mut stats: ResMut<MeshLifecycleStats>,
     mut perf: ResMut<SystemFrameTimes>,
 ) {
     let _timer = SystemTimer::new(&mut perf, "voxel::dispatch_mesh_tasks");
@@ -190,6 +204,7 @@ pub fn dispatch_mesh_tasks(
             buf
         });
         pending.tasks.push((coord, task));
+        stats.dispatched_total += 1;
     }
 }
 
@@ -202,6 +217,7 @@ pub fn collect_completed_meshes(
     mut entity_map: ResMut<ChunkEntityMap>,
     mut commands: Commands,
     mut mesh_q: Query<(&ChunkRenderTag, &mut Mesh3d)>,
+    mut stats: ResMut<MeshLifecycleStats>,
     mut perf: ResMut<SystemFrameTimes>,
 ) {
     let _timer = SystemTimer::new(&mut perf, "voxel::collect_completed_meshes");
@@ -212,11 +228,13 @@ pub fn collect_completed_meshes(
         let coord = *coord;
 
         if buffer.is_empty() {
+            stats.completed_empty += 1;
             if let Some(entity) = entity_map.by_coord.remove(&coord) {
                 commands.entity(entity).despawn();
             }
             return false;
         }
+        stats.completed_with_surface += 1;
 
         let offset = -Vec3::splat(PADDING as f32 * VOXEL_SIZE);
         let mesh = build_bevy_mesh(&buffer, VOXEL_SIZE, offset);

@@ -88,7 +88,9 @@ pub fn stream_chunks_around_editor_camera(
     env: Res<EnvSettings>,
     mut chunk_biomes: ResMut<ChunkBiomeMap>,
     mut cache: Local<StreamCache>,
+    mut first_frame_logged: Local<bool>,
     mut perf: ResMut<SystemFrameTimes>,
+    mut log: ResMut<crate::ui::console::ConsoleLog>,
 ) {
     let _timer = SystemTimer::new(&mut perf, "editor::stream_chunks");
     let Ok(cam) = camera_q.single() else {
@@ -144,7 +146,9 @@ pub fn stream_chunks_around_editor_camera(
 
     let generator = EditorHeightfield;
     let mut seeded = 0usize;
+    let mut already_in_store = 0usize;
     let mut hit_cap = false;
+    let total_candidates = candidates.len();
     for (dx, dy, dz) in candidates {
         let coord = ChunkCoord::new(
             cam_chunk_xz.0.x + dx,
@@ -152,6 +156,7 @@ pub fn stream_chunks_around_editor_camera(
             cam_chunk_xz.0.z + dz,
         );
         if store.contains(coord) {
+            already_in_store += 1;
             continue;
         }
         let mut chunk = VoxelChunk::new_air();
@@ -178,6 +183,23 @@ pub fn stream_chunks_around_editor_camera(
     // the bbox is fully seeded — flip the flag so subsequent frames
     // skip the walk entirely.
     cache.fully_seeded = !hit_cap;
+
+    // First-frame diagnostic: log a one-line summary of what the
+    // streamer did on its very first execution. Read this in the
+    // console after launching with a saved world to confirm the
+    // streamer is actually running and seeing the right camera /
+    // store state.
+    if !*first_frame_logged {
+        *first_frame_logged = true;
+        let line = format!(
+            "streamer first-frame: cam=({:.0}, {:.0}, {:.0}) chunk=({}, {}, {}) r_xz={r_xz} candidates={total_candidates} skipped={already_in_store} seeded={seeded} cap_hit={hit_cap} store={}",
+            cam.translation.x, cam.translation.y, cam.translation.z,
+            cam_chunk_xz.0.x, surface_chunk_y, cam_chunk_xz.0.z,
+            store.len(),
+        );
+        info!("editor: {line}");
+        log.push(line);
+    }
 
     if seeded > 0 {
         debug!(

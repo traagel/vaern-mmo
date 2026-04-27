@@ -25,18 +25,6 @@ props:
     z: -199.5380859375
   rotation_y_deg: 0.0
   scale: 1.0
-- slug: fir_sapling
-  offset:
-    x: -93.38671875
-    z: -65.7548828125
-  rotation_y_deg: 0.0
-  scale: 1.0
-- slug: fir_sapling
-  offset:
-    x: -78.953125
-    z: -25.251220703125
-  rotation_y_deg: 0.0
-  scale: 1.0
 - slug: fir_sapling_medium
   offset:
     x: -99.76806640625
@@ -103,5 +91,17 @@ props:
   offset:
     x: -37.3304443359375
     z: -74.794189453125
+  rotation_y_deg: 0.0
+  scale: 1.0
+- slug: fir_sapling
+  offset:
+    x: -93.38671875
+    z: -65.7548828125
+  rotation_y_deg: 0.0
+  scale: 1.0
+- slug: fir_sapling
+  offset:
+    x: -78.953125
+    z: -25.251220703125
   rotation_y_deg: 0.0
   scale: 1.0

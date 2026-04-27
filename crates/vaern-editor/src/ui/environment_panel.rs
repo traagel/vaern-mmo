@@ -20,9 +20,10 @@ use crate::environment::{
 use vaern_voxel::chunk::{ChunkStore, DirtyChunks};
 use vaern_voxel::config::CHUNK_WORLD_SIZE;
 use vaern_voxel::perf::SystemFrameTimes;
-use vaern_voxel::plugin::{ChunkRenderTag, PendingMeshes};
+use vaern_voxel::plugin::{ChunkRenderTag, MeshLifecycleStats, PendingMeshes};
 
 use crate::voxel::biome_blend::BiomeBlendEnabled;
+use crate::voxel::stream::NeedsBlendAttach;
 use crate::voxel::PerfToggles;
 
 #[allow(clippy::too_many_arguments)]
@@ -31,6 +32,7 @@ pub fn draw_environment_panel(
     mut blend_enabled: ResMut<BiomeBlendEnabled>,
     mut perf_toggles: ResMut<PerfToggles>,
     sft: Res<SystemFrameTimes>,
+    mesh_stats: Res<MeshLifecycleStats>,
     mut egui: EguiContexts,
     store: Res<ChunkStore>,
     dirty: Res<DirtyChunks>,
@@ -38,6 +40,7 @@ pub fn draw_environment_panel(
     diagnostics: Res<DiagnosticsStore>,
     chunks_with_aabb: Query<(), (With<ChunkRenderTag>, With<Aabb>)>,
     chunks_view_vis: Query<&ViewVisibility, With<ChunkRenderTag>>,
+    chunks_pending_attach: Query<(), With<NeedsBlendAttach>>,
 ) {
     let Ok(ctx) = egui.ctx_mut() else {
         return;
@@ -60,6 +63,10 @@ pub fn draw_environment_panel(
         render_entities,
         drawn_visible: drawn,
         chunks_with_aabb: aabb_count,
+        pending_blend_attach: chunks_pending_attach.iter().count(),
+        mesh_dispatched: mesh_stats.dispatched_total,
+        mesh_completed_with_surface: mesh_stats.completed_with_surface,
+        mesh_completed_empty: mesh_stats.completed_empty,
         fps,
         frame_ms,
     };
@@ -105,6 +112,10 @@ struct StreamingStats {
     render_entities: usize,
     drawn_visible: usize,
     chunks_with_aabb: usize,
+    pending_blend_attach: usize,
+    mesh_dispatched: u64,
+    mesh_completed_with_surface: u64,
+    mesh_completed_empty: u64,
     fps: Option<f64>,
     frame_ms: Option<f64>,
 }
@@ -239,6 +250,27 @@ fn draw_streaming_section(
                 (Some(f), Some(ms)) => format!("{:>5.1} / {:>5.2} ms", f, ms),
                 _ => "—".to_string(),
             });
+            ui.end_row();
+
+            // Load-path diagnostics (Phase 1D). If unedited chunks
+            // aren't rendering after a saved-world load, watch these:
+            //   • pending_blend_attach should drain to 0 within a sec
+            //   • mesh_dispatched should climb past edit-count rapidly
+            //   • completed_with_surface should ≈ render_entities
+            ui.label("Pending attach");
+            ui.label(format!("{}", stats.pending_blend_attach));
+            ui.end_row();
+
+            ui.label("Mesh dispatched");
+            ui.label(format!("{}", stats.mesh_dispatched));
+            ui.end_row();
+
+            ui.label("→ with surface");
+            ui.label(format!("{}", stats.mesh_completed_with_surface));
+            ui.end_row();
+
+            ui.label("→ empty");
+            ui.label(format!("{}", stats.mesh_completed_empty));
             ui.end_row();
         });
     ui.small("Drawn % well below 100 → frustum cull is doing its job.");

@@ -70,9 +70,26 @@ pub fn load_voxel_edits_into_store(
         return;
     }
     let generator = HeightfieldGenerator::new();
+
+    // Bbox of the deltas we're about to apply — useful for spotting
+    // load-vs-camera mismatches when surrounding chunks fail to render.
+    let (mut min_x, mut max_x, mut min_z, mut max_z) =
+        (i32::MAX, i32::MIN, i32::MAX, i32::MIN);
+    for d in &deltas {
+        min_x = min_x.min(d.coord[0]);
+        max_x = max_x.max(d.coord[0]);
+        min_z = min_z.min(d.coord[2]);
+        max_z = max_z.max(d.coord[2]);
+    }
+
     let applied = apply_into_store(&deltas, &mut store, &mut dirty, &generator);
-    info!("editor: replayed {applied} authored chunk edits from {path:?}");
-    log.push(format!("loaded {applied} authored chunk edits"));
+    let store_len = store.len();
+    let line = format!(
+        "loaded {applied}/{} chunk edits, store={store_len}, edit-bbox x[{min_x}..{max_x}] z[{min_z}..{max_z}]",
+        deltas.len()
+    );
+    info!("editor: {line}");
+    log.push(line);
 }
 
 /// Drain the toolbar's save-button flag. Runs every frame in Update;

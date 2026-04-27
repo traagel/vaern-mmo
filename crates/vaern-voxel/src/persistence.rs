@@ -99,8 +99,19 @@ pub fn diff_against_generator<G: WorldGenerator>(
 /// 2. `delta.apply_to(chunk)` — replay-safe (version-gated).
 /// 3. Mark the chunk dirty so the mesher re-extracts.
 ///
-/// Returns the count of chunks actually updated (some may have been
-/// dropped by the version gate if the store already had newer data).
+/// Every coord referenced in the deltas is marked dirty regardless of
+/// whether `delta.apply_to` actually advanced the chunk's version.
+/// Reason: the load path inserts fresh chunks into the store via
+/// `seed_chunk`, and the streamer's "if store.contains(coord) skip"
+/// check would then prevent it from ever marking those chunks dirty.
+/// Without this unconditional dirty-mark, chunks loaded with no-op
+/// deltas (delta version ≤ seeded version) sit in the store forever
+/// without a render entity → invisible "void chunks" in the loaded
+/// area. See diagnostic log "loaded N/M chunk edits" — when N ≪ M,
+/// this code path is what kept the M-N chunks dirty.
+///
+/// Returns the count of deltas whose `apply_to` actually advanced the
+/// chunk's version (a strict subset of the delta count).
 pub fn apply_into_store<G: WorldGenerator>(
     deltas: &[ChunkDelta],
     store: &mut ChunkStore,
@@ -119,10 +130,12 @@ pub fn apply_into_store<G: WorldGenerator>(
             let prev = chunk.version;
             delta.apply_to(chunk);
             if chunk.version > prev {
-                dirty.mark(coord);
                 applied += 1;
             }
         }
+        // Always mark dirty — the chunk is in the store now, the
+        // mesher needs to extract a mesh for it. (See doc-comment.)
+        dirty.mark(coord);
     }
     applied
 }
