@@ -1,0 +1,39 @@
+id: connections__sunward_reach
+zone: sunward_reach
+connections:
+- to_zone: firland_greenwood
+  direction: nw
+  type: dirt_path
+  border_position:
+    x: -15168.9
+    z: 9213.0
+  border_label: to Firland Greenwood
+  level_continuous: false
+  pvp_safe: true
+- to_zone: market_crossing
+  direction: e
+  type: dirt_path
+  border_position:
+    x: 2821.5
+    z: 13188.1
+  border_label: to Market Crossing
+  level_continuous: false
+  pvp_safe: true
+- to_zone: silverleaf_wood
+  direction: ne
+  type: kingsroad
+  border_position:
+    x: 1187.3
+    z: -486.4
+  border_label: to Silverleaf Wood
+  level_continuous: true
+  pvp_safe: true
+- to_zone: skarnreach
+  direction: e
+  type: dirt_path
+  border_position:
+    x: 2992.4
+    z: 39766.7
+  border_label: to Skarnreach
+  level_continuous: false
+  pvp_safe: true

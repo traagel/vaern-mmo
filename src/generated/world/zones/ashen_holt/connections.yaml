@@ -1,0 +1,39 @@
+id: connections__ashen_holt
+zone: ashen_holt
+connections:
+- to_zone: barrow_coast
+  direction: s
+  type: dirt_path
+  border_position:
+    x: 23078.9
+    z: 4893.8
+  border_label: to Barrow Coast
+  level_continuous: false
+  pvp_safe: true
+- to_zone: gravewatch_fields
+  direction: sw
+  type: coastal_path
+  border_position:
+    x: -809.7
+    z: 1393.1
+  border_label: to Gravewatch Fields
+  level_continuous: true
+  pvp_safe: true
+- to_zone: scrap_flats
+  direction: w
+  type: dirt_path
+  border_position:
+    x: -1250.0
+    z: -110.4
+  border_label: to Scrap Flats
+  level_continuous: false
+  pvp_safe: true
+- to_zone: scrap_marsh
+  direction: n
+  type: dirt_path
+  border_position:
+    x: 27127.5
+    z: -1250.0
+  border_label: to Scrap Marsh
+  level_continuous: false
+  pvp_safe: true

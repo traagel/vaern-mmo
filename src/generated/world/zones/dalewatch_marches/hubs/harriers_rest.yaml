@@ -14,8 +14,8 @@ amenities:
 quest_givers: 2
 biome: snow
 offset_from_zone_origin:
-  x: 60.0
-  z: -100.0
+  x: 100.0
+  z: -650.0
 props:
 - slug: modular_fort_01__tower_round
   offset:

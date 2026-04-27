@@ -1,0 +1,39 @@
+id: connections__scrap_marsh
+zone: scrap_marsh
+connections:
+- to_zone: ashen_holt
+  direction: s
+  type: dirt_path
+  border_position:
+    x: 27127.5
+    z: 1250.0
+  border_label: to Ashen Holt
+  level_continuous: false
+  pvp_safe: true
+- to_zone: pact_causeway
+  direction: nw
+  type: dirt_path
+  border_position:
+    x: -594.4
+    z: -1351.0
+  border_label: to Pact Causeway
+  level_continuous: false
+  pvp_safe: true
+- to_zone: pactmarch
+  direction: n
+  type: dirt_path
+  border_position:
+    x: 26525.3
+    z: -1420.4
+  border_label: to Pactmarch
+  level_continuous: false
+  pvp_safe: true
+- to_zone: shadegrove
+  direction: w
+  type: dirt_path
+  border_position:
+    x: -1250.0
+    z: 153.7
+  border_label: to Shadegrove
+  level_continuous: false
+  pvp_safe: true

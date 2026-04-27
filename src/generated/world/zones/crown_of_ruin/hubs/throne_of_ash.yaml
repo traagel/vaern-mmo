@@ -4,3 +4,6 @@ name: The Throne of Ash
 role: ruin
 amenities: []
 quest_givers: 1
+offset_from_zone_origin:
+  x: -586.7
+  z: -381.9

@@ -1,9 +1,9 @@
 # Dalewatch Marches — Starter Zone Redesign
 
-Design document for expanding the Mannin (human) starter zone to WoW-Classic
-Elwynn-Forest scope: ~12 named sub-zones, a 10-step spine chain, 2 side
+Design document for expanding the Mannin (human) starter zone to full
+starter-scale scope: ~12 named sub-zones, a 10-step spine chain, 2 side
 chains, ~20 side quests, and a ~600×600u initial playable area (stretch
-target 1200×1200u once the ground plane grows).
+target ~2×2 km once the ground plane grows).
 
 Status: **design-only**. No YAML written yet. Approve or redline this doc and
 I'll bulk-generate the files via a Python seed script.
@@ -379,7 +379,7 @@ from a new `hub.offset_from_zone_origin` field (or similar) so Harrier's
 Rest actually lands at `(60, -100)` and not at `(8, 0)`. This is a small
 schema + loader change — cheap to do.
 
-### 8.2 Stretch — 1200×1200u (WoW Elwynn scale)
+### 8.2 Stretch — full starter-scale (~2×2 km)
 
 Requires two workspace changes:
 - **Ground plane.** Grow from 2200u → 5000u (`crates/vaern-client/src/scene/ground.rs`).
@@ -492,11 +492,11 @@ After shipping:
 
 ## 10. Open design questions (call these out before YAML)
 
-1. **Classic's "one boss one quest" vs Vaern's step-count.** WoW Elwynn had
-   a sprawl of tiny 2-step quests. I've consolidated into a longer spine + 2
-   side chains because the server's chain-renderer already works well with
-   chains and I don't want to force 20 single-step quests. Redirect if you
-   want more Elwynn-style one-offs instead.
+1. **Genre "one boss one quest" vs Vaern's step-count.** Classic-style
+   starters tend to sprawl into tiny 2-step quests. I've consolidated into a
+   longer spine + 2 side chains because the server's chain-renderer already
+   works well with chains and I don't want to force 20 single-step quests.
+   Redirect if you want more single-step one-offs instead.
 
 2. **Pact scouts as humanoid appearance.** They should use a different
    humanoid archetype than the drifters (different faction). Proposal: hash

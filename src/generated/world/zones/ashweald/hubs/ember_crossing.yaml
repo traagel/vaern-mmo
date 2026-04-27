@@ -6,3 +6,6 @@ amenities:
 - innkeeper
 - flight_master
 quest_givers: 2
+offset_from_zone_origin:
+  x: -382.5
+  z: 586.3

@@ -4,3 +4,6 @@ name: The Charred Shrine
 role: ruin
 amenities: []
 quest_givers: 1
+offset_from_zone_origin:
+  x: 694.5
+  z: 87.7

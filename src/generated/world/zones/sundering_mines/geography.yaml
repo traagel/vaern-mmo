@@ -1,0 +1,192 @@
+id: geography__sundering_mines
+zone: sundering_mines
+schema_version: '1.0'
+biome_regions:
+- id: sundering_mines_main
+  label: The Sundering Mines
+  biome: mountain
+  polygon:
+    points:
+    - x: 1291.8
+      z: 570.0
+    - x: 1547.5
+      z: -133.3
+    - x: 979.2
+      z: -1080.4
+    - x: -1818.6
+      z: -1080.4
+    - x: -2180.2
+      z: 848.6
+    - x: -1925.0
+      z: 1495.2
+    - x: -1396.2
+      z: 1914.0
+  opacity: 0.85
+  label_position:
+    x: -500.2
+    z: 361.9
+roads:
+- id: sundering_mines_main_road
+  type: dirt_path
+  path:
+    points:
+    - x: -2098.3
+      z: 415.1
+    - x: -322.1
+      z: 415.1
+    - x: 1454.1
+      z: 415.1
+- id: spur_to_lightless_gallery
+  type: dirt_path
+  path:
+    points:
+    - x: 1454.1
+      z: 415.1
+    - x: 665.3
+      z: 217.7
+- id: spur_to_mineshaft_alpha
+  type: dirt_path
+  path:
+    points:
+    - x: -322.1
+      z: 415.1
+    - x: -509.8
+      z: 479.7
+- id: spur_to_old_tunnel_camp
+  type: dirt_path
+  path:
+    points:
+    - x: -322.1
+      z: 415.1
+    - x: -257.0
+      z: -651.1
+- id: spur_to_carver_signs
+  type: dirt_path
+  path:
+    points:
+    - x: -322.1
+      z: 415.1
+    - x: -90.0
+      z: -180.0
+- id: spur_to_dark_chimney
+  type: dirt_path
+  path:
+    points:
+    - x: -322.1
+      z: 415.1
+    - x: 200.0
+      z: 90.0
+- id: spur_to_phosphor_pool
+  type: dirt_path
+  path:
+    points:
+    - x: -322.1
+      z: 415.1
+    - x: 90.0
+      z: -240.0
+- id: spur_to_scaffold_grave
+  type: dirt_path
+  path:
+    points:
+    - x: -322.1
+      z: 415.1
+    - x: -180.0
+      z: 60.0
+features:
+- id: carver_signs
+  type: landmark_glyph
+  glyph: small_house
+  position:
+    x: -90.0
+    z: -180.0
+- id: dark_chimney
+  type: landmark_glyph
+  glyph: small_house
+  position:
+    x: 200.0
+    z: 90.0
+- id: phosphor_pool
+  type: landmark_glyph
+  glyph: small_house
+  position:
+    x: 90.0
+    z: -240.0
+- id: scaffold_grave
+  type: landmark_glyph
+  glyph: small_house
+  position:
+    x: -180.0
+    z: 60.0
+- id: sundering_mines_ambient_00
+  type: ambient_glyph
+  glyph: small_cabin
+  position:
+    x: -1536.5
+    z: 45.0
+- id: sundering_mines_ambient_01
+  type: ambient_glyph
+  glyph: small_cabin
+  position:
+    x: -2002.3
+    z: -209.0
+- id: sundering_mines_ambient_02
+  type: ambient_glyph
+  glyph: small_cabin
+  position:
+    x: 452.6
+    z: 303.4
+- id: sundering_mines_ambient_03
+  type: ambient_glyph
+  glyph: small_cabin
+  position:
+    x: -770.0
+    z: -37.2
+scatter:
+  hills:
+    density: medium
+    biomes_allowed:
+    - mountain
+    seed: 5103
+free_labels:
+- text: ↑ Ashweald
+  position:
+    x: 0.0
+    z: -1173.2
+  rotation_deg: 0
+  style: directional
+- text: ↗ Blackwater Deep
+  position:
+    x: 1160.8
+    z: -603.6
+  rotation_deg: 0
+  style: directional
+- text: ⟶ Crown Of Ruin
+  position:
+    x: 1272.2
+    z: 401.0
+  rotation_deg: 0
+  style: directional
+- text: ⟵ Dalewatch Marches
+  position:
+    x: -1330.6
+    z: -216.2
+  rotation_deg: 0
+  style: directional
+- text: ⟵ Greenwood Deep
+  position:
+    x: -1259.2
+    z: 430.7
+  rotation_deg: 0
+  style: directional
+- text: ↘ Ruin Line South
+  position:
+    x: 605.4
+    z: 1049.4
+  rotation_deg: 0
+  style: directional
+- text: ↙ Silverleaf Wood
+  position:
+    x: -840.5
+    z: 919.8
+  rotation_deg: 0
+  style: directional

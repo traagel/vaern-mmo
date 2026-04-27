@@ -1,0 +1,206 @@
+id: geography__market_crossing
+zone: market_crossing
+schema_version: '1.0'
+biome_regions:
+- id: market_crossing_main
+  label: Market Crossing
+  biome: fields
+  polygon:
+    points:
+    - x: -1892.7
+      z: 1169.9
+    - x: -1689.5
+      z: 1225.3
+    - x: 735.5
+      z: 982.8
+    - x: 2405.5
+      z: 1122.0
+    - x: 2449.3
+      z: 755.0
+    - x: 2074.1
+      z: -711.5
+    - x: -37.8
+      z: -2119.3
+    - x: -1903.2
+      z: 994.8
+  opacity: 0.85
+  label_position:
+    x: 267.7
+    z: 427.4
+roads:
+- id: market_crossing_main_road
+  type: dirt_path
+  path:
+    points:
+    - x: -1806.0
+      z: -420.0
+    - x: 272.9
+      z: -420.0
+    - x: 2351.9
+      z: -420.0
+- id: spur_to_crossing_freeport
+  type: dirt_path
+  path:
+    points:
+    - x: 272.9
+      z: -420.0
+    - x: 641.3
+      z: 280.7
+- id: spur_to_old_river_watch
+  type: dirt_path
+  path:
+    points:
+    - x: 272.9
+      z: -420.0
+    - x: -271.3
+      z: 645.3
+- id: spur_to_silver_caravanserai
+  type: dirt_path
+  path:
+    points:
+    - x: 272.9
+      z: -420.0
+    - x: -465.1
+      z: -523.1
+- id: spur_to_pre_concord_pillar
+  type: dirt_path
+  path:
+    points:
+    - x: 272.9
+      z: -420.0
+    - x: -80.0
+      z: 250.0
+- id: spur_to_river_island_market
+  type: dirt_path
+  path:
+    points:
+    - x: 272.9
+      z: -420.0
+    - x: 90.0
+      z: 180.0
+- id: spur_to_smuggler_cove
+  type: dirt_path
+  path:
+    points:
+    - x: 272.9
+      z: -420.0
+    - x: -180.0
+      z: -140.0
+- id: spur_to_warehouse_burnt_row
+  type: dirt_path
+  path:
+    points:
+    - x: 272.9
+      z: -420.0
+    - x: 240.0
+      z: -90.0
+features:
+- id: pre_concord_pillar
+  type: landmark_glyph
+  glyph: small_house
+  position:
+    x: -80.0
+    z: 250.0
+- id: river_island_market
+  type: landmark_glyph
+  glyph: small_house
+  position:
+    x: 90.0
+    z: 180.0
+- id: smuggler_cove
+  type: landmark_glyph
+  glyph: small_house
+  position:
+    x: -180.0
+    z: -140.0
+- id: warehouse_burnt_row
+  type: landmark_glyph
+  glyph: small_house
+  position:
+    x: 240.0
+    z: -90.0
+- id: market_crossing_ambient_00
+  type: ambient_glyph
+  glyph: small_house
+  position:
+    x: 1098.1
+    z: -218.2
+- id: market_crossing_ambient_01
+  type: ambient_glyph
+  glyph: small_house
+  position:
+    x: 2220.7
+    z: -148.0
+- id: market_crossing_ambient_02
+  type: ambient_glyph
+  glyph: small_house
+  position:
+    x: -980.5
+    z: -463.4
+- id: market_crossing_ambient_03
+  type: ambient_glyph
+  glyph: small_house
+  position:
+    x: 1240.3
+    z: 512.6
+- id: market_crossing_ambient_04
+  type: ambient_glyph
+  glyph: small_house
+  position:
+    x: -886.8
+    z: -134.7
+- id: market_crossing_ambient_05
+  type: ambient_glyph
+  glyph: small_house
+  position:
+    x: 751.2
+    z: -123.0
+- id: market_crossing_ambient_06
+  type: ambient_glyph
+  glyph: small_house
+  position:
+    x: 641.4
+    z: 938.0
+- id: market_crossing_ambient_07
+  type: ambient_glyph
+  glyph: small_house
+  position:
+    x: -235.2
+    z: -1146.7
+- id: market_crossing_ambient_08
+  type: ambient_glyph
+  glyph: small_house
+  position:
+    x: 1870.5
+    z: -337.9
+free_labels:
+- text: ↗ Ruin Line South
+  position:
+    x: 650.8
+    z: -901.1
+  rotation_deg: 0
+  style: directional
+- text: ↖ Silverleaf Wood
+  position:
+    x: -1006.5
+    z: -556.5
+  rotation_deg: 0
+  style: directional
+- text: ⟶ Skarncamp Wastes
+  position:
+    x: 1136.7
+    z: -268.5
+  rotation_deg: 0
+  style: directional
+- text: ⟶ Skarnreach
+  position:
+    x: 1165.0
+    z: 128.5
+  rotation_deg: 0
+  style: directional
+- text: ⟵ Sunward Reach
+  position:
+    x: -1171.2
+    z: 64.8
+  rotation_deg: 0
+  style: directional

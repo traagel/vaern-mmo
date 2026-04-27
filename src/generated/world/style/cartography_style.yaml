@@ -1,0 +1,255 @@
+id: cartography_style__vaern
+schema_version: '1.0'
+
+# Map biome ids (from zone core.yaml + hub biome) to a fill style. The
+# renderer paints biome_regions in geography.yaml using these. Unknown
+# biomes fall back to `default`.
+biomes:
+  default:
+    base_color: '#D9CDA5'
+    line_color: '#8E7B4F'
+    pattern: solid
+    opacity_default: 0.85
+  river_valley:
+    base_color: '#C9D89B'
+    line_color: '#6F8B3B'
+    pattern: solid
+    opacity_default: 0.85
+  temperate_forest:
+    base_color: '#79925A'
+    line_color: '#3E5C2E'
+    pattern: stippled_pines
+    opacity_default: 0.9
+  highland:
+    base_color: '#B7AE82'
+    line_color: '#7A6F44'
+    pattern: hatched_diagonal
+    opacity_default: 0.85
+  mountain:
+    base_color: '#9B8E7A'
+    line_color: '#5A4F3F'
+    pattern: chevron_peaks
+    opacity_default: 0.95
+  marshland:
+    base_color: '#94A78F'
+    line_color: '#4F6444'
+    pattern: wavy_horizontal
+    opacity_default: 0.85
+  marsh:
+    base_color: '#94A78F'
+    line_color: '#4F6444'
+    pattern: wavy_horizontal
+    opacity_default: 0.85
+  ashland:
+    base_color: '#A89880'
+    line_color: '#5C4E3D'
+    pattern: stippled_circles
+    opacity_default: 0.9
+  ruin:
+    base_color: '#B0A89A'
+    line_color: '#615749'
+    pattern: hatched_cross
+    opacity_default: 0.9
+  coastal_cliff:
+    base_color: '#B5A98C'
+    line_color: '#735F3D'
+    pattern: hatched_diagonal
+    opacity_default: 0.9
+  fjord:
+    base_color: '#88A2A8'
+    line_color: '#3E595F'
+    pattern: wavy_horizontal
+    opacity_default: 0.9
+  fields:
+    base_color: '#D4BB78'
+    line_color: '#8E6C2E'
+    pattern: hatched_diagonal
+    opacity_default: 0.85
+  forest:
+    base_color: '#79925A'
+    line_color: '#3E5C2E'
+    pattern: stippled_pines
+    opacity_default: 0.9
+  ridge_scrub:
+    base_color: '#B0A57A'
+    line_color: '#6F6038'
+    pattern: stippled_circles
+    opacity_default: 0.85
+  stone:
+    base_color: '#A6A09A'
+    line_color: '#5E574E'
+    pattern: hatched_diagonal
+    opacity_default: 0.9
+  rocky:
+    base_color: '#A6A09A'
+    line_color: '#5E574E'
+    pattern: hatched_diagonal
+    opacity_default: 0.9
+  grass:
+    base_color: '#C2D08D'
+    line_color: '#6E844A'
+    pattern: solid
+    opacity_default: 0.8
+  snow:
+    base_color: '#E9EDF1'
+    line_color: '#7B8895'
+    pattern: stippled_circles
+    opacity_default: 0.95
+  sand:
+    base_color: '#DCC988'
+    line_color: '#9A8540'
+    pattern: stippled_circles
+    opacity_default: 0.9
+  scorched:
+    base_color: '#7E6155'
+    line_color: '#3F2E26'
+    pattern: hatched_cross
+    opacity_default: 0.9
+
+# Hub glyphs by role.
+hub_icons:
+  capital:
+    glyph: castle_keep
+    size: large
+  outpost:
+    glyph: timber_palisade
+    size: medium
+  ruin:
+    glyph: ruined_tower
+    size: medium
+  waypoint:
+    glyph: small_cabin
+    size: small
+  town:
+    glyph: cluster_houses
+    size: medium
+  camp:
+    glyph: tent
+    size: small
+
+# Landmark / feature glyphs by descriptor.
+landmark_glyphs:
+  croft: small_house
+  grove: tree_ring
+  cairn: stone_slab
+  mine: mine_entrance
+  ruin: ruined_tower
+  ford: bridge
+  fen: marsh_tuft
+  lair: cave_mouth
+  default: small_house
+
+# Road / track styles. Used for both intra-zone roads (geography.roads)
+# and cross-zone connection edges (connections.type).
+roads:
+  kingsroad:
+    color: '#8B6432'
+    width: 3.5
+    dash_pattern: '6 3'
+  forest_track:
+    color: '#6E5A33'
+    width: 2.0
+    dash_pattern: '3 4'
+  forest_path:
+    color: '#6E5A33'
+    width: 2.0
+    dash_pattern: '3 4'
+  dirt_path:
+    color: '#7A674A'
+    width: 1.5
+    dash_pattern: '2 3'
+  cave_link:
+    color: '#3E2E22'
+    width: 1.5
+    dash_pattern: '1 2'
+  ridge_path:
+    color: '#7A6F44'
+    width: 1.8
+    dash_pattern: '3 3'
+  hill_path:
+    color: '#7A6F44'
+    width: 1.5
+    dash_pattern: '2 3'
+  mountain_pass:
+    color: '#5E574E'
+    width: 1.8
+    dash_pattern: '4 3'
+  coastal_path:
+    color: '#735F3D'
+    width: 2.0
+    dash_pattern: '4 3'
+  causeway:
+    color: '#8E7B4F'
+    width: 2.5
+    dash_pattern: '5 3'
+  ash_path:
+    color: '#5C4E3D'
+    width: 1.8
+    dash_pattern: '3 4'
+  marsh_path:
+    color: '#4F6444'
+    width: 1.5
+    dash_pattern: '2 4'
+  fjord_path:
+    color: '#3E595F'
+    width: 2.0
+    dash_pattern: '4 3'
+  ruin_path:
+    color: '#615749'
+    width: 1.8
+    dash_pattern: '3 3'
+  river_path:
+    color: '#5C7A92'
+    width: 2.0
+    dash_pattern: '4 4'
+  steppe_path:
+    color: '#A8956C'
+    width: 1.5
+    dash_pattern: '3 3'
+  tunnel:
+    color: '#3E2E22'
+    width: 1.5
+    dash_pattern: '1 3'
+  surface_lift:
+    color: '#5E574E'
+    width: 1.5
+    dash_pattern: '2 2'
+
+# Paper / parchment frame.
+paper:
+  parchment_warm:
+    base_color: '#F2E3BC'
+    edge_color: '#8E6C2E'
+    edge_width: 6.0
+    inner_shadow_opacity: 0.18
+
+# Typography. Sizes are SVG-pixel units at the default render scale
+# (1 zone-meter = 1 SVG-pixel unless overridden by RenderOptions).
+typography:
+  capital_label:
+    font: 'Georgia, serif'
+    size: 13
+    weight: bold
+    fill: '#3A2C1B'
+  outpost_label:
+    font: 'Georgia, serif'
+    size: 11
+    weight: normal
+    fill: '#3A2C1B'
+  landmark_label:
+    font: 'Georgia, serif'
+    size: 9
+    weight: normal
+    fill: '#3A2C1B'
+  region_label:
+    font: 'Georgia, serif'
+    size: 11
+    weight: normal
+    style: italic
+    fill: '#5A4632'
+  road_label:
+    font: 'Georgia, serif'
+    size: 8
+    weight: normal
+    style: italic
+    fill: '#6E5A33'

@@ -1,0 +1,176 @@
+id: geography__heartland_ride
+zone: heartland_ride
+schema_version: '1.0'
+biome_regions:
+- id: heartland_ride_main
+  label: The Heartland Ride
+  biome: fields
+  polygon:
+    points:
+    - x: -340.6
+      z: 1570.8
+    - x: 1181.0
+      z: 447.5
+    - x: 586.0
+      z: -940.9
+    - x: -1700.5
+      z: -614.2
+    - x: -1554.1
+      z: 1289.5
+  opacity: 0.85
+  label_position:
+    x: -365.7
+    z: 350.5
+roads:
+- id: heartland_ride_main_road
+  type: dirt_path
+  path:
+    points:
+    - x: -1629.2
+      z: 316.1
+    - x: -263.0
+      z: 316.1
+    - x: 1103.1
+      z: 316.1
+- id: spur_to_bandit_watchtower
+  type: dirt_path
+  path:
+    points:
+    - x: 1103.1
+      z: 316.1
+    - x: 637.1
+      z: 290.1
+- id: spur_to_flood_mill
+  type: dirt_path
+  path:
+    points:
+    - x: -263.0
+      z: 316.1
+    - x: -237.1
+      z: 658.6
+- id: spur_to_ride_crossroads
+  type: dirt_path
+  path:
+    points:
+    - x: -263.0
+      z: 316.1
+    - x: -175.5
+      z: -677.6
+- id: spur_to_cattle_ford_pillar
+  type: dirt_path
+  path:
+    points:
+    - x: -263.0
+      z: 316.1
+    - x: -90.0
+      z: -270.0
+- id: spur_to_courier_relay_ruin
+  type: dirt_path
+  path:
+    points:
+    - x: -263.0
+      z: 316.1
+    - x: 60.0
+      z: 240.0
+- id: spur_to_flood_meadow
+  type: dirt_path
+  path:
+    points:
+    - x: -263.0
+      z: 316.1
+    - x: -200.0
+      z: 110.0
+- id: spur_to_gallows_oak
+  type: dirt_path
+  path:
+    points:
+    - x: -263.0
+      z: 316.1
+    - x: 220.0
+      z: -180.0
+features:
+- id: cattle_ford_pillar
+  type: landmark_glyph
+  glyph: bridge
+  position:
+    x: -90.0
+    z: -270.0
+- id: courier_relay_ruin
+  type: landmark_glyph
+  glyph: ruined_tower
+  position:
+    x: 60.0
+    z: 240.0
+- id: flood_meadow
+  type: landmark_glyph
+  glyph: small_house
+  position:
+    x: -200.0
+    z: 110.0
+- id: gallows_oak
+  type: landmark_glyph
+  glyph: small_house
+  position:
+    x: 220.0
+    z: -180.0
+- id: heartland_ride_ambient_00
+  type: ambient_glyph
+  glyph: small_house
+  position:
+    x: 264.0
+    z: -628.6
+- id: heartland_ride_ambient_01
+  type: ambient_glyph
+  glyph: small_house
+  position:
+    x: -833.7
+    z: 256.3
+- id: heartland_ride_ambient_02
+  type: ambient_glyph
+  glyph: small_house
+  position:
+    x: -1616.0
+    z: 559.7
+- id: heartland_ride_ambient_03
+  type: ambient_glyph
+  glyph: small_house
+  position:
+    x: -1058.7
+    z: 719.0
+- id: heartland_ride_ambient_04
+  type: ambient_glyph
+  glyph: small_house
+  position:
+    x: 583.1
+    z: -86.1
+- id: heartland_ride_ambient_05
+  type: ambient_glyph
+  glyph: small_house
+  position:
+    x: -718.6
+    z: -669.4
+free_labels:
+- text: ↗ Dalewatch Marches
+  position:
+    x: 1078.3
+    z: -426.6
+  rotation_deg: 0
+  style: directional
+- text: ↓ Firland Greenwood
+  position:
+    x: -265.1
+    z: 1055.0
+  rotation_deg: 0
+  style: directional
+- text: ↘ Greenwood Deep
+  position:
+    x: 696.8
+    z: 871.2
+  rotation_deg: 0
+  style: directional
+- text: ↑ Wyrling Downs
+  position:
+    x: -166.0
+    z: -1072.1
+  rotation_deg: 0
+  style: directional

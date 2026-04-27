@@ -1,5 +1,5 @@
 id: rested_xp
-description: WoW-style rested bonus accumulated when logged out at a hearth/hub.
+description: Rested-XP bonus accumulated when logged out at a hearth/hub.
 accrual:
   per_hour_logged_in_hub: 0.05
   unit: fraction of one level's XP

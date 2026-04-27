@@ -4,3 +4,6 @@ name: Collapsed Forge
 role: ruin
 amenities: []
 quest_givers: 1
+offset_from_zone_origin:
+  x: 695.1
+  z: -82.6

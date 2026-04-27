@@ -16,6 +16,6 @@ amenities:
 quest_givers: 4
 biome: marsh
 offset_from_zone_origin:
-  x: -220.0
-  z: 20.0
+  x: -800.0
+  z: 50.0
 props: []

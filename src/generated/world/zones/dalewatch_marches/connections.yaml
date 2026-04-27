@@ -1,0 +1,57 @@
+id: connections__dalewatch_marches
+zone: dalewatch_marches
+connections:
+- to_zone: ashweald
+  direction: e
+  type: dirt_path
+  border_position:
+    x: 1757.2
+    z: -1397.5
+  border_label: to Ashweald
+  level_continuous: false
+  pvp_safe: true
+- to_zone: frost_spine
+  direction: nw
+  type: dirt_path
+  border_position:
+    x: 481.2
+    z: -2048.7
+  border_label: to Frost Spine
+  level_continuous: false
+  pvp_safe: true
+- to_zone: greenwood_deep
+  direction: s
+  type: dirt_path
+  border_position:
+    x: 623.3
+    z: 1407.0
+  border_label: to Greenwood Deep
+  level_continuous: false
+  pvp_safe: true
+- to_zone: heartland_ride
+  direction: sw
+  type: kingsroad
+  border_position:
+    x: -827.9
+    z: 484.8
+  border_label: to Heartland Ride
+  level_continuous: true
+  pvp_safe: true
+- to_zone: sundering_mines
+  direction: e
+  type: dirt_path
+  border_position:
+    x: 1954.2
+    z: 619.3
+  border_label: to Sundering Mines
+  level_continuous: false
+  pvp_safe: true
+- to_zone: wyrling_downs
+  direction: nw
+  type: dirt_path
+  border_position:
+    x: -772.9
+    z: -954.1
+  border_label: to Wyrling Downs
+  level_continuous: false
+  pvp_safe: true

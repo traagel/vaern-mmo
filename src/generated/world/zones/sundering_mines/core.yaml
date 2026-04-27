@@ -17,3 +17,16 @@ budget:
     solo: 58.5
     duo: 40.5
 notes: Endgame zone in the ruin line. Targets 46-60 band session math.
+bounds:
+  min:
+    x: -1500.0
+    z: -1300.0
+  max:
+    x: 1500.0
+    z: 1300.0
+coordinate_system:
+  origin: lightless_gallery
+  axes:
+    x_positive: east
+    z_positive: south
+  unit: meter

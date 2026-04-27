@@ -1,0 +1,178 @@
+id: geography__frost_spine
+zone: frost_spine
+schema_version: '1.0'
+biome_regions:
+- id: frost_spine_main
+  label: The Frost Spine
+  biome: mountain
+  polygon:
+    points:
+    - x: 2645.1
+      z: 628.5
+    - x: 71.3
+      z: -1054.3
+    - x: -1869.5
+      z: -73.0
+    - x: -1917.0
+      z: 543.9
+    - x: 884.9
+      z: 1441.1
+    - x: 2616.4
+      z: 720.9
+  opacity: 0.85
+  label_position:
+    x: 405.2
+    z: 367.8
+roads:
+- id: frost_spine_main_road
+  type: dirt_path
+  path:
+    points:
+    - x: -1815.2
+      z: 198.8
+    - x: 365.3
+      z: 198.8
+    - x: 2545.8
+      z: 198.8
+- id: spur_to_frost_gate
+  type: dirt_path
+  path:
+    points:
+    - x: 365.3
+      z: 198.8
+    - x: 697.2
+      z: 62.2
+- id: spur_to_sundered_peak
+  type: dirt_path
+  path:
+    points:
+    - x: 365.3
+      z: 198.8
+    - x: -230.9
+      z: 660.8
+- id: spur_to_yeti_warren
+  type: dirt_path
+  path:
+    points:
+    - x: 365.3
+      z: 198.8
+    - x: -501.7
+      z: -488.2
+- id: spur_to_blue_glacier
+  type: dirt_path
+  path:
+    points:
+    - x: 365.3
+      z: 198.8
+    - x: 200.0
+      z: 90.0
+- id: spur_to_frozen_seal
+  type: dirt_path
+  path:
+    points:
+    - x: 365.3
+      z: 198.8
+    - x: -180.0
+      z: 60.0
+- id: spur_to_storm_stone
+  type: dirt_path
+  path:
+    points:
+    - x: 365.3
+      z: 198.8
+    - x: 90.0
+      z: -240.0
+- id: spur_to_yeti_skull_pile
+  type: dirt_path
+  path:
+    points:
+    - x: 365.3
+      z: 198.8
+    - x: -90.0
+      z: -180.0
+features:
+- id: blue_glacier
+  type: landmark_glyph
+  glyph: small_house
+  position:
+    x: 200.0
+    z: 90.0
+- id: frozen_seal
+  type: landmark_glyph
+  glyph: small_house
+  position:
+    x: -180.0
+    z: 60.0
+- id: storm_stone
+  type: landmark_glyph
+  glyph: small_house
+  position:
+    x: 90.0
+    z: -240.0
+- id: yeti_skull_pile
+  type: landmark_glyph
+  glyph: small_house
+  position:
+    x: -90.0
+    z: -180.0
+- id: frost_spine_ambient_00
+  type: ambient_glyph
+  glyph: small_cabin
+  position:
+    x: 997.1
+    z: -31.6
+- id: frost_spine_ambient_01
+  type: ambient_glyph
+  glyph: small_cabin
+  position:
+    x: -197.2
+    z: -854.2
+- id: frost_spine_ambient_02
+  type: ambient_glyph
+  glyph: small_cabin
+  position:
+    x: 993.0
+    z: 375.2
+- id: frost_spine_ambient_03
+  type: ambient_glyph
+  glyph: small_cabin
+  position:
+    x: 879.6
+    z: -503.6
+scatter:
+  hills:
+    density: medium
+    biomes_allowed:
+    - mountain
+    seed: 5103
+free_labels:
+- text: ⟶ Ashweald
+  position:
+    x: 1292.7
+    z: 348.5
+  rotation_deg: 0
+  style: directional
+- text: ↘ Dalewatch Marches
+  position:
+    x: 519.9
+    z: 1083.3
+  rotation_deg: 0
+  style: directional
+- text: ↗ Irongate Pass
+  position:
+    x: 740.9
+    z: -981.9
+  rotation_deg: 0
+  style: directional
+- text: ↖ Stoneguard Deep
+  position:
+    x: -610.9
+    z: -1047.0
+  rotation_deg: 0
+  style: directional
+- text: ↓ Wyrling Downs
+  position:
+    x: -412.9
+    z: 1117.4
+  rotation_deg: 0
+  style: directional

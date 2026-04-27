@@ -1,6 +1,6 @@
 //! Heads-up-display widgets drawn via bevy_egui.
 //!
-//! Currently: a WoW-style compass strip at the top of the screen that
+//! Currently: a horizontal compass strip at the top of the screen that
 //! scrolls as the camera yaw changes. N / NE / E / SE / S / SW / W / NW
 //! are laid out across the strip; the vertical mark at center shows the
 //! camera's current facing direction.

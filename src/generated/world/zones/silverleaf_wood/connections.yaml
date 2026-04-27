@@ -1,0 +1,48 @@
+id: connections__silverleaf_wood
+zone: silverleaf_wood
+connections:
+- to_zone: greenwood_deep
+  direction: nw
+  type: forest_path
+  border_position:
+    x: -352.2
+    z: -1282.4
+  border_label: to Greenwood Deep
+  level_continuous: true
+  pvp_safe: true
+- to_zone: market_crossing
+  direction: se
+  type: kingsroad
+  border_position:
+    x: 998.7
+    z: 609.7
+  border_label: to Market Crossing
+  level_continuous: true
+  pvp_safe: true
+- to_zone: ruin_line_south
+  direction: ne
+  type: dirt_path
+  border_position:
+    x: 1771.9
+    z: -1415.6
+  border_label: to Ruin Line South
+  level_continuous: false
+  pvp_safe: true
+- to_zone: sundering_mines
+  direction: ne
+  type: dirt_path
+  border_position:
+    x: 1310.9
+    z: -2051.4
+  border_label: to Sundering Mines
+  level_continuous: false
+  pvp_safe: true
+- to_zone: sunward_reach
+  direction: sw
+  type: kingsroad
+  border_position:
+    x: -852.8
+    z: 958.7
+  border_label: to Sunward Reach
+  level_continuous: true
+  pvp_safe: true

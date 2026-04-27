@@ -1393,7 +1393,7 @@ def build_core() -> dict[str, Any]:
         },
         "notes": (
             "Starter zone in the western dales, redesigned 2026-04 to "
-            "Classic-Elwynn scope: 12 sub-zones, 4 hubs, 10-step main "
+            "starter-scale scope: 12 sub-zones, 4 hubs, 10-step main "
             "chain, two side chains, plus side quests and filler."
         ),
     }
@@ -1656,7 +1656,7 @@ def build_summary() -> dict[str, Any]:
         "main_chain": "chain_dalewatch_first_ride",
         "side_chains": [c["id"] for c in SIDE_CHAINS],
         "notes": (
-            "Classic-Elwynn-scale redesign — 12 sub-zones across the "
+            "Starter-scale redesign — 12 sub-zones across the "
             "county, 4 hubs, hand-written main + 2 side chains, 20 "
             "side quests, and a trimmed filler pool."
         ),

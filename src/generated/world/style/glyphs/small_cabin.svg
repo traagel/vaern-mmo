@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-10 -10 20 20">
+  <g fill="currentColor" stroke="currentColor" stroke-width="0.5" stroke-linejoin="round">
+    <polygon points="-5,-1 0,-5 5,-1"/>
+    <rect x="-5" y="-1" width="10" height="6"/>
+    <rect x="-1" y="2" width="2" height="3" fill="#F2E3BC"/>
+  </g>
+</svg>

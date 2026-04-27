@@ -4,3 +4,6 @@ name: Lich-Weep
 role: ruin
 amenities: []
 quest_givers: 1
+offset_from_zone_origin:
+  x: 630.5
+  z: -304.0

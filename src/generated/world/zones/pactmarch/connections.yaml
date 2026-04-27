@@ -1,0 +1,30 @@
+id: connections__pactmarch
+zone: pactmarch
+connections:
+- to_zone: iron_strand
+  direction: w
+  type: dirt_path
+  border_position:
+    x: -1891.0
+    z: -26930.9
+  border_label: to Iron Strand
+  level_continuous: false
+  pvp_safe: true
+- to_zone: pact_causeway
+  direction: sw
+  type: causeway
+  border_position:
+    x: -1708.0
+    z: -876.3
+  border_label: to Pact Causeway
+  level_continuous: true
+  pvp_safe: true
+- to_zone: scrap_marsh
+  direction: s
+  type: dirt_path
+  border_position:
+    x: 26480.2
+    z: 2099.5
+  border_label: to Scrap Marsh
+  level_continuous: false
+  pvp_safe: true

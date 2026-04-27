@@ -1,0 +1,48 @@
+id: connections__skarncamp_wastes
+zone: skarncamp_wastes
+connections:
+- to_zone: crown_of_ruin
+  direction: n
+  type: dirt_path
+  border_position:
+    x: 149.5
+    z: -1537.9
+  border_label: to Crown Of Ruin
+  level_continuous: false
+  pvp_safe: true
+- to_zone: gravewatch_fields
+  direction: e
+  type: dirt_path
+  border_position:
+    x: 1472.0
+    z: -757.3
+  border_label: to Gravewatch Fields
+  level_continuous: false
+  pvp_safe: true
+- to_zone: market_crossing
+  direction: w
+  type: dirt_path
+  border_position:
+    x: -2033.5
+    z: 1124.0
+  border_label: to Market Crossing
+  level_continuous: false
+  pvp_safe: true
+- to_zone: ruin_line_south
+  direction: nw
+  type: dirt_path
+  border_position:
+    x: -1550.7
+    z: -477.2
+  border_label: to Ruin Line South
+  level_continuous: false
+  pvp_safe: true
+- to_zone: skarnreach
+  direction: se
+  type: fjord_path
+  border_position:
+    x: -34.8
+    z: 1059.3
+  border_label: to Skarnreach
+  level_continuous: true
+  pvp_safe: true

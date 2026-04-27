@@ -5,7 +5,7 @@ use std::{collections::HashMap, fs, path::Path};
 
 use serde::{Deserialize, Serialize};
 
-use crate::{read_dir, LoadError};
+use crate::{read_dir, spatial::CoordinateSystem, Bounds, Coord2, LoadError};
 
 // ─── shared ──────────────────────────────────────────────────────────────────
 
@@ -84,6 +84,14 @@ pub struct Zone {
     pub budget: ZoneBudget,
     #[serde(default)]
     pub notes: String,
+    /// Axis-aligned bounding box in zone-local meters. Optional during
+    /// the schema migration; required by the cartography validator.
+    #[serde(default)]
+    pub bounds: Option<Bounds>,
+    /// Names which hub is at `(0, 0)` and declares the engine axis
+    /// convention. Optional during migration; required by the validator.
+    #[serde(default)]
+    pub coordinate_system: Option<CoordinateSystem>,
     /// World-dressing scatter rules applied to the voxel ground inside
     /// this zone's footprint. Rendered client-side only.
     #[serde(default)]
@@ -128,12 +136,6 @@ fn default_max_slope() -> f32 {
 // ─── hub ─────────────────────────────────────────────────────────────────────
 
 #[derive(Debug, Clone, Deserialize)]
-pub struct HubOffset {
-    pub x: f32,
-    pub z: f32,
-}
-
-#[derive(Debug, Clone, Deserialize)]
 pub struct Hub {
     pub id: String,
     pub zone: String,
@@ -146,7 +148,7 @@ pub struct Hub {
     /// server falls back to a tiny radial layout (legacy behavior).
     /// Expressed as `(x, z)` — Y is sampled from the shared terrain.
     #[serde(default)]
-    pub offset_from_zone_origin: Option<HubOffset>,
+    pub offset_from_zone_origin: Option<Coord2>,
     /// Biome key for the client's Voronoi region renderer. Drives the
     /// per-hub floor-patch texture. Unknown biomes fall back to `grass`.
     /// Default is `grass` so existing zones without explicit biomes
@@ -169,7 +171,7 @@ pub struct AuthoredProp {
     pub slug: String,
     /// Hub-local offset in meters. Y is sampled from voxel ground unless
     /// `absolute_y` is set.
-    pub offset: PropOffset,
+    pub offset: Coord2,
     /// Facing in degrees around Y axis. 0 = facing -Z.
     #[serde(default)]
     pub rotation_y_deg: f32,
@@ -180,12 +182,6 @@ pub struct AuthoredProp {
     /// or banners hung above doorways.
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub absolute_y: Option<f32>,
-}
-
-#[derive(Debug, Clone, Deserialize, Serialize)]
-pub struct PropOffset {
-    pub x: f32,
-    pub z: f32,
 }
 
 fn default_scale() -> f32 {

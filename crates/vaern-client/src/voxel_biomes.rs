@@ -19,7 +19,7 @@ use std::collections::HashMap;
 use std::path::Path;
 
 use bevy::prelude::*;
-use vaern_data::{load_world, World};
+use vaern_data::{load_world, load_world_layout, World, WorldLayout};
 
 /// Biome tag — one of the 9 palette entries from the hub YAMLs, plus
 /// a default `Grass` fallback for chunks outside any hub's influence.
@@ -138,9 +138,10 @@ struct HubBiome {
 /// typical 2800u ring spacing.
 const HUB_INFLUENCE_RADIUS: f32 = 900.0;
 
-/// Zone ring radius — must match `vaern-server::data::load_game_data`.
-/// Duplicated because the client doesn't link the server crate.
-const ZONE_RING_RADIUS: f32 = 2800.0;
+/// Fallback ring radius — used only when `world.yaml` doesn't list a
+/// zone. The canonical placements live in `src/generated/world/world.yaml`
+/// and are loaded into a `WorldLayout`.
+const FALLBACK_RING_RADIUS: f32 = 2800.0;
 
 impl BiomeResolver {
     /// Load the world YAML and build the hub → biome table. On failure
@@ -154,7 +155,8 @@ impl BiomeResolver {
             }
         };
 
-        let zone_origins = compute_zone_origins(&world);
+        let layout = load_world_layout(world_root).unwrap_or_default();
+        let zone_origins = compute_zone_origins(&world, &layout);
         let mut hubs = Vec::new();
 
         for zone in &world.zones {
@@ -193,10 +195,10 @@ impl BiomeResolver {
     }
 }
 
-/// Mirror of `vaern-server::data::load_game_data`'s zone-ring layout.
-/// Must stay in sync; if the server's formula changes, biomes paint in
-/// the wrong world position. Same logic as `scene::hub_regions`.
-fn compute_zone_origins(world: &World) -> HashMap<String, (f32, f32)> {
+/// Returns world-meter offsets for every starter zone. Reads
+/// `world.yaml` zone_placements when available; falls back to a
+/// deterministic ring sorted by zone id.
+fn compute_zone_origins(world: &World, layout: &WorldLayout) -> HashMap<String, (f32, f32)> {
     let mut starters: Vec<&str> = world
         .zones
         .iter()
@@ -206,11 +208,15 @@ fn compute_zone_origins(world: &World) -> HashMap<String, (f32, f32)> {
     let n = starters.len().max(1) as f32;
     let mut out = HashMap::new();
     for (i, zid) in starters.iter().enumerate() {
-        let angle = (i as f32 / n) * std::f32::consts::TAU;
-        out.insert(
-            zid.to_string(),
-            (ZONE_RING_RADIUS * angle.cos(), ZONE_RING_RADIUS * angle.sin()),
-        );
+        if let Some(p) = layout.zone_origin(zid) {
+            out.insert(zid.to_string(), (p.x, p.z));
+        } else {
+            let angle = (i as f32 / n) * std::f32::consts::TAU;
+            out.insert(
+                zid.to_string(),
+                (FALLBACK_RING_RADIUS * angle.cos(), FALLBACK_RING_RADIUS * angle.sin()),
+            );
+        }
     }
     out
 }

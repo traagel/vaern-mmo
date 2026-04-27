@@ -1,0 +1,196 @@
+id: geography__scrap_flats
+zone: scrap_flats
+schema_version: '1.0'
+biome_regions:
+- id: scrap_flats_main
+  label: The Scrap Flats
+  biome: marsh
+  polygon:
+    points:
+    - x: -1762.9
+      z: -885.0
+    - x: -1396.7
+      z: 1496.1
+    - x: 1198.5
+      z: 993.4
+    - x: 1198.5
+      z: -1217.5
+    - x: -1572.9
+      z: -1217.5
+  opacity: 0.85
+  label_position:
+    x: -467.1
+    z: -166.1
+roads:
+- id: scrap_flats_main_road
+  type: dirt_path
+  path:
+    points:
+    - x: -1692.8
+      z: 129.9
+    - x: -287.9
+      z: 129.9
+    - x: 1117.0
+      z: 129.9
+- id: spur_to_great_warren
+  type: dirt_path
+  path:
+    points:
+    - x: 1117.0
+      z: 129.9
+    - x: 699.2
+      z: -33.0
+- id: spur_to_pit_tinker
+  type: dirt_path
+  path:
+    points:
+    - x: -287.9
+      z: 129.9
+    - x: -75.7
+      z: 695.9
+- id: spur_to_rust_creek
+  type: dirt_path
+  path:
+    points:
+    - x: -287.9
+      z: 129.9
+    - x: -656.7
+      z: -242.3
+- id: spur_to_scavenger_mound
+  type: dirt_path
+  path:
+    points:
+    - x: -287.9
+      z: 129.9
+    - x: 110.0
+      z: -691.3
+- id: spur_to_alloy_pillar
+  type: dirt_path
+  path:
+    points:
+    - x: -287.9
+      z: 129.9
+    - x: 100.0
+      z: -240.0
+- id: spur_to_conveyor_skeleton
+  type: dirt_path
+  path:
+    points:
+    - x: -287.9
+      z: 129.9
+    - x: 180.0
+      z: 90.0
+- id: spur_to_rust_field
+  type: dirt_path
+  path:
+    points:
+    - x: -287.9
+      z: 129.9
+    - x: -90.0
+      z: -180.0
+- id: spur_to_vat_field
+  type: dirt_path
+  path:
+    points:
+    - x: -287.9
+      z: 129.9
+    - x: -180.0
+      z: 60.0
+features:
+- id: alloy_pillar
+  type: landmark_glyph
+  glyph: small_house
+  position:
+    x: 100.0
+    z: -240.0
+- id: conveyor_skeleton
+  type: landmark_glyph
+  glyph: small_house
+  position:
+    x: 180.0
+    z: 90.0
+- id: rust_field
+  type: landmark_glyph
+  glyph: small_house
+  position:
+    x: -90.0
+    z: -180.0
+- id: vat_field
+  type: landmark_glyph
+  glyph: small_house
+  position:
+    x: -180.0
+    z: 60.0
+- id: scrap_flats_ambient_00
+  type: ambient_glyph
+  glyph: marsh_tuft
+  position:
+    x: 541.4
+    z: 201.1
+- id: scrap_flats_ambient_01
+  type: ambient_glyph
+  glyph: marsh_tuft
+  position:
+    x: -1462.0
+    z: 619.1
+- id: scrap_flats_ambient_02
+  type: ambient_glyph
+  glyph: marsh_tuft
+  position:
+    x: -464.5
+    z: -679.6
+- id: scrap_flats_ambient_03
+  type: ambient_glyph
+  glyph: marsh_tuft
+  position:
+    x: -625.1
+    z: 103.5
+- id: scrap_flats_ambient_04
+  type: ambient_glyph
+  glyph: marsh_tuft
+  position:
+    x: -1405.9
+    z: -300.9
+- id: scrap_flats_ambient_05
+  type: ambient_glyph
+  glyph: marsh_tuft
+  position:
+    x: -201.2
+    z: -903.7
+- id: scrap_flats_ambient_06
+  type: ambient_glyph
+  glyph: marsh_tuft
+  position:
+    x: 951.4
+    z: -485.1
+free_labels:
+- text: ⟶ Ashen Holt
+  position:
+    x: 1173.2
+    z: 0.0
+  rotation_deg: 0
+  style: directional
+- text: ↖ Blackwater Deep
+  position:
+    x: -1018.7
+    z: -537.3
+  rotation_deg: 0
+  style: directional
+- text: ⟵ Crown Of Ruin
+  position:
+    x: -1159.6
+    z: 164.6
+  rotation_deg: 0
+  style: directional
+- text: ↓ Gravewatch Fields
+  position:
+    x: 223.2
+    z: 1063.2
+  rotation_deg: 0
+  style: directional
+- text: ↑ Shadegrove
+  position:
+    x: 0.0
+    z: -1083.0
+  rotation_deg: 0
+  style: directional

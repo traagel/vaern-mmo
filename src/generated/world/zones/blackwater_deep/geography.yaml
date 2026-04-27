@@ -1,0 +1,178 @@
+id: geography__blackwater_deep
+zone: blackwater_deep
+schema_version: '1.0'
+biome_regions:
+- id: blackwater_deep_main
+  label: The Blackwater Deep
+  biome: marsh
+  polygon:
+    points:
+    - x: 1653.7
+      z: 1063.0
+    - x: 1843.7
+      z: 730.5
+    - x: 1420.9
+      z: -2229.1
+    - x: -1121.0
+      z: -640.6
+    - x: -1423.2
+      z: 366.8
+    - x: -854.9
+      z: 1313.9
+  opacity: 0.85
+  label_position:
+    x: 253.2
+    z: 100.8
+roads:
+- id: blackwater_deep_main_road
+  type: dirt_path
+  path:
+    points:
+    - x: -1341.3
+      z: -440.4
+    - x: 211.6
+      z: -440.4
+    - x: 1764.5
+      z: -440.4
+- id: spur_to_black_eel_camp
+  type: dirt_path
+  path:
+    points:
+    - x: 211.6
+      z: -440.4
+    - x: 691.0
+      z: 111.7
+- id: spur_to_deepwater_redoubt
+  type: dirt_path
+  path:
+    points:
+    - x: 211.6
+      z: -440.4
+    - x: -364.5
+      z: 597.6
+- id: spur_to_drowned_abbey
+  type: dirt_path
+  path:
+    points:
+    - x: 211.6
+      z: -440.4
+    - x: -410.3
+      z: -567.2
+- id: spur_to_eelsong_pool
+  type: dirt_path
+  path:
+    points:
+    - x: 211.6
+      z: -440.4
+    - x: -180.0
+      z: 80.0
+- id: spur_to_saint_landing
+  type: dirt_path
+  path:
+    points:
+    - x: 211.6
+      z: -440.4
+    - x: 200.0
+      z: 90.0
+- id: spur_to_sunken_pillar_circle
+  type: dirt_path
+  path:
+    points:
+    - x: 211.6
+      z: -440.4
+    - x: -90.0
+      z: -180.0
+- id: spur_to_warlords_garden
+  type: dirt_path
+  path:
+    points:
+    - x: 211.6
+      z: -440.4
+    - x: 90.0
+      z: -250.0
+features:
+- id: eelsong_pool
+  type: landmark_glyph
+  glyph: small_house
+  position:
+    x: -180.0
+    z: 80.0
+- id: saint_landing
+  type: landmark_glyph
+  glyph: small_house
+  position:
+    x: 200.0
+    z: 90.0
+- id: sunken_pillar_circle
+  type: landmark_glyph
+  glyph: small_house
+  position:
+    x: -90.0
+    z: -180.0
+- id: warlords_garden
+  type: landmark_glyph
+  glyph: small_house
+  position:
+    x: 90.0
+    z: -250.0
+- id: blackwater_deep_ambient_00
+  type: ambient_glyph
+  glyph: marsh_tuft
+  position:
+    x: 1547.5
+    z: -652.3
+- id: blackwater_deep_ambient_01
+  type: ambient_glyph
+  glyph: marsh_tuft
+  position:
+    x: -923.0
+    z: 724.1
+- id: blackwater_deep_ambient_02
+  type: ambient_glyph
+  glyph: marsh_tuft
+  position:
+    x: -628.8
+    z: -710.7
+- id: blackwater_deep_ambient_03
+  type: ambient_glyph
+  glyph: marsh_tuft
+  position:
+    x: 721.5
+    z: -853.3
+free_labels:
+- text: ⟵ Ashweald
+  position:
+    x: -1296.7
+    z: -337.2
+  rotation_deg: 0
+  style: directional
+- text: ↓ Crown Of Ruin
+  position:
+    x: 134.7
+    z: 1167.5
+  rotation_deg: 0
+  style: directional
+- text: ↖ Ruin Line North
+  position:
+    x: -717.4
+    z: -994.9
+  rotation_deg: 0
+  style: directional
+- text: ↘ Scrap Flats
+  position:
+    x: 1175.3
+    z: 582.1
+  rotation_deg: 0
+  style: directional
+- text: ⟶ Shadegrove
+  position:
+    x: 1340.2
+    z: -166.0
+  rotation_deg: 0
+  style: directional
+- text: ↙ Sundering Mines
+  position:
+    x: -1160.8
+    z: 603.6
+  rotation_deg: 0
+  style: directional

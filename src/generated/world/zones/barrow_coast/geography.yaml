@@ -1,0 +1,188 @@
+id: geography__barrow_coast
+zone: barrow_coast
+schema_version: '1.0'
+biome_regions:
+- id: barrow_coast_main
+  label: The Barrow Coast
+  biome: coastal_cliff
+  polygon:
+    points:
+    - x: -1417.6
+      z: 1921.0
+    - x: -996.2
+      z: 1896.2
+    - x: 1913.8
+      z: -771.3
+    - x: 1847.4
+      z: -1500.9
+    - x: 100.3
+      z: -1734.6
+    - x: -1806.4
+      z: 957.3
+  opacity: 0.85
+  label_position:
+    x: -59.8
+    z: 127.9
+roads:
+- id: barrow_coast_main_road
+  type: dirt_path
+  path:
+    points:
+    - x: -1722.4
+      z: 94.3
+    - x: 50.2
+      z: 94.3
+    - x: 1822.7
+      z: 94.3
+- id: spur_to_iron_barrow
+  type: dirt_path
+  path:
+    points:
+    - x: 50.2
+      z: 94.3
+    - x: 643.3
+      z: -276.0
+- id: spur_to_silent_harbor
+  type: dirt_path
+  path:
+    points:
+    - x: 50.2
+      z: 94.3
+    - x: -534.4
+      z: 452.1
+- id: spur_to_salt_pillars
+  type: dirt_path
+  path:
+    points:
+    - x: 50.2
+      z: 94.3
+    - x: 180.0
+      z: 90.0
+- id: spur_to_shipwreck_field
+  type: dirt_path
+  path:
+    points:
+    - x: 50.2
+      z: 94.3
+    - x: -180.0
+      z: -90.0
+- id: spur_to_tide_carved_step
+  type: dirt_path
+  path:
+    points:
+    - x: 50.2
+      z: 94.3
+    - x: -90.0
+      z: 240.0
+- id: spur_to_wind_chapel
+  type: dirt_path
+  path:
+    points:
+    - x: 50.2
+      z: 94.3
+    - x: 90.0
+      z: -240.0
+features:
+- id: salt_pillars
+  type: landmark_glyph
+  glyph: small_house
+  position:
+    x: 180.0
+    z: 90.0
+- id: shipwreck_field
+  type: landmark_glyph
+  glyph: small_house
+  position:
+    x: -180.0
+    z: -90.0
+- id: tide_carved_step
+  type: landmark_glyph
+  glyph: small_house
+  position:
+    x: -90.0
+    z: 240.0
+- id: wind_chapel
+  type: landmark_glyph
+  glyph: small_house
+  position:
+    x: 90.0
+    z: -240.0
+- id: barrow_coast_ambient_00
+  type: ambient_glyph
+  glyph: small_house
+  position:
+    x: 290.1
+    z: -577.8
+- id: barrow_coast_ambient_01
+  type: ambient_glyph
+  glyph: small_house
+  position:
+    x: -947.6
+    z: -19.7
+- id: barrow_coast_ambient_02
+  type: ambient_glyph
+  glyph: small_house
+  position:
+    x: -740.1
+    z: -308.5
+- id: barrow_coast_ambient_03
+  type: ambient_glyph
+  glyph: small_house
+  position:
+    x: -59.9
+    z: -481.5
+- id: barrow_coast_ambient_04
+  type: ambient_glyph
+  glyph: small_house
+  position:
+    x: 1014.8
+    z: -253.8
+- id: barrow_coast_ambient_05
+  type: ambient_glyph
+  glyph: small_house
+  position:
+    x: -155.1
+    z: 643.1
+- id: barrow_coast_ambient_06
+  type: ambient_glyph
+  glyph: small_house
+  position:
+    x: 707.3
+    z: -644.9
+- id: barrow_coast_ambient_07
+  type: ambient_glyph
+  glyph: small_house
+  position:
+    x: -229.6
+    z: -761.8
+- id: barrow_coast_ambient_08
+  type: ambient_glyph
+  glyph: small_house
+  position:
+    x: 456.7
+    z: 317.9
+- id: barrow_coast_ambient_09
+  type: ambient_glyph
+  glyph: small_house
+  position:
+    x: 126.3
+    z: -881.9
+free_labels:
+- text: ↑ Ashen Holt
+  position:
+    x: 119.7
+    z: -894.5
+  rotation_deg: 0
+  style: directional
+- text: ↖ Gravewatch Fields
+  position:
+    x: -736.4
+    z: -521.6
+  rotation_deg: 0
+  style: directional
+- text: ⟵ Skarnreach
+  position:
+    x: -836.9
+    z: 337.5
+  rotation_deg: 0
+  style: directional

@@ -17,3 +17,16 @@ budget:
     solo: 28.0
     duo: 20.0
 notes: Mid zone in the pact steppes. Targets 11-30 band session math.
+bounds:
+  min:
+    x: -1300.0
+    z: -1200.0
+  max:
+    x: 1300.0
+    z: 1200.0
+coordinate_system:
+  origin: causeway_hold
+  axes:
+    x_positive: east
+    z_positive: south
+  unit: meter

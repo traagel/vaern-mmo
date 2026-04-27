@@ -17,3 +17,16 @@ budget:
     solo: 31.5
     duo: 22.5
 notes: Mid zone in the eastern fjords. Targets 11-30 band session math.
+bounds:
+  min:
+    x: -1300.0
+    z: -1200.0
+  max:
+    x: 1300.0
+    z: 1200.0
+coordinate_system:
+  origin: ravenmeet
+  axes:
+    x_positive: east
+    z_positive: south
+  unit: meter

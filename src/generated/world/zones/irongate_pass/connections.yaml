@@ -1,0 +1,39 @@
+id: connections__irongate_pass
+zone: irongate_pass
+connections:
+- to_zone: ashweald
+  direction: se
+  type: dirt_path
+  border_position:
+    x: 2258.3
+    z: 1459.9
+  border_label: to Ashweald
+  level_continuous: false
+  pvp_safe: true
+- to_zone: frost_spine
+  direction: sw
+  type: dirt_path
+  border_position:
+    x: 345.0
+    z: 1363.8
+  border_label: to Frost Spine
+  level_continuous: false
+  pvp_safe: true
+- to_zone: iron_strand
+  direction: e
+  type: dirt_path
+  border_position:
+    x: 1652.3
+    z: -12378.0
+  border_label: to Iron Strand
+  level_continuous: false
+  pvp_safe: true
+- to_zone: stoneguard_deep
+  direction: w
+  type: ridge_path
+  border_position:
+    x: -261.1
+    z: -12474.2
+  border_label: to Stoneguard Deep
+  level_continuous: true
+  pvp_safe: true

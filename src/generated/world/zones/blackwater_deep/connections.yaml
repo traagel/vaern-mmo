@@ -1,0 +1,57 @@
+id: connections__blackwater_deep
+zone: blackwater_deep
+connections:
+- to_zone: ashweald
+  direction: w
+  type: dirt_path
+  border_position:
+    x: -1319.2
+    z: -144.2
+  border_label: to Ashweald
+  level_continuous: false
+  pvp_safe: true
+- to_zone: crown_of_ruin
+  direction: s
+  type: dirt_path
+  border_position:
+    x: 403.9
+    z: 1222.1
+  border_label: to Crown Of Ruin
+  level_continuous: false
+  pvp_safe: true
+- to_zone: ruin_line_north
+  direction: nw
+  type: dirt_path
+  border_position:
+    x: 146.8
+    z: -1482.3
+  border_label: to Ruin Line North
+  level_continuous: false
+  pvp_safe: true
+- to_zone: scrap_flats
+  direction: se
+  type: dirt_path
+  border_position:
+    x: 1794.9
+    z: 921.4
+  border_label: to Scrap Flats
+  level_continuous: false
+  pvp_safe: true
+- to_zone: shadegrove
+  direction: e
+  type: dirt_path
+  border_position:
+    x: 1674.9
+    z: -775.6
+  border_label: to Shadegrove
+  level_continuous: false
+  pvp_safe: true
+- to_zone: sundering_mines
+  direction: sw
+  type: tunnel
+  border_position:
+    x: -1182.1
+    z: 863.2
+  border_label: to Sundering Mines
+  level_continuous: true
+  pvp_safe: false

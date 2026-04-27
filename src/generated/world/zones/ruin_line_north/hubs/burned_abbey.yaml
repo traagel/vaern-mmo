@@ -4,3 +4,6 @@ name: The Burned Abbey
 role: ruin
 amenities: []
 quest_givers: 1
+offset_from_zone_origin:
+  x: 700.0
+  z: 1.5

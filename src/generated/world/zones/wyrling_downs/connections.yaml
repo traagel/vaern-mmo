@@ -1,0 +1,48 @@
+id: connections__wyrling_downs
+zone: wyrling_downs
+connections:
+- to_zone: dalewatch_marches
+  direction: se
+  type: dirt_path
+  border_position:
+    x: 1227.1
+    z: 45.9
+  border_label: to Dalewatch Marches
+  level_continuous: false
+  pvp_safe: true
+- to_zone: firland_greenwood
+  direction: s
+  type: dirt_path
+  border_position:
+    x: -18725.0
+    z: 638.3
+  border_label: to Firland Greenwood
+  level_continuous: false
+  pvp_safe: true
+- to_zone: frost_spine
+  direction: n
+  type: dirt_path
+  border_position:
+    x: -225.6
+    z: -1258.4
+  border_label: to Frost Spine
+  level_continuous: false
+  pvp_safe: true
+- to_zone: heartland_ride
+  direction: s
+  type: kingsroad
+  border_position:
+    x: -2885.0
+    z: 1305.0
+  border_label: to Heartland Ride
+  level_continuous: true
+  pvp_safe: true
+- to_zone: stoneguard_deep
+  direction: n
+  type: dirt_path
+  border_position:
+    x: -16427.4
+    z: -1201.8
+  border_label: to Stoneguard Deep
+  level_continuous: false
+  pvp_safe: true

@@ -10,21 +10,30 @@ use vaern_core::{Pillar, School};
 
 pub mod bestiary;
 pub mod boss_drops;
+pub mod connections;
 pub mod dungeon;
 pub mod flavored;
+pub mod geography;
 pub mod landmark;
 pub mod quest;
 pub mod race;
+pub mod spatial;
 pub mod world;
+pub mod world_layout;
 
 pub use bestiary::{load_bestiary, Affinities, ArmorClass, Bestiary, CreatureType};
 pub use boss_drops::{load_all_boss_drops, BossDropEntry, BossDrops};
+pub use connections::{load_all_connections, Connection, ConnectionsFile, ConnectionsIndex};
 pub use dungeon::{load_dungeons, Boss, Dungeon};
+pub use geography::{
+    load_all_geography, BiomeRegion, Feature, FreeLabel, Geography, GeographyIndex,
+    GeographyScatter, River, RiverTributary, Road, ScatterLayer,
+};
 pub use flavored::{
     load_flavored, FlavoredAbility, FlavoredEffect, FlavoredEffectKind, FlavoredIndex,
     FlavoredShape,
 };
-pub use landmark::{load_all_landmarks, Landmark, LandmarkIndex, LandmarkOffset};
+pub use landmark::{load_all_landmarks, Landmark, LandmarkIndex};
 pub use quest::{
     load_all_side_quests, HubSideQuests, SideQuest, SideQuestIndex,
 };
@@ -33,10 +42,14 @@ pub use quest::{
     QuestNpc, QuestObjective, QuestStep,
 };
 pub use race::{load_races, Race, RacePillarAffinity};
-pub use world::{
-    load_biomes, load_world, AuthoredProp, Biome, Hub, HubOffset, LevelRange, Mob, PropOffset,
-    ScatterRule, World, Zone,
+pub use spatial::{
+    point_in_polygon, AxisMapping, Bounds, Cardinal, Compass, Coord2, CoordinateSystem, HubOffset,
+    LandmarkOffset, PolyPath, Polygon, PropOffset, Unit,
 };
+pub use world::{
+    load_biomes, load_world, AuthoredProp, Biome, Hub, LevelRange, Mob, ScatterRule, World, Zone,
+};
+pub use world_layout::{load_world_layout, WorldFeature, WorldLayout, ZonePlacement};
 
 #[derive(Debug, Error)]
 pub enum LoadError {

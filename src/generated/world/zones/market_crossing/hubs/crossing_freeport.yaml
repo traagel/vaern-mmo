@@ -10,3 +10,6 @@ amenities:
 - flight_master
 - profession_trainers
 quest_givers: 6
+offset_from_zone_origin:
+  x: 641.3
+  z: 280.7

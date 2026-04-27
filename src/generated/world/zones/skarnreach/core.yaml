@@ -17,3 +17,16 @@ budget:
     solo: 9.0
     duo: 6.5
 notes: Starter zone in the eastern fjords. Targets 1-10 band session math.
+bounds:
+  min:
+    x: -1000.0
+    z: -1000.0
+  max:
+    x: 1000.0
+    z: 1000.0
+coordinate_system:
+  origin: bloodwater_landing
+  axes:
+    x_positive: east
+    z_positive: south
+  unit: meter

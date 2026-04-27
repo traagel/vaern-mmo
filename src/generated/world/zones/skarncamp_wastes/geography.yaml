@@ -1,0 +1,289 @@
+id: geography__skarncamp_wastes
+zone: skarncamp_wastes
+schema_version: '1.0'
+biome_regions:
+- id: skarncamp_wastes_main
+  label: Skarncamp Wastes
+  biome: fjord
+  polygon:
+    points:
+    - x: -860.3
+      z: -1286.4
+    - x: -2172.1
+      z: 353.5
+    - x: -1796.9
+      z: 1820.0
+    - x: 1705.4
+      z: 228.0
+    - x: 1126.3
+      z: -1704.2
+  opacity: 0.85
+  label_position:
+    x: -399.5
+    z: -117.8
+- id: skarncamp_wastes_pocket_seabird_cliff
+  label: The Seabird Cliff
+  biome: coastal_cliff
+  polygon:
+    points:
+    - x: 682.6
+      z: 126.1
+    - x: 660.6
+      z: 34.6
+    - x: 624.6
+      z: -52.4
+    - x: 575.4
+      z: -132.7
+    - x: 514.3
+      z: -204.3
+    - x: 442.7
+      z: -265.4
+    - x: 362.4
+      z: -314.6
+    - x: 275.4
+      z: -350.6
+    - x: 183.9
+      z: -372.6
+    - x: 90.0
+      z: -380.0
+    - x: -3.9
+      z: -372.6
+    - x: -95.4
+      z: -350.6
+    - x: -182.4
+      z: -314.6
+    - x: -262.7
+      z: -265.4
+    - x: -334.3
+      z: -204.3
+    - x: -395.4
+      z: -132.7
+    - x: -444.6
+      z: -52.4
+    - x: -480.6
+      z: 34.6
+    - x: -502.6
+      z: 126.1
+    - x: -510.0
+      z: 220.0
+    - x: -502.6
+      z: 313.9
+    - x: -480.6
+      z: 405.4
+    - x: -444.6
+      z: 492.4
+    - x: -395.4
+      z: 572.7
+    - x: -334.3
+      z: 644.3
+    - x: -262.7
+      z: 705.4
+    - x: -182.4
+      z: 754.6
+    - x: -95.4
+      z: 790.6
+    - x: -3.9
+      z: 812.6
+    - x: 90.0
+      z: 820.0
+    - x: 183.9
+      z: 812.6
+    - x: 275.4
+      z: 790.6
+    - x: 362.4
+      z: 754.6
+    - x: 442.7
+      z: 705.4
+    - x: 514.3
+      z: 644.3
+    - x: 575.4
+      z: 572.7
+    - x: 624.6
+      z: 492.4
+    - x: 660.6
+      z: 405.4
+    - x: 682.6
+      z: 313.9
+    - x: 690.0
+      z: 220.0
+  opacity: 0.85
+  label_position:
+    x: 90.0
+    z: 220.0
+roads:
+- id: skarncamp_wastes_main_road
+  type: dirt_path
+  path:
+    points:
+    - x: -2087.3
+      z: 52.4
+    - x: -238.5
+      z: 52.4
+    - x: 1610.3
+      z: 52.4
+- id: spur_to_ravenmeet
+  type: dirt_path
+  path:
+    points:
+    - x: -238.5
+      z: 52.4
+    - x: 638.0
+      z: 288.1
+- id: spur_to_salt_watch
+  type: dirt_path
+  path:
+    points:
+    - x: -238.5
+      z: 52.4
+    - x: -351.9
+      z: 605.1
+- id: spur_to_war_stake
+  type: dirt_path
+  path:
+    points:
+    - x: -238.5
+      z: 52.4
+    - x: -305.3
+      z: -629.9
+- id: spur_to_burnt_longhall
+  type: dirt_path
+  path:
+    points:
+    - x: -238.5
+      z: 52.4
+    - x: -90.0
+      z: -260.0
+- id: spur_to_seabird_cliff
+  type: dirt_path
+  path:
+    points:
+    - x: -238.5
+      z: 52.4
+    - x: 90.0
+      z: 220.0
+- id: spur_to_warstake_circle
+  type: dirt_path
+  path:
+    points:
+    - x: -238.5
+      z: 52.4
+    - x: -160.0
+      z: 120.0
+- id: spur_to_widow_landing
+  type: dirt_path
+  path:
+    points:
+    - x: -238.5
+      z: 52.4
+    - x: 200.0
+      z: -100.0
+features:
+- id: burnt_longhall
+  type: landmark_glyph
+  glyph: small_house
+  position:
+    x: -90.0
+    z: -260.0
+- id: seabird_cliff
+  type: landmark_glyph
+  glyph: small_house
+  position:
+    x: 90.0
+    z: 220.0
+- id: warstake_circle
+  type: landmark_glyph
+  glyph: small_house
+  position:
+    x: -160.0
+    z: 120.0
+- id: widow_landing
+  type: landmark_glyph
+  glyph: small_house
+  position:
+    x: 200.0
+    z: -100.0
+- id: skarncamp_wastes_ambient_00
+  type: ambient_glyph
+  glyph: small_house
+  position:
+    x: -357.8
+    z: 901.6
+- id: skarncamp_wastes_ambient_01
+  type: ambient_glyph
+  glyph: small_house
+  position:
+    x: -544.9
+    z: -1018.8
+- id: skarncamp_wastes_ambient_02
+  type: ambient_glyph
+  glyph: small_house
+  position:
+    x: 686.3
+    z: 674.6
+- id: skarncamp_wastes_ambient_03
+  type: ambient_glyph
+  glyph: small_house
+  position:
+    x: 31.3
+    z: -1216.7
+- id: skarncamp_wastes_ambient_04
+  type: ambient_glyph
+  glyph: small_house
+  position:
+    x: -692.2
+    z: 554.5
+- id: skarncamp_wastes_ambient_05
+  type: ambient_glyph
+  glyph: small_house
+  position:
+    x: -719.6
+    z: -463.0
+- id: skarncamp_wastes_ambient_06
+  type: ambient_glyph
+  glyph: small_house
+  position:
+    x: -1887.9
+    z: 79.8
+- id: skarncamp_wastes_ambient_07
+  type: ambient_glyph
+  glyph: small_house
+  position:
+    x: 989.4
+    z: 59.9
+- id: skarncamp_wastes_ambient_08
+  type: ambient_glyph
+  glyph: small_house
+  position:
+    x: 1437.6
+    z: -105.8
+free_labels:
+- text: ↑ Crown Of Ruin
+  position:
+    x: -241.5
+    z: -1059.8
+  rotation_deg: 0
+  style: directional
+- text: ⟶ Gravewatch Fields
+  position:
+    x: 1123.8
+    z: -310.8
+  rotation_deg: 0
+  style: directional
+- text: ⟵ Market Crossing
+  position:
+    x: -1136.7
+    z: 268.5
+  rotation_deg: 0
+  style: directional
+- text: ↖ Ruin Line South
+  position:
+    x: -916.2
+    z: -676.5
+  rotation_deg: 0
+  style: directional
+- text: ↘ Skarnreach
+  position:
+    x: 485.5
+    z: 985.9
+  rotation_deg: 0
+  style: directional

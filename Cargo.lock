@@ -8082,6 +8082,16 @@ dependencies = [
 ]
 
 [[package]]
+name = "vaern-cartography"
+version = "0.1.0"
+dependencies = [
+ "serde",
+ "serde_yaml",
+ "thiserror 2.0.18",
+ "vaern-data",
+]
+
+[[package]]
 name = "vaern-character"
 version = "0.1.0"
 dependencies = [

@@ -16,8 +16,8 @@ amenities:
 quest_givers: 3
 biome: rocky
 offset_from_zone_origin:
-  x: 270.0
-  z: 40.0
+  x: 750.0
+  z: 100.0
 props:
 - slug: modular_fort_01__wall_thick_straight_02
   offset:

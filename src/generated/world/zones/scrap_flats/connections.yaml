@@ -1,0 +1,48 @@
+id: connections__scrap_flats
+zone: scrap_flats
+connections:
+- to_zone: ashen_holt
+  direction: e
+  type: dirt_path
+  border_position:
+    x: 1250.0
+    z: -110.4
+  border_label: to Ashen Holt
+  level_continuous: false
+  pvp_safe: true
+- to_zone: blackwater_deep
+  direction: nw
+  type: dirt_path
+  border_position:
+    x: -1705.1
+    z: -1078.6
+  border_label: to Blackwater Deep
+  level_continuous: false
+  pvp_safe: true
+- to_zone: crown_of_ruin
+  direction: w
+  type: dirt_path
+  border_position:
+    x: -1614.2
+    z: 320.2
+  border_label: to Crown Of Ruin
+  level_continuous: false
+  pvp_safe: true
+- to_zone: gravewatch_fields
+  direction: s
+  type: dirt_path
+  border_position:
+    x: -87.7
+    z: 1288.4
+  border_label: to Gravewatch Fields
+  level_continuous: false
+  pvp_safe: true
+- to_zone: shadegrove
+  direction: n
+  type: dirt_path
+  border_position:
+    x: -178.6
+    z: -1250.0
+  border_label: to Shadegrove
+  level_continuous: false
+  pvp_safe: true

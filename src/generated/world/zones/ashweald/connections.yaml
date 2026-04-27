@@ -1,0 +1,66 @@
+id: connections__ashweald
+zone: ashweald
+connections:
+- to_zone: blackwater_deep
+  direction: e
+  type: dirt_path
+  border_position:
+    x: 1180.8
+    z: 605.8
+  border_label: to Blackwater Deep
+  level_continuous: false
+  pvp_safe: true
+- to_zone: dalewatch_marches
+  direction: w
+  type: dirt_path
+  border_position:
+    x: -2242.8
+    z: 102.5
+  border_label: to Dalewatch Marches
+  level_continuous: false
+  pvp_safe: true
+- to_zone: frost_spine
+  direction: w
+  type: mountain_pass
+  border_position:
+    x: -2611.5
+    z: -967.5
+  border_label: to Frost Spine
+  level_continuous: false
+  pvp_safe: false
+- to_zone: iron_strand
+  direction: n
+  type: dirt_path
+  border_position:
+    x: -1336.7
+    z: -2528.9
+  border_label: to Iron Strand
+  level_continuous: false
+  pvp_safe: true
+- to_zone: irongate_pass
+  direction: nw
+  type: dirt_path
+  border_position:
+    x: -2010.0
+    z: -1786.4
+  border_label: to Irongate Pass
+  level_continuous: false
+  pvp_safe: true
+- to_zone: ruin_line_north
+  direction: ne
+  type: ash_path
+  border_position:
+    x: 43.3
+    z: -1206.7
+  border_label: to Ruin Line North
+  level_continuous: true
+  pvp_safe: false
+- to_zone: sundering_mines
+  direction: s
+  type: dirt_path
+  border_position:
+    x: -417.2
+    z: 1125.0
+  border_label: to Sundering Mines
+  level_continuous: false
+  pvp_safe: true

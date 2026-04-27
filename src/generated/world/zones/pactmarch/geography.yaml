@@ -1,0 +1,160 @@
+id: geography__pactmarch
+zone: pactmarch
+schema_version: '1.0'
+biome_regions:
+- id: pactmarch_main
+  label: The Pactmarch
+  biome: highland
+  polygon:
+    points:
+    - x: 11.5
+      z: 1720.7
+    - x: 1278.8
+      z: 1736.9
+    - x: -47.8
+      z: -695.2
+    - x: -1784.4
+      z: -1025.9
+  opacity: 0.85
+  label_position:
+    x: -135.5
+    z: 434.1
+roads:
+- id: pactmarch_main_road
+  type: dirt_path
+  path:
+    points:
+    - x: -1703.4
+      z: 357.9
+    - x: -249.2
+      z: 357.9
+    - x: 1205.0
+      z: 357.9
+- id: spur_to_pactstone_hold
+  type: dirt_path
+  path:
+    points:
+    - x: 1205.0
+      z: 357.9
+    - x: 592.8
+      z: 372.3
+- id: spur_to_scholar_camp
+  type: dirt_path
+  path:
+    points:
+    - x: -249.2
+      z: 357.9
+    - x: -551.8
+      z: 430.8
+- id: spur_to_bound_field
+  type: dirt_path
+  path:
+    points:
+    - x: -249.2
+      z: 357.9
+    - x: 200.0
+      z: 110.0
+- id: spur_to_broken_pillar
+  type: dirt_path
+  path:
+    points:
+    - x: -249.2
+      z: 357.9
+    - x: -90.0
+      z: -180.0
+- id: spur_to_herd_stone
+  type: dirt_path
+  path:
+    points:
+    - x: -249.2
+      z: 357.9
+    - x: -180.0
+      z: 60.0
+- id: spur_to_yurt_shrine
+  type: dirt_path
+  path:
+    points:
+    - x: -249.2
+      z: 357.9
+    - x: 60.0
+      z: -220.0
+features:
+- id: bound_field
+  type: landmark_glyph
+  glyph: small_house
+  position:
+    x: 200.0
+    z: 110.0
+- id: broken_pillar
+  type: landmark_glyph
+  glyph: small_house
+  position:
+    x: -90.0
+    z: -180.0
+- id: herd_stone
+  type: landmark_glyph
+  glyph: small_house
+  position:
+    x: -180.0
+    z: 60.0
+- id: yurt_shrine
+  type: landmark_glyph
+  glyph: small_house
+  position:
+    x: 60.0
+    z: -220.0
+- id: pactmarch_ambient_00
+  type: ambient_glyph
+  glyph: small_house
+  position:
+    x: -325.7
+    z: 626.5
+- id: pactmarch_ambient_01
+  type: ambient_glyph
+  glyph: small_house
+  position:
+    x: -702.0
+    z: 239.8
+- id: pactmarch_ambient_02
+  type: ambient_glyph
+  glyph: small_house
+  position:
+    x: -325.3
+    z: -330.2
+- id: pactmarch_ambient_03
+  type: ambient_glyph
+  glyph: small_house
+  position:
+    x: 385.1
+    z: 578.1
+- id: pactmarch_ambient_04
+  type: ambient_glyph
+  glyph: small_house
+  position:
+    x: 743.4
+    z: 1017.4
+scatter:
+  hills:
+    density: low
+    biomes_allowed:
+    - highland
+    seed: 5102
+free_labels:
+- text: ⟵ Iron Strand
+  position:
+    x: -900.5
+    z: -59.3
+  rotation_deg: 0
+  style: directional
+- text: ↙ Pact Causeway
+  position:
+    x: -755.3
+    z: 493.9
+  rotation_deg: 0
+  style: directional
+- text: ↓ Scrap Marsh
+  position:
+    x: -11.6
+    z: 902.4
+  rotation_deg: 0
+  style: directional

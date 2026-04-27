@@ -4,3 +4,6 @@ name: The Drowned Abbey
 role: ruin
 amenities: []
 quest_givers: 1
+offset_from_zone_origin:
+  x: -410.3
+  z: -567.2

@@ -45,8 +45,8 @@ use vaern_protocol::{
 
 use crate::aoi::ClientZone;
 
-/// Max people in a party. WoW-classic dungeon size; big enough for
-/// niche-coop social play.
+/// Max people in a party. Standard 5-person dungeon size; big enough
+/// for niche-coop social play.
 pub const MAX_PARTY_SIZE: usize = 5;
 /// Radius around the killer in which party members get a share of
 /// the XP reward. Wider than the 20u /say range so a support caster

@@ -17,3 +17,16 @@ budget:
     solo: 52.0
     duo: 36.0
 notes: Endgame zone in the iron mountains. Targets 46-60 band session math.
+bounds:
+  min:
+    x: -1500.0
+    z: -1300.0
+  max:
+    x: 1500.0
+    z: 1300.0
+coordinate_system:
+  origin: frost_gate
+  axes:
+    x_positive: east
+    z_positive: south
+  unit: meter

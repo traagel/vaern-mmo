@@ -358,8 +358,8 @@ pub struct TertiaryStats {
     pub leech_pct: f32,
     /// Flat % movement speed bonus over baseline.
     pub move_speed_pct: f32,
-    /// % AoE damage reduction (Turtle WoW pattern). Small rolls on any
-    /// slot; content-side gating by rarity, not slot (per design review).
+    /// % AoE damage reduction. Small rolls on any slot; content-side
+    /// gating by rarity, not slot (per design review).
     pub avoidance_pct: f32,
 }
 

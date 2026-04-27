@@ -1,0 +1,48 @@
+id: connections__ruin_line_north
+zone: ruin_line_north
+connections:
+- to_zone: ashweald
+  direction: sw
+  type: ash_path
+  border_position:
+    x: -1206.7
+    z: 43.3
+  border_label: to Ashweald
+  level_continuous: true
+  pvp_safe: false
+- to_zone: blackwater_deep
+  direction: se
+  type: dirt_path
+  border_position:
+    x: 1396.8
+    z: 517.7
+  border_label: to Blackwater Deep
+  level_continuous: false
+  pvp_safe: true
+- to_zone: iron_strand
+  direction: n
+  type: dirt_path
+  border_position:
+    x: 110.9
+    z: -1250.0
+  border_label: to Iron Strand
+  level_continuous: false
+  pvp_safe: true
+- to_zone: pact_causeway
+  direction: e
+  type: dirt_path
+  border_position:
+    x: 2772.0
+    z: -958.1
+  border_label: to Pact Causeway
+  level_continuous: false
+  pvp_safe: true
+- to_zone: shadegrove
+  direction: e
+  type: dirt_path
+  border_position:
+    x: 2764.6
+    z: -483.7
+  border_label: to Shadegrove
+  level_continuous: false
+  pvp_safe: true

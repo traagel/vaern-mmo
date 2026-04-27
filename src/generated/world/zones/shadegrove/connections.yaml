@@ -1,0 +1,48 @@
+id: connections__shadegrove
+zone: shadegrove
+connections:
+- to_zone: blackwater_deep
+  direction: w
+  type: dirt_path
+  border_position:
+    x: -1825.1
+    z: -275.6
+  border_label: to Blackwater Deep
+  level_continuous: false
+  pvp_safe: true
+- to_zone: pact_causeway
+  direction: n
+  type: causeway
+  border_position:
+    x: -338.9
+    z: -1554.4
+  border_label: to Pact Causeway
+  level_continuous: true
+  pvp_safe: true
+- to_zone: ruin_line_north
+  direction: w
+  type: dirt_path
+  border_position:
+    x: -1985.4
+    z: -1983.7
+  border_label: to Ruin Line North
+  level_continuous: false
+  pvp_safe: true
+- to_zone: scrap_flats
+  direction: s
+  type: dirt_path
+  border_position:
+    x: -178.6
+    z: 1250.0
+  border_label: to Scrap Flats
+  level_continuous: false
+  pvp_safe: true
+- to_zone: scrap_marsh
+  direction: e
+  type: dirt_path
+  border_position:
+    x: 1250.0
+    z: 153.7
+  border_label: to Scrap Marsh
+  level_continuous: false
+  pvp_safe: true

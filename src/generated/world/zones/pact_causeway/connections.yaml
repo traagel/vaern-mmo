@@ -1,0 +1,48 @@
+id: connections__pact_causeway
+zone: pact_causeway
+connections:
+- to_zone: iron_strand
+  direction: w
+  type: dirt_path
+  border_position:
+    x: -2412.5
+    z: -2411.4
+  border_label: to Iron Strand
+  level_continuous: false
+  pvp_safe: true
+- to_zone: pactmarch
+  direction: ne
+  type: causeway
+  border_position:
+    x: -117.8
+    z: -1916.1
+  border_label: to Pactmarch
+  level_continuous: true
+  pvp_safe: true
+- to_zone: ruin_line_north
+  direction: w
+  type: dirt_path
+  border_position:
+    x: -2932.9
+    z: 22.0
+  border_label: to Ruin Line North
+  level_continuous: false
+  pvp_safe: true
+- to_zone: scrap_marsh
+  direction: se
+  type: dirt_path
+  border_position:
+    x: 950.7
+    z: 1129.1
+  border_label: to Scrap Marsh
+  level_continuous: false
+  pvp_safe: true
+- to_zone: shadegrove
+  direction: s
+  type: causeway
+  border_position:
+    x: -1293.8
+    z: 925.7
+  border_label: to Shadegrove
+  level_continuous: true
+  pvp_safe: true

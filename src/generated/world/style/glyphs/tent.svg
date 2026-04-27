@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-10 -10 20 20">
+  <g fill="currentColor" stroke="currentColor" stroke-width="0.5" stroke-linejoin="round">
+    <polygon points="-5,4 0,-5 5,4"/>
+    <line x1="0" y1="-5" x2="0" y2="4" stroke="#F2E3BC" stroke-width="0.6"/>
+  </g>
+</svg>

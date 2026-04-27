@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-10 -10 20 20">
+  <g fill="currentColor" stroke="currentColor" stroke-width="0.5" stroke-linejoin="round">
+    <path d="M -6 5 Q -6 -5 0 -6 Q 6 -5 6 5 Z" fill="currentColor"/>
+    <path d="M -3 5 Q -3 -2 0 -3 Q 3 -2 3 5 Z" fill="#F2E3BC" stroke="#F2E3BC"/>
+  </g>
+</svg>

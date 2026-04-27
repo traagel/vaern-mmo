@@ -1,0 +1,30 @@
+id: connections__barrow_coast
+zone: barrow_coast
+connections:
+- to_zone: ashen_holt
+  direction: n
+  type: dirt_path
+  border_position:
+    x: 23553.7
+    z: 1344.7
+  border_label: to Ashen Holt
+  level_continuous: false
+  pvp_safe: true
+- to_zone: gravewatch_fields
+  direction: nw
+  type: coastal_path
+  border_position:
+    x: -877.5
+    z: -404.7
+  border_label: to Gravewatch Fields
+  level_continuous: true
+  pvp_safe: true
+- to_zone: skarnreach
+  direction: w
+  type: dirt_path
+  border_position:
+    x: 5564.8
+    z: 19393.4
+  border_label: to Skarnreach
+  level_continuous: false
+  pvp_safe: true

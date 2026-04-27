@@ -1,0 +1,192 @@
+id: geography__shadegrove
+zone: shadegrove
+schema_version: '1.0'
+biome_regions:
+- id: shadegrove_main
+  label: Shadegrove
+  biome: ashland
+  polygon:
+    points:
+    - x: -2000.2
+      z: -1761.6
+    - x: -1577.4
+      z: 1198.0
+    - x: 1194.0
+      z: 1198.0
+    - x: 1194.0
+      z: -928.8
+    - x: -1888.4
+      z: -2115.6
+  opacity: 0.85
+  label_position:
+    x: -615.6
+    z: -482.0
+roads:
+- id: shadegrove_main_road
+  type: dirt_path
+  path:
+    points:
+    - x: -1927.4
+      z: -459.5
+    - x: -409.6
+      z: -459.5
+    - x: 1108.1
+      z: -459.5
+- id: spur_to_cinder_post
+  type: dirt_path
+  path:
+    points:
+    - x: 1108.1
+      z: -459.5
+    - x: 659.4
+      z: 235.0
+- id: spur_to_dark_glade
+  type: dirt_path
+  path:
+    points:
+    - x: -409.6
+      z: -459.5
+    - x: -84.8
+      z: 694.8
+- id: spur_to_black_iron_gate
+  type: dirt_path
+  path:
+    points:
+    - x: -409.6
+      z: -459.5
+    - x: -90.0
+      z: -210.0
+- id: spur_to_hidden_glade
+  type: dirt_path
+  path:
+    points:
+    - x: -409.6
+      z: -459.5
+    - x: 90.0
+      z: 230.0
+- id: spur_to_silver_bone_cairn
+  type: dirt_path
+  path:
+    points:
+    - x: -409.6
+      z: -459.5
+    - x: -180.0
+      z: 110.0
+- id: spur_to_witch_cinder_pyre
+  type: dirt_path
+  path:
+    points:
+    - x: -409.6
+      z: -459.5
+    - x: 200.0
+      z: -90.0
+features:
+- id: black_iron_gate
+  type: landmark_glyph
+  glyph: small_house
+  position:
+    x: -90.0
+    z: -210.0
+- id: hidden_glade
+  type: landmark_glyph
+  glyph: small_house
+  position:
+    x: 90.0
+    z: 230.0
+- id: silver_bone_cairn
+  type: landmark_glyph
+  glyph: stone_slab
+  position:
+    x: -180.0
+    z: 110.0
+- id: witch_cinder_pyre
+  type: landmark_glyph
+  glyph: small_house
+  position:
+    x: 200.0
+    z: -90.0
+- id: shadegrove_ambient_00
+  type: ambient_glyph
+  glyph: cave_mouth
+  position:
+    x: -290.2
+    z: -1033.2
+- id: shadegrove_ambient_01
+  type: ambient_glyph
+  glyph: cave_mouth
+  position:
+    x: -517.8
+    z: 471.8
+- id: shadegrove_ambient_02
+  type: ambient_glyph
+  glyph: cave_mouth
+  position:
+    x: 483.0
+    z: 904.9
+- id: shadegrove_ambient_03
+  type: ambient_glyph
+  glyph: cave_mouth
+  position:
+    x: -437.9
+    z: 1085.0
+- id: shadegrove_ambient_04
+  type: ambient_glyph
+  glyph: cave_mouth
+  position:
+    x: 691.8
+    z: -920.9
+- id: shadegrove_ambient_05
+  type: ambient_glyph
+  glyph: cave_mouth
+  position:
+    x: -711.6
+    z: -618.9
+- id: shadegrove_ambient_06
+  type: ambient_glyph
+  glyph: cave_mouth
+  position:
+    x: -921.1
+    z: -323.2
+- id: shadegrove_ambient_07
+  type: ambient_glyph
+  glyph: cave_mouth
+  position:
+    x: 1195.0
+    z: -530.2
+- id: shadegrove_ambient_08
+  type: ambient_glyph
+  glyph: cave_mouth
+  position:
+    x: -1781.5
+    z: -664.5
+free_labels:
+- text: ⟵ Blackwater Deep
+  position:
+    x: -1161.5
+    z: 153.1
+  rotation_deg: 0
+  style: directional
+- text: ↑ Pact Causeway
+  position:
+    x: 421.6
+    z: -1010.7
+  rotation_deg: 0
+  style: directional
+- text: ⟵ Ruin Line North
+  position:
+    x: -1118.8
+    z: -326.1
+  rotation_deg: 0
+  style: directional
+- text: ↓ Scrap Flats
+  position:
+    x: 0.0
+    z: 1083.0
+  rotation_deg: 0
+  style: directional
+- text: ⟶ Scrap Marsh
+  position:
+    x: 1173.2
+    z: 0.0
+  rotation_deg: 0
+  style: directional

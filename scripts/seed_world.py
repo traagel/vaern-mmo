@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Seed src/generated/world/ with a WoW-Classic-style zone/progression scaffold.
+"""Seed src/generated/world/ with a tier-banded zone/progression scaffold.
 
 Tier structure (28 zones, level 1-60, ~200h /played to cap):
   - 10 race starter zones (1-5)
@@ -38,12 +38,12 @@ WORLD = {
         "faction_b": "Rend (Hraun) — eastern third",
         "contested": "the Ruin Line — middle strip",
     },
-    "design_reference": "WoW Classic zone-level structure — 3-8 levels per zone, shared mid-tier, contested endgame",
+    "design_reference": "Banded zone-level structure — 3-8 levels per zone, shared mid-tier, contested endgame",
     "target_time_to_cap": {
         "played_hours_min": 150,
         "played_hours_max": 240,
         "days_active": "5-10 days of /played time",
-        "basis": "Classic-style grind tuned slightly faster; strict-coop means duo/trio pace is the balance target, not solo",
+        "basis": "Genre-traditional grind tuned slightly faster; strict-coop means duo/trio pace is the balance target, not solo",
     },
     "design_principles": [
         "every zone is coop-teachable — no solo-only content, even at level 1",
@@ -69,7 +69,7 @@ PROGRESSION_XP_CURVE = {
 
 PROGRESSION_RESTED = {
     "id": "rested_xp",
-    "description": "WoW-style rested bonus accumulated when logged out at a hearth/hub.",
+    "description": "Rested-XP bonus accumulated when logged out at a hearth/hub.",
     "accrual": {
         "per_hour_logged_in_hub": 0.05,
         "unit": "fraction of one level's XP",

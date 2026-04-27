@@ -1,0 +1,48 @@
+id: connections__ruin_line_south
+zone: ruin_line_south
+connections:
+- to_zone: crown_of_ruin
+  direction: ne
+  type: dirt_path
+  border_position:
+    x: 914.8
+    z: -430.4
+  border_label: to Crown Of Ruin
+  level_continuous: false
+  pvp_safe: true
+- to_zone: market_crossing
+  direction: sw
+  type: dirt_path
+  border_position:
+    x: -958.6
+    z: 1527.6
+  border_label: to Market Crossing
+  level_continuous: false
+  pvp_safe: true
+- to_zone: silverleaf_wood
+  direction: sw
+  type: dirt_path
+  border_position:
+    x: -2235.5
+    z: 381.9
+  border_label: to Silverleaf Wood
+  level_continuous: false
+  pvp_safe: true
+- to_zone: skarncamp_wastes
+  direction: se
+  type: dirt_path
+  border_position:
+    x: 806.2
+    z: 1408.0
+  border_label: to Skarncamp Wastes
+  level_continuous: false
+  pvp_safe: true
+- to_zone: sundering_mines
+  direction: nw
+  type: dirt_path
+  border_position:
+    x: -1038.3
+    z: -730.8
+  border_label: to Sundering Mines
+  level_continuous: false
+  pvp_safe: true

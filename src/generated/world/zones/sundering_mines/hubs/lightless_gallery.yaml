@@ -4,3 +4,6 @@ name: The Lightless Gallery
 role: ruin
 amenities: []
 quest_givers: 1
+offset_from_zone_origin:
+  x: 665.3
+  z: 217.7

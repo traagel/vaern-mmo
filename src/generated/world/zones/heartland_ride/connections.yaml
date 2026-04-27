@@ -1,0 +1,39 @@
+id: connections__heartland_ride
+zone: heartland_ride
+connections:
+- to_zone: dalewatch_marches
+  direction: ne
+  type: kingsroad
+  border_position:
+    x: 922.1
+    z: -265.2
+  border_label: to Dalewatch Marches
+  level_continuous: true
+  pvp_safe: true
+- to_zone: firland_greenwood
+  direction: s
+  type: dirt_path
+  border_position:
+    x: -3612.6
+    z: 849.7
+  border_label: to Firland Greenwood
+  level_continuous: false
+  pvp_safe: true
+- to_zone: greenwood_deep
+  direction: se
+  type: dirt_path
+  border_position:
+    x: 444.5
+    z: 1029.5
+  border_label: to Greenwood Deep
+  level_continuous: false
+  pvp_safe: true
+- to_zone: wyrling_downs
+  direction: n
+  type: kingsroad
+  border_position:
+    x: -3135.0
+    z: -445.0
+  border_label: to Wyrling Downs
+  level_continuous: true
+  pvp_safe: true

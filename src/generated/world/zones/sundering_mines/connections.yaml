@@ -1,0 +1,66 @@
+id: connections__sundering_mines
+zone: sundering_mines
+connections:
+- to_zone: ashweald
+  direction: n
+  type: dirt_path
+  border_position:
+    x: -417.2
+    z: -1125.0
+  border_label: to Ashweald
+  level_continuous: false
+  pvp_safe: true
+- to_zone: blackwater_deep
+  direction: ne
+  type: tunnel
+  border_position:
+    x: 1317.9
+    z: -636.8
+  border_label: to Blackwater Deep
+  level_continuous: true
+  pvp_safe: false
+- to_zone: crown_of_ruin
+  direction: e
+  type: tunnel
+  border_position:
+    x: 1479.0
+    z: 213.9
+  border_label: to Crown Of Ruin
+  level_continuous: true
+  pvp_safe: false
+- to_zone: dalewatch_marches
+  direction: w
+  type: dirt_path
+  border_position:
+    x: -2045.8
+    z: -130.7
+  border_label: to Dalewatch Marches
+  level_continuous: false
+  pvp_safe: true
+- to_zone: greenwood_deep
+  direction: w
+  type: dirt_path
+  border_position:
+    x: -2100.7
+    z: 1196.9
+  border_label: to Greenwood Deep
+  level_continuous: false
+  pvp_safe: true
+- to_zone: ruin_line_south
+  direction: se
+  type: dirt_path
+  border_position:
+    x: -38.3
+    z: 1269.2
+  border_label: to Ruin Line South
+  level_continuous: false
+  pvp_safe: true
+- to_zone: silverleaf_wood
+  direction: sw
+  type: dirt_path
+  border_position:
+    x: -1696.5
+    z: 1746.1
+  border_label: to Silverleaf Wood
+  level_continuous: false
+  pvp_safe: true

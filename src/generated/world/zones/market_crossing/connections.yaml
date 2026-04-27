@@ -1,0 +1,48 @@
+id: connections__market_crossing
+zone: market_crossing
+connections:
+- to_zone: ruin_line_south
+  direction: ne
+  type: dirt_path
+  border_position:
+    x: 1041.4
+    z: -1472.4
+  border_label: to Ruin Line South
+  level_continuous: false
+  pvp_safe: true
+- to_zone: silverleaf_wood
+  direction: nw
+  type: kingsroad
+  border_position:
+    x: -1008.7
+    z: -592.8
+  border_label: to Silverleaf Wood
+  level_continuous: true
+  pvp_safe: true
+- to_zone: skarncamp_wastes
+  direction: e
+  type: dirt_path
+  border_position:
+    x: 2323.4
+    z: 9.2
+  border_label: to Skarncamp Wastes
+  level_continuous: false
+  pvp_safe: true
+- to_zone: skarnreach
+  direction: e
+  type: dirt_path
+  border_position:
+    x: 1017.6
+    z: 13307.1
+  border_label: to Skarnreach
+  level_continuous: false
+  pvp_safe: true
+- to_zone: sunward_reach
+  direction: w
+  type: dirt_path
+  border_position:
+    x: -1226.0
+    z: 13430.7
+  border_label: to Sunward Reach
+  level_continuous: false
+  pvp_safe: true

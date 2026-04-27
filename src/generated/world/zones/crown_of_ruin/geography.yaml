@@ -1,0 +1,267 @@
+id: geography__crown_of_ruin
+zone: crown_of_ruin
+schema_version: '1.0'
+biome_regions:
+- id: crown_of_ruin_main
+  label: The Crown of Ruin
+  biome: ruin
+  polygon:
+    points:
+    - x: -248.5
+      z: 1519.6
+    - x: 1738.2
+      z: 1101.8
+    - x: 1781.1
+      z: 1019.9
+    - x: 1414.8
+      z: -1361.2
+    - x: -1093.8
+      z: -1110.3
+    - x: -1349.5
+      z: -407.1
+  opacity: 0.85
+  label_position:
+    x: 373.7
+    z: 127.1
+- id: crown_of_ruin_pocket_breach_corner
+  label: The Breach Corner
+  biome: highland
+  polygon:
+    points:
+    - x: 578.9
+      z: 142.6
+    - x: 560.8
+      z: 67.0
+    - x: 531.0
+      z: -4.7
+    - x: 490.4
+      z: -70.9
+    - x: 440.0
+      z: -130.0
+    - x: 380.9
+      z: -180.4
+    - x: 314.7
+      z: -221.0
+    - x: 243.0
+      z: -250.8
+    - x: 167.4
+      z: -268.9
+    - x: 90.0
+      z: -275.0
+    - x: 12.6
+      z: -268.9
+    - x: -63.0
+      z: -250.8
+    - x: -134.7
+      z: -221.0
+    - x: -200.9
+      z: -180.4
+    - x: -260.0
+      z: -130.0
+    - x: -310.4
+      z: -70.9
+    - x: -351.0
+      z: -4.7
+    - x: -380.8
+      z: 67.0
+    - x: -398.9
+      z: 142.6
+    - x: -405.0
+      z: 220.0
+    - x: -398.9
+      z: 297.4
+    - x: -380.8
+      z: 373.0
+    - x: -351.0
+      z: 444.7
+    - x: -310.4
+      z: 510.9
+    - x: -260.0
+      z: 570.0
+    - x: -200.9
+      z: 620.4
+    - x: -134.7
+      z: 661.0
+    - x: -63.0
+      z: 690.8
+    - x: 12.6
+      z: 708.9
+    - x: 90.0
+      z: 715.0
+    - x: 167.4
+      z: 708.9
+    - x: 243.0
+      z: 690.8
+    - x: 314.7
+      z: 661.0
+    - x: 380.9
+      z: 620.4
+    - x: 440.0
+      z: 570.0
+    - x: 490.4
+      z: 510.9
+    - x: 531.0
+      z: 444.7
+    - x: 560.8
+      z: 373.0
+    - x: 578.9
+      z: 297.4
+    - x: 585.0
+      z: 220.0
+  opacity: 0.85
+  label_position:
+    x: 90.0
+    z: 220.0
+roads:
+- id: crown_of_ruin_main_road
+  type: dirt_path
+  path:
+    points:
+    - x: -1266.2
+      z: 80.7
+    - x: 220.7
+      z: 80.7
+    - x: 1707.5
+      z: 80.7
+- id: spur_to_crown_bastion
+  type: dirt_path
+  path:
+    points:
+    - x: 220.7
+      z: 80.7
+    - x: 694.9
+      z: 84.1
+- id: spur_to_last_candle
+  type: dirt_path
+  path:
+    points:
+    - x: 220.7
+      z: 80.7
+    - x: -225.4
+      z: 662.7
+- id: spur_to_throne_of_ash
+  type: dirt_path
+  path:
+    points:
+    - x: -1266.2
+      z: 80.7
+    - x: -586.7
+      z: -381.9
+- id: spur_to_breach_corner
+  type: dirt_path
+  path:
+    points:
+    - x: 220.7
+      z: 80.7
+    - x: 90.0
+      z: 220.0
+- id: spur_to_neutral_well
+  type: dirt_path
+  path:
+    points:
+    - x: 220.7
+      z: 80.7
+    - x: -90.0
+      z: -240.0
+- id: spur_to_siege_camp_concord
+  type: dirt_path
+  path:
+    points:
+    - x: 220.7
+      z: 80.7
+    - x: 220.0
+      z: -140.0
+- id: spur_to_siege_camp_pact
+  type: dirt_path
+  path:
+    points:
+    - x: 220.7
+      z: 80.7
+    - x: -220.0
+      z: 140.0
+features:
+- id: breach_corner
+  type: landmark_glyph
+  glyph: small_house
+  position:
+    x: 90.0
+    z: 220.0
+- id: neutral_well
+  type: landmark_glyph
+  glyph: small_house
+  position:
+    x: -90.0
+    z: -240.0
+- id: siege_camp_concord
+  type: landmark_glyph
+  glyph: small_house
+  position:
+    x: 220.0
+    z: -140.0
+- id: siege_camp_pact
+  type: landmark_glyph
+  glyph: small_house
+  position:
+    x: -220.0
+    z: 140.0
+- id: crown_of_ruin_ambient_00
+  type: ambient_glyph
+  glyph: ruined_tower
+  position:
+    x: -138.0
+    z: -790.8
+- id: crown_of_ruin_ambient_01
+  type: ambient_glyph
+  glyph: ruined_tower
+  position:
+    x: -578.4
+    z: 990.0
+- id: crown_of_ruin_ambient_02
+  type: ambient_glyph
+  glyph: ruined_tower
+  position:
+    x: 819.7
+    z: -549.5
+- id: crown_of_ruin_ambient_03
+  type: ambient_glyph
+  glyph: ruined_tower
+  position:
+    x: -712.1
+    z: 286.0
+free_labels:
+- text: ↑ Blackwater Deep
+  position:
+    x: -134.7
+    z: -1167.5
+  rotation_deg: 0
+  style: directional
+- text: ↘ Gravewatch Fields
+  position:
+    x: 1199.2
+    z: 544.4
+  rotation_deg: 0
+  style: directional
+- text: ↙ Ruin Line South
+  position:
+    x: -1175.3
+    z: 582.1
+  rotation_deg: 0
+  style: directional
+- text: ⟶ Scrap Flats
+  position:
+    x: 1338.0
+    z: -178.4
+  rotation_deg: 0
+  style: directional
+- text: ↓ Skarncamp Wastes
+  position:
+    x: 278.6
+    z: 1148.2
+  rotation_deg: 0
+  style: directional
+- text: ⟵ Sundering Mines
+  position:
+    x: -1272.2
+    z: -401.0
+  rotation_deg: 0
+  style: directional

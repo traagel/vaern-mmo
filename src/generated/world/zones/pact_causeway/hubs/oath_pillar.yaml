@@ -4,3 +4,6 @@ name: The Oath Pillar
 role: ruin
 amenities: []
 quest_givers: 1
+offset_from_zone_origin:
+  x: -533.7
+  z: 452.9

@@ -1,0 +1,200 @@
+id: geography__silverleaf_wood
+zone: silverleaf_wood
+schema_version: '1.0'
+biome_regions:
+- id: silverleaf_wood_main
+  label: Silverleaf Wood
+  biome: forest
+  polygon:
+    points:
+    - x: 1024.4
+      z: -2218.4
+    - x: -1673.1
+      z: -307.7
+    - x: 53.2
+      z: 2129.4
+    - x: 1918.7
+      z: -984.8
+    - x: 1553.3
+      z: -1799.5
+  opacity: 0.85
+  label_position:
+    x: 575.3
+    z: -636.2
+roads:
+- id: silverleaf_wood_main_road
+  type: dirt_path
+  path:
+    points:
+    - x: -1573.5
+      z: -62.8
+    - x: 136.8
+      z: -62.8
+    - x: 1847.1
+      z: -62.8
+- id: spur_to_elder_grove
+  type: dirt_path
+  path:
+    points:
+    - x: 136.8
+      z: -62.8
+    - x: 613.4
+      z: -337.2
+- id: spur_to_moth_hollow
+  type: dirt_path
+  path:
+    points:
+    - x: 136.8
+      z: -62.8
+    - x: -49.8
+      z: 698.2
+- id: spur_to_silverleaf_lodge
+  type: dirt_path
+  path:
+    points:
+    - x: 136.8
+      z: -62.8
+    - x: -522.2
+      z: -466.2
+- id: spur_to_first_grove_stone
+  type: dirt_path
+  path:
+    points:
+    - x: 136.8
+      z: -62.8
+    - x: -100.0
+      z: -220.0
+- id: spur_to_hollowtree_house
+  type: dirt_path
+  path:
+    points:
+    - x: 136.8
+      z: -62.8
+    - x: 60.0
+      z: -240.0
+- id: spur_to_moth_pillar
+  type: dirt_path
+  path:
+    points:
+    - x: 136.8
+      z: -62.8
+    - x: 180.0
+      z: 110.0
+- id: spur_to_silverleaf_falls
+  type: dirt_path
+  path:
+    points:
+    - x: 136.8
+      z: -62.8
+    - x: -200.0
+      z: 90.0
+features:
+- id: first_grove_stone
+  type: landmark_glyph
+  glyph: tree_ring
+  position:
+    x: -100.0
+    z: -220.0
+- id: hollowtree_house
+  type: landmark_glyph
+  glyph: small_house
+  position:
+    x: 60.0
+    z: -240.0
+- id: moth_pillar
+  type: landmark_glyph
+  glyph: small_house
+  position:
+    x: 180.0
+    z: 110.0
+- id: silverleaf_falls
+  type: landmark_glyph
+  glyph: small_house
+  position:
+    x: -200.0
+    z: 90.0
+- id: silverleaf_wood_ambient_00
+  type: ambient_glyph
+  glyph: small_cabin
+  position:
+    x: -1210.6
+    z: -126.0
+- id: silverleaf_wood_ambient_01
+  type: ambient_glyph
+  glyph: small_cabin
+  position:
+    x: -472.5
+    z: 578.6
+- id: silverleaf_wood_ambient_02
+  type: ambient_glyph
+  glyph: small_cabin
+  position:
+    x: 128.5
+    z: 960.2
+- id: silverleaf_wood_ambient_03
+  type: ambient_glyph
+  glyph: small_cabin
+  position:
+    x: 1612.2
+    z: -506.0
+- id: silverleaf_wood_ambient_04
+  type: ambient_glyph
+  glyph: small_cabin
+  position:
+    x: -875.9
+    z: -743.9
+- id: silverleaf_wood_ambient_05
+  type: ambient_glyph
+  glyph: small_cabin
+  position:
+    x: 619.6
+    z: 366.5
+- id: silverleaf_wood_ambient_06
+  type: ambient_glyph
+  glyph: small_cabin
+  position:
+    x: -128.1
+    z: 1202.1
+- id: silverleaf_wood_ambient_07
+  type: ambient_glyph
+  glyph: small_cabin
+  position:
+    x: -462.2
+    z: -869.5
+scatter:
+  trees:
+    density: medium
+    biomes_allowed:
+    - forest
+    seed: 5101
+free_labels:
+- text: ↖ Greenwood Deep
+  position:
+    x: -678.2
+    z: -883.8
+  rotation_deg: 0
+  style: directional
+- text: ↘ Market Crossing
+  position:
+    x: 1006.5
+    z: 556.5
+  rotation_deg: 0
+  style: directional
+- text: ↗ Ruin Line South
+  position:
+    x: 1070.5
+    z: -443.3
+  rotation_deg: 0
+  style: directional
+- text: ↗ Sundering Mines
+  position:
+    x: 728.4
+    z: -849.0
+  rotation_deg: 0
+  style: directional
+- text: ↙ Sunward Reach
+  position:
+    x: -957.4
+    z: 626.0
+  rotation_deg: 0
+  style: directional

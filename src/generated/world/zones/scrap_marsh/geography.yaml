@@ -1,0 +1,186 @@
+id: geography__scrap_marsh
+zone: scrap_marsh
+schema_version: '1.0'
+biome_regions:
+- id: scrap_marsh_main
+  label: The Scrap-Marsh
+  biome: marsh
+  polygon:
+    points:
+    - x: 68.1
+      z: -1723.8
+    - x: -1203.7
+      z: -931.5
+    - x: -1203.7
+      z: 1195.3
+    - x: 1297.0
+      z: 1195.3
+    - x: 1463.8
+      z: -1472.2
+    - x: 1335.4
+      z: -1707.6
+  opacity: 0.85
+  label_position:
+    x: 292.8
+    z: -574.1
+roads:
+- id: scrap_marsh_main_road
+  type: dirt_path
+  path:
+    points:
+    - x: -1127.4
+      z: -273.9
+    - x: 135.1
+      z: -273.9
+    - x: 1397.6
+      z: -273.9
+- id: spur_to_junk_warren
+  type: dirt_path
+  path:
+    points:
+    - x: 135.1
+      z: -273.9
+    - x: 615.0
+      z: 334.3
+- id: spur_to_trap_post
+  type: dirt_path
+  path:
+    points:
+    - x: -1127.4
+      z: -273.9
+    - x: -690.9
+      z: -112.8
+- id: spur_to_acid_pool
+  type: dirt_path
+  path:
+    points:
+    - x: 135.1
+      z: -273.9
+    - x: -160.0
+      z: 100.0
+- id: spur_to_rusted_wagon_field
+  type: dirt_path
+  path:
+    points:
+    - x: 135.1
+      z: -273.9
+    - x: 180.0
+      z: 90.0
+- id: spur_to_sunken_skrel_shrine
+  type: dirt_path
+  path:
+    points:
+    - x: 135.1
+      z: -273.9
+    - x: -90.0
+      z: -260.0
+features:
+- id: acid_pool
+  type: landmark_glyph
+  glyph: small_house
+  position:
+    x: -160.0
+    z: 100.0
+- id: rusted_wagon_field
+  type: landmark_glyph
+  glyph: small_house
+  position:
+    x: 180.0
+    z: 90.0
+- id: sunken_skrel_shrine
+  type: landmark_glyph
+  glyph: small_house
+  position:
+    x: -90.0
+    z: -260.0
+- id: warren_smoke_vent
+  type: landmark_glyph
+  glyph: small_house
+  position:
+    x: 90.0
+    z: -200.0
+- id: scrap_marsh_ambient_00
+  type: ambient_glyph
+  glyph: marsh_tuft
+  position:
+    x: 1273.9
+    z: -310.2
+- id: scrap_marsh_ambient_01
+  type: ambient_glyph
+  glyph: marsh_tuft
+  position:
+    x: -836.2
+    z: 523.0
+- id: scrap_marsh_ambient_02
+  type: ambient_glyph
+  glyph: marsh_tuft
+  position:
+    x: 908.0
+    z: 204.6
+- id: scrap_marsh_ambient_03
+  type: ambient_glyph
+  glyph: marsh_tuft
+  position:
+    x: -999.4
+    z: -607.4
+- id: scrap_marsh_ambient_04
+  type: ambient_glyph
+  glyph: marsh_tuft
+  position:
+    x: 1200.8
+    z: 48.4
+- id: scrap_marsh_ambient_05
+  type: ambient_glyph
+  glyph: marsh_tuft
+  position:
+    x: -899.2
+    z: -257.5
+- id: scrap_marsh_ambient_06
+  type: ambient_glyph
+  glyph: marsh_tuft
+  position:
+    x: 648.1
+    z: 890.3
+- id: scrap_marsh_ambient_07
+  type: ambient_glyph
+  glyph: marsh_tuft
+  position:
+    x: -1195.4
+    z: 218.1
+- id: scrap_marsh_ambient_08
+  type: ambient_glyph
+  glyph: marsh_tuft
+  position:
+    x: 206.9
+    z: 768.2
+- id: scrap_marsh_ambient_09
+  type: ambient_glyph
+  glyph: marsh_tuft
+  position:
+    x: 764.5
+    z: -324.3
+free_labels:
+- text: ↓ Ashen Holt
+  position:
+    x: 0.0
+    z: 902.5
+  rotation_deg: 0
+  style: directional
+- text: ↖ Pact Causeway
+  position:
+    x: -477.2
+    z: -766.0
+  rotation_deg: 0
+  style: directional
+- text: ↑ Pactmarch
+  position:
+    x: 11.6
+    z: -902.4
+  rotation_deg: 0
+  style: directional
+- text: ⟵ Shadegrove
+  position:
+    x: -902.5
+    z: 0.0
+  rotation_deg: 0
+  style: directional

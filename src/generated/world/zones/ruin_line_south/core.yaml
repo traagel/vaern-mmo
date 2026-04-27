@@ -1,5 +1,5 @@
 id: ruin_line_south
-name: "The Ruin Line \u2014 Southern Scar"
+name: The Ruin Line — Southern Scar
 faction_control: contested
 biome: ruin
 region: ruin_line
@@ -17,3 +17,16 @@ budget:
     solo: 31.5
     duo: 22.5
 notes: Contested zone in the ruin line. Targets 11-30 band session math.
+bounds:
+  min:
+    x: -1700.0
+    z: -1500.0
+  max:
+    x: 1700.0
+    z: 1500.0
+coordinate_system:
+  origin: southscar_camp
+  axes:
+    x_positive: east
+    z_positive: south
+  unit: meter

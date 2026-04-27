@@ -1,0 +1,342 @@
+id: geography__pact_causeway
+zone: pact_causeway
+schema_version: '1.0'
+biome_regions:
+- id: pact_causeway_main
+  label: The Pact Causeway
+  biome: highland
+  polygon:
+    points:
+    - x: 253.3
+      z: 1479.7
+    - x: 1525.0
+      z: 687.4
+    - x: -270.8
+      z: -2059.2
+    - x: -2345.4
+      z: -2454.4
+    - x: -2926.5
+      z: -273.4
+    - x: -2829.2
+      z: 292.9
+  opacity: 0.85
+  label_position:
+    x: -1098.9
+    z: -387.8
+- id: pact_causeway_pocket_oath_grove
+  label: The Oath Grove
+  biome: forest
+  polygon:
+    points:
+    - x: 14.6
+      z: 670.6
+    - x: 106.1
+      z: 692.6
+    - x: 200.0
+      z: 700.0
+    - x: 293.9
+      z: 692.6
+    - x: 385.4
+      z: 670.6
+    - x: 472.4
+      z: 634.6
+    - x: 552.7
+      z: 585.4
+    - x: 624.3
+      z: 524.3
+    - x: 685.4
+      z: 452.7
+    - x: 734.6
+      z: 372.4
+    - x: 770.6
+      z: 285.4
+    - x: 792.6
+      z: 193.9
+    - x: 800.0
+      z: 100.0
+    - x: 792.6
+      z: 6.1
+    - x: 770.6
+      z: -85.4
+    - x: 734.6
+      z: -172.4
+    - x: 685.4
+      z: -252.7
+    - x: 624.3
+      z: -324.3
+    - x: 552.7
+      z: -385.4
+    - x: 472.4
+      z: -434.6
+    - x: 385.4
+      z: -470.6
+    - x: 293.9
+      z: -492.6
+    - x: 200.0
+      z: -500.0
+    - x: 106.1
+      z: -492.6
+    - x: 69.3
+      z: -483.8
+    - x: -49.4
+      z: 644.1
+  opacity: 0.85
+  label_position:
+    x: 200.0
+    z: 100.0
+- id: pact_causeway_pocket_scribe_cave
+  label: The Scribe's Cave
+  biome: ashland
+  polygon:
+    points:
+    - x: 5.4
+      z: -510.6
+    - x: -86.1
+      z: -532.6
+    - x: -180.0
+      z: -540.0
+    - x: -273.9
+      z: -532.6
+    - x: -365.4
+      z: -510.6
+    - x: -452.4
+      z: -474.6
+    - x: -532.7
+      z: -425.4
+    - x: -604.3
+      z: -364.3
+    - x: -665.4
+      z: -292.7
+    - x: -714.6
+      z: -212.4
+    - x: -750.6
+      z: -125.4
+    - x: -772.6
+      z: -33.9
+    - x: -780.0
+      z: 60.0
+    - x: -772.6
+      z: 153.9
+    - x: -750.6
+      z: 245.4
+    - x: -714.6
+      z: 332.4
+    - x: -665.4
+      z: 412.7
+    - x: -604.3
+      z: 484.3
+    - x: -532.7
+      z: 545.4
+    - x: -452.4
+      z: 594.6
+    - x: -365.4
+      z: 630.6
+    - x: -273.9
+      z: 652.6
+    - x: -180.0
+      z: 660.0
+    - x: -86.1
+      z: 652.6
+    - x: -49.3
+      z: 643.8
+    - x: 69.4
+      z: -484.1
+  opacity: 0.85
+  label_position:
+    x: -180.0
+    z: 60.0
+roads:
+- id: pact_causeway_main_road
+  type: dirt_path
+  path:
+    points:
+    - x: -2840.0
+      z: -484.2
+    - x: -713.0
+      z: -484.2
+    - x: 1413.9
+      z: -484.2
+- id: spur_to_causeway_hold
+  type: dirt_path
+  path:
+    points:
+    - x: 1413.9
+      z: -484.2
+    - x: 698.6
+      z: -44.7
+- id: spur_to_oath_pillar
+  type: dirt_path
+  path:
+    points:
+    - x: -713.0
+      z: -484.2
+    - x: -533.7
+      z: 452.9
+- id: spur_to_stone_reader
+  type: dirt_path
+  path:
+    points:
+    - x: -713.0
+      z: -484.2
+    - x: -5.9
+      z: -700.0
+- id: spur_to_fallen_pillar_field
+  type: dirt_path
+  path:
+    points:
+    - x: -713.0
+      z: -484.2
+    - x: -90.0
+      z: -180.0
+- id: spur_to_oath_grove
+  type: dirt_path
+  path:
+    points:
+    - x: -713.0
+      z: -484.2
+    - x: 200.0
+      z: 100.0
+- id: spur_to_scribe_cave
+  type: dirt_path
+  path:
+    points:
+    - x: -713.0
+      z: -484.2
+    - x: -180.0
+      z: 60.0
+- id: spur_to_standing_horse_stones
+  type: dirt_path
+  path:
+    points:
+    - x: -713.0
+      z: -484.2
+    - x: 90.0
+      z: -240.0
+features:
+- id: fallen_pillar_field
+  type: landmark_glyph
+  glyph: small_house
+  position:
+    x: -90.0
+    z: -180.0
+- id: oath_grove
+  type: landmark_glyph
+  glyph: tree_ring
+  position:
+    x: 200.0
+    z: 100.0
+- id: scribe_cave
+  type: landmark_glyph
+  glyph: cave_mouth
+  position:
+    x: -180.0
+    z: 60.0
+- id: standing_horse_stones
+  type: landmark_glyph
+  glyph: stone_slab
+  position:
+    x: 90.0
+    z: -240.0
+- id: pact_causeway_ambient_00
+  type: ambient_glyph
+  glyph: small_house
+  position:
+    x: -170.4
+    z: 496.4
+- id: pact_causeway_ambient_01
+  type: ambient_glyph
+  glyph: small_house
+  position:
+    x: 312.9
+    z: -1084.8
+- id: pact_causeway_ambient_02
+  type: ambient_glyph
+  glyph: small_house
+  position:
+    x: 1006.9
+    z: 491.1
+- id: pact_causeway_ambient_03
+  type: ambient_glyph
+  glyph: small_house
+  position:
+    x: -910.7
+    z: -753.0
+- id: pact_causeway_ambient_04
+  type: ambient_glyph
+  glyph: small_house
+  position:
+    x: -51.0
+    z: -464.1
+- id: pact_causeway_ambient_05
+  type: ambient_glyph
+  glyph: small_house
+  position:
+    x: -756.1
+    z: 879.6
+- id: pact_causeway_ambient_06
+  type: ambient_glyph
+  glyph: small_house
+  position:
+    x: -1047.8
+    z: -1094.5
+- id: pact_causeway_ambient_07
+  type: ambient_glyph
+  glyph: small_house
+  position:
+    x: -226.9
+    z: -1152.1
+- id: pact_causeway_ambient_08
+  type: ambient_glyph
+  glyph: small_house
+  position:
+    x: 313.9
+    z: 642.6
+- id: pact_causeway_ambient_09
+  type: ambient_glyph
+  glyph: small_house
+  position:
+    x: 570.9
+    z: -389.5
+- id: pact_causeway_ambient_10
+  type: ambient_glyph
+  glyph: small_house
+  position:
+    x: -162.0
+    z: 865.1
+scatter:
+  hills:
+    density: low
+    biomes_allowed:
+    - highland
+    seed: 5102
+free_labels:
+- text: ⟵ Iron Strand
+  position:
+    x: -1133.7
+    z: -278.8
+  rotation_deg: 0
+  style: directional
+- text: ↗ Pactmarch
+  position:
+    x: 981.9
+    z: -592.7
+  rotation_deg: 0
+  style: directional
+- text: ⟵ Ruin Line North
+  position:
+    x: -1156.3
+    z: 183.3
+  rotation_deg: 0
+  style: directional
+- text: ↘ Scrap Marsh
+  position:
+    x: 620.4
+    z: 919.2
+  rotation_deg: 0
+  style: directional
+- text: ↓ Shadegrove
+  position:
+    x: -421.6
+    z: 1010.7
+  rotation_deg: 0
+  style: directional

@@ -1,0 +1,48 @@
+id: connections__skarnreach
+zone: skarnreach
+connections:
+- to_zone: barrow_coast
+  direction: e
+  type: dirt_path
+  border_position:
+    x: 9446.9
+    z: 17827.7
+  border_label: to Barrow Coast
+  level_continuous: false
+  pvp_safe: true
+- to_zone: gravewatch_fields
+  direction: ne
+  type: dirt_path
+  border_position:
+    x: 1503.0
+    z: -1036.8
+  border_label: to Gravewatch Fields
+  level_continuous: false
+  pvp_safe: true
+- to_zone: market_crossing
+  direction: w
+  type: dirt_path
+  border_position:
+    x: -4125.5
+    z: 12692.3
+  border_label: to Market Crossing
+  level_continuous: false
+  pvp_safe: true
+- to_zone: skarncamp_wastes
+  direction: nw
+  type: fjord_path
+  border_position:
+    x: -821.0
+    z: -670.3
+  border_label: to Skarncamp Wastes
+  level_continuous: true
+  pvp_safe: true
+- to_zone: sunward_reach
+  direction: w
+  type: dirt_path
+  border_position:
+    x: -6198.2
+    z: 39394.5
+  border_label: to Sunward Reach
+  level_continuous: false
+  pvp_safe: true

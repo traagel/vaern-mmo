@@ -1,0 +1,200 @@
+id: geography__iron_strand
+zone: iron_strand
+schema_version: '1.0'
+biome_regions:
+- id: iron_strand_main
+  label: The Iron Strand
+  biome: coastal_cliff
+  polygon:
+    points:
+    - x: 3221.0
+      z: -968.5
+    - x: 1939.8
+      z: -1212.6
+    - x: -2827.7
+      z: -1411.2
+    - x: -2593.3
+      z: 1156.4
+    - x: -2425.2
+      z: 1212.4
+    - x: 2640.0
+      z: 1212.4
+  opacity: 0.85
+  label_position:
+    x: -7.6
+    z: -1.8
+roads:
+- id: iron_strand_main_road
+  type: dirt_path
+  path:
+    points:
+    - x: -2710.5
+      z: -96.4
+    - x: 190.4
+      z: -96.4
+    - x: 3091.2
+      z: -96.4
+- id: spur_to_old_lighthouse
+  type: dirt_path
+  path:
+    points:
+    - x: 190.4
+      z: -96.4
+    - x: 698.8
+      z: 40.3
+- id: spur_to_strand_redoubt
+  type: dirt_path
+  path:
+    points:
+    - x: 190.4
+      z: -96.4
+    - x: -439.4
+      z: 544.9
+- id: spur_to_wreckshore
+  type: dirt_path
+  path:
+    points:
+    - x: 190.4
+      z: -96.4
+    - x: -386.8
+      z: -583.5
+- id: spur_to_cliff_cairn
+  type: dirt_path
+  path:
+    points:
+    - x: 190.4
+      z: -96.4
+    - x: 90.0
+      z: 220.0
+- id: spur_to_kelp_field
+  type: dirt_path
+  path:
+    points:
+    - x: 190.4
+      z: -96.4
+    - x: -90.0
+      z: -240.0
+- id: spur_to_wreckers_chapel
+  type: dirt_path
+  path:
+    points:
+    - x: 190.4
+      z: -96.4
+    - x: -180.0
+      z: 60.0
+features:
+- id: cliff_cairn
+  type: landmark_glyph
+  glyph: stone_slab
+  position:
+    x: 90.0
+    z: 220.0
+- id: kelp_field
+  type: landmark_glyph
+  glyph: small_house
+  position:
+    x: -90.0
+    z: -240.0
+- id: salt_pillar_row
+  type: landmark_glyph
+  glyph: small_house
+  position:
+    x: 200.0
+    z: -90.0
+- id: wreckers_chapel
+  type: landmark_glyph
+  glyph: small_house
+  position:
+    x: -180.0
+    z: 60.0
+- id: iron_strand_ambient_00
+  type: ambient_glyph
+  glyph: small_house
+  position:
+    x: 2671.8
+    z: 300.1
+- id: iron_strand_ambient_01
+  type: ambient_glyph
+  glyph: small_house
+  position:
+    x: -405.4
+    z: -138.4
+- id: iron_strand_ambient_02
+  type: ambient_glyph
+  glyph: small_house
+  position:
+    x: 1181.6
+    z: -38.4
+- id: iron_strand_ambient_03
+  type: ambient_glyph
+  glyph: small_house
+  position:
+    x: -2483.7
+    z: 512.0
+- id: iron_strand_ambient_04
+  type: ambient_glyph
+  glyph: small_house
+  position:
+    x: 2867.8
+    z: -87.2
+- id: iron_strand_ambient_05
+  type: ambient_glyph
+  glyph: small_house
+  position:
+    x: -941.3
+    z: 100.7
+- id: iron_strand_ambient_06
+  type: ambient_glyph
+  glyph: small_house
+  position:
+    x: -961.1
+    z: 471.9
+- id: iron_strand_ambient_07
+  type: ambient_glyph
+  glyph: small_house
+  position:
+    x: -637.4
+    z: -1194.1
+- id: iron_strand_ambient_08
+  type: ambient_glyph
+  glyph: small_house
+  position:
+    x: 807.0
+    z: -299.9
+free_labels:
+- text: ↓ Ashweald
+  position:
+    x: -485.2
+    z: 1284.3
+  rotation_deg: 0
+  style: directional
+- text: ⟵ Irongate Pass
+  position:
+    x: -1527.9
+    z: 123.0
+  rotation_deg: 0
+  style: directional
+- text: ⟶ Pact Causeway
+  position:
+    x: 1482.6
+    z: 348.6
+  rotation_deg: 0
+  style: directional
+- text: ⟶ Pactmarch
+  position:
+    x: 1530.9
+    z: 88.9
+  rotation_deg: 0
+  style: directional
+- text: ↓ Ruin Line North
+  position:
+    x: 0.0
+    z: 1353.8
+  rotation_deg: 0
+  style: directional
+- text: ⟵ Stoneguard Deep
+  position:
+    x: -1532.1
+    z: 72.5
+  rotation_deg: 0
+  style: directional

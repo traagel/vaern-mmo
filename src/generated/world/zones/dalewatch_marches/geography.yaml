@@ -1,0 +1,791 @@
+id: geography__dalewatch_marches
+zone: dalewatch_marches
+schema_version: '1.0'
+biome_regions:
+- id: dalewatch_marches_main
+  label: The Dalewatch Marches
+  biome: fields
+  polygon:
+    points:
+    - x: 2092.5
+      z: -373.2
+    - x: 1348.7
+      z: -2356.7
+    - x: -382.9
+      z: -1636.5
+    - x: -1084.5
+      z: -233.3
+    - x: -489.5
+      z: 1155.0
+    - x: 1730.8
+      z: 1555.7
+  opacity: 0.85
+  label_position:
+    x: 535.9
+    z: -314.8
+- id: dalewatch_marches_pocket_blackwash_fens
+  label: The Blackwash Fens
+  biome: marsh
+  polygon:
+    points:
+    - x: -518.4
+      z: 1201.0
+    - x: -280.4
+      z: 1244.0
+    - x: 205.0
+      z: 435.0
+    - x: -663.2
+      z: 869.1
+    - x: -522.5
+      z: 1197.5
+  opacity: 0.85
+  label_position:
+    x: -150.0
+    z: 800.0
+- id: dalewatch_marches_pocket_boar_grove
+  label: The Boar Grove
+  biome: forest
+  polygon:
+    points:
+    - x: 1013.6
+      z: 852.2
+    - x: 980.8
+      z: 931.3
+    - x: 960.9
+      z: 1014.6
+    - x: 954.1
+      z: 1100.0
+    - x: 960.9
+      z: 1185.4
+    - x: 980.8
+      z: 1268.7
+    - x: 1013.6
+      z: 1347.8
+    - x: 1058.4
+      z: 1420.9
+    - x: 1114.0
+      z: 1486.0
+    - x: 1128.3
+      z: 1498.2
+    - x: 1708.1
+      z: 1602.8
+    - x: 1747.8
+      z: 1586.4
+    - x: 1776.2
+      z: 1569.0
+    - x: 1927.4
+      z: 762.5
+    - x: 1886.0
+      z: 714.0
+    - x: 1820.9
+      z: 658.4
+    - x: 1747.8
+      z: 613.6
+    - x: 1668.7
+      z: 580.8
+    - x: 1585.4
+      z: 560.9
+    - x: 1500.0
+      z: 554.1
+    - x: 1414.6
+      z: 560.9
+    - x: 1331.3
+      z: 580.8
+    - x: 1252.2
+      z: 613.6
+    - x: 1211.3
+      z: 638.7
+    - x: 1038.7
+      z: 811.3
+  opacity: 0.85
+  label_position:
+    x: 1500.0
+    z: 1100.0
+- id: dalewatch_marches_pocket_copperstep_mine
+  label: Copperstep Mine
+  biome: ridge_scrub
+  polygon:
+    points:
+    - x: 308.4
+      z: 29.1
+    - x: 263.6
+      z: 102.2
+    - x: 230.8
+      z: 181.3
+    - x: 210.9
+      z: 264.6
+    - x: 207.7
+      z: 304.2
+    - x: 224.1
+      z: 419.0
+    - x: 592.9
+      z: 871.9
+    - x: 664.6
+      z: 889.1
+    - x: 750.0
+      z: 895.9
+    - x: 835.4
+      z: 889.1
+    - x: 918.7
+      z: 869.2
+    - x: 997.8
+      z: 836.4
+    - x: 1038.7
+      z: 811.3
+    - x: 1211.3
+      z: 638.7
+    - x: 1236.4
+      z: 597.8
+    - x: 1269.2
+      z: 518.7
+    - x: 1289.1
+      z: 435.4
+    - x: 1295.9
+      z: 350.0
+    - x: 1289.1
+      z: 264.6
+    - x: 1269.2
+      z: 181.3
+    - x: 1236.4
+      z: 102.2
+    - x: 1191.6
+      z: 29.1
+    - x: 1136.0
+      z: -36.0
+    - x: 1070.9
+      z: -91.6
+    - x: 1033.9
+      z: -114.3
+    - x: 363.5
+      z: -35.4
+  opacity: 0.85
+  label_position:
+    x: 750.0
+    z: 350.0
+- id: dalewatch_marches_pocket_dalewatch_reed_brake
+  label: The Reed-Brake
+  biome: marsh
+  polygon:
+    points:
+    - x: 224.1
+      z: 419.0
+    - x: 207.7
+      z: 303.6
+    - x: 186.4
+      z: 252.2
+    - x: 141.6
+      z: 179.1
+    - x: 86.0
+      z: 114.0
+    - x: 20.9
+      z: 58.4
+    - x: -52.2
+      z: 13.6
+    - x: -131.3
+      z: -19.2
+    - x: -214.6
+      z: -39.1
+    - x: -300.0
+      z: -45.9
+    - x: -385.4
+      z: -39.1
+    - x: -468.7
+      z: -19.2
+    - x: -547.8
+      z: 13.6
+    - x: -620.9
+      z: 58.4
+    - x: -686.0
+      z: 114.0
+    - x: -741.6
+      z: 179.1
+    - x: -786.4
+      z: 252.2
+    - x: -819.2
+      z: 331.3
+    - x: -839.1
+      z: 414.6
+    - x: -842.1
+      z: 451.8
+    - x: -663.2
+      z: 869.1
+    - x: 205.0
+      z: 435.0
+  opacity: 0.85
+  label_position:
+    x: -300.0
+    z: 500.0
+- id: dalewatch_marches_pocket_drifters_lair
+  label: The Drifter's Lair
+  biome: ashland
+  polygon:
+    points:
+    - x: 205.0
+      z: 435.0
+    - x: -280.4
+      z: 1244.0
+    - x: 371.0
+      z: 1361.5
+    - x: 436.0
+      z: 1306.0
+    - x: 491.6
+      z: 1240.9
+    - x: 536.4
+      z: 1167.8
+    - x: 569.2
+      z: 1088.7
+    - x: 589.1
+      z: 1005.4
+    - x: 595.9
+      z: 920.0
+    - x: 592.0
+      z: 870.8
+    - x: 224.1
+      z: 419.0
+  opacity: 0.85
+  label_position:
+    x: 50.0
+    z: 920.0
+- id: dalewatch_marches_pocket_thornroot_grove
+  label: Thornroot Grove
+  biome: forest
+  polygon:
+    points:
+    - x: 1091.6
+      z: -179.1
+    - x: 1136.4
+      z: -252.2
+    - x: 1169.2
+      z: -331.3
+    - x: 1189.1
+      z: -414.6
+    - x: 1195.9
+      z: -500.0
+    - x: 1189.1
+      z: -585.4
+    - x: 1169.2
+      z: -668.7
+    - x: 1136.4
+      z: -747.8
+    - x: 1091.6
+      z: -820.9
+    - x: 1036.0
+      z: -886.0
+    - x: 970.9
+      z: -941.6
+    - x: 897.8
+      z: -986.4
+    - x: 818.7
+      z: -1019.2
+    - x: 735.4
+      z: -1039.1
+    - x: 650.0
+      z: -1045.9
+    - x: 564.6
+      z: -1039.1
+    - x: 481.3
+      z: -1019.2
+    - x: 402.2
+      z: -986.4
+    - x: 329.1
+      z: -941.6
+    - x: 264.0
+      z: -886.0
+    - x: 208.4
+      z: -820.9
+    - x: 163.6
+      z: -747.8
+    - x: 130.8
+      z: -668.7
+    - x: 110.9
+      z: -585.4
+    - x: 104.1
+      z: -500.0
+    - x: 110.9
+      z: -414.6
+    - x: 130.8
+      z: -331.3
+    - x: 163.6
+      z: -252.2
+    - x: 208.4
+      z: -179.1
+    - x: 264.0
+      z: -114.0
+    - x: 329.1
+      z: -58.4
+    - x: 366.1
+      z: -35.7
+    - x: 1036.5
+      z: -114.6
+  opacity: 0.85
+  label_position:
+    x: 650.0
+    z: -500.0
+- id: dalewatch_marches_pocket_windrow_downs
+  label: Windrow Downs
+  biome: grass
+  polygon:
+    points:
+    - x: 319.2
+      z: -1668.7
+    - x: 286.4
+      z: -1747.8
+    - x: 241.6
+      z: -1820.9
+    - x: 186.0
+      z: -1886.0
+    - x: 154.6
+      z: -1912.8
+    - x: -411.3
+      z: -1677.4
+    - x: -652.0
+      z: -1196.1
+    - x: -641.6
+      z: -1179.1
+    - x: -586.0
+      z: -1114.0
+    - x: -520.9
+      z: -1058.4
+    - x: -447.8
+      z: -1013.6
+    - x: -368.7
+      z: -980.8
+    - x: -285.4
+      z: -960.9
+    - x: -200.0
+      z: -954.1
+    - x: -114.6
+      z: -960.9
+    - x: -31.3
+      z: -980.8
+    - x: 47.8
+      z: -1013.6
+    - x: 120.9
+      z: -1058.4
+    - x: 186.0
+      z: -1114.0
+    - x: 241.6
+      z: -1179.1
+    - x: 286.4
+      z: -1252.2
+    - x: 319.2
+      z: -1331.3
+    - x: 339.1
+      z: -1414.6
+    - x: 345.9
+      z: -1500.0
+    - x: 339.1
+      z: -1585.4
+  opacity: 0.85
+  label_position:
+    x: -200.0
+    z: -1500.0
+rivers:
+- id: river_ash
+  name: the river Ash
+  path:
+    points:
+    - x: -1100
+      z: -150
+    - x: -700
+      z: 0
+    - x: -300
+      z: 80
+    - x: 0
+      z: 130
+    - x: 400
+      z: 150
+    - x: 750
+      z: 130
+    - x: 1300
+      z: 60
+    - x: 2050
+      z: -250
+  width_units: 35.0
+  label_position:
+    x: 300
+    z: 200
+roads:
+- id: kingsroad
+  type: kingsroad
+  path:
+    points:
+    - x: -1100
+      z: 300
+    - x: -828
+      z: 485
+    - x: -800
+      z: 50
+    - x: -600
+      z: -20
+    - x: -450
+      z: -100
+    - x: -200
+      z: -50
+    - x: 0
+      z: 0
+    - x: 350
+      z: 50
+    - x: 750
+      z: 100
+    - x: 1300
+      z: 300
+    - x: 1757
+      z: -1397
+  label_position:
+    x: -300
+    z: -130
+  label_rotation_deg: 0
+- id: kingsroad_southeast_branch
+  type: kingsroad
+  path:
+    points:
+    - x: 750
+      z: 100
+    - x: 1300
+      z: 400
+    - x: 1700
+      z: 550
+    - x: 1954
+      z: 619
+  label_rotation_deg: 30
+- id: drifters_track
+  type: forest_track
+  path:
+    points:
+    - x: 0
+      z: 0
+    - x: -80
+      z: 250
+    - x: -200
+      z: 500
+    - x: -150
+      z: 700
+    - x: -50
+      z: 850
+    - x: 50
+      z: 920
+    - x: 300
+      z: 1150
+    - x: 623
+      z: 1407
+  label_position:
+    x: -180
+    z: 600
+  label_rotation_deg: 80
+- id: harriers_track
+  type: dirt_path
+  path:
+    points:
+    - x: 0
+      z: 0
+    - x: 50
+      z: -300
+    - x: 100
+      z: -650
+    - x: 200
+      z: -1100
+    - x: 350
+      z: -1600
+    - x: 481
+      z: -2049
+  label_position:
+    x: 100
+    z: -1000
+  label_rotation_deg: 90
+- id: brenn_track
+  type: dirt_path
+  path:
+    points:
+    - x: -450
+      z: -100
+    - x: -700
+      z: -200
+    - x: -773
+      z: -954
+  label_rotation_deg: 70
+- id: spur_to_ashmane_cairn
+  type: dirt_path
+  path:
+    points:
+    - x: 1757.0
+      z: -1397.0
+    - x: 1100.0
+      z: -1200.0
+- id: spur_to_bandit_cache
+  type: dirt_path
+  path:
+    points:
+    - x: 1300.0
+      z: 300.0
+    - x: 1100.0
+      z: 250.0
+- id: spur_to_blackwash_fens
+  type: dirt_path
+  path:
+    points:
+    - x: -150.0
+      z: 700.0
+    - x: -150.0
+      z: 800.0
+- id: spur_to_boar_grove
+  type: dirt_path
+  path:
+    points:
+    - x: 1700.0
+      z: 550.0
+    - x: 1500.0
+      z: 1100.0
+- id: spur_to_copperstep_mine
+  type: dirt_path
+  path:
+    points:
+    - x: 750.0
+      z: 100.0
+    - x: 750.0
+      z: 350.0
+- id: spur_to_dalewatch_reed_brake
+  type: dirt_path
+  path:
+    points:
+    - x: -200.0
+      z: 500.0
+    - x: -300.0
+      z: 500.0
+- id: spur_to_pact_watchtower
+  type: dirt_path
+  path:
+    points:
+    - x: 1700.0
+      z: 550.0
+    - x: 1850.0
+      z: 0.0
+- id: spur_to_sidlow_cairn
+  type: dirt_path
+  path:
+    points:
+    - x: 750.0
+      z: 100.0
+    - x: 650.0
+      z: 150.0
+- id: spur_to_thornroot_grove
+  type: dirt_path
+  path:
+    points:
+    - x: 100.0
+      z: -650.0
+    - x: 650.0
+      z: -500.0
+- id: spur_to_windrow_downs
+  type: dirt_path
+  path:
+    points:
+    - x: 350.0
+      z: -1600.0
+    - x: -200.0
+      z: -1500.0
+features:
+- id: ashmane_cairn
+  type: landmark_glyph
+  glyph: stone_slab
+  position:
+    x: 1100.0
+    z: -1200.0
+- id: bandit_cache
+  type: landmark_glyph
+  glyph: small_house
+  position:
+    x: 1100.0
+    z: 250.0
+- id: blackwash_fens
+  type: landmark_glyph
+  glyph: marsh_tuft
+  position:
+    x: -150.0
+    z: 800.0
+- id: boar_grove
+  type: landmark_glyph
+  glyph: tree_ring
+  position:
+    x: 1500.0
+    z: 1100.0
+- id: copperstep_mine
+  type: landmark_glyph
+  glyph: mine_entrance
+  position:
+    x: 750.0
+    z: 350.0
+- id: dalewatch_reed_brake
+  type: landmark_glyph
+  glyph: marsh_tuft
+  position:
+    x: -300.0
+    z: 500.0
+- id: drifters_lair
+  type: landmark_glyph
+  glyph: cave_mouth
+  position:
+    x: 50.0
+    z: 920.0
+- id: old_brenns_croft
+  type: landmark_glyph
+  glyph: small_house
+  position:
+    x: -700.0
+    z: -200.0
+- id: pact_watchtower
+  type: landmark_glyph
+  glyph: ruined_tower
+  position:
+    x: 1850.0
+    z: 0.0
+- id: pilgrims_milestone
+  type: landmark_glyph
+  glyph: stone_slab
+  position:
+    x: -250.0
+    z: -50.0
+- id: sidlow_cairn
+  type: landmark_glyph
+  glyph: stone_slab
+  position:
+    x: 650.0
+    z: 150.0
+- id: thornroot_grove
+  type: landmark_glyph
+  glyph: tree_ring
+  position:
+    x: 650.0
+    z: -500.0
+- id: windrow_downs
+  type: landmark_glyph
+  glyph: small_house
+  position:
+    x: -200.0
+    z: -1500.0
+- id: dalewatch_marches_ambient_00
+  type: ambient_glyph
+  glyph: small_house
+  position:
+    x: 424.4
+    z: 1280.6
+- id: dalewatch_marches_ambient_01
+  type: ambient_glyph
+  glyph: small_house
+  position:
+    x: 1021.8
+    z: 1446.7
+- id: dalewatch_marches_ambient_02
+  type: ambient_glyph
+  glyph: small_house
+  position:
+    x: 531.2
+    z: -1052.7
+- id: dalewatch_marches_ambient_03
+  type: ambient_glyph
+  glyph: small_house
+  position:
+    x: 1333.4
+    z: -770.3
+- id: dalewatch_marches_ambient_04
+  type: ambient_glyph
+  glyph: small_house
+  position:
+    x: -629.4
+    z: 506.1
+- id: dalewatch_marches_ambient_05
+  type: ambient_glyph
+  glyph: small_house
+  position:
+    x: 463.5
+    z: -1550.5
+- id: dalewatch_marches_ambient_06
+  type: ambient_glyph
+  glyph: small_house
+  position:
+    x: -773.9
+    z: -721.2
+- id: dalewatch_marches_ambient_07
+  type: ambient_glyph
+  glyph: small_house
+  position:
+    x: 446.0
+    z: 758.4
+- id: dalewatch_marches_ambient_08
+  type: ambient_glyph
+  glyph: small_house
+  position:
+    x: 378.8
+    z: -1953.1
+- id: dalewatch_marches_ambient_09
+  type: ambient_glyph
+  glyph: small_house
+  position:
+    x: 224.4
+    z: -1176.9
+- id: dalewatch_marches_ambient_10
+  type: ambient_glyph
+  glyph: small_house
+  position:
+    x: 860.3
+    z: -1767.8
+- id: dalewatch_marches_ambient_11
+  type: ambient_glyph
+  glyph: small_house
+  position:
+    x: 257.4
+    z: 61.7
+- id: dalewatch_marches_ambient_12
+  type: ambient_glyph
+  glyph: small_house
+  position:
+    x: 767.2
+    z: 752.2
+scatter:
+  trees:
+    density: medium
+    biomes_allowed:
+    - forest
+    seed: 1729
+  hills:
+    density: low
+    biomes_allowed:
+    - ridge_scrub
+    seed: 1730
+free_labels:
+- text: ↗ to Ashweald
+  position:
+    x: 1620
+    z: -1290
+  rotation_deg: 0
+  style: directional
+- text: ↑ to Frost Spine
+  position:
+    x: 440
+    z: -1880
+  rotation_deg: 0
+  style: directional
+- text: ↓ to Greenwood Deep
+  position:
+    x: 580
+    z: 1300
+  rotation_deg: 0
+  style: directional
+- text: ↙ to Heartland Ride
+  position:
+    x: -760
+    z: 450
+  rotation_deg: 0
+  style: directional
+- text: → to Sundering Mines
+  position:
+    x: 1800
+    z: 580
+  rotation_deg: 0
+  style: directional
+- text: ↖ to Wyrling Downs
+  position:
+    x: -710
+    z: -880
+  rotation_deg: 0
+  style: directional

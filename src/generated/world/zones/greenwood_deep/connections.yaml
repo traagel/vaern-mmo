@@ -1,0 +1,48 @@
+id: connections__greenwood_deep
+zone: greenwood_deep
+connections:
+- to_zone: dalewatch_marches
+  direction: n
+  type: dirt_path
+  border_position:
+    x: 1075.8
+    z: -1100.4
+  border_label: to Dalewatch Marches
+  level_continuous: false
+  pvp_safe: true
+- to_zone: firland_greenwood
+  direction: sw
+  type: dirt_path
+  border_position:
+    x: -967.4
+    z: 796.9
+  border_label: to Firland Greenwood
+  level_continuous: false
+  pvp_safe: true
+- to_zone: heartland_ride
+  direction: nw
+  type: dirt_path
+  border_position:
+    x: -853.0
+    z: -727.9
+  border_label: to Heartland Ride
+  level_continuous: false
+  pvp_safe: true
+- to_zone: silverleaf_wood
+  direction: se
+  type: forest_path
+  border_position:
+    x: 1092.9
+    z: 757.7
+  border_label: to Silverleaf Wood
+  level_continuous: true
+  pvp_safe: true
+- to_zone: sundering_mines
+  direction: e
+  type: dirt_path
+  border_position:
+    x: 2351.8
+    z: -560.5
+  border_label: to Sundering Mines
+  level_continuous: false
+  pvp_safe: true

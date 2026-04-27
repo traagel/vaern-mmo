@@ -17,3 +17,16 @@ budget:
     solo: 16.2
     duo: 11.7
 notes: Mid zone in the ashen march. Targets 1-10 band session math.
+bounds:
+  min:
+    x: -1300.0
+    z: -1200.0
+  max:
+    x: 1300.0
+    z: 1200.0
+coordinate_system:
+  origin: cinder_post
+  axes:
+    x_positive: east
+    z_positive: south
+  unit: meter

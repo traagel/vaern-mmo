@@ -1,0 +1,198 @@
+id: geography__ashweald
+zone: ashweald
+schema_version: '1.0'
+biome_regions:
+- id: ashweald_main
+  label: The Ashweald
+  biome: ashland
+  polygon:
+    points:
+    - x: 1264.7
+      z: 63.9
+    - x: -1244.2
+      z: -2445.0
+    - x: -1412.3
+      z: -2501.0
+    - x: -2550.4
+      z: -1004.6
+    - x: -2579.1
+      z: -912.3
+    - x: -1835.3
+      z: 1071.3
+    - x: 962.6
+      z: 1071.3
+  opacity: 0.85
+  label_position:
+    x: -1056.3
+    z: -665.2
+roads:
+- id: ashweald_main_road
+  type: dirt_path
+  path:
+    points:
+    - x: -2502.0
+      z: -713.3
+    - x: -669.5
+      z: -713.3
+    - x: 1162.9
+      z: -713.3
+- id: spur_to_charred_shrine
+  type: dirt_path
+  path:
+    points:
+    - x: 1162.9
+      z: -713.3
+    - x: 694.5
+      z: 87.7
+- id: spur_to_ember_crossing
+  type: dirt_path
+  path:
+    points:
+    - x: -669.5
+      z: -713.3
+    - x: -382.5
+      z: 586.3
+- id: spur_to_pyre_camp
+  type: dirt_path
+  path:
+    points:
+    - x: -669.5
+      z: -713.3
+    - x: -312.6
+      z: -626.3
+- id: spur_to_ember_pool
+  type: dirt_path
+  path:
+    points:
+    - x: -669.5
+      z: -713.3
+    - x: -180.0
+      z: 90.0
+- id: spur_to_leaning_pyre_stone
+  type: dirt_path
+  path:
+    points:
+    - x: -669.5
+      z: -713.3
+    - x: 90.0
+      z: -240.0
+- id: spur_to_silver_fern_field
+  type: dirt_path
+  path:
+    points:
+    - x: -669.5
+      z: -713.3
+    - x: -90.0
+      z: -180.0
+- id: spur_to_twin_oak_grave
+  type: dirt_path
+  path:
+    points:
+    - x: -669.5
+      z: -713.3
+    - x: 200.0
+      z: 100.0
+features:
+- id: ember_pool
+  type: landmark_glyph
+  glyph: small_house
+  position:
+    x: -180.0
+    z: 90.0
+- id: leaning_pyre_stone
+  type: landmark_glyph
+  glyph: small_house
+  position:
+    x: 90.0
+    z: -240.0
+- id: silver_fern_field
+  type: landmark_glyph
+  glyph: small_house
+  position:
+    x: -90.0
+    z: -180.0
+- id: twin_oak_grave
+  type: landmark_glyph
+  glyph: small_house
+  position:
+    x: 200.0
+    z: 100.0
+- id: ashweald_ambient_00
+  type: ambient_glyph
+  glyph: cave_mouth
+  position:
+    x: -844.9
+    z: 478.9
+- id: ashweald_ambient_01
+  type: ambient_glyph
+  glyph: cave_mouth
+  position:
+    x: -268.9
+    z: 848.3
+- id: ashweald_ambient_02
+  type: ambient_glyph
+  glyph: cave_mouth
+  position:
+    x: -530.4
+    z: -1235.8
+- id: ashweald_ambient_03
+  type: ambient_glyph
+  glyph: cave_mouth
+  position:
+    x: 1206.1
+    z: 249.2
+- id: ashweald_ambient_04
+  type: ambient_glyph
+  glyph: cave_mouth
+  position:
+    x: -2065.7
+    z: -1205.6
+- id: ashweald_ambient_05
+  type: ambient_glyph
+  glyph: cave_mouth
+  position:
+    x: -2225.3
+    z: -141.1
+free_labels:
+- text: ⟶ Blackwater Deep
+  position:
+    x: 1469.6
+    z: 389.0
+  rotation_deg: 0
+  style: directional
+- text: ⟵ Dalewatch Marches
+  position:
+    x: -1436.6
+    z: 475.4
+  rotation_deg: 0
+  style: directional
+- text: ⟵ Frost Spine
+  position:
+    x: -1465.0
+    z: -402.0
+  rotation_deg: 0
+  style: directional
+- text: ↑ Iron Strand
+  position:
+    x: 485.2
+    z: -1284.3
+  rotation_deg: 0
+  style: directional
+- text: ↖ Irongate Pass
+  position:
+    x: -1221.2
+    z: -819.5
+  rotation_deg: 0
+  style: directional
+- text: ↗ Ruin Line North
+  position:
+    x: 1084.9
+    z: -957.2
+  rotation_deg: 0
+  style: directional
+- text: ↓ Sundering Mines
+  position:
+    x: 0.0
+    z: 1353.8
+  rotation_deg: 0
+  style: directional

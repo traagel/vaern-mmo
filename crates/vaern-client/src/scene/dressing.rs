@@ -21,15 +21,15 @@ use bevy::prelude::*;
 
 use vaern_assets::{PolyHavenCatalog, PolyHavenCategory, PolyHavenEntry};
 use vaern_core::terrain;
-use vaern_data::{load_world, ScatterRule, World, Zone};
+use vaern_data::{load_world, load_world_layout, ScatterRule, World, WorldLayout, Zone};
 
 use crate::menu::AppState;
 use crate::shared::GameWorld;
 
-/// Ring radius for the zone layout. Mirrors
-/// `vaern_server::data::load_game_data` + `voxel_biomes` — must stay in
-/// sync; if the server changes, props paint in the wrong place.
-const ZONE_RING_RADIUS: f32 = 2800.0;
+/// Fallback ring radius — used only when `world.yaml` doesn't list a
+/// zone. The canonical placements live in `src/generated/world/world.yaml`
+/// and are loaded into a `WorldLayout`.
+const FALLBACK_RING_RADIUS: f32 = 2800.0;
 /// Half-extent of each zone's playable box (meters). 1200u per the
 /// Dalewatch redesign doc. Scatter is confined to this AABB around each
 /// zone origin to keep total prop count bounded.
@@ -73,7 +73,8 @@ fn spawn_dressing(
         }
     };
 
-    let zone_origins = compute_zone_origins(&world);
+    let layout = load_world_layout(&world_root).unwrap_or_default();
+    let zone_origins = compute_zone_origins(&world, &layout);
     let mut hub_total = 0usize;
     let mut scatter_total = 0usize;
 
@@ -259,9 +260,13 @@ fn scatter_placements(
     out
 }
 
-/// Mirror of `voxel_biomes::compute_zone_origins` — duplicated because
-/// that resolver is pub(crate). If either changes, the other must follow.
-fn compute_zone_origins(world: &World) -> std::collections::HashMap<String, (f32, f32)> {
+/// Returns world-meter offsets for every starter zone. Reads
+/// `world.yaml` zone_placements when available; falls back to a
+/// deterministic ring sorted by zone id.
+fn compute_zone_origins(
+    world: &World,
+    layout: &WorldLayout,
+) -> std::collections::HashMap<String, (f32, f32)> {
     use std::collections::HashMap;
     let mut starters: Vec<&str> = world
         .zones
@@ -272,11 +277,15 @@ fn compute_zone_origins(world: &World) -> std::collections::HashMap<String, (f32
     let n = starters.len().max(1) as f32;
     let mut out = HashMap::new();
     for (i, zid) in starters.iter().enumerate() {
-        let angle = (i as f32 / n) * std::f32::consts::TAU;
-        out.insert(
-            zid.to_string(),
-            (ZONE_RING_RADIUS * angle.cos(), ZONE_RING_RADIUS * angle.sin()),
-        );
+        if let Some(p) = layout.zone_origin(zid) {
+            out.insert(zid.to_string(), (p.x, p.z));
+        } else {
+            let angle = (i as f32 / n) * std::f32::consts::TAU;
+            out.insert(
+                zid.to_string(),
+                (FALLBACK_RING_RADIUS * angle.cos(), FALLBACK_RING_RADIUS * angle.sin()),
+            );
+        }
     }
     out
 }

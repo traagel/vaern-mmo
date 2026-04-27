@@ -13,8 +13,8 @@ counts:
     31-45: 5
     46-60: 12
 design_notes:
-- Denser than WoW Classic's ~20 five-mans; Vaern aims for ~26 five-mans + 4 ten-mans
-  + 2 twenty-mans
+- Vaern aims for ~26 five-mans + 4 ten-mans + 2 twenty-mans (deliberately denser
+  than the genre baseline)
 - "No 40-man tier \u2014 the strict-coop household/guild social unit does not support\
   \ it"
 - Every contested and endgame zone has at least one instance entrance

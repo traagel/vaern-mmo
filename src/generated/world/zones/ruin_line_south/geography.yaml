@@ -1,0 +1,265 @@
+id: geography__ruin_line_south
+zone: ruin_line_south
+schema_version: '1.0'
+biome_regions:
+- id: ruin_line_south_main
+  label: The Ruin Line — Southern Scar
+  biome: ruin
+  polygon:
+    points:
+    - x: -2000.9
+      z: 790.8
+    - x: 111.0
+      z: 2198.6
+    - x: 1422.8
+      z: 558.8
+    - x: 321.7
+      z: -1368.0
+    - x: -2366.3
+      z: -23.9
+  opacity: 0.85
+  label_position:
+    x: -502.3
+    z: 431.3
+- id: ruin_line_south_pocket_salt_marsh_chapel
+  label: The Salt-Marsh Chapel
+  biome: marsh
+  polygon:
+    points:
+    - x: 412.6
+      z: 6.1
+    - x: 390.6
+      z: -85.4
+    - x: 354.6
+      z: -172.4
+    - x: 305.4
+      z: -252.7
+    - x: 244.3
+      z: -324.3
+    - x: 172.7
+      z: -385.4
+    - x: 92.4
+      z: -434.6
+    - x: 5.4
+      z: -470.6
+    - x: -86.1
+      z: -492.6
+    - x: -180.0
+      z: -500.0
+    - x: -273.9
+      z: -492.6
+    - x: -365.4
+      z: -470.6
+    - x: -452.4
+      z: -434.6
+    - x: -532.7
+      z: -385.4
+    - x: -604.3
+      z: -324.3
+    - x: -665.4
+      z: -252.7
+    - x: -714.6
+      z: -172.4
+    - x: -750.6
+      z: -85.4
+    - x: -772.6
+      z: 6.1
+    - x: -780.0
+      z: 100.0
+    - x: -772.6
+      z: 193.9
+    - x: -750.6
+      z: 285.4
+    - x: -714.6
+      z: 372.4
+    - x: -665.4
+      z: 452.7
+    - x: -604.3
+      z: 524.3
+    - x: -532.7
+      z: 585.4
+    - x: -452.4
+      z: 634.6
+    - x: -365.4
+      z: 670.6
+    - x: -273.9
+      z: 692.6
+    - x: -180.0
+      z: 700.0
+    - x: -86.1
+      z: 692.6
+    - x: 5.4
+      z: 670.6
+    - x: 92.4
+      z: 634.6
+    - x: 172.7
+      z: 585.4
+    - x: 244.3
+      z: 524.3
+    - x: 305.4
+      z: 452.7
+    - x: 354.6
+      z: 372.4
+    - x: 390.6
+      z: 285.4
+    - x: 412.6
+      z: 193.9
+    - x: 420.0
+      z: 100.0
+  opacity: 0.85
+  label_position:
+    x: -180.0
+    z: 100.0
+roads:
+- id: ruin_line_south_main_road
+  type: dirt_path
+  path:
+    points:
+    - x: -2278.6
+      z: 415.8
+    - x: -472.7
+      z: 415.8
+    - x: 1333.2
+      z: 415.8
+- id: spur_to_southscar_camp
+  type: dirt_path
+  path:
+    points:
+    - x: 1333.2
+      z: 415.8
+    - x: 673.0
+      z: 192.5
+- id: spur_to_sunken_tower
+  type: dirt_path
+  path:
+    points:
+    - x: -472.7
+      z: 415.8
+    - x: -199.5
+      z: 671.0
+- id: spur_to_two_kings_field
+  type: dirt_path
+  path:
+    points:
+    - x: -472.7
+      z: 415.8
+    - x: -342.4
+      z: -610.6
+- id: spur_to_kings_field
+  type: dirt_path
+  path:
+    points:
+    - x: -472.7
+      z: 415.8
+    - x: 200.0
+      z: 90.0
+- id: spur_to_salt_marsh_chapel
+  type: dirt_path
+  path:
+    points:
+    - x: -472.7
+      z: 415.8
+    - x: -180.0
+      z: 100.0
+- id: spur_to_standing_blade
+  type: dirt_path
+  path:
+    points:
+    - x: -472.7
+      z: 415.8
+    - x: -90.0
+      z: -180.0
+- id: spur_to_watch_grave
+  type: dirt_path
+  path:
+    points:
+    - x: -472.7
+      z: 415.8
+    - x: 90.0
+      z: -240.0
+features:
+- id: kings_field
+  type: landmark_glyph
+  glyph: small_house
+  position:
+    x: 200.0
+    z: 90.0
+- id: salt_marsh_chapel
+  type: landmark_glyph
+  glyph: marsh_tuft
+  position:
+    x: -180.0
+    z: 100.0
+- id: standing_blade
+  type: landmark_glyph
+  glyph: stone_slab
+  position:
+    x: -90.0
+    z: -180.0
+- id: watch_grave
+  type: landmark_glyph
+  glyph: small_house
+  position:
+    x: 90.0
+    z: -240.0
+- id: ruin_line_south_ambient_00
+  type: ambient_glyph
+  glyph: ruined_tower
+  position:
+    x: -1117.7
+    z: 162.2
+- id: ruin_line_south_ambient_01
+  type: ambient_glyph
+  glyph: ruined_tower
+  position:
+    x: 484.9
+    z: -79.2
+- id: ruin_line_south_ambient_02
+  type: ambient_glyph
+  glyph: ruined_tower
+  position:
+    x: 966.3
+    z: 245.0
+- id: ruin_line_south_ambient_03
+  type: ambient_glyph
+  glyph: ruined_tower
+  position:
+    x: -418.2
+    z: 537.1
+- id: ruin_line_south_ambient_04
+  type: ambient_glyph
+  glyph: ruined_tower
+  position:
+    x: -1809.0
+    z: 206.7
+free_labels:
+- text: ↗ Crown Of Ruin
+  position:
+    x: 1332.1
+    z: -671.6
+  rotation_deg: 0
+  style: directional
+- text: ↙ Market Crossing
+  position:
+    x: -851.0
+    z: 1126.4
+  rotation_deg: 0
+  style: directional
+- text: ↙ Silverleaf Wood
+  position:
+    x: -1399.9
+    z: 554.0
+  rotation_deg: 0
+  style: directional
+- text: ↘ Skarncamp Wastes
+  position:
+    x: 1198.1
+    z: 845.6
+  rotation_deg: 0
+  style: directional
+- text: ↖ Sundering Mines
+  position:
+    x: -686.1
+    z: -1210.9
+  rotation_deg: 0
+  style: directional

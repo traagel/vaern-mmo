@@ -7,19 +7,13 @@ use std::{collections::HashMap, fs, path::Path};
 
 use serde::Deserialize;
 
-use crate::{read_dir, LoadError};
-
-#[derive(Debug, Clone, Deserialize)]
-pub struct LandmarkOffset {
-    pub x: f32,
-    pub z: f32,
-}
+use crate::{read_dir, Coord2, LoadError};
 
 #[derive(Debug, Clone, Deserialize)]
 pub struct Landmark {
     pub id: String,
     pub name: String,
-    pub offset_from_zone_origin: LandmarkOffset,
+    pub offset_from_zone_origin: Coord2,
 }
 
 #[derive(Debug, Clone, Deserialize)]

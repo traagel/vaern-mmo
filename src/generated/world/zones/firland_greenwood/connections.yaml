@@ -1,0 +1,48 @@
+id: connections__firland_greenwood
+zone: firland_greenwood
+connections:
+- to_zone: greenwood_deep
+  direction: ne
+  type: dirt_path
+  border_position:
+    x: 1072.7
+    z: -648.2
+  border_label: to Greenwood Deep
+  level_continuous: false
+  pvp_safe: true
+- to_zone: heartland_ride
+  direction: n
+  type: dirt_path
+  border_position:
+    x: -2870.0
+    z: -2352.8
+  border_label: to Heartland Ride
+  level_continuous: false
+  pvp_safe: true
+- to_zone: stoneguard_deep
+  direction: n
+  type: dirt_path
+  border_position:
+    x: -41438.5
+    z: -5923.2
+  border_label: to Stoneguard Deep
+  level_continuous: false
+  pvp_safe: true
+- to_zone: sunward_reach
+  direction: se
+  type: dirt_path
+  border_position:
+    x: -13723.8
+    z: 11253.1
+  border_label: to Sunward Reach
+  level_continuous: false
+  pvp_safe: true
+- to_zone: wyrling_downs
+  direction: n
+  type: dirt_path
+  border_position:
+    x: -18232.4
+    z: -4314.2
+  border_label: to Wyrling Downs
+  level_continuous: false
+  pvp_safe: true

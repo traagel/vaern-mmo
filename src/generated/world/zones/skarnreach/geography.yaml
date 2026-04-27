@@ -1,0 +1,332 @@
+id: geography__skarnreach
+zone: skarnreach
+schema_version: '1.0'
+biome_regions:
+- id: skarnreach_main
+  label: Skarnreach
+  biome: fjord
+  polygon:
+    points:
+    - x: 1954.7
+      z: -567.1
+    - x: 948.5
+      z: -1447.9
+    - x: -2553.8
+      z: 144.0
+    - x: -2597.7
+      z: 511.1
+    - x: -1357.6
+      z: 614.4
+    - x: 2343.5
+      z: 396.7
+  opacity: 0.85
+  label_position:
+    x: -210.4
+    z: -58.1
+- id: skarnreach_pocket_seal_rocks
+  label: The Seal Rocks
+  biome: ridge_scrub
+  polygon:
+    points:
+    - x: 199.5
+      z: 97.0
+    - x: 250.9
+      z: 75.7
+    - x: 298.3
+      z: 46.7
+    - x: 340.6
+      z: 10.6
+    - x: 376.7
+      z: -31.7
+    - x: 405.7
+      z: -79.1
+    - x: 427.0
+      z: -130.5
+    - x: 440.0
+      z: -184.6
+    - x: 444.4
+      z: -240.0
+    - x: 440.0
+      z: -295.4
+    - x: 427.0
+      z: -349.5
+    - x: 405.7
+      z: -400.9
+    - x: 376.7
+      z: -448.3
+    - x: 340.6
+      z: -490.6
+    - x: 298.3
+      z: -526.7
+    - x: 250.9
+      z: -555.7
+    - x: 199.5
+      z: -577.0
+    - x: 145.4
+      z: -590.0
+    - x: 90.0
+      z: -594.4
+    - x: 34.6
+      z: -590.0
+    - x: -19.5
+      z: -577.0
+    - x: -70.9
+      z: -555.7
+    - x: -118.3
+      z: -526.7
+    - x: -160.6
+      z: -490.6
+    - x: -196.7
+      z: -448.3
+    - x: -225.7
+      z: -400.9
+    - x: -247.0
+      z: -349.5
+    - x: -260.0
+      z: -295.4
+    - x: -260.9
+      z: -284.3
+    - x: 170.5
+      z: 104.0
+  opacity: 0.85
+  label_position:
+    x: 90.0
+    z: -240.0
+- id: skarnreach_pocket_widow_cliff
+  label: Widow's Cliff
+  biome: coastal_cliff
+  polygon:
+    points:
+    - x: -289.5
+      z: -277.0
+    - x: -340.9
+      z: -255.7
+    - x: -388.3
+      z: -226.7
+    - x: -430.6
+      z: -190.6
+    - x: -466.7
+      z: -148.3
+    - x: -495.7
+      z: -100.9
+    - x: -517.0
+      z: -49.5
+    - x: -530.0
+      z: 4.6
+    - x: -534.4
+      z: 60.0
+    - x: -530.0
+      z: 115.4
+    - x: -517.0
+      z: 169.5
+    - x: -495.7
+      z: 220.9
+    - x: -466.7
+      z: 268.3
+    - x: -430.6
+      z: 310.6
+    - x: -388.3
+      z: 346.7
+    - x: -340.9
+      z: 375.7
+    - x: -289.5
+      z: 397.0
+    - x: -235.4
+      z: 410.0
+    - x: -180.0
+      z: 414.4
+    - x: -124.6
+      z: 410.0
+    - x: -70.5
+      z: 397.0
+    - x: -19.1
+      z: 375.7
+    - x: 28.3
+      z: 346.7
+    - x: 70.6
+      z: 310.6
+    - x: 106.7
+      z: 268.3
+    - x: 135.7
+      z: 220.9
+    - x: 157.0
+      z: 169.5
+    - x: 170.0
+      z: 115.4
+    - x: 170.9
+      z: 104.3
+    - x: -260.5
+      z: -284.0
+  opacity: 0.85
+  label_position:
+    x: -180.0
+    z: 60.0
+roads:
+- id: skarnreach_main_road
+  type: dirt_path
+  path:
+    points:
+    - x: -2493.8
+      z: -405.7
+    - x: -129.7
+      z: -405.7
+    - x: 2234.5
+      z: -405.7
+- id: spur_to_bloodwater_landing
+  type: dirt_path
+  path:
+    points:
+    - x: -129.7
+      z: -405.7
+    - x: 507.3
+      z: 482.4
+- id: spur_to_skarn_longhall
+  type: dirt_path
+  path:
+    points:
+    - x: -129.7
+      z: -405.7
+    - x: -636.2
+      z: 292.1
+- id: spur_to_burial_ship_mound
+  type: dirt_path
+  path:
+    points:
+    - x: -129.7
+      z: -405.7
+    - x: -90.0
+      z: -200.0
+- id: spur_to_raid_stone
+  type: dirt_path
+  path:
+    points:
+    - x: -129.7
+      z: -405.7
+    - x: 200.0
+      z: 90.0
+- id: spur_to_seal_rocks
+  type: dirt_path
+  path:
+    points:
+    - x: -129.7
+      z: -405.7
+    - x: 90.0
+      z: -240.0
+- id: spur_to_widow_cliff
+  type: dirt_path
+  path:
+    points:
+    - x: -129.7
+      z: -405.7
+    - x: -180.0
+      z: 60.0
+features:
+- id: burial_ship_mound
+  type: landmark_glyph
+  glyph: small_house
+  position:
+    x: -90.0
+    z: -200.0
+- id: raid_stone
+  type: landmark_glyph
+  glyph: small_house
+  position:
+    x: 200.0
+    z: 90.0
+- id: seal_rocks
+  type: landmark_glyph
+  glyph: small_house
+  position:
+    x: 90.0
+    z: -240.0
+- id: widow_cliff
+  type: landmark_glyph
+  glyph: small_house
+  position:
+    x: -180.0
+    z: 60.0
+- id: skarnreach_ambient_00
+  type: ambient_glyph
+  glyph: small_house
+  position:
+    x: -2060.8
+    z: -20.9
+- id: skarnreach_ambient_01
+  type: ambient_glyph
+  glyph: small_house
+  position:
+    x: 1950.7
+    z: 54.9
+- id: skarnreach_ambient_02
+  type: ambient_glyph
+  glyph: small_house
+  position:
+    x: 449.2
+    z: -271.7
+- id: skarnreach_ambient_03
+  type: ambient_glyph
+  glyph: small_house
+  position:
+    x: -444.6
+    z: -732.4
+- id: skarnreach_ambient_04
+  type: ambient_glyph
+  glyph: small_house
+  position:
+    x: 140.2
+    z: -918.5
+- id: skarnreach_ambient_05
+  type: ambient_glyph
+  glyph: small_house
+  position:
+    x: 68.9
+    z: 493.9
+- id: skarnreach_ambient_06
+  type: ambient_glyph
+  glyph: small_house
+  position:
+    x: 515.0
+    z: -790.0
+- id: skarnreach_ambient_07
+  type: ambient_glyph
+  glyph: small_house
+  position:
+    x: 490.4
+    z: 49.2
+- id: skarnreach_ambient_08
+  type: ambient_glyph
+  glyph: small_house
+  position:
+    x: -217.1
+    z: -461.9
+free_labels:
+- text: ⟶ Barrow Coast
+  position:
+    x: 836.9
+    z: -337.5
+  rotation_deg: 0
+  style: directional
+- text: ↗ Gravewatch Fields
+  position:
+    x: 594.4
+    z: -679.1
+  rotation_deg: 0
+  style: directional
+- text: ⟵ Market Crossing
+  position:
+    x: -896.1
+    z: -107.2
+  rotation_deg: 0
+  style: directional
+- text: ↖ Skarncamp Wastes
+  position:
+    x: -373.4
+    z: -821.6
+  rotation_deg: 0
+  style: directional
+- text: ⟵ Sunward Reach
+  position:
+    x: -901.7
+    z: -36.5
+  rotation_deg: 0
+  style: directional

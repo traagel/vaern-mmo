@@ -21,6 +21,7 @@ members = [
     "crates/vaern-persistence",
     "crates/vaern-voxel",
     "crates/vaern-editor",
+    "crates/vaern-cartography",
 ]
 
 [workspace.package]
@@ -46,6 +47,7 @@ vaern-assets = { path = "crates/vaern-assets" }
 vaern-persistence = { path = "crates/vaern-persistence" }
 vaern-voxel = { path = "crates/vaern-voxel" }
 vaern-editor = { path = "crates/vaern-editor" }
+vaern-cartography = { path = "crates/vaern-cartography" }
 
 [profile.dev]
 opt-level = 1

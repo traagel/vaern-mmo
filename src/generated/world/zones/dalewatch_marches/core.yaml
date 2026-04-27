@@ -10,21 +10,32 @@ level_range:
 starter_race: mannin
 hub_count: 5
 vibe: Late-medieval river-valley frontier; civic, practical, not heroic.
-description: "The Concord's eastern frontier \u2014 a green river-valley of yeoman\
-  \ farms,\nkingsroads, and warden patrols, watched from Dalewatch Keep at the heart\n\
-  of the Marches. Three crises meet here. East at the Ford of Ashmere,\nPact scouts\
-  \ are crossing in numbers nobody can explain. South in the\nBlackwash Fens, the\
-  \ drifters who fled the Censure three years ago have\nmade common cause with something\
-  \ older than the Concord. And along the\ncairn-ridges and copper drifts under the\
-  \ keep, the country itself is\nstarting to misbehave. The Warden Corps rides the\
-  \ line so the plough\nstays in the field \u2014 but the line is thinning, and you\
-  \ ride it the\nmorning you take the oath.\n"
-prompt: wide establishing landscape, late-medieval Burgundian river valley, stone
-  keep on a low ridge above tilled fields, kingsroad winding past mills, distant marsh
-  on the eastern horizon, summer dusk warm gold-hour light, painterly atmospheric,
-  no figures, no characters
-negative_prompt: modern, futuristic, sci-fi, neon, anime, cyberpunk, concept sheet,
-  character portrait, figure, person, watermark, text
+description: 'The Concord''s eastern frontier — a green river-valley of yeoman farms,
+
+  kingsroads, and warden patrols, watched from Dalewatch Keep at the heart
+
+  of the Marches. Three crises meet here. East at the Ford of Ashmere,
+
+  Pact scouts are crossing in numbers nobody can explain. South in the
+
+  Blackwash Fens, the drifters who fled the Censure three years ago have
+
+  made common cause with something older than the Concord. And along the
+
+  cairn-ridges and copper drifts under the keep, the country itself is
+
+  starting to misbehave. The Warden Corps rides the line so the plough
+
+  stays in the field — but the line is thinning, and you ride it the
+
+  morning you take the oath.
+
+  '
+prompt: wide establishing landscape, late-medieval Burgundian river valley, stone keep on a low ridge
+  above tilled fields, kingsroad winding past mills, distant marsh on the eastern horizon, summer dusk
+  warm gold-hour light, painterly atmospheric, no figures, no characters
+negative_prompt: modern, futuristic, sci-fi, neon, anime, cyberpunk, concept sheet, character portrait,
+  figure, person, watermark, text
 budget:
   quest_count_target: 50
   unique_mob_types: 24
@@ -32,6 +43,18 @@ budget:
   estimated_hours_to_complete:
     solo: 14.0
     duo: 10.0
-notes: 'Starter zone in the western dales, redesigned 2026-04 to Classic-Elwynn scope:
-  12 sub-zones, 4 hubs, 10-step main chain, two side chains, plus side quests and
-  filler.'
+notes: 'Starter zone in the western dales, redesigned 2026-04 to starter-scale scope: 12 sub-zones, 4
+  hubs, 10-step main chain, two side chains, plus side quests and filler.'
+bounds:
+  min:
+    x: -1000.0
+    z: -1000.0
+  max:
+    x: 1000.0
+    z: 1000.0
+coordinate_system:
+  origin: dalewatch_keep
+  axes:
+    x_positive: east
+    z_positive: south
+  unit: meter

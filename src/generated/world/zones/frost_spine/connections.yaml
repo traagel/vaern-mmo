@@ -1,0 +1,48 @@
+id: connections__frost_spine
+zone: frost_spine
+connections:
+- to_zone: ashweald
+  direction: e
+  type: mountain_pass
+  border_position:
+    x: 2699.5
+    z: 684.2
+  border_label: to Ashweald
+  level_continuous: false
+  pvp_safe: false
+- to_zone: dalewatch_marches
+  direction: se
+  type: dirt_path
+  border_position:
+    x: 1792.2
+    z: 1103.0
+  border_label: to Dalewatch Marches
+  level_continuous: false
+  pvp_safe: true
+- to_zone: irongate_pass
+  direction: ne
+  type: dirt_path
+  border_position:
+    x: 1387.7
+    z: -230.8
+  border_label: to Irongate Pass
+  level_continuous: false
+  pvp_safe: true
+- to_zone: stoneguard_deep
+  direction: nw
+  type: dirt_path
+  border_position:
+    x: -1334.0
+    z: -393.0
+  border_label: to Stoneguard Deep
+  level_continuous: false
+  pvp_safe: true
+- to_zone: wyrling_downs
+  direction: s
+  type: dirt_path
+  border_position:
+    x: -914.6
+    z: 893.3
+  border_label: to Wyrling Downs
+  level_continuous: false
+  pvp_safe: true

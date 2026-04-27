@@ -1,0 +1,357 @@
+id: geography__stoneguard_deep
+zone: stoneguard_deep
+schema_version: '1.0'
+biome_regions:
+- id: stoneguard_deep_main
+  label: Stoneguard Deep
+  biome: mountain
+  polygon:
+    points:
+    - x: 883.9
+      z: 588.6
+    - x: 1005.1
+      z: -1593.9
+    - x: -1298.6
+      z: -1351.4
+    - x: -1056.1
+      z: 1558.6
+    - x: -1056.9
+      z: 1569.9
+  opacity: 0.85
+  label_position:
+    x: -304.5
+    z: 154.3
+- id: stoneguard_deep_pocket_forge_chimney_ridge
+  label: Forge-Chimney Ridge
+  biome: ridge_scrub
+  polygon:
+    points:
+    - x: -57.7
+      z: -286.4
+    - x: -118.1
+      z: -300.9
+    - x: -180.0
+      z: -305.8
+    - x: -241.9
+      z: -300.9
+    - x: -302.3
+      z: -286.4
+    - x: -359.7
+      z: -262.7
+    - x: -412.7
+      z: -230.2
+    - x: -459.9
+      z: -189.9
+    - x: -500.2
+      z: -142.7
+    - x: -532.7
+      z: -89.7
+    - x: -556.4
+      z: -32.3
+    - x: -570.9
+      z: 28.1
+    - x: -575.8
+      z: 90.0
+    - x: -570.9
+      z: 151.9
+    - x: -556.4
+      z: 212.3
+    - x: -532.7
+      z: 269.7
+    - x: -500.2
+      z: 322.7
+    - x: -459.9
+      z: 369.9
+    - x: -412.7
+      z: 410.2
+    - x: -359.7
+      z: 442.7
+    - x: -302.3
+      z: 466.4
+    - x: -241.9
+      z: 480.9
+    - x: -180.0
+      z: 485.8
+    - x: -118.1
+      z: 480.9
+    - x: -57.7
+      z: 466.4
+    - x: -13.8
+      z: 448.3
+    - x: 37.1
+      z: -61.1
+    - x: -45.5
+      z: -281.4
+  opacity: 0.85
+  label_position:
+    x: -180.0
+    z: 90.0
+- id: stoneguard_deep_pocket_granite_pillar_grove
+  label: The Granite Pillar Grove
+  biome: forest
+  polygon:
+    points:
+    - x: -13.9
+      z: 449.1
+    - x: -12.7
+      z: 450.2
+    - x: 40.3
+      z: 482.7
+    - x: 97.7
+      z: 506.4
+    - x: 158.1
+      z: 520.9
+    - x: 220.0
+      z: 525.8
+    - x: 281.9
+      z: 520.9
+    - x: 342.3
+      z: 506.4
+    - x: 399.7
+      z: 482.7
+    - x: 452.7
+      z: 450.2
+    - x: 499.9
+      z: 409.9
+    - x: 540.2
+      z: 362.7
+    - x: 572.7
+      z: 309.7
+    - x: 596.4
+      z: 252.3
+    - x: 610.9
+      z: 191.9
+    - x: 614.3
+      z: 148.8
+    - x: 37.1
+      z: -61.1
+  opacity: 0.85
+  label_position:
+    x: 220.0
+    z: 130.0
+- id: stoneguard_deep_pocket_rockworm_breach
+  label: The Rockworm Breach
+  biome: highland
+  polygon:
+    points:
+    - x: 614.8
+      z: 149.0
+    - x: 620.2
+      z: 142.7
+    - x: 652.7
+      z: 89.7
+    - x: 676.4
+      z: 32.3
+    - x: 690.9
+      z: -28.1
+    - x: 695.8
+      z: -90.0
+    - x: 690.9
+      z: -151.9
+    - x: 676.4
+      z: -212.3
+    - x: 652.7
+      z: -269.7
+    - x: 620.2
+      z: -322.7
+    - x: 579.9
+      z: -369.9
+    - x: 532.7
+      z: -410.2
+    - x: 479.7
+      z: -442.7
+    - x: 422.3
+      z: -466.4
+    - x: 361.9
+      z: -480.9
+    - x: 300.0
+      z: -485.8
+    - x: 238.1
+      z: -480.9
+    - x: 177.7
+      z: -466.4
+    - x: 120.3
+      z: -442.7
+    - x: 67.3
+      z: -410.2
+    - x: 20.1
+      z: -369.9
+    - x: -20.2
+      z: -322.7
+    - x: -45.5
+      z: -281.4
+    - x: 37.1
+      z: -61.1
+  opacity: 0.85
+  label_position:
+    x: 300.0
+    z: -90.0
+roads:
+- id: stoneguard_deep_main_road
+  type: dirt_path
+  path:
+    points:
+    - x: -1237.8
+      z: -6.9
+    - x: -151.6
+      z: -6.9
+    - x: 934.6
+      z: -6.9
+- id: spur_to_anvilgate
+  type: dirt_path
+  path:
+    points:
+    - x: 934.6
+      z: -6.9
+    - x: 503.5
+      z: 486.3
+- id: spur_to_stoneguard_halls
+  type: dirt_path
+  path:
+    points:
+    - x: -151.6
+      z: -6.9
+    - x: -663.0
+      z: -224.7
+- id: spur_to_collapsed_lower_stair
+  type: dirt_path
+  path:
+    points:
+    - x: -151.6
+      z: -6.9
+    - x: 60.0
+      z: -200.0
+- id: spur_to_forge_chimney_ridge
+  type: dirt_path
+  path:
+    points:
+    - x: -151.6
+      z: -6.9
+    - x: -180.0
+      z: 90.0
+- id: spur_to_granite_pillar_grove
+  type: dirt_path
+  path:
+    points:
+    - x: -151.6
+      z: -6.9
+    - x: 220.0
+      z: 130.0
+- id: spur_to_rockworm_breach
+  type: dirt_path
+  path:
+    points:
+    - x: -151.6
+      z: -6.9
+    - x: 300.0
+      z: -90.0
+features:
+- id: collapsed_lower_stair
+  type: landmark_glyph
+  glyph: small_house
+  position:
+    x: 60.0
+    z: -200.0
+- id: forge_chimney_ridge
+  type: landmark_glyph
+  glyph: small_house
+  position:
+    x: -180.0
+    z: 90.0
+- id: granite_pillar_grove
+  type: landmark_glyph
+  glyph: tree_ring
+  position:
+    x: 220.0
+    z: 130.0
+- id: rockworm_breach
+  type: landmark_glyph
+  glyph: small_house
+  position:
+    x: 300.0
+    z: -90.0
+- id: stoneguard_deep_ambient_00
+  type: ambient_glyph
+  glyph: small_cabin
+  position:
+    x: -260.2
+    z: 397.5
+- id: stoneguard_deep_ambient_01
+  type: ambient_glyph
+  glyph: small_cabin
+  position:
+    x: 817.5
+    z: 424.0
+- id: stoneguard_deep_ambient_02
+  type: ambient_glyph
+  glyph: small_cabin
+  position:
+    x: -405.8
+    z: -416.3
+- id: stoneguard_deep_ambient_03
+  type: ambient_glyph
+  glyph: small_cabin
+  position:
+    x: -642.4
+    z: 135.8
+- id: stoneguard_deep_ambient_04
+  type: ambient_glyph
+  glyph: small_cabin
+  position:
+    x: -929.5
+    z: 523.7
+- id: stoneguard_deep_ambient_05
+  type: ambient_glyph
+  glyph: small_cabin
+  position:
+    x: 29.4
+    z: -421.6
+- id: stoneguard_deep_ambient_06
+  type: ambient_glyph
+  glyph: small_cabin
+  position:
+    x: 555.2
+    z: -404.9
+- id: stoneguard_deep_ambient_07
+  type: ambient_glyph
+  glyph: small_cabin
+  position:
+    x: 121.6
+    z: 353.6
+scatter:
+  hills:
+    density: medium
+    biomes_allowed:
+    - mountain
+    seed: 5103
+free_labels:
+- text: ↓ Firland Greenwood
+  position:
+    x: -33.0
+    z: 901.9
+  rotation_deg: 0
+  style: directional
+- text: ↘ Frost Spine
+  position:
+    x: 407.3
+    z: 805.4
+  rotation_deg: 0
+  style: directional
+- text: ⟶ Iron Strand
+  position:
+    x: 901.2
+    z: -48.4
+  rotation_deg: 0
+  style: directional
+- text: ⟶ Irongate Pass
+  position:
+    x: 901.1
+    z: 50.1
+  rotation_deg: 0
+  style: directional
+- text: ↓ Wyrling Downs
+  position:
+    x: 40.0
+    z: 901.6
+  rotation_deg: 0
+  style: directional

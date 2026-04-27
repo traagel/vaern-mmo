@@ -1,0 +1,57 @@
+id: connections__gravewatch_fields
+zone: gravewatch_fields
+connections:
+- to_zone: ashen_holt
+  direction: ne
+  type: coastal_path
+  border_position:
+    x: 1215.5
+    z: -1057.8
+  border_label: to Ashen Holt
+  level_continuous: true
+  pvp_safe: true
+- to_zone: barrow_coast
+  direction: se
+  type: coastal_path
+  border_position:
+    x: 672.9
+    z: 693.5
+  border_label: to Barrow Coast
+  level_continuous: true
+  pvp_safe: true
+- to_zone: crown_of_ruin
+  direction: nw
+  type: dirt_path
+  border_position:
+    x: -1922.3
+    z: -861.2
+  border_label: to Crown Of Ruin
+  level_continuous: false
+  pvp_safe: true
+- to_zone: scrap_flats
+  direction: n
+  type: dirt_path
+  border_position:
+    x: -562.5
+    z: -1162.5
+  border_label: to Scrap Flats
+  level_continuous: false
+  pvp_safe: true
+- to_zone: skarncamp_wastes
+  direction: w
+  type: dirt_path
+  border_position:
+    x: -1645.9
+    z: 177.0
+  border_label: to Skarncamp Wastes
+  level_continuous: false
+  pvp_safe: true
+- to_zone: skarnreach
+  direction: sw
+  type: dirt_path
+  border_position:
+    x: -828.7
+    z: 1627.1
+  border_label: to Skarnreach
+  level_continuous: false
+  pvp_safe: true

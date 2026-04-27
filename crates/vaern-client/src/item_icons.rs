@@ -135,8 +135,9 @@ fn load_icon_from_disk(path: &Path) -> Result<egui::ColorImage, String> {
 pub const CELL_SIZE: f32 = 48.0;
 pub const CELL_CORNER: f32 = 4.0;
 
-/// WoW-standard rarity palette. Mirrors `rarity_color` in inventory_ui.rs;
-/// re-exported here so all icon sites pull from one source.
+/// Rarity color palette (grey/white/green/blue/purple/orange).
+/// Mirrors `rarity_color` in inventory_ui.rs; re-exported here so all
+/// icon sites pull from one source.
 pub fn rarity_color(r: Rarity) -> egui::Color32 {
     match r {
         Rarity::Junk => egui::Color32::from_rgb(120, 120, 120),

@@ -98,7 +98,7 @@ Organized by blocker severity. A ❌ is a hard blocker for pre-alpha. A ⚠️ i
 
 ### Tier 2 — MMO feel (required to credibly call it an MMO)
 
-- ⏸ **9 hand-curated starter chains** — Dalewatch only is Elwynn-scale; pre-alpha decision is Dalewatch-only so other 9 are not pre-alpha-blocking. Post-alpha content stream.
+- ⏸ **9 hand-curated starter chains** — Dalewatch only is full starter-scale; pre-alpha decision is Dalewatch-only so other 9 are not pre-alpha-blocking. Post-alpha content stream.
 - ✅ **Side-quest giver spawn fix** — Slice 2 shipped. 5 new givers in Dalewatch (Quartermaster Hayes / Captain Morwen / Innkeeper Bel / Smith Garrick / Mistress Pell). Other zones still rely on procedural target-hint fallback.
 - ✅ **Drifter's Lair pseudo-dungeon (Slice 6)** — the L10 capstone. Open-world spawn region anchored at zone-local (470, 80) east of Ford of Ashmere; Halen (L9 mini-boss) + Valenn (L10 capstone) flanked by L8-L10 drifter brutes/acolytes/fanatics in 4-mob pulls; 16 Poly Haven props at the anchor mark the threshold; one-tier-above gear ladder on bosses (mithril/dragonscale/shadowsilk + exceptional 4-piece per pillar on Valenn; chest pieces at steel/wyvern/mageweave + exceptional on Halen) on top of the existing Slice 4e chain capstone reward. Code-complete, 18 new tests green; **2-client playtest pending**.
 - ⏸ **World boss + zone-level elite content** — out of pre-alpha scope.

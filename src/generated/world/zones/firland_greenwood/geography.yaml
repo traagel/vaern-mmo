@@ -1,0 +1,251 @@
+id: geography__firland_greenwood
+zone: firland_greenwood
+schema_version: '1.0'
+biome_regions:
+- id: firland_greenwood_main
+  label: Firland Greenwood
+  biome: forest
+  polygon:
+    points:
+    - x: 1695.9
+      z: 272.8
+    - x: 396.3
+      z: -1561.9
+    - x: -817.3
+      z: -1843.2
+    - x: -729.1
+      z: -697.2
+    - x: 380.3
+      z: 1204.7
+  opacity: 0.85
+  label_position:
+    x: 185.2
+    z: -525.0
+- id: firland_greenwood_pocket_speakers_silence
+  label: The Speakers' Silence
+  biome: mountain
+  polygon:
+    points:
+    - x: 526.5
+      z: 152.4
+    - x: 510.7
+      z: 86.6
+    - x: 484.8
+      z: 24.0
+    - x: 449.3
+      z: -33.8
+    - x: 405.3
+      z: -85.3
+    - x: 353.8
+      z: -129.3
+    - x: 296.0
+      z: -164.8
+    - x: 233.4
+      z: -190.7
+    - x: 167.6
+      z: -206.5
+    - x: 100.0
+      z: -211.8
+    - x: 32.4
+      z: -206.5
+    - x: -33.4
+      z: -190.7
+    - x: -96.0
+      z: -164.8
+    - x: -153.8
+      z: -129.3
+    - x: -205.3
+      z: -85.3
+    - x: -249.3
+      z: -33.8
+    - x: -284.8
+      z: 24.0
+    - x: -305.1
+      z: 73.0
+    - x: 29.0
+      z: 645.7
+    - x: 32.4
+      z: 646.5
+    - x: 100.0
+      z: 651.8
+    - x: 167.6
+      z: 646.5
+    - x: 233.4
+      z: 630.7
+    - x: 296.0
+      z: 604.8
+    - x: 353.8
+      z: 569.3
+    - x: 405.3
+      z: 525.3
+    - x: 449.3
+      z: 473.8
+    - x: 484.8
+      z: 416.0
+    - x: 510.7
+      z: 353.4
+    - x: 526.5
+      z: 287.6
+    - x: 531.8
+      z: 220.0
+  opacity: 0.85
+  label_position:
+    x: 100.0
+    z: 220.0
+roads:
+- id: firland_greenwood_main_road
+  type: dirt_path
+  path:
+    points:
+    - x: -756.3
+      z: -325.6
+    - x: 431.4
+      z: -325.6
+    - x: 1619.2
+      z: -325.6
+- id: spur_to_greenmoot
+  type: dirt_path
+  path:
+    points:
+    - x: 431.4
+      z: -325.6
+    - x: 696.6
+      z: -69.2
+- id: spur_to_oldfir_camp
+  type: dirt_path
+  path:
+    points:
+    - x: -756.3
+      z: -325.6
+    - x: -682.2
+      z: -157.0
+- id: spur_to_deer_path_pool
+  type: dirt_path
+  path:
+    points:
+    - x: 431.4
+      z: -325.6
+    - x: 60.0
+      z: -200.0
+- id: spur_to_oldfir_remains
+  type: dirt_path
+  path:
+    points:
+    - x: 431.4
+      z: -325.6
+    - x: -90.0
+      z: -260.0
+- id: spur_to_speakers_silence
+  type: dirt_path
+  path:
+    points:
+    - x: 431.4
+      z: -325.6
+    - x: 100.0
+      z: 220.0
+- id: spur_to_witch_birch
+  type: dirt_path
+  path:
+    points:
+    - x: -756.3
+      z: -325.6
+    - x: -180.0
+      z: 80.0
+features:
+- id: deer_path_pool
+  type: landmark_glyph
+  glyph: small_house
+  position:
+    x: 60.0
+    z: -200.0
+- id: oldfir_remains
+  type: landmark_glyph
+  glyph: small_house
+  position:
+    x: -90.0
+    z: -260.0
+- id: speakers_silence
+  type: landmark_glyph
+  glyph: small_house
+  position:
+    x: 100.0
+    z: 220.0
+- id: witch_birch
+  type: landmark_glyph
+  glyph: small_house
+  position:
+    x: -180.0
+    z: 80.0
+- id: firland_greenwood_ambient_00
+  type: ambient_glyph
+  glyph: small_cabin
+  position:
+    x: 342.0
+    z: 536.9
+- id: firland_greenwood_ambient_01
+  type: ambient_glyph
+  glyph: small_cabin
+  position:
+    x: 1593.8
+    z: 158.7
+- id: firland_greenwood_ambient_02
+  type: ambient_glyph
+  glyph: small_cabin
+  position:
+    x: 936.8
+    z: -489.0
+- id: firland_greenwood_ambient_03
+  type: ambient_glyph
+  glyph: small_cabin
+  position:
+    x: 777.5
+    z: 144.0
+- id: firland_greenwood_ambient_04
+  type: ambient_glyph
+  glyph: small_cabin
+  position:
+    x: 321.6
+    z: -651.7
+- id: firland_greenwood_ambient_05
+  type: ambient_glyph
+  glyph: small_cabin
+  position:
+    x: 495.9
+    z: -193.6
+scatter:
+  trees:
+    density: medium
+    biomes_allowed:
+    - forest
+    seed: 5101
+free_labels:
+- text: ↗ Greenwood Deep
+  position:
+    x: 736.4
+    z: -521.6
+  rotation_deg: 0
+  style: directional
+- text: ↑ Heartland Ride
+  position:
+    x: 203.9
+    z: -879.1
+  rotation_deg: 0
+  style: directional
+- text: ↑ Stoneguard Deep
+  position:
+    x: 33.0
+    z: -901.9
+  rotation_deg: 0
+  style: directional
+- text: ↘ Sunward Reach
+  position:
+    x: 521.6
+    z: 736.4
+  rotation_deg: 0
+  style: directional
+- text: ↑ Wyrling Downs
+  position:
+    x: 89.3
+    z: -898.0
+  rotation_deg: 0
+  style: directional

@@ -1,0 +1,57 @@
+id: connections__iron_strand
+zone: iron_strand
+connections:
+- to_zone: ashweald
+  direction: s
+  type: dirt_path
+  border_position:
+    x: -2586.7
+    z: 1221.1
+  border_label: to Ashweald
+  level_continuous: false
+  pvp_safe: true
+- to_zone: irongate_pass
+  direction: w
+  type: dirt_path
+  border_position:
+    x: -3866.0
+    z: -11874.3
+  border_label: to Irongate Pass
+  level_continuous: false
+  pvp_safe: true
+- to_zone: pact_causeway
+  direction: e
+  type: dirt_path
+  border_position:
+    x: 3292.4
+    z: -891.5
+  border_label: to Pact Causeway
+  level_continuous: false
+  pvp_safe: true
+- to_zone: pactmarch
+  direction: e
+  type: dirt_path
+  border_position:
+    x: 5404.1
+    z: -26450.8
+  border_label: to Pactmarch
+  level_continuous: false
+  pvp_safe: true
+- to_zone: ruin_line_north
+  direction: s
+  type: dirt_path
+  border_position:
+    x: 110.9
+    z: 1250.0
+  border_label: to Ruin Line North
+  level_continuous: false
+  pvp_safe: true
+- to_zone: stoneguard_deep
+  direction: w
+  type: dirt_path
+  border_position:
+    x: -5754.6
+    z: -37916.8
+  border_label: to Stoneguard Deep
+  level_continuous: false
+  pvp_safe: true

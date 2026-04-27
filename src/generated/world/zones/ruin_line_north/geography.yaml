@@ -1,0 +1,168 @@
+id: geography__ruin_line_north
+zone: ruin_line_north
+schema_version: '1.0'
+biome_regions:
+- id: ruin_line_north_main
+  label: The Ruin Line — Northern Scar
+  biome: ruin
+  polygon:
+    points:
+    - x: 2675.3
+      z: -1225.3
+    - x: -2390.0
+      z: -1225.3
+    - x: 118.9
+      z: 1283.6
+    - x: 2660.8
+      z: -304.9
+    - x: 2772.6
+      z: -658.9
+  opacity: 0.85
+  label_position:
+    x: 1167.5
+    z: -426.2
+roads:
+- id: ruin_line_north_main_road
+  type: dirt_path
+  path:
+    points:
+    - x: -2249.9
+      z: 15.1
+    - x: 221.5
+      z: 15.1
+    - x: 2692.9
+      z: 15.1
+- id: spur_to_burned_abbey
+  type: dirt_path
+  path:
+    points:
+    - x: 221.5
+      z: 15.1
+    - x: 700.0
+      z: 1.5
+- id: spur_to_no_man_ridge
+  type: dirt_path
+  path:
+    points:
+    - x: 221.5
+      z: 15.1
+    - x: -482.9
+      z: 506.8
+- id: spur_to_scarhold
+  type: dirt_path
+  path:
+    points:
+    - x: 221.5
+      z: 15.1
+    - x: -1.5
+      z: -700.0
+- id: spur_to_crow_field
+  type: dirt_path
+  path:
+    points:
+    - x: 221.5
+      z: 15.1
+    - x: 90.0
+      z: -240.0
+- id: spur_to_memorial_arch
+  type: dirt_path
+  path:
+    points:
+    - x: 221.5
+      z: 15.1
+    - x: -90.0
+      z: -210.0
+- id: spur_to_trench_line
+  type: dirt_path
+  path:
+    points:
+    - x: 221.5
+      z: 15.1
+    - x: -180.0
+      z: 80.0
+features:
+- id: burnt_orchard
+  type: landmark_glyph
+  glyph: small_house
+  position:
+    x: 200.0
+    z: 110.0
+- id: crow_field
+  type: landmark_glyph
+  glyph: small_house
+  position:
+    x: 90.0
+    z: -240.0
+- id: memorial_arch
+  type: landmark_glyph
+  glyph: small_house
+  position:
+    x: -90.0
+    z: -210.0
+- id: trench_line
+  type: landmark_glyph
+  glyph: small_house
+  position:
+    x: -180.0
+    z: 80.0
+- id: ruin_line_north_ambient_00
+  type: ambient_glyph
+  glyph: ruined_tower
+  position:
+    x: -60.4
+    z: -998.9
+- id: ruin_line_north_ambient_01
+  type: ambient_glyph
+  glyph: ruined_tower
+  position:
+    x: -588.6
+    z: -907.1
+- id: ruin_line_north_ambient_02
+  type: ambient_glyph
+  glyph: ruined_tower
+  position:
+    x: 1343.7
+    z: 118.2
+- id: ruin_line_north_ambient_03
+  type: ambient_glyph
+  glyph: ruined_tower
+  position:
+    x: 588.5
+    z: -606.3
+- id: ruin_line_north_ambient_04
+  type: ambient_glyph
+  glyph: ruined_tower
+  position:
+    x: 591.0
+    z: -204.5
+free_labels:
+- text: ↙ Ashweald
+  position:
+    x: -1084.9
+    z: 957.2
+  rotation_deg: 0
+  style: directional
+- text: ↘ Blackwater Deep
+  position:
+    x: 813.1
+    z: 1148.0
+  rotation_deg: 0
+  style: directional
+- text: ↑ Iron Strand
+  position:
+    x: 0.0
+    z: -1353.8
+  rotation_deg: 0
+  style: directional
+- text: ⟶ Pact Causeway
+  position:
+    x: 1512.1
+    z: -229.2
+  rotation_deg: 0
+  style: directional
+- text: ⟶ Shadegrove
+  position:
+    x: 1463.0
+    z: 407.6
+  rotation_deg: 0
+  style: directional

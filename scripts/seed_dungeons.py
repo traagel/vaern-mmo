@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Seed src/generated/world/dungeons/ with 5/10/20-man instance scaffolding.
 
-Targets ~30 five-mans (denser than WoW Classic) spread across mid-tier,
+Targets ~30 five-mans (deliberately denser than the genre baseline) spread across mid-tier,
 contested, and endgame zones, plus 4-5 ten-man raids and 2 twenty-mans at
 level 60. No 40-man tier — per strict-coop design, the largest social unit
 is the guild; 40-man is explicitly out of scope.
@@ -388,7 +388,7 @@ def summary() -> dict:
             "by_level_band": by_band,
         },
         "design_notes": [
-            "Denser than WoW Classic's ~20 five-mans; Vaern aims for ~26 five-mans + 4 ten-mans + 2 twenty-mans",
+            "Vaern aims for ~26 five-mans + 4 ten-mans + 2 twenty-mans (deliberately denser than the genre baseline)",
             "No 40-man tier — the strict-coop household/guild social unit does not support it",
             "Every contested and endgame zone has at least one instance entrance",
             "Mid-tier 5-mans cluster at 18-35 to carry players through the second long xp stretch",

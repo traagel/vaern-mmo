@@ -7,3 +7,6 @@ amenities:
 - flight_master
 - repair
 quest_givers: 3
+offset_from_zone_origin:
+  x: 110.0
+  z: -691.3

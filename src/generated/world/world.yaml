@@ -1,20 +1,576 @@
-id: vaern
-setting_name: Vaern
-max_level: 60
-faction_split:
-  faction_a: "Concord (Veyr) \u2014 central & western two-thirds"
-  faction_b: "Rend (Hraun) \u2014 eastern third"
-  contested: "the Ruin Line \u2014 middle strip"
-design_reference: "WoW Classic zone-level structure \u2014 3-8 levels per zone, shared\
-  \ mid-tier, contested endgame"
-target_time_to_cap:
-  played_hours_min: 150
-  played_hours_max: 240
-  days_active: 5-10 days of /played time
-  basis: Classic-style grind tuned slightly faster; strict-coop means duo/trio pace
-    is the balance target, not solo
-design_principles:
-- "every zone is coop-teachable \u2014 no solo-only content, even at level 1"
-- quest hubs cluster into 2-4 per zone; each hub offers enough xp to push ~1 level
-- mob density is tuned so a duo can level on kills alone at ~60% of quest pace
-- contested zones bleed PvP rules; endgame zones are the only true raid-scale content
+id: world__vaern
+schema_version: '1.0'
+zone_placements:
+- zone: ashen_holt
+  world_origin:
+    x: 7250.0
+    z: 1250.0
+  rotation_deg: 0
+  z_index: 1
+  zone_cell:
+    points:
+    - x: 6880.5
+      z: 3006.9
+    - x: 8681.6
+      z: 3247.8
+    - x: 8500.0
+      z: 1250.0
+    - x: 8578.1
+      z: 0.0
+    - x: 6000.0
+      z: 0.0
+    - x: 6000.0
+      z: 2279.3
+- zone: ashweald
+  world_origin:
+    x: -1250.0
+    z: -1500.0
+  rotation_deg: 0
+  z_index: 1
+  zone_cell:
+    points:
+    - x: 86.5
+      z: -1413.5
+    - x: -2500.0
+      z: -4000.0
+    - x: -2673.3
+      z: -4057.8
+    - x: -3846.6
+      z: -2515.1
+    - x: -3876.2
+      z: -2419.9
+    - x: -3109.4
+      z: -375.0
+    - x: -225.0
+      z: -375.0
+- zone: barrow_coast
+  world_origin:
+    x: 6775.2
+    z: 4799.1
+  rotation_deg: 0
+  z_index: 1
+  zone_cell:
+    points:
+    - x: 5315.6
+      z: 6775.6
+    - x: 5750.0
+      z: 6750.0
+    - x: 8750.0
+      z: 4000.0
+    - x: 8681.6
+      z: 3247.8
+    - x: 6880.5
+      z: 3006.9
+    - x: 4914.8
+      z: 5782.0
+- zone: blackwater_deep
+  world_origin:
+    x: 1250.0
+    z: -750.0
+  rotation_deg: 0
+  z_index: 1
+  zone_cell:
+    points:
+    - x: 2947.0
+      z: 342.8
+    - x: 3142.9
+      z: 0.0
+    - x: 2707.0
+      z: -3051.2
+    - x: 86.5
+      z: -1413.5
+    - x: -225.0
+      z: -375.0
+    - x: 360.8
+      z: 601.4
+- zone: crown_of_ruin
+  world_origin:
+    x: 1500.0
+    z: 1750.0
+  rotation_deg: 0
+  z_index: 1
+  zone_cell:
+    points:
+    - x: 1232.3
+      z: 3312.7
+    - x: 3280.4
+      z: 2881.9
+    - x: 3324.6
+      z: 2797.5
+    - x: 2947.0
+      z: 342.8
+    - x: 360.8
+      z: 601.4
+    - x: 97.2
+      z: 1326.4
+- zone: dalewatch_marches
+  world_origin:
+    x: -5250.0
+    z: 0.0
+  rotation_deg: 0
+  z_index: 1
+  zone_cell:
+    points:
+    - x: -3109.4
+      z: -375.0
+    - x: -3876.2
+      z: -2419.9
+    - x: -5661.3
+      z: -1677.4
+    - x: -6384.6
+      z: -230.8
+    - x: -5771.2
+      z: 1200.5
+    - x: -3482.2
+      z: 1613.6
+- zone: firland_greenwood
+  world_origin:
+    x: -7742.6
+    z: 3952.5
+  rotation_deg: 0
+  z_index: 1
+  zone_cell:
+    points:
+    - x: -6000.0
+      z: 4250.0
+    - x: -7339.8
+      z: 2358.5
+    - x: -8590.9
+      z: 2068.5
+    - x: -8500.0
+      z: 3250.0
+    - x: -7356.3
+      z: 5210.7
+- zone: frost_spine
+  world_origin:
+    x: -6561.0
+    z: -3151.7
+  rotation_deg: 0
+  z_index: 1
+  zone_cell:
+    points:
+    - x: -3846.6
+      z: -2515.1
+    - x: -6500.0
+      z: -4250.0
+    - x: -8500.9
+      z: -3238.3
+    - x: -8549.8
+      z: -2602.4
+    - x: -5661.3
+      z: -1677.4
+    - x: -3876.2
+      z: -2419.9
+- zone: gravewatch_fields
+  world_origin:
+    x: 5224.8
+    z: 3700.9
+  rotation_deg: 0
+  z_index: 1
+  zone_cell:
+    points:
+    - x: 3280.4
+      z: 2881.9
+    - x: 3877.4
+      z: 4873.9
+    - x: 4914.8
+      z: 5782.0
+    - x: 6880.5
+      z: 3006.9
+    - x: 6000.0
+      z: 2279.3
+    - x: 3324.6
+      z: 2797.5
+- zone: greenwood_deep
+  world_origin:
+    x: -5702.5
+    z: 2507.4
+  rotation_deg: 0
+  z_index: 1
+  zone_cell:
+    points:
+    - x: -3482.2
+      z: 1613.6
+    - x: -5771.2
+      z: 1200.5
+    - x: -7339.8
+      z: 2358.5
+    - x: -6000.0
+      z: 4250.0
+    - x: -3219.1
+      z: 2280.2
+- zone: heartland_ride
+  world_origin:
+    x: -7000.0
+    z: 750.0
+  rotation_deg: 0
+  z_index: 1
+  zone_cell:
+    points:
+    - x: -7339.8
+      z: 2358.5
+    - x: -5771.2
+      z: 1200.5
+    - x: -6384.6
+      z: -230.8
+    - x: -8741.8
+      z: 106.0
+    - x: -8590.9
+      z: 2068.5
+- zone: iron_strand
+  world_origin:
+    x: 0.0
+    z: -5250.0
+  rotation_deg: 0
+  z_index: 1
+  zone_cell:
+    points:
+    - x: 3320.9
+      z: -6248.4
+    - x: 2000.0
+      z: -6500.0
+    - x: -2914.9
+      z: -6704.8
+    - x: -2673.3
+      z: -4057.8
+    - x: -2500.0
+      z: -4000.0
+    - x: 2721.9
+      z: -4000.0
+- zone: irongate_pass
+  world_origin:
+    x: -5518.3
+    z: -4746.3
+  rotation_deg: 0
+  z_index: 1
+  zone_cell:
+    points:
+    - x: -2914.9
+      z: -6704.8
+    - x: -4000.0
+      z: -6750.0
+    - x: -6375.1
+      z: -6500.0
+    - x: -6500.0
+      z: -4250.0
+    - x: -3846.6
+      z: -2515.1
+    - x: -2673.3
+      z: -4057.8
+- zone: market_crossing
+  world_origin:
+    x: -2250.0
+    z: 5750.0
+  rotation_deg: 0
+  z_index: 1
+  zone_cell:
+    points:
+    - x: -4209.5
+      z: 6942.9
+    - x: -4000.0
+      z: 7000.0
+    - x: -1500.0
+      z: 6750.0
+    - x: 221.6
+      z: 6893.5
+    - x: 266.8
+      z: 6515.1
+    - x: -120.0
+      z: 5003.3
+    - x: -2297.2
+      z: 3551.9
+    - x: -4220.3
+      z: 6762.4
+- zone: pact_causeway
+  world_origin:
+    x: 5704.9
+    z: -3730.1
+  rotation_deg: 0
+  z_index: 1
+  zone_cell:
+    points:
+    - x: 6000.0
+      z: -2192.6
+    - x: 7311.1
+      z: -3009.4
+    - x: 5459.7
+      z: -5841.0
+    - x: 3320.9
+      z: -6248.4
+    - x: 2721.9
+      z: -4000.0
+    - x: 2822.2
+      z: -3416.1
+- zone: pactmarch
+  world_origin:
+    x: 7295.1
+    z: -4769.9
+  rotation_deg: 0
+  z_index: 1
+  zone_cell:
+    points:
+    - x: 7311.1
+      z: -3009.4
+    - x: 8617.6
+      z: -2992.7
+    - x: 7250.0
+      z: -5500.0
+    - x: 5459.7
+      z: -5841.0
+- zone: ruin_line_north
+  world_origin:
+    x: 0.0
+    z: -2750.0
+  rotation_deg: 0
+  z_index: 1
+  zone_cell:
+    points:
+    - x: 2721.9
+      z: -4000.0
+    - x: -2500.0
+      z: -4000.0
+    - x: 86.5
+      z: -1413.5
+    - x: 2707.0
+      z: -3051.2
+    - x: 2822.2
+      z: -3416.1
+- zone: ruin_line_south
+  world_origin:
+    x: -250.0
+    z: 2750.0
+  rotation_deg: 0
+  z_index: 1
+  zone_cell:
+    points:
+    - x: -2297.2
+      z: 3551.9
+    - x: -120.0
+      z: 5003.3
+    - x: 1232.3
+      z: 3312.7
+    - x: 97.2
+      z: 1326.4
+    - x: -2673.9
+      z: 2712.0
+- zone: scrap_flats
+  world_origin:
+    x: 4750.0
+    z: 1250.0
+  rotation_deg: 0
+  z_index: 1
+  zone_cell:
+    points:
+    - x: 2947.0
+      z: 342.8
+    - x: 3324.6
+      z: 2797.5
+    - x: 6000.0
+      z: 2279.3
+    - x: 6000.0
+      z: 0.0
+    - x: 3142.9
+      z: 0.0
+- zone: scrap_marsh
+  world_origin:
+    x: 7250.0
+    z: -1250.0
+  rotation_deg: 0
+  z_index: 1
+  zone_cell:
+    points:
+    - x: 7311.1
+      z: -3009.4
+    - x: 6000.0
+      z: -2192.6
+    - x: 6000.0
+      z: 0.0
+    - x: 8578.1
+      z: 0.0
+    - x: 8750.0
+      z: -2750.0
+    - x: 8617.6
+      z: -2992.7
+- zone: shadegrove
+  world_origin:
+    x: 4750.0
+    z: -1250.0
+  rotation_deg: 0
+  z_index: 1
+  zone_cell:
+    points:
+    - x: 2707.0
+      z: -3051.2
+    - x: 3142.9
+      z: 0.0
+    - x: 6000.0
+      z: 0.0
+    - x: 6000.0
+      z: -2192.6
+    - x: 2822.2
+      z: -3416.1
+- zone: silverleaf_wood
+  world_origin:
+    x: -4257.4
+    z: 4547.5
+  rotation_deg: 0
+  z_index: 1
+  zone_cell:
+    points:
+    - x: -3219.1
+      z: 2280.2
+    - x: -6000.0
+      z: 4250.0
+    - x: -4220.3
+      z: 6762.4
+    - x: -2297.2
+      z: 3551.9
+    - x: -2673.9
+      z: 2712.0
+- zone: skarncamp_wastes
+  world_origin:
+    x: 2106.9
+    z: 4635.2
+  rotation_deg: 0
+  z_index: 1
+  zone_cell:
+    points:
+    - x: 1232.3
+      z: 3312.7
+    - x: -120.0
+      z: 5003.3
+    - x: 266.8
+      z: 6515.1
+    - x: 3877.4
+      z: 4873.9
+    - x: 3280.4
+      z: 2881.9
+- zone: skarnreach
+  world_origin:
+    x: 2893.1
+    z: 6364.8
+  rotation_deg: 0
+  z_index: 1
+  zone_cell:
+    points:
+    - x: 4914.8
+      z: 5782.0
+    - x: 3877.4
+      z: 4873.9
+    - x: 266.8
+      z: 6515.1
+    - x: 221.6
+      z: 6893.5
+    - x: 1500.0
+      z: 7000.0
+    - x: 5315.6
+      z: 6775.6
+- zone: stoneguard_deep
+  world_origin:
+    x: -7420.7
+    z: -4852.0
+  rotation_deg: 0
+  z_index: 1
+  zone_cell:
+    points:
+    - x: -6500.0
+      z: -4250.0
+    - x: -6375.1
+      z: -6500.0
+    - x: -8750.0
+      z: -6250.0
+    - x: -8500.0
+      z: -3250.0
+    - x: -8500.9
+      z: -3238.3
+- zone: sundering_mines
+  world_origin:
+    x: -1250.0
+    z: 750.0
+  rotation_deg: 0
+  z_index: 1
+  zone_cell:
+    points:
+    - x: 97.2
+      z: 1326.4
+    - x: 360.8
+      z: 601.4
+    - x: -225.0
+      z: -375.0
+    - x: -3109.4
+      z: -375.0
+    - x: -3482.2
+      z: 1613.6
+    - x: -3219.1
+      z: 2280.2
+    - x: -2673.9
+      z: 2712.0
+- zone: sunward_reach
+  world_origin:
+    x: -6297.5
+    z: 5992.6
+  rotation_deg: 0
+  z_index: 1
+  zone_cell:
+    points:
+    - x: -4220.3
+      z: 6762.4
+    - x: -6000.0
+      z: 4250.0
+    - x: -7356.3
+      z: 5210.7
+    - x: -6750.0
+      z: 6250.0
+    - x: -4209.5
+      z: 6942.9
+- zone: wyrling_downs
+  world_origin:
+    x: -7250.0
+    z: -1000.0
+  rotation_deg: 0
+  z_index: 1
+  zone_cell:
+    points:
+    - x: -5661.3
+      z: -1677.4
+    - x: -8549.8
+      z: -2602.4
+    - x: -8750.0
+      z: 0.0
+    - x: -8741.8
+      z: 106.0
+    - x: -6384.6
+      z: -230.8
+coastline:
+  points:
+  - x: -8750.0
+    z: -6250.0
+  - x: -4000.0
+    z: -6750.0
+  - x: 2000.0
+    z: -6500.0
+  - x: 7250.0
+    z: -5500.0
+  - x: 8750.0
+    z: -2750.0
+  - x: 8500.0
+    z: 1250.0
+  - x: 8750.0
+    z: 4000.0
+  - x: 5750.0
+    z: 6750.0
+  - x: 1500.0
+    z: 7000.0
+  - x: -1500.0
+    z: 6750.0
+  - x: -4000.0
+    z: 7000.0
+  - x: -6750.0
+    z: 6250.0
+  - x: -8500.0
+    z: 3250.0
+  - x: -8750.0
+    z: 0.0
+  - x: -8500.0
+    z: -3250.0
+world_features: []

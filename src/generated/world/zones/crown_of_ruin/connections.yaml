@@ -1,0 +1,57 @@
+id: connections__crown_of_ruin
+zone: crown_of_ruin
+connections:
+- to_zone: blackwater_deep
+  direction: n
+  type: dirt_path
+  border_position:
+    x: 153.9
+    z: -1277.9
+  border_label: to Blackwater Deep
+  level_continuous: false
+  pvp_safe: true
+- to_zone: gravewatch_fields
+  direction: se
+  type: dirt_path
+  border_position:
+    x: 1802.5
+    z: 1089.7
+  border_label: to Gravewatch Fields
+  level_continuous: false
+  pvp_safe: true
+- to_zone: ruin_line_south
+  direction: sw
+  type: dirt_path
+  border_position:
+    x: -835.2
+    z: 569.6
+  border_label: to Ruin Line South
+  level_continuous: false
+  pvp_safe: true
+- to_zone: scrap_flats
+  direction: e
+  type: dirt_path
+  border_position:
+    x: 1635.8
+    z: -179.8
+  border_label: to Scrap Flats
+  level_continuous: false
+  pvp_safe: true
+- to_zone: skarncamp_wastes
+  direction: s
+  type: dirt_path
+  border_position:
+    x: 756.4
+    z: 1347.3
+  border_label: to Skarncamp Wastes
+  level_continuous: false
+  pvp_safe: true
+- to_zone: sundering_mines
+  direction: w
+  type: tunnel
+  border_position:
+    x: -1271.0
+    z: -786.1
+  border_label: to Sundering Mines
+  level_continuous: true
+  pvp_safe: false

@@ -1,0 +1,48 @@
+id: connections__stoneguard_deep
+zone: stoneguard_deep
+connections:
+- to_zone: firland_greenwood
+  direction: s
+  type: dirt_path
+  border_position:
+    x: -41760.4
+    z: 2881.3
+  border_label: to Firland Greenwood
+  level_continuous: false
+  pvp_safe: true
+- to_zone: frost_spine
+  direction: se
+  type: dirt_path
+  border_position:
+    x: -474.3
+    z: 1307.3
+  border_label: to Frost Spine
+  level_continuous: false
+  pvp_safe: true
+- to_zone: iron_strand
+  direction: e
+  type: dirt_path
+  border_position:
+    x: 1666.1
+    z: -38314.8
+  border_label: to Iron Strand
+  level_continuous: false
+  pvp_safe: true
+- to_zone: irongate_pass
+  direction: e
+  type: ridge_path
+  border_position:
+    x: 1641.3
+    z: -12368.5
+  border_label: to Irongate Pass
+  level_continuous: true
+  pvp_safe: true
+- to_zone: wyrling_downs
+  direction: s
+  type: dirt_path
+  border_position:
+    x: -16256.7
+    z: 2650.2
+  border_label: to Wyrling Downs
+  level_continuous: false
+  pvp_safe: true

@@ -167,7 +167,7 @@ fn grant_item_rewards(
 
 /// Hard refuse a quest accept if its starting level is more than this many
 /// above the player's current level. 3 = "you can pick up quests up to 3
-/// over your head, but no further" — matches WoW's yellow/orange threshold.
+/// over your head, but no further" — the standard yellow/orange threshold.
 const QUEST_LEVEL_GATE: u32 = 3;
 
 /// Per-player quest state, server-authoritative. Not replicated directly —

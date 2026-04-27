@@ -12,7 +12,7 @@ use vaern_core::School;
 use vaern_data::{
     AbilityIndex, BossDrops, ClassDef, LandmarkIndex, QuestIndex, Race, SideQuestIndex, into_index,
     load_abilities, load_all_boss_drops, load_all_landmarks, load_all_side_quests, load_classes,
-    load_races, load_schools,
+    load_races, load_schools, load_world_layout, WorldLayout,
 };
 use vaern_items::ContentRegistry;
 
@@ -245,31 +245,20 @@ pub fn load_game_data() -> GameData {
         quests.chains.len(),
         quests.by_zone.len(),
     );
-    // Starter zones: anyone with a `starter_race` is a player-landable zone.
-    // Lay them out on a big ring so distinct races spawn in distinct spots.
+    // Single source of truth for zone placement: world.yaml. Every zone
+    // listed in zone_placements is at the declared world_origin. Falls
+    // back to a deterministic ring layout if world.yaml is absent.
+    let world_layout = load_world_layout(&root.join("world"))
+        .expect("vaern-server: failed to load src/generated/world/world.yaml");
     let mut starters: Vec<_> = world
         .zones
         .iter()
         .filter_map(|z| z.starter_race.as_ref().map(|r| (z.id.clone(), r.clone())))
         .collect();
     starters.sort_by(|a, b| a.0.cmp(&b.0));
-    let n_starters = starters.len() as f32;
-    // Big-zone layout: each starter zone now carries ~1200u of playable
-    // content (dalewatch redesign + follow-ups), so ring radius grew
-    // from 800u → 2800u to keep adjacent zones from overlapping.
-    let zone_ring_radius = 2800.0_f32;
-    let mut zone_offsets: HashMap<String, Vec3> = HashMap::new();
+    let zone_offsets = derive_zone_offsets(&world_layout, &starters);
     let mut race_to_zone: HashMap<String, String> = HashMap::new();
-    for (i, (zone_id, race_id)) in starters.iter().enumerate() {
-        let angle = (i as f32 / n_starters) * std::f32::consts::TAU;
-        zone_offsets.insert(
-            zone_id.clone(),
-            Vec3::new(
-                zone_ring_radius * angle.cos(),
-                0.0,
-                zone_ring_radius * angle.sin(),
-            ),
-        );
+    for (zone_id, race_id) in &starters {
         race_to_zone.insert(race_id.clone(), zone_id.clone());
     }
     println!(
@@ -307,4 +296,33 @@ pub fn load_game_data() -> GameData {
         vendors,
         boss_drops,
     }
+}
+
+/// Returns world-meter offsets for every starter zone. Reads
+/// `world.yaml` zone_placements when available; falls back to a
+/// deterministic 2800u ring sorted by zone id (legacy behavior) for
+/// any starter not listed in `world.yaml`.
+fn derive_zone_offsets(
+    layout: &WorldLayout,
+    starters: &[(String, String)],
+) -> HashMap<String, Vec3> {
+    const FALLBACK_RING_RADIUS: f32 = 2800.0;
+    let mut out: HashMap<String, Vec3> = HashMap::new();
+    let n = starters.len().max(1) as f32;
+    for (i, (zone_id, _race)) in starters.iter().enumerate() {
+        if let Some(p) = layout.zone_origin(zone_id) {
+            out.insert(zone_id.clone(), Vec3::new(p.x, 0.0, p.z));
+        } else {
+            let angle = (i as f32 / n) * std::f32::consts::TAU;
+            out.insert(
+                zone_id.clone(),
+                Vec3::new(
+                    FALLBACK_RING_RADIUS * angle.cos(),
+                    0.0,
+                    FALLBACK_RING_RADIUS * angle.sin(),
+                ),
+            );
+        }
+    }
+    out
 }

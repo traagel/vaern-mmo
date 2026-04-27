@@ -22,12 +22,13 @@ Pre-alpha-shaped MMO that reads as a place. **496 workspace tests passing.**
 ### World & rendering
 
 - **10 starter zones** (1 per race) on a 2800u ring; each player spawns in their race's zone.
-- **Dalewatch Marches** (Mannin starter) is the showcase zone — Classic-Elwynn scope: 4 hubs, 12 sub-zones, 10-step main chain, 2 side chains, 20 side quests, 24 mob types in a 1200×1200u box. Other 9 zones still ~15 mobs / 2 hubs / 1 chain / 5 nodes.
+- **Dalewatch Marches** (Mannin starter) is the showcase zone — full starter-scale scope: 4 hubs, 12 sub-zones, 10-step main chain, 2 side chains, 20 side quests, 24 mob types in a ~2×2 km box. Other 9 zones still ~15 mobs / 2 hubs / 1 chain / 5 nodes.
 - **Voxel ground** — `vaern-voxel` crate, hand-rolled Surface Nets, 32³+1-padding chunks streamed around every active player on both server and client. 8 swappable algorithm layers. Server seeds 5×3×5 around each player; client streams 11×3×11 around the camera with world-XZ UVs + MikkTSpace tangents.
 - **Voronoi hub biomes** — 9-biome CC0 ambientCG PBR table; nearest-hub resolver with 900u influence radius; chunk-aligned transitions (32u tiles).
 - **F10 voxel stomp is fully server-authoritative** — client `ServerEditStroke` → server validates (≤12u radius, ≤40u from sender) → applies sphere-subtract brush → broadcasts up to 8 `VoxelChunkDelta`/tick. Reconnecting clients catch up at 4 chunks/tick.
 - **Sky** — Bevy 0.18 `AtmospherePlugin` (procedural scattering) + `DistanceFog` (1500u visibility) + `Bloom::NATURAL` + `Tonemapping::TonyMcMapface` + `Exposure::SUNLIGHT` + `Hdr`.
 - **PBR world dressing** — 57-asset Poly Haven CC0 pack, deterministic seeded Poisson scatter per zone, 250u distance cull, 1500-prop safety cap. Dalewatch dressed with ~55 authored hub props + 5 scatter rules. Trees are saplings only (hero-tree photoscans excluded). No collision on dressing props yet.
+- **Cartography (parchment SVG maps)** — `vaern-cartography` crate + uv-shebang seed scripts (`balance_world_layout.py`, `seed_connections.py`, `seed_geography.py`, `audit_quest_landmarks.py`). Voronoi-tessellated continent (28 zone cells clipped to a hand-authored coastline), sub-Voronoi biome pockets keyed off landmark names (croft → fields, grove → forest, fen → marsh, etc.), tier-density procedural farmhouse glyphs clustered along roads/rivers, auto-generated dirt-path spurs from every off-road landmark/hub to the nearest road. Three CLI bins: `vaern-validate` (cross-file rules incl. graph reachability + level-band gap), `vaern-render-zone <id>`, `vaern-render-world`. Byte-deterministic across runs (golden test enforced).
 
 ### Character rendering
 
@@ -88,7 +89,7 @@ All humanoids (own player, remote players, humanoid NPCs) are Quaternius modular
 
 - 30-slot inventory grid (3×10) with stack merging keyed on full `ItemInstance` identity.
 - 20-slot paper doll on the right — 11 armor slots (head→feet) + 9 accessory/weapon/focus.
-- **Rarity-colored item names** (WoW palette: grey / white / green / blue / purple / orange).
+- **Rarity-colored item names** (genre-standard palette: grey / white / green / blue / purple / orange).
 - **Hover tooltip cards** — bold name in rarity color, rarity + kind line, nonzero stats, per-channel resists, soulbound tag in gold italic, weight.
 - Left-click → auto-equip (gear) or consume (potions/elixirs/food).
 - Right-click paper-doll slot → unequip.
@@ -652,7 +653,7 @@ python3 scripts/seed_items.py
 
 ### Quest + content gaps
 
-- [x] Dalewatch Marches redesigned to Classic-Elwynn scope.
+- [x] Dalewatch Marches redesigned to full starter-scale scope.
 - [x] Gold / item quest rewards — `gold_reward_copper` + `gold_bonus_copper` wired.
 - [x] **Side-quest givers spawn** (Slice 2). Dalewatch seeded with 5 (Hayes / Morwen / Bel / Garrick / Pell).
 - [x] **Level-gated quest accept** (Slice 4d). Server hard-refuses if `chain.steps[0].level > player.level + 3`.
