@@ -162,6 +162,11 @@ pub fn stream_chunks_around_editor_camera(
         let mut chunk = VoxelChunk::new_air();
         generator.seed_chunk(coord, &mut chunk);
         store.insert(coord, chunk);
+        // Inherit any halo data from already-loaded neighbors before
+        // marking dirty — otherwise a freshly-seeded chunk renders
+        // with baseline padding while its neighbor has carved
+        // boundary content, producing a visible mesh gap.
+        vaern_voxel::persistence::sync_chunk_halos_for_one(&mut store, coord);
         dirty.mark(coord);
 
         let biome = overrides

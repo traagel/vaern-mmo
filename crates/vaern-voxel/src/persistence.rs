@@ -43,8 +43,8 @@ use std::path::Path;
 
 use bevy::math::IVec3;
 
-use crate::chunk::{ChunkCoord, ChunkStore, DirtyChunks, VoxelChunk};
-use crate::config::CHUNK_TOTAL_SAMPLES;
+use crate::chunk::{ChunkCoord, ChunkShape, ChunkStore, DirtyChunks, VoxelChunk};
+use crate::config::{CHUNK_DIM, CHUNK_TOTAL_SAMPLES, PADDING};
 use crate::generator::WorldGenerator;
 use crate::replication::{encode_delta, ChunkDelta};
 
@@ -138,6 +138,144 @@ pub fn apply_into_store<G: WorldGenerator>(
         dirty.mark(coord);
     }
     applied
+}
+
+/// Re-sync padding samples between every adjacent pair of chunks in
+/// the store. Each chunk's `+X / +Y / +Z` padding row is overwritten
+/// with the matching content row of the neighbor on that axis (and
+/// vice versa for the `-X / -Y / -Z` padding). This is **idempotent**
+/// and **order-independent**: a chunk's content is the authoritative
+/// value for the world position; both neighbors' paddings derive from
+/// it.
+///
+/// ## Why this exists
+///
+/// Surface Nets at a chunk boundary needs the +axis padding of chunk
+/// A to equal the first content row of chunk B (they're at the same
+/// world position). The brush halo-routes writes to both at edit time
+/// via `chunks_containing_voxel`, so this normally holds. But the
+/// save/load round-trip can break the symmetry — the most common case
+/// is one of two adjacent chunks getting saved (with carved boundary
+/// values) while the other isn't (because its only modification was
+/// halo-only and fell below the divergence epsilon, OR it just wasn't
+/// touched at all and gets streamer-seeded fresh on reload). The
+/// resulting halo mismatch produces a 1-voxel-wide gap in the mesh
+/// at the chunk boundary — visible as a slit you can see through.
+///
+/// Calling this after every load (and after the streamer creates a
+/// new chunk) defensively guarantees the halos are always consistent
+/// with the loaded content data.
+///
+/// Returns the count of (chunk-pair, axis) syncs performed (4× per
+/// pair in practice — both axes' both-direction samples). Cheap:
+/// ~1156 sample copies per pair per axis, ~3 axes per chunk = ~7k
+/// copies per chunk × store.len(). At 5k chunks that's ~35M ops,
+/// ~300ms on a typical CPU. One-time cost on load.
+pub fn sync_chunk_halos(store: &mut ChunkStore) -> usize {
+    let coords: Vec<ChunkCoord> = store.coords().collect();
+    let mut sync_count = 0usize;
+    for coord in coords {
+        for axis in 0..3 {
+            sync_count += sync_pair_along_axis(store, coord, axis);
+        }
+    }
+    sync_count
+}
+
+/// Sync `coord` with all 6 axis-neighbors (where they exist). Use
+/// after the streamer seeds a single new chunk so its padding rows
+/// inherit any already-loaded neighbor's edited content.
+///
+/// Returns the count of neighbor pairs synced (0..=6).
+pub fn sync_chunk_halos_for_one(store: &mut ChunkStore, coord: ChunkCoord) -> usize {
+    if !store.contains(coord) {
+        return 0;
+    }
+    let mut synced = 0usize;
+    for axis in 0..3 {
+        // +axis neighbor (we are the "lower" coord).
+        synced += sync_pair_along_axis(store, coord, axis);
+        // -axis neighbor (we are the "upper" coord).
+        let mut neighbor = coord;
+        match axis {
+            0 => neighbor.0.x -= 1,
+            1 => neighbor.0.y -= 1,
+            2 => neighbor.0.z -= 1,
+            _ => unreachable!(),
+        }
+        synced += sync_pair_along_axis(store, neighbor, axis);
+    }
+    synced
+}
+
+/// Sync the (coord, coord + axis_unit) pair along one axis. Copies
+/// each chunk's content boundary into the other's padding. Returns 1
+/// if the pair was synced, 0 if the +axis neighbor wasn't in the
+/// store.
+fn sync_pair_along_axis(store: &mut ChunkStore, coord_a: ChunkCoord, axis: usize) -> usize {
+    let mut coord_b = coord_a;
+    match axis {
+        0 => coord_b.0.x += 1,
+        1 => coord_b.0.y += 1,
+        2 => coord_b.0.z += 1,
+        _ => unreachable!(),
+    }
+    if !store.contains(coord_b) {
+        return 0;
+    }
+    // Gather the boundary values from each chunk (read-only).
+    // chunk_a contributes its last content row → chunk_b's -axis pad
+    // chunk_b contributes its first content row → chunk_a's +axis pad
+    let axis_pad_pos = ChunkShape::AXIS - 1; // = PADDING + CHUNK_DIM
+    let axis_content_pos = PADDING + CHUNK_DIM - 1; // = AXIS - 2 = last content
+    let axis_pad_neg = 0;
+    let axis_content_neg = PADDING; // = first content
+
+    let plane: Vec<(u32, u32)> = (0..ChunkShape::AXIS)
+        .flat_map(|u| (0..ChunkShape::AXIS).map(move |v| (u, v)))
+        .collect();
+
+    let chunk_a = store.get(coord_a).unwrap();
+    let a_content_values: Vec<f32> = plane
+        .iter()
+        .map(|&(u, v)| chunk_a.get(padded_for_axis(axis, axis_content_pos, u, v)))
+        .collect();
+
+    let chunk_b = store.get(coord_b).unwrap();
+    let b_content_values: Vec<f32> = plane
+        .iter()
+        .map(|&(u, v)| chunk_b.get(padded_for_axis(axis, axis_content_neg, u, v)))
+        .collect();
+
+    // Write A's content to B's -axis padding.
+    let chunk_b = store.get_mut(coord_b).unwrap();
+    let dense_b = chunk_b.make_dense();
+    for (i, &(u, v)) in plane.iter().enumerate() {
+        let idx = ChunkShape::linearize(padded_for_axis(axis, axis_pad_neg, u, v)) as usize;
+        dense_b[idx] = a_content_values[i];
+    }
+
+    // Write B's content to A's +axis padding.
+    let chunk_a = store.get_mut(coord_a).unwrap();
+    let dense_a = chunk_a.make_dense();
+    for (i, &(u, v)) in plane.iter().enumerate() {
+        let idx = ChunkShape::linearize(padded_for_axis(axis, axis_pad_pos, u, v)) as usize;
+        dense_a[idx] = b_content_values[i];
+    }
+
+    1
+}
+
+/// Build a padded sample coord with `axis_value` on the chosen axis
+/// and `(u, v)` on the other two axes (in `(other1, other2)` order
+/// where other1 < other2 in the standard XYZ ordering).
+fn padded_for_axis(axis: usize, axis_value: u32, u: u32, v: u32) -> [u32; 3] {
+    match axis {
+        0 => [axis_value, u, v],
+        1 => [u, axis_value, v],
+        2 => [u, v, axis_value],
+        _ => unreachable!(),
+    }
 }
 
 /// Save deltas atomically. Writes to `<path>.tmp` first, then renames

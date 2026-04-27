@@ -11,7 +11,7 @@ use bevy::prelude::*;
 use vaern_voxel::chunk::{ChunkStore, DirtyChunks};
 use vaern_voxel::generator::HeightfieldGenerator;
 use vaern_voxel::persistence::{
-    apply_into_store, diff_against_generator, load_from_disk, save_to_disk,
+    apply_into_store, diff_against_generator, load_from_disk, save_to_disk, sync_chunk_halos,
 };
 
 use crate::ui::console::ConsoleLog;
@@ -83,9 +83,18 @@ pub fn load_voxel_edits_into_store(
     }
 
     let applied = apply_into_store(&deltas, &mut store, &mut dirty, &generator);
+
+    // Defensive halo resync: copy each loaded chunk's content boundary
+    // into all adjacent chunks' matching padding rows. Guarantees mesh
+    // stitching at chunk-Y / X / Z boundaries regardless of any
+    // save-time symmetry break (most often: an edited chunk got its
+    // boundary samples persisted, but the neighbor's mirror padding
+    // didn't make it into the file → 1-voxel mesh gap).
+    let halo_pairs = sync_chunk_halos(&mut store);
+
     let store_len = store.len();
     let line = format!(
-        "loaded {applied}/{} chunk edits, store={store_len}, edit-bbox x[{min_x}..{max_x}] z[{min_z}..{max_z}]",
+        "loaded {applied}/{} chunk edits, store={store_len}, edit-bbox x[{min_x}..{max_x}] z[{min_z}..{max_z}], halo-synced {halo_pairs} pairs",
         deltas.len()
     );
     info!("editor: {line}");
