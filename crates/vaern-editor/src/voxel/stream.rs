@@ -53,11 +53,23 @@ pub const STREAM_RADIUS_Y: i32 = 1;
 /// whole 260ms in one frame.
 pub const MAX_SEEDS_PER_FRAME: usize = 256;
 
-// (MAX_ATTACHES_PER_FRAME is gone — tangent generation was the
-// expensive part, and dropping it leaves only ~150µs of work per
-// chunk. With MeshingBudget=16 the natural inflow is bounded; an
-// uncapped pass keeps mesh attributes + material in sync with the
-// pipeline's expectations on the same tick the chunk's mesh changes.)
+/// Per-frame cap on `process_pending_blend_attaches`. Even with the
+/// idempotent fast-path inside `ensure_chunk_mesh_attributes`, every
+/// queued chunk still pays Commands overhead per frame:
+/// `try_insert(MeshMaterial3d(...))` + `try_remove::<NeedsBlendAttach>()`.
+/// At ~1173 chunks queued (Bug 2 — marker re-add loop, suspected to be
+/// `Changed<Mesh3d>` firing from somewhere we haven't tracked down yet)
+/// that's enough Commands churn to drop FPS from 165 → 20.
+///
+/// The cap creates a render race when edit bursts dirty more than 16
+/// chunks at once: unprocessed chunks would render with the new mesh
+/// asset (no UV) + the still-attached `BiomeBlendMaterial` → wgpu error
+/// "Mesh is missing requested attribute: Vertex_Uv". Fix: in
+/// `mark_chunks_needing_blend_refresh`, swap the material to the
+/// plain-PBR fallback in the same tick `Changed<Mesh3d>` fires.
+/// `process_pending_blend_attaches` re-inserts the blend material once
+/// it catches up at 16/frame.
+pub const MAX_ATTACHES_PER_FRAME: usize = 16;
 
 /// Cache of the streamer's last steady-state arguments so we can skip
 /// the (2*r+1)² × (2*Y+1) coord walk when nothing changed.
@@ -234,9 +246,30 @@ pub fn stream_chunks_around_editor_camera(
 pub struct NeedsBlendAttach;
 
 /// Lightweight Update system: tag every newly-spawned or freshly-re-
-/// meshed chunk with `NeedsBlendAttach` if it isn't already tagged.
-/// Cheap — just iterates the small `Added` / `Changed` filter results
-/// and inserts a unit component.
+/// meshed chunk with `NeedsBlendAttach`. For re-meshed chunks (those
+/// matched by the `Changed<Mesh3d>` filter), also flip them to
+/// `Visibility::Hidden` so the renderer skips them entirely until
+/// `process_pending_blend_attaches` catches up at its 16/frame cap.
+///
+/// The race we're avoiding: `collect_completed_meshes` drains every
+/// completed async-meshing task in one tick, reassigning new `Mesh3d`
+/// handles to all dirtied chunks at once. Each new mesh asset arrives
+/// without UV + biome-weight attributes. If a chunk still has the
+/// `BiomeBlendMaterial` (which requires UV) when render extraction
+/// runs that frame, wgpu errors out with "Mesh is missing requested
+/// attribute: Vertex_Uv".
+///
+/// Why hide instead of swapping the material? Switching
+/// `MeshMaterial3d<A>` ↔ `MeshMaterial3d<B>` on the same entity is
+/// fragile in Bevy 0.18 — the renderer can end up with the new
+/// material's pipeline trying to bind the old material's bind group
+/// (different generic = different cached pipeline + bind group, and
+/// they don't atomically co-evict). Hiding skips render extraction
+/// entirely, so no pipeline / bind group selection happens during
+/// the bridge state. Visual cost: re-meshed chunks blink invisible
+/// for 1-N frames during a sculpt burst (depending on how many
+/// chunks the brush touched), then snap back. Acceptable for sculpt
+/// feedback — the brush gizmo is still visible.
 pub fn mark_chunks_needing_blend_refresh(
     mut commands: Commands,
     new_chunks: Query<Entity, (Added<ChunkRenderTag>, Without<NeedsBlendAttach>)>,
@@ -249,7 +282,10 @@ pub fn mark_chunks_needing_blend_refresh(
         commands.entity(e).try_insert(NeedsBlendAttach);
     }
     for e in &changed_meshes {
-        commands.entity(e).try_insert(NeedsBlendAttach);
+        commands
+            .entity(e)
+            .try_insert(NeedsBlendAttach)
+            .try_insert(Visibility::Hidden);
     }
 }
 
@@ -279,17 +315,19 @@ pub fn process_pending_blend_attaches(
         return;
     };
 
-    // Single uncapped pass. All four required attributes (UVs +
-    // BiomeIds + BiomeWeights — tangents are intentionally absent)
-    // need to be present on the mesh AND the material attached, all
-    // before render extraction. With MeshingBudget=16, the natural
-    // per-frame inflow is ~16 chunks → ~2-3ms in this pass. During
-    // burst events (initial fill, biome paint marking neighbors) it
-    // can spike higher, but partial completion would render incomplete
-    // chunks — `Mesh is missing requested attribute: Vertex_*` spam
-    // and gaps in the world. Better to spend a one-frame spike than
-    // ship visual holes.
+    // Capped pass with idempotent fast-path inside
+    // `ensure_chunk_mesh_attributes`. The cap protects FPS from the
+    // marker re-add loop (Bug 2 — see comment on `MAX_ATTACHES_PER_FRAME`).
+    // Edge case: when an edit burst marks more than 16 chunks via
+    // `Changed<Mesh3d>`, the unprocessed chunks were flipped to
+    // `Visibility::Hidden` by `mark_chunks_needing_blend_refresh`
+    // and skip render extraction; we restore visibility here after
+    // the attributes are guaranteed attached.
+    let mut processed = 0usize;
     for (entity, tag, xform, mesh3d) in pending.iter() {
+        if processed >= MAX_ATTACHES_PER_FRAME {
+            break;
+        }
         ensure_chunk_mesh_attributes(
             &mut meshes,
             &mesh3d.0,
@@ -303,18 +341,27 @@ pub fn process_pending_blend_attaches(
         } else {
             e.try_insert(MeshMaterial3d(blend_assets.fallback_material.clone()));
         }
+        e.try_insert(Visibility::Inherited);
         e.try_remove::<NeedsBlendAttach>();
+        processed += 1;
     }
 }
 
 /// Single-pass attribute setup: UVs + per-vertex biome blend
-/// (Vertex_BiomeIds + Vertex_BiomeWeights). All three are required by
-/// the BiomeBlendMaterial pipeline; tangents are intentionally
-/// skipped (the shader doesn't sample normal maps).
+/// (3 weight vec4s in `biome_blend.rs`). All four are required by the
+/// BiomeBlendMaterial pipeline; tangents are intentionally skipped
+/// (the shader doesn't sample normal maps).
 ///
-/// Idempotent: re-running on a chunk that already has all three
-/// attributes is a few hashmap lookups and overwrite — cheap. Called
-/// every frame for chunks tagged `NeedsBlendAttach`.
+/// Genuinely idempotent: early-outs when the four attributes are
+/// already attached to the mesh. The earlier comment claimed
+/// idempotence but the body unconditionally cloned positions
+/// (~48KB) + rebuilt UVs (~32KB) + recomputed all 3 biome-weight
+/// vec4s every frame, costing ~74µs per chunk × 1173 chunks = 87ms
+/// per frame at draw=16. Now: the fast path is one HashMap lookup.
+///
+/// Re-meshing (sculpt/biome-paint dirty) replaces the mesh handle's
+/// underlying asset, which arrives without the four attributes — so
+/// the early-out correctly falls through and the rebuild runs.
 fn ensure_chunk_mesh_attributes(
     meshes: &mut Assets<Mesh>,
     mesh_handle: &Handle<Mesh>,
@@ -325,6 +372,15 @@ fn ensure_chunk_mesh_attributes(
     let Some(mesh) = meshes.get_mut(mesh_handle) else {
         return;
     };
+    // Idempotent fast path. The four attributes (UV_0 + 3 biome-weight
+    // vec4s) are inserted as a unit, so checking just one of the biome
+    // attributes is sufficient — partial state shouldn't exist.
+    if mesh
+        .attribute(super::biome_blend::ATTRIBUTE_BIOME_WEIGHTS_LO)
+        .is_some()
+    {
+        return;
+    }
     let Some(VertexAttributeValues::Float32x3(positions)) =
         mesh.attribute(Mesh::ATTRIBUTE_POSITION).cloned()
     else {
@@ -337,7 +393,7 @@ fn ensure_chunk_mesh_attributes(
     let uvs: Vec<[f32; 2]> = positions.iter().map(|p| [p[0] + ox, p[2] + oz]).collect();
     mesh.insert_attribute(Mesh::ATTRIBUTE_UV_0, uvs);
 
-    // Per-vertex biome IDs + weights — recomputed every re-mesh so a
+    // Per-vertex biome weights — recomputed every re-mesh so a
     // biome-paint stroke that marks neighbors dirty automatically
     // refreshes blend attributes on the next remesh tick.
     insert_blend_attributes(mesh, xform.translation, overrides);

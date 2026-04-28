@@ -176,9 +176,7 @@ fn draw_fog_section(ui: &mut egui::Ui, env: &mut EnvSettings) {
 
 fn draw_sky_section(ui: &mut egui::Ui, env: &mut EnvSettings) {
     ui.checkbox(&mut env.atmosphere_enabled, "Procedural atmosphere");
-    if !env.atmosphere_enabled {
-        ui.small("Off → solid clear color (matches ClearColor)");
-    }
+    ui.small("(applied at startup — restart editor to change)");
 }
 
 fn draw_streaming_section(

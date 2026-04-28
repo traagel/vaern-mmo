@@ -101,10 +101,47 @@ impl Plugin for EnvironmentPlugin {
             .add_systems(Startup, init_env_assets)
             .add_systems(
                 Update,
-                (tick_time_of_day, apply_environment)
+                (
+                    attach_atmosphere_on_camera_spawn,
+                    tick_time_of_day,
+                    apply_environment,
+                )
                     .chain()
                     .run_if(in_state(EditorAppState::Editing)),
             );
+    }
+}
+
+/// Attach `Atmosphere` to the camera once, on first frame after spawn,
+/// when `EnvSettings.atmosphere_enabled` is true.
+///
+/// **Why not Startup, why not toggleable?** Bevy's PBR pipeline is
+/// specialized at pipeline-cache time based on whether `Atmosphere`
+/// is present on the view: presence selects the
+/// `mesh_view_layout_multisampled_atmosphere` layout (with bindings
+/// 29/30/31 for atmosphere LUTs); absence selects
+/// `mesh_view_layout_multisampled`. Inserting/removing the component
+/// at runtime mismatches the cached pipeline and bind group layouts,
+/// crashing wgpu mid-frame ("Expected entry with binding 29 not found").
+/// So atmosphere is a one-shot startup-time decision; flipping the
+/// `atmosphere_enabled` bool in the Sky panel sets the resource but
+/// has no runtime effect until restart.
+pub fn attach_atmosphere_on_camera_spawn(
+    mut commands: Commands,
+    env: Res<EnvSettings>,
+    env_assets: Option<Res<EnvAssets>>,
+    cam_q: Query<Entity, (Added<FreeFlyCamera>, Without<Atmosphere>)>,
+) {
+    if !env.atmosphere_enabled {
+        return;
+    }
+    let Some(env_assets) = env_assets else {
+        return;
+    };
+    for entity in &cam_q {
+        commands
+            .entity(entity)
+            .insert(Atmosphere::earthlike(env_assets.atmosphere_medium.clone()));
     }
 }
 
@@ -130,16 +167,12 @@ pub fn tick_time_of_day(time: Res<Time>, mut env: ResMut<EnvSettings>) {
 #[allow(clippy::too_many_arguments)]
 pub fn apply_environment(
     env: Res<EnvSettings>,
-    env_assets: Option<Res<EnvAssets>>,
     mut sun_q: Query<
         (&mut Transform, &mut DirectionalLight),
         (With<EditorSun>, Without<FreeFlyCamera>),
     >,
     mut cam_ambient: Query<&mut AmbientLight, With<FreeFlyCamera>>,
     mut cam_fog: Query<&mut DistanceFog, With<FreeFlyCamera>>,
-    cam_atmo: Query<Entity, (With<FreeFlyCamera>, With<Atmosphere>)>,
-    cam_no_atmo: Query<Entity, (With<FreeFlyCamera>, Without<Atmosphere>)>,
-    mut commands: Commands,
 ) {
     // Sun.
     let dir = sun_direction_at_time(env.time_hours);
@@ -191,18 +224,11 @@ pub fn apply_environment(
         }
     }
 
-    // Atmosphere toggle.
-    if let Some(env_assets) = env_assets {
-        if env.atmosphere_enabled {
-            if let Ok(e) = cam_no_atmo.single() {
-                commands
-                    .entity(e)
-                    .insert(Atmosphere::earthlike(env_assets.atmosphere_medium.clone()));
-            }
-        } else if let Ok(e) = cam_atmo.single() {
-            commands.entity(e).remove::<Atmosphere>();
-        }
-    }
+    // Atmosphere is attached once at camera-spawn by
+    // `attach_atmosphere_on_camera_spawn` — runtime toggling crashes
+    // wgpu (pipeline-cache vs bind-group layout mismatch). The Sky
+    // panel toggle still flips `env.atmosphere_enabled` for telemetry
+    // but takes effect on next launch.
 }
 
 // ---- Pure helpers (testable) ----------------------------------------
