@@ -12,7 +12,7 @@
 use std::path::{Path, PathBuf};
 
 use anyhow::{Context, Result};
-use vaern_data::{load_world, AuthoredProp, World};
+use vaern_data::{load_world, load_world_layout, AuthoredProp, World, WorldLayout};
 
 use super::atomic::write_atomic;
 
@@ -29,6 +29,18 @@ pub fn world_root() -> PathBuf {
 pub fn load_world_for_editor() -> Result<World> {
     let root = world_root();
     load_world(&root).with_context(|| format!("loading world from {root:?}"))
+}
+
+/// Load `world.yaml` zone-placements (Voronoi anchors + coastline)
+/// alongside the per-zone YAMLs. Mirrors the cartography pipeline used
+/// by `vaern-client::scene::dressing` and `vaern-server::data` so the
+/// editor renders zones at the same world-space coordinates as the
+/// runtime — without this, the legacy `ZONE_RING_RADIUS = 2800`
+/// fallback teleports the camera ~6.7 km from where the zone content
+/// actually lives.
+pub fn load_world_layout_for_editor() -> Result<WorldLayout> {
+    let root = world_root();
+    load_world_layout(&root).with_context(|| format!("loading world layout from {root:?}"))
 }
 
 /// Replace just the `props:` array of a hub YAML, preserving every

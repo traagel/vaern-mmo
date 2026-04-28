@@ -8,9 +8,13 @@
 use bevy::math::Vec3;
 use vaern_voxel::generator::WorldGenerator;
 
+use super::elevation;
+
 /// Flat ground height in world units. Every voxel sample returns
-/// `p.y - GROUND_BIAS_Y` — a perfectly horizontal infinite plane.
-/// Brushes carve this baseline.
+/// `p.y - (GROUND_BIAS_Y + elevation::lookup(p.x, p.z))` — a flat
+/// plane modulated by the cartography elevation overlay (rivers
+/// carve channels, mountain biomes raise hills). Brushes carve over
+/// the result.
 ///
 /// **Half-voxel offset is deliberate**: with `VOXEL_SIZE = 1.0`, integer
 /// Y values land exactly on sample positions and chunk boundaries.
@@ -22,22 +26,26 @@ use vaern_voxel::generator::WorldGenerator;
 /// has clean `−0.5 / +0.5` corners → vertex at exactly Y=0.5.
 pub const GROUND_BIAS_Y: f32 = 0.5;
 
-/// Flat-plane world generator. The previous version sampled
-/// `vaern_core::terrain::height(x, z)` for analytical noise; that's
-/// removed so the editor starts from a clean horizontal slate.
+/// Cartography-aware world generator. Default state (no overlay file)
+/// renders as a flat plane at `GROUND_BIAS_Y`, identical to the
+/// previous version. With `elevation_overrides.bin` loaded, sub-cells
+/// inside cartography rivers carve the surface down (~3 m channels)
+/// and sub-cells inside mountain/highland/ridge biomes raise it (up to
+/// +30 m for mountains, +12 m for highlands).
 ///
-/// Side benefit: with no terrain variation, every chunk's surface
-/// lands at world Y = `GROUND_BIAS_Y`, which always falls inside the
-/// streamer's vertical band — no more "distant chunk invisible
-/// because its surface is above the seeded Y range" edge case.
+/// Generator is `Copy + Default` (stateless from the type system's
+/// view). The elevation lookup goes through a process-global OnceLock
+/// in [`super::elevation`].
 #[derive(Clone, Copy, Debug, Default)]
 pub struct EditorHeightfield;
 
 impl WorldGenerator for EditorHeightfield {
     #[inline]
     fn sample(&self, p: Vec3) -> f32 {
-        // Negative below the plane (solid), positive above (air).
-        p.y - GROUND_BIAS_Y
+        // Surface Y at this XZ = baseline + cartography offset.
+        let surface = GROUND_BIAS_Y + elevation::lookup(p.x, p.z);
+        // Negative below the surface (solid), positive above (air).
+        p.y - surface
     }
 }
 

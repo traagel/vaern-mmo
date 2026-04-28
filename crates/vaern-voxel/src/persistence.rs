@@ -210,9 +210,18 @@ pub fn sync_chunk_halos_for_one(store: &mut ChunkStore, coord: ChunkCoord) -> us
 
 /// Sync the (coord, coord + axis_unit) pair along one axis. Copies
 /// each chunk's content boundary into the other's padding. Returns 1
-/// if the pair was synced, 0 if the +axis neighbor wasn't in the
-/// store.
+/// if the pair was synced, 0 if either chunk is absent from the store.
+///
+/// Both endpoints must be present — `sync_chunk_halos_for_one` calls
+/// us once with `coord` itself (verified) and once with the -axis
+/// neighbor (NOT verified by the caller, so may not exist). Without
+/// the `coord_a` guard below, `store.get(coord_a).unwrap()` panics
+/// during normal streaming when a chunk near a streaming-radius edge
+/// has no -axis neighbor loaded yet (the README "Random crash" scar).
 fn sync_pair_along_axis(store: &mut ChunkStore, coord_a: ChunkCoord, axis: usize) -> usize {
+    if !store.contains(coord_a) {
+        return 0;
+    }
     let mut coord_b = coord_a;
     match axis {
         0 => coord_b.0.x += 1,

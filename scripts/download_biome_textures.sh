@@ -24,6 +24,27 @@ declare -a BIOMES=(
     "scorched:Ground063"
     "marsh:Ground059"
     "rocky:Rocks023"
+    # Cartography-fidelity expansion (Apr 2026): cover the cartography
+    # biome vocabulary (fields/forest/mountain/sand/mud/...) so the
+    # editor's biome paint palette + the cartography→editor importer
+    # can render each cartography region with a distinct PBR set.
+    "forest:Ground067"          # brown rocky forest ground, leaf litter
+    "mountain_rock:Rock030"     # natural grey cliff/rock face — replaces
+                                #   the wrong PavingStones004 "mountain"
+    "sand:Ground033"            # light sandy beach (editor brush only)
+    "mud:Ground050"             # muddy ground with puddles — riverbanks,
+                                #   ford crossings (editor brush only)
+    # Farm-fidelity expansion: Concord river-valley pastoral identity —
+    # Dalewatch is yeoman farms + mills + walled towns, every farmhouse
+    # auto-scattered by cartography sat on generic Grass before this pass.
+    "cropland:Ground041"        # dirt + leaves — dry harvested field
+    "pasture:Grass006"          # lawn-grass — grazed pasture, distinct
+                                #   from the dense GrassLush
+    "cobblestone:PavingStones070" # OLD cobblestone — farmyards, mill
+                                #   yards, threshing floors (PavingStones004
+                                #   stays as smooth processed paving)
+    "tilled_soil:Ground026"     # smooth flat clay mud — packed earth,
+                                #   ploughed-look field
 )
 
 FORCE=0

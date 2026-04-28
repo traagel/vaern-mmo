@@ -28,7 +28,12 @@ use crate::environment::EnvSettings;
 
 /// Default biome for chunks not covered by a paint override. Voronoi
 /// hub-based resolution was removed — every unpainted chunk uses this.
-pub const DEFAULT_BIOME: BiomeKey = BiomeKey::Marsh;
+///
+/// Was `Marsh` (Ground059, brown-dirt). Switched to `Grass` so the
+/// pre-cartography-import editor view reads as generic green ground
+/// rather than a global swamp. Marsh remains a legitimate paintable
+/// destination biome for actual fens.
+pub const DEFAULT_BIOME: BiomeKey = BiomeKey::Grass;
 
 /// Default horizontal streaming radius (chunks). 16 chunks = ~512m
 /// radius, comfortable scenery feel without a long cold-start. The

@@ -16,3 +16,4 @@ __pycache__/
 # vaern-editor; pushing the binary blobs hits GitHub's 100 MB limit.
 src/generated/world/voxel_edits.bin
 src/generated/world/biome_overrides.bin
+src/generated/world/elevation_overrides.bin

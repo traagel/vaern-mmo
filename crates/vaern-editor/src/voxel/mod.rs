@@ -3,6 +3,7 @@
 
 pub mod biome_blend;
 pub mod biomes;
+pub mod elevation;
 pub mod overrides;
 pub mod render_opt;
 pub mod store;
@@ -88,6 +89,7 @@ impl Plugin for EditorVoxelPlugin {
             Startup,
             (
                 overrides::load_biome_overrides_into_resource,
+                elevation::load_elevation_overrides,
                 biome_blend::init_biome_blend_assets,
             ),
         )

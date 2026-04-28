@@ -1,20 +1,25 @@
 //! Bring a zone up for editing: load YAML, compute world origin,
 //! spawn hub props.
 //!
-//! Mirrors the relevant chunk of `vaern-client/src/scene/dressing.rs`
-//! — the zone-ring layout for starter zones is the same constant
-//! (`ZONE_RING_RADIUS = 2800`) so an editor-side prop sits at the
-//! same world coordinates as the runtime client would render it.
+//! Mirrors `vaern-client/src/scene/dressing.rs::compute_zone_origins`:
+//! prefer the cartography Voronoi anchor in `world.yaml`
+//! (`WorldLayout::zone_origin`) and fall back to the legacy
+//! `FALLBACK_RING_RADIUS = 2800` ring layout only when a zone has no
+//! placement entry. The editor MUST use the same source as the runtime
+//! or hub props spawn at one set of coordinates while the camera
+//! teleports to a different set — symptom: zone appears empty.
 
 use std::collections::HashMap;
 
 use bevy::prelude::*;
 use vaern_assets::PolyHavenCatalog;
-use vaern_data::{World, Zone};
+use vaern_data::{World, WorldLayout, Zone};
 
 use crate::camera::FreeFlyCamera;
 use crate::dressing::spawn::spawn_zone_authored_props;
-use crate::persistence::zone_io::{load_world_for_editor, world_root};
+use crate::persistence::zone_io::{
+    load_world_for_editor, load_world_layout_for_editor, world_root,
+};
 use crate::state::EditorContext;
 use crate::ui::console::ConsoleLog;
 use crate::world::ActiveZoneHubs;
@@ -27,9 +32,9 @@ pub const CAMERA_ABOVE_ZONE: f32 = 80.0;
 /// at the zone origin rather than straight down.
 pub const CAMERA_BACK_OFFSET: f32 = 80.0;
 
-/// Mirror of `vaern-server::data::load_game_data` + the client's
-/// duplicate. Must stay in sync.
-pub const ZONE_RING_RADIUS: f32 = 2800.0;
+/// Fallback ring radius for zones that lack a `world.yaml` placement
+/// (transitional — every starter zone has a Voronoi cell now).
+pub const FALLBACK_RING_RADIUS: f32 = 2800.0;
 
 /// Run once on `OnEnter(Editing)`. Loads the world, computes the active
 /// zone's world origin, spawns its hub props, and repositions the
@@ -55,6 +60,11 @@ pub fn load_active_zone(
             return;
         }
     };
+    let layout = load_world_layout_for_editor().unwrap_or_else(|e| {
+        warn!("editor: world layout load failed (falling back to ring): {e:?}");
+        log.push(format!("WARN: world layout load failed — {e}"));
+        WorldLayout::default()
+    });
 
     let zone_id = ctx.active_zone.clone();
     let Some(_zone) = world.zone(&zone_id) else {
@@ -64,7 +74,7 @@ pub fn load_active_zone(
         return;
     };
 
-    let origins = compute_zone_origins(&world);
+    let origins = compute_zone_origins(&world, &layout);
     let origin = origins.get(&zone_id).copied().unwrap_or((0.0, 0.0));
     log.push(format!(
         "loaded zone {zone_id} (origin world ({:.1}, {:.1}))",
@@ -119,9 +129,15 @@ pub fn load_active_zone(
     ctx.set_status(format!("editing {zone_id}"));
 }
 
-/// Compute world origin per starter zone via the canonical zone-ring
-/// layout. Mirrors `vaern-client/src/scene/dressing.rs::compute_zone_origins`.
-pub fn compute_zone_origins(world: &World) -> HashMap<String, (f32, f32)> {
+/// Compute world origin per starter zone. Prefers the cartography
+/// Voronoi anchor from `world.yaml` (`WorldLayout::zone_origin`); falls
+/// back to a deterministic ring sorted by zone id only when the layout
+/// has no entry for the zone. Mirrors
+/// `vaern-client/src/scene/dressing.rs::compute_zone_origins`.
+pub fn compute_zone_origins(
+    world: &World,
+    layout: &WorldLayout,
+) -> HashMap<String, (f32, f32)> {
     let mut starters: Vec<&str> = world
         .zones
         .iter()
@@ -131,11 +147,15 @@ pub fn compute_zone_origins(world: &World) -> HashMap<String, (f32, f32)> {
     let n = starters.len().max(1) as f32;
     let mut out = HashMap::new();
     for (i, zid) in starters.iter().enumerate() {
-        let angle = (i as f32 / n) * std::f32::consts::TAU;
-        out.insert(
-            (*zid).to_string(),
-            (ZONE_RING_RADIUS * angle.cos(), ZONE_RING_RADIUS * angle.sin()),
-        );
+        if let Some(p) = layout.zone_origin(zid) {
+            out.insert((*zid).to_string(), (p.x, p.z));
+        } else {
+            let angle = (i as f32 / n) * std::f32::consts::TAU;
+            out.insert(
+                (*zid).to_string(),
+                (FALLBACK_RING_RADIUS * angle.cos(), FALLBACK_RING_RADIUS * angle.sin()),
+            );
+        }
     }
     out
 }
@@ -153,8 +173,32 @@ mod tests {
             Ok(w) => w,
             Err(_) => return, // skip test if YAML not on disk in the test runner
         };
-        let origins = compute_zone_origins(&world);
+        let layout = load_world_layout_for_editor().unwrap_or_default();
+        let origins = compute_zone_origins(&world, &layout);
         // Dalewatch Marches is a starter zone.
         assert!(origins.contains_key("dalewatch_marches"));
+    }
+
+    #[test]
+    fn compute_zone_origins_uses_cartography_anchor_when_present() {
+        // Dalewatch's Voronoi anchor in world.yaml is (-5250.0, 0.0)
+        // (western_dales region centroid + ZONE_OVERRIDE). The legacy
+        // ring fallback would put it on a 2800u radius — well below
+        // -4000 in x. Confirm we resolve to the cartography anchor.
+        let world = match load_world_for_editor() {
+            Ok(w) => w,
+            Err(_) => return,
+        };
+        let layout = match load_world_layout_for_editor() {
+            Ok(l) => l,
+            Err(_) => return,
+        };
+        let origins = compute_zone_origins(&world, &layout);
+        let (x, z) = origins.get("dalewatch_marches").copied().unwrap();
+        assert!(
+            x < -4000.0,
+            "Dalewatch must use cartography anchor (~-5250) not ring layout, got x={x}"
+        );
+        assert!(z.abs() < 100.0, "Dalewatch z must be near 0, got z={z}");
     }
 }

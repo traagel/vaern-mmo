@@ -10,6 +10,7 @@ vaern-data.workspace = true
 serde = { version = "1.0.228", features = ["derive"] }
 serde_yaml = "0.9.34"
 thiserror = "2.0.18"
+bincode = "1.3"
 
 [[bin]]
 name = "vaern-validate"
@@ -22,3 +23,7 @@ path = "src/bin/render_zone.rs"
 [[bin]]
 name = "vaern-render-world"
 path = "src/bin/render_world.rs"
+
+[[bin]]
+name = "vaern-import-editor"
+path = "src/bin/import_to_editor.rs"

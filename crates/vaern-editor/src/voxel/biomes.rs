@@ -8,11 +8,29 @@
 //! Resolution is grid-aligned at chunk granularity: each chunk picks
 //! its biome via nearest-hub lookup at the chunk footprint center.
 //! Biome → ambientCG PBR texture set table is the same as the client's.
+//!
+//! ## 9-slot palette
+//!
+//! BiomeKey is **9 variants** because the entire blend pipeline is
+//! hardcoded to 9 slots — `compute_blend_weights() -> [f32; 9]`,
+//! the WGSL fragment shader's `array<f32, 9>` weights, the 3 vec4
+//! vertex attributes (`w_lo`, `w_hi`, `w_8`), and `biome_debug_color`
+//! switch arms 0..=8. Adding more variants without expanding all of
+//! those would index out of bounds at runtime.
+//!
+//! The cartography crate's richer biome vocabulary (`forest`, `mountain`,
+//! `cropland`, etc.) collapses into these 9 slots via `from_yaml` —
+//! the SVG renderer keeps full fidelity, only the 3D editor's render
+//! is reduced. Shader expansion to a wider palette is a deferred
+//! follow-up.
 
 use std::collections::HashMap;
 
-/// Same 9-biome palette as the runtime client. Unknown YAML keys fall
-/// through to `Grass`.
+/// 9-biome palette. Unknown YAML keys fall through to `Grass`.
+/// `from_yaml` accepts both legacy hub-YAML keys (`grass_lush`,
+/// `mossy`, …) and the cartography vocabulary (`fields`, `forest`,
+/// `mountain`, `cobblestone`, …) — the latter collapse-map into one
+/// of these 9 visual buckets.
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash)]
 pub enum BiomeKey {
     Grass,
@@ -29,6 +47,8 @@ pub enum BiomeKey {
 impl BiomeKey {
     pub fn from_yaml(s: &str) -> Self {
         match s {
+            // Legacy hub-YAML keys (one-to-one).
+            "grass" => Self::Grass,
             "grass_lush" => Self::GrassLush,
             "mossy" => Self::Mossy,
             "dirt" => Self::Dirt,
@@ -37,6 +57,22 @@ impl BiomeKey {
             "scorched" => Self::Scorched,
             "marsh" => Self::Marsh,
             "rocky" => Self::Rocky,
+            // Cartography vocabulary aliases — collapse into the
+            // 9-slot palette. Goal: each cartography region renders
+            // as a *visually distinct* biome in the editor while
+            // staying within the 9-slot pipeline. Three shades of
+            // green (Grass / Mossy / GrassLush) cover most of the
+            // pastoral/forest/highland axis.
+            "fields" | "river_valley" | "pasture" => Self::Grass,
+            "forest" | "temperate_forest" => Self::Mossy,
+            "highland" => Self::GrassLush,
+            "mountain" | "mountain_rock"
+            | "coastal_cliff" | "fjord" | "ridge_scrub" => Self::Rocky,
+            "ashland" => Self::Scorched,
+            "marshland" | "mud" => Self::Marsh,
+            "ruin" | "cropland" | "tilled_soil" => Self::Dirt,
+            "cobblestone" => Self::Stone,
+            "sand" => Self::Grass,
             _ => Self::Grass,
         }
     }
@@ -171,6 +207,42 @@ mod tests {
         assert_eq!(BiomeKey::from_yaml("snow"), BiomeKey::Snow);
         // Unknown → fallback.
         assert_eq!(BiomeKey::from_yaml("not_a_biome"), BiomeKey::Grass);
+    }
+
+    #[test]
+    fn cartography_keys_collapse_into_palette() {
+        // Each cartography biome string maps to a sensible 9-slot
+        // visual. Three shades of green for fields/forest/highland.
+        assert_eq!(BiomeKey::from_yaml("fields"), BiomeKey::Grass);
+        assert_eq!(BiomeKey::from_yaml("river_valley"), BiomeKey::Grass);
+        assert_eq!(BiomeKey::from_yaml("forest"), BiomeKey::Mossy);
+        assert_eq!(BiomeKey::from_yaml("temperate_forest"), BiomeKey::Mossy);
+        assert_eq!(BiomeKey::from_yaml("highland"), BiomeKey::GrassLush);
+        assert_eq!(BiomeKey::from_yaml("mountain"), BiomeKey::Rocky);
+        assert_eq!(BiomeKey::from_yaml("coastal_cliff"), BiomeKey::Rocky);
+        assert_eq!(BiomeKey::from_yaml("fjord"), BiomeKey::Rocky);
+        assert_eq!(BiomeKey::from_yaml("ridge_scrub"), BiomeKey::Rocky);
+        assert_eq!(BiomeKey::from_yaml("ashland"), BiomeKey::Scorched);
+        assert_eq!(BiomeKey::from_yaml("marshland"), BiomeKey::Marsh);
+        assert_eq!(BiomeKey::from_yaml("ruin"), BiomeKey::Dirt);
+        assert_eq!(BiomeKey::from_yaml("cropland"), BiomeKey::Dirt);
+        assert_eq!(BiomeKey::from_yaml("cobblestone"), BiomeKey::Stone);
+        assert_eq!(BiomeKey::from_yaml("pasture"), BiomeKey::Grass);
+    }
+
+    #[test]
+    fn all_ids_below_palette_size() {
+        // Guard the 9-slot blend pipeline. If a future variant lands
+        // with id ≥ 9, `compute_blend_weights` would panic at
+        // `weights[id]` (the array is `[f32; 9]`).
+        for b in BiomeKey::ALL {
+            assert!(
+                (b.id() as usize) < 9,
+                "BiomeKey {:?} has id {} ≥ 9 — would OOB the blend weights",
+                b,
+                b.id()
+            );
+        }
     }
 }
 

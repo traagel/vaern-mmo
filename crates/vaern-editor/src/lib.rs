@@ -28,6 +28,7 @@
 //! | [`cli`]         | `clap` argv: `--zone`, `--window-size`                |
 
 pub mod camera;
+pub mod cartography_overlay;
 pub mod cli;
 pub mod dressing;
 pub mod environment;
@@ -60,6 +61,7 @@ impl Plugin for EditorPlugin {
             input::EditorInputPlugin,
             camera::FreeFlyCameraPlugin,
             world::EditorWorldPlugin,
+            cartography_overlay::CartographyOverlayPlugin,
             voxel::EditorVoxelPlugin,
             dressing::EditorDressingPlugin,
             ui::EditorUiPlugin,

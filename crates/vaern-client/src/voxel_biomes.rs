@@ -21,8 +21,12 @@ use std::path::Path;
 use bevy::prelude::*;
 use vaern_data::{load_world, load_world_layout, World, WorldLayout};
 
-/// Biome tag — one of the 9 palette entries from the hub YAMLs, plus
-/// a default `Grass` fallback for chunks outside any hub's influence.
+/// 9-biome palette. Unknown YAML keys fall through to `Grass`.
+/// Mirror of `vaern-editor/src/voxel/biomes.rs`. The cartography
+/// crate's richer vocabulary (`forest`, `mountain`, `cropland`, …)
+/// collapse-maps into one of these 9 visual buckets — the SVG
+/// renderer keeps full fidelity, only 3D rendering is reduced.
+/// Shader expansion to a wider palette is a deferred follow-up.
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash)]
 pub enum BiomeKey {
     Grass,
@@ -37,10 +41,14 @@ pub enum BiomeKey {
 }
 
 impl BiomeKey {
-    /// Parse a hub YAML `biome:` string. Unknown keys fall through to
-    /// `Grass`.
+    /// Parse a hub YAML `biome:` string OR a cartography
+    /// `geography.yaml::biome_regions[].biome` string. Cartography
+    /// keys collapse-map into the 9-slot palette; unknown keys fall
+    /// through to `Grass`.
     pub fn from_yaml(s: &str) -> Self {
         match s {
+            // Legacy hub-YAML keys (one-to-one).
+            "grass" => Self::Grass,
             "grass_lush" => Self::GrassLush,
             "mossy" => Self::Mossy,
             "dirt" => Self::Dirt,
@@ -49,6 +57,20 @@ impl BiomeKey {
             "scorched" => Self::Scorched,
             "marsh" => Self::Marsh,
             "rocky" => Self::Rocky,
+            // Cartography vocabulary aliases — collapse into the
+            // 9-slot palette. Three shades of green
+            // (Grass / Mossy / GrassLush) cover most of the
+            // pastoral/forest/highland axis.
+            "fields" | "river_valley" | "pasture" => Self::Grass,
+            "forest" | "temperate_forest" => Self::Mossy,
+            "highland" => Self::GrassLush,
+            "mountain" | "mountain_rock"
+            | "coastal_cliff" | "fjord" | "ridge_scrub" => Self::Rocky,
+            "ashland" => Self::Scorched,
+            "marshland" | "mud" => Self::Marsh,
+            "ruin" | "cropland" | "tilled_soil" => Self::Dirt,
+            "cobblestone" => Self::Stone,
+            "sand" => Self::Grass,
             _ => Self::Grass,
         }
     }
