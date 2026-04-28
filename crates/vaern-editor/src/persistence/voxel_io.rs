@@ -118,6 +118,7 @@ pub fn drain_save_requests(
     hubs: Res<crate::world::ActiveZoneHubs>,
     dressing_q: Query<&crate::dressing::EditorDressingEntity>,
     overrides: Res<crate::voxel::overrides::BiomeOverrideMap>,
+    ctx: Res<crate::state::EditorContext>,
     mut log: ResMut<ConsoleLog>,
 ) {
     if !req.requested {
@@ -152,18 +153,24 @@ pub fn drain_save_requests(
         }
     }
 
-    // 3. Biome overrides.
-    let overrides_path = crate::voxel::overrides::biome_overrides_path();
-    match crate::voxel::overrides::save_biome_overrides(&overrides_path, &overrides) {
+    // 3. Biome paint deltas (sparse — only cells that differ from the
+    //    cartography baseline). Written to
+    //    `world/zones/<active_zone>/biome_edits.bin`. Empty diff →
+    //    file is deleted on disk.
+    match crate::voxel::overrides::save_biome_overrides_for_zone(
+        &ctx.active_zone,
+        &overrides,
+    ) {
         Ok(count) => {
             info!(
-                "editor: saved {count} biome overrides to {overrides_path:?}"
+                "editor: saved {count} biome paint deltas (zone {})",
+                ctx.active_zone
             );
-            log.push(format!("saved {count} biome overrides"));
+            log.push(format!("saved {count} biome paint deltas"));
         }
         Err(e) => {
-            warn!("editor: biome override save failed: {e}");
-            log.push(format!("BIOME OVERRIDE SAVE FAILED: {e}"));
+            warn!("editor: biome edits save failed: {e}");
+            log.push(format!("BIOME EDITS SAVE FAILED: {e}"));
         }
     }
 }

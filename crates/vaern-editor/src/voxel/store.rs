@@ -8,7 +8,7 @@
 use bevy::math::Vec3;
 use vaern_voxel::generator::WorldGenerator;
 
-use super::elevation;
+use super::procedural;
 
 /// Flat ground height in world units. Every voxel sample returns
 /// `p.y - (GROUND_BIAS_Y + elevation::lookup(p.x, p.z))` — a flat
@@ -42,8 +42,12 @@ pub struct EditorHeightfield;
 impl WorldGenerator for EditorHeightfield {
     #[inline]
     fn sample(&self, p: Vec3) -> f32 {
-        // Surface Y at this XZ = baseline + cartography offset.
-        let surface = GROUND_BIAS_Y + elevation::lookup(p.x, p.z);
+        // Procedural heightfield is the only elevation source. Returns
+        // 0 if the heightfield hasn't been built yet (zone load not
+        // complete) — chunks generated in that window get a flat plane,
+        // re-meshed once the zone finishes loading.
+        let offset = procedural::sample(p.x, p.z).unwrap_or(0.0);
+        let surface = GROUND_BIAS_Y + offset;
         // Negative below the surface (solid), positive above (air).
         p.y - surface
     }

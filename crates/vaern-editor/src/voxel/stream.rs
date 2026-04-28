@@ -8,8 +8,11 @@
 //! fragment shader — biome paint never swaps materials, just marks
 //! affected chunks dirty so their per-vertex weights re-compute.
 
+use std::collections::HashSet;
+
 use bevy::mesh::VertexAttributeValues;
 use bevy::prelude::*;
+use bevy::tasks::{block_on, futures_lite::future, AsyncComputeTaskPool, Task};
 use vaern_voxel::chunk::{ChunkCoord, ChunkStore, DirtyChunks};
 use vaern_voxel::generator::WorldGenerator;
 use vaern_voxel::perf::{SystemFrameTimes, SystemTimer};
@@ -45,13 +48,26 @@ pub const DEFAULT_STREAM_RADIUS_XZ: i32 = 16;
 /// surface + a slice of underground.
 pub const STREAM_RADIUS_Y: i32 = 1;
 
-/// Maximum chunks the streamer will seed in a single frame. Each seed
-/// runs `generator.seed_chunk` (39,304 sample evaluations + try_compact)
-/// — at the trivial flat-marsh generator that's ~80µs per chunk, so
-/// 256 = ~20ms / frame ceiling. Spreads the initial-fill cost over
-/// ~13 frames at draw=16 (3267 chunks total) instead of dumping the
-/// whole 260ms in one frame.
-pub const MAX_SEEDS_PER_FRAME: usize = 256;
+/// Max in-flight async SDF-gen tasks. Each task runs
+/// `generator.seed_chunk` (39,304 sample evaluations + try_compact) on
+/// `AsyncComputeTaskPool`, in parallel with the main thread + each
+/// other across worker threads. 32 saturates a typical 8-16 core box
+/// without runaway queue growth.
+///
+/// Was `MAX_SEEDS_PER_FRAME = 256` (synchronous main-thread); with the
+/// procedural heightfield each seed costs ~5 ms instead of the old
+/// flat-marsh ~80 µs, so synchronous seeding pegged the main thread
+/// at >1 s during fresh-region fill. Going async eliminates the stall
+/// — the dispatcher's per-frame cost is now just task-queueing
+/// overhead.
+pub const SEED_TASK_BUDGET: usize = 32;
+
+/// Per-frame cap on how many finished seed tasks the collector
+/// processes. Each collection inserts the chunk into the store, runs
+/// `sync_chunk_halos_for_one` against neighbors (~50 µs), tags the
+/// biome map, and marks the chunk dirty for meshing. 8 keeps the
+/// main-thread post-process under 1 ms even at peak.
+pub const MAX_SEEDS_COLLECTED_PER_FRAME: usize = 8;
 
 /// Per-frame cap on `process_pending_blend_attaches`. Even with the
 /// idempotent fast-path inside `ensure_chunk_mesh_attributes`, every
@@ -70,6 +86,19 @@ pub const MAX_SEEDS_PER_FRAME: usize = 256;
 /// `process_pending_blend_attaches` re-inserts the blend material once
 /// it catches up at 16/frame.
 pub const MAX_ATTACHES_PER_FRAME: usize = 16;
+
+/// In-flight async seed tasks. Each `(coord, task)` represents an
+/// SDF-gen job running on the `AsyncComputeTaskPool`. Drained by
+/// [`collect_completed_seeds`] on the main thread.
+///
+/// `in_flight_set` mirrors the dispatcher's set of currently-running
+/// coords so [`dispatch_seed_tasks`] can dedupe in O(1) instead of
+/// scanning the task list each candidate.
+#[derive(Resource, Default)]
+pub struct PendingSeeds {
+    pub tasks: Vec<(ChunkCoord, Task<VoxelChunk>)>,
+    pub in_flight_set: HashSet<ChunkCoord>,
+}
 
 /// Cache of the streamer's last steady-state arguments so we can skip
 /// the (2*r+1)² × (2*Y+1) coord walk when nothing changed.
@@ -99,11 +128,9 @@ pub struct StreamCache {
 /// any of these changing.
 pub fn stream_chunks_around_editor_camera(
     camera_q: Query<&Transform, With<FreeFlyCamera>>,
-    mut store: ResMut<ChunkStore>,
-    mut dirty: ResMut<DirtyChunks>,
-    overrides: Res<BiomeOverrideMap>,
+    store: Res<ChunkStore>,
+    mut pending: ResMut<PendingSeeds>,
     env: Res<EnvSettings>,
-    mut chunk_biomes: ResMut<ChunkBiomeMap>,
     mut cache: Local<StreamCache>,
     mut first_frame_logged: Local<bool>,
     mut perf: ResMut<SystemFrameTimes>,
@@ -161,9 +188,10 @@ pub fn stream_chunks_around_editor_camera(
         (dy.abs(), dx.abs().max(dz.abs()))
     });
 
-    let generator = EditorHeightfield;
-    let mut seeded = 0usize;
+    let pool = AsyncComputeTaskPool::get();
+    let mut dispatched = 0usize;
     let mut already_in_store = 0usize;
+    let mut already_in_flight = 0usize;
     let mut hit_cap = false;
     let total_candidates = candidates.len();
     for (dx, dy, dz) in candidates {
@@ -176,45 +204,44 @@ pub fn stream_chunks_around_editor_camera(
             already_in_store += 1;
             continue;
         }
-        let mut chunk = VoxelChunk::new_air();
-        generator.seed_chunk(coord, &mut chunk);
-        store.insert(coord, chunk);
-        // Inherit any halo data from already-loaded neighbors before
-        // marking dirty — otherwise a freshly-seeded chunk renders
-        // with baseline padding while its neighbor has carved
-        // boundary content, producing a visible mesh gap.
-        vaern_voxel::persistence::sync_chunk_halos_for_one(&mut store, coord);
-        dirty.mark(coord);
-
-        let biome = overrides
-            .get(coord.0.x, coord.0.z)
-            .unwrap_or(DEFAULT_BIOME);
-        chunk_biomes.by_coord.insert(coord, biome);
-
-        seeded += 1;
-        if seeded >= MAX_SEEDS_PER_FRAME {
+        if pending.in_flight_set.contains(&coord) {
+            already_in_flight += 1;
+            continue;
+        }
+        if pending.tasks.len() >= SEED_TASK_BUDGET {
+            // Worker pool is saturated for this frame. Don't queue more
+            // — the next frame's dispatcher picks up where we left off
+            // because the cache stays invalid (`fully_seeded = false`).
             hit_cap = true;
             break;
         }
+        // Spawn the SDF gen on a worker thread. `EditorHeightfield` is
+        // a unit struct (Copy) and `procedural::sample` reads from a
+        // process-global `OnceLock`, so the closure is trivially Send.
+        let task = pool.spawn(async move {
+            let mut chunk = VoxelChunk::new_air();
+            let generator = EditorHeightfield;
+            generator.seed_chunk(coord, &mut chunk);
+            chunk
+        });
+        pending.tasks.push((coord, task));
+        pending.in_flight_set.insert(coord);
+        dispatched += 1;
     }
 
     cache.last_cam_chunk_xz = Some(cam_xz_key);
     cache.last_surface_chunk_y = Some(surface_chunk_y);
     cache.last_r_xz = r_xz;
-    // If we walked the whole candidate list without hitting the cap,
-    // the bbox is fully seeded — flip the flag so subsequent frames
-    // skip the walk entirely.
-    cache.fully_seeded = !hit_cap;
+    // Fully seeded only when the walk completed AND no tasks are still
+    // in flight — otherwise next frame must keep dispatching as worker
+    // threads finish and the budget opens up.
+    cache.fully_seeded = !hit_cap && pending.tasks.is_empty();
 
-    // First-frame diagnostic: log a one-line summary of what the
-    // streamer did on its very first execution. Read this in the
-    // console after launching with a saved world to confirm the
-    // streamer is actually running and seeing the right camera /
-    // store state.
+    // First-frame diagnostic.
     if !*first_frame_logged {
         *first_frame_logged = true;
         let line = format!(
-            "streamer first-frame: cam=({:.0}, {:.0}, {:.0}) chunk=({}, {}, {}) r_xz={r_xz} candidates={total_candidates} skipped={already_in_store} seeded={seeded} cap_hit={hit_cap} store={}",
+            "streamer first-frame: cam=({:.0}, {:.0}, {:.0}) chunk=({}, {}, {}) r_xz={r_xz} candidates={total_candidates} in_store={already_in_store} in_flight={already_in_flight} dispatched={dispatched} cap_hit={hit_cap} store={}",
             cam.translation.x, cam.translation.y, cam.translation.z,
             cam_chunk_xz.0.x, surface_chunk_y, cam_chunk_xz.0.z,
             store.len(),
@@ -223,12 +250,73 @@ pub fn stream_chunks_around_editor_camera(
         log.push(line);
     }
 
-    if seeded > 0 {
+    if dispatched > 0 {
         debug!(
-            "editor voxel streamer: seeded {seeded} chunks (cap_hit={hit_cap}, surface_chunk_y={surface_chunk_y}, store={}, camera={:?})",
+            "editor voxel streamer: dispatched {dispatched} seed tasks (cap_hit={hit_cap}, in_flight={}, surface_chunk_y={surface_chunk_y}, store={}, camera={:?})",
+            pending.tasks.len(),
             store.len(),
             cam.translation
         );
+    }
+}
+
+/// Drain finished seed tasks. For each completed `(coord, chunk)`:
+///   1. Insert into the chunk store.
+///   2. Run `sync_chunk_halos_for_one` so neighbor padding agrees with
+///      what we just generated (otherwise visible mesh seams).
+///   3. Stamp the biome map from cartography overrides.
+///   4. Mark the chunk dirty so the meshing pipeline picks it up.
+///
+/// Capped at `MAX_SEEDS_COLLECTED_PER_FRAME` so the halo-sync cost
+/// stays bounded even when many tasks finish in the same frame.
+pub fn collect_completed_seeds(
+    mut store: ResMut<ChunkStore>,
+    mut dirty: ResMut<DirtyChunks>,
+    overrides: Res<BiomeOverrideMap>,
+    mut pending: ResMut<PendingSeeds>,
+    mut chunk_biomes: ResMut<ChunkBiomeMap>,
+    mut perf: ResMut<SystemFrameTimes>,
+) {
+    let _timer = SystemTimer::new(&mut perf, "editor::collect_seeds");
+    if pending.tasks.is_empty() {
+        return;
+    }
+    let mut collected = 0usize;
+    let mut i = 0;
+    while i < pending.tasks.len() {
+        if collected >= MAX_SEEDS_COLLECTED_PER_FRAME {
+            break;
+        }
+        // Poll exactly once and capture the result. `poll_once` returns
+        // `Some(value)` and consumes the future on completion — polling
+        // again panics with "Task polled after completion".
+        let chunk_opt = {
+            let (_, task) = &mut pending.tasks[i];
+            block_on(future::poll_once(task))
+        };
+        let Some(chunk) = chunk_opt else {
+            i += 1;
+            continue;
+        };
+        let (coord, _finished_task) = pending.tasks.swap_remove(i);
+        pending.in_flight_set.remove(&coord);
+
+        // Late camera move could have walked away from this chunk, but
+        // there's no harm in inserting it — eviction is the streamer's
+        // job. Skip if a concurrent dirty path already filled this slot
+        // (shouldn't happen with the in_flight_set dedup, but cheap).
+        if store.contains(coord) {
+            continue;
+        }
+        store.insert(coord, chunk);
+        // Inherit halo padding from already-loaded neighbors so the
+        // mesh seam stays clean.
+        vaern_voxel::persistence::sync_chunk_halos_for_one(&mut store, coord);
+        dirty.mark(coord);
+
+        let biome = overrides.get(coord.0.x, coord.0.z).unwrap_or(DEFAULT_BIOME);
+        chunk_biomes.by_coord.insert(coord, biome);
+        collected += 1;
     }
 }
 

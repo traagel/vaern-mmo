@@ -99,6 +99,25 @@ fn main() {
         net_config.key_source.label()
     );
 
+    // Wire the procedural terrain resolver before any voxel chunk
+    // generation runs. After this call, `vaern_core::terrain::height`
+    // returns the cartography-driven elevation everywhere — same code
+    // path the client + editor use, so AoI replication produces
+    // byte-identical chunks.
+    let world_root = data::data_root().join("world");
+    match vaern_cartography::install_terrain_resolver(&world_root) {
+        Ok(world_terrain) => {
+            println!(
+                "vaern-server: procedural terrain resolver registered ({} zones)",
+                world_terrain.zones.len()
+            );
+        }
+        Err(e) => {
+            eprintln!("vaern-server: terrain resolver install failed: {e}");
+            eprintln!("  falling back to legacy sin/cos heightfield");
+        }
+    }
+
     let tick = Duration::from_secs_f64(1.0 / FIXED_TIMESTEP_HZ);
     App::new()
         .insert_resource(net_config)

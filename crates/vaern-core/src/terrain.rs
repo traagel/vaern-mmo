@@ -4,18 +4,65 @@
 //! `height` so the two agree on where the ground is at any `(x, z)`.
 //! Deterministic, no RNG state, no external crate — amplitude is kept
 //! small so differences between the server's Transform Y=0 baseline
-//! and an entity snapped onto this surface remain subtle (≤ ~2u).
+//! and an entity snapped onto this surface remain subtle (≤ ~2u) when
+//! the resolver is unset (legacy mode).
 //!
-//! When swapping to a real heightmap or tiled noise, replace `height`
-//! here and the rest of the workspace picks it up automatically.
+//! ## Resolver injection
+//!
+//! [`register_resolver`] lets a higher layer (server / client / editor)
+//! plug in the procedural heightfield from `vaern-cartography` so the
+//! runtime ground matches the parchment + the editor preview. The
+//! resolver is a `Fn(f32, f32) -> f32` closure stored in a OnceLock,
+//! settable exactly once per process. When unset, [`height`] falls
+//! back to the analytical sin/cos so unit tests in this crate keep
+//! passing without ceremony.
 
-/// Terrain surface Y at world-space `(x, z)` — the analytical smooth
-/// height field. The ground mesh samples this ONLY at 25u grid points
-/// (see `GROUND_CELL`) and then renders triangles between those points,
-/// so for overlay geometry that needs to visually line up with the
-/// rendered ground, prefer [`ground_surface_y`].
+use std::sync::OnceLock;
+
+type HeightFn = Box<dyn Fn(f32, f32) -> f32 + Send + Sync + 'static>;
+static RESOLVER: OnceLock<HeightFn> = OnceLock::new();
+
+/// Plug in a procedural heightfield. Call once at startup before any
+/// voxel chunk is sampled. Subsequent calls are no-ops (OnceLock).
+///
+/// The closure should be byte-deterministic across machines for AoI
+/// replication parity — server and client must produce identical
+/// chunks. `vaern-cartography::ZoneTerrain::final_height` satisfies
+/// this when both ends share the same YAML + binary.
+pub fn register_resolver<F>(f: F)
+where
+    F: Fn(f32, f32) -> f32 + Send + Sync + 'static,
+{
+    let _ = RESOLVER.set(Box::new(f));
+}
+
+/// `true` when a resolver has been registered. Useful for tests +
+/// startup diagnostics.
+#[inline]
+pub fn resolver_is_registered() -> bool {
+    RESOLVER.get().is_some()
+}
+
+/// Terrain surface Y at world-space `(x, z)`. Routes through the
+/// registered resolver when present; falls back to [`legacy_height`]
+/// otherwise. The ground mesh samples this ONLY at 25u grid points
+/// (see `GROUND_CELL`) and renders triangles between them, so for
+/// overlay geometry that must visually line up with the rendered
+/// ground, prefer [`ground_surface_y`].
 #[inline]
 pub fn height(x: f32, z: f32) -> f32 {
+    if let Some(r) = RESOLVER.get() {
+        r(x, z)
+    } else {
+        legacy_height(x, z)
+    }
+}
+
+/// Analytical sin/cos heightfield, used as the resolver-unset fallback
+/// and as a unit-test anchor. Deterministic across runs and machines;
+/// amplitude ≤ ~2u.
+#[inline]
+pub fn legacy_height(x: f32, z: f32) -> f32 {
     let low = (x * 0.03).sin() * (z * 0.03).cos() * 1.2;
     let mid = (x * 0.07).sin() * (z * 0.09).cos() * 0.6;
     low + mid
@@ -71,6 +118,27 @@ pub fn ground_surface_y(x: f32, z: f32) -> f32 {
 #[cfg(test)]
 mod tests {
     use super::*;
+
+    #[test]
+    fn legacy_height_matches_old_formula_at_origin() {
+        // Sanity check: legacy fallback is the historical sin/cos.
+        let h = legacy_height(0.0, 0.0);
+        assert!(h.abs() < 1e-4, "legacy_height(0,0) ≈ 0, got {h}");
+    }
+
+    #[test]
+    fn height_falls_back_to_legacy_when_resolver_unset() {
+        // OnceLock state is shared across tests in the same process;
+        // we can't reset it. So this test only runs meaningfully when
+        // it's the FIRST test to touch the resolver — it asserts that
+        // the resolver-unset path gives the legacy result. If another
+        // test set the resolver first, this becomes a no-op.
+        if !resolver_is_registered() {
+            let h = height(10.0, 20.0);
+            let expected = legacy_height(10.0, 20.0);
+            assert_eq!(h.to_bits(), expected.to_bits());
+        }
+    }
 
     #[test]
     fn ground_surface_matches_at_grid_corners() {

@@ -7,13 +7,23 @@ use std::{collections::HashMap, fs, path::Path};
 
 use serde::Deserialize;
 
-use crate::{read_dir, Coord2, LoadError};
+use crate::{read_dir, terrain::TerrainFeature, Coord2, LoadError};
 
 #[derive(Debug, Clone, Deserialize)]
 pub struct Landmark {
     pub id: String,
     pub name: String,
     pub offset_from_zone_origin: Coord2,
+    /// Hand-authored description used by the procedural heightfield's
+    /// keyword scan (ridge / fen / cairn / etc.) and by future tooling.
+    /// Already present in every committed `landmarks.yaml`; loader was
+    /// previously dropping it.
+    #[serde(default)]
+    pub description: Option<String>,
+    /// Explicit terrain-feature override. When `None`, the heightfield
+    /// auto-derives from `name + description`.
+    #[serde(default)]
+    pub terrain: Option<TerrainFeature>,
 }
 
 #[derive(Debug, Clone, Deserialize)]

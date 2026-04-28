@@ -3,8 +3,8 @@
 
 pub mod biome_blend;
 pub mod biomes;
-pub mod elevation;
 pub mod overrides;
+pub mod procedural;
 pub mod render_opt;
 pub mod store;
 pub mod stream;
@@ -85,12 +85,19 @@ impl Plugin for EditorVoxelPlugin {
         .init_resource::<BiomeBlendEnabled>()
         .init_resource::<BlendDebugMode>()
         .init_resource::<PerfToggles>()
+        .init_resource::<stream::PendingSeeds>()
+        .add_systems(Startup, biome_blend::init_biome_blend_assets)
+        // Procedural heightfield + biome overrides both need
+        // `EditorContext.active_zone` populated, which happens during
+        // `seed_context_from_boot` at Startup. Running on
+        // `OnEnter(Editing)` (entered the same frame by
+        // `advance_to_editing`) guarantees the context is ready and
+        // the chunk streamer has not yet sampled the generator.
         .add_systems(
-            Startup,
+            OnEnter(EditorAppState::Editing),
             (
+                procedural::load_procedural_heightfield,
                 overrides::load_biome_overrides_into_resource,
-                elevation::load_elevation_overrides,
-                biome_blend::init_biome_blend_assets,
             ),
         )
         .add_systems(
@@ -98,6 +105,11 @@ impl Plugin for EditorVoxelPlugin {
             (
                 stream::stream_chunks_around_editor_camera
                     .run_if(|t: Res<PerfToggles>| !t.skip_streamer),
+                // Collector runs AFTER the dispatcher so a freshly-
+                // dispatched task can't be polled in the same frame
+                // (it won't be ready anyway, but ordering is cleaner).
+                stream::collect_completed_seeds
+                    .after(stream::stream_chunks_around_editor_camera),
                 stream::apply_biome_blend_toggle,
                 // Must run AFTER `collect_completed_meshes` so the
                 // `Changed<Mesh3d>` filter sees the mesh swap. Without

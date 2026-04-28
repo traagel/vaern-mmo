@@ -18,6 +18,11 @@ pub struct RenderOptions {
     pub include_legend: bool,
     pub include_compass: bool,
     pub include_scale_bar: bool,
+    /// Sample the procedural heightfield and lay a low-opacity
+    /// Lambertian shade (NW sun, 45°) under the biome layer so hills
+    /// and valleys read on the parchment. Off → flat-coloured map
+    /// like before.
+    pub include_hillshade: bool,
 }
 
 impl Default for RenderOptions {
@@ -28,6 +33,7 @@ impl Default for RenderOptions {
             include_legend: true,
             include_compass: true,
             include_scale_bar: true,
+            include_hillshade: true,
         }
     }
 }

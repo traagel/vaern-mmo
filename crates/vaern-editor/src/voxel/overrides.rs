@@ -8,37 +8,35 @@
 //! units and SUB_CELLS_PER_CHUNK=4, each sub-cell is 8 m on a side.
 //! The painted biome is stored per sub-cell.
 //!
-//! ## Why sub-chunk
+//! ## Source of truth
 //!
-//! V1 stored one biome per chunk-XZ column. The blend shader smoothed
-//! transitions per-vertex but every painted unit was 32m square,
-//! producing a visible "grid of full chunks" when painting an area.
-//! Sub-chunk storage lets the brush write at 8m resolution; the blend
-//! shader's per-vertex math now operates on a 4× finer Voronoi grid,
-//! shrinking blend zones from 32m to 8m and giving the brush real
-//! authoring resolution.
+//! On Startup, the resource is populated from two layers:
+//! 1. **Cartography baseline** — the active zone's `geography.yaml`
+//!    biome polygons rasterised in-process via
+//!    `vaern_cartography::raster::rasterize_polygon`. Same code path
+//!    the (now-retired) `vaern-import-editor` binary used.
+//! 2. **Per-zone paint deltas** — `world/zones/<zone>/biome_edits.bin`
+//!    via `vaern_cartography::edits::load_biome_edits`. Sparse —
+//!    typically empty until the brush is used.
 //!
-//! ## Persistence
-//!
-//! On-disk format `OverridesFileV2`: header field `sub_cells_per_chunk`
-//! + bincode-serialized `Vec<((i32, i32), u8)>` of sorted sub-cell
-//! entries. Legacy `OverridesFileV1` (per-chunk-XZ) is detected on
-//! load and upscaled — each chunk entry expands to `N²` sub-cells of
-//! the same biome.
+//! On save, the same cartography rasterisation is re-run and the
+//! current `BiomeOverrideMap` is diffed against it. Only differing
+//! cells (= true brush paint) are written back to `biome_edits.bin`.
+//! Empty diff → file is deleted.
 
 use std::collections::HashMap;
 use std::path::{Path, PathBuf};
 
 use bevy::prelude::*;
-use serde::{Deserialize, Serialize};
+use vaern_cartography::edits::{load_biome_edits, save_biome_edits};
+use vaern_cartography::raster::{rasterize_polygon, rasterize_road_strip};
+use vaern_data::{load_all_geography, load_world_layout, Coord2};
 use vaern_voxel::config::CHUNK_WORLD_SIZE;
 
 use super::biomes::BiomeKey;
+use crate::state::EditorContext;
 
 /// Sub-cells per chunk axis. 4 = 8 m per cell (CHUNK_WORLD_SIZE / 4).
-/// Keep as a `pub const` rather than configurable so the on-disk
-/// format and the blend math stay coupled — changing this requires a
-/// migration pass on existing `biome_overrides.bin` files.
 pub const SUB_CELLS_PER_CHUNK: u32 = 4;
 
 /// World-space side length of one sub-cell.
@@ -54,19 +52,14 @@ pub struct BiomeOverrideMap {
 }
 
 impl BiomeOverrideMap {
-    /// Read the override at sub-cell `(sub_x, sub_z)`. Returns `None`
-    /// if no paint stroke has touched this sub-cell.
     pub fn get(&self, sub_x: i32, sub_z: i32) -> Option<BiomeKey> {
         self.by_sub.get(&(sub_x, sub_z)).copied()
     }
 
-    /// Write `biome` at sub-cell `(sub_x, sub_z)`.
     pub fn set(&mut self, sub_x: i32, sub_z: i32, biome: BiomeKey) {
         self.by_sub.insert((sub_x, sub_z), biome);
     }
 
-    /// Remove an override at sub-cell `(sub_x, sub_z)` — reverts that
-    /// cell to the default biome (Marsh) at runtime. Eraser uses this.
     pub fn clear(&mut self, sub_x: i32, sub_z: i32) {
         self.by_sub.remove(&(sub_x, sub_z));
     }
@@ -79,8 +72,6 @@ impl BiomeOverrideMap {
         self.by_sub.is_empty()
     }
 
-    /// Convenience: world-XZ → sub-cell coord. Used by the brush to
-    /// map a click position to a sub-cell index.
     pub fn world_to_sub(world_x: f32, world_z: f32) -> (i32, i32) {
         (
             (world_x / SUB_CELL_SIZE_M).floor() as i32,
@@ -88,9 +79,6 @@ impl BiomeOverrideMap {
         )
     }
 
-    /// Convenience: sub-cell center in world-XZ coords. Used by the
-    /// blend math to compute distance from a vertex to each candidate
-    /// sub-cell.
     pub fn sub_cell_center(sub_x: i32, sub_z: i32) -> (f32, f32) {
         (
             (sub_x as f32 + 0.5) * SUB_CELL_SIZE_M,
@@ -99,142 +87,169 @@ impl BiomeOverrideMap {
     }
 }
 
-/// Workspace-canonical disk path. Sibling of `voxel_edits.bin`.
-pub fn biome_overrides_path() -> PathBuf {
-    Path::new(env!("CARGO_MANIFEST_DIR"))
-        .join("../../src/generated/world/biome_overrides.bin")
+/// Workspace world root.
+fn world_root() -> PathBuf {
+    Path::new(env!("CARGO_MANIFEST_DIR")).join("../../src/generated/world")
 }
 
-/// V2: sub-cell granularity. `sub_cells_per_chunk` is the header — a
-/// future change to that constant would require a migration pass.
-#[derive(Debug, Default, Serialize, Deserialize)]
-struct OverridesFileV2 {
-    sub_cells_per_chunk: u32,
-    entries: Vec<((i32, i32), u8)>,
-}
-
-/// Legacy V1 format kept for migration. Per-chunk-XZ entries.
-#[derive(Debug, Default, Serialize, Deserialize)]
-struct OverridesFileV1 {
-    entries: Vec<((i32, i32), u8)>,
-}
-
-/// Versioned save wrapper. Bincode tags the variant index, so V1 and
-/// V2 are distinguishable on load. New writes always emit V2.
-#[derive(Debug, Serialize, Deserialize)]
-enum OverridesFile {
-    V1(OverridesFileV1),
-    V2(OverridesFileV2),
-}
-
-/// Save the override map. Sorts entries for deterministic output.
-/// Always writes V2 format.
-pub fn save_biome_overrides(
-    path: &Path,
-    overrides: &BiomeOverrideMap,
-) -> std::io::Result<usize> {
-    let mut entries: Vec<((i32, i32), u8)> = overrides
-        .by_sub
-        .iter()
-        .map(|(&xz, &biome)| (xz, biome.id()))
-        .collect();
-    entries.sort_by_key(|(xz, _)| *xz);
-    let count = entries.len();
-    let payload = OverridesFile::V2(OverridesFileV2 {
-        sub_cells_per_chunk: SUB_CELLS_PER_CHUNK,
-        entries,
-    });
-    let bytes = bincode::serialize(&payload)
-        .map_err(|e| std::io::Error::new(std::io::ErrorKind::Other, e))?;
-    if let Some(parent) = path.parent() {
-        std::fs::create_dir_all(parent)?;
+/// Map cartography biome name → editor BiomeKey id. Mirrors the
+/// (now-retired) `vaern-import-editor::biome_id_for` table — kept here
+/// as the editor-side authority. If a cartography biome key is added
+/// upstream, add a row here too.
+fn biome_id_for(name: &str) -> u8 {
+    match name {
+        "grass" | "fields" | "river_valley" | "pasture" | "sand" => 0,
+        "grass_lush" | "highland" => 1,
+        "mossy" | "forest" | "temperate_forest" => 2,
+        "dirt" | "ruin" | "cropland" | "tilled_soil" => 3,
+        "snow" => 4,
+        "stone" | "cobblestone" => 5,
+        "scorched" | "ashland" => 6,
+        "marsh" | "marshland" | "mud" => 7,
+        "rocky" | "mountain" | "mountain_rock" | "coastal_cliff" | "fjord" | "ridge_scrub" => 8,
+        _ => 0,
     }
-    std::fs::write(path, bytes)?;
-    Ok(count)
 }
 
-/// Load the override map. Tries V2 first; on failure falls back to
-/// V1 and upscales each chunk entry to N×N sub-cells of the same
-/// biome. Missing file returns an empty map.
-pub fn load_biome_overrides(path: &Path) -> std::io::Result<BiomeOverrideMap> {
-    if !path.exists() {
-        return Ok(BiomeOverrideMap::default());
+/// Map cartography road type → editor BiomeKey id. Roads are painted
+/// directly into the biome map so the existing voxel-ground PBR
+/// pipeline renders them as a strip of cobble / dirt — no separate
+/// mesh, no Z-fighting, no terrain-floating.
+fn road_biome_id_for(road_type: &str) -> u8 {
+    match road_type {
+        "kingsroad" | "highway" => 5, // Stone (cobblestone)
+        // Tracks + dirt paths + spurs all fall back to the Dirt biome.
+        // The blend pipeline ships only one dirt texture today;
+        // distinguishing kingsroad / track by width is enough at the
+        // editor's draw distance.
+        _ => 3, // Dirt
     }
-    let bytes = std::fs::read(path)?;
-    let mut map = BiomeOverrideMap::default();
+}
 
-    // Try the versioned wrapper (V1 or V2 enum variant).
-    if let Ok(file) = bincode::deserialize::<OverridesFile>(&bytes) {
-        match file {
-            OverridesFile::V2(v2) => {
-                if v2.sub_cells_per_chunk != SUB_CELLS_PER_CHUNK {
-                    warn!(
-                        "biome overrides V2: file has {} sub-cells/chunk, runtime expects {}; loading anyway",
-                        v2.sub_cells_per_chunk, SUB_CELLS_PER_CHUNK
-                    );
-                }
-                for (xz, id) in v2.entries {
-                    if let Some(biome) = BiomeKey::from_id(id) {
-                        map.by_sub.insert(xz, biome);
-                    }
-                }
-            }
-            OverridesFile::V1(v1) => {
-                upscale_v1_into(&v1, &mut map);
-            }
-        }
-        return Ok(map);
+/// Per-type road strip width in metres. Mirrors the legacy ribbon
+/// `RoadStyle.width_m` table that's been removed from the cartography
+/// overlay.
+fn road_width_m(road_type: &str) -> f32 {
+    match road_type {
+        "kingsroad" | "highway" => 6.0,
+        "track" | "trade_road" => 4.0,
+        "dirt_path" | "path" => 2.5,
+        _ => 3.0,
     }
+}
 
-    // Bare V1 (no enum wrapper) — older files written before the
-    // versioned format. Try deserializing directly.
-    if let Ok(v1) = bincode::deserialize::<OverridesFileV1>(&bytes) {
-        upscale_v1_into(&v1, &mut map);
-        return Ok(map);
+/// Re-rasterize the active zone's cartography biome polygons into a
+/// fresh `(sub_x, sub_z) → BiomeKey` map. Same algorithm the legacy
+/// importer used: backdrop polygons (`*_main`) first, then pockets
+/// paint over them; point-in-polygon test at each sub-cell centre.
+///
+/// Used both at load time (build the resource) and at save time
+/// (diff against to find paint deltas).
+fn rasterize_active_zone_baseline(zone_id: &str) -> HashMap<(i32, i32), BiomeKey> {
+    let root = world_root();
+    let layout = load_world_layout(&root).unwrap_or_default();
+    let geography = match load_all_geography(&root) {
+        Ok(g) => g,
+        Err(_) => return HashMap::new(),
+    };
+    let Some(geo) = geography.get(zone_id) else {
+        return HashMap::new();
+    };
+    let Some(origin) = layout.zone_origin(zone_id) else {
+        return HashMap::new();
+    };
+
+    // Process backdrop first so pockets paint over it.
+    let mut regions: Vec<&vaern_data::BiomeRegion> = geo.biome_regions.iter().collect();
+    regions.sort_by_key(|r| if r.id.ends_with("_main") { 0 } else { 1 });
+
+    let mut raw: HashMap<(i32, i32), u8> = HashMap::new();
+    for region in regions {
+        let world_polygon: Vec<Coord2> = region
+            .polygon
+            .points
+            .iter()
+            .map(|p| Coord2::new(p.x + origin.x, p.z + origin.z))
+            .collect();
+        let id = biome_id_for(&region.biome);
+        rasterize_polygon(&world_polygon, id, &mut raw);
     }
 
-    Err(std::io::Error::new(
-        std::io::ErrorKind::InvalidData,
-        "biome_overrides.bin: not V1 or V2 format",
-    ))
-}
-
-/// Upscale a V1 (per-chunk) map into a V2 (per-sub-cell) map by
-/// expanding each chunk entry into N×N sub-cells of the same biome.
-/// Deterministic — same input always produces same output.
-fn upscale_v1_into(v1: &OverridesFileV1, dst: &mut BiomeOverrideMap) {
-    let n = SUB_CELLS_PER_CHUNK as i32;
-    for &((cx, cz), id) in &v1.entries {
-        let Some(biome) = BiomeKey::from_id(id) else {
+    // Roads paint over biome polygons — kingsroad becomes a strip of
+    // cobblestone, tracks + dirt paths become dirt. Sorted by id so
+    // overlapping segments resolve deterministically (last-paint
+    // wins, but the same input order produces the same bytes).
+    let mut roads: Vec<&vaern_data::Road> = geo.roads.iter().collect();
+    roads.sort_by_key(|r| r.id.clone());
+    for road in roads {
+        if road.path.points.len() < 2 {
             continue;
-        };
-        for dz in 0..n {
-            for dx in 0..n {
-                dst.by_sub.insert((cx * n + dx, cz * n + dz), biome);
-            }
         }
+        let world_path: Vec<Coord2> = road
+            .path
+            .points
+            .iter()
+            .map(|p| Coord2::new(p.x + origin.x, p.z + origin.z))
+            .collect();
+        let id = road_biome_id_for(&road.type_);
+        let width = road_width_m(&road.type_);
+        rasterize_road_strip(&world_path, width, id, &mut raw);
     }
+
+    raw.into_iter()
+        .filter_map(|(xz, id)| BiomeKey::from_id(id).map(|b| (xz, b)))
+        .collect()
 }
 
-/// Bevy Startup system: load overrides into the resource.
+/// Bevy system: build `BiomeOverrideMap` from cartography polygons +
+/// per-zone paint deltas. Runs on `OnEnter(EditorAppState::Editing)`
+/// because it needs `EditorContext.active_zone` (set during Startup
+/// by `seed_context_from_boot`).
 pub fn load_biome_overrides_into_resource(
+    ctx: Res<EditorContext>,
     mut overrides: ResMut<BiomeOverrideMap>,
     mut log: ResMut<crate::ui::console::ConsoleLog>,
 ) {
-    let path = biome_overrides_path();
-    match load_biome_overrides(&path) {
-        Ok(map) => {
-            if !map.is_empty() {
-                let n = map.len();
-                *overrides = map;
-                log.push(format!("loaded {n} biome overrides (sub-cells)"));
-            }
-        }
-        Err(e) => {
-            warn!("editor: failed to load biome overrides: {e}");
-            log.push(format!("biome overrides load FAILED: {e}"));
+    let zone_id = ctx.active_zone.clone();
+    let baseline = rasterize_active_zone_baseline(&zone_id);
+    let baseline_count = baseline.len();
+    overrides.by_sub = baseline;
+
+    // Apply per-zone paint deltas on top.
+    let edits = load_biome_edits(&world_root(), &zone_id);
+    let edits_count = edits.len();
+    for ((x, z), id) in edits {
+        if let Some(b) = BiomeKey::from_id(id) {
+            overrides.by_sub.insert((x, z), b);
         }
     }
+
+    log.push(format!(
+        "biome overrides: {baseline_count} cartography cells + {edits_count} paint deltas (zone {zone_id})"
+    ));
+}
+
+/// Save the brush's paint deltas. Re-rasterises the cartography
+/// baseline, diffs against the current resource, writes only differing
+/// cells to `world/zones/<zone>/biome_edits.bin`. Empty diff → file is
+/// deleted.
+///
+/// Returns the count of paint cells written (zero is fine).
+pub fn save_biome_overrides_for_zone(
+    zone_id: &str,
+    overrides: &BiomeOverrideMap,
+) -> std::io::Result<usize> {
+    let baseline = rasterize_active_zone_baseline(zone_id);
+    let mut paint: HashMap<(i32, i32), u8> = HashMap::new();
+    for (&cell, &biome) in &overrides.by_sub {
+        match baseline.get(&cell) {
+            Some(&b) if b == biome => {} // matches baseline → cartography, drop
+            _ => {
+                paint.insert(cell, biome.id());
+            }
+        }
+    }
+    save_biome_edits(&world_root(), zone_id, &paint)
 }
 
 #[cfg(test)]
@@ -256,7 +271,6 @@ mod tests {
 
     #[test]
     fn world_to_sub_round_trip_at_centers() {
-        // Sub-cell (3, 5) center is at world ((3.5)*8, (5.5)*8) = (28, 44).
         let (cx, cz) = BiomeOverrideMap::sub_cell_center(3, 5);
         assert_eq!(cx, 3.5 * SUB_CELL_SIZE_M);
         assert_eq!(cz, 5.5 * SUB_CELL_SIZE_M);
@@ -264,85 +278,13 @@ mod tests {
     }
 
     #[test]
-    fn save_and_load_round_trip_v2() {
-        let tmp = std::env::temp_dir().join("vaern-editor-biome-overrides-v2-test.bin");
-        let _ = std::fs::remove_file(&tmp);
-
-        let mut map = BiomeOverrideMap::default();
-        map.set(1, 2, BiomeKey::Snow);
-        map.set(-3, 5, BiomeKey::Marsh);
-        save_biome_overrides(&tmp, &map).unwrap();
-
-        let loaded = load_biome_overrides(&tmp).unwrap();
-        assert_eq!(loaded.get(1, 2), Some(BiomeKey::Snow));
-        assert_eq!(loaded.get(-3, 5), Some(BiomeKey::Marsh));
-        assert_eq!(loaded.get(0, 0), None);
-
-        let _ = std::fs::remove_file(&tmp);
-    }
-
-    #[test]
-    fn load_missing_file_returns_empty() {
-        let path = std::env::temp_dir().join("vaern-editor-nonexistent-biome-overrides.bin");
-        let _ = std::fs::remove_file(&path);
-        let loaded = load_biome_overrides(&path).unwrap();
-        assert!(loaded.is_empty());
-    }
-
-    #[test]
-    fn save_is_deterministic_across_runs() {
-        let tmp1 = std::env::temp_dir().join("vaern-editor-biome-determinism-1.bin");
-        let tmp2 = std::env::temp_dir().join("vaern-editor-biome-determinism-2.bin");
-        let _ = std::fs::remove_file(&tmp1);
-        let _ = std::fs::remove_file(&tmp2);
-
-        let mut a = BiomeOverrideMap::default();
-        a.set(1, 1, BiomeKey::Snow);
-        a.set(2, 2, BiomeKey::Marsh);
-        a.set(0, 0, BiomeKey::Stone);
-
-        let mut b = BiomeOverrideMap::default();
-        b.set(0, 0, BiomeKey::Stone);
-        b.set(2, 2, BiomeKey::Marsh);
-        b.set(1, 1, BiomeKey::Snow);
-
-        save_biome_overrides(&tmp1, &a).unwrap();
-        save_biome_overrides(&tmp2, &b).unwrap();
-        assert_eq!(std::fs::read(&tmp1).unwrap(), std::fs::read(&tmp2).unwrap());
-
-        let _ = std::fs::remove_file(&tmp1);
-        let _ = std::fs::remove_file(&tmp2);
-    }
-
-    #[test]
-    fn v1_legacy_file_upscales_to_n_squared_sub_cells() {
-        let tmp = std::env::temp_dir().join("vaern-editor-biome-overrides-v1-legacy.bin");
-        let _ = std::fs::remove_file(&tmp);
-
-        // Hand-write a V1 file: one chunk (5, 7) painted Snow.
-        let v1 = OverridesFileV1 {
-            entries: vec![((5, 7), BiomeKey::Snow.id())],
-        };
-        let bytes = bincode::serialize(&OverridesFile::V1(v1)).unwrap();
-        std::fs::write(&tmp, bytes).unwrap();
-
-        let loaded = load_biome_overrides(&tmp).unwrap();
-        let n = SUB_CELLS_PER_CHUNK as i32;
-        // Should upscale to N×N sub-cells, all Snow.
-        for dz in 0..n {
-            for dx in 0..n {
-                assert_eq!(
-                    loaded.get(5 * n + dx, 7 * n + dz),
-                    Some(BiomeKey::Snow),
-                    "missing sub-cell ({dx},{dz}) of chunk (5,7) after V1 upscale"
-                );
-            }
-        }
-        // Outside the chunk, no overrides.
-        assert_eq!(loaded.get(5 * n - 1, 7 * n), None);
-        assert_eq!(loaded.get(5 * n, 7 * n + n), None);
-        assert_eq!(loaded.len(), (n * n) as usize);
-
-        let _ = std::fs::remove_file(&tmp);
+    fn biome_id_for_table_covers_known_keys() {
+        assert_eq!(biome_id_for("fields"), 0);
+        assert_eq!(biome_id_for("forest"), 2);
+        assert_eq!(biome_id_for("highland"), 1);
+        assert_eq!(biome_id_for("mountain"), 8);
+        assert_eq!(biome_id_for("marsh"), 7);
+        assert_eq!(biome_id_for("snow"), 4);
+        assert_eq!(biome_id_for("unknown_biome"), 0);
     }
 }

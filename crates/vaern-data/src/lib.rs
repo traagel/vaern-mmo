@@ -18,6 +18,7 @@ pub mod landmark;
 pub mod quest;
 pub mod race;
 pub mod spatial;
+pub mod terrain;
 pub mod world;
 pub mod world_layout;
 
@@ -46,6 +47,7 @@ pub use spatial::{
     point_in_polygon, AxisMapping, Bounds, Cardinal, Compass, Coord2, CoordinateSystem, HubOffset,
     LandmarkOffset, PolyPath, Polygon, PropOffset, Unit,
 };
+pub use terrain::{auto_derive_feature, build_zone_stamps, TerrainFeature, TerrainStamp};
 pub use world::{
     load_biomes, load_world, AuthoredProp, Biome, Hub, LevelRange, Mob, ScatterRule, World, Zone,
 };

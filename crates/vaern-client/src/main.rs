@@ -113,6 +113,25 @@ fn main() {
         net_config.key_source.label()
     );
 
+    // Wire the procedural terrain resolver before any voxel chunk
+    // generation runs. After this call, `vaern_core::terrain::height`
+    // returns cartography-driven elevation everywhere — matches the
+    // server + editor so AoI replication produces byte-identical chunks.
+    let world_root_path = Path::new(env!("CARGO_MANIFEST_DIR"))
+        .join("../../src/generated/world");
+    match vaern_cartography::install_terrain_resolver(&world_root_path) {
+        Ok(world_terrain) => {
+            println!(
+                "vaern-client: procedural terrain resolver registered ({} zones)",
+                world_terrain.zones.len()
+            );
+        }
+        Err(e) => {
+            eprintln!("vaern-client: terrain resolver install failed: {e}");
+            eprintln!("  falling back to legacy sin/cos heightfield");
+        }
+    }
+
     let tick = Duration::from_secs_f64(1.0 / FIXED_TIMESTEP_HZ);
     // Point Bevy's AssetServer at the workspace-level assets/ (Quaternius
     // glTFs + textures live there). Default path is `assets/` next to the

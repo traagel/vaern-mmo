@@ -17,6 +17,7 @@ vaern-core.workspace = true
 vaern-data.workspace = true
 vaern-voxel.workspace = true
 vaern-assets.workspace = true
+vaern-cartography.workspace = true
 bevy = { version = "0.18", features = ["jpeg"] }
 bevy_egui = "0.39"
 clap = { version = "4", features = ["derive"] }

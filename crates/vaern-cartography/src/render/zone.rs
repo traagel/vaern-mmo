@@ -14,10 +14,12 @@
 use std::fmt::Write;
 
 use vaern_data::{
-    Bounds, ConnectionsIndex, Coord2, Geography, Hub, LandmarkIndex, World, WorldLayout, Zone,
+    build_zone_stamps, Bounds, ConnectionsIndex, Coord2, Geography, Hub, LandmarkIndex, World,
+    WorldLayout, Zone,
 };
 
 use crate::{
+    heightfield::PolygonIndex,
     render::{
         svg::{f, polygon_d, polyline_points, Projection},
         RenderOptions,
@@ -82,6 +84,9 @@ pub fn render_zone_svg(
     }
     if let Some(geo) = geography {
         write_biome_regions(&mut out, geo, &proj, style);
+        if opts.include_hillshade {
+            write_hillshade(&mut out, &zone.id, world, landmarks, geo, layout, bounds, &proj);
+        }
         write_scatter(&mut out, geo, bounds, &proj);
         write_rivers(&mut out, geo, &proj);
         write_roads(&mut out, geo, &proj, style);
@@ -1047,4 +1052,101 @@ fn pretty_biome_label(id: &str) -> String {
         s.replace_range(0..c.len_utf8(), &c.to_uppercase().collect::<String>());
     }
     s
+}
+
+// ─── hillshade ───────────────────────────────────────────────────────────────
+
+/// Resolution of the hillshade sampling grid in zone-local meters per
+/// cell. 32 m balances visual smoothness against SVG byte budget — at
+/// 32 m a 1.6 km zone yields ~50×50 = 2,500 cells, ~80 KB SVG payload.
+const HILLSHADE_CELL_M: f32 = 32.0;
+
+/// Lay a low-opacity Lambertian shade on top of biome regions so the
+/// parchment shows the heightfield's ridges and valleys. Sun direction
+/// is fixed NW, elevation 45°. Cells where the surface faces away from
+/// the sun darken; cells facing the sun stay parchment-coloured.
+///
+/// Implemented as a coarse grid of `<rect>` elements with
+/// `mix-blend-mode="multiply"`. Pure SVG — no PNG embedding, no
+/// extra crate dep. Output is byte-deterministic because the grid
+/// walk + sample function are both deterministic.
+fn write_hillshade(
+    out: &mut String,
+    zone_id: &str,
+    world: &World,
+    landmarks: &LandmarkIndex,
+    geography: &Geography,
+    layout: &WorldLayout,
+    bounds: Bounds,
+    proj: &Projection,
+) {
+    let Some(origin) = layout.zone_origin(zone_id) else {
+        return;
+    };
+    // Build the same heightfield index the editor uses, so the SVG and
+    // the editor preview show the same hills.
+    let stamps = build_zone_stamps(zone_id, layout, world, landmarks);
+    let index = PolygonIndex::build(zone_id, origin, geography, stamps);
+
+    let cell = HILLSHADE_CELL_M;
+    let cell_px = proj.px(cell);
+    if cell_px < 0.5 {
+        // Zone is so zoomed out the cells would sub-pixel — skip.
+        return;
+    }
+    // World-space sun vector. Lambertian: shade = max(0, dot(normal, sun)).
+    // Sun comes from the NW (negative x, negative z, positive y), 45°.
+    let sun = normalize_vec3(-1.0, 1.0, -1.0);
+
+    out.push_str("  <g id=\"hillshade\" style=\"mix-blend-mode:multiply\">\n");
+    let mut z = bounds.min.z;
+    while z < bounds.max.z {
+        let mut x = bounds.min.x;
+        while x < bounds.max.x {
+            // World-space sample positions. Bounds are zone-local;
+            // PolygonIndex was built in world space (origin-rebased), so
+            // transform here too.
+            let wx = x + origin.x;
+            let wz = z + origin.z;
+            // Central differences for surface normal at cell centre.
+            let h_c = index.sample(wx + cell * 0.5, wz + cell * 0.5);
+            let h_e = index.sample(wx + cell * 1.5, wz + cell * 0.5);
+            let h_s = index.sample(wx + cell * 0.5, wz + cell * 1.5);
+            let dx = (h_e - h_c) / cell;
+            let dz = (h_s - h_c) / cell;
+            // Surface normal = normalize((-dx, 1, -dz)) for a heightmap
+            // y = h(x, z) (upward Y).
+            let n = normalize_vec3(-dx, 1.0, -dz);
+            let lambert = (n.0 * sun.0 + n.1 * sun.1 + n.2 * sun.2).max(0.0);
+            // Map shade [0, 1] → multiply opacity:
+            //   shade=1 (full sun): opacity 0  (transparent → no darken)
+            //   shade=0 (full shadow): opacity 0.45
+            // smoothstep keeps the transitions soft.
+            let darken = (1.0 - lambert).clamp(0.0, 1.0);
+            let darken = darken * darken * (3.0 - 2.0 * darken); // smoothstep
+            let opacity = 0.45 * darken;
+            if opacity < 0.02 {
+                x += cell;
+                continue;
+            }
+            let (px, py) = proj.project(Coord2::new(x, z));
+            let _ = write!(
+                out,
+                "    <rect x=\"{}\" y=\"{}\" width=\"{}\" height=\"{}\" fill=\"#000000\" fill-opacity=\"{:.2}\" shape-rendering=\"crispEdges\"/>\n",
+                f(px),
+                f(py),
+                f(cell_px + 0.5), // +0.5 prevents seams between adjacent cells
+                f(cell_px + 0.5),
+                opacity
+            );
+            x += cell;
+        }
+        z += cell;
+    }
+    out.push_str("  </g>\n");
+}
+
+fn normalize_vec3(x: f32, y: f32, z: f32) -> (f32, f32, f32) {
+    let len = (x * x + y * y + z * z).sqrt().max(1e-6);
+    (x / len, y / len, z / len)
 }

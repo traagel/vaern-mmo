@@ -8088,7 +8088,9 @@ dependencies = [
  "bincode 1.3.3",
  "serde",
  "serde_yaml",
+ "tempfile",
  "thiserror 2.0.18",
+ "vaern-core",
  "vaern-data",
 ]
 
@@ -8115,6 +8117,7 @@ dependencies = [
  "serde_json",
  "uuid",
  "vaern-assets",
+ "vaern-cartography",
  "vaern-character",
  "vaern-combat",
  "vaern-core",
@@ -8182,6 +8185,7 @@ dependencies = [
  "serde",
  "serde_yaml",
  "vaern-assets",
+ "vaern-cartography",
  "vaern-core",
  "vaern-data",
  "vaern-voxel",
@@ -8301,6 +8305,7 @@ dependencies = [
  "thiserror 2.0.18",
  "uuid",
  "vaern-assets",
+ "vaern-cartography",
  "vaern-character",
  "vaern-combat",
  "vaern-core",

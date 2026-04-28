@@ -5,7 +5,7 @@ use std::{collections::HashMap, fs, path::Path};
 
 use serde::{Deserialize, Serialize};
 
-use crate::{read_dir, spatial::CoordinateSystem, Bounds, Coord2, LoadError};
+use crate::{read_dir, spatial::CoordinateSystem, terrain::TerrainFeature, Bounds, Coord2, LoadError};
 
 // ─── shared ──────────────────────────────────────────────────────────────────
 
@@ -160,6 +160,11 @@ pub struct Hub {
     /// voxel terrain at spawn time.
     #[serde(default)]
     pub props: Vec<AuthoredProp>,
+    /// Lore-driven terrain feature override. When `None` (default), the
+    /// procedural heightfield's auto-derive scans `name` for keywords
+    /// like `keep`/`ford`/`waypost`. Set explicitly to override.
+    #[serde(default)]
+    pub terrain: Option<TerrainFeature>,
 }
 
 /// One hand-placed prop in a hub. Slug must match a

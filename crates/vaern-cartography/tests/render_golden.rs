@@ -60,6 +60,60 @@ fn dalewatch_zone_render_is_byte_deterministic() {
         a.contains("Dalewatch"),
         "rendered SVG must contain the zone title"
     );
+    // Hillshade overlay should be present and follow the biome regions
+    // (which produce the relief). With include_hillshade=true (default)
+    // we expect the hillshade group + at least one shadow rect.
+    assert!(
+        a.contains("id=\"hillshade\""),
+        "rendered SVG should carry the hillshade overlay"
+    );
+    let rect_count = a.matches("<rect").count();
+    assert!(
+        rect_count > 100,
+        "hillshade should emit many shadow rects, got {rect_count}"
+    );
+}
+
+#[test]
+fn dalewatch_zone_render_without_hillshade_is_smaller_and_byte_deterministic() {
+    let root = world_root();
+    let world = load_world(&root).unwrap();
+    let landmarks = load_all_landmarks(&root).unwrap();
+    let geography = load_all_geography(&root).unwrap();
+    let connections = load_all_connections(&root).unwrap();
+    let layout = load_world_layout(&root).unwrap();
+    let (style, glyphs) = load_cartography_style(root.join("style")).unwrap();
+
+    let zone = world.zone("dalewatch_marches").expect("dalewatch zone");
+    let opts = RenderOptions {
+        include_hillshade: false,
+        ..Default::default()
+    };
+
+    let a = render_zone_svg(
+        zone,
+        &world,
+        &landmarks,
+        geography.get("dalewatch_marches"),
+        &connections,
+        &style,
+        &glyphs,
+        &layout,
+        &opts,
+    );
+    let b = render_zone_svg(
+        zone,
+        &world,
+        &landmarks,
+        geography.get("dalewatch_marches"),
+        &connections,
+        &style,
+        &glyphs,
+        &layout,
+        &opts,
+    );
+    assert_eq!(a, b, "no-hillshade renders must also be byte-identical");
+    assert!(!a.contains("id=\"hillshade\""));
 }
 
 #[test]
