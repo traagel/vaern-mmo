@@ -246,46 +246,79 @@ pub fn stream_chunks_around_editor_camera(
 pub struct NeedsBlendAttach;
 
 /// Lightweight Update system: tag every newly-spawned or freshly-re-
-/// meshed chunk with `NeedsBlendAttach`. For re-meshed chunks (those
-/// matched by the `Changed<Mesh3d>` filter), also flip them to
+/// meshed chunk with `NeedsBlendAttach`, but ONLY when the underlying
+/// mesh asset actually lacks the required vertex attributes.
+///
+/// Why the asset check is critical: in this codebase `Changed<Mesh3d>`
+/// fires every frame for every chunk (suspected spurious — see Bug 2
+/// in `MAX_ATTACHES_PER_FRAME` comment). Without filtering by actual
+/// asset state, every chunk would get re-marked and re-hidden every
+/// frame. Capped to 16/frame on the un-hide side, that means ~1157 of
+/// 1173 chunks are hidden each frame → catastrophic flickering, large
+/// gaps in the world, back faces visible through holes. The fix:
+/// only mark+hide when `mesh.attribute(ATTRIBUTE_BIOME_WEIGHTS_LO)`
+/// returns None (a genuine fresh asset from `collect_completed_meshes`
+/// after a sculpt or fresh seed).
+///
+/// For re-meshed chunks that pass the filter, also flip them to
 /// `Visibility::Hidden` so the renderer skips them entirely until
 /// `process_pending_blend_attaches` catches up at its 16/frame cap.
-///
-/// The race we're avoiding: `collect_completed_meshes` drains every
-/// completed async-meshing task in one tick, reassigning new `Mesh3d`
-/// handles to all dirtied chunks at once. Each new mesh asset arrives
-/// without UV + biome-weight attributes. If a chunk still has the
-/// `BiomeBlendMaterial` (which requires UV) when render extraction
-/// runs that frame, wgpu errors out with "Mesh is missing requested
-/// attribute: Vertex_Uv".
+/// The cap-induced render race we're avoiding:
+/// `collect_completed_meshes` drains every completed async-meshing
+/// task in one tick, reassigning new `Mesh3d` handles to all dirtied
+/// chunks at once. Each new mesh asset arrives without UV + biome-
+/// weight attributes. If a chunk still has the `BiomeBlendMaterial`
+/// (which requires UV) when render extraction runs that frame, wgpu
+/// errors out with "Mesh is missing requested attribute: Vertex_Uv".
 ///
 /// Why hide instead of swapping the material? Switching
 /// `MeshMaterial3d<A>` ↔ `MeshMaterial3d<B>` on the same entity is
 /// fragile in Bevy 0.18 — the renderer can end up with the new
-/// material's pipeline trying to bind the old material's bind group
-/// (different generic = different cached pipeline + bind group, and
-/// they don't atomically co-evict). Hiding skips render extraction
-/// entirely, so no pipeline / bind group selection happens during
-/// the bridge state. Visual cost: re-meshed chunks blink invisible
-/// for 1-N frames during a sculpt burst (depending on how many
-/// chunks the brush touched), then snap back. Acceptable for sculpt
-/// feedback — the brush gizmo is still visible.
+/// material's pipeline trying to bind the old material's bind group.
+/// Hiding skips render extraction entirely, so no pipeline / bind
+/// group selection happens during the bridge state. Visual cost:
+/// genuinely re-meshed chunks blink invisible for 1-N frames during
+/// a sculpt burst, then snap back. Acceptable.
 pub fn mark_chunks_needing_blend_refresh(
     mut commands: Commands,
-    new_chunks: Query<Entity, (Added<ChunkRenderTag>, Without<NeedsBlendAttach>)>,
+    meshes: Res<Assets<Mesh>>,
+    new_chunks: Query<
+        (Entity, &Mesh3d),
+        (Added<ChunkRenderTag>, Without<NeedsBlendAttach>),
+    >,
     changed_meshes: Query<
-        Entity,
+        (Entity, &Mesh3d),
         (Changed<Mesh3d>, With<ChunkRenderTag>, Without<NeedsBlendAttach>),
     >,
 ) {
-    for e in &new_chunks {
-        commands.entity(e).try_insert(NeedsBlendAttach);
+    let mesh_lacks_attrs = |mesh3d: &Mesh3d| -> bool {
+        match meshes.get(&mesh3d.0) {
+            Some(mesh) => mesh
+                .attribute(super::biome_blend::ATTRIBUTE_BIOME_WEIGHTS_LO)
+                .is_none(),
+            // Asset not yet loaded; definitely needs attach when it lands.
+            None => true,
+        }
+    };
+
+    for (e, mesh3d) in &new_chunks {
+        if mesh_lacks_attrs(mesh3d) {
+            commands.entity(e).try_insert(NeedsBlendAttach);
+            // No Visibility::Hidden on fresh chunks — they have no
+            // material yet, so they don't render and there's no race.
+        }
     }
-    for e in &changed_meshes {
-        commands
-            .entity(e)
-            .try_insert(NeedsBlendAttach)
-            .try_insert(Visibility::Hidden);
+    for (e, mesh3d) in &changed_meshes {
+        if mesh_lacks_attrs(mesh3d) {
+            commands
+                .entity(e)
+                .try_insert(NeedsBlendAttach)
+                .try_insert(Visibility::Hidden);
+        }
+        // Otherwise: spurious `Changed<Mesh3d>` (same handle reassigned
+        // by `collect_completed_meshes` or some other system mutating
+        // Mesh3d without changing the asset). Skip — the mesh already
+        // has the attributes and the chunk is rendering correctly.
     }
 }
 
